@@ -413,9 +413,13 @@ class AcademicWebsite {
      * Populate publications section
      */
     populatePublications(publications) {
-        // This will be handled by the publications manager
-        // Store reference for later initialization
+        console.log('populatePublications called with:', publications);
         this.publicationsData = publications || [];
+
+        // Also render immediately in case the manager isn't ready yet
+        if (publications && publications.length > 0) {
+            this.renderPublicationsDirectly(publications);
+        }
     }
 
     /**
@@ -655,8 +659,61 @@ class AcademicWebsite {
      */
     initializePublications() {
         // Initialize the publications manager
-        if (window.PublicationsManager && this.publicationsData) {
+        console.log('Initializing publications...', this.publicationsData);
+        if (window.PublicationsManager && this.publicationsData && this.publicationsData.length > 0) {
+            console.log('Creating PublicationsManager with', this.publicationsData.length, 'publications');
             this.publicationsManager = new PublicationsManager(this.publicationsData);
+            // Ensure publications are rendered
+            setTimeout(() => {
+                if (this.publicationsManager) {
+                    console.log('Force rendering publications...');
+                    this.publicationsManager.renderPublications();
+                }
+            }, 100);
+        } else {
+            console.warn('Publications not initialized:', {
+                hasManager: !!window.PublicationsManager,
+                hasData: !!this.publicationsData,
+                dataLength: this.publicationsData ? this.publicationsData.length : 0
+            });
+            // Try to render empty state
+            this.renderEmptyPublications();
+        }
+    }
+
+    /**
+     * Render publications directly (fallback method)
+     */
+    renderPublicationsDirectly(publications) {
+        const publicationsList = document.querySelector('#publications .publications-list');
+        if (!publicationsList || !publications) return;
+
+        const html = publications
+            .sort((a, b) => (parseInt(b.year) || 0) - (parseInt(a.year) || 0))
+            .map(pub => `
+                <div class="publication-item">
+                    <h3 class="publication-title">${pub.title || 'Untitled'}</h3>
+                    <p class="publication-authors">${pub.authors || 'Authors not specified'}</p>
+                    <div class="publication-details">
+                        <span class="publication-venue">${pub.journal || pub.conference || pub.venue || 'Venue not specified'}</span>
+                        <span class="publication-year">${pub.year || 'Year not specified'}</span>
+                        ${pub.doi ? `<a href="https://doi.org/${pub.doi}" class="publication-doi" target="_blank">DOI</a>` : ''}
+                        ${pub.url ? `<a href="${pub.url}" class="publication-url" target="_blank">View</a>` : ''}
+                    </div>
+                </div>
+            `).join('');
+
+        publicationsList.innerHTML = html;
+        console.log('Publications rendered directly:', publications.length, 'items');
+    }
+
+    /**
+     * Render empty publications state
+     */
+    renderEmptyPublications() {
+        const publicationsList = document.querySelector('#publications .publications-list');
+        if (publicationsList) {
+            publicationsList.innerHTML = '<div class="empty-state">No publications found. Check data loading.</div>';
         }
     }
 

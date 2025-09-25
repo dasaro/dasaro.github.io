@@ -68,7 +68,21 @@
     "demo": "Demo",
     "award": "Award",
     "issuer": "Issuer",
-    "date": "Date"
+    "date": "Date",
+    "company": "Company",
+    "institution": "Institution",
+    "position": "Position",
+    "role": "Role",
+    "responsibilities": "Responsibilities",
+    "achievements": "Achievements",
+    "projects": "Projects",
+    "tools": "Tools",
+    "methodologies": "Methodologies",
+    "skill": "Skill",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "expert": "Expert"
   },
   "badges": {
     "featured": "Featured",

@@ -68,7 +68,21 @@
     "demo": "Demo",
     "award": "Premio",
     "issuer": "Ente",
-    "date": "Data"
+    "date": "Data",
+    "company": "Azienda",
+    "institution": "Istituzione",
+    "position": "Posizione",
+    "role": "Ruolo",
+    "responsibilities": "Responsabilità",
+    "achievements": "Risultati",
+    "projects": "Progetti",
+    "tools": "Strumenti",
+    "methodologies": "Metodologie",
+    "skill": "Competenza",
+    "beginner": "Principiante",
+    "intermediate": "Intermedio",
+    "advanced": "Avanzato",
+    "expert": "Esperto"
   },
   "badges": {
     "featured": "In Evidenza",

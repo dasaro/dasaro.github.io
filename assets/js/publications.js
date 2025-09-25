@@ -210,12 +210,17 @@ class PublicationsManager {
      * Render filtered publications
      */
     renderPublications() {
+        console.log('Rendering publications...', this.filteredPublications.length);
         const publicationsList = document.querySelector('#publications .publications-list');
-        if (!publicationsList) return;
+        if (!publicationsList) {
+            console.error('Publications list element not found!');
+            return;
+        }
 
         publicationsList.innerHTML = '';
 
         if (this.filteredPublications.length === 0) {
+            console.warn('No publications to render');
             this.renderEmptyState(publicationsList);
             return;
         }
