@@ -51,8 +51,8 @@ class App {
 
         } catch (error) {
             this.log('ERROR: Application initialization failed:', error);
-            if (window.ErrorHandler) {
-                window.ErrorHandler.handleError(error, 'App Initialization', true);
+            if (window.errorHandler) {
+                window.errorHandler.handleError(error, 'App Initialization', true);
             }
             this.showErrorMessage('Application failed to initialize. Please refresh the page.');
         }
@@ -71,8 +71,8 @@ class App {
             // Preload critical resources
             const criticalResources = [
                 { href: 'assets/css/main.css', as: 'style' },
-                { href: 'assets/images/profile.jpg', as: 'image' },
-                { href: 'data/CV.pdf', as: 'document' }
+                { href: 'assets/images/profile.jpg', as: 'image' }
+                // Note: PDF preloading removed as 'document' is not a valid 'as' value
             ];
 
             window.PerformanceUtils.preloadResources(criticalResources);
@@ -260,8 +260,8 @@ class App {
         this.log('Loading and populating data...');
 
         // Wrap in error handler
-        const safeLoadData = window.ErrorHandler ?
-            window.ErrorHandler.wrapAsync(async () => {
+        const safeLoadData = window.errorHandler ?
+            window.errorHandler.wrapAsync(async () => {
                 // Load data with performance measurement
                 const startTime = performance.now();
                 const data = await this.dataManager.loadData();
@@ -291,8 +291,8 @@ class App {
 
         } catch (error) {
             this.log('ERROR: Data loading failed:', error);
-            if (window.ErrorHandler) {
-                window.ErrorHandler.handleError(error, 'Data Loading', false);
+            if (window.errorHandler) {
+                window.errorHandler.handleError(error, 'Data Loading', false);
             }
             this.log('Attempting to use fallback data...');
 
@@ -314,8 +314,8 @@ class App {
 
         // Populate all registered pages with error boundaries
         this.pages.forEach((page, pageName) => {
-            const safeRender = window.ErrorHandler ?
-                window.ErrorHandler.safeDOMOperation(() => {
+            const safeRender = window.errorHandler ?
+                () => window.errorHandler.safeDOMOperation(() => {
                     this.log(`Populating ${pageName} page...`);
                     page.render(data);
                     this.log(`${pageName} page populated successfully`);
