@@ -240,6 +240,14 @@ All identified architectural flaws have been systematically addressed with **gra
 - **Avoid overlapping/gapped breakpoints** that cause layout issues
 - **Test at boundary values** (767px, 768px, 1023px, 1024px)
 
+#### **7. Legacy Code and Deprecated API Management**
+- **IMMEDIATELY remove** any legacy/deprecated code when detected or when APIs become deprecated
+- **NEVER allow** deprecated APIs to remain in production code (e.g., `document.execCommand`, `document.write`)
+- **MANDATORY route verification** - when removing legacy code, trace and test ALL code paths that previously used it
+- **Replace with modern equivalents** using current web standards and best practices
+- **Update all related functionality** to use the new implementation patterns
+- **Example**: Replace `document.execCommand('copy')` with modern Clipboard API, test all copy functionality
+
 ### **📋 MANDATORY: Update CLAUDE.md for ALL Architectural Changes**
 
 **When making ANY architectural change, you MUST:**
@@ -249,6 +257,14 @@ All identified architectural flaws have been systematically addressed with **gra
 3. **Update the rollback point** commit hash if significant changes are made
 4. **Test graceful degradation** scenarios (missing files, failed networks, malformed data)
 5. **Commit CLAUDE.md changes** alongside the architectural changes
+
+**When removing LEGACY/DEPRECATED code, you MUST:**
+
+1. **Document the legacy code removal** in the "Recent Major Updates" section with specific details
+2. **List ALL affected code paths** and routes that previously used the deprecated functionality
+3. **Verify and test ALL replacement implementations** work correctly
+4. **Update this CLAUDE.md** immediately when the removal is complete
+5. **Add the deprecated API/pattern to the "Prohibited Patterns" list** below to prevent reintroduction
 
 ### **🔄 Architectural Change Tracking Template**
 
@@ -261,16 +277,88 @@ Add new architectural changes using this format:
 - **Testing Requirements**: [What to test to verify the change works]
 ```
 
+### **🚫 PROHIBITED PATTERNS (Legacy/Deprecated Code)**
+
+**The following patterns are BANNED from this codebase and must be replaced if found:**
+
+#### **Deprecated Web APIs - CRITICAL PRIORITY**
+- ❌ `document.execCommand()` - **CURRENTLY IN CODE** - Replace with Clipboard API
+- ❌ `document.write()` - **CURRENTLY IN CODE** - Replace with DOM manipulation
+- ❌ `event.keyCode` - Use `event.key` or `event.code` instead
+- ❌ `XMLHttpRequest` - Use `fetch()` API instead
+
+#### **Legacy JavaScript Patterns - MEDIUM PRIORITY**
+- ❌ `var` declarations - Use `const`/`let` only
+- ❌ `function()` constructors - Use arrow functions or class methods
+- ❌ Inline event handlers (`onclick="..."`) - Use `addEventListener()`
+- ❌ `setTimeout` strings - Use function references only
+
+#### **Legacy DOM Patterns - LOW PRIORITY**
+- ⚠️ Mixed `getElementById`/`querySelector` usage - Standardize on `querySelector`
+- ⚠️ Direct `innerHTML +=` modifications - Use `insertAdjacentHTML` or DOM methods
+- ⚠️ `removeChild`/`appendChild` - Use modern `remove()`/`append()` methods
+
+### **📋 CURRENT LEGACY CODE STATUS (September 25, 2025)**
+
+#### **🔴 BREAKING ISSUES FOUND - IMMEDIATE ACTION REQUIRED**
+- ⏳ **document.execCommand()** in `publications.js:690` - BibTeX copy functionality at risk
+  - **Affected Routes**: Publications → BibTeX export → Copy to clipboard
+  - **Replacement Required**: Modern Clipboard API implementation
+  - **Testing Required**: All copy functionality in publications system
+
+#### **🟡 NON-BREAKING ISSUES - SCHEDULE FOR CLEANUP**
+- ⏳ **document.write()** in `admin/index.html:38` - Security blocking mechanism
+  - **Affected Routes**: Admin panel access control
+  - **Replacement Option**: DOM manipulation with redirect
+- ⏳ **Mixed DOM Queries** (67 `getElementById` instances) - Maintenance burden
+  - **Affected Routes**: All JavaScript DOM interactions
+  - **Replacement Goal**: Standardize on `querySelector` family
+- ⏳ **Console Logging** (51 instances) - Production noise
+  - **Affected Routes**: All debugging/logging code paths
+  - **Replacement Goal**: Production build process or conditional logging
+
+### **🔄 Legacy Code Removal Template**
+
+**When removing deprecated/legacy code, document using this format:**
+
+```markdown
+#### **LEGACY REMOVAL - [DATE]**
+- 🗑️ **Removed**: [Deprecated API/Pattern] from `[file:line]`
+- 🔄 **Replaced With**: [Modern alternative implementation]
+- 🛠️ **Affected Routes**: [List all code paths that were changed]
+  - Route 1: [Description of flow]
+  - Route 2: [Description of flow]
+- ✅ **Testing Completed**: [What was tested to verify replacement works]
+- 📋 **Added to Prohibited**: Added `[pattern]` to PROHIBITED PATTERNS list
+- **Rollback Point**: Commit `[hash]` before this removal
+```
+
+**Example:**
+```markdown
+#### **LEGACY REMOVAL - September 25, 2025**
+- 🗑️ **Removed**: `document.execCommand('copy')` from `publications.js:690`
+- 🔄 **Replaced With**: Modern Clipboard API with fallback
+- 🛠️ **Affected Routes**:
+  - Publications → Individual BibTeX modal → Copy button
+  - Publications → Export all → Copy functionality
+- ✅ **Testing Completed**: All copy operations in publications system
+- 📋 **Added to Prohibited**: Added `document.execCommand()` pattern
+- **Rollback Point**: Commit `abc123` before clipboard API replacement
+```
+
 ### **⚠️ IMPORTANT: Guidelines for Future Claude Code Instances**
 
 **When working on this project, ANY future Claude Code instance MUST:**
 
 1. **Read this CLAUDE.md file completely** before making changes
 2. **Follow ALL architectural standards** listed in the "ARCHITECTURAL STANDARDS & REQUIREMENTS" section
-3. **Update this CLAUDE.md file** whenever architectural changes are made
-4. **Test graceful degradation scenarios** after any architectural change
-5. **Provide rollback instructions** for any significant changes
-6. **Use the architectural change tracking template** for documenting modifications
+3. **Check the "PROHIBITED PATTERNS" section** and immediately remove any banned legacy/deprecated code found
+4. **Update this CLAUDE.md file** whenever architectural changes are made or legacy code is removed
+5. **Test graceful degradation scenarios** after any architectural change
+6. **Verify ALL affected routes** when removing legacy code - trace every code path that used the deprecated functionality
+7. **Provide rollback instructions** for any significant changes
+8. **Use the architectural change tracking template** for documenting modifications
+9. **Add newly deprecated patterns** to the "PROHIBITED PATTERNS" list when they become outdated
 
 **Key Files to Never Break:**
 - `assets/js/data-manager.js` - Contains fallback mode logic
