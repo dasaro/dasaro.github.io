@@ -394,17 +394,17 @@ class AcademicWebsite {
 
         if (profileName && personalInfo.name) {
             profileName.textContent = personalInfo.name;
-            profileName.setAttribute('data-i18n', ''); // Remove i18n attribute
+            profileName.removeAttribute('data-i18n'); // Remove i18n attribute
         }
 
         if (profileTitle && personalInfo.title) {
             profileTitle.textContent = personalInfo.title;
-            profileTitle.setAttribute('data-i18n', ''); // Remove i18n attribute
+            profileTitle.removeAttribute('data-i18n'); // Remove i18n attribute
         }
 
         if (mobileTitle && personalInfo.name) {
             mobileTitle.textContent = personalInfo.name;
-            mobileTitle.setAttribute('data-i18n', ''); // Remove i18n attribute
+            mobileTitle.removeAttribute('data-i18n'); // Remove i18n attribute
         }
 
         // Update bio with enhanced content

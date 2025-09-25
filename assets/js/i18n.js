@@ -483,7 +483,25 @@ class I18nManager {
                 present: 'Present',
                 phone: 'Phone',
                 linkedin: 'LinkedIn',
-                orcid: 'ORCID'
+                orcid: 'ORCID',
+                supervisor: 'Supervisor',
+                grade: 'Grade'
+            },
+            badges: {
+                featured: 'Featured',
+                recent: 'Recent',
+                highlight: 'Highlight',
+                published: 'Published',
+                inProgress: 'In Progress',
+                completed: 'Completed',
+                certified: 'Certified',
+                award: 'Award Winner'
+            },
+            citationMetrics: {
+                featuredResearch: 'Featured Recent Research',
+                staticWarning: 'Static metrics last updated:',
+                currentMetrics: 'For current metrics, visit:',
+                googleScholar: 'Google Scholar Profile'
             },
             loading: 'Loading...',
             error: 'An error occurred'
