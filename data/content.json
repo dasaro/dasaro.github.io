@@ -1,23 +1,407 @@
 {
   "personalInfo": {
-    "name": "",
-    "title": "",
-    "email": "",
-    "phone": "",
-    "location": "",
-    "website": "",
+    "name": "Fabio Aurelio D'Asaro",
+    "title": "Postdoctoral Researcher in Logic (PHIL-02/A)",
+    "email": "fabioaurelio.dasaro@unisalento.it",
+    "phone": "+39 347 300 1762",
+    "location": "Palermo, Italy",
+    "website": "https://sites.google.com/view/fdasaro",
     "linkedin": "",
     "orcid": "",
-    "bio": ""
+    "bio": "I am a researcher in Logic (PHIL-02/A) working at the interface of formal epistemology and AI, probabilistic and temporal reasoning, argumentation, and logic programming (ASP/ILASP) with teaching and supervision spanning Logic & Philosophy of Science, AI, Theoretical, Applied Computer Science, Epistemology of Big Data and Logic Programming."
   },
-  "education": [],
-  "experience": [],
-  "publications": [],
-  "skills": [],
+  "education": [
+    {
+      "id": "phd_ucl",
+      "degree": "PhD in Artificial Intelligence",
+      "institution": "University College London",
+      "location": "London, UK",
+      "startDate": "2014-01-01",
+      "endDate": "2019-12-31",
+      "grade": "",
+      "thesis": "Probabilistic Epistemic Reasoning About Actions",
+      "supervisor": "Rob Miller, Antonis Bikakis and Luke Dickens",
+      "description": "My PhD thesis explored how to model uncertainty (Probability Theory, in particular) and knowledge-producing actions in a popular narrative-based framework for Reasoning About Actions called the Event Calculus. Excerpts of my PhD thesis were published in top Logic and AI journals and conferences, including Artificial Intelligence (AIJ) and the International Conference on Logic Programming and Nonmonotonic Reasoning (LPNMR).",
+      "badges": ["featured", "published"]
+    },
+    {
+      "id": "msc_manchester",
+      "degree": "MSc in Pure Mathematics and Mathematical Logic",
+      "institution": "University of Manchester",
+      "location": "Manchester, UK",
+      "startDate": "2013-01-01",
+      "endDate": "2014-12-31",
+      "grade": "Distinction (equivalent to 110/110 cum laude)",
+      "thesis": "Analogical Reasoning in Unary Inductive Logic",
+      "supervisor": "Jeff B. Paris",
+      "description": "Final grade: Distinction (equivalent to 110/110 cum laude in the Italian grading system).",
+      "badges": ["highlight"]
+    },
+    {
+      "id": "bsc_palermo",
+      "degree": "BSc Computer Science",
+      "institution": "University of Palermo",
+      "location": "Palermo, Italy",
+      "startDate": "2006-01-01",
+      "endDate": "2011-12-31",
+      "grade": "110/110 cum laude",
+      "thesis": "La Tesi di Church-Turing e il suo rapporto con alcuni nuovi modelli di calcolo",
+      "supervisor": "Settimo Termini",
+      "description": "Dissertation: \"La Tesi di Church-Turing e il suo rapporto con alcuni nuovi modelli di calcolo\" (en: \"The Church-Turing Thesis and its relation with some new computation models\")",
+      "badges": ["highlight"]
+    }
+  ],
+  "experience": [
+    {
+      "id": "postdoc_salento",
+      "position": "Postdoctoral Researcher",
+      "company": "University of Salento",
+      "location": "Salento, Italy",
+      "startDate": "2025-01-01",
+      "endDate": "Present",
+      "current": true,
+      "description": "I am currently a postdoctoral researcher at the University of Salento in the Department of Human Studies (SSD PHIL-02/A). I am working in the context of Project FAIR–Future AI Research (PE00000013) under the NRRP MUR program funded by NextGenerationEU, Spoke 6 (\"Symbiotic AI\"), PI: Paolo Baldi.",
+      "responsibilities": ["Research in Logic for ethical human–AI collaboration", "eDefAI (Ethical Design for AI)", "Symbiotic AI development"],
+      "badges": ["recent", "featured"]
+    },
+    {
+      "id": "lecturer_verona",
+      "position": "Lecturer",
+      "company": "University of Verona",
+      "location": "Verona, Italy",
+      "startDate": "2022-01-01",
+      "endDate": "Present",
+      "current": true,
+      "description": "Teaching across Philosophy, Information Studies, and Computer/Data Science programs. Delivering 100+ lecture hours per year on average with consistently strong student evaluations.",
+      "responsibilities": [
+        "Logic and Philosophy of Science (BA Philosophy)",
+        "Epistemology of Big Data (MSc Data Analytics)",
+        "Computational Epistemology (MSc Artificial Intelligence)",
+        "Logic and Philosophy of Science in Physiotherapy (BSc Physiotherapy)",
+        "Laboratory of Computer Science and Multimedia Technologies (BA Philosophy)",
+        "Laboratory of Artificial Intelligence and Neuroscience (PhD Human Sciences)"
+      ],
+      "badges": ["recent"]
+    },
+    {
+      "id": "assistant_prof_verona",
+      "position": "Assistant Professor (RTD-A)",
+      "company": "University of Verona",
+      "location": "Verona, Italy",
+      "startDate": "2022-01-01",
+      "endDate": "2025-12-31",
+      "description": "Assistant Professor researching Uncertain and Epistemic Reasoning, Temporal and Probabilistic Logics, Logic Programming, Reasoning about Actions and Change, Bounded Reasoning, Formal Argumentation, and their applications to AI and Explainable AI.",
+      "responsibilities": ["Research in Logic and AI", "Teaching undergraduate and graduate courses", "Company secondment at REVO SPAC (12 months)"],
+      "badges": ["highlight"]
+    },
+    {
+      "id": "postdoc_milan",
+      "position": "Postdoctoral Researcher",
+      "company": "University of Milan",
+      "location": "Milan, Italy",
+      "startDate": "2020-01-01",
+      "endDate": "2021-12-31",
+      "description": "During my period as a post-doctoral fellow in the Logic Group at the University of Milan, I worked on uncertain, depth-bounded and epistemic logics.",
+      "badges": ["completed"]
+    },
+    {
+      "id": "postdoc_crdc",
+      "position": "Postdoctoral Researcher",
+      "company": "CRDC Tecnologie",
+      "location": "Naples, Italy",
+      "startDate": "2019-01-01",
+      "endDate": "2020-12-31",
+      "description": "I worked on the AVATEA Project, which aims to develop an AI system to support the rehabilitation process of children with neuro-motor disorders. Furthermore, I carried out research on explainable AI systems for robotics and preference learning.",
+      "badges": ["completed"]
+    },
+    {
+      "id": "teaching_assistant_ucl",
+      "position": "Teaching Assistant & Lecturer",
+      "company": "University College London",
+      "location": "London, UK",
+      "startDate": "2015-01-01",
+      "endDate": "2023-12-31",
+      "description": "Worked as a Lecturer and Lab Demonstrator for many undergraduate and postgraduate courses offered by the UCL Department of Information Studies.",
+      "responsibilities": [
+        "INST0074 Machine Reasoning for Artificial Intelligence",
+        "INST0060 Foundations of Machine Learning and Data Science",
+        "INST0019 Introduction to Programming and Scripting",
+        "INST0029 Server Programming and Structured Data",
+        "INST0004 Programming 2"
+      ],
+      "badges": ["completed"]
+    },
+    {
+      "id": "research_assistant_palermo",
+      "position": "Research Assistant",
+      "company": "University of Palermo",
+      "location": "Palermo, Italy",
+      "startDate": "2013-01-01",
+      "endDate": "2014-01-01",
+      "description": "Worked under the supervision of prof. Settimo Termini and Marco Elio Tabacchi as a fully funded graduate research assistant in the NEVERLOST Project (PO-FESR 2007-2013). Developed and implemented algorithms for optimal antenna displacement using soft-computing techniques.",
+      "responsibilities": ["Algorithm development using Fuzzy Logic and Genetic Algorithms", "Serious game development", "Publications on Fuzzy Logic foundations"],
+      "badges": ["completed"]
+    },
+    {
+      "id": "intern_icar",
+      "position": "Undergraduate Intern",
+      "company": "ICAR CNR Palermo",
+      "location": "Palermo, Italy",
+      "startDate": "2011-06-01",
+      "endDate": "2011-09-01",
+      "description": "During my internship at ICAR CNR I collaborated on the IMPULSO project, developing a path visualization tool using Google Maps APIs.",
+      "badges": ["completed"]
+    }
+  ],
+  "publications": [
+    {
+      "id": "jair_2025_substitution",
+      "title": "A Graphical Formalism for Reasoning about Substitution in Resource Transforming Procedures",
+      "authors": "A. Bikakis, F. A. D'Asaro, A. Diallo, L. Dickens, T. Hunter, R. Miller",
+      "journal": "Journal of Artificial Intelligence Research",
+      "year": "2025",
+      "doi": "10.1613/jair.1.18606",
+      "url": "https://doi.org/10.1613/jair.1.18606",
+      "type": "journal",
+      "badges": ["recent", "featured"]
+    },
+    {
+      "id": "jlc_2025_trustworthiness",
+      "title": "Checking trustworthiness of probabilistic computations in a typed natural deduction system",
+      "authors": "F. A. D'Asaro, F. Genco, G. Primiero",
+      "journal": "Journal of Logic and Computation",
+      "year": "2025",
+      "doi": "10.1093/logcom/exaf003",
+      "url": "https://doi.org/10.1093/logcom/exaf003",
+      "type": "journal",
+      "badges": ["recent", "featured"]
+    },
+    {
+      "id": "ijar_2024_asp",
+      "title": "An Answer Set Programming-based implementation of Epistemic Probabilistic Event Calculus",
+      "authors": "F. A. D'Asaro, A. Bikakis, L. Dickens, R. Miller",
+      "journal": "International Journal of Approximate Reasoning",
+      "year": "2024",
+      "doi": "10.1016/j.ijar.2023.109101",
+      "url": "https://doi.org/10.1016/j.ijar.2023.109101",
+      "type": "journal",
+      "badges": ["recent", "published"]
+    },
+    {
+      "id": "tplp_2023_ehealth",
+      "title": "An Application of a Runtime Epistemic Probabilistic Event Calculus to Decision-making in e-Health Systems",
+      "authors": "F. A. D'Asaro, L. Raggioli, S. Malek, M. Grazioso, S. Rossi",
+      "journal": "Theory and Practice of Logic Programming",
+      "year": "2023",
+      "doi": "10.1017/S1471068422000382",
+      "url": "https://doi.org/10.1017/S1471068422000382",
+      "type": "journal",
+      "badges": ["published"]
+    },
+    {
+      "id": "ijsr_2023_robotics",
+      "title": "Deep reinforcement learning for robotic approaching behavior influenced by user activity and disengagement",
+      "authors": "L. Raggioli, F. A. D'Asaro, S. Rossi",
+      "journal": "International Journal of Social Robotics",
+      "year": "2023",
+      "doi": "10.1007/s12369-023-01044-7",
+      "url": "https://doi.org/10.1007/s12369-023-01044-7",
+      "type": "journal",
+      "badges": ["published"]
+    },
+    {
+      "id": "kr_2021_klingo",
+      "title": "Introducing k-lingo: a k-depth bounded version of ASP system clingo",
+      "authors": "F. A. D'Asaro, P. Baldi, G. Primiero",
+      "conference": "Proceedings of KR 2021",
+      "year": "2021",
+      "doi": "10.24963/kr.2021/65",
+      "url": "https://doi.org/10.24963/kr.2021/65",
+      "type": "conference",
+      "badges": ["published"]
+    },
+    {
+      "id": "aij_2020_epistemic",
+      "title": "Probabilistic Reasoning About Epistemic Action Narratives",
+      "authors": "F. A. D'Asaro, A. Bikakis, L. Dickens, R. Miller",
+      "journal": "Artificial Intelligence",
+      "volume": "287",
+      "year": "2020",
+      "doi": "10.1016/j.artint.2020.103352",
+      "url": "https://doi.org/10.1016/j.artint.2020.103352",
+      "type": "journal",
+      "badges": ["featured", "highlight"]
+    },
+    {
+      "id": "kr_2020_ilp",
+      "title": "Towards an Inductive Logic Programming approach for explaining black-box preference learning systems",
+      "authors": "F. A. D'Asaro, M. Spezialetti, L. Raggioli, S. Rossi",
+      "conference": "Proceedings of KR 2020",
+      "year": "2020",
+      "doi": "10.24963/kr.2020/88",
+      "url": "https://10.24963/kr.2020/88",
+      "type": "conference",
+      "badges": ["published"]
+    },
+    {
+      "id": "lpnmr_2017_foundations",
+      "title": "Foundations for a Probabilistic Event Calculus",
+      "authors": "F. A. D'Asaro, A. Bikakis, L. Dickens, R. Miller",
+      "conference": "Proceedings of LPNMR 2017",
+      "pages": "57–63",
+      "year": "2017",
+      "type": "conference",
+      "badges": ["published"]
+    },
+    {
+      "id": "informatik_2017_smart_city",
+      "title": "Computational Intelligence and Citizen Communication in the Smart City",
+      "authors": "F. A. D'Asaro, M. A. Di Gangi, V. Perticone, M. E. Tabacchi",
+      "journal": "Informatik-Spektrum",
+      "volume": "40",
+      "number": "1",
+      "pages": "25–34",
+      "year": "2017",
+      "type": "journal",
+      "badges": ["published"]
+    }
+  ],
+  "skills": [
+    {
+      "id": "logic_programming",
+      "name": "Logic Programming",
+      "category": "Programming Languages",
+      "level": 95,
+      "description": "Fluent in Answer Set Programming (ASP) with clingo, Prolog/ProbLog, ILASP/FastLAS",
+      "badges": ["featured", "certified"]
+    },
+    {
+      "id": "python",
+      "name": "Python",
+      "category": "Programming Languages",
+      "level": 90,
+      "description": "Professional experience with Python for AI, data analysis, and research applications",
+      "badges": ["certified"]
+    },
+    {
+      "id": "javascript",
+      "name": "JavaScript/TypeScript",
+      "category": "Programming Languages",
+      "level": 85,
+      "description": "Professional experience with JavaScript/TypeScript for web development",
+      "badges": ["certified"]
+    },
+    {
+      "id": "java",
+      "name": "Java",
+      "category": "Programming Languages",
+      "level": 80,
+      "description": "Professional experience with Java development",
+      "badges": ["certified"]
+    },
+    {
+      "id": "probabilistic_reasoning",
+      "name": "Probabilistic Reasoning",
+      "category": "Research Areas",
+      "level": 95,
+      "description": "Expert in probabilistic reasoning, Event Calculus, and epistemic probabilistic systems",
+      "badges": ["featured", "highlight"]
+    },
+    {
+      "id": "formal_logic",
+      "name": "Formal Logic",
+      "category": "Research Areas",
+      "level": 95,
+      "description": "Expert in formal epistemology, temporal and probabilistic logics, formal argumentation",
+      "badges": ["featured", "highlight"]
+    },
+    {
+      "id": "ai_ml",
+      "name": "Artificial Intelligence & Machine Learning",
+      "category": "Research Areas",
+      "level": 90,
+      "description": "Research in AI, explainable AI, reasoning about actions, bounded reasoning",
+      "badges": ["featured"]
+    },
+    {
+      "id": "explainable_ai",
+      "name": "Explainable AI",
+      "category": "Research Areas",
+      "level": 90,
+      "description": "Research and applications in explainable AI systems, particularly for robotics and preference learning",
+      "badges": ["featured"]
+    },
+    {
+      "id": "teaching",
+      "name": "Teaching & Supervision",
+      "category": "Academic Skills",
+      "level": 95,
+      "description": "Extensive teaching experience (100+ hours/year) with consistently excellent student evaluations",
+      "badges": ["highlight"]
+    },
+    {
+      "id": "research",
+      "name": "Research & Publications",
+      "category": "Academic Skills",
+      "level": 95,
+      "description": "Published in top-tier journals (AIJ, JAIR, IJAR) and A*-ranked conferences (KR). h-index: 10",
+      "badges": ["featured", "highlight"]
+    }
+  ],
   "badges": [],
-  "languages": [],
-  "awards": [],
-  "projects": [],
+  "languages": [
+    {
+      "id": "italian",
+      "name": "Italian",
+      "proficiency": "Native speaker",
+      "level": 100
+    },
+    {
+      "id": "english",
+      "name": "English",
+      "proficiency": "Full professional proficiency",
+      "level": 95
+    }
+  ],
+  "awards": [
+    {
+      "id": "google_scholar_metrics",
+      "name": "Google Scholar Metrics",
+      "issuer": "Google Scholar",
+      "date": "2025",
+      "description": "Citations: 227, h-index: 10, i10-index: 10"
+    }
+  ],
+  "projects": [
+    {
+      "id": "fair_pnrr",
+      "name": "FAIR (Future AI Research)",
+      "description": "PNRR Extended Partnership PE00000013 - Spoke 6 (Symbiotic AI)",
+      "startDate": "2025-01-01",
+      "endDate": "Present",
+      "role": "Postdoctoral Researcher",
+      "technologies": ["Logic", "AI Ethics", "Human-AI Collaboration"],
+      "current": true
+    },
+    {
+      "id": "brio_prin",
+      "name": "BRIO (PRIN)",
+      "description": "PRIN 2020 protocol 2020SSKZ7R 001 - Formal frameworks for trust/bias and tooling",
+      "startDate": "2022-01-01",
+      "endDate": "2025-12-31",
+      "role": "Proponent and Collaborator",
+      "technologies": ["Formal Methods", "Bias Detection", "Trust Systems"]
+    },
+    {
+      "id": "avatea_por",
+      "name": "AVATEA",
+      "description": "POR Campania FESR 2014–2020 - AI system for rehabilitation of children with neuro-motor disorders",
+      "startDate": "2018-01-01",
+      "endDate": "2019-12-31",
+      "role": "Postdoctoral Researcher",
+      "technologies": ["Epistemic Event Calculus", "Sensor Fusion", "e-Health"]
+    }
+  ],
   "navigation": {
     "sections": [
       {
