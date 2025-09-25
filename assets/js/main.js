@@ -919,10 +919,11 @@ class AcademicWebsite {
      * Handle window resize
      */
     handleWindowResize() {
-        // Close sidebar on mobile if window is resized to desktop
-        if (window.innerWidth >= 1024 && this.sidebarOpen) {
-            this.openSidebar(); // Ensure desktop sidebar is properly displayed
+        // Close sidebar on mobile when resizing from desktop
+        if (window.innerWidth < 1024 && this.sidebarOpen) {
+            this.closeSidebar();
         }
+        // Note: Removed auto-open on desktop resize - respect user's sidebar preference
     }
 
     /**
@@ -1029,12 +1030,12 @@ class AcademicWebsite {
      * Update view based on current state
      */
     updateView() {
-        // Ensure sidebar is properly configured for current screen size
-        if (window.innerWidth >= 1024) {
-            this.openSidebar();
-        } else {
+        // On mobile, ensure sidebar is closed
+        // On desktop, let user control sidebar state (don't auto-open)
+        if (window.innerWidth < 1024) {
             this.closeSidebar();
         }
+        // Note: Removed auto-open for desktop - sidebar starts closed and user can open it
 
         // Update active section
         this.updateActiveNavigation();
