@@ -173,10 +173,10 @@
                                 <a id="scholar-profile-link" href="#" target="_blank" rel="noopener" data-i18n="citationMetrics.googleScholar">Google Scholar Profile</a>
                             </p>
                         </div>
-                        <div class="top-papers">
-                            <h3 data-i18n="citationMetrics.topPapers">Most Cited Publications</h3>
-                            <div class="top-papers-list">
-                                <!-- Top cited papers will be populated dynamically -->
+                        <div class="featured-research">
+                            <h3 data-i18n="citationMetrics.featuredResearch">Featured Recent Research</h3>
+                            <div class="featured-research-list">
+                                <!-- Featured research will be populated dynamically -->
                             </div>
                         </div>
                     </div>
@@ -367,12 +367,15 @@
         </div>
     </template>
 
-    <!-- Top paper item template (hidden) -->
-    <template id="top-paper-template">
-        <div class="top-paper-item">
-            <div class="top-paper-title"></div>
-            <div class="top-paper-venue"></div>
-            <div class="top-paper-citations"></div>
+    <!-- Featured research item template (hidden) -->
+    <template id="featured-research-template">
+        <div class="featured-research-item">
+            <div class="featured-research-header">
+                <div class="featured-research-title"></div>
+                <div class="featured-research-type"></div>
+            </div>
+            <div class="featured-research-venue"></div>
+            <div class="featured-research-relevance"></div>
         </div>
     </template>
 

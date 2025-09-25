@@ -404,140 +404,219 @@
   ],
   "supervisedStudents": [
     {
-      "id": "phd_student_1",
-      "name": "Marco Rossi",
+      "id": "francesco_pedrazzoli",
+      "name": "Francesco Pedrazzoli",
       "level": "PhD",
-      "topic": "Probabilistic Logic Programming for Explainable AI",
-      "year": "2021-2025",
+      "topic": "Ethics of AI/Recommender systems",
+      "year": "2020-Present",
       "status": "ongoing",
-      "institution": "University of Salento",
+      "institution": "University of Verona",
       "links": [
         {
-          "type": "profile",
-          "url": "https://www.unisalento.it/people/marco.rossi",
-          "title": "Academic Profile"
-        }
-      ],
-      "description": {
-        "en": "PhD research focusing on combining probabilistic reasoning with logic programming to develop explainable AI systems for healthcare applications.",
-        "it": "Ricerca di dottorato incentrata sulla combinazione del ragionamento probabilistico con la programmazione logica per sviluppare sistemi di IA spiegabile per applicazioni sanitarie."
-      }
-    },
-    {
-      "id": "master_student_1",
-      "name": "Elena Bianchi",
-      "level": "Master",
-      "topic": "Temporal Reasoning in Answer Set Programming",
-      "year": "2023-2024",
-      "status": "completed",
-      "institution": "University of Salento",
-      "links": [
-        {
-          "type": "thesis",
+          "type": "paper",
           "url": "#",
-          "title": "Master Thesis (PDF)"
+          "title": "CEPE-23 proceedings"
         }
       ],
       "description": {
-        "en": "Master thesis on extending Answer Set Programming with temporal operators for reasoning about dynamic systems.",
-        "it": "Tesi magistrale sull'estensione dell'Answer Set Programming con operatori temporali per il ragionamento su sistemi dinamici."
+        "en": "PhD research on Ethics of AI and Recommender systems. Poster at BRIO research meeting and paper at CEPE-23.",
+        "it": "Ricerca di dottorato sull'etica dell'IA e dei sistemi di raccomandazione. Poster al meeting di ricerca BRIO e paper a CEPE-23."
       }
     },
     {
-      "id": "bachelor_student_1",
-      "name": "Luca Verdi",
-      "level": "Bachelor",
-      "topic": "Logic-based Approach to Sensor Data Integration",
+      "id": "zlatina_mileva",
+      "name": "Zlatina Mileva",
+      "level": "Master",
+      "topic": "A Unifying Framework for Learning Argumentation Semantics",
       "year": "2023",
       "status": "completed",
-      "institution": "University of Salento",
+      "institution": "Imperial College London",
       "links": [
         {
-          "type": "thesis",
+          "type": "preprint",
           "url": "#",
-          "title": "Bachelor Thesis (PDF)"
+          "title": "Preprint: A Unifying Framework for Learning Argumentation Semantics"
         }
       ],
       "description": {
-        "en": "Bachelor thesis exploring the use of logic programming for integrating heterogeneous sensor data in IoT environments.",
-        "it": "Tesi triennale che esplora l'uso della programmazione logica per l'integrazione di dati di sensori eterogenei in ambienti IoT."
+        "en": "Outstanding Project Award and selection for Project Showcase Day. Preprint: A Unifying Framework for Learning Argumentation Semantics.",
+        "it": "Premio Outstanding Project Award e selezione per il Project Showcase Day. Preprint: A Unifying Framework for Learning Argumentation Semantics."
+      }
+    },
+    {
+      "id": "veronica_zenatelli",
+      "name": "Veronica Zenatelli",
+      "level": "Bachelor",
+      "topic": "LLMs & the Frame Problem",
+      "year": "2023",
+      "status": "completed",
+      "institution": "University of Verona",
+      "links": [
+        {
+          "type": "dataset",
+          "url": "#",
+          "title": "GitHub dataset for reproducible evaluation"
+        }
+      ],
+      "description": {
+        "en": "BA thesis on LLMs & the Frame Problem. Released a benchmark GitHub dataset for reproducible evaluation.",
+        "it": "Tesi triennale su LLM e il Problema del Frame. Pubblicato un dataset benchmark su GitHub per valutazioni riproducibili."
+      }
+    },
+    {
+      "id": "daniele_fossemo",
+      "name": "Daniele Fossemò & Marco D'Aviero",
+      "level": "Bachelor",
+      "topic": "ILP for XAI",
+      "year": "2022",
+      "status": "completed",
+      "institution": "University of L'Aquila",
+      "links": [
+        {
+          "type": "dataset",
+          "url": "#",
+          "title": "Zenodo dataset (project page)"
+        },
+        {
+          "type": "paper",
+          "url": "#",
+          "title": "BEWARE-22 proceedings"
+        }
+      ],
+      "description": {
+        "en": "UG projects on ILP for XAI leading to an open dataset and a workshop paper. Links: Zenodo dataset, BEWARE-22 proceedings.",
+        "it": "Progetti triennali su ILP per XAI che hanno portato a un dataset aperto e un paper workshop. Collegamenti: dataset Zenodo, atti BEWARE-22."
+      }
+    },
+    {
+      "id": "luca_raggioli",
+      "name": "Luca Raggioli",
+      "level": "Master",
+      "topic": "Deep Reinforcement Learning for human-aware approaching",
+      "year": "2023",
+      "status": "completed",
+      "institution": "University of Naples Federico II",
+      "links": [
+        {
+          "type": "paper",
+          "url": "https://doi.org/10.1007/s12369-023-01044-7",
+          "title": "International Journal of Social Robotics (2023)"
+        }
+      ],
+      "description": {
+        "en": "Deep Reinforcement Learning for human-aware approaching. Published in the International Journal of Social Robotics (2023).",
+        "it": "Deep Reinforcement Learning per approccio human-aware. Pubblicato nell'International Journal of Social Robotics (2023)."
+      }
+    },
+    {
+      "id": "sara_sangiovanni",
+      "name": "Sara Sangiovanni",
+      "level": "Master",
+      "topic": "HRI pipeline for automated test administration",
+      "year": "2020",
+      "status": "completed",
+      "institution": "University of Naples Federico II",
+      "links": [
+        {
+          "type": "paper",
+          "url": "#",
+          "title": "ICSR 2020 proceedings"
+        }
+      ],
+      "description": {
+        "en": "HRI pipeline for automated test administration. Published in ICSR 2020.",
+        "it": "Pipeline HRI per amministrazione automatizzata di test. Pubblicato in ICSR 2020."
+      }
+    },
+    {
+      "id": "gennaro_acciaro",
+      "name": "Gennaro Daniele Acciaro",
+      "level": "Master",
+      "topic": "Intent recognition with ProbLog/Event Calculus",
+      "year": "2021",
+      "status": "completed",
+      "institution": "University of Naples Federico II",
+      "links": [
+        {
+          "type": "paper",
+          "url": "#",
+          "title": "WOA 2021 proceedings"
+        }
+      ],
+      "description": {
+        "en": "Intent recognition with ProbLog/Event Calculus. Published in WOA 2021.",
+        "it": "Riconoscimento delle intenzioni con ProbLog/Event Calculus. Pubblicato in WOA 2021."
       }
     }
   ],
   "projects": [
     {
-      "id": "klingo_project",
-      "title": "k-lingo: Bounded ASP System",
-      "type": "research",
-      "status": "completed",
-      "startDate": "2020-01",
-      "endDate": "2021-12",
-      "funding": "University Research Grant",
-      "role": "PI",
-      "description": {
-        "en": "Development of k-lingo, a k-depth bounded version of the ASP system clingo, enabling more efficient reasoning over bounded domains.",
-        "it": "Sviluppo di k-lingo, una versione k-depth bounded del sistema ASP clingo, che consente un ragionamento più efficiente su domini limitati."
-      },
-      "technologies": ["ASP", "Clingo", "C++", "Python"],
-      "links": [
-        {
-          "type": "repository",
-          "url": "https://github.com/dasaro/k-lingo",
-          "title": "GitHub Repository"
-        },
-        {
-          "type": "publication",
-          "url": "https://doi.org/10.24963/kr.2021/65",
-          "title": "KR 2021 Paper"
-        }
-      ],
-      "collaborators": ["Paolo Baldi", "Giuseppe Primiero"]
-    },
-    {
-      "id": "epistemic_ec_project",
-      "title": "Epistemic Probabilistic Event Calculus",
+      "id": "fair_pnrr",
+      "title": "FAIR - Future AI Research",
       "type": "research",
       "status": "ongoing",
-      "startDate": "2019-01",
+      "startDate": "2025-01",
       "endDate": null,
-      "funding": "EU Horizon 2020",
-      "role": "Co-PI",
+      "funding": "PNRR Extended Partnership PE00000013",
+      "role": "Postdoctoral Researcher",
       "description": {
-        "en": "Development of a probabilistic extension to the Event Calculus that incorporates epistemic reasoning for handling uncertainty in dynamic systems.",
-        "it": "Sviluppo di un'estensione probabilistica dell'Event Calculus che incorpora il ragionamento epistemico per gestire l'incertezza nei sistemi dinamici."
+        "en": "Postdoctoral researcher/collaborator on logic for ethical human–AI collaboration (eDefAI, Ethical Design for AI, 'Symbiotic AI'). Spoke 6 CUP H97G22000210007.",
+        "it": "Ricercatore post-dottorale/collaboratore sulla logica per la collaborazione etica umano-IA (eDefAI, Ethical Design for AI, 'Symbiotic AI'). Spoke 6 CUP H97G22000210007."
       },
-      "technologies": ["Event Calculus", "Probabilistic Logic", "ASP", "Python"],
-      "links": [
-        {
-          "type": "publication",
-          "url": "https://doi.org/10.1016/j.artint.2020.103352",
-          "title": "AIJ 2020 Paper"
-        }
-      ],
-      "collaborators": ["Antonis Bikakis", "Luke Dickens", "Rob Miller"]
+      "technologies": ["Logic", "AI Ethics", "Human-AI Collaboration", "Symbiotic AI"],
+      "links": [],
+      "collaborators": ["Paolo Baldi"]
     },
     {
-      "id": "ehealth_project",
-      "title": "Logic-based e-Health Decision Support",
-      "type": "collaboration",
+      "id": "revo_pon",
+      "title": "REVO",
+      "type": "industrial",
       "status": "completed",
-      "startDate": "2018-06",
-      "endDate": "2023-05",
-      "funding": "Industry Partnership",
-      "role": "Researcher",
+      "startDate": "2022-01",
+      "endDate": "2024-12",
+      "funding": "PON R&I 2014–2020, DM 1062/2021 (Action IV.4)",
+      "role": "Researcher (Temporary Professor)",
       "description": {
-        "en": "Applied probabilistic logic programming to develop decision support systems for e-health applications, focusing on patient monitoring and care optimization.",
-        "it": "Applicazione della programmazione logica probabilistica per sviluppare sistemi di supporto decisionale per applicazioni e-health, concentrandosi sul monitoraggio dei pazienti e l'ottimizzazione delle cure."
+        "en": "Developed Handwritten recognition tools, entity matching, and eligibility pre-screening modules; requirements analysis with REVO Insurance; supervision of collaborators hired on the project. Company secondment at REVO SPAC (12 months).",
+        "it": "Sviluppo di strumenti di riconoscimento della scrittura a mano, entity matching e moduli di pre-screening; analisi dei requisiti con REVO Insurance; supervisione di collaboratori assunti sul progetto. Distacco aziendale presso REVO SPAC (12 mesi)."
       },
-      "technologies": ["Probabilistic Logic", "Healthcare Analytics", "ASP", "Machine Learning"],
-      "links": [
-        {
-          "type": "publication",
-          "url": "https://doi.org/10.1016/j.artmed.2023.102496",
-          "title": "AI in Medicine 2023"
-        }
-      ],
-      "collaborators": ["Silvia Rossi", "Luigi Raggioli"]
+      "technologies": ["Handwritten Recognition", "Entity Matching", "Insurance Technology", "Pre-screening"],
+      "links": [],
+      "collaborators": []
+    },
+    {
+      "id": "brio_prin",
+      "title": "BRIO",
+      "type": "research",
+      "status": "ongoing",
+      "startDate": "2022-01",
+      "endDate": "2025-12",
+      "funding": "PRIN 2020 protocol 2020SSKZ7R 001 (ERC SH4)",
+      "role": "Proponent and Collaborator",
+      "description": {
+        "en": "Proponent and internal collaborator/PRIN participant (University of Milan); external collaborator after institutional move (EThOS Group, University of Verona). Mainly worked on formal frameworks for trust/bias and tooling.",
+        "it": "Proponente e collaboratore interno/partecipante PRIN (Università di Milano); collaboratore esterno dopo trasferimento istituzionale (EThOS Group, Università di Verona). Ha lavorato principalmente su framework formali per trust/bias e tooling."
+      },
+      "technologies": ["Formal Methods", "Bias Detection", "Trust Systems", "Logic"],
+      "links": [],
+      "collaborators": []
+    },
+    {
+      "id": "avatea_por",
+      "title": "AVATEA",
+      "type": "research",
+      "status": "completed",
+      "startDate": "2018-01",
+      "endDate": "2019-12",
+      "funding": "POR Campania FESR 2014–2020; CUP B13D18000130007",
+      "role": "Postdoctoral Researcher",
+      "description": {
+        "en": "Designed and implemented a runtime epistemic probabilistic Event Calculus architecture for sensor fusion and decision-making in rehabilitation serious games. Worked on an AI system to support the rehabilitation process of children with neuro-motor disorders.",
+        "it": "Progettato e implementato un'architettura runtime di Event Calculus probabilistico epistemico per fusione di sensori e decision-making in serious games di riabilitazione. Ha lavorato su un sistema di IA per supportare il processo di riabilitazione di bambini con disturbi neuro-motori."
+      },
+      "technologies": ["Epistemic Event Calculus", "Sensor Fusion", "e-Health", "Serious Games", "Rehabilitation Technology"],
+      "links": [],
+      "collaborators": []
     }
   ],
   "citationMetrics": {
@@ -549,24 +628,38 @@
       "i10Index": 10,
       "publications": 53
     },
-    "topPapers": [
+    "featuredResearch": [
       {
-        "title": "Probabilistic Reasoning About Epistemic Action Narratives",
-        "venue": "Artificial Intelligence Journal (2020)",
-        "citations": 45,
-        "url": "https://doi.org/10.1016/j.artint.2020.103352"
+        "title": "Checking trustworthiness of probabilistic computations in a typed natural deduction system",
+        "venue": "Journal of Logic and Computation (2025)",
+        "year": "2025",
+        "type": "Logic Foundations",
+        "relevance": "Core PHIL-02/A research on logical foundations of probabilistic reasoning",
+        "url": "https://doi.org/10.1093/logcom/exaf003"
       },
       {
         "title": "A Graphical Formalism for Reasoning about Substitution in Resource Transforming Procedures",
         "venue": "Journal of Artificial Intelligence Research (2025)",
-        "citations": 28,
-        "url": "https://doi.org/10.1613/jair.1.15830"
+        "year": "2025",
+        "type": "Formal Methods",
+        "relevance": "Logical formalism for reasoning about procedural knowledge",
+        "url": "https://doi.org/10.1613/jair.1.18606"
       },
       {
-        "title": "Checking trustworthiness of probabilistic computations in a typed natural deduction system",
-        "venue": "Journal of Logic and Computation (2023)",
-        "citations": 22,
-        "url": "https://doi.org/10.1093/logcom/exad029"
+        "title": "Weighted Assumption Based Argumentation to reason about ethical principles and actions",
+        "venue": "Proceedings of CILC 2025",
+        "year": "2025",
+        "type": "Argumentation Logic",
+        "relevance": "Logic programming approach to ethical reasoning - key for PHIL-02/A",
+        "url": "#"
+      },
+      {
+        "title": "Non-monotonic Bounded Reasoners",
+        "venue": "The Reasoner 19(1) (2025)",
+        "year": "2025",
+        "type": "Non-monotonic Logic",
+        "relevance": "Advances in bounded reasoning for non-monotonic logics",
+        "url": "https://doi.org/10.54103/1757-0522/27548"
       }
     ]
   },
