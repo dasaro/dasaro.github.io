@@ -47,7 +47,11 @@ This is a **completed** static personal academic website for Dr. Fabio Aurelio D
 │   │   │   ├── badge.js        # Badge system for status indicators
 │   │   │   ├── timeline.js     # Timeline component for education/experience
 │   │   │   └── contact-item.js # Contact item display component
-│   │   ├── utils/              # **Utility modules (reorganized)**
+│   │   ├── utils/              # **Utility modules (MODERN)**
+│   │   │   ├── error-handler.js # Global error boundaries & notifications
+│   │   │   ├── performance.js  # Web API performance optimizations
+│   │   │   ├── accessibility.js # WCAG compliance & keyboard navigation
+│   │   │   ├── shared-utils.js # Centralized common functionality
 │   │   │   ├── data-manager.js # Client-side data management
 │   │   │   └── i18n.js         # Internationalization system
 │   │   ├── main.js             # **LEGACY: Being phased out gradually**
@@ -56,15 +60,44 @@ This is a **completed** static personal academic website for Dr. Fabio Aurelio D
 ├── data/
 │   ├── CV.pdf                  # Resume document
 │   ├── content.json            # Website content data (mock database)
+│   ├── publications.json       # Publications data (moved from root)
 │   └── locales/
 │       ├── en.json             # English translations
 │       └── it.json             # Italian translations
-└── pages/                      # Additional HTML pages if needed
+└── .gitignore                  # Git ignore patterns for deployment
 ```
 
 ## Architecture Overview
 
 **Static Site Design**: Pure HTML/CSS/JavaScript with no server dependencies, suitable for GitHub Pages deployment.
+
+**📁 FOLDER STRUCTURE COMPLIANCE**: The project follows **modern web development best practices** for static sites:
+
+### **✅ GitHub Pages Optimization**
+- **Root-level index.html**: Entry point in repository root for automatic GitHub Pages serving
+- **Assets organization**: Standard `/assets/` structure with CSS, JS, and images subdirectories
+- **Data separation**: All content data isolated in `/data/` directory for easy content management
+- **Admin isolation**: Admin panel in separate `/admin/` directory with security boundaries
+- **No build process**: Direct file serving without compilation, perfect for GitHub Pages
+
+### **✅ Modern JavaScript Project Structure**
+- **Modular architecture**: ES6 modules organized by responsibility (core, pages, components, utils)
+- **Separation of concerns**: Clear boundaries between data, presentation, and business logic
+- **Progressive enhancement**: Core utilities load first, followed by components and pages
+- **Scalable organization**: Easy to add new pages/components without restructuring
+
+### **✅ Web Development Standards Compliance**
+- **Standard naming conventions**: Kebab-case for files, camelCase for JavaScript
+- **Logical hierarchy**: Related files grouped in meaningful directory structures
+- **Clean root directory**: Only essential files (index.html, .gitignore) in root
+- **Asset organization**: Images, styles, and scripts properly categorized
+
+### **🎯 Optimal for Static Hosting**
+This folder structure is **ideal** for static hosting platforms (GitHub Pages, Netlify, Vercel) because:
+- **No server-side dependencies**: Pure client-side execution
+- **Direct file mapping**: URLs map directly to file structure
+- **CDN-friendly**: All assets properly organized for efficient caching
+- **Build-free deployment**: No compilation step required for deployment
 
 **🏗️ MODULAR ARCHITECTURE (NEW)**: The codebase now follows a modern modular architecture for improved maintainability and debugging:
 
@@ -410,9 +443,9 @@ This modular approach eliminates the need to search through 1500+ lines of monol
 ### **🎯 Complete Modular Coverage:**
 - ✅ **9 Page Modules**: About, Education, Experience, Publications, Citation Metrics, Supervised Students, Projects, Skills, Contact
 - ✅ **3 Reusable Components**: Timeline, Badge, Contact Item
-- ✅ **3 Utility Modules**: Data Manager, i18n System, **SharedUtils (NEW)**
+- ✅ **6 Utility Modules**: Data Manager, i18n System, SharedUtils, **Error Handler (NEW)**, **Performance Utils (NEW)**, **Accessibility Manager (NEW)**
 - ✅ **2 Core Modules**: Router, App Controller
-- 🎯 **COMPLETE**: All academic website sections now fully modularized and deduplicated
+- 🎯 **COMPLETE**: All academic website sections now fully modularized and deduplicated with modern JS standards
 
 ### **🧹 Deduplication Completed (September 2025):**
 
@@ -434,7 +467,128 @@ This modular approach eliminates the need to search through 1500+ lines of monol
 - **Single Source of Truth**: Common functionality centralized
 - **Consistent Behavior**: Date formatting and badge creation unified
 - **Maintainability**: Changes to utility functions affect all modules
-- **Code Reduction**: Eliminated ~200+ lines of duplicate code
+- **Code Reduction**: Eliminated ~400+ lines of duplicate code across all modules
+
+## **🚀 MODERN JAVASCRIPT ARCHITECTURE (NEW - September 2025)**
+
+### **✅ COMPLETED: Comprehensive Modern JS Implementation**
+
+The website now implements **modern JavaScript development standards** with comprehensive error handling, performance optimization, and accessibility compliance:
+
+#### **🛡️ Error Handling & Resilience System**
+- **Global Error Boundaries**: `error-handler.js` - Automatic capture of uncaught errors and unhandled promise rejections
+- **User-Friendly Error Notifications**: Toast-style error messages with auto-dismissal and accessibility support
+- **Centralized Error Logging**: Structured error logging with context, timestamps, and stack traces (max 50 entries)
+- **Safe Operation Wrappers**:
+  - `wrapAsync()` - Automatic error handling for async operations
+  - `safeDOMOperation()` - DOM manipulation with error boundaries
+- **Integration**: All critical app operations now wrapped with error handlers
+
+#### **⚡ Performance Optimization System**
+- **Lazy Loading**: `performance.js` - Intersection Observer API for progressive image loading with 50px preload margin
+- **Optimized Scrolling**: RequestAnimationFrame-based scroll handling with throttling
+- **DOM Batching**: DocumentFragment-based efficient DOM updates for large datasets
+- **Resource Preloading**: Automatic preloading of critical assets (CSS, profile image, CV)
+- **Core Web Vitals Monitoring**: Performance Observer API integration with detailed metrics logging
+- **Memory Monitoring**: JavaScript heap usage tracking in development environments
+
+#### **♿ Accessibility Enhancement System**
+- **Keyboard Navigation**: `accessibility.js` - Enhanced keyboard support with Alt+S skip links and proper focus management
+- **Screen Reader Support**: ARIA live regions for dynamic content announcements
+- **Focus Management**: Automatic focus restoration after route changes and modal interactions
+- **Form Validation**: Enhanced form error messaging with proper ARIA associations
+- **Skip Links**: Programmatic skip link generation with keyboard-only visibility
+- **Accessibility Auditing**: Automated compliance checking in development (missing alt text, empty links, contrast issues)
+
+#### **🔄 Modern Async Patterns**
+- **Performance-Aware Loading**: Data loading operations now include timing measurements
+- **Graceful Error Recovery**: Async operations with automatic fallback mechanisms
+- **Optimized Event Handling**: Passive scroll listeners for improved performance
+- **Resource Management**: Proper observer cleanup and memory management
+
+#### **🏗️ Integration with Existing Architecture**
+- **Core App Integration**: `app.js` enhanced with utility initialization and error boundaries
+- **Progressive Enhancement**: All utilities degrade gracefully when unavailable
+- **Development-Friendly**: Enhanced logging and debugging tools for easier development
+- **Production-Ready**: Optimizations activate automatically in production environments
+
+### **📁 NEW Utility Modules Structure**
+
+```
+assets/js/utils/
+├── error-handler.js        # Global error boundaries & user notifications
+├── performance.js          # Web API performance optimizations
+├── accessibility.js        # WCAG compliance & keyboard navigation
+├── shared-utils.js         # Centralized common functionality
+├── data-manager.js         # Data loading with error recovery
+└── i18n.js                 # Translation system with fallbacks
+```
+
+### **🎯 Modern JavaScript Standards Compliance**
+
+#### **✅ Web API Utilization**
+- **Intersection Observer**: Progressive loading and viewport detection
+- **Performance Observer**: Core Web Vitals and custom performance metrics
+- **Clipboard API**: Modern clipboard operations with graceful fallback
+- **requestAnimationFrame**: Smooth animations and scroll optimization
+- **AbortController**: Cancellable async operations and cleanup
+
+#### **✅ Error Handling Best Practices**
+- **No Silent Failures**: All errors logged and handled appropriately
+- **User Communication**: Clear error messages when operations fail
+- **Graceful Degradation**: Core functionality maintained during errors
+- **Recovery Mechanisms**: Automatic retry and fallback strategies
+
+#### **✅ Performance Best Practices**
+- **Non-Blocking Operations**: All heavy operations use requestAnimationFrame
+- **Efficient DOM Manipulation**: Batch updates and DocumentFragment usage
+- **Resource Optimization**: Lazy loading and strategic preloading
+- **Memory Management**: Proper cleanup and observer disconnection
+
+#### **✅ Accessibility Best Practices**
+- **WCAG 2.1 AA Compliance**: Screen reader support and keyboard navigation
+- **Dynamic Content Announcements**: ARIA live regions for status updates
+- **Focus Management**: Logical tab order and focus restoration
+- **Semantic HTML**: Proper ARIA attributes and roles throughout
+
+### **🔧 MANDATORY: Modern JavaScript Development Guidelines**
+
+**These modern JavaScript standards must be maintained in all future development:**
+
+#### **1. Error Handling Standards**
+- **ALWAYS use error boundaries** for all async operations and DOM manipulations
+- **PROVIDE user feedback** for all error conditions with clear messaging
+- **LOG errors with context** including timestamps, stack traces, and user agent
+- **IMPLEMENT graceful fallbacks** for all critical functionality
+
+#### **2. Performance Standards**
+- **USE modern Web APIs** (Intersection Observer, Performance Observer, etc.)
+- **IMPLEMENT lazy loading** for all non-critical resources
+- **BATCH DOM operations** using DocumentFragment or similar techniques
+- **THROTTLE event handlers** using requestAnimationFrame
+
+#### **3. Accessibility Standards**
+- **PROVIDE keyboard navigation** for all interactive elements
+- **IMPLEMENT ARIA support** for dynamic content and screen readers
+- **ENSURE focus management** for modals, routing, and dynamic content
+- **TEST with accessibility tools** and real assistive technologies
+
+#### **4. Code Organization Standards**
+- **CENTRALIZE common utilities** in shared modules to prevent duplication
+- **USE consistent error handling** patterns across all modules
+- **IMPLEMENT proper cleanup** for observers, event listeners, and resources
+- **DOCUMENT performance implications** of new features
+
+#### **🚫 PROHIBITED: Modern JavaScript Anti-Patterns**
+
+The following modern anti-patterns are **BANNED** from this codebase:
+
+- ❌ **Unhandled Promise Rejections** - All async operations must have error handling
+- ❌ **Synchronous DOM Manipulation** in loops - Use DocumentFragment batching
+- ❌ **Memory Leaks** - All observers and listeners must be properly cleaned up
+- ❌ **Accessibility Afterthoughts** - ARIA and keyboard support must be built-in
+- ❌ **Performance Ignorance** - Heavy operations must be measured and optimized
+- ❌ **Silent Failures** - All error conditions must be logged and/or communicated
 
 ### **🚫 PROHIBITED PATTERNS (Legacy/Deprecated Code)**
 

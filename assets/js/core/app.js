@@ -22,6 +22,9 @@ class App {
         this.log('Initializing application...');
 
         try {
+            // Initialize core utilities first
+            await this.initializeCoreUtils();
+
             // Initialize data manager
             await this.initializeDataManager();
 
@@ -48,8 +51,46 @@ class App {
 
         } catch (error) {
             this.log('ERROR: Application initialization failed:', error);
+            if (window.ErrorHandler) {
+                window.ErrorHandler.handleError(error, 'App Initialization', true);
+            }
             this.showErrorMessage('Application failed to initialize. Please refresh the page.');
         }
+    }
+
+    /**
+     * Initialize core utility systems
+     */
+    async initializeCoreUtils() {
+        this.log('Initializing core utilities...');
+
+        // Initialize performance utilities
+        if (window.PerformanceUtils) {
+            await window.PerformanceUtils.setupLazyLoading();
+
+            // Preload critical resources
+            const criticalResources = [
+                { href: 'assets/css/main.css', as: 'style' },
+                { href: 'assets/images/profile.jpg', as: 'image' },
+                { href: 'data/CV.pdf', as: 'document' }
+            ];
+
+            window.PerformanceUtils.preloadResources(criticalResources);
+            this.log('Performance utilities initialized with resource preloading');
+        }
+
+        // Initialize accessibility manager
+        if (window.AccessibilityManager) {
+            // Already auto-initialized, but we can configure it
+            this.log('Accessibility manager initialized');
+        }
+
+        // Error handler is already auto-initialized
+        if (window.ErrorHandler) {
+            this.log('Error handler initialized');
+        }
+
+        this.log('Core utilities initialized');
     }
 
     /**
@@ -218,23 +259,41 @@ class App {
     async loadAndPopulateData() {
         this.log('Loading and populating data...');
 
+        // Wrap in error handler
+        const safeLoadData = window.ErrorHandler ?
+            window.ErrorHandler.wrapAsync(async () => {
+                // Load data with performance measurement
+                const startTime = performance.now();
+                const data = await this.dataManager.loadData();
+                const loadTime = performance.now() - startTime;
+
+                if (window.PerformanceUtils) {
+                    console.log(`Data loading took ${loadTime.toFixed(2)}ms`);
+                }
+
+                this.log('Data loaded:', data);
+                return data;
+            }, 'Data Loading') :
+            async () => await this.dataManager.loadData();
+
         try {
-            // Load data
-            const data = await this.dataManager.loadData();
-            this.log('Data loaded:', data);
+            const data = await safeLoadData();
 
             // Set navigation data for router
             if (data.navigation) {
                 this.router.setNavigationData(data.navigation);
             }
 
-            // Populate page modules with data
+            // Populate page modules with data using batched DOM updates
             this.populatePages(data);
 
             this.log('Data populated successfully');
 
         } catch (error) {
             this.log('ERROR: Data loading failed:', error);
+            if (window.ErrorHandler) {
+                window.ErrorHandler.handleError(error, 'Data Loading', false);
+            }
             this.log('Attempting to use fallback data...');
 
             // Try to use fallback data
@@ -250,16 +309,31 @@ class App {
     populatePages(data) {
         this.log('Populating pages with data...');
 
-        // Populate all registered pages
+        // Use performance measurement
+        const startTime = performance.now();
+
+        // Populate all registered pages with error boundaries
         this.pages.forEach((page, pageName) => {
-            try {
-                this.log(`Populating ${pageName} page...`);
-                page.render(data);
-                this.log(`${pageName} page populated successfully`);
-            } catch (error) {
-                this.log(`ERROR: Failed to populate ${pageName} page:`, error);
-            }
+            const safeRender = window.ErrorHandler ?
+                window.ErrorHandler.safeDOMOperation(() => {
+                    this.log(`Populating ${pageName} page...`);
+                    page.render(data);
+                    this.log(`${pageName} page populated successfully`);
+                }, `${pageName} Page Rendering`) :
+                () => {
+                    this.log(`Populating ${pageName} page...`);
+                    page.render(data);
+                    this.log(`${pageName} page populated successfully`);
+                };
+
+            safeRender();
         });
+
+        // Performance logging
+        const populationTime = performance.now() - startTime;
+        if (window.PerformanceUtils) {
+            console.log(`Page population took ${populationTime.toFixed(2)}ms`);
+        }
 
         this.log(`Pages populated with data. Populated ${this.pages.size} pages.`);
     }
@@ -302,10 +376,36 @@ class App {
         // Set up keyboard navigation
         this.setupKeyboardNavigation();
 
-        // Set up responsive behavior
+        // Set up responsive behavior with performance optimization
         this.setupResponsiveBehavior();
 
+        // Set up optimized scroll handling
+        this.setupOptimizedScrolling();
+
         this.log('UI interactions set up');
+    }
+
+    /**
+     * Set up optimized scrolling with performance utilities
+     */
+    setupOptimizedScrolling() {
+        if (window.PerformanceUtils) {
+            const optimizedScrollHandler = window.PerformanceUtils.optimizeScroll(() => {
+                // Handle scroll events efficiently
+                const scrollTop = window.scrollY;
+
+                // Update navigation active state
+                if (this.router && this.router.updateActiveNavigation) {
+                    this.router.updateActiveNavigation(scrollTop);
+                }
+
+                // Handle scroll-dependent UI changes
+                document.body.classList.toggle('scrolled', scrollTop > 50);
+            });
+
+            window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
+            this.log('Optimized scrolling set up');
+        }
     }
 
     /**

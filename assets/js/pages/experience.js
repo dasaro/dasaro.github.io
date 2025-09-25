@@ -150,14 +150,15 @@ class ExperiencePage {
         meta.className = 'timeline-meta';
 
         // Date range
-        const startDate = this.formatDate(exp.startDate);
-        const endDate = exp.current ?
-            (window.i18n?.t('common.present') || 'Present') :
-            this.formatDate(exp.endDate);
+        const formattedDateRange = window.SharedUtils.formatDateRange(
+            exp.startDate,
+            exp.endDate,
+            exp.current
+        );
 
         const dateRange = document.createElement('div');
         dateRange.className = 'timeline-date';
-        dateRange.innerHTML = `<i class="fas fa-calendar-alt"></i> ${startDate} - ${endDate}`;
+        dateRange.innerHTML = `<i class="fas fa-calendar-alt"></i> ${formattedDateRange}`;
         meta.appendChild(dateRange);
 
         // Location
@@ -190,7 +191,7 @@ class ExperiencePage {
             badgesContainer.className = 'badges-container';
 
             exp.badges.forEach(badgeName => {
-                const badge = window.badgeComponent?.createBadge(badgeName) || this.createSimpleBadge(badgeName);
+                const badge = window.badgeComponent?.createBadge(badgeName) || window.SharedUtils.createSimpleBadge(badgeName);
                 badgesContainer.appendChild(badge);
             });
 
@@ -252,18 +253,7 @@ class ExperiencePage {
         return details;
     }
 
-    /**
-     * Create simple badge fallback
-     * @param {string} badgeName - Badge name
-     * @returns {HTMLElement} Badge element
-     */
-    createSimpleBadge(badgeName) {
-        const badge = document.createElement('span');
-        badge.className = `badge badge-${badgeName}`;
-        badge.setAttribute('data-i18n', `badges.${badgeName}`);
-        badge.textContent = window.i18n?.t(`badges.${badgeName}`) || badgeName;
-        return badge;
-    }
+    // Duplicate methods removed - using SharedUtils instead
 
     /**
      * Render empty state
@@ -281,30 +271,6 @@ class ExperiencePage {
         container.appendChild(emptyState);
     }
 
-    /**
-     * Format date string for display
-     * @param {string} dateStr - Date string
-     * @returns {string} Formatted date
-     */
-    formatDate(dateStr) {
-        if (!dateStr) return '';
-
-        // If it's already a year, return as is
-        if (/^\d{4}$/.test(dateStr)) return dateStr;
-
-        // Handle "Present" case
-        if (dateStr.toLowerCase() === 'present') {
-            return window.i18n?.t('common.present') || 'Present';
-        }
-
-        // Try to parse and format the date
-        try {
-            const date = new Date(dateStr);
-            return date.getFullYear().toString();
-        } catch (error) {
-            return dateStr;
-        }
-    }
 
     /**
      * Set up event listeners for Experience page

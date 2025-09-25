@@ -194,7 +194,7 @@ class SkillsPage {
             badgesContainer.className = 'skill-badges';
 
             skill.badges.forEach(badgeName => {
-                const badge = window.badgeComponent?.createBadge(badgeName) || this.createSimpleBadge(badgeName);
+                const badge = window.badgeComponent?.createBadge(badgeName) || window.SharedUtils.createSimpleBadge(badgeName);
                 badgesContainer.appendChild(badge);
             });
 
@@ -381,18 +381,7 @@ class SkillsPage {
         return link;
     }
 
-    /**
-     * Create simple badge fallback
-     * @param {string} badgeName - Badge name
-     * @returns {HTMLElement} Badge element
-     */
-    createSimpleBadge(badgeName) {
-        const badge = document.createElement('span');
-        badge.className = `badge badge-${badgeName}`;
-        badge.setAttribute('data-i18n', `badges.${badgeName}`);
-        badge.textContent = window.i18n?.t(`badges.${badgeName}`) || badgeName;
-        return badge;
-    }
+    // Duplicate methods removed - using SharedUtils instead
 
     /**
      * Render empty state

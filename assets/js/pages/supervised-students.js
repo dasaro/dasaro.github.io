@@ -194,7 +194,7 @@ class SupervisedStudentsPage {
             badgesContainer.className = 'student-badges';
 
             student.badges.forEach(badgeName => {
-                const badge = window.badgeComponent?.createBadge(badgeName) || this.createSimpleBadge(badgeName);
+                const badge = window.badgeComponent?.createBadge(badgeName) || window.SharedUtils.createSimpleBadge(badgeName);
                 badgesContainer.appendChild(badge);
             });
 
@@ -216,10 +216,10 @@ class SupervisedStudentsPage {
         }
 
         // Period
-        const startDate = this.formatDate(student.startDate);
+        const startDate = window.SharedUtils.formatDate(student.startDate);
         const endDate = student.current ?
             (window.i18n?.t('common.present') || 'Present') :
-            this.formatDate(student.endDate);
+            window.SharedUtils.formatDate(student.endDate);
 
         if (startDate || endDate) {
             const period = document.createElement('span');
@@ -346,43 +346,7 @@ class SupervisedStudentsPage {
         return link;
     }
 
-    /**
-     * Create simple badge fallback
-     * @param {string} badgeName - Badge name
-     * @returns {HTMLElement} Badge element
-     */
-    createSimpleBadge(badgeName) {
-        const badge = document.createElement('span');
-        badge.className = `badge badge-${badgeName}`;
-        badge.setAttribute('data-i18n', `badges.${badgeName}`);
-        badge.textContent = window.i18n?.t(`badges.${badgeName}`) || badgeName;
-        return badge;
-    }
-
-    /**
-     * Format date string for display
-     * @param {string} dateStr - Date string
-     * @returns {string} Formatted date
-     */
-    formatDate(dateStr) {
-        if (!dateStr) return '';
-
-        // If it's already a year, return as is
-        if (/^\d{4}$/.test(dateStr)) return dateStr;
-
-        // Handle "Present" case
-        if (dateStr.toLowerCase() === 'present') {
-            return window.i18n?.t('common.present') || 'Present';
-        }
-
-        // Try to parse and format the date
-        try {
-            const date = new Date(dateStr);
-            return date.getFullYear().toString();
-        } catch (error) {
-            return dateStr;
-        }
-    }
+    // Duplicate methods removed - using SharedUtils instead
 
     /**
      * Render empty state

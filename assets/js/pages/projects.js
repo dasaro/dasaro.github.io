@@ -119,7 +119,7 @@ class ProjectsPage {
             badgesContainer.className = 'project-badges';
 
             project.badges.forEach(badgeName => {
-                const badge = window.badgeComponent?.createBadge(badgeName) || this.createSimpleBadge(badgeName);
+                const badge = window.badgeComponent?.createBadge(badgeName) || window.SharedUtils.createSimpleBadge(badgeName);
                 badgesContainer.appendChild(badge);
             });
 
@@ -133,10 +133,10 @@ class ProjectsPage {
         meta.className = 'project-meta';
 
         // Period
-        const startDate = this.formatDate(project.startDate);
+        const startDate = window.SharedUtils.formatDate(project.startDate);
         const endDate = project.ongoing ?
             (window.i18n?.t('common.ongoing') || 'Ongoing') :
-            this.formatDate(project.endDate);
+            window.SharedUtils.formatDate(project.endDate);
 
         if (startDate || endDate) {
             const period = document.createElement('span');
@@ -366,43 +366,7 @@ class ProjectsPage {
         return link;
     }
 
-    /**
-     * Create simple badge fallback
-     * @param {string} badgeName - Badge name
-     * @returns {HTMLElement} Badge element
-     */
-    createSimpleBadge(badgeName) {
-        const badge = document.createElement('span');
-        badge.className = `badge badge-${badgeName}`;
-        badge.setAttribute('data-i18n', `badges.${badgeName}`);
-        badge.textContent = window.i18n?.t(`badges.${badgeName}`) || badgeName;
-        return badge;
-    }
-
-    /**
-     * Format date string for display
-     * @param {string} dateStr - Date string
-     * @returns {string} Formatted date
-     */
-    formatDate(dateStr) {
-        if (!dateStr) return '';
-
-        // If it's already a year, return as is
-        if (/^\d{4}$/.test(dateStr)) return dateStr;
-
-        // Handle "Present" or "Ongoing" case
-        if (dateStr.toLowerCase() === 'present' || dateStr.toLowerCase() === 'ongoing') {
-            return window.i18n?.t('common.ongoing') || 'Ongoing';
-        }
-
-        // Try to parse and format the date
-        try {
-            const date = new Date(dateStr);
-            return date.getFullYear().toString();
-        } catch (error) {
-            return dateStr;
-        }
-    }
+    // Duplicate methods removed - using SharedUtils instead
 
     /**
      * Render empty state

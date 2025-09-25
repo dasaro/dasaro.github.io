@@ -175,7 +175,7 @@ class CitationMetricsPage {
             lastUpdated.className = 'metrics-last-updated';
             lastUpdated.innerHTML = `
                 <i class="fas fa-clock"></i>
-                Last updated: ${this.formatDate(citationMetrics.lastUpdated)}
+                Last updated: ${window.SharedUtils.formatDate(citationMetrics.lastUpdated)}
             `;
             container.appendChild(lastUpdated);
         }
@@ -338,19 +338,7 @@ class CitationMetricsPage {
         return value.toString();
     }
 
-    /**
-     * Format date for display
-     * @param {string} dateStr - Date string
-     * @returns {string} Formatted date
-     */
-    formatDate(dateStr) {
-        try {
-            const date = new Date(dateStr);
-            return date.toLocaleDateString();
-        } catch (error) {
-            return dateStr;
-        }
-    }
+    // Duplicate methods removed - using SharedUtils instead
 
     /**
      * Render empty state
