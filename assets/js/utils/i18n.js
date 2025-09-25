@@ -450,6 +450,30 @@ class I18nManager {
                 projects: {
                     title: 'Projects',
                     subtitle: 'Research Projects'
+                },
+                professionalService: {
+                    title: 'Professional Service',
+                    subtitle: 'Academic Service Activities'
+                },
+                reviewing: {
+                    title: 'Reviewing',
+                    subtitle: 'Peer Review Activities'
+                },
+                invitedTalks: {
+                    title: 'Invited Talks',
+                    subtitle: 'Presentations and Seminars'
+                },
+                researchGroups: {
+                    title: 'Research Groups',
+                    subtitle: 'Group Memberships'
+                },
+                academicAffiliations: {
+                    title: 'Academic Affiliations',
+                    subtitle: 'Professional Memberships'
+                },
+                editorialBoards: {
+                    title: 'Editorial Boards',
+                    subtitle: 'Editorial Positions'
                 }
             },
             navigation: {
@@ -458,6 +482,12 @@ class I18nManager {
                 experience: 'Experience',
                 publications: 'Publications',
                 skills: 'Skills',
+                'professional-service': 'Professional Service',
+                reviewing: 'Reviewing',
+                'invited-talks': 'Invited Talks',
+                'research-groups': 'Research Groups',
+                'academic-affiliations': 'Academic Affiliations',
+                'editorial-boards': 'Editorial Boards',
                 contact: 'Contact',
                 downloadCV: 'Download CV'
             },

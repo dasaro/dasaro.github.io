@@ -192,7 +192,7 @@ class DataManager {
         });
 
         // Ensure arrays are arrays
-        const arraySections = ['education', 'experience', 'publications', 'skills', 'badges', 'languages', 'awards', 'projects', 'supervisedStudents'];
+        const arraySections = ['education', 'experience', 'publications', 'skills', 'badges', 'languages', 'awards', 'projects', 'supervisedStudents', 'professionalService', 'reviewing', 'invitedTalks', 'researchGroups', 'academicAffiliations', 'editorialBoards'];
         arraySections.forEach(section => {
             if (cleanData[section] && !Array.isArray(cleanData[section])) {
                 cleanData[section] = [];
@@ -232,6 +232,12 @@ class DataManager {
                 totalPublications: 0
             },
             skills: [],
+            professionalService: [],
+            reviewing: [],
+            invitedTalks: [],
+            researchGroups: [],
+            academicAffiliations: [],
+            editorialBoards: [],
             contact: {
                 email: '',
                 phone: '',
@@ -266,7 +272,7 @@ class DataManager {
      * Get complete empty data structure
      */
     getEmptyDataStructure() {
-        const sections = ['personalInfo', 'education', 'experience', 'publications', 'supervisedStudents', 'projects', 'citationMetrics', 'skills', 'contact', 'navigation', 'theme', 'settings', 'badges', 'languages', 'awards'];
+        const sections = ['personalInfo', 'education', 'experience', 'publications', 'supervisedStudents', 'projects', 'citationMetrics', 'skills', 'professionalService', 'reviewing', 'invitedTalks', 'researchGroups', 'academicAffiliations', 'editorialBoards', 'contact', 'navigation', 'theme', 'settings', 'badges', 'languages', 'awards'];
         const emptyData = {};
 
         sections.forEach(section => {
