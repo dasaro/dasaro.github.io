@@ -491,14 +491,6 @@
       "icons": ["fas fa-handshake"]
     }
   ],
-      "volume": "40",
-      "number": "1",
-      "pages": "25–34",
-      "year": "2017",
-      "type": "journal",
-      "icons": ["fas fa-city"]
-    }
-  ],
   "skills": [
     {
       "id": "logic_programming",
