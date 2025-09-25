@@ -1,0 +1,44 @@
+{
+  "lastUpdated": "2024-09-25",
+  "googleScholarProfile": "https://scholar.google.com/citations?user=qb2YFi4AAAAJ",
+  "overview": {
+    "totalCitations": 227,
+    "hIndex": 10,
+    "i10Index": 10,
+    "publications": 53
+  },
+  "featuredResearch": [
+    {
+      "title": "Checking trustworthiness of probabilistic computations in a typed natural deduction system",
+      "venue": "Journal of Logic and Computation (2025)",
+      "year": "2025",
+      "type": "Logic Foundations",
+      "relevance": "Core PHIL-02/A research on logical foundations of probabilistic reasoning",
+      "url": "https://doi.org/10.1093/logcom/exaf003"
+    },
+    {
+      "title": "A Graphical Formalism for Reasoning about Substitution in Resource Transforming Procedures",
+      "venue": "Journal of Artificial Intelligence Research (2025)",
+      "year": "2025",
+      "type": "Formal Methods",
+      "relevance": "Logical formalism for reasoning about procedural knowledge",
+      "url": "https://doi.org/10.1613/jair.1.18606"
+    },
+    {
+      "title": "Weighted Assumption Based Argumentation to reason about ethical principles and actions",
+      "venue": "Proceedings of CILC 2025",
+      "year": "2025",
+      "type": "Argumentation Logic",
+      "relevance": "Logic programming approach to ethical reasoning - key for PHIL-02/A",
+      "url": "#"
+    },
+    {
+      "title": "Non-monotonic Bounded Reasoners",
+      "venue": "The Reasoner 19(1) (2025)",
+      "year": "2025",
+      "type": "Non-monotonic Logic",
+      "relevance": "Advances in bounded reasoning for non-monotonic logics",
+      "url": "https://doi.org/10.54103/1757-0522/27548"
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+[
+  {
+    "id": "francesco_pedrazzoli",
+    "name": "Francesco Pedrazzoli",
+    "level": "PhD",
+    "topic": "Ethics of AI/Recommender systems",
+    "year": "2020-Present",
+    "status": "ongoing",
+    "institution": "University of Verona",
+    "links": [
+      {
+        "type": "paper",
+        "url": "#",
+        "title": "CEPE-23 proceedings"
+      }
+    ],
+    "description": {
+      "en": "PhD research on Ethics of AI and Recommender systems. Poster at BRIO research meeting and paper at CEPE-23.",
+      "it": "Ricerca di dottorato sull'etica dell'IA e dei sistemi di raccomandazione. Poster al meeting di ricerca BRIO e paper a CEPE-23."
+    }
+  },
+  {
+    "id": "zlatina_mileva",
+    "name": "Zlatina Mileva",
+    "level": "Master",
+    "topic": "A Unifying Framework for Learning Argumentation Semantics",
+    "year": "2023",
+    "status": "completed",
+    "institution": "Imperial College London",
+    "links": [
+      {
+        "type": "preprint",
+        "url": "#",
+        "title": "Preprint: A Unifying Framework for Learning Argumentation Semantics"
+      }
+    ],
+    "description": {
+      "en": "Outstanding Project Award and selection for Project Showcase Day. Preprint: A Unifying Framework for Learning Argumentation Semantics.",
+      "it": "Premio Outstanding Project Award e selezione per il Project Showcase Day. Preprint: A Unifying Framework for Learning Argumentation Semantics."
+    }
+  },
+  {
+    "id": "veronica_zenatelli",
+    "name": "Veronica Zenatelli",
+    "level": "Bachelor",
+    "topic": "LLMs & the Frame Problem",
+    "year": "2023",
+    "status": "completed",
+    "institution": "University of Verona",
+    "links": [
+      {
+        "type": "dataset",
+        "url": "#",
+        "title": "GitHub dataset for reproducible evaluation"
+      }
+    ],
+    "description": {
+      "en": "BA thesis on LLMs & the Frame Problem. Released a benchmark GitHub dataset for reproducible evaluation.",
+      "it": "Tesi triennale su LLM e il Problema del Frame. Pubblicato un dataset benchmark su GitHub per valutazioni riproducibili."
+    }
+  },
+  {
+    "id": "daniele_fossemo",
+    "name": "Daniele Fossemò & Marco D'Aviero",
+    "level": "Bachelor",
+    "topic": "ILP for XAI",
+    "year": "2022",
+    "status": "completed",
+    "institution": "University of L'Aquila",
+    "links": [
+      {
+        "type": "dataset",
+        "url": "#",
+        "title": "Zenodo dataset (project page)"
+      },
+      {
+        "type": "paper",
+        "url": "#",
+        "title": "BEWARE-22 proceedings"
+      }
+    ],
+    "description": {
+      "en": "UG projects on ILP for XAI leading to an open dataset and a workshop paper. Links: Zenodo dataset, BEWARE-22 proceedings.",
+      "it": "Progetti triennali su ILP per XAI che hanno portato a un dataset aperto e un paper workshop. Collegamenti: dataset Zenodo, atti BEWARE-22."
+    }
+  },
+  {
+    "id": "luca_raggioli",
+    "name": "Luca Raggioli",
+    "level": "Master",
+    "topic": "Deep Reinforcement Learning for human-aware approaching",
+    "year": "2023",
+    "status": "completed",
+    "institution": "University of Naples Federico II",
+    "links": [
+      {
+        "type": "paper",
+        "url": "https://doi.org/10.1007/s12369-023-01044-7",
+        "title": "International Journal of Social Robotics (2023)"
+      }
+    ],
+    "description": {
+      "en": "Deep Reinforcement Learning for human-aware approaching. Published in the International Journal of Social Robotics (2023).",
+      "it": "Deep Reinforcement Learning per approccio human-aware. Pubblicato nell'International Journal of Social Robotics (2023)."
+    }
+  },
+  {
+    "id": "sara_sangiovanni",
+    "name": "Sara Sangiovanni",
+    "level": "Master",
+    "topic": "HRI pipeline for automated test administration",
+    "year": "2020",
+    "status": "completed",
+    "institution": "University of Naples Federico II",
+    "links": [
+      {
+        "type": "paper",
+        "url": "#",
+        "title": "ICSR 2020 proceedings"
+      }
+    ],
+    "description": {
+      "en": "HRI pipeline for automated test administration. Published in ICSR 2020.",
+      "it": "Pipeline HRI per amministrazione automatizzata di test. Pubblicato in ICSR 2020."
+    }
+  },
+  {
+    "id": "gennaro_acciaro",
+    "name": "Gennaro Daniele Acciaro",
+    "level": "Master",
+    "topic": "Intent recognition with ProbLog/Event Calculus",
+    "year": "2021",
+    "status": "completed",
+    "institution": "University of Naples Federico II",
+    "links": [
+      {
+        "type": "paper",
+        "url": "#",
+        "title": "WOA 2021 proceedings"
+      }
+    ],
+    "description": {
+      "en": "Intent recognition with ProbLog/Event Calculus. Published in WOA 2021.",
+      "it": "Riconoscimento delle intenzioni con ProbLog/Event Calculus. Pubblicato in WOA 2021."
+    }
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "id": "fair_pnrr",
+    "title": "FAIR - Future AI Research",
+    "type": "research",
+    "status": "ongoing",
+    "startDate": "2025-01",
+    "endDate": null,
+    "funding": "PNRR Extended Partnership PE00000013",
+    "role": "Postdoctoral Researcher",
+    "description": {
+      "en": "Postdoctoral researcher/collaborator on logic for ethical human–AI collaboration (eDefAI, Ethical Design for AI, 'Symbiotic AI'). Spoke 6 CUP H97G22000210007.",
+      "it": "Ricercatore post-dottorale/collaboratore sulla logica per la collaborazione etica umano-IA (eDefAI, Ethical Design for AI, 'Symbiotic AI'). Spoke 6 CUP H97G22000210007."
+    },
+    "technologies": [
+      "Logic",
+      "AI Ethics",
+      "Human-AI Collaboration",
+      "Symbiotic AI"
+    ],
+    "links": [],
+    "collaborators": [
+      "Paolo Baldi"
+    ]
+  },
+  {
+    "id": "revo_pon",
+    "title": "REVO",
+    "type": "industrial",
+    "status": "completed",
+    "startDate": "2022-01",
+    "endDate": "2024-12",
+    "funding": "PON R&I 2014–2020, DM 1062/2021 (Action IV.4)",
+    "role": "Researcher (Temporary Professor)",
+    "description": {
+      "en": "Developed Handwritten recognition tools, entity matching, and eligibility pre-screening modules; requirements analysis with REVO Insurance; supervision of collaborators hired on the project. Company secondment at REVO SPAC (12 months).",
+      "it": "Sviluppo di strumenti di riconoscimento della scrittura a mano, entity matching e moduli di pre-screening; analisi dei requisiti con REVO Insurance; supervisione di collaboratori assunti sul progetto. Distacco aziendale presso REVO SPAC (12 mesi)."
+    },
+    "technologies": [
+      "Handwritten Recognition",
+      "Entity Matching",
+      "Insurance Technology",
+      "Pre-screening"
+    ],
+    "links": [],
+    "collaborators": []
+  },
+  {
+    "id": "brio_prin",
+    "title": "BRIO",
+    "type": "research",
+    "status": "ongoing",
+    "startDate": "2022-01",
+    "endDate": "2025-12",
+    "funding": "PRIN 2020 protocol 2020SSKZ7R 001 (ERC SH4)",
+    "role": "Proponent and Collaborator",
+    "description": {
+      "en": "Proponent and internal collaborator/PRIN participant (University of Milan); external collaborator after institutional move (EThOS Group, University of Verona). Mainly worked on formal frameworks for trust/bias and tooling.",
+      "it": "Proponente e collaboratore interno/partecipante PRIN (Università di Milano); collaboratore esterno dopo trasferimento istituzionale (EThOS Group, Università di Verona). Ha lavorato principalmente su framework formali per trust/bias e tooling."
+    },
+    "technologies": [
+      "Formal Methods",
+      "Bias Detection",
+      "Trust Systems",
+      "Logic"
+    ],
+    "links": [],
+    "collaborators": []
+  },
+  {
+    "id": "avatea_por",
+    "title": "AVATEA",
+    "type": "research",
+    "status": "completed",
+    "startDate": "2018-01",
+    "endDate": "2019-12",
+    "funding": "POR Campania FESR 2014–2020; CUP B13D18000130007",
+    "role": "Postdoctoral Researcher",
+    "description": {
+      "en": "Designed and implemented a runtime epistemic probabilistic Event Calculus architecture for sensor fusion and decision-making in rehabilitation serious games. Worked on an AI system to support the rehabilitation process of children with neuro-motor disorders.",
+      "it": "Progettato e implementato un'architettura runtime di Event Calculus probabilistico epistemico per fusione di sensori e decision-making in serious games di riabilitazione. Ha lavorato su un sistema di IA per supportare il processo di riabilitazione di bambini con disturbi neuro-motori."
+    },
+    "technologies": [
+      "Epistemic Event Calculus",
+      "Sensor Fusion",
+      "e-Health",
+      "Serious Games",
+      "Rehabilitation Technology"
+    ],
+    "links": [],
+    "collaborators": []
+  }
+]

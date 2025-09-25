@@ -1,0 +1,48 @@
+[
+  {
+    "id": "phd_ucl",
+    "degree": "PhD in Artificial Intelligence",
+    "institution": "University College London",
+    "location": "London, UK",
+    "startDate": "2014-01-01",
+    "endDate": "2019-12-31",
+    "grade": "",
+    "thesis": "Probabilistic Epistemic Reasoning About Actions",
+    "supervisor": "Rob Miller, Antonis Bikakis and Luke Dickens",
+    "description": "My PhD thesis explored how to model uncertainty (Probability Theory, in particular) and knowledge-producing actions in a popular narrative-based framework for Reasoning About Actions called the Event Calculus. Excerpts of my PhD thesis were published in top Logic and AI journals and conferences, including Artificial Intelligence (AIJ) and the International Conference on Logic Programming and Nonmonotonic Reasoning (LPNMR).",
+    "badges": [
+      "featured",
+      "published"
+    ]
+  },
+  {
+    "id": "msc_manchester",
+    "degree": "MSc in Pure Mathematics and Mathematical Logic",
+    "institution": "University of Manchester",
+    "location": "Manchester, UK",
+    "startDate": "2013-01-01",
+    "endDate": "2014-12-31",
+    "grade": "Distinction (equivalent to 110/110 cum laude)",
+    "thesis": "Analogical Reasoning in Unary Inductive Logic",
+    "supervisor": "Jeff B. Paris",
+    "description": "Final grade: Distinction (equivalent to 110/110 cum laude in the Italian grading system).",
+    "badges": [
+      "highlight"
+    ]
+  },
+  {
+    "id": "bsc_palermo",
+    "degree": "BSc Computer Science",
+    "institution": "University of Palermo",
+    "location": "Palermo, Italy",
+    "startDate": "2006-01-01",
+    "endDate": "2011-12-31",
+    "grade": "110/110 cum laude",
+    "thesis": "La Tesi di Church-Turing e il suo rapporto con alcuni nuovi modelli di calcolo",
+    "supervisor": "Settimo Termini",
+    "description": "Dissertation: \"La Tesi di Church-Turing e il suo rapporto con alcuni nuovi modelli di calcolo\" (en: \"The Church-Turing Thesis and its relation with some new computation models\")",
+    "badges": [
+      "highlight"
+    ]
+  }
+]

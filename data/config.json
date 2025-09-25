@@ -1,0 +1,88 @@
+{
+  "navigation": {
+    "sections": [
+      {
+        "key": "about",
+        "icon": "fas fa-user",
+        "order": 1
+      },
+      {
+        "key": "education",
+        "icon": "fas fa-graduation-cap",
+        "order": 2
+      },
+      {
+        "key": "experience",
+        "icon": "fas fa-briefcase",
+        "order": 3
+      },
+      {
+        "key": "publications",
+        "icon": "fas fa-file-text",
+        "order": 4
+      },
+      {
+        "key": "citation-metrics",
+        "icon": "fas fa-chart-line",
+        "order": 5
+      },
+      {
+        "key": "supervised-students",
+        "icon": "fas fa-user-graduate",
+        "order": 6
+      },
+      {
+        "key": "projects",
+        "icon": "fas fa-project-diagram",
+        "order": 7
+      },
+      {
+        "key": "skills",
+        "icon": "fas fa-cog",
+        "order": 8
+      },
+      {
+        "key": "contact",
+        "icon": "fas fa-envelope",
+        "order": 9
+      }
+    ]
+  },
+  "badges": [],
+  "settings": {
+    "defaultLanguage": "en",
+    "enableBadges": true,
+    "showCV": true,
+    "animationDuration": 300
+  },
+  "theme": {
+    "primaryColor": "#2c3e50",
+    "secondaryColor": "#34495e",
+    "accentColor": "#3498db",
+    "backgroundColor": "#ffffff",
+    "textColor": "#2c3e50"
+  },
+  "languages": [
+    {
+      "id": "italian",
+      "name": "Italian",
+      "proficiency": "Native speaker",
+      "level": 100
+    },
+    {
+      "id": "english",
+      "name": "English",
+      "proficiency": "Full professional proficiency",
+      "level": 95
+    }
+  ],
+  "awards": [
+    {
+      "id": "google_scholar_metrics",
+      "name": "Google Scholar Metrics",
+      "issuer": "Google Scholar",
+      "date": "2025",
+      "description": "Citations: 227, h-index: 10, i10-index: 10"
+    }
+  ]
+}

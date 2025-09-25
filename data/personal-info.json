@@ -1,0 +1,21 @@
+{
+  "name": "Fabio Aurelio D'Asaro",
+  "title": "Postdoctoral Researcher in Logic (PHIL-02/A)",
+  "email": "fabioaurelio.dasaro@unisalento.it",
+  "emailSecondary": "dasaro.fabio@gmail.com",
+  "phone": "+39 347 300 1762",
+  "location": "Palermo, Italy",
+  "website": "https://sites.google.com/view/fdasaro",
+  "linkedin": "",
+  "orcid": "",
+  "bio": "I am a researcher in Logic (PHIL-02/A) working at the interface of formal epistemology and AI, probabilistic and temporal reasoning, argumentation, and logic programming (ASP/ILASP).",
+  "researchInterests": [
+    "Formal Epistemology and Philosophy of Logic",
+    "Probabilistic and Temporal Reasoning",
+    "Logic Programming (ASP/ILASP) for AI",
+    "Argumentation Theory and Bounded Reasoning",
+    "Explainable AI and Trustworthy Computing",
+    "Ethics of AI and Epistemic Responsibility"
+  ],
+  "background": "My research develops logical foundations for reasoning under uncertainty, with applications to AI systems that need to be both explainable and trustworthy. I work extensively with Answer Set Programming (ASP) and Inductive Logic Programming (ILASP) to create transparent AI systems. My interdisciplinary approach bridges formal logic, epistemology, and practical AI applications, with particular focus on ethical reasoning and bias detection in automated systems."
+}

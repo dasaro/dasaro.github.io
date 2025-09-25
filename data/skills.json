@@ -1,0 +1,121 @@
+[
+  {
+    "id": "logic_programming",
+    "name": "Logic Programming",
+    "category": "Programming Languages",
+    "description": "Fluent in Answer Set Programming (ASP) with clingo, Prolog/ProbLog, ILASP/FastLAS",
+    "icon": "fas fa-code-branch",
+    "highlights": [
+      "ASP/clingo",
+      "Prolog/ProbLog",
+      "ILASP/FastLAS"
+    ]
+  },
+  {
+    "id": "python",
+    "name": "Python",
+    "category": "Programming Languages",
+    "description": "Professional experience with Python for AI, data analysis, and research applications",
+    "icon": "fab fa-python",
+    "highlights": [
+      "AI/ML",
+      "Data Analysis",
+      "Research"
+    ]
+  },
+  {
+    "id": "javascript",
+    "name": "JavaScript/TypeScript",
+    "category": "Programming Languages",
+    "description": "Professional experience with JavaScript/TypeScript for web development",
+    "icon": "fab fa-js-square",
+    "highlights": [
+      "Web Development",
+      "TypeScript",
+      "Node.js"
+    ]
+  },
+  {
+    "id": "java",
+    "name": "Java",
+    "category": "Programming Languages",
+    "description": "Professional experience with Java development",
+    "icon": "fab fa-java",
+    "highlights": [
+      "Enterprise",
+      "Academic"
+    ]
+  },
+  {
+    "id": "probabilistic_reasoning",
+    "name": "Probabilistic Reasoning",
+    "category": "Research Areas",
+    "description": "Expert in probabilistic reasoning, Event Calculus, and epistemic probabilistic systems",
+    "icon": "fas fa-dice",
+    "highlights": [
+      "Event Calculus",
+      "Epistemic",
+      "Uncertainty"
+    ]
+  },
+  {
+    "id": "formal_logic",
+    "name": "Formal Logic",
+    "category": "Research Areas",
+    "description": "Expert in formal epistemology, temporal and probabilistic logics, formal argumentation",
+    "icon": "fas fa-project-diagram",
+    "highlights": [
+      "Epistemology",
+      "Temporal Logic",
+      "Argumentation"
+    ]
+  },
+  {
+    "id": "ai_ml",
+    "name": "Artificial Intelligence & Machine Learning",
+    "category": "Research Areas",
+    "description": "Research in AI, explainable AI, reasoning about actions, bounded reasoning",
+    "icon": "fas fa-brain",
+    "highlights": [
+      "Machine Learning",
+      "Reasoning",
+      "Bounded"
+    ]
+  },
+  {
+    "id": "explainable_ai",
+    "name": "Explainable AI",
+    "category": "Research Areas",
+    "description": "Research and applications in explainable AI systems, particularly for robotics and preference learning",
+    "icon": "fas fa-eye",
+    "highlights": [
+      "XAI",
+      "Robotics",
+      "Preferences"
+    ]
+  },
+  {
+    "id": "teaching",
+    "name": "Teaching & Supervision",
+    "category": "Academic Skills",
+    "description": "Extensive teaching experience (100+ hours/year) with consistently excellent student evaluations",
+    "icon": "fas fa-chalkboard-teacher",
+    "highlights": [
+      "100+ hrs/year",
+      "Top Rated",
+      "PhD Supervisor"
+    ]
+  },
+  {
+    "id": "research",
+    "name": "Research & Publications",
+    "category": "Academic Skills",
+    "description": "Published in top-tier journals (AIJ, JAIR, IJAR) and A*-ranked conferences (KR). h-index: 10",
+    "icon": "fas fa-file-alt",
+    "highlights": [
+      "h-index: 10",
+      "Top Journals",
+      "A* Conferences"
+    ]
+  }
+]

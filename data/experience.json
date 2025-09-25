@@ -1,0 +1,131 @@
+[
+  {
+    "id": "postdoc_salento",
+    "position": "Postdoctoral Researcher",
+    "company": "University of Salento",
+    "location": "Salento, Italy",
+    "startDate": "2025-01-01",
+    "endDate": "Present",
+    "current": true,
+    "description": "I am currently a postdoctoral researcher at the University of Salento in the Department of Human Studies (SSD PHIL-02/A). I am working in the context of Project FAIR–Future AI Research (PE00000013) under the NRRP MUR program funded by NextGenerationEU, Spoke 6 (\"Symbiotic AI\"), PI: Paolo Baldi.",
+    "responsibilities": [
+      "Research in Logic for ethical human–AI collaboration",
+      "eDefAI (Ethical Design for AI)",
+      "Symbiotic AI development"
+    ],
+    "badges": [
+      "recent",
+      "featured"
+    ]
+  },
+  {
+    "id": "lecturer_verona",
+    "position": "Lecturer",
+    "company": "University of Verona",
+    "location": "Verona, Italy",
+    "startDate": "2022-01-01",
+    "endDate": "Present",
+    "current": true,
+    "description": "Teaching across Philosophy, Information Studies, and Computer/Data Science programs. Delivering 100+ lecture hours per year on average with consistently strong student evaluations.",
+    "responsibilities": [
+      "Logic and Philosophy of Science (BA Philosophy)",
+      "Epistemology of Big Data (MSc Data Analytics)",
+      "Computational Epistemology (MSc Artificial Intelligence)",
+      "Logic and Philosophy of Science in Physiotherapy (BSc Physiotherapy)",
+      "Laboratory of Computer Science and Multimedia Technologies (BA Philosophy)",
+      "Laboratory of Artificial Intelligence and Neuroscience (PhD Human Sciences)"
+    ],
+    "badges": [
+      "recent"
+    ]
+  },
+  {
+    "id": "assistant_prof_verona",
+    "position": "Assistant Professor (RTD-A)",
+    "company": "University of Verona",
+    "location": "Verona, Italy",
+    "startDate": "2022-01-01",
+    "endDate": "2025-12-31",
+    "description": "Assistant Professor researching Uncertain and Epistemic Reasoning, Temporal and Probabilistic Logics, Logic Programming, Reasoning about Actions and Change, Bounded Reasoning, Formal Argumentation, and their applications to AI and Explainable AI.",
+    "responsibilities": [
+      "Research in Logic and AI",
+      "Teaching undergraduate and graduate courses",
+      "Company secondment at REVO SPAC (12 months)"
+    ],
+    "badges": [
+      "highlight"
+    ]
+  },
+  {
+    "id": "postdoc_milan",
+    "position": "Postdoctoral Researcher",
+    "company": "University of Milan",
+    "location": "Milan, Italy",
+    "startDate": "2020-01-01",
+    "endDate": "2021-12-31",
+    "description": "During my period as a post-doctoral fellow in the Logic Group at the University of Milan, I worked on uncertain, depth-bounded and epistemic logics.",
+    "badges": [
+      "completed"
+    ]
+  },
+  {
+    "id": "postdoc_crdc",
+    "position": "Postdoctoral Researcher",
+    "company": "CRDC Tecnologie",
+    "location": "Naples, Italy",
+    "startDate": "2019-01-01",
+    "endDate": "2020-12-31",
+    "description": "I worked on the AVATEA Project, which aims to develop an AI system to support the rehabilitation process of children with neuro-motor disorders. Furthermore, I carried out research on explainable AI systems for robotics and preference learning.",
+    "badges": [
+      "completed"
+    ]
+  },
+  {
+    "id": "teaching_assistant_ucl",
+    "position": "Teaching Assistant & Lecturer",
+    "company": "University College London",
+    "location": "London, UK",
+    "startDate": "2015-01-01",
+    "endDate": "2023-12-31",
+    "description": "Worked as a Lecturer and Lab Demonstrator for many undergraduate and postgraduate courses offered by the UCL Department of Information Studies.",
+    "responsibilities": [
+      "INST0074 Machine Reasoning for Artificial Intelligence",
+      "INST0060 Foundations of Machine Learning and Data Science",
+      "INST0019 Introduction to Programming and Scripting",
+      "INST0029 Server Programming and Structured Data",
+      "INST0004 Programming 2"
+    ],
+    "badges": [
+      "completed"
+    ]
+  },
+  {
+    "id": "research_assistant_palermo",
+    "position": "Research Assistant",
+    "company": "University of Palermo",
+    "location": "Palermo, Italy",
+    "startDate": "2013-01-01",
+    "endDate": "2014-01-01",
+    "description": "Worked under the supervision of prof. Settimo Termini and Marco Elio Tabacchi as a fully funded graduate research assistant in the NEVERLOST Project (PO-FESR 2007-2013). Developed and implemented algorithms for optimal antenna displacement using soft-computing techniques.",
+    "responsibilities": [
+      "Algorithm development using Fuzzy Logic and Genetic Algorithms",
+      "Serious game development",
+      "Publications on Fuzzy Logic foundations"
+    ],
+    "badges": [
+      "completed"
+    ]
+  },
+  {
+    "id": "intern_icar",
+    "position": "Undergraduate Intern",
+    "company": "ICAR CNR Palermo",
+    "location": "Palermo, Italy",
+    "startDate": "2011-06-01",
+    "endDate": "2011-09-01",
+    "description": "During my internship at ICAR CNR I collaborated on the IMPULSO project, developing a path visualization tool using Google Maps APIs.",
+    "badges": [
+      "completed"
+    ]
+  }
+]
