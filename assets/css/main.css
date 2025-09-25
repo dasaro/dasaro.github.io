@@ -1270,17 +1270,18 @@ a:focus {
 
 .metrics-overview {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
 }
 
 .metric-item {
   background: var(--bg-secondary);
-  padding: 1.5rem;
+  padding: 1rem;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-sm);
   text-align: center;
   transition: box-shadow var(--transition-fast);
+  min-width: 0; /* Allow flex items to shrink */
 }
 
 .metric-item:hover {
@@ -1288,18 +1289,19 @@ a:focus {
 }
 
 .metric-value {
-  font-size: var(--font-size-3xl);
+  font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-accent);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .metric-label {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   color: var(--text-secondary);
   font-weight: var(--font-weight-medium);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  line-height: 1.2;
 }
 
 .metrics-source {
@@ -1413,7 +1415,16 @@ a:focus {
   }
 
   .metrics-overview {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .metric-item {
+    padding: 0.75rem;
+  }
+
+  .metric-value {
+    font-size: var(--font-size-xl);
   }
 
   .student-header,
@@ -1438,11 +1449,20 @@ a:focus {
   }
 
   .metrics-overview {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .metric-item {
+    padding: 0.75rem 0.5rem;
   }
 
   .metric-value {
-    font-size: var(--font-size-2xl);
+    font-size: var(--font-size-lg);
+  }
+
+  .metric-label {
+    font-size: 0.6rem;
   }
 }
 
