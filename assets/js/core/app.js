@@ -46,6 +46,9 @@ class App {
             // Set up UI interactions
             this.setupUIInteractions();
 
+            // Initialize sidebar visibility
+            this.initializeSidebar();
+
             // Make all sections visible
             this.showAllSections();
 
@@ -506,6 +509,32 @@ class App {
                 errorDiv.parentNode.removeChild(errorDiv);
             }
         }, 10000);
+    }
+
+    /**
+     * Initialize sidebar visibility and behavior
+     */
+    initializeSidebar() {
+        this.log('Initializing sidebar...');
+
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.querySelector('.main-content');
+
+        if (!sidebar) {
+            this.log('WARNING: Sidebar element not found');
+            return;
+        }
+
+        // On desktop (>= 1024px), show sidebar by default
+        if (window.innerWidth >= 1024) {
+            sidebar.classList.add('open');
+            if (mainContent) {
+                mainContent.classList.add('sidebar-open');
+            }
+            this.log('Sidebar opened for desktop view');
+        }
+
+        this.log('Sidebar initialized');
     }
 
     /**

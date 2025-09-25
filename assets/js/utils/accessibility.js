@@ -220,7 +220,7 @@ class AccessibilityManager {
         skipLinks.className = 'skip-links';
         skipLinks.innerHTML = `
             <a href="#main-content" class="skip-link">Skip to main content</a>
-            <a href="#nav-menu" class="skip-link">Skip to navigation</a>
+            <a href="#sidebar" class="skip-link">Skip to navigation</a>
         `;
 
         // Add CSS for skip links
@@ -229,26 +229,32 @@ class AccessibilityManager {
             styles.id = 'accessibility-styles';
             styles.textContent = `
                 .skip-links {
-                    position: absolute;
+                    position: fixed;
                     top: -40px;
                     left: 6px;
+                    z-index: 10000;
+                }
+                .skip-link {
+                    position: absolute;
+                    top: -40px;
+                    left: -10000px;
                     background: #000;
                     color: white;
                     padding: 8px;
-                    z-index: 100;
                     border-radius: 0 0 4px 4px;
-                }
-                .skip-link {
-                    color: white;
                     text-decoration: underline;
+                    z-index: 10000;
+                }
+                .skip-link:focus {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
                     display: block;
+                    outline: 2px solid white;
+                    outline-offset: 2px;
                 }
                 .skip-links:focus-within {
                     top: 0;
-                }
-                .skip-link:focus {
-                    outline: 2px solid white;
-                    outline-offset: 2px;
                 }
             `;
             document.head.appendChild(styles);
