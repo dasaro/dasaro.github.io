@@ -274,6 +274,9 @@ class AcademicWebsite {
         this.populateSkills(data.skills);
         this.populateContact(data.personalInfo);
 
+        // Also populate About section's contact info
+        this.populateAboutContact(data.personalInfo);
+
         // Apply theme if specified
         if (data.theme) {
             this.applyTheme(data.theme);
@@ -569,16 +572,6 @@ class AcademicWebsite {
                     const tag = document.createElement('span');
                     tag.className = 'skill-tag';
                     tag.textContent = highlight;
-                    tag.style.cssText = `
-                        display: inline-block;
-                        padding: 0.25rem 0.5rem;
-                        margin: 0.25rem 0.25rem 0.25rem 0;
-                        background-color: var(--color-accent-light, rgba(52, 152, 219, 0.1));
-                        color: var(--color-accent, #3498db);
-                        border-radius: 0.25rem;
-                        font-size: 0.85rem;
-                        font-weight: 500;
-                    `;
                     badgesContainer.appendChild(tag);
                 });
             }
@@ -614,6 +607,35 @@ class AcademicWebsite {
                     field.type
                 );
                 contactGrid.appendChild(contactItem);
+            }
+        });
+    }
+
+    /**
+     * Populate About section's contact information
+     */
+    populateAboutContact(personalInfo) {
+        const aboutContactGrid = document.querySelector('#about .contact-grid');
+        if (!aboutContactGrid) return;
+
+        aboutContactGrid.innerHTML = '';
+
+        // Show only essential contact info in About section
+        const essentialFields = [
+            { key: 'email', icon: 'fas fa-envelope', type: 'email' },
+            { key: 'location', icon: 'fas fa-map-marker-alt', type: 'text' },
+            { key: 'website', icon: 'fas fa-globe', type: 'url' }
+        ];
+
+        essentialFields.forEach(field => {
+            if (personalInfo[field.key]) {
+                const contactItem = this.createContactItem(
+                    field.key,
+                    personalInfo[field.key],
+                    field.icon,
+                    field.type
+                );
+                aboutContactGrid.appendChild(contactItem);
             }
         });
     }
