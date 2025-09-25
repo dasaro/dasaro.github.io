@@ -24,11 +24,20 @@ class ProfessionalServicePage {
      */
     loadData() {
         this.log('Loading professional service data...');
+        this.log('window.dataManager exists:', !!window.dataManager);
+        this.log('dataManager.isLoaded:', window.dataManager?.isLoaded);
+
         if (window.dataManager && window.dataManager.isLoaded) {
             this.data = window.dataManager.getData('professionalService') || [];
             this.log('Professional service data loaded:', this.data);
+            this.log('Data length:', this.data.length);
         } else {
-            this.log('WARNING: DataManager not available, using empty data');
+            this.log('WARNING: DataManager not available or not loaded');
+            this.log('DataManager state:', {
+                exists: !!window.dataManager,
+                isLoaded: window.dataManager?.isLoaded,
+                dataKeys: window.dataManager ? Object.keys(window.dataManager.data || {}) : 'N/A'
+            });
             this.data = [];
         }
     }
@@ -38,6 +47,9 @@ class ProfessionalServicePage {
      */
     render() {
         this.log('Rendering professional service section...');
+        this.log('Data to render:', this.data);
+        this.log('Data is array:', Array.isArray(this.data));
+        this.log('Data length:', this.data?.length);
 
         const container = document.querySelector('#professional-service .section-content');
         if (!container) {
@@ -48,6 +60,7 @@ class ProfessionalServicePage {
         container.innerHTML = '';
 
         if (!this.data || this.data.length === 0) {
+            this.log('No data available, showing empty state');
             container.innerHTML = '<p class="no-data">No professional service activities available.</p>';
             return;
         }

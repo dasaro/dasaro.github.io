@@ -91,6 +91,9 @@ class DataManager {
         try {
             await this.loadData();
             this.isLoaded = true;
+            console.log('DataManager: Setting isLoaded = true');
+            console.log('DataManager: Final data keys:', Object.keys(this.data));
+            console.log('DataManager: professionalService data:', this.data.professionalService);
             this.triggerCallbacks('dataLoaded', this.data);
             console.log('DataManager initialized successfully');
         } catch (error) {

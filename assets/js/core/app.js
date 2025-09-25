@@ -126,6 +126,9 @@ class App {
         window.dataManager = this.dataManager;
 
         this.log('Data manager initialized');
+        this.log('Global dataManager assigned:', !!window.dataManager);
+        this.log('Global dataManager isLoaded:', window.dataManager.isLoaded);
+        this.log('Global dataManager data keys:', Object.keys(window.dataManager.data || {}));
     }
 
     /**
