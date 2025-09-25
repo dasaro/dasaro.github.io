@@ -281,7 +281,7 @@
       "category": "Programming Languages",
       "description": "Professional experience with Python for AI, data analysis, and research applications",
       "icon": "fab fa-python",
-      "highlights": ["AI/ML", "Data Analysis", "Research Applications"]
+      "highlights": ["AI/ML", "Data Analysis", "Research"]
     },
     {
       "id": "javascript",
@@ -297,7 +297,7 @@
       "category": "Programming Languages",
       "description": "Professional experience with Java development",
       "icon": "fab fa-java",
-      "highlights": ["Enterprise Applications", "Academic Projects"]
+      "highlights": ["Enterprise", "Academic"]
     },
     {
       "id": "probabilistic_reasoning",
@@ -305,7 +305,7 @@
       "category": "Research Areas",
       "description": "Expert in probabilistic reasoning, Event Calculus, and epistemic probabilistic systems",
       "icon": "fas fa-dice",
-      "highlights": ["Event Calculus", "Epistemic Systems", "Uncertainty"]
+      "highlights": ["Event Calculus", "Epistemic", "Uncertainty"]
     },
     {
       "id": "formal_logic",
@@ -321,7 +321,7 @@
       "category": "Research Areas",
       "description": "Research in AI, explainable AI, reasoning about actions, bounded reasoning",
       "icon": "fas fa-brain",
-      "highlights": ["Machine Learning", "Reasoning", "Bounded Rationality"]
+      "highlights": ["Machine Learning", "Reasoning", "Bounded"]
     },
     {
       "id": "explainable_ai",
@@ -329,7 +329,7 @@
       "category": "Research Areas",
       "description": "Research and applications in explainable AI systems, particularly for robotics and preference learning",
       "icon": "fas fa-eye",
-      "highlights": ["XAI", "Robotics", "Preference Learning"]
+      "highlights": ["XAI", "Robotics", "Preferences"]
     },
     {
       "id": "teaching",
@@ -337,7 +337,7 @@
       "category": "Academic Skills",
       "description": "Extensive teaching experience (100+ hours/year) with consistently excellent student evaluations",
       "icon": "fas fa-chalkboard-teacher",
-      "highlights": ["100+ hours/year", "Excellent Evaluations", "PhD Supervision"]
+      "highlights": ["100+ hrs/year", "Top Rated", "PhD Supervisor"]
     },
     {
       "id": "research",

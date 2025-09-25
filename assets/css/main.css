@@ -758,8 +758,11 @@ a:focus {
 /* Skills */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 .skill-item {
@@ -1518,11 +1521,16 @@ select:focus {
 /* ===================================
    SKILL TAGS AND FEATURED RESEARCH FIXES
    =================================== */
+.skill-item {
+  overflow: hidden; /* Prevent overflow */
+}
+
 .skill-badges {
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem;
   margin-top: 0.5rem;
+  max-width: 100%; /* Ensure container doesn't exceed parent */
 }
 
 .skill-tag {
@@ -1531,9 +1539,12 @@ select:focus {
   background-color: rgba(52, 152, 219, 0.1);
   color: var(--color-accent);
   border-radius: 0.25rem;
-  font-size: 0.85rem;
+  font-size: 0.75rem; /* Smaller font size */
   font-weight: 500;
   white-space: nowrap;
+  max-width: 100%; /* Prevent individual tags from being too wide */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add ellipsis for long text */
 }
 
 /* Featured Research Styles */
@@ -1611,4 +1622,23 @@ select:focus {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem;
   margin-top: 1.5rem;
+}
+
+/* Responsive adjustments for skill tags */
+@media (max-width: 768px) {
+  .skill-tag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .skill-tag {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.3rem;
+  }
 }
