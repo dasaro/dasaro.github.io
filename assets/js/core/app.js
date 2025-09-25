@@ -46,6 +46,9 @@ class App {
             // Set up UI interactions
             this.setupUIInteractions();
 
+            // Navigate to initial route
+            this.showInitialPage();
+
             // Hide loading spinner
             this.hideLoading();
 
@@ -500,6 +503,20 @@ class App {
                 errorDiv.parentNode.removeChild(errorDiv);
             }
         }, 10000);
+    }
+
+    /**
+     * Navigate to initial page after app is fully initialized
+     */
+    showInitialPage() {
+        this.log('Showing initial page...');
+
+        // Get initial route from URL hash or default to about
+        const hash = window.location.hash.slice(1);
+        const initialRoute = (hash && this.router.routes.has(hash)) ? hash : 'about';
+
+        this.log(`Navigating to initial route: ${initialRoute}`);
+        this.router.navigateToRoute(initialRoute);
     }
 
     /**
