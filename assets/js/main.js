@@ -512,20 +512,10 @@ class AcademicWebsite {
         const name = item.querySelector('.skill-name');
         if (name) name.textContent = skill.name || '';
 
-        // Level/Percentage
-        const percentage = item.querySelector('.skill-percentage');
-        const fill = item.querySelector('.skill-fill');
-
-        if (skill.level !== undefined) {
-            const levelValue = parseInt(skill.level) || 0;
-            if (percentage) percentage.textContent = `${levelValue}%`;
-            if (fill) {
-                fill.style.width = `${levelValue}%`;
-                // Add animation delay
-                setTimeout(() => {
-                    fill.style.width = `${levelValue}%`;
-                }, 100);
-            }
+        // Hide percentage bar completely
+        const skillLevel = item.querySelector('.skill-level');
+        if (skillLevel) {
+            skillLevel.style.display = 'none';
         }
 
         // Description
@@ -534,14 +524,10 @@ class AcademicWebsite {
             description.textContent = skill.description;
         }
 
-        // Badges
+        // Badges - only use badges from data, not automatic ones to avoid duplicates
         const badgesContainer = item.querySelector('.skill-badges');
-        if (badgesContainer) {
-            const badges = window.dataManager.applyAutomaticBadges(skill, 'skills');
-            if (skill.badges) {
-                badges.push(...skill.badges);
-            }
-            window.dataManager.renderBadges(badges, badgesContainer);
+        if (badgesContainer && skill.badges) {
+            window.dataManager.renderBadges(skill.badges, badgesContainer);
         }
 
         return item;

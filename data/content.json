@@ -271,23 +271,18 @@
       "id": "logic_programming",
       "name": "Logic Programming",
       "category": "Programming Languages",
-      "level": 95,
-      "description": "Fluent in Answer Set Programming (ASP) with clingo, Prolog/ProbLog, ILASP/FastLAS",
-      "badges": ["featured", "certified"]
+      "description": "Fluent in Answer Set Programming (ASP) with clingo, Prolog/ProbLog, ILASP/FastLAS",      "badges": ["featured", "certified"]
     },
     {
       "id": "python",
       "name": "Python",
       "category": "Programming Languages",
-      "level": 90,
-      "description": "Professional experience with Python for AI, data analysis, and research applications",
-      "badges": ["certified"]
+      "description": "Professional experience with Python for AI, data analysis, and research applications",      "badges": ["certified"]
     },
     {
       "id": "javascript",
       "name": "JavaScript/TypeScript",
       "category": "Programming Languages",
-      "level": 85,
       "description": "Professional experience with JavaScript/TypeScript for web development",
       "badges": ["certified"]
     },
@@ -295,7 +290,6 @@
       "id": "java",
       "name": "Java",
       "category": "Programming Languages",
-      "level": 80,
       "description": "Professional experience with Java development",
       "badges": ["certified"]
     },
@@ -303,7 +297,6 @@
       "id": "probabilistic_reasoning",
       "name": "Probabilistic Reasoning",
       "category": "Research Areas",
-      "level": 95,
       "description": "Expert in probabilistic reasoning, Event Calculus, and epistemic probabilistic systems",
       "badges": ["featured", "highlight"]
     },
@@ -311,7 +304,6 @@
       "id": "formal_logic",
       "name": "Formal Logic",
       "category": "Research Areas",
-      "level": 95,
       "description": "Expert in formal epistemology, temporal and probabilistic logics, formal argumentation",
       "badges": ["featured", "highlight"]
     },
@@ -319,7 +311,6 @@
       "id": "ai_ml",
       "name": "Artificial Intelligence & Machine Learning",
       "category": "Research Areas",
-      "level": 90,
       "description": "Research in AI, explainable AI, reasoning about actions, bounded reasoning",
       "badges": ["featured"]
     },
@@ -327,7 +318,6 @@
       "id": "explainable_ai",
       "name": "Explainable AI",
       "category": "Research Areas",
-      "level": 90,
       "description": "Research and applications in explainable AI systems, particularly for robotics and preference learning",
       "badges": ["featured"]
     },
@@ -335,7 +325,6 @@
       "id": "teaching",
       "name": "Teaching & Supervision",
       "category": "Academic Skills",
-      "level": 95,
       "description": "Extensive teaching experience (100+ hours/year) with consistently excellent student evaluations",
       "badges": ["highlight"]
     },
@@ -343,7 +332,6 @@
       "id": "research",
       "name": "Research & Publications",
       "category": "Academic Skills",
-      "level": 95,
       "description": "Published in top-tier journals (AIJ, JAIR, IJAR) and A*-ranked conferences (KR). h-index: 10",
       "badges": ["featured", "highlight"]
     }
