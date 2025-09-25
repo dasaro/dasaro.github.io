@@ -327,9 +327,14 @@ class AcademicWebsite {
         const navMenu = document.querySelector('.nav-menu');
         if (!navMenu || !navigation?.sections) return;
 
+        console.log('Populating navigation with sections:', navigation.sections);
+
         navMenu.innerHTML = '';
 
-        navigation.sections.forEach(section => {
+        // Sort sections by order
+        const sortedSections = [...navigation.sections].sort((a, b) => a.order - b.order);
+
+        sortedSections.forEach(section => {
             const navItem = document.createElement('li');
             navItem.className = 'nav-item';
 
@@ -1005,11 +1010,13 @@ class AcademicWebsite {
      */
     updateActiveSection() {
         const sections = document.querySelectorAll('.content-section');
-        let activeSection = this.currentSection;
+        let activeSection = 'about'; // Default to about
 
+        // Find which section is currently in view
         sections.forEach(section => {
             const rect = section.getBoundingClientRect();
-            if (rect.top <= 100 && rect.bottom > 100) {
+            // Check if section is in viewport (more tolerant check)
+            if (rect.top <= window.innerHeight / 2 && rect.bottom >= 0) {
                 activeSection = section.id;
             }
         });
@@ -1028,6 +1035,12 @@ class AcademicWebsite {
 
         navLinks.forEach(link => {
             const sectionId = link.getAttribute('data-section');
+            // Ensure link is visible
+            const navItem = link.closest('.nav-item');
+            if (navItem) {
+                navItem.style.display = 'block'; // Ensure it's always visible
+            }
+
             if (sectionId === this.currentSection) {
                 link.classList.add('active');
             } else {
