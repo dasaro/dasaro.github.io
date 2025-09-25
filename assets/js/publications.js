@@ -167,10 +167,17 @@ class PublicationsManager {
             return 'thesis';
         }
 
+        // Check for book chapter indicators first
+        if (publication.chapter || publication.inbook ||
+            (publication.booktitle && publication.pages) ||
+            (publication.title && publication.title.toLowerCase().includes('chapter'))) {
+            return 'chapter';
+        }
+
         // Check for book-related indicators
         if (publication.book ||
             (publication.publisher && !publication.journal && !publication.conference)) {
-            return publication.chapter ? 'chapter' : 'book';
+            return 'book';
         }
 
         // Check for preprints
@@ -332,6 +339,7 @@ class PublicationsManager {
                     'journal': 'fas fa-journal-whills',
                     'conference': 'fas fa-users',
                     'book': 'fas fa-book',
+                    'chapter': 'fas fa-book-open',
                     'preprint': 'fas fa-file-alt',
                     'thesis': 'fas fa-graduation-cap'
                 };
@@ -883,7 +891,10 @@ class PublicationsManager {
                     chipClass = 'chip-preprint';
                     break;
                 case 'chapter':
-                    chipText = 'Chapter';
+                case 'bookchapter':
+                case 'book-chapter':
+                case 'inbook':
+                    chipText = 'Book Chapter';
                     chipClass = 'chip-chapter';
                     break;
                 case 'report':

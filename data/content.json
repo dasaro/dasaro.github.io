@@ -3,6 +3,7 @@
     "name": "Fabio Aurelio D'Asaro",
     "title": "Postdoctoral Researcher in Logic (PHIL-02/A)",
     "email": "fabioaurelio.dasaro@unisalento.it",
+    "emailSecondary": "dasaro.fabio@gmail.com",
     "phone": "+39 347 300 1762",
     "location": "Palermo, Italy",
     "website": "https://sites.google.com/view/fdasaro",
@@ -919,23 +920,23 @@
         "order": 3
       },
       {
-        "key": "supervised-students",
-        "icon": "fas fa-user-graduate",
+        "key": "publications",
+        "icon": "fas fa-file-text",
         "order": 4
-      },
-      {
-        "key": "projects",
-        "icon": "fas fa-project-diagram",
-        "order": 5
       },
       {
         "key": "citation-metrics",
         "icon": "fas fa-chart-line",
+        "order": 5
+      },
+      {
+        "key": "supervised-students",
+        "icon": "fas fa-user-graduate",
         "order": 6
       },
       {
-        "key": "publications",
-        "icon": "fas fa-file-text",
+        "key": "projects",
+        "icon": "fas fa-project-diagram",
         "order": 7
       },
       {

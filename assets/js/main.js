@@ -703,6 +703,7 @@ class AcademicWebsite {
 
         const contactFields = [
             { key: 'email', icon: 'fas fa-envelope', type: 'email' },
+            { key: 'emailSecondary', icon: 'fas fa-envelope', type: 'email' },
             { key: 'phone', icon: 'fas fa-phone', type: 'tel' },
             { key: 'website', icon: 'fas fa-globe', type: 'url' },
             { key: 'linkedin', icon: 'fab fa-linkedin', type: 'url' },
@@ -768,8 +769,20 @@ class AcademicWebsite {
 
         const label = document.createElement('div');
         label.className = 'contact-label';
-        label.setAttribute('data-i18n', `common.${type}`);
-        label.textContent = window.i18n?.t(`common.${type}`) || type;
+
+        // Handle special cases for labels
+        let labelKey = type;
+        let labelText = type;
+
+        if (type === 'emailSecondary') {
+            labelKey = 'email';
+            labelText = 'Email (Personal)';
+        } else if (type === 'email') {
+            labelText = 'Email (Institutional)';
+        }
+
+        label.setAttribute('data-i18n', `common.${labelKey}`);
+        label.textContent = window.i18n?.t(`common.${labelKey}`) || labelText;
 
         const valueElement = document.createElement('div');
         valueElement.className = 'contact-value';
@@ -827,26 +840,29 @@ class AcademicWebsite {
      * Populate citation metrics section
      */
     populateCitationMetrics(citationMetrics) {
-        const metricsOverview = document.querySelector('#citation-metrics .metrics-overview');
-        const featuredResearchList = document.querySelector('#citation-metrics .featured-research-list');
-        const scholarLink = document.querySelector('#scholar-profile-link');
-        const metricsDate = document.querySelector('#metrics-date');
+        const metricsContainer = document.querySelector('#citation-metrics .citation-metrics-container');
 
-        if (!metricsOverview || !featuredResearchList || !citationMetrics) return;
+        if (!metricsContainer || !citationMetrics) return;
 
         // Clear existing content
-        metricsOverview.innerHTML = '';
-        featuredResearchList.innerHTML = '';
+        metricsContainer.innerHTML = '';
 
-        // Set Google Scholar profile link
-        if (scholarLink && citationMetrics.googleScholarProfile) {
-            scholarLink.href = citationMetrics.googleScholarProfile;
-        }
+        // Create metrics overview section
+        const overviewDiv = document.createElement('div');
+        overviewDiv.className = 'metrics-overview';
 
-        // Set last updated date
-        if (metricsDate && citationMetrics.lastUpdated) {
-            metricsDate.textContent = citationMetrics.lastUpdated;
-        }
+        // Add warning about static metrics
+        const warningDiv = document.createElement('div');
+        warningDiv.className = 'metrics-warning';
+        warningDiv.innerHTML = `
+            <p><i class="fas fa-info-circle"></i>
+            <span data-i18n="citationMetrics.staticWarning">Static metrics last updated:</span>
+            <strong>${citationMetrics.lastUpdated}</strong></p>
+            <p><span data-i18n="citationMetrics.currentMetrics">For current metrics, visit:</span>
+            <a href="${citationMetrics.googleScholarProfile}" target="_blank" rel="noopener noreferrer">
+            <span data-i18n="citationMetrics.googleScholar">Google Scholar Profile</span> <i class="fas fa-external-link-alt"></i></a></p>
+        `;
+        metricsContainer.appendChild(warningDiv);
 
         // Populate overview metrics
         if (citationMetrics.overview) {
@@ -857,18 +873,52 @@ class AcademicWebsite {
                 { label: 'Publications', value: citationMetrics.overview.publications }
             ];
 
+            const metricsGrid = document.createElement('div');
+            metricsGrid.className = 'metrics-grid';
+
             metrics.forEach(metric => {
-                const metricItem = this.createMetricItem(metric);
-                metricsOverview.appendChild(metricItem);
+                const metricItem = document.createElement('div');
+                metricItem.className = 'metric-card';
+                metricItem.innerHTML = `
+                    <div class="metric-value">${metric.value}</div>
+                    <div class="metric-label">${metric.label}</div>
+                `;
+                metricsGrid.appendChild(metricItem);
             });
+
+            overviewDiv.appendChild(metricsGrid);
+            metricsContainer.appendChild(overviewDiv);
         }
 
         // Populate featured research
-        if (citationMetrics.featuredResearch) {
+        if (citationMetrics.featuredResearch && citationMetrics.featuredResearch.length > 0) {
+            const featuredSection = document.createElement('div');
+            featuredSection.className = 'featured-research-section';
+
+            const featuredTitle = document.createElement('h3');
+            featuredTitle.setAttribute('data-i18n', 'citationMetrics.featuredResearch');
+            featuredTitle.textContent = window.i18n?.t('citationMetrics.featuredResearch') || 'Featured Recent Research';
+            featuredSection.appendChild(featuredTitle);
+
+            const featuredList = document.createElement('div');
+            featuredList.className = 'featured-research-list';
+
             citationMetrics.featuredResearch.forEach(research => {
-                const researchItem = this.createFeaturedResearchItem(research);
-                featuredResearchList.appendChild(researchItem);
+                const researchItem = document.createElement('div');
+                researchItem.className = 'featured-research-item';
+                researchItem.innerHTML = `
+                    <h4><a href="${research.url}" target="_blank" rel="noopener noreferrer">
+                        ${research.title} <i class="fas fa-external-link-alt"></i>
+                    </a></h4>
+                    <p class="research-authors">${research.authors}</p>
+                    <p class="research-venue">${research.venue} (${research.year})</p>
+                    <p class="research-relevance">${research.relevance}</p>
+                `;
+                featuredList.appendChild(researchItem);
             });
+
+            featuredSection.appendChild(featuredList);
+            metricsContainer.appendChild(featuredSection);
         }
     }
 
