@@ -128,10 +128,18 @@ class AcademicWebsite {
         // Desktop sidebar toggle (always visible)
         if (desktopSidebarToggle) {
             console.log('Desktop sidebar toggle found and event listener added');
+            console.log('Desktop toggle element:', desktopSidebarToggle);
+
             desktopSidebarToggle.addEventListener('click', (e) => {
-                console.log('Desktop sidebar toggle clicked!');
+                console.log('Desktop sidebar toggle clicked!', e);
                 e.preventDefault();
+                e.stopPropagation();
                 this.toggleSidebar();
+            }, true); // Use capture phase
+
+            // Also add mousedown for extra debugging
+            desktopSidebarToggle.addEventListener('mousedown', () => {
+                console.log('Desktop toggle mousedown detected');
             });
         } else {
             console.warn('Desktop sidebar toggle not found!');

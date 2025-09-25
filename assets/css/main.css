@@ -289,8 +289,10 @@ a:focus {
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-md);
   transition: all var(--transition-base);
-  z-index: calc(var(--z-fixed) + 1);
+  z-index: 9999; /* Very high z-index to ensure clickability */
   display: none; /* Hidden by default, shown on desktop */
+  pointer-events: auto; /* Ensure it can receive clicks */
+  user-select: none; /* Prevent text selection */
 }
 
 .desktop-sidebar-toggle:hover {
@@ -903,6 +905,11 @@ a:focus {
 
   .sidebar {
     width: 100%;
+  }
+
+  /* Hide desktop toggle on mobile */
+  .desktop-sidebar-toggle {
+    display: none !important;
   }
 
   .content-wrapper {
