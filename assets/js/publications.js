@@ -166,7 +166,18 @@ class PublicationsManager {
      * Apply current filters to publications
      */
     applyFilters() {
+        // Check if any filters are active
+        const hasActiveFilters = this.currentFilters.search ||
+                                this.currentFilters.year ||
+                                this.currentFilters.type;
+
         this.filteredPublications = this.allPublications.filter(pub => {
+            // If no filters are active, show only selected publications
+            if (!hasActiveFilters) {
+                return pub.selected === true;
+            }
+
+            // If filters are active, apply them to all publications
             // Search filter
             if (this.currentFilters.search) {
                 const searchTerm = this.currentFilters.search.toLowerCase();
@@ -444,9 +455,35 @@ class PublicationsManager {
     updateFilterSummary() {
         const total = this.allPublications.length;
         const filtered = this.filteredPublications.length;
+        const hasActiveFilters = this.currentFilters.search ||
+                                this.currentFilters.year ||
+                                this.currentFilters.type;
 
-        // You can add a summary display here if desired
-        console.log(`Showing ${filtered} of ${total} publications`);
+        // Add or update summary display
+        let summaryElement = document.querySelector('.publications-summary');
+        if (!summaryElement) {
+            summaryElement = document.createElement('div');
+            summaryElement.className = 'publications-summary';
+            const publicationsSection = document.querySelector('#publications .section-content');
+            if (publicationsSection) {
+                publicationsSection.insertBefore(summaryElement, publicationsSection.firstChild);
+            }
+        }
+
+        if (!hasActiveFilters) {
+            summaryElement.innerHTML = `
+                <p class="summary-text">
+                    <i class="fas fa-star" style="color: var(--color-warning); margin-right: 0.5rem;"></i>
+                    Showing selected publications (${filtered} of ${total}). Use search or filters to browse all publications.
+                </p>
+            `;
+        } else {
+            summaryElement.innerHTML = `
+                <p class="summary-text">
+                    Showing ${filtered} of ${total} publications
+                </p>
+            `;
+        }
     }
 
     /**
