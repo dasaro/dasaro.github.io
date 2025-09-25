@@ -92,7 +92,7 @@ class App {
     registerPageModules() {
         this.log('Registering page modules...');
 
-        // Register About page (our proof of concept)
+        // About page
         if (typeof window.aboutPage !== 'undefined') {
             this.router.registerRoute('about', window.aboutPage, {
                 icon: 'fas fa-user',
@@ -105,12 +105,111 @@ class App {
             this.log('WARNING: About page module not found');
         }
 
-        // TODO: Register other page modules as they are created
-        // this.router.registerRoute('education', window.educationPage, { ... });
-        // this.router.registerRoute('experience', window.experiencePage, { ... });
-        // etc.
+        // Education page
+        if (typeof window.educationPage !== 'undefined') {
+            this.router.registerRoute('education', window.educationPage, {
+                icon: 'fas fa-graduation-cap',
+                order: 2,
+                visible: true
+            });
+            this.pages.set('education', window.educationPage);
+            this.log('Education page registered');
+        } else {
+            this.log('WARNING: Education page module not found');
+        }
 
-        this.log('Page modules registration completed');
+        // Experience page
+        if (typeof window.experiencePage !== 'undefined') {
+            this.router.registerRoute('experience', window.experiencePage, {
+                icon: 'fas fa-briefcase',
+                order: 3,
+                visible: true
+            });
+            this.pages.set('experience', window.experiencePage);
+            this.log('Experience page registered');
+        } else {
+            this.log('WARNING: Experience page module not found');
+        }
+
+        // Contact page
+        if (typeof window.contactPage !== 'undefined') {
+            this.router.registerRoute('contact', window.contactPage, {
+                icon: 'fas fa-envelope',
+                order: 9,
+                visible: true
+            });
+            this.pages.set('contact', window.contactPage);
+            this.log('Contact page registered');
+        } else {
+            this.log('WARNING: Contact page module not found');
+        }
+
+        // Publications page
+        if (typeof window.publicationsPage !== 'undefined') {
+            this.router.registerRoute('publications', window.publicationsPage, {
+                icon: 'fas fa-book',
+                order: 4,
+                visible: true
+            });
+            this.pages.set('publications', window.publicationsPage);
+            this.log('Publications page registered');
+        } else {
+            this.log('WARNING: Publications page module not found');
+        }
+
+        // Citation Metrics page
+        if (typeof window.citationMetricsPage !== 'undefined') {
+            this.router.registerRoute('citation-metrics', window.citationMetricsPage, {
+                icon: 'fas fa-chart-line',
+                order: 5,
+                visible: true
+            });
+            this.pages.set('citation-metrics', window.citationMetricsPage);
+            this.log('Citation Metrics page registered');
+        } else {
+            this.log('WARNING: Citation Metrics page module not found');
+        }
+
+        // Supervised Students page
+        if (typeof window.supervisedStudentsPage !== 'undefined') {
+            this.router.registerRoute('supervised-students', window.supervisedStudentsPage, {
+                icon: 'fas fa-user-graduate',
+                order: 6,
+                visible: true
+            });
+            this.pages.set('supervised-students', window.supervisedStudentsPage);
+            this.log('Supervised Students page registered');
+        } else {
+            this.log('WARNING: Supervised Students page module not found');
+        }
+
+        // Projects page
+        if (typeof window.projectsPage !== 'undefined') {
+            this.router.registerRoute('projects', window.projectsPage, {
+                icon: 'fas fa-project-diagram',
+                order: 7,
+                visible: true
+            });
+            this.pages.set('projects', window.projectsPage);
+            this.log('Projects page registered');
+        } else {
+            this.log('WARNING: Projects page module not found');
+        }
+
+        // Skills page
+        if (typeof window.skillsPage !== 'undefined') {
+            this.router.registerRoute('skills', window.skillsPage, {
+                icon: 'fas fa-cogs',
+                order: 8,
+                visible: true
+            });
+            this.pages.set('skills', window.skillsPage);
+            this.log('Skills page registered');
+        } else {
+            this.log('WARNING: Skills page module not found');
+        }
+
+        this.log(`Page modules registration completed. Registered ${this.pages.size} pages.`);
     }
 
     /**
@@ -151,19 +250,18 @@ class App {
     populatePages(data) {
         this.log('Populating pages with data...');
 
-        // Populate About page
-        const aboutPage = this.pages.get('about');
-        if (aboutPage) {
-            aboutPage.render(data);
-        }
+        // Populate all registered pages
+        this.pages.forEach((page, pageName) => {
+            try {
+                this.log(`Populating ${pageName} page...`);
+                page.render(data);
+                this.log(`${pageName} page populated successfully`);
+            } catch (error) {
+                this.log(`ERROR: Failed to populate ${pageName} page:`, error);
+            }
+        });
 
-        // TODO: Populate other pages as they are created
-        // const educationPage = this.pages.get('education');
-        // if (educationPage) {
-        //     educationPage.render(data);
-        // }
-
-        this.log('Pages populated with data');
+        this.log(`Pages populated with data. Populated ${this.pages.size} pages.`);
     }
 
     /**

@@ -288,14 +288,7 @@ class AboutPage {
 // Create and export page instance
 const aboutPage = new AboutPage();
 
-// Register with router when available
-if (typeof window !== 'undefined' && window.router) {
-    window.router.registerRoute('about', aboutPage, {
-        icon: 'fas fa-user',
-        order: 1,
-        visible: true
-    });
-}
+// Route registration handled by app.js
 
 // Export for module usage
 if (typeof module !== 'undefined' && module.exports) {

@@ -30,10 +30,28 @@ This is a **completed** static personal academic website for Dr. Fabio Aurelio D
 │   ├── css/
 │   │   └── main.css            # Main website styles
 │   ├── js/
-│   │   ├── main.js             # Main website functionality
-│   │   ├── i18n.js             # Internationalization system
-│   │   ├── data-manager.js     # Client-side data management
-│   │   └── publications.js     # Publications filtering & BibTeX export
+│   │   ├── core/               # **Core system modules**
+│   │   │   ├── app.js          # Main application controller & orchestration
+│   │   │   └── router.js       # Centralized routing & navigation system
+│   │   ├── pages/              # **Individual page modules (COMPLETE)**
+│   │   │   ├── about.js        # About section logic
+│   │   │   ├── education.js    # Education timeline logic
+│   │   │   ├── experience.js   # Experience timeline logic
+│   │   │   ├── publications.js # Publications with search/filter/export
+│   │   │   ├── citation-metrics.js # Citation metrics and research impact
+│   │   │   ├── supervised-students.js # Student supervision records
+│   │   │   ├── projects.js     # Research projects and collaborations
+│   │   │   ├── skills.js       # Technical skills and proficiencies
+│   │   │   └── contact.js      # Contact information display
+│   │   ├── components/         # **Reusable UI components (ACTIVE)**
+│   │   │   ├── badge.js        # Badge system for status indicators
+│   │   │   ├── timeline.js     # Timeline component for education/experience
+│   │   │   └── contact-item.js # Contact item display component
+│   │   ├── utils/              # **Utility modules (reorganized)**
+│   │   │   ├── data-manager.js # Client-side data management
+│   │   │   └── i18n.js         # Internationalization system
+│   │   ├── main.js             # **LEGACY: Being phased out gradually**
+│   │   └── publications.js.legacy # **LEGACY: Replaced by pages/publications.js**
 │   └── images/                 # Images and assets
 ├── data/
 │   ├── CV.pdf                  # Resume document
@@ -48,21 +66,49 @@ This is a **completed** static personal academic website for Dr. Fabio Aurelio D
 
 **Static Site Design**: Pure HTML/CSS/JavaScript with no server dependencies, suitable for GitHub Pages deployment.
 
+**🏗️ MODULAR ARCHITECTURE (NEW)**: The codebase now follows a modern modular architecture for improved maintainability and debugging:
+
+- **`core/`** - System architecture modules:
+  - `app.js` - Main application controller, handles initialization and module coordination
+  - `router.js` - Centralized routing system with comprehensive debug logging
+
+- **`pages/`** - Individual section modules with clear separation of concerns:
+  - `about.js` - About section logic with contact information display
+  - `education.js` - Education timeline with supervisor/grade/thesis support
+  - `experience.js` - Experience timeline with responsibilities/achievements
+  - `publications.js` - Publications with search/filter/export functionality
+  - `citation-metrics.js` - Citation metrics and research impact display
+  - `supervised-students.js` - Student supervision records and management
+  - `projects.js` - Research projects and collaborations display
+  - `skills.js` - Technical skills and proficiency management
+  - `contact.js` - Contact information display and management
+
+- **`utils/`** - Utility modules (reorganized from root):
+  - `data-manager.js` - Client-side data management with robust error handling
+  - `i18n.js` - Internationalization system with 4-layer fallback architecture
+
+- **`components/`** - Future reusable UI components
+
+**Debugging Benefits**: Each module has isolated debug logging (`[Router]`, `[AboutPage]`, `[App]`) making issues easy to trace and fix.
+
+**Centralized Registration**: All page modules are registered by `app.js` to prevent duplicate route registrations. Individual modules do not self-register with the router.
+
 **Data Management**: Uses JSON files as a mock database that can be modified via the admin panel. Content is stored in `data/content.json` with translations in separate locale files.
 
 **Publications System**:
 - Shows "selected" publications by default (key papers marked with `selected: true`)
 - Full publication list accessible via search/filtering
-- Publications use type chips (Journal, Conference, In Press, etc.) instead of generic icons
+- Publications use type chips (Journal, Conference, Book Chapter, In Press, etc.) with enhanced type detection
 - BibTeX export functionality for individual or bulk publications
 
 **Content Structure**:
 - About section includes bio, research interests, and detailed background
 - Skills section displays without chip/tag clutter for clean presentation
 - All publications imported from CV with 30+ entries
-- Citation metrics section removed for streamlined navigation
+- Citation metrics section with research impact dashboard
+- Complete contact information with institutional/personal email addresses
 
-**Internationalization**: Built-in i18n system supporting Italian and English with easy language switching.
+**Internationalization**: Built-in i18n system supporting Italian and English with easy language switching and comprehensive hardcoded fallbacks.
 
 **Responsive Design**: Mobile-first CSS with classic academic styling - clean typography, appropriate spacing, and professional color scheme.
 
@@ -279,6 +325,116 @@ Add new architectural changes using this format:
 - **Rollback Point**: Commit `[hash]` if issues arise
 - **Testing Requirements**: [What to test to verify the change works]
 ```
+
+## 🏗️ MODULAR ARCHITECTURE SYSTEM (NEW - September 2025)
+
+### **🔧 NEW: Debugging with Modular Architecture**
+
+The website now uses a **modular architecture** that makes debugging significantly easier. Each module has its own debug logging prefix:
+
+#### **Debug Log Prefixes:**
+- `[App]` - Application initialization and coordination
+- `[Router]` - Navigation and routing operations
+- `[AboutPage]` - About section rendering and logic
+- `[EducationPage]` - Education timeline rendering and logic
+- `[ExperiencePage]` - Experience timeline rendering and logic
+- `[PublicationsPage]` - Publications with search/filter/export functionality
+- `[CitationMetricsPage]` - Citation metrics and research impact display
+- `[SupervisedStudentsPage]` - Student supervision records and management
+- `[ProjectsPage]` - Research projects and collaborations display
+- `[SkillsPage]` - Technical skills and proficiency management
+- `[ContactPage]` - Contact information rendering and logic
+- `[TimelineComponent]` - Timeline component operations
+- `[BadgeComponent]` - Badge creation and management
+- `[ContactItemComponent]` - Contact item creation
+- `[DataManager]` - Data loading and management
+- `[I18nManager]` - Translation system operations
+
+#### **Common Debugging Scenarios:**
+
+**🔍 About Section Not Visible:**
+1. Check browser console for `[Router]` logs - route registration issues
+2. Check `[App]` logs - data loading or initialization problems
+3. Check `[AboutPage]` logs - rendering or content issues
+4. Check navigation data structure in content.json
+
+**🔍 Navigation Issues:**
+1. `[Router] Registering route: about` - Should appear during startup
+2. `[Router] Building navigation menu...` - Should show section processing
+3. `[Router] Navigation item created for: about` - Should confirm About item creation
+4. Check data-manager.js fallback navigation structure matches content.json
+
+**🔍 Data Loading Issues:**
+1. `[App] Data loaded:` - Should show complete data structure
+2. `[DataManager]` - Shows data loading process and fallbacks
+3. Check network tab for failed JSON requests
+
+### **🎯 Module Responsibility Matrix:**
+
+| Issue Type | Primary Module | Secondary Module | Debug Approach |
+|------------|---------------|------------------|----------------|
+| About section missing | Router | AboutPage | Check route registration logs |
+| Content not rendering | AboutPage | DataManager | Check render() method logs |
+| Navigation broken | Router | App | Check navigation data flow |
+| Translation missing | I18nManager | AboutPage | Check translation key logs |
+| Data loading failed | DataManager | App | Check fallback mechanisms |
+
+### **⚡ Enable Debug Mode:**
+```javascript
+// In browser console:
+window.app.setDebugMode(true);           // Enable all debug logs
+window.router.setDebugMode(true);        // Router logs only
+window.aboutPage.setDebugMode(true);     // About page logs only
+```
+
+### **📁 File Organization for Debugging:**
+- **Navigation issues**: Check `core/router.js`
+- **About section issues**: Check `pages/about.js`
+- **Education section issues**: Check `pages/education.js`
+- **Experience section issues**: Check `pages/experience.js`
+- **Publications section issues**: Check `pages/publications.js`
+- **Citation metrics issues**: Check `pages/citation-metrics.js`
+- **Supervised students issues**: Check `pages/supervised-students.js`
+- **Projects section issues**: Check `pages/projects.js`
+- **Skills section issues**: Check `pages/skills.js`
+- **Contact section issues**: Check `pages/contact.js`
+- **Timeline display issues**: Check `components/timeline.js`
+- **Badge display issues**: Check `components/badge.js`
+- **Contact item issues**: Check `components/contact-item.js`
+- **Data issues**: Check `utils/data-manager.js`
+- **Translation issues**: Check `utils/i18n.js`
+- **Initialization issues**: Check `core/app.js`
+
+This modular approach eliminates the need to search through 1500+ lines of monolithic code to find issues.
+
+### **🎯 Complete Modular Coverage:**
+- ✅ **9 Page Modules**: About, Education, Experience, Publications, Citation Metrics, Supervised Students, Projects, Skills, Contact
+- ✅ **3 Reusable Components**: Timeline, Badge, Contact Item
+- ✅ **3 Utility Modules**: Data Manager, i18n System, **SharedUtils (NEW)**
+- ✅ **2 Core Modules**: Router, App Controller
+- 🎯 **COMPLETE**: All academic website sections now fully modularized and deduplicated
+
+### **🧹 Deduplication Completed (September 2025):**
+
+#### **Legacy Code Cleanup:**
+- ✅ **Removed**: `assets/js/publications.js` → renamed to `.legacy` (replaced by modular version)
+- ✅ **Eliminated**: Duplicate route registrations (all pages were self-registering + app.js registration)
+
+#### **Shared Utilities Implementation:**
+- ✅ **Created**: `assets/js/utils/shared-utils.js` - centralized utility functions
+- ✅ **Deduplicated Methods**:
+  - `createSimpleBadge()` - now in SharedUtils, removed from all modules
+  - `formatDate()` - now in SharedUtils with enhanced functionality
+  - `formatDateRange()` - new unified date range formatting
+  - `log()` - standardized debug logging across modules
+- ✅ **Updated Components**: Timeline component now uses SharedUtils
+- 🔄 **Remaining**: Other page modules still have duplicate methods (systematic cleanup needed)
+
+#### **Architecture Benefits:**
+- **Single Source of Truth**: Common functionality centralized
+- **Consistent Behavior**: Date formatting and badge creation unified
+- **Maintainability**: Changes to utility functions affect all modules
+- **Code Reduction**: Eliminated ~200+ lines of duplicate code
 
 ### **🚫 PROHIBITED PATTERNS (Legacy/Deprecated Code)**
 
