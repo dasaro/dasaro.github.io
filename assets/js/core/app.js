@@ -68,10 +68,10 @@ class App {
         if (window.PerformanceUtils) {
             await window.PerformanceUtils.setupLazyLoading();
 
-            // Preload critical resources
+            // Preload critical resources (only above-the-fold content)
             const criticalResources = [
-                { href: 'assets/css/main.css', as: 'style' },
-                { href: 'assets/images/profile.jpg', as: 'image' }
+                { href: 'assets/css/main.css', as: 'style' }
+                // Note: Profile image removed from preload as it's in sidebar (not immediately visible)
                 // Note: PDF preloading removed as 'document' is not a valid 'as' value
             ];
 
