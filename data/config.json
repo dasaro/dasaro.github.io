@@ -42,9 +42,39 @@
         "order": 8
       },
       {
+        "key": "professional-service",
+        "icon": "fas fa-hands-helping",
+        "order": 9
+      },
+      {
+        "key": "reviewing",
+        "icon": "fas fa-search",
+        "order": 10
+      },
+      {
+        "key": "invited-talks",
+        "icon": "fas fa-microphone",
+        "order": 11
+      },
+      {
+        "key": "research-groups",
+        "icon": "fas fa-users",
+        "order": 12
+      },
+      {
+        "key": "academic-affiliations",
+        "icon": "fas fa-university",
+        "order": 13
+      },
+      {
+        "key": "editorial-boards",
+        "icon": "fas fa-edit",
+        "order": 14
+      },
+      {
         "key": "contact",
         "icon": "fas fa-envelope",
-        "order": 9
+        "order": 15
       }
     ]
   },

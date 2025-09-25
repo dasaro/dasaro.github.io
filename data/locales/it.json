@@ -10,6 +10,12 @@
     "experience": "Esperienza",
     "publications": "Pubblicazioni",
     "skills": "Competenze",
+    "professional-service": "Servizio Professionale",
+    "reviewing": "Revisione",
+    "invited-talks": "Conferenze Invitate",
+    "research-groups": "Gruppi di Ricerca",
+    "academic-affiliations": "Affiliazioni Accademiche",
+    "editorial-boards": "Comitati Editoriali",
     "contact": "Contatti",
     "toggleSidebar": "Mostra/Nascondi Navigazione",
     "downloadCV": "Scarica CV"
@@ -50,6 +56,30 @@
     "contact": {
       "title": "Contatti",
       "subtitle": "Come Contattarmi"
+    },
+    "professionalService": {
+      "title": "Servizio Professionale",
+      "subtitle": "Attività di Servizio Accademico"
+    },
+    "reviewing": {
+      "title": "Revisione",
+      "subtitle": "Attività di Peer Review"
+    },
+    "invitedTalks": {
+      "title": "Conferenze Invitate",
+      "subtitle": "Presentazioni e Seminari"
+    },
+    "researchGroups": {
+      "title": "Gruppi di Ricerca",
+      "subtitle": "Appartenenze ai Gruppi"
+    },
+    "academicAffiliations": {
+      "title": "Affiliazioni Accademiche",
+      "subtitle": "Appartenenze Professionali"
+    },
+    "editorialBoards": {
+      "title": "Comitati Editoriali",
+      "subtitle": "Posizioni Editoriali"
     }
   },
   "common": {
