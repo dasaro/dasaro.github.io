@@ -70,7 +70,9 @@
     "year": "Anno",
     "journal": "Rivista",
     "conference": "Conferenza",
-    "book": "Libro",\n    "thesis": "Tesi",\n    "volume": "Volume",
+    "book": "Libro",
+    "thesis": "Tesi",
+    "volume": "Volume",
     "pages": "Pagine",
     "doi": "DOI",
     "authors": "Autori",
@@ -107,7 +109,10 @@
     "allTypes": "Tutti i tipi",
     "exportBibTeX": "Esporta BibTeX",
     "noResults": "Nessuna pubblicazione trovata",
-    "showingResults": "Visualizzando {count} pubblicazioni",\n    "adjustFilters": "Prova ad aggiustare i criteri di ricerca o i filtri.",\n    "showAbstract": "Mostra Riassunto",\n    "hideAbstract": "Nascondi Riassunto"
+    "showingResults": "Visualizzando {count} pubblicazioni",
+    "adjustFilters": "Prova ad aggiustare i criteri di ricerca o i filtri.",
+    "showAbstract": "Mostra Riassunto",
+    "hideAbstract": "Nascondi Riassunto"
   },
   "navigation": {
     "about": "Chi sono",

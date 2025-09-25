@@ -418,11 +418,14 @@ class PublicationsManager {
 
         const toggleButton = document.createElement('button');
         toggleButton.className = 'abstract-toggle';
-        toggleButton.setAttribute('data-i18n', 'publications.showAbstract');\n        toggleButton.textContent = window.i18n?.getText('publications.showAbstract') || 'Show Abstract';
+        toggleButton.setAttribute('data-i18n', 'publications.showAbstract');
+        toggleButton.textContent = window.i18n?.getText('publications.showAbstract') || 'Show Abstract';
         toggleButton.addEventListener('click', () => {
             const isHidden = abstractContainer.style.display === 'none';
             abstractContainer.style.display = isHidden ? 'block' : 'none';
-            toggleButton.textContent = isHidden ? \n                (window.i18n?.getText('publications.hideAbstract') || 'Hide Abstract') : \n                (window.i18n?.getText('publications.showAbstract') || 'Show Abstract');
+            toggleButton.textContent = isHidden ?
+                (window.i18n?.getText('publications.hideAbstract') || 'Hide Abstract') :
+                (window.i18n?.getText('publications.showAbstract') || 'Show Abstract');
         });
 
         article.appendChild(toggleButton);
