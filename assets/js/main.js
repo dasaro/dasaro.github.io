@@ -120,20 +120,31 @@ class AcademicWebsite {
      */
     setupSidebarControls() {
         const sidebar = document.getElementById('sidebar');
-        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebarToggle = document.getElementById('sidebar-toggle'); // Old toggle inside sidebar
+        const desktopSidebarToggle = document.getElementById('desktop-sidebar-toggle'); // New always-visible toggle
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
         const mainContent = document.getElementById('main-content');
 
-        // Desktop sidebar toggle
-        if (sidebarToggle) {
+        // Desktop sidebar toggle (always visible)
+        if (desktopSidebarToggle) {
             console.log('Desktop sidebar toggle found and event listener added');
-            sidebarToggle.addEventListener('click', (e) => {
+            desktopSidebarToggle.addEventListener('click', (e) => {
                 console.log('Desktop sidebar toggle clicked!');
                 e.preventDefault();
                 this.toggleSidebar();
             });
         } else {
             console.warn('Desktop sidebar toggle not found!');
+        }
+
+        // Old sidebar toggle (inside sidebar) - keep for backward compatibility
+        if (sidebarToggle) {
+            console.log('Legacy sidebar toggle found and event listener added');
+            sidebarToggle.addEventListener('click', (e) => {
+                console.log('Legacy sidebar toggle clicked!');
+                e.preventDefault();
+                this.toggleSidebar();
+            });
         }
 
         // Mobile menu toggle

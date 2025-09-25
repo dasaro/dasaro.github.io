@@ -275,6 +275,30 @@ a:focus {
   background: rgba(255, 255, 255, 0.1);
 }
 
+/* Desktop Sidebar Toggle (always visible) */
+.desktop-sidebar-toggle {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: var(--font-size-lg);
+  cursor: pointer;
+  padding: 0.75rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+  z-index: calc(var(--z-fixed) + 1);
+  display: none; /* Hidden by default, shown on desktop */
+}
+
+.desktop-sidebar-toggle:hover {
+  background: var(--bg-secondary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
 /* Navigation Menu */
 .nav-menu {
   flex: 1;
@@ -840,14 +864,26 @@ a:focus {
 }
 
 /* Tablet */
+@media (min-width: 1024px) {
+  /* Desktop: Show desktop sidebar toggle */
+  .desktop-sidebar-toggle {
+    display: block;
+  }
+}
+
 @media (max-width: 1023px) {
   :root {
     --sidebar-width: 280px;
     --content-padding: 1.5rem;
   }
 
+  /* Tablet: Show mobile header, hide desktop toggle */
   .mobile-header {
     display: flex;
+  }
+
+  .desktop-sidebar-toggle {
+    display: none;
   }
 
   .language-switcher {
