@@ -685,10 +685,34 @@ class PublicationsManager {
         const copyButton = document.createElement('button');
         copyButton.textContent = 'Copy';
         copyButton.className = 'export-btn';
-        copyButton.addEventListener('click', () => {
-            textarea.select();
-            document.execCommand('copy');
-            copyButton.textContent = 'Copied!';
+        copyButton.addEventListener('click', async () => {
+            try {
+                // Modern Clipboard API (preferred)
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(textarea.value);
+                    copyButton.textContent = 'Copied!';
+                } else {
+                    // Fallback for older browsers or insecure contexts
+                    textarea.select();
+                    textarea.setSelectionRange(0, 99999); // For mobile devices
+
+                    // Try execCommand as last resort (with error handling)
+                    const successful = document.execCommand('copy');
+                    if (successful) {
+                        copyButton.textContent = 'Copied!';
+                    } else {
+                        throw new Error('Copy command failed');
+                    }
+                }
+            } catch (error) {
+                console.warn('Copy to clipboard failed:', error);
+                copyButton.textContent = 'Copy Failed';
+                // Show manual copy instruction
+                textarea.select();
+                alert('Copy failed. Please manually select the text and copy with Ctrl+C (or Cmd+C on Mac).');
+            }
+
+            // Reset button text after 2 seconds
             setTimeout(() => copyButton.textContent = 'Copy', 2000);
         });
 

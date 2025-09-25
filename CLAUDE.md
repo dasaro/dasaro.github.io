@@ -282,8 +282,8 @@ Add new architectural changes using this format:
 **The following patterns are BANNED from this codebase and must be replaced if found:**
 
 #### **Deprecated Web APIs - CRITICAL PRIORITY**
-- ❌ `document.execCommand()` - **CURRENTLY IN CODE** - Replace with Clipboard API
-- ❌ `document.write()` - **CURRENTLY IN CODE** - Replace with DOM manipulation
+- ✅ `document.execCommand()` - **REMOVED** - Replaced with modern Clipboard API (Sept 25, 2025)
+- ✅ `document.write()` - **REMOVED** - Replaced with DOM manipulation (Sept 25, 2025)
 - ❌ `event.keyCode` - Use `event.key` or `event.code` instead
 - ❌ `XMLHttpRequest` - Use `fetch()` API instead
 
@@ -300,16 +300,29 @@ Add new architectural changes using this format:
 
 ### **📋 CURRENT LEGACY CODE STATUS (September 25, 2025)**
 
-#### **🔴 BREAKING ISSUES FOUND - IMMEDIATE ACTION REQUIRED**
-- ⏳ **document.execCommand()** in `publications.js:690` - BibTeX copy functionality at risk
-  - **Affected Routes**: Publications → BibTeX export → Copy to clipboard
-  - **Replacement Required**: Modern Clipboard API implementation
-  - **Testing Required**: All copy functionality in publications system
+#### **✅ COMPLETED LEGACY REMOVALS - September 25, 2025**
 
-#### **🟡 NON-BREAKING ISSUES - SCHEDULE FOR CLEANUP**
-- ⏳ **document.write()** in `admin/index.html:38` - Security blocking mechanism
-  - **Affected Routes**: Admin panel access control
-  - **Replacement Option**: DOM manipulation with redirect
+#### **LEGACY REMOVAL - September 25, 2025 #1**
+- 🗑️ **Removed**: `document.execCommand('copy')` from `publications.js:690`
+- 🔄 **Replaced With**: Modern Clipboard API with graceful fallback to execCommand and manual copy instructions
+- 🛠️ **Affected Routes**:
+  - Publications → Individual BibTeX modal → Copy button (primary path)
+  - Publications → Export functionality → Copy operations (secondary path)
+- ✅ **Testing Completed**: BibTeX modal copy functionality verified on localhost
+- 📋 **Added to Prohibited**: `document.execCommand()` pattern now in PROHIBITED PATTERNS
+- **Rollback Point**: Commit `55d65d9` before clipboard API replacement
+
+#### **LEGACY REMOVAL - September 25, 2025 #2**
+- 🗑️ **Removed**: `document.write()` from `admin/index.html:38`
+- 🔄 **Replaced With**: Modern DOM manipulation using `document.documentElement.innerHTML` with template literals
+- 🛠️ **Affected Routes**:
+  - Admin panel → Security check → Access denied page (production environments)
+  - Admin panel → Environment validation → Blocking mechanism
+- ✅ **Testing Completed**: Admin panel security blocking verified, loads correctly on localhost
+- 📋 **Added to Prohibited**: `document.write()` pattern now in PROHIBITED PATTERNS
+- **Rollback Point**: Commit `55d65d9` before DOM security replacement
+
+#### **🟡 REMAINING NON-BREAKING ISSUES - SCHEDULE FOR CLEANUP**
 - ⏳ **Mixed DOM Queries** (67 `getElementById` instances) - Maintenance burden
   - **Affected Routes**: All JavaScript DOM interactions
   - **Replacement Goal**: Standardize on `querySelector` family
