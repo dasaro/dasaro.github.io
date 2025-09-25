@@ -123,9 +123,9 @@
   },
   "citationMetrics": {
     "topPapers": "Pubblicazioni Più Citate",
-    "source": "Fonte:",
-    "googleScholar": "Profilo Google Scholar",
-    "lastUpdated": "Ultimo aggiornamento"
+    "staticWarning": "Metriche statiche aggiornate al:",
+    "currentMetrics": "Per le metriche correnti, visita:",
+    "googleScholar": "Profilo Google Scholar"
   },
   "badges": {
     "featured": "In Evidenza",

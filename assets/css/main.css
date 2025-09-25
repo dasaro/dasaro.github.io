@@ -1310,6 +1310,24 @@ a:focus {
   border-radius: var(--border-radius);
 }
 
+.update-banner {
+  background: rgba(243, 156, 18, 0.1);
+  border: 1px solid rgba(243, 156, 18, 0.3);
+  border-radius: var(--border-radius-sm);
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  color: var(--color-warning);
+  font-size: var(--font-size-sm);
+}
+
+.update-banner i {
+  margin-right: 0.5rem;
+}
+
+.update-banner strong {
+  font-weight: var(--font-weight-semibold);
+}
+
 .source-attribution {
   font-size: var(--font-size-sm);
   color: var(--text-secondary);
