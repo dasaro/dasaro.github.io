@@ -126,9 +126,14 @@ class AcademicWebsite {
 
         // Desktop sidebar toggle
         if (sidebarToggle) {
-            sidebarToggle.addEventListener('click', () => {
+            console.log('Desktop sidebar toggle found and event listener added');
+            sidebarToggle.addEventListener('click', (e) => {
+                console.log('Desktop sidebar toggle clicked!');
+                e.preventDefault();
                 this.toggleSidebar();
             });
+        } else {
+            console.warn('Desktop sidebar toggle not found!');
         }
 
         // Mobile menu toggle
