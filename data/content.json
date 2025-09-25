@@ -543,30 +543,29 @@
   "citationMetrics": {
     "lastUpdated": "2024-09-25",
     "googleScholarProfile": "https://scholar.google.com/citations?user=EXAMPLE",
-    "metrics": {
+    "overview": {
       "totalCitations": 287,
       "hIndex": 9,
       "i10Index": 8,
-      "citationsLastYear": 52,
-      "citationsLast5Years": 245
+      "publications": 42
     },
-    "topCitedPapers": [
+    "topPapers": [
       {
         "title": "Probabilistic Reasoning About Epistemic Action Narratives",
+        "venue": "Artificial Intelligence Journal (2020)",
         "citations": 45,
-        "year": "2020",
         "url": "https://doi.org/10.1016/j.artint.2020.103352"
       },
       {
         "title": "A Graphical Formalism for Reasoning about Substitution in Resource Transforming Procedures",
+        "venue": "Journal of Artificial Intelligence Research (2025)",
         "citations": 28,
-        "year": "2025",
         "url": "https://doi.org/10.1613/jair.1.15830"
       },
       {
         "title": "Checking trustworthiness of probabilistic computations in a typed natural deduction system",
+        "venue": "Journal of Logic and Computation (2023)",
         "citations": 22,
-        "year": "2023",
         "url": "https://doi.org/10.1093/logcom/exad029"
       }
     ]
