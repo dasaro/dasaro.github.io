@@ -428,21 +428,40 @@ class App {
      * Set up sidebar controls
      */
     setupSidebarControls() {
-        // Toggle button
-        const toggleBtn = document.querySelector('.sidebar-toggle');
+        // Initialize sidebar state
+        this.sidebarMinimized = false;
+
+        // Toggle button (hamburger)
+        const toggleBtn = document.querySelector('.sidebar-toggle, #sidebar-toggle');
         if (toggleBtn) {
-            toggleBtn.addEventListener('click', () => {
-                // TODO: Implement sidebar toggle
+            toggleBtn.addEventListener('click', (e) => {
+                e.preventDefault();
                 this.log('Sidebar toggle clicked');
+
+                // On desktop: toggle between full and minimized
+                // On mobile: toggle between open and closed
+                if (window.innerWidth >= 1024) {
+                    this.toggleSidebarMinimize();
+                } else {
+                    this.toggleSidebar();
+                }
             });
         }
 
-        // Close button
+        // Close button (if exists)
         const closeBtn = document.querySelector('.sidebar-close');
         if (closeBtn) {
             closeBtn.addEventListener('click', () => {
-                // TODO: Implement sidebar close
-                this.log('Sidebar close clicked');
+                this.closeSidebar();
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileToggle = document.querySelector('#mobile-menu-toggle');
+        if (mobileToggle) {
+            mobileToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.toggleSidebar();
             });
         }
     }
@@ -509,6 +528,95 @@ class App {
                 errorDiv.parentNode.removeChild(errorDiv);
             }
         }, 10000);
+    }
+
+    /**
+     * Toggle sidebar open/closed (mobile)
+     */
+    toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.querySelector('.main-content');
+
+        if (!sidebar) return;
+
+        if (sidebar.classList.contains('open')) {
+            this.closeSidebar();
+        } else {
+            this.openSidebar();
+        }
+    }
+
+    /**
+     * Open sidebar
+     */
+    openSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.querySelector('.main-content');
+
+        if (sidebar) {
+            sidebar.classList.add('open');
+            sidebar.classList.remove('minimized');
+        }
+
+        if (mainContent) {
+            mainContent.classList.add('sidebar-open');
+            mainContent.classList.remove('sidebar-minimized');
+        }
+
+        this.log('Sidebar opened');
+    }
+
+    /**
+     * Close sidebar
+     */
+    closeSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.querySelector('.main-content');
+
+        if (sidebar) {
+            sidebar.classList.remove('open', 'minimized');
+        }
+
+        if (mainContent) {
+            mainContent.classList.remove('sidebar-open', 'sidebar-minimized');
+        }
+
+        this.log('Sidebar closed');
+    }
+
+    /**
+     * Toggle between full and minimized sidebar (desktop)
+     */
+    toggleSidebarMinimize() {
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.querySelector('.main-content');
+
+        if (!sidebar) return;
+
+        if (this.sidebarMinimized) {
+            // Expand to full sidebar
+            sidebar.classList.remove('minimized');
+            sidebar.classList.add('open');
+
+            if (mainContent) {
+                mainContent.classList.remove('sidebar-minimized');
+                mainContent.classList.add('sidebar-open');
+            }
+
+            this.sidebarMinimized = false;
+            this.log('Sidebar expanded');
+        } else {
+            // Minimize sidebar
+            sidebar.classList.add('minimized', 'open');
+
+            if (mainContent) {
+                mainContent.classList.add('sidebar-minimized');
+                mainContent.classList.remove('sidebar-open');
+            }
+
+            this.sidebarMinimized = true;
+            this.log('Sidebar minimized');
+        }
     }
 
     /**
