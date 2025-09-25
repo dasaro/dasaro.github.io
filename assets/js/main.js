@@ -10,6 +10,7 @@ class AcademicWebsite {
         this.currentSection = 'about';
         this.publicationsManager = null;
         this.sidebarOpen = false;
+        this.sidebarMinimized = false; // New: track minimized state
 
         // Initialize after DOM is loaded
         if (document.readyState === 'loading') {
@@ -125,33 +126,26 @@ class AcademicWebsite {
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
         const mainContent = document.getElementById('main-content');
 
-        // Desktop sidebar toggle (always visible)
+        // Desktop sidebar toggle (always visible) - Remove for now, use in-sidebar toggle
         if (desktopSidebarToggle) {
-            console.log('Desktop sidebar toggle found and event listener added');
-            console.log('Desktop toggle element:', desktopSidebarToggle);
-
-            desktopSidebarToggle.addEventListener('click', (e) => {
-                console.log('Desktop sidebar toggle clicked!', e);
-                e.preventDefault();
-                e.stopPropagation();
-                this.toggleSidebar();
-            }, true); // Use capture phase
-
-            // Also add mousedown for extra debugging
-            desktopSidebarToggle.addEventListener('mousedown', () => {
-                console.log('Desktop toggle mousedown detected');
-            });
-        } else {
-            console.warn('Desktop sidebar toggle not found!');
+            // Hide the floating desktop toggle on desktop, we'll use the sidebar one
+            desktopSidebarToggle.style.display = 'none';
         }
 
-        // Old sidebar toggle (inside sidebar) - keep for backward compatibility
+        // Sidebar toggle (inside sidebar) - now handles minimize/maximize
         if (sidebarToggle) {
-            console.log('Legacy sidebar toggle found and event listener added');
+            console.log('Sidebar toggle found and event listener added');
             sidebarToggle.addEventListener('click', (e) => {
-                console.log('Legacy sidebar toggle clicked!');
+                console.log('Sidebar toggle clicked!');
                 e.preventDefault();
-                this.toggleSidebar();
+
+                // On desktop: toggle between full and minimized
+                // On mobile: close completely
+                if (window.innerWidth >= 1024) {
+                    this.toggleSidebarMinimize();
+                } else {
+                    this.toggleSidebar();
+                }
             });
         }
 
@@ -206,12 +200,46 @@ class AcademicWebsite {
     }
 
     /**
+     * Toggle between full and minimized sidebar (desktop only)
+     */
+    toggleSidebarMinimize() {
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('main-content');
+
+        if (this.sidebarMinimized) {
+            // Expand to full sidebar
+            sidebar?.classList.remove('minimized');
+            sidebar?.classList.add('open');
+            mainContent?.classList.remove('sidebar-minimized');
+            mainContent?.classList.add('sidebar-open');
+            this.sidebarMinimized = false;
+            this.sidebarOpen = true;
+            console.log('Sidebar expanded to full');
+        } else {
+            // Minimize to icons only
+            sidebar?.classList.remove('open');
+            sidebar?.classList.add('minimized');
+            mainContent?.classList.remove('sidebar-open');
+            mainContent?.classList.add('sidebar-minimized');
+            this.sidebarMinimized = true;
+            this.sidebarOpen = false;
+            console.log('Sidebar minimized to icons');
+        }
+    }
+
+    /**
      * Open sidebar
      */
     openSidebar() {
         const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('main-content');
+
         sidebar?.classList.add('open');
+        sidebar?.classList.remove('minimized');
+        mainContent?.classList.add('sidebar-open');
+        mainContent?.classList.remove('sidebar-minimized');
         this.sidebarOpen = true;
+        this.sidebarMinimized = false;
 
         // Set focus to first navigation item for accessibility
         const firstNavLink = sidebar?.querySelector('.nav-link');
@@ -223,8 +251,12 @@ class AcademicWebsite {
      */
     closeSidebar() {
         const sidebar = document.getElementById('sidebar');
-        sidebar?.classList.remove('open');
+        const mainContent = document.getElementById('main-content');
+
+        sidebar?.classList.remove('open', 'minimized');
+        mainContent?.classList.remove('sidebar-open', 'sidebar-minimized');
         this.sidebarOpen = false;
+        this.sidebarMinimized = false;
     }
 
     /**
@@ -944,10 +976,16 @@ class AcademicWebsite {
      */
     handleWindowResize() {
         // Close sidebar on mobile when resizing from desktop
-        if (window.innerWidth < 1024 && this.sidebarOpen) {
-            this.closeSidebar();
+        if (window.innerWidth < 1024) {
+            if (this.sidebarOpen || this.sidebarMinimized) {
+                this.closeSidebar();
+            }
+        } else {
+            // Desktop: ensure sidebar is visible (either open or minimized)
+            if (!this.sidebarOpen && !this.sidebarMinimized) {
+                this.openSidebar();
+            }
         }
-        // Note: Removed auto-open on desktop resize - respect user's sidebar preference
     }
 
     /**
@@ -1055,11 +1093,13 @@ class AcademicWebsite {
      */
     updateView() {
         // On mobile, ensure sidebar is closed
-        // On desktop, let user control sidebar state (don't auto-open)
+        // On desktop, open sidebar by default (but allow minimizing)
         if (window.innerWidth < 1024) {
             this.closeSidebar();
+        } else {
+            // Desktop: Open sidebar by default
+            this.openSidebar();
         }
-        // Note: Removed auto-open for desktop - sidebar starts closed and user can open it
 
         // Update active section
         this.updateActiveNavigation();
