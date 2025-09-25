@@ -220,7 +220,10 @@ All identified architectural flaws have been systematically addressed with **gra
 - **Multi-layer fallback**: current language → fallback translations → hardcoded essentials → key itself
 - **Hardcoded essential translations** must be available for core UI elements
 - **Log missing translations** for debugging without breaking display
-- **Example**: i18n.js now includes hardcoded fallbacks for navigation, sections, and publications
+- **Defensive key validation** - reject null/empty/invalid translation keys with warnings
+- **Skip empty data-i18n attributes** to prevent console errors
+- **Complete hardcoded fallbacks** including all common UI elements (email, location, website, etc.)
+- **Example**: i18n.js now includes hardcoded fallbacks for navigation, sections, publications, and all common fields
 
 #### **4. Security Standards**
 - **Admin panel access** must check multiple environment indicators (localhost, file protocol, dev ports)
@@ -339,6 +342,18 @@ Add new architectural changes using this format:
 - 🔄 **Status**: Left intact for potential future reactivation
 - 🛠️ **Analysis**: 78% of translation keys are unused due to over-preparation vs actual implementation
 - ✅ **System Health**: I18n system rated EXCELLENT with robust 4-layer fallback architecture
+
+#### **I18N ROBUSTNESS FIXES - September 25, 2025 #3**
+- 🐛 **Fixed**: Missing translation keys causing console errors (`common.email`, `common.location`, `common.website`)
+- 🛡️ **Enhanced**: Added defensive null/empty key validation in `i18n.t()` method
+- 🔍 **Improved**: Enhanced `applyTranslations()` to skip elements with empty `data-i18n` attributes
+- 🆘 **Extended**: Expanded hardcoded fallbacks to include all common UI elements
+- 🛠️ **Affected Routes**:
+  - Main.js → Contact information display in About section
+  - I18n.js → Translation key processing and validation
+  - All pages → Elements with `data-i18n` attributes
+- ✅ **Testing**: Eliminated all translation missing warnings and invalid key errors
+- **Rollback Point**: Previous commit `2462c44` before robustness fixes
 
 #### **🟡 REMAINING NON-BREAKING ISSUES - SCHEDULE FOR CLEANUP**
 - ⏳ **Mixed DOM Queries** (67 `getElementById` instances) - Maintenance burden

@@ -146,6 +146,12 @@ class I18nManager {
      * @returns {string} - Translated text
      */
     t(key, variables = {}) {
+        // Defensive check for null, undefined, or empty keys
+        if (!key || typeof key !== 'string' || key.trim() === '') {
+            console.warn(`Invalid translation key provided: "${key}"`);
+            return key || '[EMPTY_KEY]';
+        }
+
         // Multi-layer fallback: current language → fallback translations → hardcoded → key itself
         const translation = this.getNestedValue(this.translations[this.currentLanguage], key) ||
                           this.getNestedValue(this.fallbackTranslations, key) ||
@@ -153,7 +159,7 @@ class I18nManager {
                           key;
 
         // Log missing translations for debugging
-        if (translation === key) {
+        if (translation === key && key.trim() !== '') {
             console.warn(`Translation missing for key: ${key}`);
         }
 
@@ -198,6 +204,13 @@ class I18nManager {
 
         elementsToTranslate.forEach(element => {
             const key = element.getAttribute('data-i18n');
+
+            // Skip elements with empty or null data-i18n attributes
+            if (!key || key.trim() === '') {
+                console.warn('Element with empty data-i18n attribute found:', element);
+                return;
+            }
+
             const translation = this.t(key);
 
             // Handle different content types
@@ -463,7 +476,14 @@ class I18nManager {
                 conference: 'Conference',
                 book: 'Book',
                 thesis: 'Thesis',
-                switchLanguage: 'English'
+                switchLanguage: 'English',
+                email: 'Email',
+                location: 'Location',
+                website: 'Website',
+                present: 'Present',
+                phone: 'Phone',
+                linkedin: 'LinkedIn',
+                orcid: 'ORCID'
             },
             loading: 'Loading...',
             error: 'An error occurred'
