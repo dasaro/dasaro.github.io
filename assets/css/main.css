@@ -251,30 +251,27 @@ a:focus {
   transition: font-size 0.2s ease;
 }
 
+.sidebar.minimized .sidebar-header {
+  padding: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
 .sidebar.minimized .sidebar-toggle {
-  position: static !important;
-  right: auto !important;
-  top: auto !important;
-  margin: 0 !important;
-  padding: 0.75rem !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  width: 100% !important;
-  border-radius: 0 !important;
-  background: none !important;
+  position: relative;
+  right: auto;
+  top: auto;
+  margin: 0;
+  padding: 0.75rem;
+  display: block;
+  width: 100%;
+  text-align: center;
+  border-radius: 0;
+  background: none;
 }
 
 .sidebar.minimized .sidebar-toggle:hover {
-  background: rgba(255, 255, 255, 0.1) !important;
-}
-
-.sidebar.minimized .sidebar-header {
-  padding: 0.75rem 0 !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  display: flex !important;
-  justify-content: center !important;
-  text-align: center !important;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .sidebar-header {
@@ -336,31 +333,6 @@ a:focus {
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* Desktop Sidebar Toggle (always visible) */
-.desktop-sidebar-toggle {
-  position: fixed;
-  top: 1rem;
-  left: 1rem;
-  background: var(--bg-primary);
-  border: 2px solid var(--border-color);
-  color: var(--text-primary);
-  font-size: var(--font-size-lg);
-  cursor: pointer;
-  padding: 0.75rem;
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow-md);
-  transition: all var(--transition-base);
-  z-index: 9999; /* Very high z-index to ensure clickability */
-  display: none; /* Hidden by default, shown on desktop */
-  pointer-events: auto; /* Ensure it can receive clicks */
-  user-select: none; /* Prevent text selection */
-}
-
-.desktop-sidebar-toggle:hover {
-  background: var(--bg-secondary);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-}
 
 /* Navigation Menu */
 .nav-menu {
@@ -935,12 +907,9 @@ a:focus {
   }
 }
 
-/* Tablet */
+/* Desktop */
 @media (min-width: 1024px) {
-  /* Desktop: Show desktop sidebar toggle */
-  .desktop-sidebar-toggle {
-    display: block;
-  }
+  /* Desktop styles */
 }
 
 @media (max-width: 1023px) {
@@ -949,13 +918,9 @@ a:focus {
     --content-padding: 1.5rem;
   }
 
-  /* Tablet: Show mobile header, hide desktop toggle */
+  /* Tablet: Show mobile header */
   .mobile-header {
     display: flex;
-  }
-
-  .desktop-sidebar-toggle {
-    display: none;
   }
 
   .language-switcher {
@@ -977,10 +942,6 @@ a:focus {
     width: 100%;
   }
 
-  /* Hide desktop toggle on mobile */
-  .desktop-sidebar-toggle {
-    display: none !important;
-  }
 
   .content-wrapper {
     padding: 1rem;

@@ -121,16 +121,9 @@ class AcademicWebsite {
      */
     setupSidebarControls() {
         const sidebar = document.getElementById('sidebar');
-        const sidebarToggle = document.getElementById('sidebar-toggle'); // Old toggle inside sidebar
-        const desktopSidebarToggle = document.getElementById('desktop-sidebar-toggle'); // New always-visible toggle
+        const sidebarToggle = document.getElementById('sidebar-toggle'); // Sidebar toggle inside sidebar
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
         const mainContent = document.getElementById('main-content');
-
-        // Desktop sidebar toggle (always visible) - Remove for now, use in-sidebar toggle
-        if (desktopSidebarToggle) {
-            // Hide the floating desktop toggle on desktop, we'll use the sidebar one
-            desktopSidebarToggle.style.display = 'none';
-        }
 
         // Sidebar toggle (inside sidebar) - now handles minimize/maximize
         if (sidebarToggle) {
