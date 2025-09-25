@@ -1,6 +1,13 @@
 /* ===================================
    CSS CUSTOM PROPERTIES (VARIABLES)
    =================================== */
+
+/* RESPONSIVE BREAKPOINT SYSTEM:
+ * Mobile: 0px - 767px     (max-width: 767px)
+ * Tablet: 768px - 1023px  (min-width: 768px and max-width: 1023px)
+ * Desktop: 1024px+        (min-width: 1024px)
+ * Small Mobile: 0px - 479px (max-width: 479px) - for specific adjustments
+ */
 :root {
   /* Colors - Academic Theme */
   --color-primary: #2c3e50;
@@ -758,6 +765,28 @@ a:focus {
   color: white;
 }
 
+/* New chip types for enhanced publication type handling */
+.chip-under-review {
+  background: #f39c12;
+  color: white;
+}
+
+.chip-chapter {
+  background: #9b59b6;
+  color: white;
+}
+
+.chip-report {
+  background: #34495e;
+  color: white;
+}
+
+.chip-unknown {
+  background: #bdc3c7;
+  color: #2c3e50;
+  border: 1px solid #95a5a6;
+}
+
 .publications-summary {
   margin-bottom: 1.5rem;
   padding: 1rem;
@@ -1023,7 +1052,8 @@ a:focus {
   /* Desktop styles */
 }
 
-@media (max-width: 1023px) {
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
   :root {
     --sidebar-width: 280px;
     --content-padding: 1.5rem;
@@ -1040,8 +1070,8 @@ a:focus {
   }
 }
 
-/* Mobile */
-@media (max-width: 768px) {
+/* Mobile (up to 767px) */
+@media (max-width: 767px) {
   :root {
     --sidebar-width: 100%;
     --content-padding: 1rem;
@@ -1112,8 +1142,8 @@ a:focus {
   }
 }
 
-/* Small Mobile */
-@media (max-width: 480px) {
+/* Small Mobile (up to 479px) */
+@media (max-width: 479px) {
   .sidebar-header {
     padding: 1.5rem 1rem;
   }
@@ -1516,7 +1546,7 @@ a:focus {
 }
 
 /* Responsive adjustments for new sections */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .students-grid {
     grid-template-columns: 1fr;
   }
@@ -1551,7 +1581,7 @@ a:focus {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 479px) {
   .student-item,
   .project-item,
   .metric-item,
@@ -1733,7 +1763,7 @@ select:focus {
 }
 
 /* Responsive adjustments for skill tags */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .skill-tag {
     font-size: 0.7rem;
     padding: 0.2rem 0.4rem;
@@ -1744,7 +1774,7 @@ select:focus {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 479px) {
   .skill-tag {
     font-size: 0.65rem;
     padding: 0.15rem 0.3rem;

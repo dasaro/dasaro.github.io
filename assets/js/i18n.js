@@ -11,6 +11,7 @@ class I18nManager {
         this.supportedLanguages = ['en', 'it'];
         this.translations = {};
         this.fallbackTranslations = {};
+        this.hardcodedFallbacks = this.getHardcodedFallbacks();
 
         // Initialize the system
         this.init();
@@ -62,9 +63,9 @@ class I18nManager {
             } catch (error) {
                 console.error(`Failed to load translations for ${lang}:`, error);
 
-                // If it's the default language, create empty fallback
+                // If it's the default language, use hardcoded fallback
                 if (lang === this.defaultLanguage) {
-                    this.fallbackTranslations = {};
+                    this.fallbackTranslations = this.hardcodedFallbacks;
                 }
             }
         });
@@ -145,9 +146,16 @@ class I18nManager {
      * @returns {string} - Translated text
      */
     t(key, variables = {}) {
+        // Multi-layer fallback: current language → fallback translations → hardcoded → key itself
         const translation = this.getNestedValue(this.translations[this.currentLanguage], key) ||
                           this.getNestedValue(this.fallbackTranslations, key) ||
+                          this.getNestedValue(this.hardcodedFallbacks, key) ||
                           key;
+
+        // Log missing translations for debugging
+        if (translation === key) {
+            console.warn(`Translation missing for key: ${key}`);
+        }
 
         return this.interpolateVariables(translation, variables);
     }
@@ -347,18 +355,9 @@ class I18nManager {
         this.currentLanguage = this.defaultLanguage;
         document.documentElement.lang = this.defaultLanguage;
 
-        // Set basic fallback translations if none loaded
+        // Set hardcoded fallback translations if none loaded
         if (Object.keys(this.fallbackTranslations).length === 0) {
-            this.fallbackTranslations = {
-                navigation: {
-                    about: 'About',
-                    education: 'Education',
-                    experience: 'Experience',
-                    publications: 'Publications',
-                    skills: 'Skills',
-                    contact: 'Contact'
-                }
-            };
+            this.fallbackTranslations = this.hardcodedFallbacks;
         }
     }
 
@@ -393,6 +392,82 @@ class I18nManager {
      */
     getCurrentTranslations() {
         return this.translations[this.currentLanguage] || this.fallbackTranslations;
+    }
+
+    /**
+     * Get hardcoded fallback translations for essential UI elements
+     * @returns {Object} - Essential translations that ensure the site remains functional
+     */
+    getHardcodedFallbacks() {
+        return {
+            personalInfo: {
+                name: 'Academic Profile',
+                title: 'Your Title',
+                bio: 'Biography not available'
+            },
+            sections: {
+                about: {
+                    title: 'About Me',
+                    subtitle: 'Academic Profile'
+                },
+                education: {
+                    title: 'Education',
+                    subtitle: 'Academic Background'
+                },
+                experience: {
+                    title: 'Experience',
+                    subtitle: 'Professional Background'
+                },
+                publications: {
+                    title: 'Publications',
+                    subtitle: 'Research Output'
+                },
+                skills: {
+                    title: 'Skills',
+                    subtitle: 'Technical Expertise'
+                },
+                contact: {
+                    title: 'Contact',
+                    subtitle: 'Get in Touch'
+                },
+                supervisedStudents: {
+                    title: 'Supervised Students',
+                    subtitle: 'Academic Supervision'
+                },
+                projects: {
+                    title: 'Projects',
+                    subtitle: 'Research Projects'
+                }
+            },
+            navigation: {
+                about: 'About',
+                education: 'Education',
+                experience: 'Experience',
+                publications: 'Publications',
+                skills: 'Skills',
+                contact: 'Contact',
+                downloadCV: 'Download CV'
+            },
+            publications: {
+                searchPlaceholder: 'Search publications...',
+                allYears: 'All Years',
+                allTypes: 'All Types',
+                exportBibTeX: 'Export BibTeX',
+                noResults: 'No publications found',
+                adjustFilters: 'Try adjusting your search criteria or filters.',
+                showAbstract: 'Show Abstract',
+                hideAbstract: 'Hide Abstract'
+            },
+            common: {
+                journal: 'Journal',
+                conference: 'Conference',
+                book: 'Book',
+                thesis: 'Thesis',
+                switchLanguage: 'English'
+            },
+            loading: 'Loading...',
+            error: 'An error occurred'
+        };
     }
 }
 

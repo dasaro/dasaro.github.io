@@ -25,9 +25,40 @@ class AdminPanel {
 
     async checkLocalhost() {
         const hostname = window.location.hostname;
-        if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
-            throw new Error('Admin panel can only be accessed from localhost for security reasons');
+        const protocol = window.location.protocol;
+        const port = window.location.port;
+
+        // Enhanced security checks
+        const isLocalhost = hostname === 'localhost' ||
+                           hostname === '127.0.0.1' ||
+                           hostname === '::1';
+
+        const isFileProtocol = protocol === 'file:';
+        const isDevPort = port && ['3000', '8000', '5000', '8080'].includes(port);
+
+        // Check for production domain patterns
+        const isProductionDomain = hostname.includes('.com') ||
+                                 hostname.includes('.org') ||
+                                 hostname.includes('.net') ||
+                                 hostname.includes('.io') ||
+                                 hostname.includes('.github.io');
+
+        const isDevelopment = isLocalhost || isFileProtocol || isDevPort;
+
+        if (!isDevelopment || isProductionDomain) {
+            // Log security violation attempt
+            console.error('Admin panel access denied from:', {
+                hostname,
+                protocol,
+                port,
+                userAgent: navigator.userAgent,
+                timestamp: new Date().toISOString()
+            });
+
+            throw new Error(`Admin panel access denied. Environment: ${hostname}:${port || 'default'} (${protocol}) - Only accessible in development environment for security.`);
         }
+
+        console.log('Admin panel security check passed for development environment');
     }
 
     async loadData() {

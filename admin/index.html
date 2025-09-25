@@ -7,11 +7,48 @@
 
     <!-- Security: Admin panel should only work on localhost -->
     <script>
-        // Immediately check if running on localhost
-        if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-            document.write('<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:Arial,sans-serif;text-align:center;"><div><h1>🔒 Access Denied</h1><p>Admin panel is only available on localhost for security.</p><p>Please run this site locally to access admin features.</p></div></div>');
-            throw new Error('Admin panel blocked: Not running on localhost');
-        }
+        // Enhanced security check with multiple layers
+        (function() {
+            const isLocalhost = window.location.hostname === 'localhost' ||
+                              window.location.hostname === '127.0.0.1' ||
+                              window.location.hostname === '::1';
+
+            const isFileProtocol = window.location.protocol === 'file:';
+            const isDevEnvironment = window.location.port && (
+                window.location.port === '3000' ||
+                window.location.port === '8000' ||
+                window.location.port === '5000'
+            );
+
+            // Check for development environment indicators
+            const isDevelopment = isLocalhost || isFileProtocol || isDevEnvironment ||
+                                window.location.hostname.includes('localhost') ||
+                                window.location.hostname.includes('127.0.0.1');
+
+            // Additional security: Check for production indicators that should block access
+            const isProduction = window.location.hostname.includes('.com') ||
+                               window.location.hostname.includes('.org') ||
+                               window.location.hostname.includes('.net') ||
+                               window.location.hostname.includes('.io') ||
+                               window.location.hostname.includes('.github.io');
+
+            if (!isDevelopment || isProduction) {
+                // More robust blocking
+                document.documentElement.innerHTML = '';
+                document.write('<!DOCTYPE html><html><head><title>Access Denied</title><style>body{font-family:Arial,sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#f5f5f5;}</style></head><body><div style="text-align:center;"><h1>🔒 Access Denied</h1><p>Admin panel is only available in development environment.</p><p>This security measure protects against unauthorized access.</p></div></body></html>');
+
+                // Prevent further script execution
+                if (window.stop) window.stop();
+                throw new Error('Admin panel blocked: Not in development environment');
+            }
+
+            // Log security check for debugging
+            console.log('Admin panel security check passed for environment:', {
+                hostname: window.location.hostname,
+                protocol: window.location.protocol,
+                port: window.location.port
+            });
+        })();
     </script>
 
     <!-- Font Awesome for icons -->

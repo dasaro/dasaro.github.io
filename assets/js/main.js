@@ -59,20 +59,113 @@ class AcademicWebsite {
     }
 
     /**
-     * Wait for all dependencies to be ready
+     * Wait for all dependencies to be ready with graceful degradation
      */
     async waitForDependencies() {
         const maxAttempts = 50;
         let attempts = 0;
+        const dependencyStatus = {
+            dataManager: false,
+            i18n: false
+        };
 
-        while ((!window.dataManager?.isLoaded || !window.i18n) && attempts < maxAttempts) {
+        // Set up event listeners for dependency ready events
+        const dependencyPromises = [];
+
+        // DataManager dependency
+        if (window.dataManager) {
+            if (window.dataManager.isLoaded) {
+                dependencyStatus.dataManager = true;
+            } else {
+                dependencyPromises.push(new Promise((resolve) => {
+                    window.dataManager.on('dataLoaded', () => {
+                        dependencyStatus.dataManager = true;
+                        resolve();
+                    });
+                    window.dataManager.on('fallbackMode', () => {
+                        console.warn('DataManager in fallback mode - continuing with limited functionality');
+                        dependencyStatus.dataManager = true;
+                        resolve();
+                    });
+                    // Fallback timeout for this dependency
+                    setTimeout(() => {
+                        if (!dependencyStatus.dataManager) {
+                            console.warn('DataManager timeout - continuing without data');
+                            dependencyStatus.dataManager = true;
+                            resolve();
+                        }
+                    }, 5000);
+                }));
+            }
+        }
+
+        // i18n dependency
+        if (window.i18n) {
+            dependencyStatus.i18n = true;
+        } else {
+            dependencyPromises.push(new Promise((resolve) => {
+                const checkI18n = () => {
+                    if (window.i18n) {
+                        dependencyStatus.i18n = true;
+                        resolve();
+                    }
+                };
+                // Check periodically
+                const interval = setInterval(() => {
+                    checkI18n();
+                    if (dependencyStatus.i18n) {
+                        clearInterval(interval);
+                    }
+                }, 100);
+                // Fallback timeout
+                setTimeout(() => {
+                    clearInterval(interval);
+                    if (!dependencyStatus.i18n) {
+                        console.warn('i18n timeout - continuing with limited translations');
+                        dependencyStatus.i18n = true;
+                        resolve();
+                    }
+                }, 3000);
+            }));
+        }
+
+        // Wait for all dependencies or timeout (with polling backup)
+        try {
+            await Promise.race([
+                Promise.all(dependencyPromises),
+                this.pollForDependencies(dependencyStatus, maxAttempts)
+            ]);
+        } catch (error) {
+            console.warn('Dependency loading failed, continuing with available components:', error.message);
+        }
+
+        // Log final dependency status
+        console.log('Dependency status:', dependencyStatus);
+    }
+
+    /**
+     * Backup polling method for dependency checking
+     */
+    async pollForDependencies(status, maxAttempts) {
+        let attempts = 0;
+        while (attempts < maxAttempts) {
+            if (window.dataManager?.isLoaded || window.dataManager?.fallbackMode) {
+                status.dataManager = true;
+            }
+            if (window.i18n) {
+                status.i18n = true;
+            }
+
+            if (status.dataManager && status.i18n) {
+                return;
+            }
+
             await this.sleep(100);
             attempts++;
         }
 
-        if (attempts >= maxAttempts) {
-            throw new Error('Dependencies failed to load within timeout');
-        }
+        // If we reach here, continue anyway with partial functionality
+        console.warn('Some dependencies failed to load within timeout, continuing with graceful degradation');
     }
 
     /**
@@ -95,9 +188,16 @@ class AcademicWebsite {
         });
 
         // Data update events
-        window.dataManager.on('dataUpdated', (data) => {
-            this.handleDataUpdate(data);
-        });
+        if (window.dataManager) {
+            window.dataManager.on('dataUpdated', (data) => {
+                this.handleDataUpdate(data);
+            });
+
+            // Listen for fallback mode
+            window.dataManager.on('fallbackMode', (data) => {
+                this.showFallbackModeIndicator(data);
+            });
+        }
 
         // Window resize
         window.addEventListener('resize', () => {
@@ -1463,6 +1563,72 @@ class AcademicWebsite {
                 </div>
             `;
         }
+    }
+
+    /**
+     * Show fallback mode indicator to inform users of limited functionality
+     */
+    showFallbackModeIndicator(data) {
+        // Create or update fallback mode banner
+        let banner = document.getElementById('fallback-mode-banner');
+        if (!banner) {
+            banner = document.createElement('div');
+            banner.id = 'fallback-mode-banner';
+            banner.className = 'fallback-mode-banner';
+            banner.innerHTML = `
+                <div class="banner-content">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Limited functionality: Some content may not be available due to data loading issues.</span>
+                    <button class="banner-close" onclick="this.parentElement.parentElement.style.display='none'">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+
+            // Add banner CSS if not exists
+            if (!document.getElementById('fallback-mode-styles')) {
+                const style = document.createElement('style');
+                style.id = 'fallback-mode-styles';
+                style.textContent = `
+                    .fallback-mode-banner {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        background: #f39c12;
+                        color: white;
+                        padding: 0.75rem;
+                        z-index: var(--z-fixed);
+                        box-shadow: var(--shadow-md);
+                    }
+                    .fallback-mode-banner .banner-content {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 0.5rem;
+                        max-width: 1200px;
+                        margin: 0 auto;
+                    }
+                    .fallback-mode-banner .banner-close {
+                        background: none;
+                        border: none;
+                        color: white;
+                        cursor: pointer;
+                        padding: 0.25rem;
+                        margin-left: auto;
+                    }
+                    .fallback-mode-banner + .sidebar,
+                    .fallback-mode-banner + .main-content {
+                        margin-top: 50px;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            document.body.insertBefore(banner, document.body.firstChild);
+        }
+
+        console.log('Fallback mode activated:', data);
     }
 }
 

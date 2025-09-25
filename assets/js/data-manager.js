@@ -10,10 +10,12 @@ class DataManager {
         this.originalData = {};
         this.dataUrl = 'data/content.json';
         this.isLoaded = false;
+        this.fallbackMode = false;
         this.callbacks = {
             dataLoaded: [],
             dataUpdated: [],
-            error: []
+            error: [],
+            fallbackMode: []
         };
 
         // Badge types and their configurations
@@ -96,10 +98,20 @@ class DataManager {
             return this.data;
         } catch (error) {
             console.error('Failed to load data:', error);
-            // Provide fallback empty structure
+            // Provide fallback empty structure and enter fallback mode
             this.data = this.getEmptyDataStructure();
             this.originalData = JSON.parse(JSON.stringify(this.data));
-            throw error;
+            this.fallbackMode = true;
+
+            // Notify components about fallback mode
+            console.warn('DataManager: Operating in fallback mode due to data loading failure');
+            this.triggerCallbacks('fallbackMode', {
+                error: error.message,
+                fallbackData: this.data
+            });
+
+            // Return success with fallback data instead of throwing
+            return this.data;
         }
     }
 
@@ -531,6 +543,13 @@ class DataManager {
      */
     hasUnsavedChanges() {
         return JSON.stringify(this.data) !== JSON.stringify(this.originalData);
+    }
+
+    /**
+     * Check if operating in fallback mode
+     */
+    isFallbackMode() {
+        return this.fallbackMode;
     }
 
     /**

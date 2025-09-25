@@ -150,16 +150,55 @@ class PublicationsManager {
     }
 
     /**
-     * Infer publication type from publication data
+     * Infer publication type from publication data with enhanced logic
      */
     inferPublicationType(publication) {
-        if (publication.journal) return 'journal';
-        if (publication.conference || publication.booktitle) return 'conference';
-        if (publication.thesis || publication.degree) return 'thesis';
-        if (publication.book || publication.publisher) return 'book';
-        if (publication.chapter) return 'chapter';
-        if (publication.preprint || publication.arxiv) return 'preprint';
-        return 'article'; // default
+        if (!publication || typeof publication !== 'object') {
+            return 'article';
+        }
+
+        // Check for explicit venue types first
+        if (publication.journal && publication.journal.trim()) return 'journal';
+        if (publication.conference || publication.booktitle || publication.venue) return 'conference';
+
+        // Check for thesis indicators
+        if (publication.thesis || publication.degree ||
+            (publication.school && (publication.type === 'thesis' || publication.type === 'phdthesis'))) {
+            return 'thesis';
+        }
+
+        // Check for book-related indicators
+        if (publication.book ||
+            (publication.publisher && !publication.journal && !publication.conference)) {
+            return publication.chapter ? 'chapter' : 'book';
+        }
+
+        // Check for preprints
+        if (publication.preprint || publication.arxiv ||
+            (publication.venue && publication.venue.toLowerCase().includes('arxiv'))) {
+            return 'preprint';
+        }
+
+        // Check for reports
+        if (publication.type === 'techreport' || publication.type === 'report' ||
+            (publication.institution && !publication.school)) {
+            return 'report';
+        }
+
+        // Additional heuristics based on title or venue patterns
+        if (publication.venue) {
+            const venueLower = publication.venue.toLowerCase();
+            if (venueLower.includes('conference') || venueLower.includes('symposium') ||
+                venueLower.includes('workshop') || venueLower.includes('proceedings')) {
+                return 'conference';
+            }
+            if (venueLower.includes('journal') || venueLower.includes('transactions')) {
+                return 'journal';
+            }
+        }
+
+        // Default fallback
+        return 'article';
     }
 
     /**
@@ -770,39 +809,85 @@ class PublicationsManager {
      * Create a type chip for publication
      */
     createTypeChip(publication) {
+        if (!publication || typeof publication !== 'object') {
+            console.warn('createTypeChip: Invalid publication object:', publication);
+            return this.createFallbackChip();
+        }
+
         const chip = document.createElement('span');
         chip.className = 'publication-chip';
 
         let chipText = '';
         let chipClass = '';
 
-        // Determine chip text and class based on status and type
-        if (publication.status === 'accepted' || publication.status === 'in press') {
+        // Safely determine chip text and class based on status and type
+        const status = publication.status ? publication.status.toLowerCase() : null;
+        const publicationType = publication.type || this.inferPublicationType(publication);
+
+        // Priority: status-based chips first, then type-based
+        if (status === 'accepted' || status === 'in press' || status === 'in-press') {
             chipText = 'In Press';
             chipClass = 'chip-in-press';
-        } else if (publication.type === 'journal') {
-            chipText = 'Journal';
-            chipClass = 'chip-journal';
-        } else if (publication.type === 'conference') {
-            chipText = 'Conference';
-            chipClass = 'chip-conference';
-        } else if (publication.type === 'book') {
-            chipText = 'Book';
-            chipClass = 'chip-book';
-        } else if (publication.type === 'thesis') {
-            chipText = 'Thesis';
-            chipClass = 'chip-thesis';
-        } else if (publication.type === 'preprint') {
-            chipText = 'Preprint';
-            chipClass = 'chip-preprint';
+        } else if (status === 'submitted' || status === 'under review') {
+            chipText = 'Under Review';
+            chipClass = 'chip-under-review';
         } else {
-            chipText = 'Article';
-            chipClass = 'chip-article';
+            // Use inferred or explicit type
+            switch (publicationType ? publicationType.toLowerCase() : 'unknown') {
+                case 'journal':
+                    chipText = 'Journal';
+                    chipClass = 'chip-journal';
+                    break;
+                case 'conference':
+                    chipText = 'Conference';
+                    chipClass = 'chip-conference';
+                    break;
+                case 'book':
+                    chipText = 'Book';
+                    chipClass = 'chip-book';
+                    break;
+                case 'thesis':
+                case 'phd':
+                case 'master':
+                case 'masters':
+                    chipText = 'Thesis';
+                    chipClass = 'chip-thesis';
+                    break;
+                case 'preprint':
+                case 'arxiv':
+                    chipText = 'Preprint';
+                    chipClass = 'chip-preprint';
+                    break;
+                case 'chapter':
+                    chipText = 'Chapter';
+                    chipClass = 'chip-chapter';
+                    break;
+                case 'report':
+                case 'technical':
+                    chipText = 'Report';
+                    chipClass = 'chip-report';
+                    break;
+                default:
+                    chipText = 'Article';
+                    chipClass = 'chip-article';
+                    break;
+            }
         }
 
         chip.textContent = chipText;
         chip.classList.add(chipClass);
 
+        return chip;
+    }
+
+    /**
+     * Create fallback chip for invalid/missing publication data
+     */
+    createFallbackChip() {
+        const chip = document.createElement('span');
+        chip.className = 'publication-chip chip-unknown';
+        chip.textContent = 'Unknown';
+        chip.title = 'Publication type could not be determined';
         return chip;
     }
 }
