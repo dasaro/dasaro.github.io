@@ -70,7 +70,7 @@
     "year": "Year",
     "journal": "Journal",
     "conference": "Conference",
-    "volume": "Volume",
+    "book": "Book",\n    "thesis": "Thesis",\n    "volume": "Volume",
     "pages": "Pages",
     "doi": "DOI",
     "authors": "Authors",
@@ -107,7 +107,7 @@
     "allTypes": "All Types",
     "exportBibTeX": "Export BibTeX",
     "noResults": "No publications found",
-    "showingResults": "Showing {count} publications"
+    "showingResults": "Showing {count} publications",\n    "adjustFilters": "Try adjusting your search criteria or filters.",\n    "showAbstract": "Show Abstract",\n    "hideAbstract": "Hide Abstract"
   },
   "navigation": {
     "about": "About",

@@ -193,22 +193,22 @@
                 <!-- Publications filters -->
                 <div class="publications-controls">
                     <div class="filter-controls">
-                        <input type="text" id="pub-search" class="search-input" placeholder="Search publications...">
+                        <input type="text" id="pub-search" class="search-input" data-i18n-placeholder="publications.searchPlaceholder" placeholder="Search publications...">
                         <select id="year-filter" class="filter-select">
-                            <option value="">All Years</option>
+                            <option value="" data-i18n="publications.allYears">All Years</option>
                         </select>
                         <select id="type-filter" class="filter-select">
-                            <option value="">All Types</option>
-                            <option value="journal">Journal</option>
-                            <option value="conference">Conference</option>
-                            <option value="book">Book</option>
-                            <option value="thesis">Thesis</option>
+                            <option value="" data-i18n="publications.allTypes">All Types</option>
+                            <option value="journal" data-i18n="common.journal">Journal</option>
+                            <option value="conference" data-i18n="common.conference">Conference</option>
+                            <option value="book" data-i18n="common.book">Book</option>
+                            <option value="thesis" data-i18n="common.thesis">Thesis</option>
                         </select>
                     </div>
                     <div class="export-controls">
                         <button id="export-bibtex" class="export-btn">
                             <i class="fas fa-file-code"></i>
-                            Export BibTeX
+                            <span data-i18n="publications.exportBibTeX">Export BibTeX</span>
                         </button>
                     </div>
                 </div>

@@ -1,0 +1,301 @@
+[
+  {
+    "title": "A Translation of Probabilistic Event Calculus into Markov Decision Processes",
+    "authors": ["L. Xu", "L. Dickens", "F. A. D'Asaro"],
+    "venue": "Proceedings of TIME 2025",
+    "year": 2025,
+    "type": "conference",
+    "doi": null,
+    "url": null,
+    "status": "accepted, in press"
+  },
+  {
+    "title": "A Graphical Formalism for Reasoning about Substitution in Resource Transforming Procedures",
+    "authors": ["A. Bikakis", "F. A. D'Asaro", "A. Diallo", "L. Dickens", "T. Hunter", "R. Miller"],
+    "venue": "Journal of Artificial Intelligence Research",
+    "year": 2025,
+    "type": "journal",
+    "doi": "https://doi.org/10.1613/jair.1.18606",
+    "url": null
+  },
+  {
+    "title": "Weighted Assumption Based Argumentation to reason about ethical principles and actions",
+    "authors": ["P. Baldi", "F. A. D'Asaro", "A. Dyoub", "F. A. Lisi"],
+    "venue": "Proceedings of CILC 2025",
+    "year": 2025,
+    "type": "conference",
+    "doi": null,
+    "url": null
+  },
+  {
+    "title": "Non-monotonic Bounded Reasoners",
+    "authors": ["P. Baldi", "F. A. D'Asaro"],
+    "venue": "The Reasoner 19(1)",
+    "year": 2025,
+    "type": "journal",
+    "doi": "https://doi.org/10.54103/1757-0522/27548",
+    "url": null
+  },
+  {
+    "title": "Checking trustworthiness of probabilistic computations in a typed natural deduction system",
+    "authors": ["F. A. D'Asaro", "F. Genco", "G. Primiero"],
+    "venue": "Journal of Logic and Computation",
+    "year": 2025,
+    "type": "journal",
+    "doi": "https://doi.org/10.1093/logcom/exaf003",
+    "url": null
+  },
+  {
+    "title": "How can we conceive replicability with AI-mediated experimental conditions? A position talk.",
+    "authors": ["A. Aquino", "F. A. D'Asaro", "M. Lezcano", "V. Iacovella", "M. Scandola", "M. Vezzoli"],
+    "venue": "Atti del Congresso AIP Sperimentale 2024",
+    "year": 2024,
+    "type": "conference",
+    "doi": null,
+    "url": null
+  },
+  {
+    "title": "Educare all'IA. La sfida didattica dell'Intelligenza Artificiale: ChatGPT e Gemini",
+    "authors": ["M. Badino", "F. A. D'Asaro", "F. Pedrazzoli"],
+    "venue": "Sanoma Italia SPA",
+    "year": 2024,
+    "type": "book",
+    "doi": null,
+    "url": null,
+    "isbn": "9791256030019"
+  },
+  {
+    "title": "An Answer Set Programming-based implementation of Epistemic Probabilistic Event Calculus",
+    "authors": ["F. A. D'Asaro", "A. Bikakis", "L. Dickens", "R. Miller"],
+    "venue": "International Journal of Approximate Reasoning",
+    "year": 2024,
+    "type": "journal",
+    "doi": "https://doi.org/10.1016/j.ijar.2023.109101",
+    "url": null
+  },
+  {
+    "title": "Deep Reinforcement Learning for Robotic Approaching Behavior Influenced by User Activity and Disengagement",
+    "authors": ["L. Raggioli", "F. A. D'Asaro", "S. Rossi"],
+    "venue": "International Journal of Social Robotics",
+    "year": 2023,
+    "type": "journal",
+    "doi": "https://doi.org/10.1007/s12369-023-01044-7",
+    "url": null
+  },
+  {
+    "title": "An Application of a Runtime Epistemic Probabilistic Event Calculus to Decision-making in e-Health Systems",
+    "authors": ["F. A. D'Asaro", "L. Raggioli", "S. Malek", "M. Grazioso", "S. Rossi"],
+    "venue": "Theory and Practice of Logic Programming",
+    "year": 2023,
+    "type": "journal",
+    "doi": "https://doi.org/10.1017/S1471068422000382",
+    "url": null
+  },
+  {
+    "title": "A Unifying Framework for Learning Argumentation Semantics",
+    "authors": ["Z. Mileva", "A. Bikakis", "F. A. D'Asaro", "M. Law", "A. Russo"],
+    "venue": "arXiv preprint arXiv:2310.12309",
+    "year": 2023,
+    "type": "other",
+    "doi": null,
+    "url": null
+  },
+  {
+    "title": "BRIOxAlkemy: A Bias detecting tool",
+    "authors": ["G. Coraglia", "F. A. D'Asaro", "F. Genco", "D. Giannuzzi", "D. Posillipo", "G. Primiero", "C. Quaggio"],
+    "venue": "Proceedings of BEWARE-23 (AIxIA 2023)",
+    "year": 2023,
+    "type": "workshop",
+    "doi": null,
+    "url": null
+  },
+  {
+    "title": "Advancing the Boundaries of Formal Argumentation: Reflections on the AI³ Special Issue",
+    "authors": ["M. D'Agostino", "F. A. D'Asaro", "C. Larese"],
+    "venue": "Journal of Applied Logics",
+    "year": 2023,
+    "type": "journal",
+    "doi": null,
+    "url": null
+  },
+  {
+    "title": "How do Decision Support Systems Nudge?",
+    "authors": ["F. Pedrazzoli", "F. A. D'Asaro", "M. Badino"],
+    "venue": "Proceedings of CEPE 2023",
+    "year": 2023,
+    "type": "conference",
+    "doi": null,
+    "url": null
+  },
+  {
+    "title": "Using Inductive Logic Programming to globally approximate Neural Networks for preference learning: challenges and preliminary results",
+    "authors": ["D. Fossemo'", "F. Mignosi", "L. Raggioli", "M. Spezialetti", "F. A. D'Asaro"],
+    "venue": "Proceedings of BEWARE-22 (AIxIA 2022)",
+    "year": 2022,
+    "type": "workshop",
+    "doi": null,
+    "url": null
+  },
+  {
+    "title": "Proof-checking bias in labeling methods",
+    "authors": ["G. Primiero", "F. A. D'Asaro"],
+    "venue": "Proceedings of BEWARE-22 (AIxIA 2022)",
+    "year": 2022,
+    "type": "workshop",
+    "doi": null,
+    "url": null
+  },
+  {
+    "title": "Explainable artificial intelligence models and methods in finance and healthcare",
+    "authors": ["B. S. Caffo", "F. A. D'Asaro", "A. D'Avila Garcez", "Emanuela Raffinetti"],
+    "venue": "Frontiers in Artificial Intelligence",
+    "year": 2022,
+    "type": "journal",
+    "doi": "https://doi.org/10.3389/frai.2022.970246",
+    "url": null
+  },
+  {
+    "title": "Modelling Accuracy and Trustworthiness of Explaining Agents",
+    "authors": ["A. Termine", "G. Primiero", "F. A. D'Asaro"],
+    "venue": "Proceedings of LORI 2021",
+    "year": 2021,
+    "type": "conference",
+    "doi": null,
+    "url": null
+  },
+  {
+    "title": "Introducing k-lingo: a k-depth bounded version of ASP system clingo",
+    "authors": ["F. A. D'Asaro", "P. Baldi", "G. Primiero"],
+    "venue": "Proceedings of KR 2021",
+    "year": 2021,
+    "type": "conference",
+    "doi": null,
+    "url": null
+  },
+  {
+    "title": "Probabilistic Typed Natural Deduction for Trustworthy Computations",
+    "authors": ["F. A. D'Asaro", "G. Primiero"],
+    "venue": "Proceedings of the TRUST 2021 Workshop at AAMAS 2021",
+    "year": 2021,
+    "type": "workshop",
+    "doi": null,
+    "url": null
+  },
+  {
+    "title": "Predicting humans: a sensor-based architecture for real time Intent Recognition using ProbLog",
+    "authors": ["G. D. Acciaro", "F. A. D'Asaro", "S. Rossi"],
+    "venue": "Proceedings of WOA 21",
+    "year": 2021,
+    "type": "workshop",
+    "doi": null,
+    "url": null
+  },
+  {
+    "title": "Probabilistic Reasoning About Epistemic Action Narratives",
+    "authors": ["F. A. D'Asaro", "A. Bikakis", "L. Dickens", "R. Miller"],
+    "venue": "Artificial Intelligence (AIJ), Volume 287",
+    "year": 2020,
+    "type": "journal",
+    "doi": "https://doi.org/10.1016/j.artint.2020.103352",
+    "url": null
+  },
+  {
+    "title": "Administrating Cognitive Tests Through HRI: an Application of an Automatic Scoring System Through Visual Analysis",
+    "authors": ["S. Sangiovanni", "M. Spezialetti", "F. A. D'Asaro", "G. Maggi", "S. Rossi"],
+    "venue": "Proceedings of ICSR 2020",
+    "year": 2020,
+    "type": "conference",
+    "doi": null,
+    "url": null
+  },
+  {
+    "title": "Towards an Inductive Logic Programming approach for explaining black-box preference learning systems",
+    "authors": ["F. A. D'Asaro", "M. Spezialetti", "L. Raggioli", "S. Rossi"],
+    "venue": "Proceedings of KR 2020",
+    "year": 2020,
+    "type": "conference",
+    "doi": null,
+    "url": null
+  },
+  {
+    "title": "Towards a Logic-Based Approach for Multi-Modal Fusion and Decision Making during Motor Rehabilitation Sessions",
+    "authors": ["F. A. D'Asaro", "A. Origlia", "S. Rossi"],
+    "venue": "Proceedings of WOA 19",
+    "year": 2019,
+    "type": "workshop",
+    "doi": null,
+    "url": null
+  },
+  {
+    "title": "Computational Intelligence and Citizen Communication in the Smart City",
+    "authors": ["F. A. D'Asaro", "M. A. Di Gangi", "V. Perticone", "M. E. Tabacchi"],
+    "venue": "Informatik-Spektrum, November 2017, Volume 40, Issue 1",
+    "year": 2017,
+    "type": "journal",
+    "doi": null,
+    "url": null
+  },
+  {
+    "title": "Foundations for a Probabilistic Event Calculus",
+    "authors": ["F. A. D'Asaro", "A. Bikakis", "L. Dickens", "R. Miller"],
+    "venue": "Proceedings of LPNMR 2017",
+    "year": 2017,
+    "type": "conference",
+    "doi": null,
+    "url": null
+  },
+  {
+    "title": "A Note on Carnap's Continuum and the Weak State Description Analogy Principle",
+    "authors": ["F. A. D'Asaro", "J. B. Paris"],
+    "venue": "unpublished",
+    "year": 2016,
+    "type": "other",
+    "doi": null,
+    "url": null
+  },
+  {
+    "title": "Agents Displacement in Arbitrary Geometrical Spaces - An Evolutionary Computation based Approach",
+    "authors": ["F. D'Aleo", "F. A. D'Asaro", "V. Perticone", "G. Rizzo", "M. E. Tabacchi"],
+    "venue": "Proceedings of ICAART 2015",
+    "year": 2015,
+    "type": "conference",
+    "doi": null,
+    "url": null
+  },
+  {
+    "title": "L'obiezione di una Lady ed il computer che vince ai telequiz; Come la flessibilita ha consentito all'Intelligenza Artificiale di superare un limite immaginario",
+    "authors": ["F. A. D'Asaro", "V. Perticone", "M. E. Tabacchi"],
+    "venue": "flessibilMENTE, Un modello sistemico di approccio al tema della flessibilita, Pensa Multimedia (ed.)",
+    "year": 2014,
+    "type": "book",
+    "doi": null,
+    "url": null
+  },
+  {
+    "title": "Reflections on Technology and Human Sciences: rediscovering a common thread through the analysis of a few epistemological features of fuzziness",
+    "authors": ["F. A. D'Asaro", "V. Perticone", "M. E. Tabacchi", "S. Termini"],
+    "venue": "Archives for the Philosophy and History of Soft Computing, Issue 1, October 2013",
+    "year": 2013,
+    "type": "journal",
+    "doi": null,
+    "url": null
+  },
+  {
+    "title": "A fuzzy methodology to alleviate information overload in eLearning",
+    "authors": ["F. A. D'Asaro", "V. Perticone", "M. E. Tabacchi"],
+    "venue": "Proceedings of EUSFLAT 2013",
+    "year": 2013,
+    "type": "conference",
+    "doi": null,
+    "url": null
+  },
+  {
+    "title": "Technology and human sciences: a dialogue to be constructed or a common thread to be rediscovered?",
+    "authors": ["F. A. D'Asaro", "V. Perticone", "M. E. Tabacchi", "S. Termini"],
+    "venue": "Proceedings of IFSA/NAFIPS 2013",
+    "year": 2013,
+    "type": "conference",
+    "doi": null,
+    "url": null
+  }
+]

@@ -261,21 +261,46 @@ class PublicationsManager {
         title.className = 'publication-title';
         title.textContent = publication.title || 'Untitled';
 
-        const badgesContainer = document.createElement('div');
-        badgesContainer.className = 'publication-badges';
+        const iconsContainer = document.createElement('div');
+        iconsContainer.className = 'publication-icons';
 
-        // Apply automatic badges
-        const badges = window.dataManager?.applyAutomaticBadges(publication, 'publications') || [];
-        if (publication.badges) {
-            badges.push(...publication.badges);
+        // Add meaningful icons based on publication type and content
+        if (publication.icons && publication.icons.length > 0) {
+            publication.icons.forEach(iconClass => {
+                const iconSpan = document.createElement('span');
+                iconSpan.className = 'publication-icon';
+                const icon = document.createElement('i');
+                icon.className = iconClass;
+                iconSpan.appendChild(icon);
+                iconsContainer.appendChild(iconSpan);
+            });
+        } else {
+            // Add default type-based icon if no specific icons
+            const defaultIcon = this.getTypeIcon(publication.type);
+            const iconSpan = document.createElement('span');
+            iconSpan.className = 'publication-icon';
+            const icon = document.createElement('i');
+            icon.className = defaultIcon;
+            iconSpan.appendChild(icon);
+            iconsContainer.appendChild(iconSpan);
         }
 
-        if (window.dataManager && badges.length > 0) {
-            window.dataManager.renderBadges(badges, badgesContainer);
+        // Add getTypeIcon method for default icons
+        if (!this.getTypeIcon) {
+            this.getTypeIcon = function(type) {
+                const iconMap = {
+                    'journal': 'fas fa-journal-whills',
+                    'conference': 'fas fa-users',
+                    'book': 'fas fa-book',
+                    'preprint': 'fas fa-file-alt',
+                    'thesis': 'fas fa-graduation-cap'
+                };
+                return iconMap[type] || 'fas fa-file-alt';
+            };
         }
 
         header.appendChild(title);
-        header.appendChild(badgesContainer);
+        header.appendChild(iconsContainer);
 
         // Authors
         const authors = document.createElement('div');
@@ -298,9 +323,9 @@ class PublicationsManager {
             if (publication.pages) {
                 venueText += `, pp. ${publication.pages}`;
             }
-        } else if (publication.conference) {
-            venueText = publication.conference;
-            if (publication.year) {
+        } else if (publication.conference || publication.venue) {
+            venueText = publication.conference || publication.venue;
+            if (publication.year && !venueText.includes(publication.year)) {
                 venueText += ` ${publication.year}`;
             }
         } else if (publication.book) {
@@ -393,11 +418,11 @@ class PublicationsManager {
 
         const toggleButton = document.createElement('button');
         toggleButton.className = 'abstract-toggle';
-        toggleButton.textContent = 'Show Abstract';
+        toggleButton.setAttribute('data-i18n', 'publications.showAbstract');\n        toggleButton.textContent = window.i18n?.getText('publications.showAbstract') || 'Show Abstract';
         toggleButton.addEventListener('click', () => {
             const isHidden = abstractContainer.style.display === 'none';
             abstractContainer.style.display = isHidden ? 'block' : 'none';
-            toggleButton.textContent = isHidden ? 'Hide Abstract' : 'Show Abstract';
+            toggleButton.textContent = isHidden ? \n                (window.i18n?.getText('publications.hideAbstract') || 'Hide Abstract') : \n                (window.i18n?.getText('publications.showAbstract') || 'Show Abstract');
         });
 
         article.appendChild(toggleButton);
@@ -413,8 +438,8 @@ class PublicationsManager {
         emptyState.innerHTML = `
             <div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
                 <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
-                <h3>No publications found</h3>
-                <p>Try adjusting your search criteria or filters.</p>
+                <h3 data-i18n=\"publications.noResults\">${window.i18n?.getText('publications.noResults') || 'No publications found'}</h3>
+                <p data-i18n=\"publications.adjustFilters\">${window.i18n?.getText('publications.adjustFilters') || 'Try adjusting your search criteria or filters.'}</p>
             </div>
         `;
         container.appendChild(emptyState);
