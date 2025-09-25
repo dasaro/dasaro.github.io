@@ -266,6 +266,84 @@ class App {
             this.log('WARNING: Skills page module not found');
         }
 
+        // Professional Service page
+        if (typeof window.professionalServicePage !== 'undefined') {
+            this.router.registerRoute('professional-service', window.professionalServicePage, {
+                icon: 'fas fa-hands-helping',
+                order: 9,
+                visible: true
+            });
+            this.pages.set('professional-service', window.professionalServicePage);
+            this.log('Professional Service page registered');
+        } else {
+            this.log('WARNING: Professional Service page module not found');
+        }
+
+        // Reviewing page
+        if (typeof window.reviewingPage !== 'undefined') {
+            this.router.registerRoute('reviewing', window.reviewingPage, {
+                icon: 'fas fa-search',
+                order: 10,
+                visible: true
+            });
+            this.pages.set('reviewing', window.reviewingPage);
+            this.log('Reviewing page registered');
+        } else {
+            this.log('WARNING: Reviewing page module not found');
+        }
+
+        // Invited Talks page
+        if (typeof window.invitedTalksPage !== 'undefined') {
+            this.router.registerRoute('invited-talks', window.invitedTalksPage, {
+                icon: 'fas fa-microphone',
+                order: 11,
+                visible: true
+            });
+            this.pages.set('invited-talks', window.invitedTalksPage);
+            this.log('Invited Talks page registered');
+        } else {
+            this.log('WARNING: Invited Talks page module not found');
+        }
+
+        // Research Groups page
+        if (typeof window.researchGroupsPage !== 'undefined') {
+            this.router.registerRoute('research-groups', window.researchGroupsPage, {
+                icon: 'fas fa-users',
+                order: 12,
+                visible: true
+            });
+            this.pages.set('research-groups', window.researchGroupsPage);
+            this.log('Research Groups page registered');
+        } else {
+            this.log('WARNING: Research Groups page module not found');
+        }
+
+        // Academic Affiliations page
+        if (typeof window.academicAffiliationsPage !== 'undefined') {
+            this.router.registerRoute('academic-affiliations', window.academicAffiliationsPage, {
+                icon: 'fas fa-university',
+                order: 13,
+                visible: true
+            });
+            this.pages.set('academic-affiliations', window.academicAffiliationsPage);
+            this.log('Academic Affiliations page registered');
+        } else {
+            this.log('WARNING: Academic Affiliations page module not found');
+        }
+
+        // Editorial Boards page
+        if (typeof window.editorialBoardsPage !== 'undefined') {
+            this.router.registerRoute('editorial-boards', window.editorialBoardsPage, {
+                icon: 'fas fa-edit',
+                order: 14,
+                visible: true
+            });
+            this.pages.set('editorial-boards', window.editorialBoardsPage);
+            this.log('Editorial Boards page registered');
+        } else {
+            this.log('WARNING: Editorial Boards page module not found');
+        }
+
         this.log(`Page modules registration completed. Registered ${this.pages.size} pages.`);
     }
 

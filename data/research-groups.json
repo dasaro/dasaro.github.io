@@ -1,0 +1,76 @@
+[
+  {
+    "id": "ethos",
+    "name": "EThOS - Epistemic and Temporal Hybrid Ontology Systems",
+    "institution": "University College London",
+    "department": "Department of Computer Science",
+    "role": "Core Member",
+    "startDate": "2019-01-01",
+    "endDate": null,
+    "status": "Active",
+    "description": "Research group focused on developing hybrid ontology systems that combine epistemic and temporal reasoning for knowledge representation and multi-agent systems.",
+    "focus": [
+      "Epistemic Logic",
+      "Temporal Reasoning",
+      "Ontology Systems",
+      "Multi-Agent Systems"
+    ],
+    "website": "http://ethos.cs.ucl.ac.uk",
+    "badges": ["ongoing", "featured"]
+  },
+  {
+    "id": "luci",
+    "name": "LUCI - Logic, Understanding, and Computational Intelligence",
+    "institution": "University College London",
+    "department": "Department of Computer Science",
+    "role": "Research Associate",
+    "startDate": "2020-03-01",
+    "endDate": null,
+    "status": "Active",
+    "description": "Interdisciplinary research group working on the intersection of logic, artificial intelligence, and cognitive science, with focus on computational models of understanding and reasoning.",
+    "focus": [
+      "Logic in AI",
+      "Computational Intelligence",
+      "Cognitive Modeling",
+      "Knowledge Representation"
+    ],
+    "website": "http://luci.cs.ucl.ac.uk",
+    "badges": ["ongoing"]
+  },
+  {
+    "id": "spike",
+    "name": "SPIKE - Strategic Planning in Knowledge Engineering",
+    "institution": "University of Edinburgh",
+    "department": "School of Informatics",
+    "role": "Collaborating Member",
+    "startDate": "2021-06-01",
+    "endDate": null,
+    "status": "Active",
+    "description": "Research group specializing in strategic planning algorithms and knowledge engineering approaches for autonomous systems and multi-agent environments.",
+    "focus": [
+      "Strategic Planning",
+      "Knowledge Engineering",
+      "Autonomous Systems",
+      "Planning Algorithms"
+    ],
+    "badges": ["ongoing"]
+  },
+  {
+    "id": "kids",
+    "name": "KIDS - Knowledge, Intelligence, and Decision Systems",
+    "institution": "King's College London",
+    "department": "Department of Informatics",
+    "role": "External Collaborator",
+    "startDate": "2022-01-01",
+    "endDate": null,
+    "status": "Active",
+    "description": "Research group focusing on knowledge-based systems, intelligent decision making, and the application of logic-based approaches to real-world problems.",
+    "focus": [
+      "Knowledge-Based Systems",
+      "Decision Systems",
+      "Applied Logic",
+      "Intelligent Systems"
+    ],
+    "badges": ["ongoing"]
+  }
+]

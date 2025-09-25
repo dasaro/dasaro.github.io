@@ -1,0 +1,102 @@
+[
+  {
+    "id": "vpt2025_pc",
+    "role": "Program Committee Member",
+    "event": "3rd International Workshop on Verification and Validation of Physical Trustworthiness (VPT 2025)",
+    "organization": "VPT",
+    "year": "2025",
+    "type": "workshop",
+    "badges": ["current"]
+  },
+  {
+    "id": "ares2024_pc",
+    "role": "Program Committee Member",
+    "event": "19th International Conference on Availability, Reliability and Security (ARES 2024)",
+    "organization": "ARES",
+    "year": "2024",
+    "type": "conference",
+    "badges": ["recent"]
+  },
+  {
+    "id": "vpt2024_publicity",
+    "role": "Publicity Chair",
+    "event": "2nd International Workshop on Verification and Validation of Physical Trustworthiness (VPT 2024)",
+    "organization": "VPT",
+    "year": "2024",
+    "type": "workshop",
+    "badges": ["recent"]
+  },
+  {
+    "id": "vpt2023_pc",
+    "role": "Program Committee Member",
+    "event": "1st International Workshop on Verification and Validation of Physical Trustworthiness (VPT 2023)",
+    "organization": "VPT",
+    "year": "2023",
+    "type": "workshop"
+  },
+  {
+    "id": "prima2021_pc",
+    "role": "Program Committee Member",
+    "event": "International Conference on Principles and Practice of Multi-Agent Systems (PRIMA 2021)",
+    "organization": "PRIMA",
+    "year": "2021",
+    "type": "conference"
+  },
+  {
+    "id": "icaart2021_pc",
+    "role": "Program Committee Member",
+    "event": "13th International Conference on Agents and Artificial Intelligence (ICAART 2021)",
+    "organization": "ICAART",
+    "year": "2021",
+    "type": "conference"
+  },
+  {
+    "id": "icccnt2020_chair",
+    "role": "Track Chair - Machine Learning, Deep Learning and AI Track",
+    "event": "11th International Conference on Computing, Communication and Networking Technologies (ICCCNT 2020)",
+    "organization": "ICCCNT",
+    "year": "2020",
+    "type": "conference",
+    "badges": ["highlight"]
+  },
+  {
+    "id": "icaart2020_pc",
+    "role": "Program Committee Member",
+    "event": "12th International Conference on Agents and Artificial Intelligence (ICAART 2020)",
+    "organization": "ICAART",
+    "year": "2020",
+    "type": "conference"
+  },
+  {
+    "id": "aime2019_pc",
+    "role": "Program Committee Member",
+    "event": "17th Conference on Artificial Intelligence in Medicine (AIME 2019)",
+    "organization": "AIME",
+    "year": "2019",
+    "type": "conference"
+  },
+  {
+    "id": "icaart2019_pc",
+    "role": "Program Committee Member",
+    "event": "11th International Conference on Agents and Artificial Intelligence (ICAART 2019)",
+    "organization": "ICAART",
+    "year": "2019",
+    "type": "conference"
+  },
+  {
+    "id": "icaart2018_pc",
+    "role": "Program Committee Member",
+    "event": "10th International Conference on Agents and Artificial Intelligence (ICAART 2018)",
+    "organization": "ICAART",
+    "year": "2018",
+    "type": "conference"
+  },
+  {
+    "id": "icaart2017_pc",
+    "role": "Program Committee Member",
+    "event": "9th International Conference on Agents and Artificial Intelligence (ICAART 2017)",
+    "organization": "ICAART",
+    "year": "2017",
+    "type": "conference"
+  }
+]

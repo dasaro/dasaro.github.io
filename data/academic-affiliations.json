@@ -1,0 +1,82 @@
+[
+  {
+    "id": "aila",
+    "name": "AILA - Associazione Italiana di Logica e sue Applicazioni",
+    "nameEnglish": "Italian Association for Logic and its Applications",
+    "type": "Professional Association",
+    "role": "Member",
+    "startDate": "2016-01-01",
+    "endDate": null,
+    "status": "Active",
+    "description": "The Italian national association for logic and its applications, promoting research and collaboration in logic, foundations of mathematics, and computational logic.",
+    "focus": [
+      "Mathematical Logic",
+      "Computational Logic",
+      "Logic Applications",
+      "Philosophy of Logic"
+    ],
+    "website": "https://www.aila.it",
+    "country": "Italy",
+    "badges": ["ongoing"]
+  },
+  {
+    "id": "silfs",
+    "name": "SILFS - Società Italiana di Logica e Filosofia delle Scienze",
+    "nameEnglish": "Italian Society of Logic and Philosophy of Science",
+    "type": "Academic Society",
+    "role": "Member",
+    "startDate": "2017-03-01",
+    "endDate": null,
+    "status": "Active",
+    "description": "Italian society dedicated to promoting research in logic, philosophy of science, and the foundations of scientific knowledge.",
+    "focus": [
+      "Philosophy of Science",
+      "Logic",
+      "Epistemology",
+      "Scientific Methodology"
+    ],
+    "website": "https://www.silfs.it",
+    "country": "Italy",
+    "badges": ["ongoing"]
+  },
+  {
+    "id": "aixia",
+    "name": "AIxIA - Associazione Italiana per l'Intelligenza Artificiale",
+    "nameEnglish": "Italian Association for Artificial Intelligence",
+    "type": "Professional Association",
+    "role": "Member",
+    "startDate": "2018-09-01",
+    "endDate": null,
+    "status": "Active",
+    "description": "The Italian national association for artificial intelligence, promoting research, education, and industrial applications of AI technologies.",
+    "focus": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Knowledge Representation",
+      "AI Applications"
+    ],
+    "website": "https://www.aixia.it",
+    "country": "Italy",
+    "badges": ["ongoing", "featured"]
+  },
+  {
+    "id": "gulp",
+    "name": "GULP - Gruppo Utenti Logic Programming",
+    "nameEnglish": "Italian Logic Programming Users Group",
+    "type": "User Group",
+    "role": "Active Member",
+    "startDate": "2015-06-01",
+    "endDate": null,
+    "status": "Active",
+    "description": "Italian user group for logic programming, fostering research and applications in logic programming, constraint programming, and related areas.",
+    "focus": [
+      "Logic Programming",
+      "Constraint Programming",
+      "Declarative Programming",
+      "Prolog Applications"
+    ],
+    "website": "https://www.gulp.it",
+    "country": "Italy",
+    "badges": ["ongoing"]
+  }
+]

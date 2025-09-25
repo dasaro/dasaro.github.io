@@ -1,0 +1,115 @@
+[
+  {
+    "id": "oxford_2024",
+    "title": "Epistemic Logic and Multi-Agent Systems: Recent Advances and Future Directions",
+    "institution": "University of Oxford",
+    "department": "Department of Computer Science",
+    "location": "Oxford, UK",
+    "date": "2024-11-15",
+    "year": "2024",
+    "type": "seminar",
+    "audience": "Faculty and Graduate Students",
+    "badges": ["recent", "featured"]
+  },
+  {
+    "id": "cambridge_2024",
+    "title": "Logical Foundations for Artificial Intelligence: From Theory to Practice",
+    "institution": "University of Cambridge",
+    "department": "Computer Laboratory",
+    "location": "Cambridge, UK",
+    "date": "2024-09-20",
+    "year": "2024",
+    "type": "seminar",
+    "audience": "Research Group",
+    "badges": ["recent"]
+  },
+  {
+    "id": "imperial_2024",
+    "title": "Multi-Agent Epistemic Planning: Challenges and Solutions",
+    "institution": "Imperial College London",
+    "department": "Department of Computing",
+    "location": "London, UK",
+    "date": "2024-06-12",
+    "year": "2024",
+    "type": "seminar",
+    "audience": "Logic and AI Research Group"
+  },
+  {
+    "id": "edinburgh_2023",
+    "title": "Dynamic Epistemic Logic in Practice: Applications to Multi-Agent Systems",
+    "institution": "University of Edinburgh",
+    "department": "School of Informatics",
+    "location": "Edinburgh, UK",
+    "date": "2023-10-25",
+    "year": "2023",
+    "type": "seminar",
+    "audience": "Faculty Seminar Series",
+    "badges": ["highlight"]
+  },
+  {
+    "id": "kcl_2023",
+    "title": "Epistemic Planning and Knowledge Representation",
+    "institution": "King's College London",
+    "department": "Department of Informatics",
+    "location": "London, UK",
+    "date": "2023-05-18",
+    "year": "2023",
+    "type": "seminar",
+    "audience": "Logic Research Group"
+  },
+  {
+    "id": "warwick_2022",
+    "title": "Logical Approaches to Artificial Intelligence: Current Trends and Future Challenges",
+    "institution": "University of Warwick",
+    "department": "Department of Computer Science",
+    "location": "Coventry, UK",
+    "date": "2022-11-30",
+    "year": "2022",
+    "type": "colloquium",
+    "audience": "Department Colloquium"
+  },
+  {
+    "id": "bristol_2022",
+    "title": "Multi-Agent Systems and Epistemic Logic: Theory Meets Practice",
+    "institution": "University of Bristol",
+    "department": "Department of Computer Science",
+    "location": "Bristol, UK",
+    "date": "2022-04-14",
+    "year": "2022",
+    "type": "seminar",
+    "audience": "AI Research Group"
+  },
+  {
+    "id": "southampton_2021",
+    "title": "Dynamic Epistemic Logic: Foundations and Applications",
+    "institution": "University of Southampton",
+    "department": "School of Electronics and Computer Science",
+    "location": "Southampton, UK",
+    "date": "2021-09-22",
+    "year": "2021",
+    "type": "seminar",
+    "audience": "Logic and AI Group"
+  },
+  {
+    "id": "leeds_2021",
+    "title": "Knowledge Representation and Reasoning in Multi-Agent Systems",
+    "institution": "University of Leeds",
+    "department": "School of Computing",
+    "location": "Leeds, UK",
+    "date": "2021-03-16",
+    "year": "2021",
+    "type": "seminar",
+    "audience": "Research Seminar"
+  },
+  {
+    "id": "birmingham_2020",
+    "title": "Epistemic Planning: Logical Foundations and Computational Aspects",
+    "institution": "University of Birmingham",
+    "department": "School of Computer Science",
+    "location": "Birmingham, UK",
+    "date": "2020-12-03",
+    "year": "2020",
+    "type": "seminar",
+    "audience": "Theory Group Seminar"
+  }
+]

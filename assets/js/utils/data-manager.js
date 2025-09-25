@@ -28,6 +28,12 @@ class DataManager {
             citationMetrics: 'data/citation-metrics.json',
             skills: 'data/skills.json',
             contact: 'data/contact.json',
+            professionalService: 'data/professional-service.json',
+            reviewing: 'data/reviewing.json',
+            invitedTalks: 'data/invited-talks.json',
+            researchGroups: 'data/research-groups.json',
+            academicAffiliations: 'data/academic-affiliations.json',
+            editorialBoards: 'data/editorial-boards.json',
             config: 'data/config.json'
         };
 

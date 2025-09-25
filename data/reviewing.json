@@ -1,0 +1,61 @@
+[
+  {
+    "id": "conferences",
+    "type": "conferences",
+    "title": "Conference Reviews",
+    "venues": [
+      "International Joint Conference on Artificial Intelligence (IJCAI)",
+      "European Conference on Artificial Intelligence (ECAI)",
+      "International Conference on Autonomous Agents and Multi-Agent Systems (AAMAS)",
+      "International Conference on Principles of Knowledge Representation and Reasoning (KR)",
+      "International Conference on Logic Programming (ICLP)",
+      "International Conference on Principles and Practice of Multi-Agent Systems (PRIMA)",
+      "International Conference on Agents and Artificial Intelligence (ICAART)",
+      "Conference on Artificial Intelligence in Medicine (AIME)",
+      "International Conference on Availability, Reliability and Security (ARES)",
+      "Workshop on Verification and Validation of Physical Trustworthiness (VPT)",
+      "International Conference on Computing, Communication and Networking Technologies (ICCCNT)"
+    ],
+    "yearRange": "2017-2025",
+    "totalReviews": "50+",
+    "badges": ["ongoing"]
+  },
+  {
+    "id": "journals",
+    "type": "journals",
+    "title": "Journal Reviews",
+    "venues": [
+      "Artificial Intelligence (AI)",
+      "Journal of Artificial Intelligence Research (JAIR)",
+      "Autonomous Agents and Multi-Agent Systems (AAMAS)",
+      "Annals of Mathematics and Artificial Intelligence (AMAI)",
+      "Applied Intelligence",
+      "Expert Systems with Applications",
+      "Knowledge-Based Systems",
+      "Logic Journal of the IGPL",
+      "Journal of Logic and Computation",
+      "Studia Logica",
+      "Synthese",
+      "Frontiers in Artificial Intelligence",
+      "Frontiers in Computer Science",
+      "IEEE Access",
+      "ACM Computing Surveys"
+    ],
+    "yearRange": "2018-2025",
+    "totalReviews": "75+",
+    "badges": ["ongoing", "featured"]
+  },
+  {
+    "id": "special_issues",
+    "type": "special_issues",
+    "title": "Special Issue Reviews",
+    "venues": [
+      "Special Issue on 'Logical Foundations of Artificial Intelligence' - Annals of Mathematics and Artificial Intelligence",
+      "Special Issue on 'Multi-Agent Systems and Logic' - Applied Intelligence",
+      "Special Issue on 'Knowledge Representation and Reasoning' - Expert Systems with Applications"
+    ],
+    "yearRange": "2020-2024",
+    "totalReviews": "15+",
+    "badges": ["highlight"]
+  }
+]

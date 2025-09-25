@@ -143,6 +143,54 @@ window.router.setDebugMode(true); // Router only
 - Test responsive design at breakpoints (767px, 768px, 1023px, 1024px)
 - Verify graceful degradation scenarios
 
+## 🆕 Recent Architecture Expansion (September 2025)
+
+### **NEW: Academic Sections Addition**
+
+Added 6 comprehensive academic sections with full modular architecture integration:
+
+#### **New Sections & Data Files**:
+1. **Professional Service** (`professional-service.json`) - Conference/workshop committee memberships, program chairs, track chairs
+2. **Reviewing** (`reviewing.json`) - Journal and conference peer review activities with statistics
+3. **Invited Talks** (`invited-talks.json`) - Seminars and presentations at academic institutions
+4. **Research Groups** (`research-groups.json`) - Research group memberships (EThOS, LUCI, SPIKE, KIDS)
+5. **Academic Affiliations** (`academic-affiliations.json`) - Professional society memberships (AILA, SILFS, AIxIA, GULP)
+6. **Editorial Boards** (`editorial-boards.json`) - Journal editorial positions with impact factors
+
+#### **Complete Modular Implementation**:
+- ✅ **6 JSON Data Files**: Created with comprehensive CV-scraped content
+- ✅ **6 Page Modules**: Full JavaScript modules with debug logging (`[ProfessionalServicePage]`, `[ReviewingPage]`, etc.)
+- ✅ **HTML Sections**: Integrated into main content flow with proper data-i18n attributes
+- ✅ **Router Registration**: All pages registered in app.js with appropriate icons and order
+- ✅ **DataManager Integration**: All JSON files added to parallel loading system
+- ✅ **Icon Assignment**: Meaningful Font Awesome icons for each section in navigation
+
+#### **Content Highlights**:
+- **Professional Service**: 12 activities including ARES 2024 PC, VPT workshop chair roles, ICCCNT track chair
+- **Reviewing**: 50+ conference reviews, 75+ journal reviews across 15+ top-tier venues (AI, JAIR, AAMAS, etc.)
+- **Invited Talks**: 10 talks at prestigious institutions (Oxford, Cambridge, Imperial, Edinburgh, etc.)
+- **Research Groups**: 4 active memberships with detailed focus areas and collaboration roles
+- **Academic Affiliations**: 4 Italian professional societies with bilingual names and descriptions
+- **Editorial Boards**: 3 Frontiers journal positions including Associate Editor role
+
+#### **Navigation Integration**:
+- Professional Service (Order 9, Icon: `fas fa-hands-helping`)
+- Reviewing (Order 10, Icon: `fas fa-search`)
+- Invited Talks (Order 11, Icon: `fas fa-microphone`)
+- Research Groups (Order 12, Icon: `fas fa-users`)
+- Academic Affiliations (Order 13, Icon: `fas fa-university`)
+- Editorial Boards (Order 14, Icon: `fas fa-edit`)
+
+#### **Architectural Benefits**:
+- **Comprehensive Academic Profile**: Now covers all major academic career aspects
+- **Consistent Modular Pattern**: Follows established architecture with error handling and debug logging
+- **Performance Optimized**: Parallel JSON loading maintains fast page loads
+- **Maintainability**: Each section can be updated independently via JSON files
+- **Admin Panel Ready**: All sections prepared for future admin panel integration
+
+**Rollback Point**: Previous modular architecture at commit before this expansion
+**Testing Completed**: All sections render correctly, debug logging verified, navigation functional
+
 ## Project Status
 
-✅ **COMPLETE & DEPLOYED** - Production-ready with comprehensive error handling and graceful failure scenarios. Live at https://dasaro.github.io
+✅ **COMPLETE & DEPLOYED** - Production-ready comprehensive academic website with 15 total sections covering full academic profile. Live at https://dasaro.github.io
