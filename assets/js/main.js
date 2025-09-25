@@ -654,15 +654,15 @@ class AcademicWebsite {
      */
     populateCitationMetrics(citationMetrics) {
         const metricsOverview = document.querySelector('#citation-metrics .metrics-overview');
-        const topPapersList = document.querySelector('#citation-metrics .top-papers-list');
+        const featuredResearchList = document.querySelector('#citation-metrics .featured-research-list');
         const scholarLink = document.querySelector('#scholar-profile-link');
         const metricsDate = document.querySelector('#metrics-date');
 
-        if (!metricsOverview || !topPapersList || !citationMetrics) return;
+        if (!metricsOverview || !featuredResearchList || !citationMetrics) return;
 
         // Clear existing content
         metricsOverview.innerHTML = '';
-        topPapersList.innerHTML = '';
+        featuredResearchList.innerHTML = '';
 
         // Set Google Scholar profile link
         if (scholarLink && citationMetrics.googleScholarProfile) {
@@ -689,11 +689,11 @@ class AcademicWebsite {
             });
         }
 
-        // Populate top papers
-        if (citationMetrics.topPapers) {
-            citationMetrics.topPapers.forEach(paper => {
-                const paperItem = this.createTopPaperItem(paper);
-                topPapersList.appendChild(paperItem);
+        // Populate featured research
+        if (citationMetrics.featuredResearch) {
+            citationMetrics.featuredResearch.forEach(research => {
+                const researchItem = this.createFeaturedResearchItem(research);
+                featuredResearchList.appendChild(researchItem);
             });
         }
     }
@@ -715,12 +715,20 @@ class AcademicWebsite {
         const status = item.querySelector('.student-status');
 
         if (level) level.textContent = student.level;
-        if (period) period.textContent = `${student.startYear} - ${student.endYear || 'Present'}`;
+        if (period) period.textContent = student.year || `${student.startDate || ''} - ${student.endDate || 'Present'}`;
         if (status) status.textContent = student.status;
 
         // Description
         const description = item.querySelector('.student-description');
-        if (description) description.textContent = student.description;
+        if (description) {
+            if (typeof student.description === 'object' && student.description !== null) {
+                // Handle multilingual description
+                const currentLang = window.i18n?.getCurrentLanguage() || 'en';
+                description.textContent = student.description[currentLang] || student.description.en || '';
+            } else {
+                description.textContent = student.description || '';
+            }
+        }
 
         // Links
         const linksContainer = item.querySelector('.student-links');
@@ -763,13 +771,25 @@ class AcademicWebsite {
         const funding = item.querySelector('.project-funding');
         const status = item.querySelector('.project-status');
 
-        if (period) period.textContent = `${project.startYear} - ${project.endYear || 'Present'}`;
+        if (period) {
+            const startDate = project.startDate ? project.startDate.substring(0, 4) : '';
+            const endDate = project.endDate ? project.endDate.substring(0, 4) : 'Present';
+            period.textContent = `${startDate} - ${endDate}`;
+        }
         if (funding) funding.textContent = project.funding;
         if (status) status.textContent = project.status;
 
         // Description
         const description = item.querySelector('.project-description');
-        if (description) description.textContent = project.description;
+        if (description) {
+            if (typeof project.description === 'object' && project.description !== null) {
+                // Handle multilingual description
+                const currentLang = window.i18n?.getCurrentLanguage() || 'en';
+                description.textContent = project.description[currentLang] || project.description.en || '';
+            } else {
+                description.textContent = project.description || '';
+            }
+        }
 
         // Collaborators
         const collaborators = item.querySelector('.project-collaborators');
@@ -825,19 +845,32 @@ class AcademicWebsite {
     }
 
     /**
-     * Create top paper item element
+     * Create featured research item element
      */
-    createTopPaperItem(paper) {
-        const template = document.getElementById('top-paper-template');
+    createFeaturedResearchItem(research) {
+        const template = document.getElementById('featured-research-template');
         const item = template.content.cloneNode(true);
 
-        const title = item.querySelector('.top-paper-title');
-        const venue = item.querySelector('.top-paper-venue');
-        const citations = item.querySelector('.top-paper-citations');
+        const title = item.querySelector('.featured-research-title');
+        const venue = item.querySelector('.featured-research-venue');
+        const type = item.querySelector('.featured-research-type');
+        const relevance = item.querySelector('.featured-research-relevance');
 
-        if (title) title.textContent = paper.title;
-        if (venue) venue.textContent = paper.venue;
-        if (citations) citations.textContent = `${paper.citations} citations`;
+        if (title) {
+            title.textContent = research.title;
+            if (research.url && research.url !== '#') {
+                const link = document.createElement('a');
+                link.href = research.url;
+                link.textContent = research.title;
+                link.target = '_blank';
+                link.rel = 'noopener';
+                title.innerHTML = '';
+                title.appendChild(link);
+            }
+        }
+        if (venue) venue.textContent = `${research.venue} (${research.year})`;
+        if (type) type.textContent = research.type;
+        if (relevance) relevance.textContent = research.relevance;
 
         return item;
     }
