@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="admin">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Website - Admin Panel</title>
+
+    <!-- Security: Admin panel should only work on localhost -->
+    <script>
+        // Immediately check if running on localhost
+        if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+            document.write('<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:Arial,sans-serif;text-align:center;"><div><h1>🔒 Access Denied</h1><p>Admin panel is only available on localhost for security.</p><p>Please run this site locally to access admin features.</p></div></div>');
+            throw new Error('Admin panel blocked: Not running on localhost');
+        }
+    </script>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Admin styles -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body class="admin-body">
+    <!-- Header -->
+    <header class="admin-header">
+        <div class="admin-header-content">
+            <h1 class="admin-title">
+                <i class="fas fa-cog"></i>
+                Academic Website Admin
+            </h1>
+
+            <div class="admin-actions">
+                <button id="save-all-btn" class="btn btn-primary">
+                    <i class="fas fa-save"></i>
+                    Save All Changes
+                </button>
+
+                <button id="export-data-btn" class="btn btn-secondary">
+                    <i class="fas fa-download"></i>
+                    Export Data
+                </button>
+
+                <a href="../index.html" class="btn btn-outline">
+                    <i class="fas fa-external-link-alt"></i>
+                    View Site
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <!-- Status Bar -->
+        <div id="admin-status" class="admin-status hidden">
+            <div class="status-content">
+                <i class="status-icon"></i>
+                <span class="status-text"></span>
+            </div>
+            <button class="status-close">&times;</button>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="admin-tabs">
+            <button class="tab-btn active" data-tab="personal">
+                <i class="fas fa-user"></i>
+                Personal Info
+            </button>
+            <button class="tab-btn" data-tab="education">
+                <i class="fas fa-graduation-cap"></i>
+                Education
+            </button>
+            <button class="tab-btn" data-tab="experience">
+                <i class="fas fa-briefcase"></i>
+                Experience
+            </button>
+            <button class="tab-btn" data-tab="publications">
+                <i class="fas fa-file-text"></i>
+                Publications
+            </button>
+            <button class="tab-btn" data-tab="skills">
+                <i class="fas fa-cog"></i>
+                Skills
+            </button>
+            <button class="tab-btn" data-tab="settings">
+                <i class="fas fa-sliders-h"></i>
+                Settings
+            </button>
+            <button class="tab-btn" data-tab="export">
+                <i class="fas fa-file-export"></i>
+                Export
+            </button>
+        </nav>
+
+        <!-- Tab Contents -->
+        <div class="admin-content">
+            <!-- Personal Info Tab -->
+            <div id="personal-tab" class="tab-content active">
+                <div class="section-header">
+                    <h2>Personal Information</h2>
+                    <p>Basic information that appears on your website</p>
+                </div>
+
+                <form id="personal-form" class="admin-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Professional Title</label>
+                            <input type="text" id="title" name="title" placeholder="e.g., PhD Student, Research Fellow">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="your.email@university.edu">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" id="location" name="location" placeholder="City, Country">
+                        </div>
+                        <div class="form-group">
+                            <label for="website">Website</label>
+                            <input type="url" id="website" name="website" placeholder="https://yourwebsite.com">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="linkedin">LinkedIn</label>
+                            <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                        </div>
+                        <div class="form-group">
+                            <label for="orcid">ORCID</label>
+                            <input type="url" id="orcid" name="orcid" placeholder="https://orcid.org/0000-0000-0000-0000">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bio">Biography</label>
+                        <textarea id="bio" name="bio" rows="4" placeholder="Write a brief biography about yourself, your research interests, and background..."></textarea>
+                        <small class="form-help">This will appear in the About section of your website</small>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Education Tab -->
+            <div id="education-tab" class="tab-content">
+                <div class="section-header">
+                    <h2>Education</h2>
+                    <p>Your academic background and qualifications</p>
+                    <button id="add-education-btn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Add Education
+                    </button>
+                </div>
+
+                <div id="education-list" class="items-list">
+                    <!-- Education items will be populated here -->
+                </div>
+            </div>
+
+            <!-- Experience Tab -->
+            <div id="experience-tab" class="tab-content">
+                <div class="section-header">
+                    <h2>Professional Experience</h2>
+                    <p>Your work experience and professional positions</p>
+                    <button id="add-experience-btn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Add Experience
+                    </button>
+                </div>
+
+                <div id="experience-list" class="items-list">
+                    <!-- Experience items will be populated here -->
+                </div>
+            </div>
+
+            <!-- Publications Tab -->
+            <div id="publications-tab" class="tab-content">
+                <div class="section-header">
+                    <h2>Publications</h2>
+                    <p>Your research publications and academic output</p>
+                    <button id="add-publication-btn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Add Publication
+                    </button>
+                    <button id="import-bibtex-btn" class="btn btn-secondary">
+                        <i class="fas fa-file-import"></i>
+                        Import BibTeX
+                    </button>
+                </div>
+
+                <div id="publications-list" class="items-list">
+                    <!-- Publication items will be populated here -->
+                </div>
+            </div>
+
+            <!-- Skills Tab -->
+            <div id="skills-tab" class="tab-content">
+                <div class="section-header">
+                    <h2>Skills & Competencies</h2>
+                    <p>Your technical skills, programming languages, and expertise</p>
+                    <button id="add-skill-btn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Add Skill
+                    </button>
+                </div>
+
+                <div id="skills-list" class="items-list">
+                    <!-- Skill items will be populated here -->
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div id="settings-tab" class="tab-content">
+                <div class="section-header">
+                    <h2>Website Settings</h2>
+                    <p>Configure appearance, navigation, and behavior</p>
+                </div>
+
+                <form id="settings-form" class="admin-form">
+                    <div class="form-section">
+                        <h3>General Settings</h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="default-language">Default Language</label>
+                                <select id="default-language" name="defaultLanguage">
+                                    <option value="en">English</option>
+                                    <option value="it">Italian</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="animation-duration">Animation Duration (ms)</label>
+                                <input type="number" id="animation-duration" name="animationDuration" min="0" max="1000" step="50">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="enable-badges" name="enableBadges">
+                                    <span class="checkbox-custom"></span>
+                                    Enable CV Badges
+                                </label>
+                                <small class="form-help">Show achievement badges throughout the site</small>
+                            </div>
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="show-cv" name="showCV">
+                                    <span class="checkbox-custom"></span>
+                                    Show CV Download
+                                </label>
+                                <small class="form-help">Display CV download button in sidebar</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Theme Colors</h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="primary-color">Primary Color</label>
+                                <div class="color-input-group">
+                                    <input type="color" id="primary-color" name="primaryColor">
+                                    <input type="text" class="color-text" placeholder="#2c3e50">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="accent-color">Accent Color</label>
+                                <div class="color-input-group">
+                                    <input type="color" id="accent-color" name="accentColor">
+                                    <input type="text" class="color-text" placeholder="#3498db">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Navigation</h3>
+                        <p>Configure which sections appear in the sidebar navigation</p>
+
+                        <div id="navigation-sections" class="navigation-config">
+                            <!-- Navigation sections will be populated here -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Export Tab -->
+            <div id="export-tab" class="tab-content">
+                <div class="section-header">
+                    <h2>Export & Backup</h2>
+                    <p>Generate LaTeX CV, export data, and create backups</p>
+                </div>
+
+                <div class="export-sections">
+                    <div class="export-section">
+                        <h3>
+                            <i class="fas fa-file-pdf"></i>
+                            LaTeX CV Generation
+                        </h3>
+                        <p>Generate professional LaTeX CV from your data</p>
+
+                        <div class="export-options">
+                            <div class="form-group">
+                                <label for="cv-template">Template Style</label>
+                                <select id="cv-template">
+                                    <option value="academic">Academic</option>
+                                    <option value="industry">Industry</option>
+                                    <option value="minimal">Minimal</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cv-language">Language</label>
+                                <select id="cv-language">
+                                    <option value="en">English</option>
+                                    <option value="it">Italian</option>
+                                    <option value="both">Both (separate files)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button id="generate-latex-btn" class="btn btn-primary">
+                            <i class="fas fa-file-code"></i>
+                            Generate LaTeX CV
+                        </button>
+                    </div>
+
+                    <div class="export-section">
+                        <h3>
+                            <i class="fas fa-database"></i>
+                            Data Export
+                        </h3>
+                        <p>Export your website data for backup or migration</p>
+
+                        <div class="export-buttons">
+                            <button id="export-json-btn" class="btn btn-secondary">
+                                <i class="fas fa-file-code"></i>
+                                Export JSON
+                            </button>
+
+                            <button id="export-bibtex-btn" class="btn btn-secondary">
+                                <i class="fas fa-quote-left"></i>
+                                Export BibTeX
+                            </button>
+
+                            <button id="export-csv-btn" class="btn btn-secondary">
+                                <i class="fas fa-table"></i>
+                                Export CSV
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="export-section">
+                        <h3>
+                            <i class="fas fa-upload"></i>
+                            Data Import
+                        </h3>
+                        <p>Import data from external sources</p>
+
+                        <div class="import-options">
+                            <div class="form-group">
+                                <label for="import-json">Import JSON Data</label>
+                                <input type="file" id="import-json" accept=".json">
+                                <small class="form-help">Import previously exported JSON data</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="import-bibtex">Import BibTeX File</label>
+                                <input type="file" id="import-bibtex" accept=".bib,.bibtex">
+                                <small class="form-help">Import publications from BibTeX file</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for editing items -->
+    <div id="item-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Edit Item</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Dynamic form content will be inserted here -->
+            </div>
+            <div class="modal-footer">
+                <button id="modal-save-btn" class="btn btn-primary">Save</button>
+                <button id="modal-cancel-btn" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirm-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content small">
+            <div class="modal-header">
+                <h3 class="modal-title">Confirm Action</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="confirm-text">Are you sure you want to perform this action?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="confirm-yes-btn" class="btn btn-danger">Yes</button>
+                <button id="confirm-no-btn" class="btn btn-secondary">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="admin-loading" class="admin-loading hidden">
+        <div class="loading-content">
+            <i class="fas fa-spinner fa-spin"></i>
+            <span>Loading...</span>
+        </div>
+    </div>
+
+    <!-- Templates for dynamic items -->
+    <template id="education-item-template">
+        <div class="item-card" data-type="education">
+            <div class="item-header">
+                <h4 class="item-title"></h4>
+                <div class="item-actions">
+                    <button class="btn-icon edit-btn" title="Edit">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn-icon delete-btn" title="Delete">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="item-details">
+                <div class="item-institution"></div>
+                <div class="item-period"></div>
+                <div class="item-location"></div>
+            </div>
+        </div>
+    </template>
+
+    <template id="experience-item-template">
+        <div class="item-card" data-type="experience">
+            <div class="item-header">
+                <h4 class="item-title"></h4>
+                <div class="item-actions">
+                    <button class="btn-icon edit-btn" title="Edit">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn-icon delete-btn" title="Delete">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="item-details">
+                <div class="item-company"></div>
+                <div class="item-period"></div>
+                <div class="item-location"></div>
+            </div>
+        </div>
+    </template>
+
+    <template id="publication-item-template">
+        <div class="item-card" data-type="publication">
+            <div class="item-header">
+                <h4 class="item-title"></h4>
+                <div class="item-actions">
+                    <button class="btn-icon edit-btn" title="Edit">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn-icon delete-btn" title="Delete">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="item-details">
+                <div class="item-authors"></div>
+                <div class="item-venue"></div>
+                <div class="item-year"></div>
+            </div>
+        </div>
+    </template>
+
+    <template id="skill-item-template">
+        <div class="item-card" data-type="skill">
+            <div class="item-header">
+                <h4 class="item-title"></h4>
+                <div class="item-actions">
+                    <button class="btn-icon edit-btn" title="Edit">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn-icon delete-btn" title="Delete">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="item-details">
+                <div class="item-level">
+                    <span class="level-label">Level:</span>
+                    <div class="level-bar">
+                        <div class="level-fill"></div>
+                    </div>
+                    <span class="level-percentage"></span>
+                </div>
+                <div class="item-description"></div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Scripts -->
+    <script src="../assets/js/data-manager.js"></script>
+    <script src="../assets/js/i18n.js"></script>
+    <script src="assets/js/admin.js"></script>
+</body>
+</html>
