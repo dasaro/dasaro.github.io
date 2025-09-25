@@ -46,6 +46,9 @@ class App {
             // Set up UI interactions
             this.setupUIInteractions();
 
+            // Make all sections visible
+            this.showAllSections();
+
             // Navigate to initial route
             this.showInitialPage();
 
@@ -503,6 +506,20 @@ class App {
                 errorDiv.parentNode.removeChild(errorDiv);
             }
         }, 10000);
+    }
+
+    /**
+     * Make all content sections visible by adding 'visible' class
+     */
+    showAllSections() {
+        this.log('Making all sections visible...');
+
+        const sections = document.querySelectorAll('.content-section');
+        sections.forEach(section => {
+            section.classList.add('visible');
+        });
+
+        this.log(`Made ${sections.length} sections visible`);
     }
 
     /**

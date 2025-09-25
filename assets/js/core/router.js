@@ -166,13 +166,18 @@ class Router {
             }
         }
 
-        // Scroll to section
+        // Scroll to section and make it visible
         const section = document.getElementById(routeId);
         if (section) {
+            // Add visible class to show the section
+            section.classList.add('visible');
+
             section.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
             });
+
+            this.log(`Section made visible: ${routeId}`);
         } else {
             this.log(`WARNING: Section element not found: ${routeId}`);
         }
