@@ -1,4 +1,9 @@
 {
+  "personalInfo": {
+    "name": "Fabio Aurelio D'Asaro",
+    "title": "Logic Researcher & AI Expert",
+    "bio": "Researcher in Logic (PHIL-02/A) working at the interface of formal epistemology and AI, probabilistic and temporal reasoning, argumentation, and logic programming (ASP/ILASP)"
+  },
   "navigation": {
     "about": "About",
     "education": "Education",
@@ -83,6 +88,23 @@
     "intermediate": "Intermediate",
     "advanced": "Advanced",
     "expert": "Expert"
+  },
+  "publications": {
+    "searchPlaceholder": "Search publications...",
+    "allYears": "All Years",
+    "allTypes": "All Types",
+    "exportBibTeX": "Export BibTeX",
+    "noResults": "No publications found",
+    "showingResults": "Showing {count} publications"
+  },
+  "navigation": {
+    "about": "About",
+    "education": "Education",
+    "experience": "Experience",
+    "publications": "Publications",
+    "skills": "Skills",
+    "contact": "Contact",
+    "downloadCV": "Download CV"
   },
   "badges": {
     "featured": "Featured",

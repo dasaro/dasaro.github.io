@@ -1,4 +1,9 @@
 {
+  "personalInfo": {
+    "name": "Fabio Aurelio D'Asaro",
+    "title": "Ricercatore in Logica ed Esperto di IA",
+    "bio": "Ricercatore in Logica (PHIL-02/A) che lavora all'interfaccia tra epistemologia formale e IA, ragionamento probabilistico e temporale, argomentazione e programmazione logica (ASP/ILASP)"
+  },
   "navigation": {
     "about": "Chi Sono",
     "education": "Formazione",
@@ -83,6 +88,23 @@
     "intermediate": "Intermedio",
     "advanced": "Avanzato",
     "expert": "Esperto"
+  },
+  "publications": {
+    "searchPlaceholder": "Cerca pubblicazioni...",
+    "allYears": "Tutti gli anni",
+    "allTypes": "Tutti i tipi",
+    "exportBibTeX": "Esporta BibTeX",
+    "noResults": "Nessuna pubblicazione trovata",
+    "showingResults": "Visualizzando {count} pubblicazioni"
+  },
+  "navigation": {
+    "about": "Chi sono",
+    "education": "Istruzione",
+    "experience": "Esperienza",
+    "publications": "Pubblicazioni",
+    "skills": "Competenze",
+    "contact": "Contatti",
+    "downloadCV": "Scarica CV"
   },
   "badges": {
     "featured": "In Evidenza",
