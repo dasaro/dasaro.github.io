@@ -173,8 +173,11 @@ class DataManager {
                     { key: 'education', icon: 'fas fa-graduation-cap', order: 2 },
                     { key: 'experience', icon: 'fas fa-briefcase', order: 3 },
                     { key: 'publications', icon: 'fas fa-file-text', order: 4 },
-                    { key: 'skills', icon: 'fas fa-cog', order: 5 },
-                    { key: 'contact', icon: 'fas fa-envelope', order: 6 }
+                    { key: 'citation-metrics', icon: 'fas fa-chart-line', order: 5 },
+                    { key: 'supervised-students', icon: 'fas fa-user-graduate', order: 6 },
+                    { key: 'projects', icon: 'fas fa-project-diagram', order: 7 },
+                    { key: 'skills', icon: 'fas fa-cog', order: 8 },
+                    { key: 'contact', icon: 'fas fa-envelope', order: 9 }
                 ]
             },
             theme: {
