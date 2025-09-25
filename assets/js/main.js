@@ -495,9 +495,39 @@ class AcademicWebsite {
 
         skillsGrid.innerHTML = '';
 
+        // Group skills by category
+        const categories = {};
         skills.forEach(skill => {
-            const skillItem = this.createSkillItem(skill);
-            skillsGrid.appendChild(skillItem);
+            const category = skill.category || 'Other';
+            if (!categories[category]) {
+                categories[category] = [];
+            }
+            categories[category].push(skill);
+        });
+
+        // Render skills grouped by category
+        Object.keys(categories).forEach(categoryName => {
+            // Create category header
+            const categoryHeader = document.createElement('div');
+            categoryHeader.className = 'skills-category-header';
+            categoryHeader.style.cssText = `
+                grid-column: 1 / -1;
+                margin-top: 1.5rem;
+                margin-bottom: 0.5rem;
+                padding-bottom: 0.5rem;
+                border-bottom: 2px solid var(--color-accent, #3498db);
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: var(--text-primary);
+            `;
+            categoryHeader.textContent = categoryName;
+            skillsGrid.appendChild(categoryHeader);
+
+            // Add skills in this category
+            categories[categoryName].forEach(skill => {
+                const skillItem = this.createSkillItem(skill);
+                skillsGrid.appendChild(skillItem);
+            });
         });
     }
 
@@ -508,9 +538,15 @@ class AcademicWebsite {
         const template = document.getElementById('skill-template');
         const item = template.content.cloneNode(true);
 
-        // Name
-        const name = item.querySelector('.skill-name');
-        if (name) name.textContent = skill.name || '';
+        // Add icon to name if provided
+        const nameElement = item.querySelector('.skill-name');
+        if (nameElement) {
+            if (skill.icon) {
+                nameElement.innerHTML = `<i class="${skill.icon}" style="margin-right: 0.5rem; color: var(--color-accent);"></i>${skill.name || ''}`;
+            } else {
+                nameElement.textContent = skill.name || '';
+            }
+        }
 
         // Hide percentage bar completely
         const skillLevel = item.querySelector('.skill-level');
@@ -524,10 +560,28 @@ class AcademicWebsite {
             description.textContent = skill.description;
         }
 
-        // Badges - only use badges from data, not automatic ones to avoid duplicates
+        // Replace badges with highlights/tags
         const badgesContainer = item.querySelector('.skill-badges');
-        if (badgesContainer && skill.badges) {
-            window.dataManager.renderBadges(skill.badges, badgesContainer);
+        if (badgesContainer) {
+            badgesContainer.innerHTML = ''; // Clear existing content
+            if (skill.highlights && skill.highlights.length > 0) {
+                skill.highlights.forEach(highlight => {
+                    const tag = document.createElement('span');
+                    tag.className = 'skill-tag';
+                    tag.textContent = highlight;
+                    tag.style.cssText = `
+                        display: inline-block;
+                        padding: 0.25rem 0.5rem;
+                        margin: 0.25rem 0.25rem 0.25rem 0;
+                        background-color: var(--color-accent-light, rgba(52, 152, 219, 0.1));
+                        color: var(--color-accent, #3498db);
+                        border-radius: 0.25rem;
+                        font-size: 0.85rem;
+                        font-weight: 500;
+                    `;
+                    badgesContainer.appendChild(tag);
+                });
+            }
         }
 
         return item;
