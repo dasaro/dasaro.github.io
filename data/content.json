@@ -8,7 +8,16 @@
     "website": "https://sites.google.com/view/fdasaro",
     "linkedin": "",
     "orcid": "",
-    "bio": "I am a researcher in Logic (PHIL-02/A) working at the interface of formal epistemology and AI, probabilistic and temporal reasoning, argumentation, and logic programming (ASP/ILASP) with teaching and supervision spanning Logic & Philosophy of Science, AI, Theoretical, Applied Computer Science, Epistemology of Big Data and Logic Programming."
+    "bio": "I am a researcher in Logic (PHIL-02/A) working at the interface of formal epistemology and AI, probabilistic and temporal reasoning, argumentation, and logic programming (ASP/ILASP).",
+    "researchInterests": [
+      "Formal Epistemology and Philosophy of Logic",
+      "Probabilistic and Temporal Reasoning",
+      "Logic Programming (ASP/ILASP) for AI",
+      "Argumentation Theory and Bounded Reasoning",
+      "Explainable AI and Trustworthy Computing",
+      "Ethics of AI and Epistemic Responsibility"
+    ],
+    "background": "My research develops logical foundations for reasoning under uncertainty, with applications to AI systems that need to be both explainable and trustworthy. I work extensively with Answer Set Programming (ASP) and Inductive Logic Programming (ILASP) to create transparent AI systems. My interdisciplinary approach bridges formal logic, epistemology, and practical AI applications, with particular focus on ethical reasoning and bias detection in automated systems."
   },
   "education": [
     {
@@ -173,6 +182,7 @@
       "doi": "10.1613/jair.1.18606",
       "url": "https://doi.org/10.1613/jair.1.18606",
       "type": "journal",
+      "selected": true,
       "icons": ["fas fa-journal-whills"]
     },
     {
@@ -205,6 +215,7 @@
       "doi": "10.1093/logcom/exaf003",
       "url": "https://doi.org/10.1093/logcom/exaf003",
       "type": "journal",
+      "selected": true,
       "icons": ["fas fa-shield-alt"]
     },
     {
@@ -236,6 +247,7 @@
       "doi": "10.1016/j.ijar.2023.109101",
       "url": "https://doi.org/10.1016/j.ijar.2023.109101",
       "type": "journal",
+      "selected": true,
       "icons": ["fas fa-code"]
     },
     {
@@ -377,6 +389,7 @@
       "doi": "10.1016/j.artint.2020.103352",
       "url": "https://doi.org/10.1016/j.artint.2020.103352",
       "type": "journal",
+      "selected": true,
       "icons": ["fas fa-star"]
     },
     {

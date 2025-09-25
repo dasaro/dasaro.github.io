@@ -225,8 +225,13 @@ class PublicationsManager {
             return;
         }
 
-        // Sort publications by year (most recent first) then by title
+        // Sort publications: selected first, then by year (most recent first), then by title
         const sortedPubs = [...this.filteredPublications].sort((a, b) => {
+            // First, prioritize selected publications
+            if (a.selected && !b.selected) return -1;
+            if (!a.selected && b.selected) return 1;
+
+            // Then sort by year (most recent first)
             const yearA = parseInt(a.year) || 0;
             const yearB = parseInt(b.year) || 0;
 
@@ -261,28 +266,13 @@ class PublicationsManager {
         title.className = 'publication-title';
         title.textContent = publication.title || 'Untitled';
 
-        const iconsContainer = document.createElement('div');
-        iconsContainer.className = 'publication-icons';
+        const chipsContainer = document.createElement('div');
+        chipsContainer.className = 'publication-chips';
 
-        // Add meaningful icons based on publication type and content
-        if (publication.icons && publication.icons.length > 0) {
-            publication.icons.forEach(iconClass => {
-                const iconSpan = document.createElement('span');
-                iconSpan.className = 'publication-icon';
-                const icon = document.createElement('i');
-                icon.className = iconClass;
-                iconSpan.appendChild(icon);
-                iconsContainer.appendChild(iconSpan);
-            });
-        } else {
-            // Add default type-based icon if no specific icons
-            const defaultIcon = this.getTypeIcon(publication.type);
-            const iconSpan = document.createElement('span');
-            iconSpan.className = 'publication-icon';
-            const icon = document.createElement('i');
-            icon.className = defaultIcon;
-            iconSpan.appendChild(icon);
-            iconsContainer.appendChild(iconSpan);
+        // Add type chip based on publication status and type
+        const typeChip = this.createTypeChip(publication);
+        if (typeChip) {
+            chipsContainer.appendChild(typeChip);
         }
 
         // Add getTypeIcon method for default icons
@@ -300,7 +290,7 @@ class PublicationsManager {
         }
 
         header.appendChild(title);
-        header.appendChild(iconsContainer);
+        header.appendChild(chipsContainer);
 
         // Authors
         const authors = document.createElement('div');
@@ -737,6 +727,46 @@ class PublicationsManager {
         if (typeFilter) typeFilter.value = '';
 
         this.applyFilters();
+    }
+
+    /**
+     * Create a type chip for publication
+     */
+    createTypeChip(publication) {
+        const chip = document.createElement('span');
+        chip.className = 'publication-chip';
+
+        let chipText = '';
+        let chipClass = '';
+
+        // Determine chip text and class based on status and type
+        if (publication.status === 'accepted' || publication.status === 'in press') {
+            chipText = 'In Press';
+            chipClass = 'chip-in-press';
+        } else if (publication.type === 'journal') {
+            chipText = 'Journal';
+            chipClass = 'chip-journal';
+        } else if (publication.type === 'conference') {
+            chipText = 'Conference';
+            chipClass = 'chip-conference';
+        } else if (publication.type === 'book') {
+            chipText = 'Book';
+            chipClass = 'chip-book';
+        } else if (publication.type === 'thesis') {
+            chipText = 'Thesis';
+            chipClass = 'chip-thesis';
+        } else if (publication.type === 'preprint') {
+            chipText = 'Preprint';
+            chipClass = 'chip-preprint';
+        } else {
+            chipText = 'Article';
+            chipClass = 'chip-article';
+        }
+
+        chip.textContent = chipText;
+        chip.classList.add(chipClass);
+
+        return chip;
     }
 }
 

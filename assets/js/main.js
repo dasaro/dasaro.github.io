@@ -307,11 +307,26 @@ class AcademicWebsite {
             mobileTitle.setAttribute('data-i18n', ''); // Remove i18n attribute
         }
 
-        // Update bio
-        const bioText = document.querySelector('.bio-text');
-        if (bioText && personalInfo.bio) {
-            bioText.textContent = personalInfo.bio;
-            bioText.setAttribute('data-i18n', ''); // Remove i18n attribute
+        // Update bio with enhanced content
+        const bioContent = document.querySelector('.bio-content');
+        if (bioContent && personalInfo.bio) {
+            bioContent.innerHTML = `
+                <p class="bio-text">${personalInfo.bio}</p>
+                ${personalInfo.researchInterests ? `
+                    <div class="research-interests">
+                        <h4>Research Interests</h4>
+                        <ul class="interests-list">
+                            ${personalInfo.researchInterests.map(interest => `<li>${interest}</li>`).join('')}
+                        </ul>
+                    </div>
+                ` : ''}
+                ${personalInfo.background ? `
+                    <div class="background-info">
+                        <h4>Background</h4>
+                        <p>${personalInfo.background}</p>
+                    </div>
+                ` : ''}
+            `;
         }
 
         // Update document title
@@ -568,18 +583,10 @@ class AcademicWebsite {
             description.textContent = skill.description;
         }
 
-        // Replace badges with highlights/tags
+        // Remove badges/tags completely
         const badgesContainer = item.querySelector('.skill-badges');
         if (badgesContainer) {
-            badgesContainer.innerHTML = ''; // Clear existing content
-            if (skill.highlights && skill.highlights.length > 0) {
-                skill.highlights.forEach(highlight => {
-                    const tag = document.createElement('span');
-                    tag.className = 'skill-tag';
-                    tag.textContent = highlight;
-                    badgesContainer.appendChild(tag);
-                });
-            }
+            badgesContainer.style.display = 'none';
         }
 
         return item;

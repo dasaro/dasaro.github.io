@@ -706,6 +706,58 @@ a:focus {
   flex-shrink: 0;
 }
 
+.publication-chips {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.publication-chip {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.chip-in-press {
+  background: var(--color-warning);
+  color: white;
+}
+
+.chip-journal {
+  background: var(--color-success);
+  color: white;
+}
+
+.chip-conference {
+  background: var(--color-accent);
+  color: white;
+}
+
+.chip-book {
+  background: var(--color-primary);
+  color: white;
+}
+
+.chip-thesis {
+  background: #8e44ad;
+  color: white;
+}
+
+.chip-preprint {
+  background: #95a5a6;
+  color: white;
+}
+
+.chip-article {
+  background: var(--color-secondary);
+  color: white;
+}
+
 .publication-authors {
   font-size: var(--font-size-sm);
   color: var(--text-secondary);
@@ -829,6 +881,48 @@ a:focus {
 
 .skill-description {
   font-size: var(--font-size-sm);
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* About Section - Research Interests and Background */
+.research-interests {
+  margin-top: 1.5rem;
+}
+
+.research-interests h4 {
+  margin-bottom: 0.75rem;
+  color: var(--color-primary);
+  font-size: var(--font-size-md);
+}
+
+.interests-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.interests-list li {
+  background: var(--bg-light);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: var(--font-size-sm);
+  border: 1px solid var(--border-light);
+}
+
+.background-info {
+  margin-top: 1.5rem;
+}
+
+.background-info h4 {
+  margin-bottom: 0.75rem;
+  color: var(--color-primary);
+  font-size: var(--font-size-md);
+}
+
+.background-info p {
   line-height: 1.6;
   color: var(--text-secondary);
 }
