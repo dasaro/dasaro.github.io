@@ -1,0 +1,54 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Claude Code settings (local only)
+.claude/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*~
+
+# Node (if you add npm later)
+node_modules/
+
+# Python (for local server)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Backup files
+*.backup
+*.bak
+
+# Local data modifications (optional - remove if you want to track changes)
+# data/content_local.json

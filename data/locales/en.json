@@ -1,0 +1,101 @@
+{
+  "navigation": {
+    "about": "About",
+    "education": "Education",
+    "experience": "Experience",
+    "publications": "Publications",
+    "skills": "Skills",
+    "contact": "Contact",
+    "toggleSidebar": "Toggle Navigation",
+    "downloadCV": "Download CV"
+  },
+  "sections": {
+    "about": {
+      "title": "About Me",
+      "subtitle": "Academic Profile"
+    },
+    "education": {
+      "title": "Education",
+      "subtitle": "Academic Background"
+    },
+    "experience": {
+      "title": "Experience",
+      "subtitle": "Professional Background"
+    },
+    "publications": {
+      "title": "Publications",
+      "subtitle": "Research Output"
+    },
+    "skills": {
+      "title": "Skills",
+      "subtitle": "Technical Expertise"
+    },
+    "contact": {
+      "title": "Contact",
+      "subtitle": "Get in Touch"
+    }
+  },
+  "common": {
+    "present": "Present",
+    "location": "Location",
+    "duration": "Duration",
+    "supervisor": "Supervisor",
+    "thesis": "Thesis",
+    "grade": "Grade",
+    "gpa": "GPA",
+    "email": "Email",
+    "phone": "Phone",
+    "website": "Website",
+    "linkedin": "LinkedIn",
+    "orcid": "ORCID",
+    "language": "Language",
+    "switchLanguage": "Italiano",
+    "year": "Year",
+    "journal": "Journal",
+    "conference": "Conference",
+    "volume": "Volume",
+    "pages": "Pages",
+    "doi": "DOI",
+    "authors": "Authors",
+    "abstract": "Abstract",
+    "keywords": "Keywords",
+    "level": "Level",
+    "proficiency": "Proficiency",
+    "category": "Category",
+    "description": "Description",
+    "technologies": "Technologies",
+    "repository": "Repository",
+    "demo": "Demo",
+    "award": "Award",
+    "issuer": "Issuer",
+    "date": "Date"
+  },
+  "badges": {
+    "featured": "Featured",
+    "recent": "Recent",
+    "highlight": "Highlight",
+    "published": "Published",
+    "inProgress": "In Progress",
+    "completed": "Completed",
+    "certified": "Certified",
+    "award": "Award Winner"
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "subtitle": "Content Management",
+    "save": "Save Changes",
+    "cancel": "Cancel",
+    "add": "Add New",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "success": "Changes saved successfully",
+    "error": "Error saving changes",
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address",
+    "invalidUrl": "Please enter a valid URL",
+    "selectLanguage": "Select Language",
+    "preview": "Preview",
+    "publish": "Publish Changes"
+  }
+}

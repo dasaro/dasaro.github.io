@@ -1,0 +1,101 @@
+{
+  "navigation": {
+    "about": "Chi Sono",
+    "education": "Formazione",
+    "experience": "Esperienza",
+    "publications": "Pubblicazioni",
+    "skills": "Competenze",
+    "contact": "Contatti",
+    "toggleSidebar": "Mostra/Nascondi Navigazione",
+    "downloadCV": "Scarica CV"
+  },
+  "sections": {
+    "about": {
+      "title": "Chi Sono",
+      "subtitle": "Profilo Accademico"
+    },
+    "education": {
+      "title": "Formazione",
+      "subtitle": "Background Accademico"
+    },
+    "experience": {
+      "title": "Esperienza",
+      "subtitle": "Background Professionale"
+    },
+    "publications": {
+      "title": "Pubblicazioni",
+      "subtitle": "Produzione Scientifica"
+    },
+    "skills": {
+      "title": "Competenze",
+      "subtitle": "Expertise Tecnica"
+    },
+    "contact": {
+      "title": "Contatti",
+      "subtitle": "Come Contattarmi"
+    }
+  },
+  "common": {
+    "present": "Presente",
+    "location": "Località",
+    "duration": "Durata",
+    "supervisor": "Supervisore",
+    "thesis": "Tesi",
+    "grade": "Voto",
+    "gpa": "Media",
+    "email": "Email",
+    "phone": "Telefono",
+    "website": "Sito Web",
+    "linkedin": "LinkedIn",
+    "orcid": "ORCID",
+    "language": "Lingua",
+    "switchLanguage": "English",
+    "year": "Anno",
+    "journal": "Rivista",
+    "conference": "Conferenza",
+    "volume": "Volume",
+    "pages": "Pagine",
+    "doi": "DOI",
+    "authors": "Autori",
+    "abstract": "Riassunto",
+    "keywords": "Parole Chiave",
+    "level": "Livello",
+    "proficiency": "Competenza",
+    "category": "Categoria",
+    "description": "Descrizione",
+    "technologies": "Tecnologie",
+    "repository": "Repository",
+    "demo": "Demo",
+    "award": "Premio",
+    "issuer": "Ente",
+    "date": "Data"
+  },
+  "badges": {
+    "featured": "In Evidenza",
+    "recent": "Recente",
+    "highlight": "Importante",
+    "published": "Pubblicato",
+    "inProgress": "In Corso",
+    "completed": "Completato",
+    "certified": "Certificato",
+    "award": "Premiato"
+  },
+  "admin": {
+    "title": "Pannello Admin",
+    "subtitle": "Gestione Contenuti",
+    "save": "Salva Modifiche",
+    "cancel": "Annulla",
+    "add": "Aggiungi Nuovo",
+    "edit": "Modifica",
+    "delete": "Elimina",
+    "confirm": "Conferma",
+    "success": "Modifiche salvate con successo",
+    "error": "Errore nel salvare le modifiche",
+    "required": "Questo campo è obbligatorio",
+    "invalidEmail": "Inserisci un indirizzo email valido",
+    "invalidUrl": "Inserisci un URL valido",
+    "selectLanguage": "Seleziona Lingua",
+    "preview": "Anteprima",
+    "publish": "Pubblica Modifiche"
+  }
+}

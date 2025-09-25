@@ -1,0 +1,68 @@
+{
+  "personalInfo": {
+    "name": "",
+    "title": "",
+    "email": "",
+    "phone": "",
+    "location": "",
+    "website": "",
+    "linkedin": "",
+    "orcid": "",
+    "bio": ""
+  },
+  "education": [],
+  "experience": [],
+  "publications": [],
+  "skills": [],
+  "badges": [],
+  "languages": [],
+  "awards": [],
+  "projects": [],
+  "navigation": {
+    "sections": [
+      {
+        "key": "about",
+        "icon": "fas fa-user",
+        "order": 1
+      },
+      {
+        "key": "education",
+        "icon": "fas fa-graduation-cap",
+        "order": 2
+      },
+      {
+        "key": "experience",
+        "icon": "fas fa-briefcase",
+        "order": 3
+      },
+      {
+        "key": "publications",
+        "icon": "fas fa-file-text",
+        "order": 4
+      },
+      {
+        "key": "skills",
+        "icon": "fas fa-cog",
+        "order": 5
+      },
+      {
+        "key": "contact",
+        "icon": "fas fa-envelope",
+        "order": 6
+      }
+    ]
+  },
+  "theme": {
+    "primaryColor": "#2c3e50",
+    "secondaryColor": "#34495e",
+    "accentColor": "#3498db",
+    "backgroundColor": "#ffffff",
+    "textColor": "#2c3e50"
+  },
+  "settings": {
+    "defaultLanguage": "en",
+    "enableBadges": true,
+    "showCV": true,
+    "animationDuration": 300
+  }
+}

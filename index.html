@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="personalInfo.name">Academic Profile</title>
+
+    <!-- Meta tags for SEO and social sharing -->
+    <meta name="description" content="Academic profile and research portfolio">
+    <meta name="author" content="">
+    <meta name="keywords" content="academic, research, cv, portfolio">
+
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="Academic Profile">
+    <meta property="og:description" content="Academic profile and research portfolio">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <!-- Language switcher -->
+    <div id="language-switcher" class="language-switcher">
+        <button id="lang-toggle" class="lang-toggle" aria-label="Switch language">
+            <i class="fas fa-globe"></i>
+            <span data-i18n="common.switchLanguage">English</span>
+        </button>
+    </div>
+
+    <!-- Sidebar navigation -->
+    <nav id="sidebar" class="sidebar" role="navigation" aria-label="Main navigation">
+        <div class="sidebar-header">
+            <div class="profile-section">
+                <div class="profile-image">
+                    <img src="assets/images/profile.jpg" alt="Profile" id="profile-img">
+                </div>
+                <h1 class="profile-name" data-i18n="personalInfo.name">Your Name</h1>
+                <p class="profile-title" data-i18n="personalInfo.title">Your Title</p>
+            </div>
+
+            <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <ul class="nav-menu" role="menu">
+            <!-- Navigation items will be populated dynamically -->
+        </ul>
+
+        <div class="sidebar-footer">
+            <a href="data/CV.pdf" class="cv-download-btn" target="_blank" rel="noopener">
+                <i class="fas fa-download"></i>
+                <span data-i18n="navigation.downloadCV">Download CV</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main content area -->
+    <main id="main-content" class="main-content">
+        <!-- Header with mobile navigation -->
+        <header class="mobile-header">
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h1 class="mobile-title" data-i18n="personalInfo.name">Your Name</h1>
+        </header>
+
+        <!-- Content sections -->
+        <div class="content-wrapper">
+            <!-- About section -->
+            <section id="about" class="content-section" data-section="about">
+                <div class="section-header">
+                    <h2 data-i18n="sections.about.title">About Me</h2>
+                    <p class="section-subtitle" data-i18n="sections.about.subtitle">Academic Profile</p>
+                </div>
+                <div class="section-content">
+                    <div class="bio-content">
+                        <p class="bio-text" data-i18n="personalInfo.bio">
+                            Your bio will appear here. This is a placeholder text that will be replaced with your actual biography.
+                        </p>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-grid">
+                            <!-- Contact items will be populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education section -->
+            <section id="education" class="content-section" data-section="education">
+                <div class="section-header">
+                    <h2 data-i18n="sections.education.title">Education</h2>
+                    <p class="section-subtitle" data-i18n="sections.education.subtitle">Academic Background</p>
+                </div>
+                <div class="section-content">
+                    <div class="timeline">
+                        <!-- Education items will be populated dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience section -->
+            <section id="experience" class="content-section" data-section="experience">
+                <div class="section-header">
+                    <h2 data-i18n="sections.experience.title">Experience</h2>
+                    <p class="section-subtitle" data-i18n="sections.experience.subtitle">Professional Background</p>
+                </div>
+                <div class="section-content">
+                    <div class="timeline">
+                        <!-- Experience items will be populated dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Publications section -->
+            <section id="publications" class="content-section" data-section="publications">
+                <div class="section-header">
+                    <h2 data-i18n="sections.publications.title">Publications</h2>
+                    <p class="section-subtitle" data-i18n="sections.publications.subtitle">Research Output</p>
+                </div>
+
+                <!-- Publications filters -->
+                <div class="publications-controls">
+                    <div class="filter-controls">
+                        <input type="text" id="pub-search" class="search-input" placeholder="Search publications...">
+                        <select id="year-filter" class="filter-select">
+                            <option value="">All Years</option>
+                        </select>
+                        <select id="type-filter" class="filter-select">
+                            <option value="">All Types</option>
+                            <option value="journal">Journal</option>
+                            <option value="conference">Conference</option>
+                            <option value="book">Book</option>
+                            <option value="thesis">Thesis</option>
+                        </select>
+                    </div>
+                    <div class="export-controls">
+                        <button id="export-bibtex" class="export-btn">
+                            <i class="fas fa-file-code"></i>
+                            Export BibTeX
+                        </button>
+                    </div>
+                </div>
+
+                <div class="section-content">
+                    <div class="publications-list">
+                        <!-- Publications will be populated dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills section -->
+            <section id="skills" class="content-section" data-section="skills">
+                <div class="section-header">
+                    <h2 data-i18n="sections.skills.title">Skills</h2>
+                    <p class="section-subtitle" data-i18n="sections.skills.subtitle">Technical Expertise</p>
+                </div>
+                <div class="section-content">
+                    <div class="skills-grid">
+                        <!-- Skills will be populated dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact section -->
+            <section id="contact" class="content-section" data-section="contact">
+                <div class="section-header">
+                    <h2 data-i18n="sections.contact.title">Contact</h2>
+                    <p class="section-subtitle" data-i18n="sections.contact.subtitle">Get in Touch</p>
+                </div>
+                <div class="section-content">
+                    <div class="contact-details">
+                        <!-- Contact details will be populated dynamically -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Loading indicator -->
+    <div id="loading" class="loading-overlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+        </div>
+    </div>
+
+    <!-- Badge templates (hidden) -->
+    <template id="badge-template">
+        <span class="badge">
+            <i class="badge-icon"></i>
+            <span class="badge-text"></span>
+        </span>
+    </template>
+
+    <!-- Timeline item template (hidden) -->
+    <template id="timeline-item-template">
+        <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <div class="timeline-header">
+                    <h3 class="timeline-title"></h3>
+                    <div class="timeline-badges"></div>
+                </div>
+                <div class="timeline-meta">
+                    <span class="timeline-institution"></span>
+                    <span class="timeline-period"></span>
+                    <span class="timeline-location"></span>
+                </div>
+                <div class="timeline-description"></div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Publication item template (hidden) -->
+    <template id="publication-template">
+        <article class="publication-item">
+            <div class="publication-header">
+                <h3 class="publication-title"></h3>
+                <div class="publication-badges"></div>
+            </div>
+            <div class="publication-authors"></div>
+            <div class="publication-venue"></div>
+            <div class="publication-meta">
+                <span class="publication-year"></span>
+                <div class="publication-links">
+                    <!-- Links will be added dynamically -->
+                </div>
+            </div>
+        </article>
+    </template>
+
+    <!-- Skill item template (hidden) -->
+    <template id="skill-template">
+        <div class="skill-item">
+            <div class="skill-header">
+                <h4 class="skill-name"></h4>
+                <div class="skill-badges"></div>
+            </div>
+            <div class="skill-level">
+                <div class="skill-bar">
+                    <div class="skill-fill"></div>
+                </div>
+                <span class="skill-percentage"></span>
+            </div>
+            <div class="skill-description"></div>
+        </div>
+    </template>
+
+    <!-- Scripts -->
+    <script src="assets/js/data-manager.js"></script>
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/publications.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
