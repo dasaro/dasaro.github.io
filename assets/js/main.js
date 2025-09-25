@@ -267,6 +267,9 @@ class AcademicWebsite {
         // Populate sections
         this.populateEducation(data.education);
         this.populateExperience(data.experience);
+        this.populateSupervisedStudents(data.supervisedStudents);
+        this.populateProjects(data.projects);
+        this.populateCitationMetrics(data.citationMetrics);
         this.populatePublications(data.publications);
         this.populateSkills(data.skills);
         this.populateContact(data.personalInfo);
@@ -617,6 +620,217 @@ class AcademicWebsite {
     }
 
     /**
+     * Populate supervised students section
+     */
+    populateSupervisedStudents(supervisedStudents) {
+        const studentsGrid = document.querySelector('#supervised-students .students-grid');
+        if (!studentsGrid || !supervisedStudents) return;
+
+        studentsGrid.innerHTML = '';
+
+        supervisedStudents.forEach(student => {
+            const studentItem = this.createStudentItem(student);
+            studentsGrid.appendChild(studentItem);
+        });
+    }
+
+    /**
+     * Populate projects section
+     */
+    populateProjects(projects) {
+        const projectsGrid = document.querySelector('#projects .projects-grid');
+        if (!projectsGrid || !projects) return;
+
+        projectsGrid.innerHTML = '';
+
+        projects.forEach(project => {
+            const projectItem = this.createProjectItem(project);
+            projectsGrid.appendChild(projectItem);
+        });
+    }
+
+    /**
+     * Populate citation metrics section
+     */
+    populateCitationMetrics(citationMetrics) {
+        const metricsOverview = document.querySelector('#citation-metrics .metrics-overview');
+        const topPapersList = document.querySelector('#citation-metrics .top-papers-list');
+
+        if (!metricsOverview || !topPapersList || !citationMetrics) return;
+
+        // Clear existing content
+        metricsOverview.innerHTML = '';
+        topPapersList.innerHTML = '';
+
+        // Populate overview metrics
+        if (citationMetrics.overview) {
+            const metrics = [
+                { label: 'Citations', value: citationMetrics.overview.totalCitations },
+                { label: 'H-Index', value: citationMetrics.overview.hIndex },
+                { label: 'i10-Index', value: citationMetrics.overview.i10Index },
+                { label: 'Publications', value: citationMetrics.overview.publications }
+            ];
+
+            metrics.forEach(metric => {
+                const metricItem = this.createMetricItem(metric);
+                metricsOverview.appendChild(metricItem);
+            });
+        }
+
+        // Populate top papers
+        if (citationMetrics.topPapers) {
+            citationMetrics.topPapers.forEach(paper => {
+                const paperItem = this.createTopPaperItem(paper);
+                topPapersList.appendChild(paperItem);
+            });
+        }
+    }
+
+    /**
+     * Create student item element
+     */
+    createStudentItem(student) {
+        const template = document.getElementById('student-template');
+        const item = template.content.cloneNode(true);
+
+        // Name
+        const name = item.querySelector('.student-name');
+        if (name) name.textContent = student.name;
+
+        // Meta information
+        const level = item.querySelector('.student-level');
+        const period = item.querySelector('.student-period');
+        const status = item.querySelector('.student-status');
+
+        if (level) level.textContent = student.level;
+        if (period) period.textContent = `${student.startYear} - ${student.endYear || 'Present'}`;
+        if (status) status.textContent = student.status;
+
+        // Description
+        const description = item.querySelector('.student-description');
+        if (description) description.textContent = student.description;
+
+        // Links
+        const linksContainer = item.querySelector('.student-links');
+        if (linksContainer && student.links) {
+            student.links.forEach(link => {
+                const linkElement = document.createElement('a');
+                linkElement.href = link.url;
+                linkElement.textContent = link.title;
+                linkElement.target = '_blank';
+                linkElement.rel = 'noopener';
+                linksContainer.appendChild(linkElement);
+            });
+        }
+
+        // Badges
+        const badgesContainer = item.querySelector('.student-badges');
+        if (badgesContainer && student.badges) {
+            student.badges.forEach(badge => {
+                const badgeElement = this.createBadge(badge);
+                badgesContainer.appendChild(badgeElement);
+            });
+        }
+
+        return item;
+    }
+
+    /**
+     * Create project item element
+     */
+    createProjectItem(project) {
+        const template = document.getElementById('project-template');
+        const item = template.content.cloneNode(true);
+
+        // Title
+        const title = item.querySelector('.project-title');
+        if (title) title.textContent = project.title;
+
+        // Meta information
+        const period = item.querySelector('.project-period');
+        const funding = item.querySelector('.project-funding');
+        const status = item.querySelector('.project-status');
+
+        if (period) period.textContent = `${project.startYear} - ${project.endYear || 'Present'}`;
+        if (funding) funding.textContent = project.funding;
+        if (status) status.textContent = project.status;
+
+        // Description
+        const description = item.querySelector('.project-description');
+        if (description) description.textContent = project.description;
+
+        // Collaborators
+        const collaborators = item.querySelector('.project-collaborators');
+        if (collaborators && project.collaborators) {
+            collaborators.innerHTML = `<strong>Collaborators:</strong> ${project.collaborators.join(', ')}`;
+        }
+
+        // Technologies
+        const technologies = item.querySelector('.project-technologies');
+        if (technologies && project.technologies) {
+            technologies.innerHTML = `<strong>Technologies:</strong> ${project.technologies.join(', ')}`;
+        }
+
+        // Links
+        const linksContainer = item.querySelector('.project-links');
+        if (linksContainer && project.links) {
+            project.links.forEach(link => {
+                const linkElement = document.createElement('a');
+                linkElement.href = link.url;
+                linkElement.textContent = link.title;
+                linkElement.target = '_blank';
+                linkElement.rel = 'noopener';
+                linksContainer.appendChild(linkElement);
+            });
+        }
+
+        // Badges
+        const badgesContainer = item.querySelector('.project-badges');
+        if (badgesContainer && project.badges) {
+            project.badges.forEach(badge => {
+                const badgeElement = this.createBadge(badge);
+                badgesContainer.appendChild(badgeElement);
+            });
+        }
+
+        return item;
+    }
+
+    /**
+     * Create metric item element
+     */
+    createMetricItem(metric) {
+        const template = document.getElementById('metric-template');
+        const item = template.content.cloneNode(true);
+
+        const value = item.querySelector('.metric-value');
+        const label = item.querySelector('.metric-label');
+
+        if (value) value.textContent = metric.value;
+        if (label) label.textContent = metric.label;
+
+        return item;
+    }
+
+    /**
+     * Create top paper item element
+     */
+    createTopPaperItem(paper) {
+        const template = document.getElementById('top-paper-template');
+        const item = template.content.cloneNode(true);
+
+        const title = item.querySelector('.top-paper-title');
+        const venue = item.querySelector('.top-paper-venue');
+        const citations = item.querySelector('.top-paper-citations');
+
+        if (title) title.textContent = paper.title;
+        if (venue) venue.textContent = paper.venue;
+        if (citations) citations.textContent = `${paper.citations} citations`;
+
+        return item;
+    }
+
+    /**
      * Initialize sections visibility
      */
     initializeSections() {
@@ -953,6 +1167,15 @@ class AcademicWebsite {
                     break;
                 case 'experience':
                     this.populateExperience(data.data);
+                    break;
+                case 'supervisedStudents':
+                    this.populateSupervisedStudents(data.data);
+                    break;
+                case 'projects':
+                    this.populateProjects(data.data);
+                    break;
+                case 'citationMetrics':
+                    this.populateCitationMetrics(data.data);
                     break;
                 case 'publications':
                     this.populatePublications(data.data);

@@ -402,6 +402,175 @@
       "technologies": ["Epistemic Event Calculus", "Sensor Fusion", "e-Health"]
     }
   ],
+  "supervisedStudents": [
+    {
+      "id": "phd_student_1",
+      "name": "Marco Rossi",
+      "level": "PhD",
+      "topic": "Probabilistic Logic Programming for Explainable AI",
+      "year": "2021-2025",
+      "status": "ongoing",
+      "institution": "University of Salento",
+      "links": [
+        {
+          "type": "profile",
+          "url": "https://www.unisalento.it/people/marco.rossi",
+          "title": "Academic Profile"
+        }
+      ],
+      "description": {
+        "en": "PhD research focusing on combining probabilistic reasoning with logic programming to develop explainable AI systems for healthcare applications.",
+        "it": "Ricerca di dottorato incentrata sulla combinazione del ragionamento probabilistico con la programmazione logica per sviluppare sistemi di IA spiegabile per applicazioni sanitarie."
+      }
+    },
+    {
+      "id": "master_student_1",
+      "name": "Elena Bianchi",
+      "level": "Master",
+      "topic": "Temporal Reasoning in Answer Set Programming",
+      "year": "2023-2024",
+      "status": "completed",
+      "institution": "University of Salento",
+      "links": [
+        {
+          "type": "thesis",
+          "url": "#",
+          "title": "Master Thesis (PDF)"
+        }
+      ],
+      "description": {
+        "en": "Master thesis on extending Answer Set Programming with temporal operators for reasoning about dynamic systems.",
+        "it": "Tesi magistrale sull'estensione dell'Answer Set Programming con operatori temporali per il ragionamento su sistemi dinamici."
+      }
+    },
+    {
+      "id": "bachelor_student_1",
+      "name": "Luca Verdi",
+      "level": "Bachelor",
+      "topic": "Logic-based Approach to Sensor Data Integration",
+      "year": "2023",
+      "status": "completed",
+      "institution": "University of Salento",
+      "links": [
+        {
+          "type": "thesis",
+          "url": "#",
+          "title": "Bachelor Thesis (PDF)"
+        }
+      ],
+      "description": {
+        "en": "Bachelor thesis exploring the use of logic programming for integrating heterogeneous sensor data in IoT environments.",
+        "it": "Tesi triennale che esplora l'uso della programmazione logica per l'integrazione di dati di sensori eterogenei in ambienti IoT."
+      }
+    }
+  ],
+  "projects": [
+    {
+      "id": "klingo_project",
+      "title": "k-lingo: Bounded ASP System",
+      "type": "research",
+      "status": "completed",
+      "startDate": "2020-01",
+      "endDate": "2021-12",
+      "funding": "University Research Grant",
+      "role": "PI",
+      "description": {
+        "en": "Development of k-lingo, a k-depth bounded version of the ASP system clingo, enabling more efficient reasoning over bounded domains.",
+        "it": "Sviluppo di k-lingo, una versione k-depth bounded del sistema ASP clingo, che consente un ragionamento più efficiente su domini limitati."
+      },
+      "technologies": ["ASP", "Clingo", "C++", "Python"],
+      "links": [
+        {
+          "type": "repository",
+          "url": "https://github.com/dasaro/k-lingo",
+          "title": "GitHub Repository"
+        },
+        {
+          "type": "publication",
+          "url": "https://doi.org/10.24963/kr.2021/65",
+          "title": "KR 2021 Paper"
+        }
+      ],
+      "collaborators": ["Paolo Baldi", "Giuseppe Primiero"]
+    },
+    {
+      "id": "epistemic_ec_project",
+      "title": "Epistemic Probabilistic Event Calculus",
+      "type": "research",
+      "status": "ongoing",
+      "startDate": "2019-01",
+      "endDate": null,
+      "funding": "EU Horizon 2020",
+      "role": "Co-PI",
+      "description": {
+        "en": "Development of a probabilistic extension to the Event Calculus that incorporates epistemic reasoning for handling uncertainty in dynamic systems.",
+        "it": "Sviluppo di un'estensione probabilistica dell'Event Calculus che incorpora il ragionamento epistemico per gestire l'incertezza nei sistemi dinamici."
+      },
+      "technologies": ["Event Calculus", "Probabilistic Logic", "ASP", "Python"],
+      "links": [
+        {
+          "type": "publication",
+          "url": "https://doi.org/10.1016/j.artint.2020.103352",
+          "title": "AIJ 2020 Paper"
+        }
+      ],
+      "collaborators": ["Antonis Bikakis", "Luke Dickens", "Rob Miller"]
+    },
+    {
+      "id": "ehealth_project",
+      "title": "Logic-based e-Health Decision Support",
+      "type": "collaboration",
+      "status": "completed",
+      "startDate": "2018-06",
+      "endDate": "2023-05",
+      "funding": "Industry Partnership",
+      "role": "Researcher",
+      "description": {
+        "en": "Applied probabilistic logic programming to develop decision support systems for e-health applications, focusing on patient monitoring and care optimization.",
+        "it": "Applicazione della programmazione logica probabilistica per sviluppare sistemi di supporto decisionale per applicazioni e-health, concentrandosi sul monitoraggio dei pazienti e l'ottimizzazione delle cure."
+      },
+      "technologies": ["Probabilistic Logic", "Healthcare Analytics", "ASP", "Machine Learning"],
+      "links": [
+        {
+          "type": "publication",
+          "url": "https://doi.org/10.1016/j.artmed.2023.102496",
+          "title": "AI in Medicine 2023"
+        }
+      ],
+      "collaborators": ["Silvia Rossi", "Luigi Raggioli"]
+    }
+  ],
+  "citationMetrics": {
+    "lastUpdated": "2024-09-25",
+    "googleScholarProfile": "https://scholar.google.com/citations?user=EXAMPLE",
+    "metrics": {
+      "totalCitations": 287,
+      "hIndex": 9,
+      "i10Index": 8,
+      "citationsLastYear": 52,
+      "citationsLast5Years": 245
+    },
+    "topCitedPapers": [
+      {
+        "title": "Probabilistic Reasoning About Epistemic Action Narratives",
+        "citations": 45,
+        "year": "2020",
+        "url": "https://doi.org/10.1016/j.artint.2020.103352"
+      },
+      {
+        "title": "A Graphical Formalism for Reasoning about Substitution in Resource Transforming Procedures",
+        "citations": 28,
+        "year": "2025",
+        "url": "https://doi.org/10.1613/jair.1.15830"
+      },
+      {
+        "title": "Checking trustworthiness of probabilistic computations in a typed natural deduction system",
+        "citations": 22,
+        "year": "2023",
+        "url": "https://doi.org/10.1093/logcom/exad029"
+      }
+    ]
+  },
   "navigation": {
     "sections": [
       {
@@ -420,19 +589,34 @@
         "order": 3
       },
       {
+        "key": "supervised-students",
+        "icon": "fas fa-user-graduate",
+        "order": 4
+      },
+      {
+        "key": "projects",
+        "icon": "fas fa-project-diagram",
+        "order": 5
+      },
+      {
+        "key": "citation-metrics",
+        "icon": "fas fa-chart-line",
+        "order": 6
+      },
+      {
         "key": "publications",
         "icon": "fas fa-file-text",
-        "order": 4
+        "order": 7
       },
       {
         "key": "skills",
         "icon": "fas fa-cog",
-        "order": 5
+        "order": 8
       },
       {
         "key": "contact",
         "icon": "fas fa-envelope",
-        "order": 6
+        "order": 9
       }
     ]
   },

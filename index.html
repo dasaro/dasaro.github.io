@@ -124,6 +124,53 @@
                 </div>
             </section>
 
+            <!-- Supervised Students section -->
+            <section id="supervised-students" class="content-section" data-section="supervised-students">
+                <div class="section-header">
+                    <h2 data-i18n="sections.supervisedStudents.title">Supervised Students</h2>
+                    <p class="section-subtitle" data-i18n="sections.supervisedStudents.subtitle">Academic Supervision</p>
+                </div>
+                <div class="section-content">
+                    <div class="students-grid">
+                        <!-- Supervised students will be populated dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects section -->
+            <section id="projects" class="content-section" data-section="projects">
+                <div class="section-header">
+                    <h2 data-i18n="sections.projects.title">Projects</h2>
+                    <p class="section-subtitle" data-i18n="sections.projects.subtitle">Research Projects</p>
+                </div>
+                <div class="section-content">
+                    <div class="projects-grid">
+                        <!-- Projects will be populated dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Citation Metrics section -->
+            <section id="citation-metrics" class="content-section" data-section="citation-metrics">
+                <div class="section-header">
+                    <h2 data-i18n="sections.citationMetrics.title">Citation Metrics</h2>
+                    <p class="section-subtitle" data-i18n="sections.citationMetrics.subtitle">Research Impact</p>
+                </div>
+                <div class="section-content">
+                    <div class="metrics-container">
+                        <div class="metrics-overview">
+                            <!-- Overview metrics will be populated dynamically -->
+                        </div>
+                        <div class="top-papers">
+                            <h3 data-i18n="citationMetrics.topPapers">Most Cited Publications</h3>
+                            <div class="top-papers-list">
+                                <!-- Top cited papers will be populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Publications section -->
             <section id="publications" class="content-section" data-section="publications">
                 <div class="section-header">
@@ -255,6 +302,65 @@
                 <span class="skill-percentage"></span>
             </div>
             <div class="skill-description"></div>
+        </div>
+    </template>
+
+    <!-- Student item template (hidden) -->
+    <template id="student-template">
+        <div class="student-item">
+            <div class="student-header">
+                <h4 class="student-name"></h4>
+                <div class="student-badges"></div>
+            </div>
+            <div class="student-meta">
+                <span class="student-level"></span>
+                <span class="student-period"></span>
+                <span class="student-status"></span>
+            </div>
+            <div class="student-description"></div>
+            <div class="student-links">
+                <!-- Links will be added dynamically -->
+            </div>
+        </div>
+    </template>
+
+    <!-- Project item template (hidden) -->
+    <template id="project-template">
+        <div class="project-item">
+            <div class="project-header">
+                <h4 class="project-title"></h4>
+                <div class="project-badges"></div>
+            </div>
+            <div class="project-meta">
+                <span class="project-period"></span>
+                <span class="project-funding"></span>
+                <span class="project-status"></span>
+            </div>
+            <div class="project-description"></div>
+            <div class="project-details">
+                <div class="project-collaborators"></div>
+                <div class="project-technologies"></div>
+            </div>
+            <div class="project-links">
+                <!-- Links will be added dynamically -->
+            </div>
+        </div>
+    </template>
+
+    <!-- Metric item template (hidden) -->
+    <template id="metric-template">
+        <div class="metric-item">
+            <div class="metric-value"></div>
+            <div class="metric-label"></div>
+        </div>
+    </template>
+
+    <!-- Top paper item template (hidden) -->
+    <template id="top-paper-template">
+        <div class="top-paper-item">
+            <div class="top-paper-title"></div>
+            <div class="top-paper-venue"></div>
+            <div class="top-paper-citations"></div>
         </div>
     </template>
 

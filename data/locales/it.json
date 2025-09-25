@@ -35,6 +35,18 @@
       "title": "Competenze",
       "subtitle": "Expertise Tecnica"
     },
+    "supervisedStudents": {
+      "title": "Studenti Supervisionati",
+      "subtitle": "Supervisione Accademica"
+    },
+    "projects": {
+      "title": "Progetti",
+      "subtitle": "Progetti di Ricerca"
+    },
+    "citationMetrics": {
+      "title": "Metriche delle Citazioni",
+      "subtitle": "Impatto della Ricerca"
+    },
     "contact": {
       "title": "Contatti",
       "subtitle": "Come Contattarmi"
@@ -101,10 +113,16 @@
     "about": "Chi sono",
     "education": "Istruzione",
     "experience": "Esperienza",
+    "supervised-students": "Studenti Supervisionati",
+    "projects": "Progetti",
+    "citation-metrics": "Metriche delle Citazioni",
     "publications": "Pubblicazioni",
     "skills": "Competenze",
     "contact": "Contatti",
     "downloadCV": "Scarica CV"
+  },
+  "citationMetrics": {
+    "topPapers": "Pubblicazioni Più Citate"
   },
   "badges": {
     "featured": "In Evidenza",

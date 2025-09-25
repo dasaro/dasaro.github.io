@@ -35,6 +35,18 @@
       "title": "Skills",
       "subtitle": "Technical Expertise"
     },
+    "supervisedStudents": {
+      "title": "Supervised Students",
+      "subtitle": "Academic Supervision"
+    },
+    "projects": {
+      "title": "Projects",
+      "subtitle": "Research Projects"
+    },
+    "citationMetrics": {
+      "title": "Citation Metrics",
+      "subtitle": "Research Impact"
+    },
     "contact": {
       "title": "Contact",
       "subtitle": "Get in Touch"
@@ -101,10 +113,16 @@
     "about": "About",
     "education": "Education",
     "experience": "Experience",
+    "supervised-students": "Supervised Students",
+    "projects": "Projects",
+    "citation-metrics": "Citation Metrics",
     "publications": "Publications",
     "skills": "Skills",
     "contact": "Contact",
     "downloadCV": "Download CV"
+  },
+  "citationMetrics": {
+    "topPapers": "Most Cited Publications"
   },
   "badges": {
     "featured": "Featured",
