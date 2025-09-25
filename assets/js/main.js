@@ -133,9 +133,14 @@ class AcademicWebsite {
 
         // Mobile menu toggle
         if (mobileMenuToggle) {
-            mobileMenuToggle.addEventListener('click', () => {
+            console.log('Mobile menu toggle found and event listener added');
+            mobileMenuToggle.addEventListener('click', (e) => {
+                console.log('Mobile menu clicked!');
+                e.preventDefault();
                 this.toggleSidebar();
             });
+        } else {
+            console.warn('Mobile menu toggle not found!');
         }
 
         // Close sidebar when clicking outside (mobile)
@@ -160,11 +165,18 @@ class AcademicWebsite {
      * Toggle sidebar visibility
      */
     toggleSidebar() {
+        console.log('toggleSidebar called, current state:', this.sidebarOpen);
         const sidebar = document.getElementById('sidebar');
+        if (!sidebar) {
+            console.error('Sidebar element not found!');
+            return;
+        }
 
         if (this.sidebarOpen) {
+            console.log('Closing sidebar...');
             this.closeSidebar();
         } else {
+            console.log('Opening sidebar...');
             this.openSidebar();
         }
     }
@@ -663,21 +675,18 @@ class AcademicWebsite {
         if (window.PublicationsManager && this.publicationsData && this.publicationsData.length > 0) {
             console.log('Creating PublicationsManager with', this.publicationsData.length, 'publications');
             this.publicationsManager = new PublicationsManager(this.publicationsData);
-            // Ensure publications are rendered
-            setTimeout(() => {
-                if (this.publicationsManager) {
-                    console.log('Force rendering publications...');
-                    this.publicationsManager.renderPublications();
-                }
-            }, 100);
         } else {
             console.warn('Publications not initialized:', {
                 hasManager: !!window.PublicationsManager,
                 hasData: !!this.publicationsData,
                 dataLength: this.publicationsData ? this.publicationsData.length : 0
             });
-            // Try to render empty state
-            this.renderEmptyPublications();
+            // If PublicationsManager failed, the direct render should still work
+            if (this.publicationsData && this.publicationsData.length > 0) {
+                console.log('Using direct render fallback for publications');
+            } else {
+                this.renderEmptyPublications();
+            }
         }
     }
 

@@ -716,3 +716,6 @@ class PublicationsManager {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = PublicationsManager;
 }
+
+// Make PublicationsManager globally available for browser usage
+window.PublicationsManager = PublicationsManager;
