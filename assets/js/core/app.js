@@ -122,6 +122,9 @@ class App {
         this.dataManager = new DataManager();
         await this.dataManager.init();
 
+        // Make data manager globally accessible
+        window.dataManager = this.dataManager;
+
         this.log('Data manager initialized');
     }
 
