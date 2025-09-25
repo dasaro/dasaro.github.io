@@ -655,12 +655,24 @@ class AcademicWebsite {
     populateCitationMetrics(citationMetrics) {
         const metricsOverview = document.querySelector('#citation-metrics .metrics-overview');
         const topPapersList = document.querySelector('#citation-metrics .top-papers-list');
+        const scholarLink = document.querySelector('#scholar-profile-link');
+        const metricsDate = document.querySelector('#metrics-date');
 
         if (!metricsOverview || !topPapersList || !citationMetrics) return;
 
         // Clear existing content
         metricsOverview.innerHTML = '';
         topPapersList.innerHTML = '';
+
+        // Set Google Scholar profile link
+        if (scholarLink && citationMetrics.googleScholarProfile) {
+            scholarLink.href = citationMetrics.googleScholarProfile;
+        }
+
+        // Set last updated date
+        if (metricsDate && citationMetrics.lastUpdated) {
+            metricsDate.textContent = citationMetrics.lastUpdated;
+        }
 
         // Populate overview metrics
         if (citationMetrics.overview) {

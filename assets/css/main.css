@@ -1302,6 +1302,41 @@ a:focus {
   letter-spacing: 0.05em;
 }
 
+.metrics-source {
+  text-align: center;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: rgba(52, 152, 219, 0.05);
+  border-radius: var(--border-radius);
+}
+
+.source-attribution {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.source-attribution i {
+  margin-right: 0.5rem;
+  color: var(--color-accent);
+}
+
+.source-attribution a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  margin: 0 0.5rem;
+}
+
+.source-attribution a:hover {
+  text-decoration: underline;
+}
+
+.last-updated {
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
 .top-papers h3 {
   font-size: var(--font-size-xl);
   margin-bottom: 1rem;

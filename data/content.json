@@ -542,11 +542,11 @@
   ],
   "citationMetrics": {
     "lastUpdated": "2024-09-25",
-    "googleScholarProfile": "https://scholar.google.com/citations?user=EXAMPLE",
+    "googleScholarProfile": "https://scholar.google.com/citations?user=YOUR_ACTUAL_ID",
     "overview": {
-      "totalCitations": 287,
-      "hIndex": 9,
-      "i10Index": 8,
+      "totalCitations": 227,
+      "hIndex": 10,
+      "i10Index": 10,
       "publications": 42
     },
     "topPapers": [

@@ -122,7 +122,10 @@
     "downloadCV": "Scarica CV"
   },
   "citationMetrics": {
-    "topPapers": "Pubblicazioni Più Citate"
+    "topPapers": "Pubblicazioni Più Citate",
+    "source": "Fonte:",
+    "googleScholar": "Profilo Google Scholar",
+    "lastUpdated": "Ultimo aggiornamento"
   },
   "badges": {
     "featured": "In Evidenza",

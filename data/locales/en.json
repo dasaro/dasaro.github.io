@@ -122,7 +122,10 @@
     "downloadCV": "Download CV"
   },
   "citationMetrics": {
-    "topPapers": "Most Cited Publications"
+    "topPapers": "Most Cited Publications",
+    "source": "Source:",
+    "googleScholar": "Google Scholar Profile",
+    "lastUpdated": "Last updated"
   },
   "badges": {
     "featured": "Featured",
