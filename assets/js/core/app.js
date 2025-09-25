@@ -46,11 +46,18 @@ class App {
             // Set up UI interactions
             this.setupUIInteractions();
 
+            // Hide loading spinner
+            this.hideLoading();
+
             this.isInitialized = true;
             this.log('Application initialized successfully');
 
         } catch (error) {
             this.log('ERROR: Application initialization failed:', error);
+
+            // Hide loading spinner on error
+            this.hideLoading();
+
             if (window.errorHandler) {
                 window.errorHandler.handleError(error, 'App Initialization', true);
             }
@@ -493,6 +500,28 @@ class App {
                 errorDiv.parentNode.removeChild(errorDiv);
             }
         }, 10000);
+    }
+
+    /**
+     * Show loading spinner
+     */
+    showLoading() {
+        const loading = document.getElementById('loading');
+        if (loading) {
+            loading.classList.remove('hidden');
+            loading.style.display = 'flex';
+        }
+    }
+
+    /**
+     * Hide loading spinner
+     */
+    hideLoading() {
+        const loading = document.getElementById('loading');
+        if (loading) {
+            loading.classList.add('hidden');
+            loading.style.display = 'none';
+        }
     }
 
     /**
