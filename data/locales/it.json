@@ -146,6 +146,8 @@
     "title": "Pannello Admin",
     "subtitle": "Gestione Contenuti",
     "save": "Salva Modifiche",
+    "export": "Esporta Dati",
+    "viewSite": "Visualizza Sito",
     "cancel": "Annulla",
     "add": "Aggiungi Nuovo",
     "edit": "Modifica",

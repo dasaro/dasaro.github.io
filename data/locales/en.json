@@ -146,6 +146,8 @@
     "title": "Admin Panel",
     "subtitle": "Content Management",
     "save": "Save Changes",
+    "export": "Export Data",
+    "viewSite": "View Site",
     "cancel": "Cancel",
     "add": "Add New",
     "edit": "Edit",

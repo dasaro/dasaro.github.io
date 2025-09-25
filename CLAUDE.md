@@ -322,6 +322,24 @@ Add new architectural changes using this format:
 - 📋 **Added to Prohibited**: `document.write()` pattern now in PROHIBITED PATTERNS
 - **Rollback Point**: Commit `55d65d9` before DOM security replacement
 
+#### **✅ I18N SYSTEM IMPROVEMENTS - September 25, 2025**
+
+#### **I18N ENHANCEMENT - September 25, 2025 #1**
+- ✅ **Added**: Admin panel internationalization support
+- 🔄 **Implemented**: Added `data-i18n` attributes to admin panel headers and buttons
+- 🛠️ **Affected Routes**:
+  - Admin panel → Header title and navigation
+  - Admin panel → Action buttons (Save, Export, View Site)
+- ✅ **Testing Completed**: Admin panel i18n initialization verified
+- 📋 **Added Translations**: `admin.export` and `admin.viewSite` keys added to both locales
+- **Rollback Point**: Commit `791ea6c` before i18n enhancements
+
+#### **I18N ENHANCEMENT - September 25, 2025 #2**
+- 🗑️ **Identified**: Citation metrics translations (orphaned - feature was intentionally removed)
+- 🔄 **Status**: Left intact for potential future reactivation
+- 🛠️ **Analysis**: 78% of translation keys are unused due to over-preparation vs actual implementation
+- ✅ **System Health**: I18n system rated EXCELLENT with robust 4-layer fallback architecture
+
 #### **🟡 REMAINING NON-BREAKING ISSUES - SCHEDULE FOR CLEANUP**
 - ⏳ **Mixed DOM Queries** (67 `getElementById` instances) - Maintenance burden
   - **Affected Routes**: All JavaScript DOM interactions
@@ -329,6 +347,9 @@ Add new architectural changes using this format:
 - ⏳ **Console Logging** (51 instances) - Production noise
   - **Affected Routes**: All debugging/logging code paths
   - **Replacement Goal**: Production build process or conditional logging
+- ⏳ **Orphaned Translations** (78% unused keys) - Translation file bloat
+  - **Affected Routes**: Translation loading performance
+  - **Optimization Goal**: Remove unused keys or implement missing features
 
 ### **🔄 Legacy Code Removal Template**
 

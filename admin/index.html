@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic Website - Admin Panel</title>
+    <title data-i18n="admin.title">Academic Website - Admin Panel</title>
 
     <!-- Security: Admin panel should only work on localhost -->
     <script>
@@ -100,23 +100,23 @@
         <div class="admin-header-content">
             <h1 class="admin-title">
                 <i class="fas fa-cog"></i>
-                Academic Website Admin
+                <span data-i18n="admin.title">Academic Website Admin</span>
             </h1>
 
             <div class="admin-actions">
                 <button id="save-all-btn" class="btn btn-primary">
                     <i class="fas fa-save"></i>
-                    Save All Changes
+                    <span data-i18n="admin.save">Save All Changes</span>
                 </button>
 
                 <button id="export-data-btn" class="btn btn-secondary">
                     <i class="fas fa-download"></i>
-                    Export Data
+                    <span data-i18n="admin.export">Export Data</span>
                 </button>
 
                 <a href="../index.html" class="btn btn-outline">
                     <i class="fas fa-external-link-alt"></i>
-                    View Site
+                    <span data-i18n="admin.viewSite">View Site</span>
                 </a>
             </div>
         </div>
@@ -602,5 +602,19 @@
     <script src="../assets/js/data-manager.js"></script>
     <script src="../assets/js/i18n.js"></script>
     <script src="assets/js/admin.js"></script>
+
+    <!-- Initialize i18n for admin panel -->
+    <script>
+        // Apply translations once i18n is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            // Wait for i18n to initialize, then apply admin translations
+            setTimeout(() => {
+                if (window.i18n) {
+                    window.i18n.applyTranslations();
+                    console.log('Admin panel translations applied');
+                }
+            }, 500);
+        });
+    </script>
 </body>
 </html>
