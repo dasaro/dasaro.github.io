@@ -65,35 +65,317 @@ class SupervisedStudentsPage {
     renderStudentsGrid(students) {
         this.log('Rendering students grid with', students.length, 'items');
 
-        const studentsGrid = document.querySelector('#supervised-students .students-grid');
-        if (!studentsGrid) {
-            this.log('ERROR: Students grid container not found');
+        const container = document.querySelector('#supervised-students .section-content');
+        if (!container) {
+            this.log('ERROR: Supervised students container not found');
             return;
         }
 
-        studentsGrid.innerHTML = '';
+        container.innerHTML = '';
 
         if (!students || students.length === 0) {
-            this.renderEmptyState(studentsGrid);
+            container.innerHTML = '<p class="no-data">No supervised students data available.</p>';
             return;
         }
 
-        // Group students by status and sort
-        const groupedStudents = this.groupAndSortStudents(students);
+        // Create enhanced section header
+        const sectionHeader = document.createElement('div');
+        sectionHeader.className = 'section-header-enhanced';
 
-        // Render each group
-        Object.entries(groupedStudents).forEach(([status, studentList]) => {
-            if (studentList.length > 0) {
-                const section = this.createStudentSection(status, studentList);
-                studentsGrid.appendChild(section);
-            }
+        const icon = document.createElement('div');
+        icon.className = 'academic-icon academic-icon-primary';
+        icon.innerHTML = '<i class="fas fa-user-graduate"></i>';
+
+        sectionHeader.appendChild(icon);
+        container.appendChild(sectionHeader);
+
+        // Create stats section
+        const statsSection = this.createStudentStats(students);
+        container.appendChild(statsSection);
+
+        // Sort students by start date (most recent first)
+        const sortedStudents = [...students].sort((a, b) => {
+            const dateA = new Date(a.startDate || '1900-01-01');
+            const dateB = new Date(b.startDate || '1900-01-01');
+            return dateB.getTime() - dateA.getTime();
         });
 
+        // Create enhanced students grid (no grouping)
+        const grid = document.createElement('div');
+        grid.className = 'supervised-students-grid activity-grid';
+
+        sortedStudents.forEach(student => {
+            const studentCard = this.createEnhancedStudentCard(student);
+            grid.appendChild(studentCard);
+        });
+
+        container.appendChild(grid);
         this.log('Students grid rendered successfully');
     }
 
     /**
-     * Group and sort students
+     * Create student statistics
+     */
+    createStudentStats(students) {
+        const statsContainer = document.createElement('div');
+        statsContainer.className = 'stats-grid';
+
+        // Calculate stats
+        const totalStudents = students.length;
+        const currentStudents = students.filter(s => s.status?.toLowerCase() === 'current' || s.current).length;
+        const graduatedStudents = students.filter(s => s.status?.toLowerCase() === 'completed' || s.status?.toLowerCase() === 'graduated').length;
+
+        const totalStat = this.createStatItem(totalStudents, 'Students');
+        const currentStat = this.createStatItem(currentStudents, 'Current');
+        const graduatedStat = this.createStatItem(graduatedStudents, 'Graduated');
+
+        statsContainer.appendChild(totalStat);
+        statsContainer.appendChild(currentStat);
+        statsContainer.appendChild(graduatedStat);
+
+        return statsContainer;
+    }
+
+    /**
+     * Create stat item
+     */
+    createStatItem(number, label) {
+        const statItem = document.createElement('div');
+        statItem.className = 'stat-item';
+
+        const statNumber = document.createElement('span');
+        statNumber.className = 'stat-number';
+        statNumber.textContent = number;
+
+        const statLabel = document.createElement('span');
+        statLabel.className = 'stat-label';
+        statLabel.textContent = label;
+
+        statItem.appendChild(statNumber);
+        statItem.appendChild(statLabel);
+
+        return statItem;
+    }
+
+    /**
+     * Create enhanced student card
+     */
+    createEnhancedStudentCard(student) {
+        const card = document.createElement('div');
+        card.className = 'academic-card animate-fade-in';
+
+        // Card header
+        const cardHeader = document.createElement('div');
+        cardHeader.className = 'academic-card-header';
+
+        const cardTitle = document.createElement('h3');
+        cardTitle.className = 'academic-card-title';
+        cardTitle.textContent = student.name || 'Student Name';
+
+        const cardMeta = document.createElement('div');
+        cardMeta.className = 'academic-card-meta';
+
+        // Add level badge
+        if (student.level) {
+            const levelBadge = document.createElement('span');
+            levelBadge.className = 'badge-enhanced badge-primary';
+            levelBadge.innerHTML = `<i class="fas fa-graduation-cap"></i> ${student.level}`;
+            cardMeta.appendChild(levelBadge);
+        }
+
+        // Add status badge
+        if (student.status) {
+            const statusBadge = document.createElement('span');
+            statusBadge.className = `badge-enhanced ${this.getStatusBadgeClass(student.status)}`;
+            statusBadge.innerHTML = `<i class="${this.getStatusIcon(student.status)}"></i> ${student.status}`;
+            cardMeta.appendChild(statusBadge);
+        }
+
+        // Add other badges
+        if (student.badges && student.badges.length > 0) {
+            student.badges.forEach(badge => {
+                const badgeElement = this.createEnhancedBadge(badge);
+                cardMeta.appendChild(badgeElement);
+            });
+        }
+
+        cardHeader.appendChild(cardTitle);
+        cardHeader.appendChild(cardMeta);
+
+        // Card body
+        const cardBody = document.createElement('div');
+        cardBody.className = 'academic-card-body';
+
+        // Period
+        const startDate = window.SharedUtils?.formatDate(student.startDate) || student.startDate;
+        const endDate = student.current || student.status?.toLowerCase() === 'current' ?
+            'Present' : (window.SharedUtils?.formatDate(student.endDate) || student.endDate);
+
+        if (startDate || endDate) {
+            const period = document.createElement('div');
+            period.className = 'list-item-description';
+            period.innerHTML = `<i class="fas fa-calendar-alt"></i> ${startDate}${endDate ? ` - ${endDate}` : ''}`;
+            cardBody.appendChild(period);
+        }
+
+        // Institution/Affiliation
+        if (student.institution || student.affiliation) {
+            const institution = document.createElement('div');
+            institution.className = 'list-item-description';
+            institution.innerHTML = `<i class="fas fa-university"></i> ${student.institution || student.affiliation}`;
+            cardBody.appendChild(institution);
+        }
+
+        // Thesis/Project title
+        const thesisTitle = student.thesis?.title || student.project?.title;
+        if (thesisTitle) {
+            const thesisDiv = document.createElement('div');
+            thesisDiv.className = 'list-item-title';
+            thesisDiv.innerHTML = `<i class="fas fa-book"></i> ${thesisTitle}`;
+            cardBody.appendChild(thesisDiv);
+        }
+
+        // Description
+        const description = student.thesis?.description || student.project?.description || student.description;
+        if (description) {
+            const descriptionDiv = document.createElement('div');
+            descriptionDiv.className = 'list-item-description';
+            descriptionDiv.textContent = description;
+            cardBody.appendChild(descriptionDiv);
+        }
+
+        // Current position (for graduated students)
+        if (student.currentPosition && (student.status?.toLowerCase() === 'completed' || student.status?.toLowerCase() === 'graduated')) {
+            const currentPos = document.createElement('div');
+            currentPos.className = 'list-item-description';
+            let positionText = `<i class="fas fa-briefcase"></i> Current: ${student.currentPosition}`;
+            if (student.currentInstitution) {
+                positionText += ` at ${student.currentInstitution}`;
+            }
+            currentPos.innerHTML = positionText;
+            cardBody.appendChild(currentPos);
+        }
+
+        // Achievements
+        if (student.achievements && student.achievements.length > 0) {
+            const achievementsTitle = document.createElement('h4');
+            achievementsTitle.className = 'list-item-title';
+            achievementsTitle.innerHTML = '<i class="fas fa-trophy"></i> Achievements';
+
+            const achievementsList = document.createElement('ul');
+            achievementsList.className = 'student-achievements-list';
+            student.achievements.forEach(achievement => {
+                const achItem = document.createElement('li');
+                achItem.textContent = achievement;
+                achievementsList.appendChild(achItem);
+            });
+
+            cardBody.appendChild(achievementsTitle);
+            cardBody.appendChild(achievementsList);
+        }
+
+        // Publications
+        if (student.publications && student.publications.length > 0) {
+            const publicationsTitle = document.createElement('h4');
+            publicationsTitle.className = 'list-item-title';
+            publicationsTitle.innerHTML = '<i class="fas fa-file-alt"></i> Publications';
+
+            const publicationsList = document.createElement('ul');
+            publicationsList.className = 'student-publications-list';
+            student.publications.forEach(publication => {
+                const pubItem = document.createElement('li');
+                pubItem.textContent = publication;
+                publicationsList.appendChild(pubItem);
+            });
+
+            cardBody.appendChild(publicationsTitle);
+            cardBody.appendChild(publicationsList);
+        }
+
+        card.appendChild(cardHeader);
+        card.appendChild(cardBody);
+
+        return card;
+    }
+
+    /**
+     * Get status badge class
+     */
+    getStatusBadgeClass(status) {
+        const statusClasses = {
+            'current': 'badge-success',
+            'ongoing': 'badge-success',
+            'completed': 'badge-info',
+            'graduated': 'badge-info',
+            'paused': 'badge-warning',
+            'dropped': 'badge-secondary'
+        };
+        return statusClasses[status?.toLowerCase()] || 'badge-light';
+    }
+
+    /**
+     * Get status icon
+     */
+    getStatusIcon(status) {
+        const statusIcons = {
+            'current': 'fas fa-play',
+            'ongoing': 'fas fa-play',
+            'completed': 'fas fa-check',
+            'graduated': 'fas fa-check',
+            'paused': 'fas fa-pause',
+            'dropped': 'fas fa-times'
+        };
+        return statusIcons[status?.toLowerCase()] || 'fas fa-info-circle';
+    }
+
+    /**
+     * Create enhanced badge
+     */
+    createEnhancedBadge(badgeName) {
+        const badge = document.createElement('span');
+        badge.className = `badge-enhanced ${this.getBadgeClass(badgeName)}`;
+
+        const icon = document.createElement('i');
+        icon.className = this.getBadgeIcon(badgeName);
+
+        badge.appendChild(icon);
+        badge.appendChild(document.createTextNode(badgeName));
+
+        return badge;
+    }
+
+    /**
+     * Get badge class for styling
+     */
+    getBadgeClass(badgeName) {
+        const badgeClasses = {
+            'award': 'badge-warning',
+            'published': 'badge-success',
+            'excellence': 'badge-primary',
+            'scholarship': 'badge-info',
+            'honor': 'badge-warning',
+            'distinction': 'badge-primary'
+        };
+        return badgeClasses[badgeName?.toLowerCase()] || 'badge-light';
+    }
+
+    /**
+     * Get badge icon
+     */
+    getBadgeIcon(badgeName) {
+        const badgeIcons = {
+            'award': 'fas fa-trophy',
+            'published': 'fas fa-file-alt',
+            'excellence': 'fas fa-star',
+            'scholarship': 'fas fa-graduation-cap',
+            'honor': 'fas fa-medal',
+            'distinction': 'fas fa-award'
+        };
+        return badgeIcons[badgeName?.toLowerCase()] || 'fas fa-tag';
+    }
+
+    /**
+     * Group and sort students (legacy method - keeping for compatibility)
      * @param {Array} students - Students array
      * @returns {Object} Grouped students
      */
