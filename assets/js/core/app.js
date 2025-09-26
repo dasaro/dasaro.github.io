@@ -920,55 +920,54 @@ class App {
 
         let currentSection = null;
 
-        // Create intersection observer for sections
-        const observerOptions = {
-            rootMargin: '-80px 0px -70% 0px',
-            threshold: [0, 0.1]
-        };
-
-        const observer = new IntersectionObserver((entries) => {
+        // Create intersection observer for section headers
+        const headerObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const section = entry.target;
-                    const sectionId = section.getAttribute('id');
-                    const header = section.querySelector('.section-header');
+                const section = entry.target.closest('.content-section');
+                const sectionId = section?.getAttribute('id');
 
-                    if (header && sectionId !== currentSection) {
+                if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+                    // Header scrolled above viewport - show sticky header
+                    // But only if we're not at the top of the page
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    if (section && sectionId !== currentSection && scrollTop > 100) {
                         currentSection = sectionId;
+                        const header = section.querySelector('.section-header');
 
-                        // Get section title and icon
-                        const title = header.querySelector('h2')?.textContent || '';
-                        const icon = header.querySelector('.section-icon i');
-                        const iconClass = icon ? icon.className : 'fas fa-circle';
-                        const iconWrapperClass = header.querySelector('.section-icon')?.className || 'section-icon academic-icon';
+                        if (header) {
+                            // Get section title and icon
+                            const title = header.querySelector('h2')?.textContent || '';
+                            const icon = header.querySelector('.section-icon i');
+                            const iconClass = icon ? icon.className : 'fas fa-circle';
+                            const iconWrapperClass = header.querySelector('.section-icon')?.className || 'section-icon academic-icon';
 
-                        // Add transition class for smooth animation
-                        stickyContainer.classList.add('transitioning');
+                            // Add transition class for smooth animation
+                            stickyContainer.classList.add('transitioning');
 
-                        // Small delay for transition effect
-                        setTimeout(() => {
-                            // Update sticky header content
-                            stickyContainer.innerHTML = `
-                                <div class="sticky-header-content">
-                                    <div class="${iconWrapperClass} sticky-icon">
-                                        <i class="${iconClass}"></i>
-                                    </div>
-                                    <h3 class="sticky-title">${title}</h3>
-                                </div>
-                            `;
-
-                            // Remove transition class after content update
+                            // Small delay for transition effect
                             setTimeout(() => {
-                                stickyContainer.classList.remove('transitioning');
-                            }, 50);
-                        }, 150);
+                                // Update sticky header content
+                                stickyContainer.innerHTML = `
+                                    <div class="sticky-header-content">
+                                        <div class="${iconWrapperClass} sticky-icon">
+                                            <i class="${iconClass}"></i>
+                                        </div>
+                                        <h3 class="sticky-title">${title}</h3>
+                                    </div>
+                                `;
 
-                        stickyContainer.style.display = 'block';
-                        stickyContainer.classList.add('visible');
+                                // Remove transition class after content update
+                                setTimeout(() => {
+                                    stickyContainer.classList.remove('transitioning');
+                                }, 50);
+                            }, 150);
+
+                            stickyContainer.style.display = 'block';
+                            stickyContainer.classList.add('visible');
+                        }
                     }
-                } else if (!entry.isIntersecting && entry.boundingClientRect.top > 0) {
-                    // Section is below viewport, hide sticky header
-                    const sectionId = entry.target.getAttribute('id');
+                } else if (entry.isIntersecting) {
+                    // Header is visible - hide sticky header
                     if (sectionId === currentSection) {
                         stickyContainer.classList.remove('visible');
                         setTimeout(() => {
@@ -980,11 +979,14 @@ class App {
                     }
                 }
             });
-        }, observerOptions);
+        }, {
+            rootMargin: '0px',
+            threshold: [0, 1]
+        });
 
-        // Observe all content sections
-        document.querySelectorAll('.content-section').forEach(section => {
-            observer.observe(section);
+        // Observe all section headers
+        document.querySelectorAll('.content-section .section-header').forEach(header => {
+            headerObserver.observe(header);
         });
 
         // Watch for sidebar toggle to adjust sticky header position
@@ -1010,6 +1012,20 @@ class App {
                 stickyContainer.style.left = '300px';
             } else {
                 stickyContainer.style.left = '0';
+            }
+        });
+
+        // Hide sticky header when at the very top of the page
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop <= 50) {
+                stickyContainer.classList.remove('visible');
+                setTimeout(() => {
+                    if (!stickyContainer.classList.contains('visible')) {
+                        stickyContainer.style.display = 'none';
+                    }
+                }, 300);
+                currentSection = null;
             }
         });
 
