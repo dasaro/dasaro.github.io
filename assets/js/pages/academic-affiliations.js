@@ -52,12 +52,44 @@ class AcademicAffiliationsPage {
             return;
         }
 
-        // Create affiliations grid
+        // Create enhanced section header
+        const sectionHeader = document.createElement('div');
+        sectionHeader.className = 'section-header-enhanced';
+
+        const icon = document.createElement('div');
+        icon.className = 'academic-icon academic-icon-success';
+        icon.innerHTML = '<i class="fas fa-university"></i>';
+
+        const title = document.createElement('h2');
+        title.textContent = 'Academic Affiliations';
+
+        sectionHeader.appendChild(icon);
+        sectionHeader.appendChild(title);
+        container.appendChild(sectionHeader);
+
+        // Create stats section
+        const statsSection = document.createElement('div');
+        statsSection.className = 'stats-grid';
+
+        const totalStat = document.createElement('div');
+        totalStat.className = 'stat-item';
+        totalStat.innerHTML = `<span class="stat-number">${this.data.length}</span><span class="stat-label">Affiliations</span>`;
+
+        const societies = [...new Set(this.data.map(aff => aff.type || 'Society'))].length;
+        const typesStat = document.createElement('div');
+        typesStat.className = 'stat-item';
+        typesStat.innerHTML = `<span class="stat-number">${societies}</span><span class="stat-label">Types</span>`;
+
+        statsSection.appendChild(totalStat);
+        statsSection.appendChild(typesStat);
+        container.appendChild(statsSection);
+
+        // Create enhanced affiliations grid
         const grid = document.createElement('div');
-        grid.className = 'academic-affiliations-grid';
+        grid.className = 'academic-affiliations-grid activity-grid';
 
         this.data.forEach(affiliation => {
-            const affiliationCard = this.createAffiliationCard(affiliation);
+            const affiliationCard = this.createEnhancedAffiliationCard(affiliation);
             grid.appendChild(affiliationCard);
         });
 
@@ -66,7 +98,108 @@ class AcademicAffiliationsPage {
     }
 
     /**
-     * Create individual affiliation card
+     * Create enhanced affiliation card
+     */
+    createEnhancedAffiliationCard(affiliation) {
+        const card = document.createElement('div');
+        card.className = 'academic-card animate-fade-in';
+
+        // Card header
+        const cardHeader = document.createElement('div');
+        cardHeader.className = 'academic-card-header';
+
+        const cardTitle = document.createElement('h3');
+        cardTitle.className = 'academic-card-title';
+        cardTitle.textContent = affiliation.name || 'Organization';
+
+        const cardMeta = document.createElement('div');
+        cardMeta.className = 'academic-card-meta';
+
+        // Add type badge
+        if (affiliation.type) {
+            const typeBadge = document.createElement('span');
+            typeBadge.className = 'badge-enhanced badge-primary';
+            typeBadge.innerHTML = `<i class="fas fa-tag"></i> ${affiliation.type}`;
+            cardMeta.appendChild(typeBadge);
+        }
+
+        // Add date badge
+        if (affiliation.since) {
+            const dateBadge = document.createElement('span');
+            dateBadge.className = 'badge-enhanced badge-info';
+            dateBadge.innerHTML = `<i class="fas fa-calendar-alt"></i> Since ${affiliation.since}`;
+            cardMeta.appendChild(dateBadge);
+        }
+
+        // Add other badges
+        if (affiliation.badges) {
+            affiliation.badges.forEach(badge => {
+                const badgeElement = this.createEnhancedBadge(badge);
+                cardMeta.appendChild(badgeElement);
+            });
+        }
+
+        cardHeader.appendChild(cardTitle);
+        cardHeader.appendChild(cardMeta);
+
+        // Card body
+        const cardBody = document.createElement('div');
+        cardBody.className = 'academic-card-body';
+
+        // English name
+        if (affiliation.nameEnglish) {
+            const nameEnglish = document.createElement('div');
+            nameEnglish.className = 'list-item-subtitle';
+            nameEnglish.innerHTML = `<i class="fas fa-globe"></i> ${affiliation.nameEnglish}`;
+            cardBody.appendChild(nameEnglish);
+        }
+
+        // Description
+        if (affiliation.description) {
+            const description = document.createElement('div');
+            description.className = 'list-item-description';
+            description.textContent = affiliation.description;
+            cardBody.appendChild(description);
+        }
+
+        // Focus areas
+        if (affiliation.focusAreas && affiliation.focusAreas.length > 0) {
+            const focusTitle = document.createElement('h4');
+            focusTitle.className = 'list-item-title';
+            focusTitle.innerHTML = '<i class="fas fa-bullseye"></i> Focus Areas:';
+
+            const focusAreas = document.createElement('div');
+            focusAreas.className = 'focus-areas';
+
+            affiliation.focusAreas.forEach(area => {
+                const focusTag = document.createElement('span');
+                focusTag.className = 'focus-tag';
+                focusTag.textContent = area;
+                focusAreas.appendChild(focusTag);
+            });
+
+            cardBody.appendChild(focusTitle);
+            cardBody.appendChild(focusAreas);
+        }
+
+        card.appendChild(cardHeader);
+        card.appendChild(cardBody);
+
+        return card;
+    }
+
+    /**
+     * Create enhanced badge
+     */
+    createEnhancedBadge(badgeName) {
+        const badge = document.createElement('span');
+        badge.className = `badge-enhanced badge-light`;
+        badge.innerHTML = `<i class="fas fa-star"></i> ${badgeName}`;
+        return badge;
+    }
+
+    /**
+     * Create individual affiliation card (legacy method - keeping for compatibility)
      */
     createAffiliationCard(affiliation) {
         const card = document.createElement('div');

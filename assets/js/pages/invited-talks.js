@@ -52,6 +52,44 @@ class InvitedTalksPage {
             return;
         }
 
+        // Create enhanced section header
+        const sectionHeader = document.createElement('div');
+        sectionHeader.className = 'section-header-enhanced';
+
+        const icon = document.createElement('div');
+        icon.className = 'academic-icon academic-icon-warning';
+        icon.innerHTML = '<i class="fas fa-microphone-alt"></i>';
+
+        const title = document.createElement('h2');
+        title.textContent = 'Invited Talks';
+
+        sectionHeader.appendChild(icon);
+        sectionHeader.appendChild(title);
+        container.appendChild(sectionHeader);
+
+        // Create stats section
+        const statsSection = document.createElement('div');
+        statsSection.className = 'stats-grid';
+
+        const totalStat = document.createElement('div');
+        totalStat.className = 'stat-item';
+        totalStat.innerHTML = `<span class="stat-number">${this.data.length}</span><span class="stat-label">Talks</span>`;
+
+        const institutions = [...new Set(this.data.map(talk => talk.institution))].length;
+        const institutionsStat = document.createElement('div');
+        institutionsStat.className = 'stat-item';
+        institutionsStat.innerHTML = `<span class="stat-number">${institutions}</span><span class="stat-label">Institutions</span>`;
+
+        const countries = [...new Set(this.data.map(talk => talk.location).filter(loc => loc))].length;
+        const countriesStat = document.createElement('div');
+        countriesStat.className = 'stat-item';
+        countriesStat.innerHTML = `<span class="stat-number">${countries}</span><span class="stat-label">Locations</span>`;
+
+        statsSection.appendChild(totalStat);
+        statsSection.appendChild(institutionsStat);
+        statsSection.appendChild(countriesStat);
+        container.appendChild(statsSection);
+
         // Sort talks by date (newest first)
         const sortedTalks = [...this.data].sort((a, b) => {
             const dateA = new Date(a.date || a.year || '1900');
@@ -59,21 +97,124 @@ class InvitedTalksPage {
             return dateB - dateA;
         });
 
-        // Create timeline container
-        const timeline = document.createElement('div');
-        timeline.className = 'talks-timeline';
+        // Create enhanced talks grid
+        const grid = document.createElement('div');
+        grid.className = 'invited-talks-grid activity-grid';
 
-        sortedTalks.forEach((talk, index) => {
-            const talkElement = this.createTalkElement(talk, index);
-            timeline.appendChild(talkElement);
+        sortedTalks.forEach(talk => {
+            const talkCard = this.createEnhancedTalkCard(talk);
+            grid.appendChild(talkCard);
         });
 
-        container.appendChild(timeline);
+        container.appendChild(grid);
         this.log('Invited talks section rendered successfully');
     }
 
     /**
-     * Create individual talk element
+     * Create enhanced talk card
+     */
+    createEnhancedTalkCard(talk) {
+        const card = document.createElement('div');
+        card.className = 'academic-card animate-fade-in';
+
+        // Card header
+        const cardHeader = document.createElement('div');
+        cardHeader.className = 'academic-card-header';
+
+        const cardTitle = document.createElement('h3');
+        cardTitle.className = 'academic-card-title';
+        cardTitle.textContent = talk.title || 'Talk Title';
+
+        const cardMeta = document.createElement('div');
+        cardMeta.className = 'academic-card-meta';
+
+        // Add date badge
+        if (talk.date) {
+            const dateBadge = document.createElement('span');
+            dateBadge.className = 'badge-enhanced badge-info';
+            const formattedDate = window.SharedUtils ?
+                window.SharedUtils.formatDate(talk.date) :
+                this.formatDate(talk.date);
+            dateBadge.innerHTML = `<i class="fas fa-calendar-alt"></i> ${formattedDate}`;
+            cardMeta.appendChild(dateBadge);
+        }
+
+        // Add type badge
+        if (talk.type) {
+            const typeBadge = document.createElement('span');
+            typeBadge.className = 'badge-enhanced badge-primary';
+            typeBadge.innerHTML = `<i class="fas fa-tag"></i> ${talk.type}`;
+            cardMeta.appendChild(typeBadge);
+        }
+
+        // Add other badges
+        if (talk.badges) {
+            talk.badges.forEach(badge => {
+                const badgeElement = this.createEnhancedBadge(badge);
+                cardMeta.appendChild(badgeElement);
+            });
+        }
+
+        cardHeader.appendChild(cardTitle);
+        cardHeader.appendChild(cardMeta);
+
+        // Card body
+        const cardBody = document.createElement('div');
+        cardBody.className = 'academic-card-body';
+
+        // Institution
+        if (talk.institution) {
+            const institution = document.createElement('div');
+            institution.className = 'list-item-subtitle';
+            institution.innerHTML = `<i class="fas fa-university"></i> ${talk.institution}`;
+            if (talk.department) {
+                institution.innerHTML += ` - ${talk.department}`;
+            }
+            cardBody.appendChild(institution);
+        }
+
+        // Location
+        if (talk.location) {
+            const location = document.createElement('div');
+            location.className = 'list-item-description';
+            location.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${talk.location}`;
+            cardBody.appendChild(location);
+        }
+
+        // Audience
+        if (talk.audience) {
+            const audience = document.createElement('div');
+            audience.className = 'list-item-description';
+            audience.innerHTML = `<i class="fas fa-users"></i> Audience: ${talk.audience}`;
+            cardBody.appendChild(audience);
+        }
+
+        // Abstract or description
+        if (talk.abstract || talk.description) {
+            const abstract = document.createElement('div');
+            abstract.className = 'list-item-description';
+            abstract.textContent = talk.abstract || talk.description;
+            cardBody.appendChild(abstract);
+        }
+
+        card.appendChild(cardHeader);
+        card.appendChild(cardBody);
+
+        return card;
+    }
+
+    /**
+     * Create enhanced badge
+     */
+    createEnhancedBadge(badgeName) {
+        const badge = document.createElement('span');
+        badge.className = `badge-enhanced badge-light`;
+        badge.innerHTML = `<i class="fas fa-star"></i> ${badgeName}`;
+        return badge;
+    }
+
+    /**
+     * Create individual talk element (legacy method - keeping for compatibility)
      */
     createTalkElement(talk, index) {
         const element = document.createElement('div');

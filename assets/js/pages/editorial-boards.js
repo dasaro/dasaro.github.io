@@ -52,6 +52,44 @@ class EditorialBoardsPage {
             return;
         }
 
+        // Create enhanced section header
+        const sectionHeader = document.createElement('div');
+        sectionHeader.className = 'section-header-enhanced';
+
+        const icon = document.createElement('div');
+        icon.className = 'academic-icon academic-icon-primary';
+        icon.innerHTML = '<i class="fas fa-edit"></i>';
+
+        const title = document.createElement('h2');
+        title.textContent = 'Editorial Boards';
+
+        sectionHeader.appendChild(icon);
+        sectionHeader.appendChild(title);
+        container.appendChild(sectionHeader);
+
+        // Create stats section
+        const statsSection = document.createElement('div');
+        statsSection.className = 'stats-grid';
+
+        const totalStat = document.createElement('div');
+        totalStat.className = 'stat-item';
+        totalStat.innerHTML = `<span class="stat-number">${this.data.length}</span><span class="stat-label">Positions</span>`;
+
+        const journals = [...new Set(this.data.map(board => board.journal))].length;
+        const journalsStat = document.createElement('div');
+        journalsStat.className = 'stat-item';
+        journalsStat.innerHTML = `<span class="stat-number">${journals}</span><span class="stat-label">Journals</span>`;
+
+        const activeStat = document.createElement('div');
+        activeStat.className = 'stat-item';
+        const activeCount = this.data.filter(board => !board.endDate || board.endDate.includes('Present')).length;
+        activeStat.innerHTML = `<span class="stat-number">${activeCount}</span><span class="stat-label">Active</span>`;
+
+        statsSection.appendChild(totalStat);
+        statsSection.appendChild(journalsStat);
+        statsSection.appendChild(activeStat);
+        container.appendChild(statsSection);
+
         // Sort by start date (newest first)
         const sortedBoards = [...this.data].sort((a, b) => {
             const dateA = new Date(a.startDate || '1900');
@@ -59,12 +97,12 @@ class EditorialBoardsPage {
             return dateB - dateA;
         });
 
-        // Create boards grid
+        // Create enhanced boards grid
         const grid = document.createElement('div');
-        grid.className = 'editorial-boards-grid';
+        grid.className = 'editorial-boards-grid activity-grid';
 
         sortedBoards.forEach(board => {
-            const boardCard = this.createBoardCard(board);
+            const boardCard = this.createEnhancedBoardCard(board);
             grid.appendChild(boardCard);
         });
 
@@ -73,7 +111,138 @@ class EditorialBoardsPage {
     }
 
     /**
-     * Create individual board card
+     * Create enhanced board card
+     */
+    createEnhancedBoardCard(board) {
+        const card = document.createElement('div');
+        card.className = 'academic-card animate-fade-in';
+
+        // Card header
+        const cardHeader = document.createElement('div');
+        cardHeader.className = 'academic-card-header';
+
+        const cardTitle = document.createElement('h3');
+        cardTitle.className = 'academic-card-title';
+        cardTitle.textContent = board.journal || 'Journal';
+
+        const cardMeta = document.createElement('div');
+        cardMeta.className = 'academic-card-meta';
+
+        // Add date range badge
+        const dateRange = this.formatDateRange(board.startDate, board.endDate);
+        if (dateRange) {
+            const dateBadge = document.createElement('span');
+            dateBadge.className = 'badge-enhanced badge-info';
+            dateBadge.innerHTML = `<i class="fas fa-calendar-alt"></i> ${dateRange}`;
+            cardMeta.appendChild(dateBadge);
+        }
+
+        // Add position badge
+        if (board.position) {
+            const positionBadge = document.createElement('span');
+            positionBadge.className = 'badge-enhanced badge-primary';
+            positionBadge.innerHTML = `<i class="fas fa-user-tie"></i> ${board.position}`;
+            cardMeta.appendChild(positionBadge);
+        }
+
+        // Add other badges
+        if (board.badges) {
+            board.badges.forEach(badge => {
+                const badgeElement = this.createEnhancedBadge(badge);
+                cardMeta.appendChild(badgeElement);
+            });
+        }
+
+        cardHeader.appendChild(cardTitle);
+        cardHeader.appendChild(cardMeta);
+
+        // Card body
+        const cardBody = document.createElement('div');
+        cardBody.className = 'academic-card-body';
+
+        // Publisher
+        if (board.publisher) {
+            const publisher = document.createElement('div');
+            publisher.className = 'list-item-subtitle';
+            publisher.innerHTML = `<i class="fas fa-building"></i> ${board.publisher}`;
+            cardBody.appendChild(publisher);
+        }
+
+        // Impact factor
+        if (board.impactFactor) {
+            const impact = document.createElement('div');
+            impact.className = 'list-item-description';
+            impact.innerHTML = `<i class="fas fa-chart-line"></i> Impact Factor: ${board.impactFactor}`;
+            cardBody.appendChild(impact);
+        }
+
+        // Description
+        if (board.description) {
+            const description = document.createElement('div');
+            description.className = 'list-item-description';
+            description.textContent = board.description;
+            cardBody.appendChild(description);
+        }
+
+        // Focus areas
+        if (board.focusAreas && board.focusAreas.length > 0) {
+            const focusTitle = document.createElement('h4');
+            focusTitle.className = 'list-item-title';
+            focusTitle.innerHTML = '<i class="fas fa-bullseye"></i> Focus Areas:';
+
+            const focusAreas = document.createElement('div');
+            focusAreas.className = 'focus-areas';
+
+            board.focusAreas.forEach(area => {
+                const focusTag = document.createElement('span');
+                focusTag.className = 'focus-tag';
+                focusTag.textContent = area;
+                focusAreas.appendChild(focusTag);
+            });
+
+            cardBody.appendChild(focusTitle);
+            cardBody.appendChild(focusAreas);
+        }
+
+        card.appendChild(cardHeader);
+        card.appendChild(cardBody);
+
+        return card;
+    }
+
+    /**
+     * Format date range
+     */
+    formatDateRange(startDate, endDate) {
+        if (!startDate && !endDate) return null;
+
+        const formatDate = (dateStr) => {
+            if (!dateStr) return '';
+            const date = new Date(dateStr);
+            return date.getFullYear().toString();
+        };
+
+        const start = formatDate(startDate);
+        const end = endDate && !endDate.includes('Present') ? formatDate(endDate) : 'Present';
+
+        if (start && end) {
+            return start === end ? start : `${start} - ${end}`;
+        }
+        return start || end;
+    }
+
+    /**
+     * Create enhanced badge
+     */
+    createEnhancedBadge(badgeName) {
+        const badge = document.createElement('span');
+        badge.className = `badge-enhanced badge-light`;
+        badge.innerHTML = `<i class="fas fa-tag"></i> ${badgeName}`;
+        return badge;
+    }
+
+    /**
+     * Create individual board card (legacy method - keeping for compatibility)
      */
     createBoardCard(board) {
         const card = document.createElement('div');

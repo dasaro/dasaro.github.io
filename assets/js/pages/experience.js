@@ -24,7 +24,23 @@ class ExperiencePage {
         }
 
         this.data = data;
-        this.renderExperienceTimeline(data.experience);
+
+        // Get the experience container
+        const experienceContainer = document.querySelector('#experience .section-content');
+        if (experienceContainer) {
+            // Clear existing content
+            experienceContainer.innerHTML = '';
+
+            // Create enhanced section header
+            const sectionHeader = this.createSectionHeader();
+            experienceContainer.appendChild(sectionHeader);
+
+            // Render enhanced timeline
+            this.renderEnhancedExperienceTimeline(data.experience, experienceContainer);
+        } else {
+            // Fallback to legacy rendering
+            this.renderExperienceTimeline(data.experience);
+        }
 
         this.log('Experience page rendered successfully');
     }
@@ -56,6 +72,283 @@ class ExperiencePage {
      */
     isVisible() {
         return true;
+    }
+
+    /**
+     * Create enhanced section header
+     */
+    createSectionHeader() {
+        const header = document.createElement('div');
+        header.className = 'section-header-enhanced';
+
+        const icon = document.createElement('div');
+        icon.className = 'academic-icon academic-icon-secondary';
+        icon.innerHTML = '<i class="fas fa-briefcase"></i>';
+
+        const title = document.createElement('h2');
+        title.textContent = 'Experience';
+
+        header.appendChild(icon);
+        header.appendChild(title);
+
+        return header;
+    }
+
+    /**
+     * Render enhanced experience timeline
+     */
+    renderEnhancedExperienceTimeline(experienceData, container) {
+        this.log('Rendering enhanced experience timeline');
+
+        // Create overall stats
+        const statsSection = this.createExperienceStats(experienceData);
+        container.appendChild(statsSection);
+
+        // Create timeline container
+        const timelineContainer = document.createElement('div');
+        timelineContainer.className = 'experience-timeline-enhanced';
+
+        // Sort experience data by start date (most recent first)
+        const sortedExperience = [...experienceData].sort((a, b) => {
+            const dateA = new Date(a.startDate || '1900-01-01');
+            const dateB = new Date(b.startDate || '1900-01-01');
+            return dateB.getTime() - dateA.getTime();
+        });
+
+        sortedExperience.forEach(exp => {
+            const experienceCard = this.createEnhancedExperienceCard(exp);
+            timelineContainer.appendChild(experienceCard);
+        });
+
+        container.appendChild(timelineContainer);
+    }
+
+    /**
+     * Create experience statistics
+     */
+    createExperienceStats(experienceData) {
+        const statsContainer = document.createElement('div');
+        statsContainer.className = 'stats-grid';
+
+        // Calculate stats
+        const totalPositions = experienceData.length;
+        const companies = [...new Set(experienceData.map(exp => exp.company))].length;
+        const currentPositions = experienceData.filter(exp => exp.current || !exp.endDate).length;
+
+        const positionsStat = this.createStatItem(totalPositions, 'Positions');
+        const companiesStat = this.createStatItem(companies, 'Organizations');
+        const currentStat = this.createStatItem(currentPositions, 'Current');
+
+        statsContainer.appendChild(positionsStat);
+        statsContainer.appendChild(companiesStat);
+        statsContainer.appendChild(currentStat);
+
+        return statsContainer;
+    }
+
+    /**
+     * Create stat item
+     */
+    createStatItem(number, label) {
+        const statItem = document.createElement('div');
+        statItem.className = 'stat-item';
+
+        const statNumber = document.createElement('span');
+        statNumber.className = 'stat-number';
+        statNumber.textContent = number;
+
+        const statLabel = document.createElement('span');
+        statLabel.className = 'stat-label';
+        statLabel.textContent = label;
+
+        statItem.appendChild(statNumber);
+        statItem.appendChild(statLabel);
+
+        return statItem;
+    }
+
+    /**
+     * Create enhanced experience card
+     */
+    createEnhancedExperienceCard(exp) {
+        const card = document.createElement('div');
+        card.className = 'academic-card animate-fade-in';
+
+        // Card header
+        const cardHeader = document.createElement('div');
+        cardHeader.className = 'academic-card-header';
+
+        const cardTitle = document.createElement('h3');
+        cardTitle.className = 'academic-card-title';
+        cardTitle.textContent = exp.position || exp.role || exp.title || 'Position';
+
+        const cardMeta = document.createElement('div');
+        cardMeta.className = 'academic-card-meta';
+
+        // Add date range badge
+        const formattedDateRange = window.SharedUtils ?
+            window.SharedUtils.formatDateRange(exp.startDate, exp.endDate, exp.current) :
+            this.formatDateRange(exp.startDate, exp.endDate, exp.current);
+
+        if (formattedDateRange) {
+            const dateBadge = document.createElement('span');
+            dateBadge.className = 'badge-enhanced badge-info';
+            dateBadge.innerHTML = `<i class="fas fa-calendar-alt"></i> ${formattedDateRange}`;
+            cardMeta.appendChild(dateBadge);
+        }
+
+        // Add current position badge
+        if (exp.current) {
+            const currentBadge = document.createElement('span');
+            currentBadge.className = 'badge-enhanced badge-success';
+            currentBadge.innerHTML = `<i class="fas fa-check-circle"></i> Current`;
+            cardMeta.appendChild(currentBadge);
+        }
+
+        // Add other badges
+        if (exp.badges) {
+            exp.badges.forEach(badge => {
+                const badgeElement = this.createEnhancedBadge(badge);
+                cardMeta.appendChild(badgeElement);
+            });
+        }
+
+        cardHeader.appendChild(cardTitle);
+        cardHeader.appendChild(cardMeta);
+
+        // Card body
+        const cardBody = document.createElement('div');
+        cardBody.className = 'academic-card-body';
+
+        // Company
+        if (exp.company) {
+            const company = document.createElement('div');
+            company.className = 'list-item-subtitle';
+            company.innerHTML = `<i class="fas fa-building"></i> ${exp.company}`;
+            cardBody.appendChild(company);
+        }
+
+        // Location
+        if (exp.location) {
+            const location = document.createElement('div');
+            location.className = 'list-item-description';
+            location.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${exp.location}`;
+            cardBody.appendChild(location);
+        }
+
+        // Description
+        if (exp.description) {
+            const description = document.createElement('div');
+            description.className = 'list-item-description';
+            description.textContent = exp.description;
+            cardBody.appendChild(description);
+        }
+
+        // Responsibilities
+        if (exp.responsibilities && exp.responsibilities.length > 0) {
+            const respTitle = document.createElement('h4');
+            respTitle.className = 'list-item-title';
+            respTitle.innerHTML = '<i class="fas fa-tasks"></i> Responsibilities';
+
+            const respList = document.createElement('ul');
+            respList.className = 'experience-details-list';
+            exp.responsibilities.forEach(resp => {
+                const respItem = document.createElement('li');
+                respItem.textContent = resp;
+                respList.appendChild(respItem);
+            });
+
+            cardBody.appendChild(respTitle);
+            cardBody.appendChild(respList);
+        }
+
+        // Achievements
+        if (exp.achievements && exp.achievements.length > 0) {
+            const achTitle = document.createElement('h4');
+            achTitle.className = 'list-item-title';
+            achTitle.innerHTML = '<i class="fas fa-trophy"></i> Achievements';
+
+            const achList = document.createElement('ul');
+            achList.className = 'experience-details-list';
+            exp.achievements.forEach(ach => {
+                const achItem = document.createElement('li');
+                achItem.textContent = ach;
+                achList.appendChild(achItem);
+            });
+
+            cardBody.appendChild(achTitle);
+            cardBody.appendChild(achList);
+        }
+
+        card.appendChild(cardHeader);
+        card.appendChild(cardBody);
+
+        return card;
+    }
+
+    /**
+     * Format date range
+     */
+    formatDateRange(startDate, endDate, current) {
+        if (!startDate && !endDate) return null;
+
+        const formatDate = (dateStr) => {
+            if (!dateStr) return '';
+            const date = new Date(dateStr);
+            return date.getFullYear().toString();
+        };
+
+        const start = formatDate(startDate);
+        const end = current || !endDate ? 'Present' : formatDate(endDate);
+
+        if (start && end) {
+            return start === end ? start : `${start} - ${end}`;
+        }
+        return start || end;
+    }
+
+    /**
+     * Create enhanced badge
+     */
+    createEnhancedBadge(badgeName) {
+        const badge = document.createElement('span');
+        badge.className = `badge-enhanced ${this.getBadgeClass(badgeName)}`;
+
+        const icon = document.createElement('i');
+        icon.className = this.getBadgeIcon(badgeName);
+
+        badge.appendChild(icon);
+        badge.appendChild(document.createTextNode(badgeName));
+
+        return badge;
+    }
+
+    /**
+     * Get badge class for styling
+     */
+    getBadgeClass(badgeName) {
+        const badgeClasses = {
+            'featured': 'badge-warning',
+            'recent': 'badge-success',
+            'highlight': 'badge-info',
+            'leadership': 'badge-primary',
+            'remote': 'badge-secondary'
+        };
+        return badgeClasses[badgeName] || 'badge-light';
+    }
+
+    /**
+     * Get badge icon
+     */
+    getBadgeIcon(badgeName) {
+        const badgeIcons = {
+            'featured': 'fas fa-star',
+            'recent': 'fas fa-clock',
+            'highlight': 'fas fa-bookmark',
+            'leadership': 'fas fa-crown',
+            'remote': 'fas fa-home'
+        };
+        return badgeIcons[badgeName] || 'fas fa-tag';
     }
 
     /**
