@@ -185,7 +185,14 @@ class SkillsPage {
 
         const name = document.createElement('h4');
         name.className = 'skill-name';
-        name.textContent = skill.name || 'Skill Name';
+
+        // Add icon if available
+        if (skill.icon) {
+            name.innerHTML = `<i class="${skill.icon}"></i> ${skill.name || 'Skill Name'}`;
+        } else {
+            name.textContent = skill.name || 'Skill Name';
+        }
+
         header.appendChild(name);
 
         // Badges

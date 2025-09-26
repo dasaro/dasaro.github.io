@@ -885,6 +885,11 @@ a:focus {
   font-size: var(--font-size-lg);
 }
 
+.skill-name i {
+  margin-right: 0.5rem;
+  color: var(--color-accent, #3498db);
+}
+
 .skill-badges {
   display: flex;
   gap: 0.5rem;
