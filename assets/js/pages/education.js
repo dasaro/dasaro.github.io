@@ -24,7 +24,23 @@ class EducationPage {
         }
 
         this.data = data;
-        this.renderEducationTimeline(data.education);
+
+        // Get the education container
+        const educationContainer = document.querySelector('#education .section-content');
+        if (educationContainer) {
+            // Clear existing content
+            educationContainer.innerHTML = '';
+
+            // Create enhanced section header
+            const sectionHeader = this.createSectionHeader();
+            educationContainer.appendChild(sectionHeader);
+
+            // Render enhanced timeline
+            this.renderEnhancedEducationTimeline(data.education, educationContainer);
+        } else {
+            // Fallback to legacy rendering
+            this.renderEducationTimeline(data.education);
+        }
 
         this.log('Education page rendered successfully');
     }
@@ -60,7 +76,249 @@ class EducationPage {
     }
 
     /**
-     * Render education timeline
+     * Create enhanced section header
+     */
+    createSectionHeader() {
+        const header = document.createElement('div');
+        header.className = 'section-header-enhanced';
+
+        const icon = document.createElement('div');
+        icon.className = 'academic-icon academic-icon-success';
+        icon.innerHTML = '<i class="fas fa-graduation-cap"></i>';
+
+        const title = document.createElement('h2');
+        title.textContent = 'Education';
+
+        header.appendChild(icon);
+        header.appendChild(title);
+
+        return header;
+    }
+
+    /**
+     * Render enhanced education timeline
+     */
+    renderEnhancedEducationTimeline(educationData, container) {
+        this.log('Rendering enhanced education timeline');
+
+        // Create overall stats
+        const statsSection = this.createEducationStats(educationData);
+        container.appendChild(statsSection);
+
+        // Create timeline container
+        const timelineContainer = document.createElement('div');
+        timelineContainer.className = 'education-timeline-enhanced';
+
+        // Sort education data by year (most recent first)
+        const sortedEducation = [...educationData].sort((a, b) => {
+            const yearA = parseInt(a.endDate?.split('-')[0] || a.year || 0);
+            const yearB = parseInt(b.endDate?.split('-')[0] || b.year || 0);
+            return yearB - yearA;
+        });
+
+        sortedEducation.forEach(edu => {
+            const educationCard = this.createEnhancedEducationCard(edu);
+            timelineContainer.appendChild(educationCard);
+        });
+
+        container.appendChild(timelineContainer);
+    }
+
+    /**
+     * Create education statistics
+     */
+    createEducationStats(educationData) {
+        const statsContainer = document.createElement('div');
+        statsContainer.className = 'stats-grid';
+
+        // Calculate stats
+        const totalDegrees = educationData.length;
+        const institutions = [...new Set(educationData.map(edu => edu.institution))].length;
+        const phdCount = educationData.filter(edu =>
+            edu.degree?.toLowerCase().includes('phd') ||
+            edu.degree?.toLowerCase().includes('doctorate')
+        ).length;
+
+        const degreesStat = this.createStatItem(totalDegrees, 'Degrees');
+        const institutionsStat = this.createStatItem(institutions, 'Institutions');
+        if (phdCount > 0) {
+            const phdStat = this.createStatItem(phdCount, 'Doctorate');
+            statsContainer.appendChild(degreesStat);
+            statsContainer.appendChild(institutionsStat);
+            statsContainer.appendChild(phdStat);
+        } else {
+            statsContainer.appendChild(degreesStat);
+            statsContainer.appendChild(institutionsStat);
+        }
+
+        return statsContainer;
+    }
+
+    /**
+     * Create stat item
+     */
+    createStatItem(number, label) {
+        const statItem = document.createElement('div');
+        statItem.className = 'stat-item';
+
+        const statNumber = document.createElement('span');
+        statNumber.className = 'stat-number';
+        statNumber.textContent = number;
+
+        const statLabel = document.createElement('span');
+        statLabel.className = 'stat-label';
+        statLabel.textContent = label;
+
+        statItem.appendChild(statNumber);
+        statItem.appendChild(statLabel);
+
+        return statItem;
+    }
+
+    /**
+     * Create enhanced education card
+     */
+    createEnhancedEducationCard(edu) {
+        const card = document.createElement('div');
+        card.className = 'academic-card animate-fade-in';
+
+        // Card header
+        const cardHeader = document.createElement('div');
+        cardHeader.className = 'academic-card-header';
+
+        const cardTitle = document.createElement('h3');
+        cardTitle.className = 'academic-card-title';
+        cardTitle.textContent = edu.degree || edu.title || 'Education';
+
+        const cardMeta = document.createElement('div');
+        cardMeta.className = 'academic-card-meta';
+
+        // Add date range badge
+        const dateRange = this.formatDateRange(edu.startDate, edu.endDate);
+        if (dateRange) {
+            const dateBadge = document.createElement('span');
+            dateBadge.className = 'badge-enhanced badge-info';
+            dateBadge.innerHTML = `<i class="fas fa-calendar-alt"></i> ${dateRange}`;
+            cardMeta.appendChild(dateBadge);
+        }
+
+        // Add other badges
+        if (edu.badges) {
+            edu.badges.forEach(badge => {
+                const badgeElement = this.createEnhancedBadge(badge);
+                cardMeta.appendChild(badgeElement);
+            });
+        }
+
+        cardHeader.appendChild(cardTitle);
+        cardHeader.appendChild(cardMeta);
+
+        // Card body
+        const cardBody = document.createElement('div');
+        cardBody.className = 'academic-card-body';
+
+        // Institution
+        if (edu.institution) {
+            const institution = document.createElement('div');
+            institution.className = 'list-item-subtitle';
+            institution.innerHTML = `<i class="fas fa-university"></i> ${edu.institution}`;
+            cardBody.appendChild(institution);
+        }
+
+        // Additional details
+        const details = [];
+        if (edu.supervisor) details.push(`<i class="fas fa-user-tie"></i> Supervisor: ${edu.supervisor}`);
+        if (edu.grade) details.push(`<i class="fas fa-award"></i> Grade: ${edu.grade}`);
+        if (edu.thesis) details.push(`<i class="fas fa-book"></i> Thesis: ${edu.thesis}`);
+
+        details.forEach(detail => {
+            const detailElement = document.createElement('div');
+            detailElement.className = 'list-item-description';
+            detailElement.innerHTML = detail;
+            cardBody.appendChild(detailElement);
+        });
+
+        // Description
+        if (edu.description) {
+            const description = document.createElement('div');
+            description.className = 'list-item-description';
+            description.textContent = edu.description;
+            cardBody.appendChild(description);
+        }
+
+        card.appendChild(cardHeader);
+        card.appendChild(cardBody);
+
+        return card;
+    }
+
+    /**
+     * Format date range
+     */
+    formatDateRange(startDate, endDate) {
+        if (!startDate && !endDate) return null;
+
+        const formatDate = (dateStr) => {
+            if (!dateStr) return '';
+            const date = new Date(dateStr);
+            return date.getFullYear().toString();
+        };
+
+        const start = formatDate(startDate);
+        const end = endDate ? formatDate(endDate) : 'Present';
+
+        if (start && end) {
+            return start === end ? start : `${start} - ${end}`;
+        }
+        return start || end;
+    }
+
+    /**
+     * Create enhanced badge
+     */
+    createEnhancedBadge(badgeName) {
+        const badge = document.createElement('span');
+        badge.className = `badge-enhanced ${this.getBadgeClass(badgeName)}`;
+
+        const icon = document.createElement('i');
+        icon.className = this.getBadgeIcon(badgeName);
+
+        badge.appendChild(icon);
+        badge.appendChild(document.createTextNode(badgeName));
+
+        return badge;
+    }
+
+    /**
+     * Get badge class for styling
+     */
+    getBadgeClass(badgeName) {
+        const badgeClasses = {
+            'featured': 'badge-warning',
+            'recent': 'badge-success',
+            'highlight': 'badge-info',
+            'completed': 'badge-primary',
+            'ongoing': 'badge-secondary'
+        };
+        return badgeClasses[badgeName] || 'badge-light';
+    }
+
+    /**
+     * Get badge icon
+     */
+    getBadgeIcon(badgeName) {
+        const badgeIcons = {
+            'featured': 'fas fa-star',
+            'recent': 'fas fa-clock',
+            'highlight': 'fas fa-bookmark',
+            'completed': 'fas fa-check-circle',
+            'ongoing': 'fas fa-play'
+        };
+        return badgeIcons[badgeName] || 'fas fa-tag';
+    }
+
+    /**
+     * Render education timeline (legacy method - keeping for compatibility)
      * @param {Array} education - Education data array
      */
     renderEducationTimeline(education) {

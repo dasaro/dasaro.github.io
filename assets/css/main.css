@@ -2290,3 +2290,115 @@ select:focus {
 .editorial-boards {
   /* Will be styled using the above classes */
 }
+
+/* Enhanced styling for existing sections */
+.about-content-enhanced {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-grid-enhanced {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .contact-grid-enhanced {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.contact-item-enhanced {
+  padding: 1rem !important;
+  margin-bottom: 0 !important;
+}
+
+.contact-link {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}
+
+.profile-info-enhanced {
+  flex: 1;
+}
+
+.profile-name-enhanced {
+  color: var(--text-primary) !important;
+  font-size: var(--font-size-xl) !important;
+}
+
+.profile-title-enhanced {
+  color: var(--text-secondary) !important;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.bio-text-enhanced {
+  font-size: var(--font-size-base);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+/* Timeline enhancements */
+.education-timeline-enhanced,
+.experience-timeline-enhanced {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Apply enhanced styling to existing sections that use cards */
+.reviewing-card,
+.talk-card,
+.group-card,
+.affiliation-card,
+.board-card {
+  background: var(--bg-primary);
+  border: 1px solid #e9ecef;
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.reviewing-card:hover,
+.talk-card:hover,
+.group-card:hover,
+.affiliation-card:hover,
+.board-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+}
+
+/* Ensure existing card headers have proper styling */
+.reviewing-card-header,
+.talk-card-header,
+.group-card-header,
+.affiliation-card-header,
+.board-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.reviewing-card-title,
+.talk-card-title,
+.group-card-title,
+.affiliation-card-title,
+.board-card-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.3;
+}

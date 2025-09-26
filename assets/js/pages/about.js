@@ -25,11 +25,32 @@ class AboutPage {
 
         this.data = data;
 
-        // Render personal information section
-        this.renderPersonalInfo(data.personalInfo);
+        // Get the about container
+        const aboutContainer = document.querySelector('#about .section-content');
+        if (aboutContainer) {
+            // Clear existing content
+            aboutContainer.innerHTML = '';
 
-        // Render contact information in About section
-        this.renderContactInfo(data.personalInfo);
+            // Create enhanced section header
+            const sectionHeader = this.createSectionHeader();
+            aboutContainer.appendChild(sectionHeader);
+
+            // Create about content container
+            const contentContainer = document.createElement('div');
+            contentContainer.className = 'about-content-enhanced';
+
+            // Render personal information section
+            this.renderEnhancedPersonalInfo(data.personalInfo, contentContainer);
+
+            // Render contact information in About section
+            this.renderEnhancedContactInfo(data.personalInfo, contentContainer);
+
+            aboutContainer.appendChild(contentContainer);
+        } else {
+            // Fallback to legacy rendering
+            this.renderPersonalInfo(data.personalInfo);
+            this.renderContactInfo(data.personalInfo);
+        }
 
         this.log('About page rendered successfully');
     }
@@ -66,7 +87,198 @@ class AboutPage {
     }
 
     /**
-     * Render personal information section
+     * Create enhanced section header
+     */
+    createSectionHeader() {
+        const header = document.createElement('div');
+        header.className = 'section-header-enhanced';
+
+        const icon = document.createElement('div');
+        icon.className = 'academic-icon academic-icon-primary';
+        icon.innerHTML = '<i class="fas fa-user"></i>';
+
+        const title = document.createElement('h2');
+        title.textContent = 'About Me';
+
+        header.appendChild(icon);
+        header.appendChild(title);
+
+        return header;
+    }
+
+    /**
+     * Render enhanced personal information section
+     */
+    renderEnhancedPersonalInfo(personalInfo, container) {
+        this.log('Rendering enhanced personal info:', personalInfo);
+
+        // Create bio card
+        const bioCard = document.createElement('div');
+        bioCard.className = 'academic-card animate-fade-in';
+
+        // Card header with name and title
+        const cardHeader = document.createElement('div');
+        cardHeader.className = 'academic-card-header';
+
+        const profileInfo = document.createElement('div');
+        profileInfo.className = 'profile-info-enhanced';
+
+        const name = document.createElement('h3');
+        name.className = 'academic-card-title profile-name-enhanced';
+        name.textContent = personalInfo.name || 'Academic Profile';
+
+        const title = document.createElement('p');
+        title.className = 'list-item-subtitle profile-title-enhanced';
+        title.textContent = personalInfo.title || 'Your Title';
+
+        profileInfo.appendChild(name);
+        profileInfo.appendChild(title);
+        cardHeader.appendChild(profileInfo);
+
+        // Card body with bio content
+        const cardBody = document.createElement('div');
+        cardBody.className = 'academic-card-body';
+
+        // Main bio
+        if (personalInfo.bio) {
+            const bioText = document.createElement('p');
+            bioText.className = 'list-item-description bio-text-enhanced';
+            bioText.textContent = personalInfo.bio;
+            cardBody.appendChild(bioText);
+        }
+
+        // Research interests
+        if (personalInfo.researchInterests && personalInfo.researchInterests.length > 0) {
+            const interestsTitle = document.createElement('h4');
+            interestsTitle.className = 'list-item-title';
+            interestsTitle.innerHTML = '<i class="fas fa-lightbulb"></i> Research Interests';
+
+            const focusAreas = document.createElement('div');
+            focusAreas.className = 'focus-areas';
+
+            personalInfo.researchInterests.forEach(interest => {
+                const interestTag = document.createElement('span');
+                interestTag.className = 'focus-tag';
+                interestTag.textContent = interest;
+                focusAreas.appendChild(interestTag);
+            });
+
+            cardBody.appendChild(interestsTitle);
+            cardBody.appendChild(focusAreas);
+        }
+
+        // Background information
+        if (personalInfo.background) {
+            const backgroundTitle = document.createElement('h4');
+            backgroundTitle.className = 'list-item-title';
+            backgroundTitle.innerHTML = '<i class="fas fa-info-circle"></i> Background';
+
+            const backgroundText = document.createElement('p');
+            backgroundText.className = 'list-item-description';
+            backgroundText.textContent = personalInfo.background;
+
+            cardBody.appendChild(backgroundTitle);
+            cardBody.appendChild(backgroundText);
+        }
+
+        bioCard.appendChild(cardHeader);
+        bioCard.appendChild(cardBody);
+        container.appendChild(bioCard);
+    }
+
+    /**
+     * Render enhanced contact information
+     */
+    renderEnhancedContactInfo(personalInfo, container) {
+        this.log('Rendering enhanced contact info');
+
+        const contactCard = document.createElement('div');
+        contactCard.className = 'academic-card animate-fade-in';
+
+        const cardHeader = document.createElement('div');
+        cardHeader.className = 'academic-card-header';
+
+        const cardTitle = document.createElement('h3');
+        cardTitle.className = 'academic-card-title';
+        cardTitle.innerHTML = '<i class="fas fa-envelope"></i> Contact Information';
+
+        cardHeader.appendChild(cardTitle);
+
+        const cardBody = document.createElement('div');
+        cardBody.className = 'academic-card-body';
+
+        const contactGrid = document.createElement('div');
+        contactGrid.className = 'contact-grid-enhanced';
+
+        // Essential contact fields
+        const contactFields = [
+            { key: 'email', icon: 'fas fa-envelope', type: 'email', label: 'Email (Institutional)' },
+            { key: 'emailSecondary', icon: 'fas fa-envelope', type: 'email', label: 'Email (Personal)' },
+            { key: 'location', icon: 'fas fa-map-marker-alt', type: 'text', label: 'Location' },
+            { key: 'website', icon: 'fas fa-globe', type: 'url', label: 'Website' }
+        ];
+
+        contactFields.forEach(field => {
+            if (personalInfo[field.key]) {
+                const contactItem = this.createEnhancedContactItem(
+                    field.key,
+                    personalInfo[field.key],
+                    field.icon,
+                    field.type,
+                    field.label
+                );
+                contactGrid.appendChild(contactItem);
+            }
+        });
+
+        cardBody.appendChild(contactGrid);
+        contactCard.appendChild(cardHeader);
+        contactCard.appendChild(cardBody);
+        container.appendChild(contactCard);
+    }
+
+    /**
+     * Create enhanced contact item
+     */
+    createEnhancedContactItem(type, value, icon, linkType, label) {
+        const item = document.createElement('div');
+        item.className = 'list-item-enhanced contact-item-enhanced';
+
+        const iconElement = document.createElement('div');
+        iconElement.className = 'academic-icon academic-icon-info';
+        iconElement.innerHTML = `<i class="${icon}"></i>`;
+
+        const content = document.createElement('div');
+        content.className = 'list-item-content';
+
+        const labelElement = document.createElement('div');
+        labelElement.className = 'list-item-title';
+        labelElement.textContent = label;
+
+        const valueElement = document.createElement('div');
+        valueElement.className = 'list-item-description';
+
+        if (linkType === 'email') {
+            valueElement.innerHTML = `<a href="mailto:${value}" class="contact-link">${value}</a>`;
+        } else if (linkType === 'tel') {
+            valueElement.innerHTML = `<a href="tel:${value}" class="contact-link">${value}</a>`;
+        } else if (linkType === 'url') {
+            valueElement.innerHTML = `<a href="${value}" target="_blank" rel="noopener" class="contact-link">${value}</a>`;
+        } else {
+            valueElement.textContent = value;
+        }
+
+        content.appendChild(labelElement);
+        content.appendChild(valueElement);
+
+        item.appendChild(iconElement);
+        item.appendChild(content);
+
+        return item;
+    }
+
+    /**
+     * Render personal information section (legacy method - keeping for compatibility)
      * @param {Object} personalInfo - Personal information data
      */
     renderPersonalInfo(personalInfo) {
