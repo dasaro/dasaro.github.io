@@ -212,6 +212,26 @@ Added 6 comprehensive academic sections with full modular architecture integrati
 
 This fix resolves the fundamental data flow issue where page modules weren't accessing loaded data during the initialization sequence.
 
+#### **HYBRID DATA LOADING PATTERN FIX - CRITICAL PRIORITY**
+- 🐛 **Issue**: After initial fix, existing sections (education, experience, etc.) disappeared because they use different data pattern
+- 🔍 **Root Cause**: Legacy modules expect `render(data)` with full data object, new modules use `loadData()` + `render()` pattern
+- 🛠️ **Hybrid Solution**: Modified `populatePages()` to detect pattern and handle both:
+  ```javascript
+  // Check if page has loadData method (new modular pattern)
+  if (typeof page.loadData === 'function') {
+      // New pattern: Let page load its own data from DataManager
+      page.loadData();
+      page.render();
+  } else {
+      // Legacy pattern: Pass full data object to render method
+      page.render(data);
+  }
+  ```
+- ✅ **Legacy Modules**: about, education, experience, publications, skills, contact, citation-metrics, supervised-students, projects
+- ✅ **New Modules**: professional-service, reviewing, invited-talks, research-groups, academic-affiliations, editorial-boards
+- **Commit**: `99a2a5c` - Hybrid data loading for backward compatibility
+- **Status**: ✅ DEPLOYED - Both existing and new sections now work correctly
+
 ## Project Status
 
 ✅ **COMPLETE & DEPLOYED** - Production-ready comprehensive academic website with 15 total sections covering full academic profile. Live at https://dasaro.github.io
