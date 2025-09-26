@@ -28,6 +28,10 @@ class PublicationsPage {
         }
 
         this.data = data;
+
+        // Enhance existing section header with icon
+        this.enhanceExistingSectionHeader();
+
         this.setupFilters(data.publications);
         this.renderPublications(data.publications);
 
@@ -61,6 +65,17 @@ class PublicationsPage {
      */
     isVisible() {
         return true;
+    }
+
+    /**
+     * Enhance existing section header with icon
+     */
+    enhanceExistingSectionHeader() {
+        const sectionHeader = document.querySelector('#publications .section-header h2');
+        if (sectionHeader && !sectionHeader.querySelector('i')) {
+            // Add icon to the existing title
+            sectionHeader.innerHTML = '<i class="fas fa-book"></i> ' + sectionHeader.textContent;
+        }
     }
 
     /**

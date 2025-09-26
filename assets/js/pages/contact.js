@@ -24,6 +24,10 @@ class ContactPage {
         }
 
         this.data = data;
+
+        // Enhance existing section header with icon
+        this.enhanceExistingSectionHeader();
+
         this.renderContactGrid(data.personalInfo);
 
         this.log('Contact page rendered successfully');
@@ -56,6 +60,17 @@ class ContactPage {
      */
     isVisible() {
         return true;
+    }
+
+    /**
+     * Enhance existing section header with icon
+     */
+    enhanceExistingSectionHeader() {
+        const sectionHeader = document.querySelector('#contact .section-header h2');
+        if (sectionHeader && !sectionHeader.querySelector('i')) {
+            // Add icon to the existing title
+            sectionHeader.innerHTML = '<i class="fas fa-envelope"></i> ' + sectionHeader.textContent;
+        }
     }
 
     /**

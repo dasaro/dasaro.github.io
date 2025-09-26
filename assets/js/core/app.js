@@ -46,8 +46,8 @@ class App {
             // Set up UI interactions
             this.setupUIInteractions();
 
-            // Add icons to section headers
-            this.enhanceSectionHeaders();
+            // Note: Section header icons now handled inline by individual page modules
+            // this.enhanceSectionHeaders();
 
             // Set up sticky headers
             this.setupStickyHeaders();

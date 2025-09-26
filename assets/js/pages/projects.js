@@ -24,6 +24,10 @@ class ProjectsPage {
         }
 
         this.data = data;
+
+        // Enhance existing section header with icon
+        this.enhanceExistingSectionHeader();
+
         this.renderProjectsGrid(data.projects);
 
         this.log('Projects page rendered successfully');
@@ -56,6 +60,17 @@ class ProjectsPage {
      */
     isVisible() {
         return true;
+    }
+
+    /**
+     * Enhance existing section header with icon
+     */
+    enhanceExistingSectionHeader() {
+        const sectionHeader = document.querySelector('#projects .section-header h2');
+        if (sectionHeader && !sectionHeader.querySelector('i')) {
+            // Add icon to the existing title
+            sectionHeader.innerHTML = '<i class="fas fa-project-diagram"></i> ' + sectionHeader.textContent;
+        }
     }
 
     /**

@@ -24,6 +24,10 @@ class CitationMetricsPage {
         }
 
         this.data = data;
+
+        // Enhance existing section header with icon
+        this.enhanceExistingSectionHeader();
+
         this.renderMetrics(data.citationMetrics);
         this.renderFeaturedPublications(data.citationMetrics.featuredPublications || []);
 
@@ -57,6 +61,17 @@ class CitationMetricsPage {
      */
     isVisible() {
         return true;
+    }
+
+    /**
+     * Enhance existing section header with icon
+     */
+    enhanceExistingSectionHeader() {
+        const sectionHeader = document.querySelector('#citation-metrics .section-header h2');
+        if (sectionHeader && !sectionHeader.querySelector('i')) {
+            // Add icon to the existing title
+            sectionHeader.innerHTML = '<i class="fas fa-chart-line"></i> ' + sectionHeader.textContent;
+        }
     }
 
     /**
