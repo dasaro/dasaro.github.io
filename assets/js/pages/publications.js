@@ -142,16 +142,25 @@ class PublicationsPage {
         title.textContent = publication.title || 'Untitled';
         header.appendChild(title);
 
-        // Badges
-        if (publication.badges && publication.badges.length > 0) {
-            const badgesContainer = document.createElement('div');
-            badgesContainer.className = 'publication-badges';
+        // Publication type chip and badges
+        const badgesContainer = document.createElement('div');
+        badgesContainer.className = 'publication-badges';
 
+        // Add publication type chip
+        if (publication.type) {
+            const typeChip = this.createTypeChip(publication.type, publication.status);
+            badgesContainer.appendChild(typeChip);
+        }
+
+        // Add other badges
+        if (publication.badges && publication.badges.length > 0) {
             publication.badges.forEach(badgeName => {
                 const badge = window.badgeComponent?.createBadge(badgeName) || window.SharedUtils.createSimpleBadge(badgeName);
                 badgesContainer.appendChild(badge);
             });
+        }
 
+        if (badgesContainer.children.length > 0) {
             header.appendChild(badgesContainer);
         }
 
@@ -215,6 +224,17 @@ class PublicationsPage {
             linksContainer.appendChild(urlLink);
         }
 
+        // Add BibTeX link
+        const bibtexLink = document.createElement('a');
+        bibtexLink.href = '#';
+        bibtexLink.className = 'bibtex-link';
+        bibtexLink.innerHTML = '<i class="fas fa-quote-left"></i> BibTeX';
+        bibtexLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.showBibTeXModal(publication);
+        });
+        linksContainer.appendChild(bibtexLink);
+
         if (linksContainer.children.length > 0) {
             meta.appendChild(linksContainer);
         }
@@ -230,6 +250,166 @@ class PublicationsPage {
         }
 
         return item;
+    }
+
+    /**
+     * Create publication type chip
+     */
+    createTypeChip(type, status) {
+        const chip = document.createElement('span');
+
+        // Handle special cases
+        const displayType = status === 'in press' || status === 'In Press' ? 'In Press' : type;
+        const chipClass = this.getTypeChipClass(displayType.toLowerCase());
+
+        chip.className = `publication-type-chip ${chipClass}`;
+        chip.textContent = displayType.charAt(0).toUpperCase() + displayType.slice(1);
+
+        return chip;
+    }
+
+    /**
+     * Get CSS class for publication type chip
+     */
+    getTypeChipClass(type) {
+        const typeClasses = {
+            'journal': 'chip-journal',
+            'conference': 'chip-conference',
+            'book': 'chip-book',
+            'chapter': 'chip-chapter',
+            'thesis': 'chip-thesis',
+            'preprint': 'chip-preprint',
+            'in press': 'chip-in-press',
+            'under review': 'chip-under-review',
+            'report': 'chip-report'
+        };
+        return typeClasses[type] || 'chip-default';
+    }
+
+    /**
+     * Show BibTeX modal for a publication
+     */
+    showBibTeXModal(publication) {
+        this.log('Showing BibTeX modal for:', publication.title);
+
+        // Generate BibTeX if not provided
+        let bibtex = publication.bibtex;
+        if (!bibtex) {
+            const key = `${publication.authors?.[0]?.split(' ').pop()?.toLowerCase() || 'author'}${publication.year || 'year'}`;
+            const type = publication.type === 'conference' ? 'inproceedings' : 'article';
+
+            bibtex = `@${type}{${key},\n`;
+            bibtex += `  title = {${publication.title || ''}},\n`;
+            if (publication.authors) bibtex += `  author = {${publication.authors.join(' and ')}},\n`;
+            if (publication.venue) {
+                if (publication.type === 'conference') {
+                    bibtex += `  booktitle = {${publication.venue}},\n`;
+                } else {
+                    bibtex += `  journal = {${publication.venue}},\n`;
+                }
+            }
+            if (publication.year) bibtex += `  year = {${publication.year}},\n`;
+            if (publication.doi) bibtex += `  doi = {${publication.doi}},\n`;
+            if (publication.url) bibtex += `  url = {${publication.url}},\n`;
+            bibtex += `}`;
+        }
+
+        // Create and show modal
+        this.createBibTeXModal(publication.title, bibtex);
+    }
+
+    /**
+     * Create BibTeX modal
+     */
+    createBibTeXModal(title, bibtex) {
+        // Remove existing modal
+        const existingModal = document.getElementById('bibtex-modal');
+        if (existingModal) {
+            existingModal.remove();
+        }
+
+        // Create modal
+        const modal = document.createElement('div');
+        modal.id = 'bibtex-modal';
+        modal.className = 'bibtex-modal';
+        modal.innerHTML = `
+            <div class="bibtex-modal-content">
+                <div class="bibtex-modal-header">
+                    <h3>BibTeX Citation</h3>
+                    <button class="bibtex-modal-close">&times;</button>
+                </div>
+                <div class="bibtex-modal-body">
+                    <h4>${title}</h4>
+                    <textarea readonly class="bibtex-content">${bibtex}</textarea>
+                    <div class="bibtex-modal-actions">
+                        <button class="btn btn-primary copy-bibtex">Copy to Clipboard</button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        // Event listeners
+        const closeBtn = modal.querySelector('.bibtex-modal-close');
+        const copyBtn = modal.querySelector('.copy-bibtex');
+        const textarea = modal.querySelector('.bibtex-content');
+
+        closeBtn.addEventListener('click', () => modal.remove());
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.remove();
+        });
+
+        copyBtn.addEventListener('click', () => {
+            textarea.select();
+
+            // Use modern Clipboard API with fallback
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(bibtex).then(() => {
+                    copyBtn.textContent = 'Copied!';
+                    setTimeout(() => {
+                        copyBtn.textContent = 'Copy to Clipboard';
+                    }, 2000);
+                }).catch(() => {
+                    // Fallback for older browsers
+                    document.execCommand('copy');
+                    copyBtn.textContent = 'Copied!';
+                    setTimeout(() => {
+                        copyBtn.textContent = 'Copy to Clipboard';
+                    }, 2000);
+                });
+            } else {
+                // Fallback method
+                try {
+                    document.execCommand('copy');
+                    copyBtn.textContent = 'Copied!';
+                    setTimeout(() => {
+                        copyBtn.textContent = 'Copy to Clipboard';
+                    }, 2000);
+                } catch (err) {
+                    // Manual copy fallback
+                    const textArea = document.createElement('textarea');
+                    textArea.value = bibtex;
+                    textArea.style.position = 'fixed';
+                    textArea.style.opacity = '0';
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    try {
+                        document.execCommand('copy');
+                        copyBtn.textContent = 'Copied!';
+                        setTimeout(() => {
+                            copyBtn.textContent = 'Copy to Clipboard';
+                        }, 2000);
+                    } catch (fallbackErr) {
+                        copyBtn.textContent = 'Copy failed - select text manually';
+                    }
+                    document.body.removeChild(textArea);
+                }
+            }
+        });
+
+        // Show modal with animation
+        setTimeout(() => modal.classList.add('show'), 10);
     }
 
     /**

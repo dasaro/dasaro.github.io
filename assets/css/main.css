@@ -2170,6 +2170,150 @@ select:focus {
   }
 }
 
+/* Publication Type Chips */
+.publication-type-chip {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-right: 0.5rem;
+  color: white;
+}
+
+.chip-journal { background-color: #28a745; } /* Green */
+.chip-conference { background-color: #007bff; } /* Blue */
+.chip-book { background-color: #6f42c1; } /* Purple */
+.chip-chapter { background-color: #6c757d; } /* Gray */
+.chip-thesis { background-color: #e83e8c; } /* Pink */
+.chip-preprint { background-color: #6c757d; } /* Gray */
+.chip-in-press { background-color: #fd7e14; } /* Orange */
+.chip-under-review { background-color: #ffc107; color: #212529; } /* Yellow */
+.chip-report { background-color: #17a2b8; } /* Teal */
+.chip-default { background-color: #6c757d; } /* Gray */
+
+/* BibTeX Modal */
+.bibtex-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.bibtex-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.bibtex-modal-content {
+  background: white;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 90vw;
+  max-height: 80vh;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.bibtex-modal.show .bibtex-modal-content {
+  transform: scale(1);
+}
+
+.bibtex-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.bibtex-modal-header h3 {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  color: var(--text-primary);
+}
+
+.bibtex-modal-close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+  padding: 0;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bibtex-modal-close:hover {
+  color: var(--text-primary);
+}
+
+.bibtex-modal-body {
+  padding: 1.5rem;
+}
+
+.bibtex-modal-body h4 {
+  margin: 0 0 1rem 0;
+  font-size: var(--font-size-lg);
+  color: var(--text-primary);
+}
+
+.bibtex-content {
+  width: 100%;
+  min-height: 200px;
+  padding: 1rem;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  background-color: #f8f9fa;
+  color: var(--text-primary);
+  resize: vertical;
+}
+
+.bibtex-modal-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
 /* Type Sections (for Professional Service, etc.) */
 .type-section {
   margin-bottom: 2.5rem;
