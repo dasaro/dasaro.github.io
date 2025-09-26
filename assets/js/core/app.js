@@ -46,8 +46,8 @@ class App {
             // Set up UI interactions
             this.setupUIInteractions();
 
-            // Note: Section header icons now handled inline by individual page modules
-            // this.enhanceSectionHeaders();
+            // Add hidden icons for sticky header system (invisible but needed for sticky header)
+            this.enhanceSectionHeaders();
 
             // Set up sticky headers
             this.setupStickyHeaders();
@@ -838,7 +838,7 @@ class App {
     }
 
     /**
-     * Enhance section headers with icons
+     * Enhance section headers with hidden icons (for sticky header system)
      */
     enhanceSectionHeaders() {
         this.log('Enhancing section headers with icons...');
@@ -887,16 +887,17 @@ class App {
             if (section) {
                 const header = section.querySelector('.section-header');
                 if (header && !header.querySelector('.section-icon')) {
-                    // Create icon element
+                    // Create icon element (hidden for sticky header use only)
                     const iconWrapper = document.createElement('div');
                     iconWrapper.className = `section-icon academic-icon ${sectionColors[sectionId] || 'academic-icon-primary'}`;
+                    iconWrapper.style.display = 'none'; // Hide the circular icon, keep for sticky header
 
                     const icon = document.createElement('i');
                     icon.className = sectionIcons[sectionId];
 
                     iconWrapper.appendChild(icon);
 
-                    // Insert icon at the beginning of the header
+                    // Insert hidden icon at the beginning of the header
                     header.insertBefore(iconWrapper, header.firstChild);
 
                     this.log(`Added icon to ${sectionId} section`);
