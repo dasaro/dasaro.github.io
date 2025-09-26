@@ -8,7 +8,6 @@ class AcademicWebsite {
     constructor() {
         this.isLoaded = false;
         this.currentSection = 'about';
-        this.publicationsManager = null;
         this.sidebarOpen = false;
         this.sidebarMinimized = false; // New: track minimized state
 
@@ -42,8 +41,7 @@ class AcademicWebsite {
             // Set up navigation
             this.setupNavigation();
 
-            // Initialize publications manager
-            this.initializePublications();
+            // Note: Publications now handled by publications.js page module
 
             // Apply initial view state
             this.updateView();
@@ -358,28 +356,19 @@ class AcademicWebsite {
     async populateContent() {
         const data = window.dataManager.getData();
 
-        // Populate personal info
+        // Essential UI coordination - keep these as they handle profile/navigation
         this.populatePersonalInfo(data.personalInfo);
-
-        // Populate navigation
         this.populateNavigation(data.navigation);
-
-        // Populate sections
-        this.populateEducation(data.education);
-        this.populateExperience(data.experience);
-        this.populateProjects(data.projects);
-        this.populateCitationMetrics(data.citationMetrics);
-        this.populatePublications(data.publications);
-        this.populateSkills(data.skills);
         this.populateContact(data.personalInfo);
-
-        // Also populate About section's contact info
         this.populateAboutContact(data.personalInfo);
 
         // Apply theme if specified
         if (data.theme) {
             this.applyTheme(data.theme);
         }
+
+        // Note: Section content now handled by enhanced page modules
+        // (about.js, education.js, experience.js, publications.js, etc.)
     }
 
     /**
@@ -482,214 +471,10 @@ class AcademicWebsite {
         });
     }
 
-    /**
-     * Populate education section
-     */
-    populateEducation(education) {
-        const timeline = document.querySelector('#education .timeline');
-        if (!timeline || !education) return;
 
-        timeline.innerHTML = '';
 
-        education.forEach(edu => {
-            const timelineItem = this.createTimelineItem({
-                title: edu.degree || edu.title,
-                institution: edu.institution,
-                location: edu.location,
-                startDate: edu.startDate,
-                endDate: edu.endDate,
-                description: edu.description,
-                details: [
-                    edu.supervisor && `${window.i18n?.t('common.supervisor') || 'Supervisor'}: ${edu.supervisor}`,
-                    edu.thesis && `${window.i18n?.t('common.thesis') || 'Thesis'}: ${edu.thesis}`,
-                    edu.grade && `${window.i18n?.t('common.grade') || 'Grade'}: ${edu.grade}`
-                ].filter(Boolean),
-                badges: window.dataManager.applyAutomaticBadges(edu, 'education')
-            });
 
-            timeline.appendChild(timelineItem);
-        });
-    }
 
-    /**
-     * Populate experience section
-     */
-    populateExperience(experience) {
-        const timeline = document.querySelector('#experience .timeline');
-        if (!timeline || !experience) return;
-
-        timeline.innerHTML = '';
-
-        experience.forEach(exp => {
-            const timelineItem = this.createTimelineItem({
-                title: exp.position || exp.title,
-                institution: exp.company || exp.institution,
-                location: exp.location,
-                startDate: exp.startDate,
-                endDate: exp.endDate || (exp.current ? window.i18n?.t('common.present') || 'Present' : ''),
-                description: exp.description,
-                details: exp.responsibilities || [],
-                badges: window.dataManager.applyAutomaticBadges(exp, 'experience')
-            });
-
-            timeline.appendChild(timelineItem);
-        });
-    }
-
-    /**
-     * Create timeline item element
-     */
-    createTimelineItem(data) {
-        const template = document.getElementById('timeline-item-template');
-        const item = template.content.cloneNode(true);
-
-        // Title
-        const title = item.querySelector('.timeline-title');
-        if (title) title.textContent = data.title || '';
-
-        // Institution
-        const institution = item.querySelector('.timeline-institution');
-        if (institution) institution.textContent = data.institution || '';
-
-        // Period
-        const period = item.querySelector('.timeline-period');
-        if (period) {
-            const periodText = this.formatDateRange(data.startDate, data.endDate);
-            period.textContent = periodText;
-        }
-
-        // Location
-        const location = item.querySelector('.timeline-location');
-        if (location && data.location) {
-            location.textContent = data.location;
-        } else if (location) {
-            location.style.display = 'none';
-        }
-
-        // Description
-        const description = item.querySelector('.timeline-description');
-        if (description && data.description) {
-            description.textContent = data.description;
-
-            // Add details if provided
-            if (data.details && data.details.length > 0) {
-                const detailsList = document.createElement('ul');
-                detailsList.style.marginTop = '0.5rem';
-
-                data.details.forEach(detail => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = detail;
-                    detailsList.appendChild(listItem);
-                });
-
-                description.appendChild(detailsList);
-            }
-        }
-
-        // Badges
-        const badgesContainer = item.querySelector('.timeline-badges');
-        if (badgesContainer && data.badges) {
-            window.dataManager.renderBadges(data.badges, badgesContainer);
-        }
-
-        return item;
-    }
-
-    /**
-     * Populate publications section
-     */
-    populatePublications(publications) {
-        console.log('populatePublications called with:', publications);
-        this.publicationsData = publications || [];
-
-        // Also render immediately in case the manager isn't ready yet
-        if (publications && publications.length > 0) {
-            this.renderPublicationsDirectly(publications);
-        }
-    }
-
-    /**
-     * Populate skills section
-     */
-    populateSkills(skills) {
-        const skillsGrid = document.querySelector('#skills .skills-grid');
-        if (!skillsGrid || !skills) return;
-
-        skillsGrid.innerHTML = '';
-
-        // Group skills by category
-        const categories = {};
-        skills.forEach(skill => {
-            const category = skill.category || 'Other';
-            if (!categories[category]) {
-                categories[category] = [];
-            }
-            categories[category].push(skill);
-        });
-
-        // Render skills grouped by category
-        Object.keys(categories).forEach(categoryName => {
-            // Create category header
-            const categoryHeader = document.createElement('div');
-            categoryHeader.className = 'skills-category-header';
-            categoryHeader.style.cssText = `
-                grid-column: 1 / -1;
-                margin-top: 1.5rem;
-                margin-bottom: 0.5rem;
-                padding-bottom: 0.5rem;
-                border-bottom: 2px solid var(--color-accent, #3498db);
-                font-size: 1.1rem;
-                font-weight: 600;
-                color: var(--text-primary);
-            `;
-            categoryHeader.textContent = categoryName;
-            skillsGrid.appendChild(categoryHeader);
-
-            // Add skills in this category
-            categories[categoryName].forEach(skill => {
-                const skillItem = this.createSkillItem(skill);
-                skillsGrid.appendChild(skillItem);
-            });
-        });
-    }
-
-    /**
-     * Create skill item element
-     */
-    createSkillItem(skill) {
-        const template = document.getElementById('skill-template');
-        const item = template.content.cloneNode(true);
-
-        // Add icon to name if provided
-        const nameElement = item.querySelector('.skill-name');
-        if (nameElement) {
-            if (skill.icon) {
-                nameElement.innerHTML = `<i class="${skill.icon}" style="margin-right: 0.5rem; color: var(--color-accent);"></i>${skill.name || ''}`;
-            } else {
-                nameElement.textContent = skill.name || '';
-            }
-        }
-
-        // Hide percentage bar completely
-        const skillLevel = item.querySelector('.skill-level');
-        if (skillLevel) {
-            skillLevel.style.display = 'none';
-        }
-
-        // Description
-        const description = item.querySelector('.skill-description');
-        if (description && skill.description) {
-            description.textContent = skill.description;
-        }
-
-        // Remove badges/tags completely
-        const badgesContainer = item.querySelector('.skill-badges');
-        if (badgesContainer) {
-            badgesContainer.style.display = 'none';
-        }
-
-        return item;
-    }
 
     /**
      * Populate contact information
@@ -806,227 +591,12 @@ class AcademicWebsite {
     }
 
 
-    /**
-     * Populate projects section
-     */
-    populateProjects(projects) {
-        const projectsGrid = document.querySelector('#projects .projects-grid');
-        if (!projectsGrid || !projects) return;
-
-        projectsGrid.innerHTML = '';
-
-        projects.forEach(project => {
-            const projectItem = this.createProjectItem(project);
-            projectsGrid.appendChild(projectItem);
-        });
-    }
-
-    /**
-     * Populate citation metrics section
-     */
-    populateCitationMetrics(citationMetrics) {
-        const metricsContainer = document.querySelector('#citation-metrics .citation-metrics-container');
-
-        if (!metricsContainer || !citationMetrics) return;
-
-        // Clear existing content
-        metricsContainer.innerHTML = '';
-
-        // Create metrics overview section
-        const overviewDiv = document.createElement('div');
-        overviewDiv.className = 'metrics-overview';
-
-        // Add warning about static metrics
-        const warningDiv = document.createElement('div');
-        warningDiv.className = 'metrics-warning';
-        warningDiv.innerHTML = `
-            <p><i class="fas fa-info-circle"></i>
-            <span data-i18n="citationMetrics.staticWarning">Static metrics last updated:</span>
-            <strong>${citationMetrics.lastUpdated}</strong></p>
-            <p><span data-i18n="citationMetrics.currentMetrics">For current metrics, visit:</span>
-            <a href="${citationMetrics.googleScholarProfile}" target="_blank" rel="noopener noreferrer">
-            <span data-i18n="citationMetrics.googleScholar">Google Scholar Profile</span> <i class="fas fa-external-link-alt"></i></a></p>
-        `;
-        metricsContainer.appendChild(warningDiv);
-
-        // Populate overview metrics
-        if (citationMetrics.overview) {
-            const metrics = [
-                { label: 'Citations', value: citationMetrics.overview.totalCitations },
-                { label: 'H-Index', value: citationMetrics.overview.hIndex },
-                { label: 'i10-Index', value: citationMetrics.overview.i10Index },
-                { label: 'Publications', value: citationMetrics.overview.publications }
-            ];
-
-            const metricsGrid = document.createElement('div');
-            metricsGrid.className = 'metrics-grid';
-
-            metrics.forEach(metric => {
-                const metricItem = document.createElement('div');
-                metricItem.className = 'metric-card';
-                metricItem.innerHTML = `
-                    <div class="metric-value">${metric.value}</div>
-                    <div class="metric-label">${metric.label}</div>
-                `;
-                metricsGrid.appendChild(metricItem);
-            });
-
-            overviewDiv.appendChild(metricsGrid);
-            metricsContainer.appendChild(overviewDiv);
-        }
-
-        // Populate featured research
-        if (citationMetrics.featuredResearch && citationMetrics.featuredResearch.length > 0) {
-            const featuredSection = document.createElement('div');
-            featuredSection.className = 'featured-research-section';
-
-            const featuredTitle = document.createElement('h3');
-            featuredTitle.setAttribute('data-i18n', 'citationMetrics.featuredResearch');
-            featuredTitle.textContent = window.i18n?.t('citationMetrics.featuredResearch') || 'Featured Recent Research';
-            featuredSection.appendChild(featuredTitle);
-
-            const featuredList = document.createElement('div');
-            featuredList.className = 'featured-research-list';
-
-            citationMetrics.featuredResearch.forEach(research => {
-                const researchItem = document.createElement('div');
-                researchItem.className = 'featured-research-item';
-                researchItem.innerHTML = `
-                    <h4><a href="${research.url}" target="_blank" rel="noopener noreferrer">
-                        ${research.title} <i class="fas fa-external-link-alt"></i>
-                    </a></h4>
-                    <p class="research-authors">${research.authors}</p>
-                    <p class="research-venue">${research.venue} (${research.year})</p>
-                    <p class="research-relevance">${research.relevance}</p>
-                `;
-                featuredList.appendChild(researchItem);
-            });
-
-            featuredSection.appendChild(featuredList);
-            metricsContainer.appendChild(featuredSection);
-        }
-    }
 
 
-    /**
-     * Create project item element
-     */
-    createProjectItem(project) {
-        const template = document.getElementById('project-template');
-        const item = template.content.cloneNode(true);
 
-        // Title
-        const title = item.querySelector('.project-title');
-        if (title) title.textContent = project.title;
 
-        // Meta information
-        const period = item.querySelector('.project-period');
-        const funding = item.querySelector('.project-funding');
-        const status = item.querySelector('.project-status');
 
-        if (period) {
-            const startDate = project.startDate ? project.startDate.substring(0, 4) : '';
-            const endDate = project.endDate ? project.endDate.substring(0, 4) : 'Present';
-            period.textContent = `${startDate} - ${endDate}`;
-        }
-        if (funding) funding.textContent = project.funding;
-        if (status) status.textContent = project.status;
 
-        // Description
-        const description = item.querySelector('.project-description');
-        if (description) {
-            if (typeof project.description === 'object' && project.description !== null) {
-                // Handle multilingual description
-                const currentLang = window.i18n?.getCurrentLanguage() || 'en';
-                description.textContent = project.description[currentLang] || project.description.en || '';
-            } else {
-                description.textContent = project.description || '';
-            }
-        }
-
-        // Collaborators
-        const collaborators = item.querySelector('.project-collaborators');
-        if (collaborators && project.collaborators) {
-            collaborators.innerHTML = `<strong>Collaborators:</strong> ${project.collaborators.join(', ')}`;
-        }
-
-        // Technologies
-        const technologies = item.querySelector('.project-technologies');
-        if (technologies && project.technologies) {
-            technologies.innerHTML = `<strong>Technologies:</strong> ${project.technologies.join(', ')}`;
-        }
-
-        // Links
-        const linksContainer = item.querySelector('.project-links');
-        if (linksContainer && project.links) {
-            project.links.forEach(link => {
-                const linkElement = document.createElement('a');
-                linkElement.href = link.url;
-                linkElement.textContent = link.title;
-                linkElement.target = '_blank';
-                linkElement.rel = 'noopener';
-                linksContainer.appendChild(linkElement);
-            });
-        }
-
-        // Badges
-        const badgesContainer = item.querySelector('.project-badges');
-        if (badgesContainer && project.badges) {
-            project.badges.forEach(badge => {
-                const badgeElement = this.createBadge(badge);
-                badgesContainer.appendChild(badgeElement);
-            });
-        }
-
-        return item;
-    }
-
-    /**
-     * Create metric item element
-     */
-    createMetricItem(metric) {
-        const template = document.getElementById('metric-template');
-        const item = template.content.cloneNode(true);
-
-        const value = item.querySelector('.metric-value');
-        const label = item.querySelector('.metric-label');
-
-        if (value) value.textContent = metric.value;
-        if (label) label.textContent = metric.label;
-
-        return item;
-    }
-
-    /**
-     * Create featured research item element
-     */
-    createFeaturedResearchItem(research) {
-        const template = document.getElementById('featured-research-template');
-        const item = template.content.cloneNode(true);
-
-        const title = item.querySelector('.featured-research-title');
-        const venue = item.querySelector('.featured-research-venue');
-        const type = item.querySelector('.featured-research-type');
-        const relevance = item.querySelector('.featured-research-relevance');
-
-        if (title) {
-            title.textContent = research.title;
-            if (research.url && research.url !== '#') {
-                const link = document.createElement('a');
-                link.href = research.url;
-                link.textContent = research.title;
-                link.target = '_blank';
-                link.rel = 'noopener';
-                title.innerHTML = '';
-                title.appendChild(link);
-            }
-        }
-        if (venue) venue.textContent = `${research.venue} (${research.year})`;
-        if (type) type.textContent = research.type;
-        if (relevance) relevance.textContent = research.relevance;
-
-        return item;
-    }
 
     /**
      * Initialize sections visibility
@@ -1135,181 +705,11 @@ class AcademicWebsite {
         });
     }
 
-    /**
-     * Initialize publications manager
-     */
-    initializePublications() {
-        // Initialize the publications manager
-        console.log('Initializing publications...', this.publicationsData);
-        if (window.PublicationsManager && this.publicationsData && this.publicationsData.length > 0) {
-            console.log('Creating PublicationsManager with', this.publicationsData.length, 'publications');
-            this.publicationsManager = new PublicationsManager(this.publicationsData);
-        } else {
-            console.warn('Publications not initialized:', {
-                hasManager: !!window.PublicationsManager,
-                hasData: !!this.publicationsData,
-                dataLength: this.publicationsData ? this.publicationsData.length : 0
-            });
-            // If PublicationsManager failed, the direct render should still work
-            if (this.publicationsData && this.publicationsData.length > 0) {
-                console.log('Using direct render fallback for publications');
-            } else {
-                this.renderEmptyPublications();
-            }
-        }
-    }
 
-    /**
-     * Render publications directly (fallback method)
-     */
-    renderPublicationsDirectly(publications) {
-        const publicationsList = document.querySelector('#publications .publications-list');
-        if (!publicationsList || !publications) return;
 
-        const html = publications
-            .sort((a, b) => (parseInt(b.year) || 0) - (parseInt(a.year) || 0))
-            .map(pub => `
-                <div class="publication-item">
-                    <h3 class="publication-title">${pub.title || 'Untitled'}</h3>
-                    <p class="publication-authors">${pub.authors || 'Authors not specified'}</p>
-                    <div class="publication-details">
-                        <span class="publication-venue">${pub.journal || pub.conference || pub.venue || 'Venue not specified'}</span>
-                        <span class="publication-year">${pub.year || 'Year not specified'}</span>
-                        ${pub.doi ? `<a href="https://doi.org/${pub.doi}" class="publication-doi" target="_blank">DOI</a>` : ''}
-                        ${pub.url ? `<a href="${pub.url}" class="publication-url" target="_blank">View</a>` : ''}
-                    </div>
-                </div>
-            `).join('');
 
-        publicationsList.innerHTML = html;
-        console.log('Publications rendered directly:', publications.length, 'items');
-    }
 
-    /**
-     * Render empty publications state
-     */
-    renderEmptyPublications() {
-        const publicationsList = document.querySelector('#publications .publications-list');
-        if (publicationsList) {
-            publicationsList.innerHTML = '<div class="empty-state">No publications found. Check data loading.</div>';
-        }
-    }
 
-    /**
-     * Render publications list
-     */
-    renderPublications(publications) {
-        const publicationsList = document.querySelector('#publications .publications-list');
-        if (!publicationsList) return;
-
-        publicationsList.innerHTML = '';
-
-        publications.forEach(pub => {
-            const pubItem = this.createPublicationItem(pub);
-            publicationsList.appendChild(pubItem);
-        });
-
-        // Initialize year filter options
-        this.initializePublicationFilters(publications);
-    }
-
-    /**
-     * Create publication item element
-     */
-    createPublicationItem(publication) {
-        const template = document.getElementById('publication-template');
-        const item = template.content.cloneNode(true);
-
-        // Title
-        const title = item.querySelector('.publication-title');
-        if (title) title.textContent = publication.title || '';
-
-        // Authors
-        const authors = item.querySelector('.publication-authors');
-        if (authors) authors.textContent = publication.authors || '';
-
-        // Venue (journal or conference)
-        const venue = item.querySelector('.publication-venue');
-        if (venue) {
-            const venueText = publication.journal || publication.conference || '';
-            venue.textContent = venueText;
-        }
-
-        // Year
-        const year = item.querySelector('.publication-year');
-        if (year) year.textContent = publication.year || '';
-
-        // Links
-        const linksContainer = item.querySelector('.publication-links');
-        if (linksContainer && (publication.doi || publication.url || publication.pdf)) {
-            linksContainer.innerHTML = '';
-
-            if (publication.doi) {
-                const doiLink = document.createElement('a');
-                doiLink.href = `https://doi.org/${publication.doi}`;
-                doiLink.className = 'publication-link';
-                doiLink.target = '_blank';
-                doiLink.rel = 'noopener';
-                doiLink.textContent = 'DOI';
-                linksContainer.appendChild(doiLink);
-            }
-
-            if (publication.url) {
-                const urlLink = document.createElement('a');
-                urlLink.href = publication.url;
-                urlLink.className = 'publication-link';
-                urlLink.target = '_blank';
-                urlLink.rel = 'noopener';
-                urlLink.textContent = 'URL';
-                linksContainer.appendChild(urlLink);
-            }
-
-            if (publication.pdf) {
-                const pdfLink = document.createElement('a');
-                pdfLink.href = publication.pdf;
-                pdfLink.className = 'publication-link';
-                pdfLink.target = '_blank';
-                pdfLink.rel = 'noopener';
-                pdfLink.textContent = 'PDF';
-                linksContainer.appendChild(pdfLink);
-            }
-        }
-
-        // Badges
-        const badgesContainer = item.querySelector('.publication-badges');
-        if (badgesContainer) {
-            const badges = window.dataManager.applyAutomaticBadges(publication, 'publications');
-            if (publication.badges) {
-                badges.push(...publication.badges);
-            }
-            window.dataManager.renderBadges(badges, badgesContainer);
-        }
-
-        return item;
-    }
-
-    /**
-     * Initialize publication filters
-     */
-    initializePublicationFilters(publications) {
-        const yearFilter = document.getElementById('year-filter');
-
-        if (yearFilter && publications) {
-            // Get unique years
-            const years = [...new Set(publications.map(pub => pub.year).filter(Boolean))].sort((a, b) => b - a);
-
-            // Clear existing options except "All Years"
-            yearFilter.innerHTML = '<option value="">All Years</option>';
-
-            // Add year options
-            years.forEach(year => {
-                const option = document.createElement('option');
-                option.value = year;
-                option.textContent = year;
-                yearFilter.appendChild(option);
-            });
-        }
-    }
 
     /**
      * Apply theme colors
@@ -1369,25 +769,25 @@ class AcademicWebsite {
                     this.populatePersonalInfo(data.data);
                     break;
                 case 'education':
-                    this.populateEducation(data.data);
+                    // Handled by education.js module
                     break;
                 case 'experience':
-                    this.populateExperience(data.data);
+                    // Handled by experience.js module
                     break;
                 case 'supervisedStudents':
                     // Handled by supervised-students.js module
                     break;
                 case 'projects':
-                    this.populateProjects(data.data);
+                    // Handled by projects.js module
                     break;
                 case 'citationMetrics':
-                    this.populateCitationMetrics(data.data);
+                    // Handled by citation-metrics.js module
                     break;
                 case 'publications':
-                    this.populatePublications(data.data);
+                    // Handled by publications.js module
                     break;
                 case 'skills':
-                    this.populateSkills(data.data);
+                    // Handled by skills.js module
                     break;
             }
         }
