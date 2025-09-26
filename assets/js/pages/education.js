@@ -31,9 +31,8 @@ class EducationPage {
             // Clear existing content
             educationContainer.innerHTML = '';
 
-            // Create enhanced section header
-            const sectionHeader = this.createSectionHeader();
-            educationContainer.appendChild(sectionHeader);
+            // Enhance existing section header
+            this.enhanceExistingSectionHeader();
 
             // Render enhanced timeline
             this.renderEnhancedEducationTimeline(data.education, educationContainer);
@@ -76,19 +75,13 @@ class EducationPage {
     }
 
     /**
-     * Create enhanced section header
+     * Enhance existing section header by adding icon
      */
-    createSectionHeader() {
-        const header = document.createElement('div');
-        header.className = 'section-header-enhanced';
-
-        const icon = document.createElement('div');
-        icon.className = 'academic-icon academic-icon-success';
-        icon.innerHTML = '<i class="fas fa-graduation-cap"></i>';
-
-        header.appendChild(icon);
-
-        return header;
+    enhanceExistingSectionHeader() {
+        const sectionHeader = document.querySelector('#education .section-header h2');
+        if (sectionHeader && !sectionHeader.querySelector('i')) {
+            sectionHeader.innerHTML = '<i class="fas fa-graduation-cap"></i> ' + sectionHeader.textContent;
+        }
     }
 
     /**

@@ -59,6 +59,16 @@ class SupervisedStudentsPage {
     }
 
     /**
+     * Enhance existing section header by adding icon
+     */
+    enhanceExistingSectionHeader() {
+        const sectionHeader = document.querySelector('#supervised-students .section-header h2');
+        if (sectionHeader && !sectionHeader.querySelector('i')) {
+            sectionHeader.innerHTML = '<i class="fas fa-user-graduate"></i> ' + sectionHeader.textContent;
+        }
+    }
+
+    /**
      * Render students grid
      * @param {Array} students - Supervised students data array
      */
@@ -78,16 +88,8 @@ class SupervisedStudentsPage {
             return;
         }
 
-        // Create enhanced section header
-        const sectionHeader = document.createElement('div');
-        sectionHeader.className = 'section-header-enhanced';
-
-        const icon = document.createElement('div');
-        icon.className = 'academic-icon academic-icon-primary';
-        icon.innerHTML = '<i class="fas fa-user-graduate"></i>';
-
-        sectionHeader.appendChild(icon);
-        container.appendChild(sectionHeader);
+        // Enhance existing section header
+        this.enhanceExistingSectionHeader();
 
         // Create stats section
         const statsSection = this.createStudentStats(students);

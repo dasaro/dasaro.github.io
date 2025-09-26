@@ -68,9 +68,8 @@ class ProfessionalServicePage {
         // Group activities by type and year
         const groupedData = this.groupActivitiesByTypeAndYear(this.data);
 
-        // Create enhanced section header
-        const sectionHeader = this.createSectionHeader();
-        container.appendChild(sectionHeader);
+        // Enhance existing section header
+        this.enhanceExistingSectionHeader();
 
         // Create timeline container with modern styling
         const timeline = document.createElement('div');
@@ -120,23 +119,13 @@ class ProfessionalServicePage {
     }
 
     /**
-     * Create enhanced section header
+     * Enhance existing section header by adding icon
      */
-    createSectionHeader() {
-        const header = document.createElement('div');
-        header.className = 'section-header-enhanced';
-
-        const icon = document.createElement('div');
-        icon.className = 'academic-icon academic-icon-primary';
-        icon.innerHTML = '<i class="fas fa-hands-helping"></i>';
-
-        const title = document.createElement('h2');
-        title.textContent = 'Professional Service';
-
-        header.appendChild(icon);
-        header.appendChild(title);
-
-        return header;
+    enhanceExistingSectionHeader() {
+        const sectionHeader = document.querySelector('#professional-service .section-header h2');
+        if (sectionHeader && !sectionHeader.querySelector('i')) {
+            sectionHeader.innerHTML = '<i class="fas fa-hands-helping"></i> ' + sectionHeader.textContent;
+        }
     }
 
     /**

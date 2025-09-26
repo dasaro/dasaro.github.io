@@ -52,9 +52,8 @@ class ReviewingPage {
             return;
         }
 
-        // Create enhanced section header
-        const sectionHeader = this.createSectionHeader();
-        container.appendChild(sectionHeader);
+        // Enhance existing section header
+        this.enhanceExistingSectionHeader();
 
         // Create overall stats
         const statsSection = this.createOverallStats();
@@ -74,23 +73,13 @@ class ReviewingPage {
     }
 
     /**
-     * Create enhanced section header
+     * Enhance existing section header by adding icon
      */
-    createSectionHeader() {
-        const header = document.createElement('div');
-        header.className = 'section-header-enhanced';
-
-        const icon = document.createElement('div');
-        icon.className = 'academic-icon academic-icon-info';
-        icon.innerHTML = '<i class="fas fa-search"></i>';
-
-        const title = document.createElement('h2');
-        title.textContent = 'Peer Review Activities';
-
-        header.appendChild(icon);
-        header.appendChild(title);
-
-        return header;
+    enhanceExistingSectionHeader() {
+        const sectionHeader = document.querySelector('#reviewing .section-header h2');
+        if (sectionHeader && !sectionHeader.querySelector('i')) {
+            sectionHeader.innerHTML = '<i class="fas fa-search"></i> ' + sectionHeader.textContent;
+        }
     }
 
     /**

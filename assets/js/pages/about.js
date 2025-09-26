@@ -31,9 +31,8 @@ class AboutPage {
             // Clear existing content
             aboutContainer.innerHTML = '';
 
-            // Create enhanced section header
-            const sectionHeader = this.createSectionHeader();
-            aboutContainer.appendChild(sectionHeader);
+            // Enhance the existing section header with icon
+            this.enhanceExistingSectionHeader();
 
             // Create about content container
             const contentContainer = document.createElement('div');
@@ -87,19 +86,14 @@ class AboutPage {
     }
 
     /**
-     * Create enhanced section header
+     * Enhance existing section header with icon
      */
-    createSectionHeader() {
-        const header = document.createElement('div');
-        header.className = 'section-header-enhanced';
-
-        const icon = document.createElement('div');
-        icon.className = 'academic-icon academic-icon-primary';
-        icon.innerHTML = '<i class="fas fa-user"></i>';
-
-        header.appendChild(icon);
-
-        return header;
+    enhanceExistingSectionHeader() {
+        const sectionHeader = document.querySelector('#about .section-header h2');
+        if (sectionHeader && !sectionHeader.querySelector('i')) {
+            // Add icon to the existing title
+            sectionHeader.innerHTML = '<i class="fas fa-user"></i> ' + sectionHeader.textContent;
+        }
     }
 
     /**

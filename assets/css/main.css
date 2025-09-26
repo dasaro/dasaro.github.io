@@ -483,6 +483,12 @@ a:focus {
   margin-bottom: 0.5rem;
 }
 
+.section-header h2 i {
+  margin-right: 0.75rem;
+  color: var(--color-accent, #3498db);
+  font-size: 0.9em;
+}
+
 .section-header h2::after {
   content: '';
   position: absolute;

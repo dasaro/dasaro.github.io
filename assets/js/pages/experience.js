@@ -31,9 +31,8 @@ class ExperiencePage {
             // Clear existing content
             experienceContainer.innerHTML = '';
 
-            // Create enhanced section header
-            const sectionHeader = this.createSectionHeader();
-            experienceContainer.appendChild(sectionHeader);
+            // Enhance existing section header
+            this.enhanceExistingSectionHeader();
 
             // Render enhanced timeline
             this.renderEnhancedExperienceTimeline(data.experience, experienceContainer);
@@ -75,19 +74,13 @@ class ExperiencePage {
     }
 
     /**
-     * Create enhanced section header
+     * Enhance existing section header by adding icon
      */
-    createSectionHeader() {
-        const header = document.createElement('div');
-        header.className = 'section-header-enhanced';
-
-        const icon = document.createElement('div');
-        icon.className = 'academic-icon academic-icon-secondary';
-        icon.innerHTML = '<i class="fas fa-briefcase"></i>';
-
-        header.appendChild(icon);
-
-        return header;
+    enhanceExistingSectionHeader() {
+        const sectionHeader = document.querySelector('#experience .section-header h2');
+        if (sectionHeader && !sectionHeader.querySelector('i')) {
+            sectionHeader.innerHTML = '<i class="fas fa-briefcase"></i> ' + sectionHeader.textContent;
+        }
     }
 
     /**

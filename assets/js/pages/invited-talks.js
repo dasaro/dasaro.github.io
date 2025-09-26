@@ -34,6 +34,16 @@ class InvitedTalksPage {
     }
 
     /**
+     * Enhance existing section header by adding icon
+     */
+    enhanceExistingSectionHeader() {
+        const sectionHeader = document.querySelector('#invited-talks .section-header h2');
+        if (sectionHeader && !sectionHeader.querySelector('i')) {
+            sectionHeader.innerHTML = '<i class="fas fa-microphone-alt"></i> ' + sectionHeader.textContent;
+        }
+    }
+
+    /**
      * Render the invited talks section
      */
     render() {
@@ -52,16 +62,8 @@ class InvitedTalksPage {
             return;
         }
 
-        // Create enhanced section header (icon only)
-        const sectionHeader = document.createElement('div');
-        sectionHeader.className = 'section-header-enhanced';
-
-        const icon = document.createElement('div');
-        icon.className = 'academic-icon academic-icon-warning';
-        icon.innerHTML = '<i class="fas fa-microphone-alt"></i>';
-
-        sectionHeader.appendChild(icon);
-        container.appendChild(sectionHeader);
+        // Enhance existing section header
+        this.enhanceExistingSectionHeader();
 
         // Create stats section
         const statsSection = document.createElement('div');

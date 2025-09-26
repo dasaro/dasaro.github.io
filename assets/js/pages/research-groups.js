@@ -34,6 +34,16 @@ class ResearchGroupsPage {
     }
 
     /**
+     * Enhance existing section header by adding icon
+     */
+    enhanceExistingSectionHeader() {
+        const sectionHeader = document.querySelector('#research-groups .section-header h2');
+        if (sectionHeader && !sectionHeader.querySelector('i')) {
+            sectionHeader.innerHTML = '<i class="fas fa-users"></i> ' + sectionHeader.textContent;
+        }
+    }
+
+    /**
      * Render the research groups section
      */
     render() {
@@ -52,20 +62,8 @@ class ResearchGroupsPage {
             return;
         }
 
-        // Create enhanced section header
-        const sectionHeader = document.createElement('div');
-        sectionHeader.className = 'section-header-enhanced';
-
-        const icon = document.createElement('div');
-        icon.className = 'academic-icon academic-icon-success';
-        icon.innerHTML = '<i class="fas fa-users"></i>';
-
-        const title = document.createElement('h2');
-        title.textContent = 'Research Groups';
-
-        sectionHeader.appendChild(icon);
-        sectionHeader.appendChild(title);
-        container.appendChild(sectionHeader);
+        // Enhance existing section header
+        this.enhanceExistingSectionHeader();
 
         // Create enhanced groups grid
         const grid = document.createElement('div');
