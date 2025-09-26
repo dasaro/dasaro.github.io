@@ -1,237 +1,290 @@
-# CLAUDE.md
+# CLAUDE.md - Development Guide
 
-Development guidance for this personal academic website repository.
+Guidance for Claude Code when working with this comprehensive academic website.
 
 ## Project Overview
 
-**Completed** static academic website deployed at https://dasaro.github.io
-- Static HTML/CSS/JavaScript (no server dependencies)
-- Bilingual (Italian/English) with i18n fallbacks
-- Modular JSON data architecture
-- Admin panel (localhost-only) for content management
-- Publications with filtering, BibTeX export, LaTeX CV generation
+**Live Site**: https://dasaro.github.io
+**Type**: Static academic website with 15 sections, bilingual support, and admin panel
+**Architecture**: Modern modular JavaScript with JSON data architecture
 
-## Architecture
-
-**Modular Structure**:
-- `assets/js/core/` - App initialization & routing
-- `assets/js/pages/` - Individual page modules (about, publications, etc.)
-- `assets/js/utils/` - Data management, i18n, error handling, performance
-- `assets/js/components/` - Reusable UI components
-- `data/` - Modular JSON files (personal-info.json, publications.json, etc.)
-
-**Key Features**:
-- Event-driven initialization with graceful degradation
-- 4-layer translation fallback system
-- Publications show "selected" by default, filter to see all
-- Defensive programming throughout with error boundaries
-
-## Development Commands
+## Quick Start
 
 ```bash
-# Local development
-python3 -m http.server 8000  # Visit http://localhost:8000
-# Admin panel: http://localhost:8000/admin/
+# Development server
+python3 -m http.server 8000
+# Visit: http://localhost:8000
+
+# Admin panel (localhost only)
+# Visit: http://localhost:8000/admin/
 
 # Deploy to GitHub Pages
-git add -A && git commit -m "Update: [changes]" && git push origin main
+git add -A && git commit -m "Update: [description]" && git push origin main
 ```
 
-## 🔴 CRITICAL ARCHITECTURAL STANDARDS
+## Architecture Overview
 
-**MUST maintain these patterns in all future changes:**
+### **File Structure**
+```
+/
+├── index.html              # Main website
+├── admin/                  # Admin panel (localhost only)
+├── assets/
+│   ├── css/main.css        # All styles including enhanced UI
+│   └── js/
+│       ├── core/           # App controller & router
+│       ├── pages/          # Individual section modules
+│       ├── components/     # Reusable UI components
+│       └── utils/          # Data manager, i18n, utilities
+├── data/                   # All content as separate JSON files
+└── CLAUDE.md              # This file
+```
 
-### **Error Handling & Graceful Degradation**
-- **NEVER throw errors** that break the entire application
-- **ALWAYS provide fallback mechanisms** for failed data loading
-- **DataManager**: Returns fallback data instead of throwing on JSON failure
-- **i18n**: 4-layer fallback (loaded → stored → hardcoded → key)
+### **Data Architecture**
+- **Modular JSON**: Each section has its own JSON file (personal-info.json, education.json, etc.)
+- **Parallel Loading**: All files load simultaneously for performance
+- **Graceful Fallback**: System works even with missing/corrupted files
 
-### **Security & Modern Standards**
-- **Admin panel**: Multi-layer localhost checks, block production domains
-- **NO deprecated APIs**: Use modern Clipboard API, DOM methods, fetch()
-- **Defensive programming**: Validate all data, handle null/undefined gracefully
+### **Page Module System**
+- **Legacy Pattern**: `render(data)` - receives full data object (about, education, experience, etc.)
+- **New Pattern**: `loadData()` + `render()` - loads own data from DataManager (new academic sections)
+- **Hybrid Support**: System automatically detects and handles both patterns
 
-### **When Making Changes**
-1. **Update CLAUDE.md** with change details
-2. **Test graceful degradation** (missing files, failed networks, malformed data)
-3. **Verify ALL affected routes** when removing legacy code
-4. **Document in git commit** with specific testing done
+## Adding New Sections
 
-## 🔧 Debugging Guide
+### 1. Create Data File
+```bash
+# Create data/your-section.json
+{
+  "sectionData": [
+    {
+      "id": "item1",
+      "title": "Item Title",
+      "badges": ["featured", "recent"]
+    }
+  ]
+}
+```
 
-**Debug Log Prefixes** (each module has isolated logging):
-- `[App]` - Application initialization
-- `[Router]` - Navigation and routing
-- `[AboutPage]`, `[PublicationsPage]`, etc. - Individual page modules
-- `[DataManager]` - Data loading and management
-- `[I18nManager]` - Translation system
-
-**Common Debug Scenarios**:
-- **About section missing**: Check `[Router]` route registration, `[App]` data loading
-- **Navigation broken**: Check `[Router]` logs and navigation data flow
-- **Data loading failed**: Check `[DataManager]` fallback mechanisms
-
-**Enable Debug Mode**:
+### 2. Update Data Manager
 ```javascript
-// In browser console:
-window.app.setDebugMode(true);    // All debug logs
-window.router.setDebugMode(true); // Router only
+// In assets/js/utils/data-manager.js
+this.dataFiles = {
+    // ... existing files
+    yourSection: 'data/your-section.json'
+};
+
+// In getEmptySection()
+yourSection: [],
 ```
 
-**File Organization**:
-- Navigation: `core/router.js`
-- Pages: `pages/*.js` (about, publications, etc.)
-- Data/Translation: `utils/data-manager.js`, `utils/i18n.js`
-- Components: `components/*.js`
+### 3. Create Page Module
+```javascript
+// assets/js/pages/your-section.js
+class YourSectionPage {
+    constructor() {
+        this.debugMode = true;
+        this.data = null;
+    }
 
-## 💻 Modern JavaScript Implementation
+    loadData() {
+        if (window.dataManager?.isLoaded) {
+            this.data = window.dataManager.getData('yourSection') || [];
+        }
+    }
 
-**Utility Modules** (`assets/js/utils/`):
-- `error-handler.js` - Global error boundaries & user notifications
-- `performance.js` - Lazy loading, scroll optimization, Core Web Vitals
-- `accessibility.js` - WCAG compliance, keyboard navigation, ARIA
-- `shared-utils.js` - Centralized common functionality
-- `data-manager.js` - Data loading with error recovery
-- `i18n.js` - Translation system with fallbacks
+    render() {
+        // Create enhanced section header
+        const sectionHeader = this.createSectionHeader();
+        container.appendChild(sectionHeader);
 
-**Standards**:
-- Modern Web APIs (Intersection Observer, Performance Observer, Clipboard API)
-- Error boundaries for all async operations
-- Lazy loading and resource optimization
-- ARIA support and focus management
-- DocumentFragment batching for DOM updates
+        // Use academic card system
+        this.data.forEach(item => {
+            const card = this.createEnhancedCard(item);
+            container.appendChild(card);
+        });
+    }
 
-**Prohibited Patterns**:
-- ❌ Unhandled Promise rejections
-- ❌ Deprecated APIs (`document.execCommand`, `XMLHttpRequest`)
-- ❌ Synchronous DOM manipulation in loops
-- ❌ Memory leaks from observers/listeners
+    createSectionHeader() {
+        const header = document.createElement('div');
+        header.className = 'section-header-enhanced';
 
-## 📁 Data Architecture
+        const icon = document.createElement('div');
+        icon.className = 'academic-icon academic-icon-primary';
+        icon.innerHTML = '<i class="fas fa-your-icon"></i>';
 
-**Modular JSON Files** (`data/` directory):
-- `personal-info.json`, `education.json`, `experience.json`, `publications.json`, etc.
-- Each data type in separate file for better organization and performance
-- Parallel loading with `Promise.all()` for faster loading
-- Individual fallbacks if specific files fail to load
-- Better caching and easier content management
+        const title = document.createElement('h2');
+        title.textContent = 'Your Section';
 
-**Benefits**:
-- Eliminated single point of failure
-- 40-60ms faster loading due to parallel processing
-- Partial functionality maintained during data errors
-- Version control friendly (smaller, focused files)
+        header.appendChild(icon);
+        header.appendChild(title);
+        return header;
+    }
 
-## 📝 Key Implementation Notes
+    createEnhancedCard(item) {
+        const card = document.createElement('div');
+        card.className = 'academic-card animate-fade-in';
 
-**Publications System**:
-- Shows "selected" publications by default (`selected: true` in JSON)
-- Filter/search reveals all publications
-- Type chips: Journal (green), Conference (blue), In Press (orange), etc.
-- BibTeX export for individual or bulk publications
+        // Card structure using CSS classes:
+        // - academic-card-header, academic-card-title, academic-card-meta
+        // - academic-card-body, academic-card-footer
+        // - badge-enhanced, focus-areas, focus-tag
 
-**Admin Panel** (localhost only):
-- Content management for all JSON data files
-- LaTeX CV generation and export
-- Multi-layer security (localhost, file protocol, dev ports)
-- Production domain blocking (.com, .org, .github.io)
+        return card;
+    }
+}
 
-**Testing Requirements**:
-- Test with missing/corrupted data files
-- Test admin panel on localhost vs production domains
-- Test responsive design at breakpoints (767px, 768px, 1023px, 1024px)
-- Verify graceful degradation scenarios
+window.yourSectionPage = new YourSectionPage();
+```
 
-## 🆕 Recent Architecture Expansion (September 2025)
+### 4. Add to HTML
+```html
+<!-- In index.html -->
+<section id="your-section" class="content-section">
+    <div class="section-content">
+        <!-- Content rendered by page module -->
+    </div>
+</section>
 
-### **NEW: Academic Sections Addition**
+<script src="assets/js/pages/your-section.js"></script>
+```
 
-Added 6 comprehensive academic sections with full modular architecture integration:
+### 5. Register in App
+```javascript
+// In assets/js/core/app.js, populatePages() method
+this.pages.set('your-section', window.yourSectionPage);
+```
 
-#### **New Sections & Data Files**:
-1. **Professional Service** (`professional-service.json`) - Conference/workshop committee memberships, program chairs, track chairs
-2. **Reviewing** (`reviewing.json`) - Journal and conference peer review activities with statistics
-3. **Invited Talks** (`invited-talks.json`) - Seminars and presentations at academic institutions
-4. **Research Groups** (`research-groups.json`) - Research group memberships (EThOS, LUCI, SPIKE, KIDS)
-5. **Academic Affiliations** (`academic-affiliations.json`) - Professional society memberships (AILA, SILFS, AIxIA, GULP)
-6. **Editorial Boards** (`editorial-boards.json`) - Journal editorial positions with impact factors
-
-#### **Complete Modular Implementation**:
-- ✅ **6 JSON Data Files**: Created with comprehensive CV-scraped content
-- ✅ **6 Page Modules**: Full JavaScript modules with debug logging (`[ProfessionalServicePage]`, `[ReviewingPage]`, etc.)
-- ✅ **HTML Sections**: Integrated into main content flow with proper data-i18n attributes
-- ✅ **Router Registration**: All pages registered in app.js with appropriate icons and order
-- ✅ **DataManager Integration**: All JSON files added to parallel loading system
-- ✅ **Icon Assignment**: Meaningful Font Awesome icons for each section in navigation
-
-#### **Content Highlights**:
-- **Professional Service**: 12 activities including ARES 2024 PC, VPT workshop chair roles, ICCCNT track chair
-- **Reviewing**: 50+ conference reviews, 75+ journal reviews across 15+ top-tier venues (AI, JAIR, AAMAS, etc.)
-- **Invited Talks**: 10 talks at prestigious institutions (Oxford, Cambridge, Imperial, Edinburgh, etc.)
-- **Research Groups**: 4 active memberships with detailed focus areas and collaboration roles
-- **Academic Affiliations**: 4 Italian professional societies with bilingual names and descriptions
-- **Editorial Boards**: 3 Frontiers journal positions including Associate Editor role
-
-#### **Navigation Integration**:
-- Professional Service (Order 9, Icon: `fas fa-hands-helping`)
-- Reviewing (Order 10, Icon: `fas fa-search`)
-- Invited Talks (Order 11, Icon: `fas fa-microphone`)
-- Research Groups (Order 12, Icon: `fas fa-users`)
-- Academic Affiliations (Order 13, Icon: `fas fa-university`)
-- Editorial Boards (Order 14, Icon: `fas fa-edit`)
-
-#### **Architectural Benefits**:
-- **Comprehensive Academic Profile**: Now covers all major academic career aspects
-- **Consistent Modular Pattern**: Follows established architecture with error handling and debug logging
-- **Performance Optimized**: Parallel JSON loading maintains fast page loads
-- **Maintainability**: Each section can be updated independently via JSON files
-- **Admin Panel Ready**: All sections prepared for future admin panel integration
-
-**Rollback Point**: Previous modular architecture at commit before this expansion
-**Testing Completed**: All sections render correctly, debug logging verified, navigation functional
-
-### **🔧 CRITICAL ARCHITECTURAL FIX (September 25-26, 2025)**
-
-#### **PAGE INITIALIZATION SEQUENCE FIX - CRITICAL PRIORITY**
-- 🐛 **Issue**: New academic sections appearing empty despite JSON data loading correctly
-- 🔍 **Root Cause**: `populatePages()` method in `app.js` called `page.render(data)` directly without calling `page.loadData()` first
-- 🛠️ **Fix Applied**: Modified `populatePages()` method to:
-  ```javascript
-  // Let each page load its own data from DataManager
-  if (typeof page.loadData === 'function') {
-      page.loadData();
+### 6. Add to Navigation
+```json
+// In data/config.json
+{
+  "navigation": {
+    "sections": [
+      {
+        "key": "your-section",
+        "icon": "fas fa-your-icon",
+        "order": 16
+      }
+    ]
   }
-  // Then render with the loaded data
-  page.render();
-  ```
-- ✅ **Affected Routes**: All page modules now properly initialize data before rendering
-- 📋 **Testing Completed**: DataManager loads all JSON files correctly (HTTP 200), page modules access data via `window.dataManager`
-- **Commit**: `f93b634` - Critical data loading fix for page modules
-- **Status**: ✅ DEPLOYED to https://dasaro.github.io
+}
+```
 
-This fix resolves the fundamental data flow issue where page modules weren't accessing loaded data during the initialization sequence.
-
-#### **HYBRID DATA LOADING PATTERN FIX - CRITICAL PRIORITY**
-- 🐛 **Issue**: After initial fix, existing sections (education, experience, etc.) disappeared because they use different data pattern
-- 🔍 **Root Cause**: Legacy modules expect `render(data)` with full data object, new modules use `loadData()` + `render()` pattern
-- 🛠️ **Hybrid Solution**: Modified `populatePages()` to detect pattern and handle both:
-  ```javascript
-  // Check if page has loadData method (new modular pattern)
-  if (typeof page.loadData === 'function') {
-      // New pattern: Let page load its own data from DataManager
-      page.loadData();
-      page.render();
-  } else {
-      // Legacy pattern: Pass full data object to render method
-      page.render(data);
+### 7. Add Translations
+```json
+// In data/locales/en.json and it.json
+{
+  "navigation": {
+    "your-section": "Your Section"
+  },
+  "sections": {
+    "yourSection": {
+      "title": "Your Section",
+      "subtitle": "Description"
+    }
   }
-  ```
-- ✅ **Legacy Modules**: about, education, experience, publications, skills, contact, citation-metrics, supervised-students, projects
-- ✅ **New Modules**: professional-service, reviewing, invited-talks, research-groups, academic-affiliations, editorial-boards
-- **Commit**: `99a2a5c` - Hybrid data loading for backward compatibility
-- **Status**: ✅ DEPLOYED - Both existing and new sections now work correctly
+}
+```
 
-## Project Status
+## Enhanced UI System
 
-✅ **COMPLETE & DEPLOYED** - Production-ready comprehensive academic website with 15 total sections covering full academic profile. Live at https://dasaro.github.io
+### **CSS Classes Available**
+```css
+/* Cards */
+.academic-card                  /* Main card container */
+.academic-card-header           /* Card header with title/meta */
+.academic-card-title            /* Card title */
+.academic-card-meta             /* Badges and metadata */
+.academic-card-body             /* Main content */
+.academic-card-footer           /* Footer with additional info */
+
+/* Badges */
+.badge-enhanced                 /* Enhanced badge base */
+.badge-primary, .badge-success  /* Colored badge variants */
+.badge-warning, .badge-info     /* More color options */
+
+/* Icons */
+.academic-icon                  /* Circular icon container */
+.academic-icon-primary          /* Primary themed icon */
+.academic-icon-success          /* Success themed icon */
+
+/* Section Headers */
+.section-header-enhanced        /* Section header with icon */
+
+/* Layouts */
+.activity-grid                  /* Responsive grid for cards */
+.stats-grid                     /* Grid for statistics */
+.focus-areas                    /* Container for tags */
+.focus-tag                      /* Interactive tag elements */
+
+/* Animations */
+.animate-fade-in               /* Fade in animation */
+```
+
+### **Badge System**
+```javascript
+// Enhanced badges with icons
+const badge = document.createElement('span');
+badge.className = 'badge-enhanced badge-primary';
+badge.innerHTML = `<i class="fas fa-star"></i> Featured`;
+```
+
+## Critical Architecture Rules
+
+### **Error Handling**
+- ✅ **Never throw errors** that break the application
+- ✅ **Always provide fallback data** for missing JSON files
+- ✅ **Use graceful degradation** - show partial content if some data fails
+
+### **Data Loading Patterns**
+- ✅ **Legacy modules**: Pass full data object to `render(data)`
+- ✅ **New modules**: Use `loadData()` then `render()` pattern
+- ✅ **System detects** pattern automatically in `populatePages()`
+
+### **Translation System**
+- ✅ **4-layer fallback**: loaded → stored → hardcoded → key itself
+- ✅ **Hardcoded essentials** available for core UI elements
+- ✅ **Validate keys** - reject null/empty values
+
+### **Security**
+- ✅ **Admin panel** blocks production domains (.com, .org, .github.io)
+- ✅ **Localhost only** with multi-layer environment checks
+
+## Development Workflow
+
+### **Making Changes**
+1. **Read this guide** completely before starting
+2. **Follow architectural patterns** - don't break existing systems
+3. **Test graceful degradation** (missing files, failed networks)
+4. **Update translations** for any new UI elements
+5. **Test on localhost** before pushing
+6. **Update this CLAUDE.md** if architecture changes
+
+### **Testing Checklist**
+- [ ] All sections load correctly
+- [ ] Navigation works smoothly
+- [ ] Responsive design on mobile/tablet/desktop
+- [ ] Admin panel accessible on localhost only
+- [ ] Graceful handling of missing data files
+- [ ] Translation system works in both languages
+
+### **Deployment**
+```bash
+git add -A
+git commit -m "Brief description"
+git push origin main
+# Site updates automatically at https://dasaro.github.io
+```
+
+## Status: ✅ PRODUCTION READY
+
+Comprehensive 15-section academic website with modern UI, robust error handling, and hybrid data architecture. All critical issues resolved with proper fallback mechanisms.
+
+**Enhanced Features (Sept 2025)**:
+- Modern card-based UI with animations and hover effects
+- Enhanced badge system with semantic colors and icons
+- Consistent section headers with academic icons
+- Interactive focus areas and statistics displays
+- Responsive design maintaining academic professionalism
+- Backward compatibility with existing code patterns
