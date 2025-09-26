@@ -248,7 +248,7 @@ class Router {
         if (initialHash && this.routes.has(initialHash)) {
             this.currentRoute = initialHash;
         } else {
-            this.currentRoute = 'about'; // Default route
+            this.currentRoute = getDefaultRoute(); // Default route
         }
 
         this.log(`Initial route set to: ${this.currentRoute}`);

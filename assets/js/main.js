@@ -7,7 +7,7 @@
 class AcademicWebsite {
     constructor() {
         this.isLoaded = false;
-        this.currentSection = 'about';
+        this.currentSection = getDefaultRoute();
         this.sidebarOpen = false;
         this.sidebarMinimized = false; // New: track minimized state
 
@@ -666,7 +666,7 @@ class AcademicWebsite {
      */
     updateActiveSection() {
         const sections = document.querySelectorAll('.content-section');
-        let activeSection = 'about'; // Default to about
+        let activeSection = getDefaultRoute(); // Default route
 
         // Find which section is currently in view
         sections.forEach(section => {
@@ -839,7 +839,7 @@ class AcademicWebsite {
             if (e.altKey && e.key >= '1' && e.key <= '6') {
                 e.preventDefault();
                 const sectionIndex = parseInt(e.key) - 1;
-                const sections = ['about', 'education', 'experience', 'publications', 'skills', 'contact'];
+                const sections = getAllSections();
                 if (sections[sectionIndex]) {
                     this.navigateToSection(sections[sectionIndex]);
                 }

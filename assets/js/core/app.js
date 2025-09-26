@@ -161,11 +161,15 @@ class App {
     registerPageModules() {
         this.log('Registering page modules...');
 
+        // Register all routes from centralized configuration
+        const allRoutes = getAllRoutes();
+
         // About page
         if (typeof window.aboutPage !== 'undefined') {
+            const aboutConfig = getRouteConfig('about');
             this.router.registerRoute('about', window.aboutPage, {
-                icon: 'fas fa-user',
-                order: 1,
+                icon: aboutConfig.icon,
+                order: aboutConfig.order,
                 visible: true
             });
             this.pages.set('about', window.aboutPage);
@@ -176,9 +180,10 @@ class App {
 
         // Education page
         if (typeof window.educationPage !== 'undefined') {
+            const educationConfig = getRouteConfig('education');
             this.router.registerRoute('education', window.educationPage, {
-                icon: 'fas fa-graduation-cap',
-                order: 2,
+                icon: educationConfig.icon,
+                order: educationConfig.order,
                 visible: true
             });
             this.pages.set('education', window.educationPage);
@@ -189,9 +194,10 @@ class App {
 
         // Experience page
         if (typeof window.experiencePage !== 'undefined') {
+            const experienceConfig = getRouteConfig('experience');
             this.router.registerRoute('experience', window.experiencePage, {
-                icon: 'fas fa-briefcase',
-                order: 3,
+                icon: experienceConfig.icon,
+                order: experienceConfig.order,
                 visible: true
             });
             this.pages.set('experience', window.experiencePage);
@@ -202,9 +208,10 @@ class App {
 
         // Contact page
         if (typeof window.contactPage !== 'undefined') {
+            const contactConfig = getRouteConfig('contact');
             this.router.registerRoute('contact', window.contactPage, {
-                icon: 'fas fa-envelope',
-                order: 9,
+                icon: contactConfig.icon,
+                order: contactConfig.order,
                 visible: true
             });
             this.pages.set('contact', window.contactPage);
@@ -215,9 +222,10 @@ class App {
 
         // Publications page
         if (typeof window.publicationsPage !== 'undefined') {
+            const publicationsConfig = getRouteConfig('publications');
             this.router.registerRoute('publications', window.publicationsPage, {
-                icon: 'fas fa-book',
-                order: 4,
+                icon: publicationsConfig.icon,
+                order: publicationsConfig.order,
                 visible: true
             });
             this.pages.set('publications', window.publicationsPage);
@@ -254,9 +262,10 @@ class App {
 
         // Projects page
         if (typeof window.projectsPage !== 'undefined') {
+            const projectsConfig = getRouteConfig('projects');
             this.router.registerRoute('projects', window.projectsPage, {
-                icon: 'fas fa-project-diagram',
-                order: 7,
+                icon: projectsConfig.icon,
+                order: projectsConfig.order,
                 visible: true
             });
             this.pages.set('projects', window.projectsPage);
@@ -267,9 +276,10 @@ class App {
 
         // Skills page
         if (typeof window.skillsPage !== 'undefined') {
+            const skillsConfig = getRouteConfig('skills');
             this.router.registerRoute('skills', window.skillsPage, {
-                icon: 'fas fa-cogs',
-                order: 8,
+                icon: skillsConfig.icon,
+                order: skillsConfig.order,
                 visible: true
             });
             this.pages.set('skills', window.skillsPage);
@@ -581,7 +591,7 @@ class App {
             if (e.altKey && e.key >= '1' && e.key <= '9') {
                 e.preventDefault();
                 const sectionIndex = parseInt(e.key) - 1;
-                const sections = ['about', 'education', 'experience', 'publications', 'citation-metrics', 'supervised-students', 'projects', 'skills', 'contact'];
+                const sections = getAllSections();
 
                 if (sections[sectionIndex]) {
                     this.router.navigateToRoute(sections[sectionIndex]);
@@ -773,7 +783,7 @@ class App {
 
         // Get initial route from URL hash or default to about
         const hash = window.location.hash.slice(1);
-        const initialRoute = (hash && this.router.routes.has(hash)) ? hash : 'about';
+        const initialRoute = (hash && this.router.routes.has(hash)) ? hash : getDefaultRoute();
 
         this.log(`Navigating to initial route: ${initialRoute}`);
         this.router.navigateToRoute(initialRoute);
@@ -843,57 +853,59 @@ class App {
     enhanceSectionHeaders() {
         this.log('Enhancing section headers with icons...');
 
-        // Icon mapping for each section
-        const sectionIcons = {
-            'about': 'fas fa-user',
-            'education': 'fas fa-graduation-cap',
-            'experience': 'fas fa-briefcase',
-            'publications': 'fas fa-book',
-            'citation-metrics': 'fas fa-chart-line',
-            'supervised-students': 'fas fa-user-graduate',
-            'projects': 'fas fa-project-diagram',
-            'skills': 'fas fa-cogs',
-            'professional-service': 'fas fa-hands-helping',
-            'reviewing': 'fas fa-clipboard-check',
-            'invited-talks': 'fas fa-microphone-alt',
-            'research-groups': 'fas fa-users',
-            'academic-affiliations': 'fas fa-university',
-            'editorial-boards': 'fas fa-edit',
-            'contact': 'fas fa-envelope'
+        // Get icon mapping from centralized configuration
+        const getSectionIcon = (sectionId) => {
+            const config = getRouteConfig(sectionId);
+            if (config) {
+                return config.icon;
+            }
+            // Fallback for non-route sections
+            const fallbackIcons = {
+                'citation-metrics': 'fas fa-chart-line',
+                'supervised-students': 'fas fa-user-graduate',
+                'professional-service': 'fas fa-hands-helping',
+                'reviewing': 'fas fa-clipboard-check',
+                'invited-talks': 'fas fa-microphone-alt',
+                'research-groups': 'fas fa-users',
+                'academic-affiliations': 'fas fa-university',
+                'editorial-boards': 'fas fa-edit'
+            };
+            return fallbackIcons[sectionId] || 'fas fa-circle';
         };
 
-        // Icon colors for each section
-        const sectionColors = {
-            'about': 'academic-icon-primary',
-            'education': 'academic-icon-success',
-            'experience': 'academic-icon-secondary',
-            'publications': 'academic-icon-info',
-            'citation-metrics': 'academic-icon-warning',
-            'supervised-students': 'academic-icon-primary',
-            'projects': 'academic-icon-success',
-            'skills': 'academic-icon-secondary',
-            'professional-service': 'academic-icon-info',
-            'reviewing': 'academic-icon-warning',
-            'invited-talks': 'academic-icon-warning',
-            'research-groups': 'academic-icon-primary',
-            'academic-affiliations': 'academic-icon-success',
-            'editorial-boards': 'academic-icon-primary',
-            'contact': 'academic-icon-info'
+        // Get icon color mapping from centralized configuration
+        const getSectionIconClass = (sectionId) => {
+            const config = getRouteConfig(sectionId);
+            if (config) {
+                return config.iconClass;
+            }
+            // Fallback for non-route sections
+            const fallbackColors = {
+                'citation-metrics': 'academic-icon-warning',
+                'supervised-students': 'academic-icon-primary',
+                'professional-service': 'academic-icon-info',
+                'reviewing': 'academic-icon-warning',
+                'invited-talks': 'academic-icon-warning',
+                'research-groups': 'academic-icon-primary',
+                'academic-affiliations': 'academic-icon-success',
+                'editorial-boards': 'academic-icon-primary'
+            };
+            return fallbackColors[sectionId] || 'academic-icon-primary';
         };
 
         // Add icons to all section headers
-        Object.keys(sectionIcons).forEach(sectionId => {
+        getAllSections().forEach(sectionId => {
             const section = document.getElementById(sectionId);
             if (section) {
                 const header = section.querySelector('.section-header');
                 if (header && !header.querySelector('.section-icon')) {
                     // Create icon element (hidden for sticky header use only)
                     const iconWrapper = document.createElement('div');
-                    iconWrapper.className = `section-icon academic-icon ${sectionColors[sectionId] || 'academic-icon-primary'}`;
+                    iconWrapper.className = `section-icon academic-icon ${getSectionIconClass(sectionId)}`;
                     iconWrapper.style.display = 'none'; // Hide the circular icon, keep for sticky header
 
                     const icon = document.createElement('i');
-                    icon.className = sectionIcons[sectionId];
+                    icon.className = getSectionIcon(sectionId);
 
                     iconWrapper.appendChild(icon);
 
