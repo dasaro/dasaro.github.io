@@ -182,7 +182,19 @@ class ProjectsPage {
         if (project.description) {
             const description = document.createElement('div');
             description.className = 'project-description';
-            description.textContent = project.description;
+
+            // Handle description as object with language keys or string
+            if (typeof project.description === 'object') {
+                // Try to get current language, fallback to English, then any available language
+                const currentLang = window.i18n?.getCurrentLanguage() || 'en';
+                description.textContent = project.description[currentLang] ||
+                                        project.description['en'] ||
+                                        project.description[Object.keys(project.description)[0]] ||
+                                        'Description not available';
+            } else {
+                description.textContent = project.description;
+            }
+
             item.appendChild(description);
         }
 

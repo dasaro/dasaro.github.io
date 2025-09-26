@@ -1,62 +1,78 @@
 [
   {
-    "id": "frontiers_ai",
+    "id": "frontiers_ai_ml",
     "journal": "Frontiers in Artificial Intelligence",
-    "section": "AI for Human Learning and Behavior Change",
+    "section": "Machine Learning and Artificial Intelligence",
     "publisher": "Frontiers Media",
     "role": "Review Editor",
-    "startDate": "2022-06-01",
+    "startDate": "2021-01-01",
     "endDate": null,
     "status": "Active",
-    "description": "Handling manuscript reviews in the section focusing on artificial intelligence applications for understanding and modifying human learning processes and behavioral patterns.",
+    "description": "Review Editor in the Editorial Board of Machine Learning and Artificial Intelligence section.",
     "focus": [
-      "AI in Education",
-      "Behavioral AI",
-      "Learning Analytics",
-      "Human-Computer Interaction"
+      "Machine Learning",
+      "Artificial Intelligence",
+      "Computational Intelligence",
+      "AI Applications"
     ],
-    "impactFactor": "2.9",
-    "website": "https://www.frontiersin.org/journals/artificial-intelligence/sections/ai-for-human-learning-and-behavior-change",
+    "website": "https://www.frontiersin.org/journals/artificial-intelligence",
     "badges": ["ongoing", "featured"]
   },
   {
-    "id": "frontiers_cs",
-    "journal": "Frontiers in Computer Science",
-    "section": "Theoretical Computer Science",
+    "id": "frontiers_big_data",
+    "journal": "Frontiers in Big Data",
+    "section": "Machine Learning and Artificial Intelligence",
     "publisher": "Frontiers Media",
     "role": "Review Editor",
-    "startDate": "2023-01-01",
+    "startDate": "2021-01-01",
     "endDate": null,
     "status": "Active",
-    "description": "Editorial responsibilities for the theoretical computer science section, focusing on foundational aspects of computation, logic, and algorithmic theory.",
+    "description": "Review Editor in the Editorial Board of Machine Learning and Artificial Intelligence section for big data applications and analytics.",
     "focus": [
-      "Computational Logic",
-      "Algorithm Theory",
-      "Formal Methods",
-      "Theoretical Foundations"
+      "Big Data Analytics",
+      "Data Science",
+      "Machine Learning",
+      "Data Mining"
     ],
-    "impactFactor": "2.4",
-    "website": "https://www.frontiersin.org/journals/computer-science/sections/theoretical-computer-science",
+    "website": "https://www.frontiersin.org/journals/big-data",
     "badges": ["ongoing"]
   },
   {
-    "id": "frontiers_ai_knowledge",
-    "journal": "Frontiers in Artificial Intelligence",
-    "section": "Knowledge Representation and Reasoning",
+    "id": "frontiers_ai_neurology",
+    "journal": "Frontiers in Artificial Intelligence in Neurology",
+    "section": "Machine Learning and Artificial Intelligence",
     "publisher": "Frontiers Media",
-    "role": "Associate Editor",
-    "startDate": "2024-03-01",
+    "role": "Review Editor",
+    "startDate": "2021-01-01",
     "endDate": null,
     "status": "Active",
-    "description": "Associate editorial role overseeing submissions related to knowledge representation, reasoning systems, and logical foundations of artificial intelligence.",
+    "description": "Review Editor in the Editorial Board of Machine Learning and Artificial Intelligence section focusing on neurological applications.",
     "focus": [
-      "Knowledge Representation",
-      "Automated Reasoning",
-      "Logic in AI",
-      "Ontology Engineering"
+      "AI in Neurology",
+      "Neuroinformatics",
+      "Medical AI",
+      "Clinical Applications"
     ],
-    "impactFactor": "2.9",
-    "website": "https://www.frontiersin.org/journals/artificial-intelligence/sections/knowledge-representation-and-reasoning",
-    "badges": ["ongoing", "featured", "recent"]
+    "website": "https://www.frontiersin.org/journals/neurology",
+    "badges": ["ongoing"]
+  },
+  {
+    "id": "frontiers_special_issue_2022",
+    "journal": "Frontiers in Artificial Intelligence",
+    "section": "Special Issue on Explainable Artificial Intelligence models and methods in Finance and Healthcare",
+    "publisher": "Frontiers Media",
+    "role": "Co-editor",
+    "startDate": "2022-01-01",
+    "endDate": "2022-12-31",
+    "status": "Completed",
+    "description": "Co-editor of the Special Issue on Explainable Artificial Intelligence models and methods in Finance and Healthcare.",
+    "focus": [
+      "Explainable AI",
+      "AI in Finance",
+      "AI in Healthcare",
+      "Transparent AI Models"
+    ],
+    "website": "https://www.frontiersin.org/journals/artificial-intelligence",
+    "badges": ["completed", "editorial"]
   }
 ]

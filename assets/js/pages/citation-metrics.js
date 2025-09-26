@@ -89,30 +89,67 @@ class CitationMetricsPage {
 
         metricsContainer.innerHTML = '';
 
-        // Create metrics grid
-        const metricsGrid = document.createElement('div');
-        metricsGrid.className = 'metrics-grid';
+        // Create stats grid (using stats-grid for proper single-row layout)
+        const statsGrid = document.createElement('div');
+        statsGrid.className = 'stats-grid';
 
-        // Define standard metrics
-        const metrics = [
-            { key: 'totalCitations', label: 'Total Citations', icon: 'fas fa-quote-right' },
-            { key: 'hIndex', label: 'h-index', icon: 'fas fa-chart-line' },
-            { key: 'i10Index', label: 'i10-index', icon: 'fas fa-chart-bar' },
-            { key: 'totalPublications', label: 'Total Publications', icon: 'fas fa-book' },
-            { key: 'totalJournalPapers', label: 'Journal Papers', icon: 'fas fa-file-alt' },
-            { key: 'totalConferencePapers', label: 'Conference Papers', icon: 'fas fa-users' },
-            { key: 'firstAuthorPapers', label: 'First Author Papers', icon: 'fas fa-user-edit' },
-            { key: 'correspondingAuthorPapers', label: 'Corresponding Author', icon: 'fas fa-envelope' }
+        // Define the 4 key metrics in order
+        const keyMetrics = [
+            {
+                value: citationMetrics.overview?.publications || citationMetrics.publications || 0,
+                label: 'Publications'
+            },
+            {
+                value: citationMetrics.overview?.hIndex || citationMetrics.hIndex || 0,
+                label: 'h-index'
+            },
+            {
+                value: citationMetrics.overview?.i10Index || citationMetrics.i10Index || 0,
+                label: 'i10-index'
+            },
+            {
+                value: citationMetrics.overview?.totalCitations || citationMetrics.totalCitations || 0,
+                label: 'Citations'
+            }
         ];
 
-        metrics.forEach(metric => {
-            if (citationMetrics[metric.key] !== undefined && citationMetrics[metric.key] !== null) {
-                const metricItem = this.createMetricItem(metric, citationMetrics[metric.key]);
-                metricsGrid.appendChild(metricItem);
-            }
+        // Create stat items for the 4 key metrics
+        keyMetrics.forEach(metric => {
+            const statItem = document.createElement('div');
+            statItem.className = 'stat-item';
+
+            const statNumber = document.createElement('span');
+            statNumber.className = 'stat-number';
+            statNumber.textContent = metric.value;
+
+            const statLabel = document.createElement('span');
+            statLabel.className = 'stat-label';
+            statLabel.textContent = metric.label;
+
+            statItem.appendChild(statNumber);
+            statItem.appendChild(statLabel);
+            statsGrid.appendChild(statItem);
         });
 
-        metricsContainer.appendChild(metricsGrid);
+        metricsContainer.appendChild(statsGrid);
+
+        // Add Google Scholar link
+        if (citationMetrics.googleScholarProfile) {
+            const scholarLink = document.createElement('div');
+            scholarLink.className = 'scholar-link-container';
+            scholarLink.style.textAlign = 'center';
+            scholarLink.style.marginTop = '1.5rem';
+
+            const link = document.createElement('a');
+            link.href = citationMetrics.googleScholarProfile;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.className = 'scholar-link';
+            link.innerHTML = '<i class="fas fa-graduation-cap"></i> View Google Scholar Profile for Current Metrics';
+
+            scholarLink.appendChild(link);
+            metricsContainer.appendChild(scholarLink);
+        }
 
         // Add additional metrics if they exist
         this.renderAdditionalMetrics(citationMetrics, metricsContainer);

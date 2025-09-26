@@ -1,75 +1,73 @@
 [
   {
-    "id": "ethos",
-    "name": "EThOS - Epistemic and Temporal Hybrid Ontology Systems",
-    "institution": "University College London",
-    "department": "Department of Computer Science",
-    "role": "Core Member",
-    "startDate": "2019-01-01",
-    "endDate": null,
-    "status": "Active",
-    "description": "Research group focused on developing hybrid ontology systems that combine epistemic and temporal reasoning for knowledge representation and multi-agent systems.",
-    "focus": [
-      "Epistemic Logic",
-      "Temporal Reasoning",
-      "Ontology Systems",
-      "Multi-Agent Systems"
-    ],
-    "website": "http://ethos.cs.ucl.ac.uk",
-    "badges": ["ongoing", "featured"]
-  },
-  {
-    "id": "luci",
-    "name": "LUCI - Logic, Understanding, and Computational Intelligence",
-    "institution": "University College London",
-    "department": "Department of Computer Science",
-    "role": "Research Associate",
-    "startDate": "2020-03-01",
-    "endDate": null,
-    "status": "Active",
-    "description": "Interdisciplinary research group working on the intersection of logic, artificial intelligence, and cognitive science, with focus on computational models of understanding and reasoning.",
-    "focus": [
-      "Logic in AI",
-      "Computational Intelligence",
-      "Cognitive Modeling",
-      "Knowledge Representation"
-    ],
-    "website": "http://luci.cs.ucl.ac.uk",
-    "badges": ["ongoing"]
-  },
-  {
-    "id": "spike",
-    "name": "SPIKE - Strategic Planning in Knowledge Engineering",
-    "institution": "University of Edinburgh",
-    "department": "School of Informatics",
-    "role": "Collaborating Member",
-    "startDate": "2021-06-01",
-    "endDate": null,
-    "status": "Active",
-    "description": "Research group specializing in strategic planning algorithms and knowledge engineering approaches for autonomous systems and multi-agent environments.",
-    "focus": [
-      "Strategic Planning",
-      "Knowledge Engineering",
-      "Autonomous Systems",
-      "Planning Algorithms"
-    ],
-    "badges": ["ongoing"]
-  },
-  {
-    "id": "kids",
-    "name": "KIDS - Knowledge, Intelligence, and Decision Systems",
-    "institution": "King's College London",
-    "department": "Department of Informatics",
-    "role": "External Collaborator",
+    "id": "ethos_verona",
+    "name": "EThOS - Ethics and Technologies Of the Self",
+    "institution": "University of Verona",
+    "department": "Department of Human Sciences",
+    "role": "Member",
     "startDate": "2022-01-01",
     "endDate": null,
     "status": "Active",
-    "description": "Research group focusing on knowledge-based systems, intelligent decision making, and the application of logic-based approaches to real-world problems.",
+    "description": "Research center focused on the ethical dimensions of technology and artificial intelligence, examining how technologies shape human agency and self-understanding.",
     "focus": [
-      "Knowledge-Based Systems",
-      "Decision Systems",
-      "Applied Logic",
-      "Intelligent Systems"
+      "Ethics of AI",
+      "Philosophy of Technology",
+      "Human-AI Interaction",
+      "Responsible AI"
+    ],
+    "badges": ["current", "featured"]
+  },
+  {
+    "id": "luci_milan",
+    "name": "LUCI - Logic Uncertainty Computation and Information",
+    "institution": "University of Milan",
+    "department": "Department of Philosophy",
+    "role": "Member",
+    "startDate": "2020-01-01",
+    "endDate": null,
+    "status": "Active",
+    "description": "Research group focused on the logical and computational foundations of uncertainty, information processing, and reasoning under incomplete information.",
+    "focus": [
+      "Logic Programming",
+      "Uncertainty Reasoning",
+      "Information Theory",
+      "Computational Logic"
+    ],
+    "badges": ["ongoing"]
+  },
+  {
+    "id": "spike_imperial",
+    "name": "SPIKE - Structured and Probabilistic Intelligent Knowledge Engineering",
+    "institution": "Imperial College London",
+    "department": "Department of Computing",
+    "role": "Member",
+    "startDate": "2019-01-01",
+    "endDate": null,
+    "status": "Active",
+    "description": "Research group specializing in knowledge engineering, structured reasoning, and probabilistic approaches to artificial intelligence.",
+    "focus": [
+      "Knowledge Engineering",
+      "Probabilistic Reasoning",
+      "Logic Programming",
+      "Explainable AI"
+    ],
+    "badges": ["ongoing"]
+  },
+  {
+    "id": "kids_ucl",
+    "name": "KIDS - Knowledge, Information and Data Science",
+    "institution": "University College London",
+    "department": "Department of Information Studies",
+    "role": "Member",
+    "startDate": "2014-01-01",
+    "endDate": null,
+    "status": "Active",
+    "description": "Research group focused on knowledge representation, information processing, and data science applications in artificial intelligence.",
+    "focus": [
+      "Knowledge Representation",
+      "Data Science",
+      "Machine Learning",
+      "Information Systems"
     ],
     "badges": ["ongoing"]
   }

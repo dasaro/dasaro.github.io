@@ -65,28 +65,7 @@ class EditorialBoardsPage {
         // Enhance existing section header
         this.enhanceExistingSectionHeader();
 
-        // Create stats section
-        const statsSection = document.createElement('div');
-        statsSection.className = 'stats-grid';
-
-        const totalStat = document.createElement('div');
-        totalStat.className = 'stat-item';
-        totalStat.innerHTML = `<span class="stat-number">${this.data.length}</span><span class="stat-label">Positions</span>`;
-
-        const journals = [...new Set(this.data.map(board => board.journal))].length;
-        const journalsStat = document.createElement('div');
-        journalsStat.className = 'stat-item';
-        journalsStat.innerHTML = `<span class="stat-number">${journals}</span><span class="stat-label">Journals</span>`;
-
-        const activeStat = document.createElement('div');
-        activeStat.className = 'stat-item';
-        const activeCount = this.data.filter(board => !board.endDate || board.endDate.includes('Present')).length;
-        activeStat.innerHTML = `<span class="stat-number">${activeCount}</span><span class="stat-label">Active</span>`;
-
-        statsSection.appendChild(totalStat);
-        statsSection.appendChild(journalsStat);
-        statsSection.appendChild(activeStat);
-        container.appendChild(statsSection);
+        // Stats section removed as requested
 
         // Sort by start date (newest first)
         const sortedBoards = [...this.data].sort((a, b) => {

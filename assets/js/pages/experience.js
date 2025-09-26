@@ -89,9 +89,7 @@ class ExperiencePage {
     renderEnhancedExperienceTimeline(experienceData, container) {
         this.log('Rendering enhanced experience timeline');
 
-        // Create overall stats
-        const statsSection = this.createExperienceStats(experienceData);
-        container.appendChild(statsSection);
+        // Stats section removed as requested
 
         // Create timeline container
         const timelineContainer = document.createElement('div');
@@ -112,49 +110,7 @@ class ExperiencePage {
         container.appendChild(timelineContainer);
     }
 
-    /**
-     * Create experience statistics
-     */
-    createExperienceStats(experienceData) {
-        const statsContainer = document.createElement('div');
-        statsContainer.className = 'stats-grid';
 
-        // Calculate stats
-        const totalPositions = experienceData.length;
-        const companies = [...new Set(experienceData.map(exp => exp.company))].length;
-        const currentPositions = experienceData.filter(exp => exp.current || !exp.endDate).length;
-
-        const positionsStat = this.createStatItem(totalPositions, 'Positions');
-        const companiesStat = this.createStatItem(companies, 'Organizations');
-        const currentStat = this.createStatItem(currentPositions, 'Current');
-
-        statsContainer.appendChild(positionsStat);
-        statsContainer.appendChild(companiesStat);
-        statsContainer.appendChild(currentStat);
-
-        return statsContainer;
-    }
-
-    /**
-     * Create stat item
-     */
-    createStatItem(number, label) {
-        const statItem = document.createElement('div');
-        statItem.className = 'stat-item';
-
-        const statNumber = document.createElement('span');
-        statNumber.className = 'stat-number';
-        statNumber.textContent = number;
-
-        const statLabel = document.createElement('span');
-        statLabel.className = 'stat-label';
-        statLabel.textContent = label;
-
-        statItem.appendChild(statNumber);
-        statItem.appendChild(statLabel);
-
-        return statItem;
-    }
 
     /**
      * Create enhanced experience card
@@ -212,7 +168,7 @@ class ExperiencePage {
         // Company
         if (exp.company) {
             const company = document.createElement('div');
-            company.className = 'list-item-subtitle';
+            company.className = 'company';
             company.innerHTML = `<i class="fas fa-building"></i> ${exp.company}`;
             cardBody.appendChild(company);
         }
@@ -220,35 +176,54 @@ class ExperiencePage {
         // Location
         if (exp.location) {
             const location = document.createElement('div');
-            location.className = 'list-item-description';
+            location.className = 'location';
             location.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${exp.location}`;
             cardBody.appendChild(location);
+        }
+
+        // Department if available
+        if (exp.department) {
+            const department = document.createElement('div');
+            department.className = 'department';
+            department.innerHTML = `<i class="fas fa-sitemap"></i> ${exp.department}`;
+            cardBody.appendChild(department);
         }
 
         // Description
         if (exp.description) {
             const description = document.createElement('div');
-            description.className = 'list-item-description';
+            description.className = 'description';
             description.textContent = exp.description;
             cardBody.appendChild(description);
         }
 
         // Responsibilities
         if (exp.responsibilities && exp.responsibilities.length > 0) {
+            const respContainer = document.createElement('div');
+            respContainer.className = 'responsibilities';
+
             const respTitle = document.createElement('h4');
-            respTitle.className = 'list-item-title';
-            respTitle.innerHTML = '<i class="fas fa-tasks"></i> Responsibilities';
+            respTitle.style.marginTop = '1rem';
+            respTitle.style.marginBottom = '0.5rem';
+            respTitle.style.fontSize = '0.9rem';
+            respTitle.style.fontWeight = '600';
+            respTitle.style.color = 'var(--text-primary)';
+            respTitle.innerHTML = '<i class="fas fa-tasks"></i> Key Responsibilities';
 
             const respList = document.createElement('ul');
-            respList.className = 'experience-details-list';
+            respList.style.marginLeft = '1rem';
+            respList.style.lineHeight = '1.6';
             exp.responsibilities.forEach(resp => {
                 const respItem = document.createElement('li');
+                respItem.style.fontSize = '0.9rem';
+                respItem.style.marginBottom = '0.25rem';
                 respItem.textContent = resp;
                 respList.appendChild(respItem);
             });
 
-            cardBody.appendChild(respTitle);
-            cardBody.appendChild(respList);
+            respContainer.appendChild(respTitle);
+            respContainer.appendChild(respList);
+            cardBody.appendChild(respContainer);
         }
 
         // Achievements

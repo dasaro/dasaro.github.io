@@ -91,9 +91,7 @@ class SupervisedStudentsPage {
         // Enhance existing section header
         this.enhanceExistingSectionHeader();
 
-        // Create stats section
-        const statsSection = this.createStudentStats(students);
-        container.appendChild(statsSection);
+        // Stats section removed as requested
 
         // Sort students by start date (most recent first)
         const sortedStudents = [...students].sort((a, b) => {
@@ -115,49 +113,7 @@ class SupervisedStudentsPage {
         this.log('Students grid rendered successfully');
     }
 
-    /**
-     * Create student statistics
-     */
-    createStudentStats(students) {
-        const statsContainer = document.createElement('div');
-        statsContainer.className = 'stats-grid';
 
-        // Calculate stats
-        const totalStudents = students.length;
-        const currentStudents = students.filter(s => s.status?.toLowerCase() === 'current' || s.current).length;
-        const graduatedStudents = students.filter(s => s.status?.toLowerCase() === 'completed' || s.status?.toLowerCase() === 'graduated').length;
-
-        const totalStat = this.createStatItem(totalStudents, 'Students');
-        const currentStat = this.createStatItem(currentStudents, 'Current');
-        const graduatedStat = this.createStatItem(graduatedStudents, 'Graduated');
-
-        statsContainer.appendChild(totalStat);
-        statsContainer.appendChild(currentStat);
-        statsContainer.appendChild(graduatedStat);
-
-        return statsContainer;
-    }
-
-    /**
-     * Create stat item
-     */
-    createStatItem(number, label) {
-        const statItem = document.createElement('div');
-        statItem.className = 'stat-item';
-
-        const statNumber = document.createElement('span');
-        statNumber.className = 'stat-number';
-        statNumber.textContent = number;
-
-        const statLabel = document.createElement('span');
-        statLabel.className = 'stat-label';
-        statLabel.textContent = label;
-
-        statItem.appendChild(statNumber);
-        statItem.appendChild(statLabel);
-
-        return statItem;
-    }
 
     /**
      * Create enhanced student card
@@ -242,7 +198,19 @@ class SupervisedStudentsPage {
         if (description) {
             const descriptionDiv = document.createElement('div');
             descriptionDiv.className = 'list-item-description';
-            descriptionDiv.textContent = description;
+
+            // Handle description as object with language keys or string
+            if (typeof description === 'object') {
+                // Try to get current language, fallback to English, then any available language
+                const currentLang = window.i18n?.getCurrentLanguage() || 'en';
+                descriptionDiv.textContent = description[currentLang] ||
+                                           description['en'] ||
+                                           description[Object.keys(description)[0]] ||
+                                           'Description not available';
+            } else {
+                descriptionDiv.textContent = description;
+            }
+
             cardBody.appendChild(descriptionDiv);
         }
 

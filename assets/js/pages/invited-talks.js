@@ -65,29 +65,6 @@ class InvitedTalksPage {
         // Enhance existing section header
         this.enhanceExistingSectionHeader();
 
-        // Create stats section
-        const statsSection = document.createElement('div');
-        statsSection.className = 'stats-grid';
-
-        const totalStat = document.createElement('div');
-        totalStat.className = 'stat-item';
-        totalStat.innerHTML = `<span class="stat-number">${this.data.length}</span><span class="stat-label">Talks</span>`;
-
-        const institutions = [...new Set(this.data.map(talk => talk.institution))].length;
-        const institutionsStat = document.createElement('div');
-        institutionsStat.className = 'stat-item';
-        institutionsStat.innerHTML = `<span class="stat-number">${institutions}</span><span class="stat-label">Institutions</span>`;
-
-        const countries = [...new Set(this.data.map(talk => talk.location).filter(loc => loc))].length;
-        const countriesStat = document.createElement('div');
-        countriesStat.className = 'stat-item';
-        countriesStat.innerHTML = `<span class="stat-number">${countries}</span><span class="stat-label">Locations</span>`;
-
-        statsSection.appendChild(totalStat);
-        statsSection.appendChild(institutionsStat);
-        statsSection.appendChild(countriesStat);
-        container.appendChild(statsSection);
-
         // Sort talks by date (newest first)
         const sortedTalks = [...this.data].sort((a, b) => {
             const dateA = new Date(a.date || a.year || '1900');

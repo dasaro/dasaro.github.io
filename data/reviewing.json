@@ -1,61 +1,123 @@
 [
   {
-    "id": "conferences",
-    "type": "conferences",
-    "title": "Conference Reviews",
+    "id": "current_journals",
+    "type": "journals",
+    "title": "Current Journal Reviews",
     "venues": [
-      "International Joint Conference on Artificial Intelligence (IJCAI)",
-      "European Conference on Artificial Intelligence (ECAI)",
-      "International Conference on Autonomous Agents and Multi-Agent Systems (AAMAS)",
-      "International Conference on Principles of Knowledge Representation and Reasoning (KR)",
-      "International Conference on Logic Programming (ICLP)",
-      "International Conference on Principles and Practice of Multi-Agent Systems (PRIMA)",
-      "International Conference on Agents and Artificial Intelligence (ICAART)",
-      "Conference on Artificial Intelligence in Medicine (AIME)",
-      "International Conference on Availability, Reliability and Security (ARES)",
-      "Workshop on Verification and Validation of Physical Trustworthiness (VPT)",
-      "International Conference on Computing, Communication and Networking Technologies (ICCCNT)"
+      "International Journal of Approximate Reasoning (IJAR)"
     ],
-    "yearRange": "2017-2025",
-    "totalReviews": "50+",
-    "badges": ["ongoing"]
+    "year": "2025",
+    "badges": ["current", "ongoing"]
   },
   {
-    "id": "journals",
-    "type": "journals",
-    "title": "Journal Reviews",
+    "id": "recent_conferences_2025",
+    "type": "conferences",
+    "title": "Recent Conference Reviews (2025)",
     "venues": [
-      "Artificial Intelligence (AI)",
-      "Journal of Artificial Intelligence Research (JAIR)",
-      "Autonomous Agents and Multi-Agent Systems (AAMAS)",
-      "Annals of Mathematics and Artificial Intelligence (AMAI)",
-      "Applied Intelligence",
-      "Expert Systems with Applications",
-      "Knowledge-Based Systems",
-      "Logic Journal of the IGPL",
-      "Journal of Logic and Computation",
-      "Studia Logica",
-      "Synthese",
-      "Frontiers in Artificial Intelligence",
-      "Frontiers in Computer Science",
-      "IEEE Access",
-      "ACM Computing Surveys"
+      "22nd International Conference on Principles of Knowledge Representation and Reasoning (KR 2025)",
+      "34th International Joint Conference on Artificial Intelligence (IJCAI 2025)"
     ],
-    "yearRange": "2018-2025",
-    "totalReviews": "75+",
-    "badges": ["ongoing", "featured"]
+    "year": "2025",
+    "badges": ["current"]
+  },
+  {
+    "id": "conferences_2024",
+    "type": "conferences",
+    "title": "Conference Reviews (2024)",
+    "venues": [
+      "33rd International Joint Conference on Artificial Intelligence (IJCAI 2024)",
+      "21st International Conference on Principles of Knowledge Representation and Reasoning (KR 2024)"
+    ],
+    "year": "2024",
+    "badges": ["recent"]
+  },
+  {
+    "id": "conferences_2023",
+    "type": "conferences",
+    "title": "Conference Reviews (2023)",
+    "venues": [
+      "26th European Conference on Artificial Intelligence (ECAI 2023)",
+      "20th International Conference on Principles of Knowledge Representation and Reasoning (KR 2023)"
+    ],
+    "year": "2023",
+    "badges": ["recent"]
+  },
+  {
+    "id": "conferences_2022",
+    "type": "conferences",
+    "title": "Conference Reviews (2022)",
+    "venues": [
+      "19th International Conference on Principles of Knowledge Representation and Reasoning (KR 2022)"
+    ],
+    "year": "2022"
   },
   {
     "id": "special_issues",
     "type": "special_issues",
     "title": "Special Issue Reviews",
     "venues": [
-      "Special Issue on 'Logical Foundations of Artificial Intelligence' - Annals of Mathematics and Artificial Intelligence",
-      "Special Issue on 'Multi-Agent Systems and Logic' - Applied Intelligence",
-      "Special Issue on 'Knowledge Representation and Reasoning' - Expert Systems with Applications"
+      "Special Issue on Reasoning about Social Networks - Journal of Logic and Computation",
+      "Special Issue on Commonsense Reasoning - Annals of Mathematics and Artificial Intelligence (AMAI)"
     ],
-    "yearRange": "2020-2024",
-    "totalReviews": "15+",
+    "yearRange": "2018-2019",
     "badges": ["highlight"]
+  },
+  {
+    "id": "conferences_2020",
+    "type": "conferences",
+    "title": "Conference Reviews (2020)",
+    "venues": [
+      "12th International Conference on Social Robotics (ICSR-2020)"
+    ],
+    "year": "2020"
+  },
+  {
+    "id": "other_journals",
+    "type": "journals",
+    "title": "Other Journal Reviews",
+    "venues": [
+      "Journal of Hydrologic Engineering (J. Hydrol. Eng.)"
+    ],
+    "year": "2019"
+  },
+  {
+    "id": "conferences_2019",
+    "type": "conferences",
+    "title": "Conference Reviews (2019)",
+    "venues": [
+      "IEEE International Conference on Systems, Man, and Cybernetics 2019 (SMC-19)",
+      "20th workshop \"From Objects to Agents\" (WOA-19)",
+      "28th International Joint Conference on Artificial Intelligence (IJCAI-19)"
+    ],
+    "year": "2019"
+  },
+  {
+    "id": "conferences_2018",
+    "type": "conferences",
+    "title": "Conference Reviews (2018)",
+    "venues": [
+      "32nd AAAI Conference on Artificial Intelligence (AAAI-18)",
+      "27th International Joint Conference on Artificial Intelligence (IJCAI-18)"
+    ],
+    "year": "2018"
+  },
+  {
+    "id": "conferences_2017",
+    "type": "conferences",
+    "title": "Conference Reviews (2017)",
+    "venues": [
+      "33rd International Conference on Logic Programming (ICLP-17)",
+      "26th International Joint Conference on Artificial Intelligence (IJCAI-17)"
+    ],
+    "year": "2017"
+  },
+  {
+    "id": "conferences_2016",
+    "type": "conferences",
+    "title": "Conference Reviews (2016)",
+    "venues": [
+      "25th International Joint Conference on Artificial Intelligence (IJCAI-16)"
+    ],
+    "year": "2016"
   }
 ]

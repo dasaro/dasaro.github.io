@@ -145,24 +145,12 @@ class ProfessionalServicePage {
         const title = document.createElement('h3');
         title.textContent = this.getTypeTitle(type);
 
-        const statsContainer = document.createElement('div');
-        statsContainer.className = 'stats-grid';
-
-        // Calculate total activities for this type
-        const totalActivities = Object.values(yearData).reduce((sum, activities) => sum + activities.length, 0);
-        const years = Object.keys(yearData).length;
-
-        const totalStat = this.createStatItem(totalActivities, 'Activities');
-        const yearsStat = this.createStatItem(years, 'Years');
-
-        statsContainer.appendChild(totalStat);
-        statsContainer.appendChild(yearsStat);
+        // Stats section removed as requested
 
         header.appendChild(icon);
         header.appendChild(title);
 
         section.appendChild(header);
-        section.appendChild(statsContainer);
 
         // Activities by year
         Object.keys(yearData).forEach(year => {
@@ -173,26 +161,6 @@ class ProfessionalServicePage {
         return section;
     }
 
-    /**
-     * Create stat item
-     */
-    createStatItem(number, label) {
-        const statItem = document.createElement('div');
-        statItem.className = 'stat-item';
-
-        const statNumber = document.createElement('span');
-        statNumber.className = 'stat-number';
-        statNumber.textContent = number;
-
-        const statLabel = document.createElement('span');
-        statLabel.className = 'stat-label';
-        statLabel.textContent = label;
-
-        statItem.appendChild(statNumber);
-        statItem.appendChild(statLabel);
-
-        return statItem;
-    }
 
     /**
      * Create enhanced year section

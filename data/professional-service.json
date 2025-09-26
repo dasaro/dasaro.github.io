@@ -1,102 +1,125 @@
 [
   {
-    "id": "vpt2025_pc",
-    "role": "Program Committee Member",
-    "event": "3rd International Workshop on Verification and Validation of Physical Trustworthiness (VPT 2025)",
-    "organization": "VPT",
+    "id": "edefai_2025_organizer",
+    "role": "Co-organizer",
+    "event": "eDefAI (Ethical Design for AI)–3rd Logic for the AI Spring Summer School",
+    "organization": "FAIR Project",
+    "location": "Lecce",
     "year": "2025",
-    "type": "workshop",
+    "type": "summer_school",
+    "badges": ["current", "organizer"]
+  },
+  {
+    "id": "ijcai_2025_pc",
+    "role": "Program Committee Member",
+    "event": "International Joint Conference on Artificial Intelligence (IJCAI)",
+    "organization": "IJCAI",
+    "year": "2025",
+    "type": "conference",
     "badges": ["current"]
   },
   {
-    "id": "ares2024_pc",
+    "id": "ijcai_2024_pc",
     "role": "Program Committee Member",
-    "event": "19th International Conference on Availability, Reliability and Security (ARES 2024)",
-    "organization": "ARES",
+    "event": "International Joint Conference on Artificial Intelligence (IJCAI)",
+    "organization": "IJCAI",
     "year": "2024",
     "type": "conference",
     "badges": ["recent"]
   },
   {
-    "id": "vpt2024_publicity",
-    "role": "Publicity Chair",
-    "event": "2nd International Workshop on Verification and Validation of Physical Trustworthiness (VPT 2024)",
-    "organization": "VPT",
-    "year": "2024",
-    "type": "workshop",
-    "badges": ["recent"]
+    "id": "kr_pc_since_2022",
+    "role": "Program Committee Member",
+    "event": "International Conference on Principles of Knowledge Representation and Reasoning (KR)",
+    "organization": "KR",
+    "year": "2022",
+    "yearRange": "2022-present",
+    "type": "conference",
+    "badges": ["ongoing"]
   },
   {
-    "id": "vpt2023_pc",
+    "id": "ecai_pc_since_2023",
     "role": "Program Committee Member",
-    "event": "1st International Workshop on Verification and Validation of Physical Trustworthiness (VPT 2023)",
-    "organization": "VPT",
+    "event": "26th European Conference on Artificial Intelligence (ECAI)",
+    "organization": "ECAI",
     "year": "2023",
-    "type": "workshop"
-  },
-  {
-    "id": "prima2021_pc",
-    "role": "Program Committee Member",
-    "event": "International Conference on Principles and Practice of Multi-Agent Systems (PRIMA 2021)",
-    "organization": "PRIMA",
-    "year": "2021",
-    "type": "conference"
-  },
-  {
-    "id": "icaart2021_pc",
-    "role": "Program Committee Member",
-    "event": "13th International Conference on Agents and Artificial Intelligence (ICAART 2021)",
-    "organization": "ICAART",
-    "year": "2021",
-    "type": "conference"
-  },
-  {
-    "id": "icccnt2020_chair",
-    "role": "Track Chair - Machine Learning, Deep Learning and AI Track",
-    "event": "11th International Conference on Computing, Communication and Networking Technologies (ICCCNT 2020)",
-    "organization": "ICCCNT",
-    "year": "2020",
+    "yearRange": "2023-present",
     "type": "conference",
-    "badges": ["highlight"]
+    "badges": ["ongoing"]
   },
   {
-    "id": "icaart2020_pc",
-    "role": "Program Committee Member",
-    "event": "12th International Conference on Agents and Artificial Intelligence (ICAART 2020)",
-    "organization": "ICAART",
+    "id": "ethos_organizer_since_2022",
+    "role": "Co-organizer",
+    "event": "EThOS series of seminars",
+    "organization": "University of Verona",
+    "year": "2022",
+    "yearRange": "2022-present",
+    "type": "seminar_series",
+    "badges": ["ongoing", "organizer"]
+  },
+  {
+    "id": "beware_chair_since_2022",
+    "role": "Workshop Chair",
+    "event": "1st, 2nd and 3rd Workshops on Bias, Ethical AI, Explainability and the Role of Logic and Logic Programming (BEWARE)",
+    "organization": "AIxIA",
+    "year": "2022",
+    "yearRange": "2022-present",
+    "type": "workshop",
+    "badges": ["ongoing", "chair"]
+  },
+  {
+    "id": "frontiers_ai_editor",
+    "role": "Co-editor",
+    "event": "Special Issue on Explainable Artificial Intelligence models and methods in Finance and Healthcare",
+    "organization": "Frontiers in Artificial Intelligence",
+    "year": "2022",
+    "type": "editorial",
+    "badges": ["recent", "editorial"]
+  },
+  {
+    "id": "frontiers_review_editor",
+    "role": "Review Editor",
+    "event": "Editorial Board of Machine Learning and Artificial Intelligence",
+    "organization": "Frontiers in Artificial Intelligence, Frontiers in Big Data and Frontiers in Artificial Intelligence in Neurology",
+    "year": "2021",
+    "yearRange": "2021-present",
+    "type": "editorial",
+    "badges": ["ongoing", "editorial"]
+  },
+  {
+    "id": "me_e_2021_chair",
+    "role": "Workshop Chair",
+    "event": "1st Workshop on Machine Ethics and Explainability (ME and E)",
+    "organization": "ICLP 2021",
+    "year": "2021",
+    "type": "workshop",
+    "badges": ["chair"]
+  },
+  {
+    "id": "ai3_2021_chair",
+    "role": "Workshop Chair",
+    "event": "5th Workshop on Advances in Argumentation in Artificial Intelligence (AI3)",
+    "organization": "AIxIA conference 2021",
+    "year": "2021",
+    "type": "workshop",
+    "badges": ["chair"]
+  },
+  {
+    "id": "luci_lab_organizer",
+    "role": "Co-organizer",
+    "event": "LUCI Lab (Unimi, Dept. of Philosophy) seminars",
+    "organization": "University of Milan",
     "year": "2020",
-    "type": "conference"
+    "yearRange": "2020-2021",
+    "type": "seminar_series",
+    "badges": ["organizer"]
   },
   {
-    "id": "aime2019_pc",
+    "id": "ijcai_2020_pc",
     "role": "Program Committee Member",
-    "event": "17th Conference on Artificial Intelligence in Medicine (AIME 2019)",
-    "organization": "AIME",
-    "year": "2019",
-    "type": "conference"
-  },
-  {
-    "id": "icaart2019_pc",
-    "role": "Program Committee Member",
-    "event": "11th International Conference on Agents and Artificial Intelligence (ICAART 2019)",
-    "organization": "ICAART",
-    "year": "2019",
-    "type": "conference"
-  },
-  {
-    "id": "icaart2018_pc",
-    "role": "Program Committee Member",
-    "event": "10th International Conference on Agents and Artificial Intelligence (ICAART 2018)",
-    "organization": "ICAART",
-    "year": "2018",
-    "type": "conference"
-  },
-  {
-    "id": "icaart2017_pc",
-    "role": "Program Committee Member",
-    "event": "9th International Conference on Agents and Artificial Intelligence (ICAART 2017)",
-    "organization": "ICAART",
-    "year": "2017",
+    "event": "International Joint Conference on Artificial Intelligence (IJCAI)",
+    "organization": "IJCAI",
+    "year": "2020",
     "type": "conference"
   }
 ]

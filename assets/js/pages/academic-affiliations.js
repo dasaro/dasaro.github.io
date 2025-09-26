@@ -65,22 +65,7 @@ class AcademicAffiliationsPage {
         // Enhance existing section header
         this.enhanceExistingSectionHeader();
 
-        // Create stats section
-        const statsSection = document.createElement('div');
-        statsSection.className = 'stats-grid';
-
-        const totalStat = document.createElement('div');
-        totalStat.className = 'stat-item';
-        totalStat.innerHTML = `<span class="stat-number">${this.data.length}</span><span class="stat-label">Affiliations</span>`;
-
-        const societies = [...new Set(this.data.map(aff => aff.type || 'Society'))].length;
-        const typesStat = document.createElement('div');
-        typesStat.className = 'stat-item';
-        typesStat.innerHTML = `<span class="stat-number">${societies}</span><span class="stat-label">Types</span>`;
-
-        statsSection.appendChild(totalStat);
-        statsSection.appendChild(typesStat);
-        container.appendChild(statsSection);
+        // Stats section removed as requested
 
         // Create enhanced affiliations grid
         const grid = document.createElement('div');

@@ -55,9 +55,8 @@ class ReviewingPage {
         // Enhance existing section header
         this.enhanceExistingSectionHeader();
 
-        // Create overall stats
-        const statsSection = this.createOverallStats();
-        container.appendChild(statsSection);
+        // Add reviewing highlights section
+        this.renderReviewingHighlights(container);
 
         // Create enhanced reviewing grid
         const grid = document.createElement('div');
@@ -83,51 +82,130 @@ class ReviewingPage {
     }
 
     /**
-     * Create overall statistics
+     * Render reviewing highlights and statistics
+     * @param {HTMLElement} container - Container element
      */
-    createOverallStats() {
-        const statsContainer = document.createElement('div');
-        statsContainer.className = 'stats-grid';
+    renderReviewingHighlights(container) {
+        this.log('Rendering reviewing highlights');
 
-        // Calculate totals
-        let totalReviews = 0;
-        let totalVenues = 0;
+        // Create highlights section
+        const highlightsSection = document.createElement('div');
+        highlightsSection.className = 'reviewing-highlights-section';
+        highlightsSection.style.marginBottom = '2rem';
 
-        this.data.forEach(reviewType => {
-            if (reviewType.count) totalReviews += reviewType.count;
-            if (reviewType.venues) totalVenues += reviewType.venues.length;
+
+        // Add key highlights
+        const highlightsTitle = document.createElement('h3');
+        highlightsTitle.textContent = 'Reviewing Highlights';
+        highlightsTitle.style.marginTop = '1.5rem';
+        highlightsTitle.style.marginBottom = '1rem';
+        highlightsTitle.style.fontSize = '1.1rem';
+        highlightsTitle.style.fontWeight = '600';
+        highlightsTitle.style.color = 'var(--text-primary)';
+
+        const highlightsList = document.createElement('div');
+        highlightsList.className = 'reviewing-highlights-list';
+        highlightsList.style.display = 'grid';
+        highlightsList.style.gridTemplateColumns = 'repeat(auto-fit, minmax(250px, 1fr))';
+        highlightsList.style.gap = '1rem';
+
+        const highlights = [
+            {
+                icon: 'fas fa-star',
+                title: 'Top-tier Venues',
+                description: 'IJCAI, AAAI, KR, ECAI - Premier AI conferences'
+            },
+            {
+                icon: 'fas fa-calendar-alt',
+                title: 'Consistent Record',
+                description: '9+ years of continuous reviewing (2016-2025)'
+            },
+            {
+                icon: 'fas fa-book-open',
+                title: 'Diverse Domains',
+                description: 'AI, Logic, Robotics, Systems & Cybernetics'
+            },
+            {
+                icon: 'fas fa-certificate',
+                title: 'Special Issues',
+                description: 'Logic & Computation, AMAI expert reviewer'
+            }
+        ];
+
+        highlights.forEach(highlight => {
+            const highlightCard = document.createElement('div');
+            highlightCard.className = 'highlight-item';
+            highlightCard.style.padding = '1rem';
+            highlightCard.style.border = '1px solid #e9ecef';
+            highlightCard.style.borderRadius = 'var(--border-radius)';
+            highlightCard.style.background = '#f8f9fa';
+
+            highlightCard.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                    <i class="${highlight.icon}" style="color: var(--color-accent); font-size: 1.1em;"></i>
+                    <h4 style="margin: 0; font-size: 0.95rem; font-weight: 600; color: var(--text-primary);">${highlight.title}</h4>
+                </div>
+                <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">${highlight.description}</p>
+            `;
+
+            highlightsList.appendChild(highlightCard);
         });
 
-        const reviewsStat = this.createStatItem(totalReviews, 'Total Reviews');
-        const venuesStat = this.createStatItem(totalVenues, 'Venues');
-        const typesStat = this.createStatItem(this.data.length, 'Review Types');
+        highlightsSection.appendChild(highlightsTitle);
+        highlightsSection.appendChild(highlightsList);
 
-        statsContainer.appendChild(reviewsStat);
-        statsContainer.appendChild(venuesStat);
-        statsContainer.appendChild(typesStat);
-
-        return statsContainer;
+        container.appendChild(highlightsSection);
     }
 
     /**
-     * Create stat item
+     * Calculate reviewing statistics from data
+     * @returns {Object} Statistics object
      */
-    createStatItem(number, label) {
-        const statItem = document.createElement('div');
-        statItem.className = 'stat-item';
+    calculateReviewingStats() {
+        // Count unique venues across all review types
+        const allVenues = new Set();
+        const reviewTypes = new Set();
+        let earliestYear = 2025;
+        let hasCurrentActivity = false;
 
-        const statNumber = document.createElement('span');
-        statNumber.className = 'stat-number';
-        statNumber.textContent = number || 0;
+        this.data.forEach(reviewType => {
+            if (reviewType.venues) {
+                reviewType.venues.forEach(venue => allVenues.add(venue));
+            }
 
-        const statLabel = document.createElement('span');
-        statLabel.className = 'stat-label';
-        statLabel.textContent = label;
+            if (reviewType.type) {
+                reviewTypes.add(reviewType.type);
+            }
 
-        statItem.appendChild(statNumber);
-        statItem.appendChild(statLabel);
+            // Check for years
+            if (reviewType.year) {
+                const year = parseInt(reviewType.year);
+                if (year < earliestYear) {
+                    earliestYear = year;
+                }
+                if (year === 2025) {
+                    hasCurrentActivity = true;
+                }
+            }
 
-        return statItem;
+            // Check for year ranges
+            if (reviewType.yearRange) {
+                const years = reviewType.yearRange.split('-');
+                if (years.length >= 1) {
+                    const startYear = parseInt(years[0]);
+                    if (startYear < earliestYear) {
+                        earliestYear = startYear;
+                    }
+                }
+            }
+        });
+
+        return {
+            totalVenues: allVenues.size,
+            reviewTypes: reviewTypes.size,
+            yearsOfExperience: 2025 - earliestYear,
+            currentYear: hasCurrentActivity ? 2025 : 'Active'
+        };
     }
 
     /**

@@ -18,8 +18,8 @@ class ContactPage {
     render(data) {
         this.log('Rendering Contact page with data:', data);
 
-        if (!data || !data.personalInfo) {
-            this.log('ERROR: No personal info data provided for Contact page');
+        if (!data || !data.contact) {
+            this.log('ERROR: No contact data provided for Contact page');
             return;
         }
 
@@ -28,7 +28,7 @@ class ContactPage {
         // Enhance existing section header with icon
         this.enhanceExistingSectionHeader();
 
-        this.renderContactGrid(data.personalInfo);
+        this.renderContactGrid(data.contact);
 
         this.log('Contact page rendered successfully');
     }
@@ -75,12 +75,12 @@ class ContactPage {
 
     /**
      * Render contact information grid
-     * @param {Object} personalInfo - Personal information data
+     * @param {Object} contactData - Contact information data
      */
-    renderContactGrid(personalInfo) {
+    renderContactGrid(contactData) {
         this.log('Rendering contact grid');
 
-        const contactGrid = document.querySelector('#contact .contact-grid');
+        const contactGrid = document.querySelector('#contact .contact-details');
         if (!contactGrid) {
             this.log('ERROR: Contact grid container not found');
             return;
@@ -90,20 +90,22 @@ class ContactPage {
 
         // Define contact fields with their configurations
         const contactFields = [
-            { key: 'email', icon: 'fas fa-envelope', type: 'email' },
-            { key: 'emailSecondary', icon: 'fas fa-envelope', type: 'email' },
-            { key: 'phone', icon: 'fas fa-phone', type: 'tel' },
-            { key: 'website', icon: 'fas fa-globe', type: 'url' },
-            { key: 'linkedin', icon: 'fab fa-linkedin', type: 'url' },
-            { key: 'orcid', icon: 'fab fa-orcid', type: 'url' },
-            { key: 'location', icon: 'fas fa-map-marker-alt', type: 'text' }
+            { key: 'email', icon: 'fas fa-envelope', type: 'email', label: 'Email (Main - University of Salento)' },
+            { key: 'emailInstitutional2', icon: 'fas fa-envelope', type: 'email', label: 'Email (University of Verona)' },
+            { key: 'emailInstitutional3', icon: 'fas fa-envelope', type: 'email', label: 'Email (University College London)' },
+            { key: 'emailPersonal', icon: 'fas fa-envelope', type: 'email', label: 'Email (Personal)' },
+            { key: 'phone', icon: 'fas fa-phone', type: 'tel', label: 'Phone' },
+            { key: 'website', icon: 'fas fa-globe', type: 'url', label: 'Website' },
+            { key: 'location', icon: 'fas fa-map-marker-alt', type: 'text', label: 'Location' },
+            { key: 'linkedin', icon: 'fab fa-linkedin', type: 'url', label: 'LinkedIn' },
+            { key: 'orcid', icon: 'fab fa-orcid', type: 'url', label: 'ORCID' }
         ];
 
         // Use contact item component if available, otherwise create fallback
         if (window.contactItemComponent) {
-            this.renderWithComponent(personalInfo, contactFields, contactGrid);
+            this.renderWithComponent(contactData, contactFields, contactGrid);
         } else {
-            this.renderFallbackContactItems(personalInfo, contactFields, contactGrid);
+            this.renderFallbackContactItems(contactData, contactFields, contactGrid);
         }
 
         this.log('Contact grid rendered successfully');
@@ -111,19 +113,19 @@ class ContactPage {
 
     /**
      * Render contact items using the contact item component
-     * @param {Object} personalInfo - Personal information data
+     * @param {Object} contactData - Contact information data
      * @param {Array} contactFields - Contact field configurations
      * @param {HTMLElement} contactGrid - Container element
      */
-    renderWithComponent(personalInfo, contactFields, contactGrid) {
+    renderWithComponent(contactData, contactFields, contactGrid) {
         this.log('Rendering with contact item component');
 
         contactFields.forEach(field => {
-            if (personalInfo[field.key]) {
+            if (contactData[field.key]) {
                 const contactItem = window.contactItemComponent.createContactItem(
                     field.key,
-                    personalInfo[field.key],
-                    { icon: field.icon }
+                    contactData[field.key],
+                    { icon: field.icon, label: field.label }
                 );
 
                 if (contactItem) {
@@ -140,16 +142,17 @@ class ContactPage {
      * @param {Array} contactFields - Contact field configurations
      * @param {HTMLElement} contactGrid - Container element
      */
-    renderFallbackContactItems(personalInfo, contactFields, contactGrid) {
+    renderFallbackContactItems(contactData, contactFields, contactGrid) {
         this.log('WARNING: Contact item component not available, using fallback');
 
         contactFields.forEach(field => {
-            if (personalInfo[field.key]) {
+            if (contactData[field.key]) {
                 const contactItem = this.createFallbackContactItem(
                     field.key,
-                    personalInfo[field.key],
+                    contactData[field.key],
                     field.icon,
-                    field.type
+                    field.type,
+                    field.label
                 );
                 contactGrid.appendChild(contactItem);
                 this.log(`Added fallback contact item: ${field.key}`);
@@ -165,7 +168,7 @@ class ContactPage {
      * @param {string} linkType - Link type
      * @returns {HTMLElement} Contact item element
      */
-    createFallbackContactItem(type, value, icon, linkType) {
+    createFallbackContactItem(type, value, icon, linkType, label) {
         const item = document.createElement('div');
         item.className = 'contact-item';
 
@@ -176,22 +179,9 @@ class ContactPage {
         const content = document.createElement('div');
         content.className = 'contact-content';
 
-        const label = document.createElement('div');
-        label.className = 'contact-label';
-
-        // Handle special cases for labels
-        let labelKey = type;
-        let labelText = type;
-
-        if (type === 'emailSecondary') {
-            labelKey = 'email';
-            labelText = 'Email (Personal)';
-        } else if (type === 'email') {
-            labelText = 'Email (Institutional)';
-        }
-
-        label.setAttribute('data-i18n', `common.${labelKey}`);
-        label.textContent = window.i18n?.t(`common.${labelKey}`) || labelText;
+        const labelElement = document.createElement('div');
+        labelElement.className = 'contact-label';
+        labelElement.textContent = label || type;
 
         const valueElement = document.createElement('div');
         valueElement.className = 'contact-value';
@@ -211,7 +201,7 @@ class ContactPage {
                 break;
         }
 
-        content.appendChild(label);
+        content.appendChild(labelElement);
         content.appendChild(valueElement);
         item.appendChild(iconElement);
         item.appendChild(content);

@@ -90,9 +90,7 @@ class EducationPage {
     renderEnhancedEducationTimeline(educationData, container) {
         this.log('Rendering enhanced education timeline');
 
-        // Create overall stats
-        const statsSection = this.createEducationStats(educationData);
-        container.appendChild(statsSection);
+        // Stats section removed as requested
 
         // Create timeline container
         const timelineContainer = document.createElement('div');
@@ -113,56 +111,7 @@ class EducationPage {
         container.appendChild(timelineContainer);
     }
 
-    /**
-     * Create education statistics
-     */
-    createEducationStats(educationData) {
-        const statsContainer = document.createElement('div');
-        statsContainer.className = 'stats-grid';
 
-        // Calculate stats
-        const totalDegrees = educationData.length;
-        const institutions = [...new Set(educationData.map(edu => edu.institution))].length;
-        const phdCount = educationData.filter(edu =>
-            edu.degree?.toLowerCase().includes('phd') ||
-            edu.degree?.toLowerCase().includes('doctorate')
-        ).length;
-
-        const degreesStat = this.createStatItem(totalDegrees, 'Degrees');
-        const institutionsStat = this.createStatItem(institutions, 'Institutions');
-        if (phdCount > 0) {
-            const phdStat = this.createStatItem(phdCount, 'Doctorate');
-            statsContainer.appendChild(degreesStat);
-            statsContainer.appendChild(institutionsStat);
-            statsContainer.appendChild(phdStat);
-        } else {
-            statsContainer.appendChild(degreesStat);
-            statsContainer.appendChild(institutionsStat);
-        }
-
-        return statsContainer;
-    }
-
-    /**
-     * Create stat item
-     */
-    createStatItem(number, label) {
-        const statItem = document.createElement('div');
-        statItem.className = 'stat-item';
-
-        const statNumber = document.createElement('span');
-        statNumber.className = 'stat-number';
-        statNumber.textContent = number;
-
-        const statLabel = document.createElement('span');
-        statLabel.className = 'stat-label';
-        statLabel.textContent = label;
-
-        statItem.appendChild(statNumber);
-        statItem.appendChild(statLabel);
-
-        return statItem;
-    }
 
     /**
      * Create enhanced education card
@@ -209,23 +158,42 @@ class EducationPage {
         // Institution
         if (edu.institution) {
             const institution = document.createElement('div');
-            institution.className = 'list-item-subtitle';
+            institution.className = 'institution';
             institution.innerHTML = `<i class="fas fa-university"></i> ${edu.institution}`;
             cardBody.appendChild(institution);
         }
 
-        // Additional details
-        const details = [];
-        if (edu.supervisor) details.push(`<i class="fas fa-user-tie"></i> Supervisor: ${edu.supervisor}`);
-        if (edu.grade) details.push(`<i class="fas fa-award"></i> Grade: ${edu.grade}`);
-        if (edu.thesis) details.push(`<i class="fas fa-book"></i> Thesis: ${edu.thesis}`);
+        // Location if available
+        if (edu.location) {
+            const location = document.createElement('div');
+            location.className = 'location';
+            location.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${edu.location}`;
+            cardBody.appendChild(location);
+        }
 
-        details.forEach(detail => {
-            const detailElement = document.createElement('div');
-            detailElement.className = 'list-item-description';
-            detailElement.innerHTML = detail;
-            cardBody.appendChild(detailElement);
-        });
+        // Supervisor
+        if (edu.supervisor) {
+            const supervisor = document.createElement('div');
+            supervisor.className = 'supervisor';
+            supervisor.innerHTML = `<i class="fas fa-user-tie"></i> <strong>Supervisor:</strong> ${edu.supervisor}`;
+            cardBody.appendChild(supervisor);
+        }
+
+        // Grade
+        if (edu.grade) {
+            const grade = document.createElement('div');
+            grade.className = 'grade';
+            grade.innerHTML = `<i class="fas fa-award"></i> Grade: ${edu.grade}`;
+            cardBody.appendChild(grade);
+        }
+
+        // Thesis
+        if (edu.thesis) {
+            const thesis = document.createElement('div');
+            thesis.className = 'thesis-title';
+            thesis.textContent = edu.thesis;
+            cardBody.appendChild(thesis);
+        }
 
         // Description
         if (edu.description) {
