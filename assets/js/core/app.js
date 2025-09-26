@@ -417,12 +417,22 @@ class App {
             const safeRender = window.errorHandler ?
                 () => window.errorHandler.safeDOMOperation(() => {
                     this.log(`Populating ${pageName} page...`);
-                    page.render(data);
+                    // Let each page load its own data from DataManager
+                    if (typeof page.loadData === 'function') {
+                        page.loadData();
+                    }
+                    // Then render with the loaded data
+                    page.render();
                     this.log(`${pageName} page populated successfully`);
                 }, `${pageName} Page Rendering`) :
                 () => {
                     this.log(`Populating ${pageName} page...`);
-                    page.render(data);
+                    // Let each page load its own data from DataManager
+                    if (typeof page.loadData === 'function') {
+                        page.loadData();
+                    }
+                    // Then render with the loaded data
+                    page.render();
                     this.log(`${pageName} page populated successfully`);
                 };
 
