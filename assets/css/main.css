@@ -1945,3 +1945,348 @@ select:focus {
     font-size: 0.8rem;
   }
 }
+
+/* ===================================
+   ENHANCED ACADEMIC SECTIONS STYLING
+   =================================== */
+
+/* Academic Card System */
+.academic-card {
+  background: var(--bg-primary);
+  border: 1px solid #e9ecef;
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.academic-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+}
+
+.academic-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.academic-card-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.academic-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.academic-card-body {
+  line-height: 1.6;
+}
+
+.academic-card-footer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Enhanced Badge System */
+.badge-enhanced {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.badge-primary { background: var(--color-primary); color: white; }
+.badge-secondary { background: var(--color-secondary); color: white; }
+.badge-success { background: var(--color-success); color: white; }
+.badge-warning { background: var(--color-warning); color: white; }
+.badge-info { background: var(--color-accent); color: white; }
+.badge-light { background: #f8f9fa; color: #495057; border: 1px solid #dee2e6; }
+
+/* Icon System */
+.academic-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.academic-icon-primary { background: rgba(44, 62, 80, 0.1); color: var(--color-primary); }
+.academic-icon-success { background: rgba(39, 174, 96, 0.1); color: var(--color-success); }
+.academic-icon-info { background: rgba(52, 152, 219, 0.1); color: var(--color-accent); }
+.academic-icon-warning { background: rgba(243, 156, 18, 0.1); color: var(--color-warning); }
+
+/* Section Headers with Icons */
+.section-header-enhanced {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.section-header-enhanced h2 {
+  margin: 0;
+  font-size: var(--font-size-2xl);
+  color: var(--text-primary);
+}
+
+.section-header-enhanced .academic-icon {
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.3rem;
+}
+
+/* Type Sections (for Professional Service, etc.) */
+.type-section {
+  margin-bottom: 2.5rem;
+}
+
+.type-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--color-accent);
+}
+
+.type-section-header h3 {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  color: var(--text-primary);
+}
+
+.type-section-header i {
+  font-size: 1.2rem;
+  color: var(--color-accent);
+}
+
+/* Year Sections */
+.year-section {
+  margin-bottom: 2rem;
+}
+
+.year-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-secondary);
+}
+
+.year-header::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  flex-shrink: 0;
+}
+
+/* Activity Lists */
+.activity-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .activity-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+/* Enhanced List Items */
+.list-item-enhanced {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: var(--border-radius);
+  transition: all 0.2s ease;
+}
+
+.list-item-enhanced:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.1);
+}
+
+.list-item-enhanced .academic-icon {
+  margin-top: 0.25rem;
+}
+
+.list-item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.list-item-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.list-item-subtitle {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  margin-bottom: 0.75rem;
+}
+
+.list-item-description {
+  color: var(--color-medium-gray);
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+/* Focus Areas / Tags System */
+.focus-areas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.focus-tag {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  padding: 0.25rem 0.75rem;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  color: var(--color-secondary);
+  transition: all 0.2s ease;
+}
+
+.focus-tag:hover {
+  background: var(--color-accent);
+  color: white;
+  border-color: var(--color-accent);
+}
+
+/* Stats/Metrics Display */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: var(--border-radius);
+}
+
+.stat-number {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-accent);
+  display: block;
+}
+
+.stat-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Responsive Enhancements */
+@media (max-width: 767px) {
+  .academic-card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .academic-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .section-header-enhanced {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .type-section-header {
+    padding: 0.75rem;
+  }
+
+  .list-item-enhanced {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .list-item-enhanced .academic-icon {
+    align-self: flex-start;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+}
+
+/* Animation System */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Custom section-specific styling */
+.service-timeline,
+.reviewing-grid,
+.talks-list,
+.groups-grid,
+.affiliations-list,
+.editorial-boards {
+  /* Will be styled using the above classes */
+}

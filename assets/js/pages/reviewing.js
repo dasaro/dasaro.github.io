@@ -52,12 +52,20 @@ class ReviewingPage {
             return;
         }
 
-        // Create reviewing grid
+        // Create enhanced section header
+        const sectionHeader = this.createSectionHeader();
+        container.appendChild(sectionHeader);
+
+        // Create overall stats
+        const statsSection = this.createOverallStats();
+        container.appendChild(statsSection);
+
+        // Create enhanced reviewing grid
         const grid = document.createElement('div');
-        grid.className = 'reviewing-grid';
+        grid.className = 'reviewing-grid activity-grid';
 
         this.data.forEach(reviewType => {
-            const typeCard = this.createReviewTypeCard(reviewType);
+            const typeCard = this.createEnhancedReviewTypeCard(reviewType);
             grid.appendChild(typeCard);
         });
 
@@ -66,7 +74,185 @@ class ReviewingPage {
     }
 
     /**
-     * Create review type card
+     * Create enhanced section header
+     */
+    createSectionHeader() {
+        const header = document.createElement('div');
+        header.className = 'section-header-enhanced';
+
+        const icon = document.createElement('div');
+        icon.className = 'academic-icon academic-icon-info';
+        icon.innerHTML = '<i class="fas fa-search"></i>';
+
+        const title = document.createElement('h2');
+        title.textContent = 'Peer Review Activities';
+
+        header.appendChild(icon);
+        header.appendChild(title);
+
+        return header;
+    }
+
+    /**
+     * Create overall statistics
+     */
+    createOverallStats() {
+        const statsContainer = document.createElement('div');
+        statsContainer.className = 'stats-grid';
+
+        // Calculate totals
+        let totalReviews = 0;
+        let totalVenues = 0;
+
+        this.data.forEach(reviewType => {
+            if (reviewType.count) totalReviews += reviewType.count;
+            if (reviewType.venues) totalVenues += reviewType.venues.length;
+        });
+
+        const reviewsStat = this.createStatItem(totalReviews, 'Total Reviews');
+        const venuesStat = this.createStatItem(totalVenues, 'Venues');
+        const typesStat = this.createStatItem(this.data.length, 'Review Types');
+
+        statsContainer.appendChild(reviewsStat);
+        statsContainer.appendChild(venuesStat);
+        statsContainer.appendChild(typesStat);
+
+        return statsContainer;
+    }
+
+    /**
+     * Create stat item
+     */
+    createStatItem(number, label) {
+        const statItem = document.createElement('div');
+        statItem.className = 'stat-item';
+
+        const statNumber = document.createElement('span');
+        statNumber.className = 'stat-number';
+        statNumber.textContent = number || 0;
+
+        const statLabel = document.createElement('span');
+        statLabel.className = 'stat-label';
+        statLabel.textContent = label;
+
+        statItem.appendChild(statNumber);
+        statItem.appendChild(statLabel);
+
+        return statItem;
+    }
+
+    /**
+     * Create enhanced review type card
+     */
+    createEnhancedReviewTypeCard(reviewType) {
+        const card = document.createElement('div');
+        card.className = 'academic-card animate-fade-in';
+
+        // Card header
+        const cardHeader = document.createElement('div');
+        cardHeader.className = 'academic-card-header';
+
+        const cardTitle = document.createElement('h3');
+        cardTitle.className = 'academic-card-title';
+        cardTitle.textContent = reviewType.title || 'Review Type';
+
+        const cardMeta = document.createElement('div');
+        cardMeta.className = 'academic-card-meta';
+
+        // Add count badge if available
+        if (reviewType.count) {
+            const countBadge = document.createElement('span');
+            countBadge.className = 'badge-enhanced badge-primary';
+            countBadge.innerHTML = `<i class="fas fa-clipboard-list"></i> ${reviewType.count} reviews`;
+            cardMeta.appendChild(countBadge);
+        }
+
+        // Add other badges
+        if (reviewType.badges) {
+            reviewType.badges.forEach(badge => {
+                const badgeElement = this.createEnhancedBadge(badge);
+                cardMeta.appendChild(badgeElement);
+            });
+        }
+
+        cardHeader.appendChild(cardTitle);
+        cardHeader.appendChild(cardMeta);
+
+        // Card body with venues
+        const cardBody = document.createElement('div');
+        cardBody.className = 'academic-card-body';
+
+        if (reviewType.venues && reviewType.venues.length > 0) {
+            const venuesTitle = document.createElement('h4');
+            venuesTitle.className = 'list-item-title';
+            venuesTitle.innerHTML = '<i class="fas fa-university"></i> Reviewed for:';
+
+            const focusAreas = document.createElement('div');
+            focusAreas.className = 'focus-areas';
+
+            reviewType.venues.forEach(venue => {
+                const venueTag = document.createElement('span');
+                venueTag.className = 'focus-tag';
+                venueTag.textContent = venue;
+                focusAreas.appendChild(venueTag);
+            });
+
+            cardBody.appendChild(venuesTitle);
+            cardBody.appendChild(focusAreas);
+        }
+
+        card.appendChild(cardHeader);
+        card.appendChild(cardBody);
+
+        return card;
+    }
+
+    /**
+     * Create enhanced badge
+     */
+    createEnhancedBadge(badgeName) {
+        const badge = document.createElement('span');
+        badge.className = `badge-enhanced ${this.getBadgeClass(badgeName)}`;
+
+        const icon = document.createElement('i');
+        icon.className = this.getBadgeIcon(badgeName);
+
+        badge.appendChild(icon);
+        badge.appendChild(document.createTextNode(badgeName));
+
+        return badge;
+    }
+
+    /**
+     * Get badge class for styling
+     */
+    getBadgeClass(badgeName) {
+        const badgeClasses = {
+            'featured': 'badge-warning',
+            'recent': 'badge-success',
+            'highlight': 'badge-info',
+            'active': 'badge-primary',
+            'ongoing': 'badge-secondary'
+        };
+        return badgeClasses[badgeName] || 'badge-light';
+    }
+
+    /**
+     * Get badge icon
+     */
+    getBadgeIcon(badgeName) {
+        const badgeIcons = {
+            'featured': 'fas fa-star',
+            'recent': 'fas fa-clock',
+            'highlight': 'fas fa-bookmark',
+            'active': 'fas fa-check-circle',
+            'ongoing': 'fas fa-play'
+        };
+        return badgeIcons[badgeName] || 'fas fa-tag';
+    }
+
+    /**
+     * Create review type card (legacy method - keeping for compatibility)
      */
     createReviewTypeCard(reviewType) {
         const card = document.createElement('div');

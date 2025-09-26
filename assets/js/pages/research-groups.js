@@ -52,12 +52,27 @@ class ResearchGroupsPage {
             return;
         }
 
-        // Create groups grid
+        // Create enhanced section header
+        const sectionHeader = document.createElement('div');
+        sectionHeader.className = 'section-header-enhanced';
+
+        const icon = document.createElement('div');
+        icon.className = 'academic-icon academic-icon-success';
+        icon.innerHTML = '<i class="fas fa-users"></i>';
+
+        const title = document.createElement('h2');
+        title.textContent = 'Research Groups';
+
+        sectionHeader.appendChild(icon);
+        sectionHeader.appendChild(title);
+        container.appendChild(sectionHeader);
+
+        // Create enhanced groups grid
         const grid = document.createElement('div');
-        grid.className = 'research-groups-grid';
+        grid.className = 'groups-grid activity-grid';
 
         this.data.forEach(group => {
-            const groupCard = this.createGroupCard(group);
+            const groupCard = this.createEnhancedGroupCard(group);
             grid.appendChild(groupCard);
         });
 
@@ -66,7 +81,80 @@ class ResearchGroupsPage {
     }
 
     /**
-     * Create individual group card
+     * Create enhanced group card
+     */
+    createEnhancedGroupCard(group) {
+        const card = document.createElement('div');
+        card.className = 'academic-card animate-fade-in';
+
+        // Card header
+        const cardHeader = document.createElement('div');
+        cardHeader.className = 'academic-card-header';
+
+        const cardTitle = document.createElement('h3');
+        cardTitle.className = 'academic-card-title';
+        cardTitle.textContent = group.name || 'Research Group';
+
+        const cardMeta = document.createElement('div');
+        cardMeta.className = 'academic-card-meta';
+
+        if (group.university) {
+            const universityBadge = document.createElement('span');
+            universityBadge.className = 'badge-enhanced badge-info';
+            universityBadge.innerHTML = `<i class="fas fa-university"></i> ${group.university}`;
+            cardMeta.appendChild(universityBadge);
+        }
+
+        if (group.badges) {
+            group.badges.forEach(badge => {
+                const badgeElement = document.createElement('span');
+                badgeElement.className = `badge-enhanced badge-light`;
+                badgeElement.innerHTML = `<i class="fas fa-tag"></i> ${badge}`;
+                cardMeta.appendChild(badgeElement);
+            });
+        }
+
+        cardHeader.appendChild(cardTitle);
+        cardHeader.appendChild(cardMeta);
+
+        // Card body
+        const cardBody = document.createElement('div');
+        cardBody.className = 'academic-card-body';
+
+        if (group.description) {
+            const description = document.createElement('p');
+            description.className = 'list-item-description';
+            description.textContent = group.description;
+            cardBody.appendChild(description);
+        }
+
+        if (group.focusAreas && group.focusAreas.length > 0) {
+            const focusTitle = document.createElement('h4');
+            focusTitle.className = 'list-item-title';
+            focusTitle.innerHTML = '<i class="fas fa-bullseye"></i> Research Focus:';
+
+            const focusAreas = document.createElement('div');
+            focusAreas.className = 'focus-areas';
+
+            group.focusAreas.forEach(area => {
+                const focusTag = document.createElement('span');
+                focusTag.className = 'focus-tag';
+                focusTag.textContent = area;
+                focusAreas.appendChild(focusTag);
+            });
+
+            cardBody.appendChild(focusTitle);
+            cardBody.appendChild(focusAreas);
+        }
+
+        card.appendChild(cardHeader);
+        card.appendChild(cardBody);
+
+        return card;
+    }
+
+    /**
+     * Create individual group card (legacy method - keeping for compatibility)
      */
     createGroupCard(group) {
         const card = document.createElement('div');

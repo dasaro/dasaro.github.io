@@ -68,12 +68,16 @@ class ProfessionalServicePage {
         // Group activities by type and year
         const groupedData = this.groupActivitiesByTypeAndYear(this.data);
 
-        // Create timeline container
+        // Create enhanced section header
+        const sectionHeader = this.createSectionHeader();
+        container.appendChild(sectionHeader);
+
+        // Create timeline container with modern styling
         const timeline = document.createElement('div');
         timeline.className = 'service-timeline';
 
         Object.keys(groupedData).forEach(type => {
-            const typeSection = this.createTypeSection(type, groupedData[type]);
+            const typeSection = this.createEnhancedTypeSection(type, groupedData[type]);
             timeline.appendChild(typeSection);
         });
 
@@ -116,7 +120,216 @@ class ProfessionalServicePage {
     }
 
     /**
-     * Create type section
+     * Create enhanced section header
+     */
+    createSectionHeader() {
+        const header = document.createElement('div');
+        header.className = 'section-header-enhanced';
+
+        const icon = document.createElement('div');
+        icon.className = 'academic-icon academic-icon-primary';
+        icon.innerHTML = '<i class="fas fa-hands-helping"></i>';
+
+        const title = document.createElement('h2');
+        title.textContent = 'Professional Service';
+
+        header.appendChild(icon);
+        header.appendChild(title);
+
+        return header;
+    }
+
+    /**
+     * Create enhanced type section with modern UI
+     */
+    createEnhancedTypeSection(type, yearData) {
+        const section = document.createElement('div');
+        section.className = 'type-section';
+
+        // Enhanced type header
+        const header = document.createElement('div');
+        header.className = 'type-section-header';
+
+        const icon = document.createElement('i');
+        icon.className = this.getTypeIcon(type);
+
+        const title = document.createElement('h3');
+        title.textContent = this.getTypeTitle(type);
+
+        const statsContainer = document.createElement('div');
+        statsContainer.className = 'stats-grid';
+
+        // Calculate total activities for this type
+        const totalActivities = Object.values(yearData).reduce((sum, activities) => sum + activities.length, 0);
+        const years = Object.keys(yearData).length;
+
+        const totalStat = this.createStatItem(totalActivities, 'Activities');
+        const yearsStat = this.createStatItem(years, 'Years');
+
+        statsContainer.appendChild(totalStat);
+        statsContainer.appendChild(yearsStat);
+
+        header.appendChild(icon);
+        header.appendChild(title);
+
+        section.appendChild(header);
+        section.appendChild(statsContainer);
+
+        // Activities by year
+        Object.keys(yearData).forEach(year => {
+            const yearSection = this.createEnhancedYearSection(year, yearData[year]);
+            section.appendChild(yearSection);
+        });
+
+        return section;
+    }
+
+    /**
+     * Create stat item
+     */
+    createStatItem(number, label) {
+        const statItem = document.createElement('div');
+        statItem.className = 'stat-item';
+
+        const statNumber = document.createElement('span');
+        statNumber.className = 'stat-number';
+        statNumber.textContent = number;
+
+        const statLabel = document.createElement('span');
+        statLabel.className = 'stat-label';
+        statLabel.textContent = label;
+
+        statItem.appendChild(statNumber);
+        statItem.appendChild(statLabel);
+
+        return statItem;
+    }
+
+    /**
+     * Create enhanced year section
+     */
+    createEnhancedYearSection(year, activities) {
+        const yearSection = document.createElement('div');
+        yearSection.className = 'year-section';
+
+        // Enhanced year header
+        const yearHeader = document.createElement('div');
+        yearHeader.className = 'year-header';
+        yearHeader.textContent = year;
+        yearSection.appendChild(yearHeader);
+
+        // Activities grid
+        const activitiesGrid = document.createElement('div');
+        activitiesGrid.className = 'activity-grid';
+
+        activities.forEach(activity => {
+            const activityCard = this.createEnhancedActivityCard(activity);
+            activitiesGrid.appendChild(activityCard);
+        });
+
+        yearSection.appendChild(activitiesGrid);
+        return yearSection;
+    }
+
+    /**
+     * Create enhanced activity card
+     */
+    createEnhancedActivityCard(activity) {
+        const card = document.createElement('div');
+        card.className = 'academic-card animate-fade-in';
+
+        // Card header
+        const cardHeader = document.createElement('div');
+        cardHeader.className = 'academic-card-header';
+
+        const cardTitle = document.createElement('h4');
+        cardTitle.className = 'academic-card-title';
+        cardTitle.textContent = activity.role || 'Role not specified';
+
+        const badgesContainer = document.createElement('div');
+        badgesContainer.className = 'academic-card-meta';
+
+        if (activity.badges) {
+            activity.badges.forEach(badge => {
+                const badgeElement = this.createEnhancedBadge(badge);
+                badgesContainer.appendChild(badgeElement);
+            });
+        }
+
+        cardHeader.appendChild(cardTitle);
+        cardHeader.appendChild(badgesContainer);
+
+        // Card body
+        const cardBody = document.createElement('div');
+        cardBody.className = 'academic-card-body';
+
+        const event = document.createElement('div');
+        event.className = 'list-item-subtitle';
+        event.innerHTML = `<i class="fas fa-calendar-alt"></i> ${activity.event || 'Event not specified'}`;
+
+        const organization = document.createElement('div');
+        organization.className = 'list-item-description';
+        if (activity.organization) {
+            organization.innerHTML = `<i class="fas fa-building"></i> ${activity.organization}`;
+        }
+
+        cardBody.appendChild(event);
+        if (activity.organization) {
+            cardBody.appendChild(organization);
+        }
+
+        card.appendChild(cardHeader);
+        card.appendChild(cardBody);
+
+        return card;
+    }
+
+    /**
+     * Create enhanced badge
+     */
+    createEnhancedBadge(badgeName) {
+        const badge = document.createElement('span');
+        badge.className = `badge-enhanced ${this.getBadgeClass(badgeName)}`;
+
+        const icon = document.createElement('i');
+        icon.className = this.getBadgeIcon(badgeName);
+
+        badge.appendChild(icon);
+        badge.appendChild(document.createTextNode(badgeName));
+
+        return badge;
+    }
+
+    /**
+     * Get badge class for styling
+     */
+    getBadgeClass(badgeName) {
+        const badgeClasses = {
+            'featured': 'badge-warning',
+            'recent': 'badge-success',
+            'highlight': 'badge-info',
+            'published': 'badge-primary',
+            'ongoing': 'badge-secondary'
+        };
+        return badgeClasses[badgeName] || 'badge-light';
+    }
+
+    /**
+     * Get badge icon
+     */
+    getBadgeIcon(badgeName) {
+        const badgeIcons = {
+            'featured': 'fas fa-star',
+            'recent': 'fas fa-clock',
+            'highlight': 'fas fa-bookmark',
+            'published': 'fas fa-check-circle',
+            'ongoing': 'fas fa-play'
+        };
+        return badgeIcons[badgeName] || 'fas fa-tag';
+    }
+
+    /**
+     * Create type section (legacy method - keeping for compatibility)
      */
     createTypeSection(type, yearData) {
         const section = document.createElement('div');
