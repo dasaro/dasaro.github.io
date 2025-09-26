@@ -2044,11 +2044,43 @@ select:focus {
 .academic-icon-warning { background: rgba(243, 156, 18, 0.1); color: var(--color-warning); }
 
 /* Section Headers with Icons */
-.section-header-enhanced {
+.section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: var(--font-size-2xl);
+  color: var(--text-primary);
+}
+
+.section-header .section-subtitle {
+  margin: 0;
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+}
+
+.section-header-enhanced {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   margin-bottom: 2rem;
   padding-bottom: 1rem;
   border-bottom: 2px solid #e9ecef;
@@ -2064,6 +2096,50 @@ select:focus {
   width: 3rem;
   height: 3rem;
   font-size: 1.3rem;
+}
+
+/* Sticky Section Header */
+.sticky-section-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  padding: 0.75rem 0;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.sticky-section-header.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sticky-header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sticky-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.sticky-title {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  color: var(--text-primary);
 }
 
 /* Type Sections (for Professional Service, etc.) */

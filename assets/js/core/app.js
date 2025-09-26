@@ -46,6 +46,12 @@ class App {
             // Set up UI interactions
             this.setupUIInteractions();
 
+            // Add icons to section headers
+            this.enhanceSectionHeaders();
+
+            // Set up sticky headers
+            this.setupStickyHeaders();
+
             // Initialize sidebar visibility
             this.initializeSidebar();
 
@@ -829,6 +835,148 @@ class App {
         });
 
         this.log(`Debug mode ${enabled ? 'enabled' : 'disabled'}`);
+    }
+
+    /**
+     * Enhance section headers with icons
+     */
+    enhanceSectionHeaders() {
+        this.log('Enhancing section headers with icons...');
+
+        // Icon mapping for each section
+        const sectionIcons = {
+            'about': 'fas fa-user',
+            'education': 'fas fa-graduation-cap',
+            'experience': 'fas fa-briefcase',
+            'publications': 'fas fa-book',
+            'citation-metrics': 'fas fa-chart-line',
+            'supervised-students': 'fas fa-user-graduate',
+            'projects': 'fas fa-project-diagram',
+            'skills': 'fas fa-cogs',
+            'professional-service': 'fas fa-hands-helping',
+            'reviewing': 'fas fa-clipboard-check',
+            'invited-talks': 'fas fa-microphone-alt',
+            'research-groups': 'fas fa-users',
+            'academic-affiliations': 'fas fa-university',
+            'editorial-boards': 'fas fa-edit',
+            'contact': 'fas fa-envelope'
+        };
+
+        // Icon colors for each section
+        const sectionColors = {
+            'about': 'academic-icon-primary',
+            'education': 'academic-icon-success',
+            'experience': 'academic-icon-secondary',
+            'publications': 'academic-icon-info',
+            'citation-metrics': 'academic-icon-warning',
+            'supervised-students': 'academic-icon-primary',
+            'projects': 'academic-icon-success',
+            'skills': 'academic-icon-secondary',
+            'professional-service': 'academic-icon-info',
+            'reviewing': 'academic-icon-warning',
+            'invited-talks': 'academic-icon-warning',
+            'research-groups': 'academic-icon-primary',
+            'academic-affiliations': 'academic-icon-success',
+            'editorial-boards': 'academic-icon-primary',
+            'contact': 'academic-icon-info'
+        };
+
+        // Add icons to all section headers
+        Object.keys(sectionIcons).forEach(sectionId => {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                const header = section.querySelector('.section-header');
+                if (header && !header.querySelector('.section-icon')) {
+                    // Create icon element
+                    const iconWrapper = document.createElement('div');
+                    iconWrapper.className = `section-icon academic-icon ${sectionColors[sectionId] || 'academic-icon-primary'}`;
+
+                    const icon = document.createElement('i');
+                    icon.className = sectionIcons[sectionId];
+
+                    iconWrapper.appendChild(icon);
+
+                    // Insert icon at the beginning of the header
+                    header.insertBefore(iconWrapper, header.firstChild);
+
+                    this.log(`Added icon to ${sectionId} section`);
+                }
+            }
+        });
+    }
+
+    /**
+     * Set up sticky headers for sections
+     */
+    setupStickyHeaders() {
+        this.log('Setting up sticky headers...');
+
+        // Create the sticky header container
+        const stickyContainer = document.createElement('div');
+        stickyContainer.id = 'sticky-section-header';
+        stickyContainer.className = 'sticky-section-header';
+        stickyContainer.style.display = 'none';
+        document.body.appendChild(stickyContainer);
+
+        let currentSection = null;
+
+        // Create intersection observer for sections
+        const observerOptions = {
+            rootMargin: '-80px 0px -70% 0px',
+            threshold: [0, 0.1]
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const section = entry.target;
+                    const sectionId = section.getAttribute('id');
+                    const header = section.querySelector('.section-header');
+
+                    if (header && sectionId !== currentSection) {
+                        currentSection = sectionId;
+
+                        // Get section title and icon
+                        const title = header.querySelector('h2')?.textContent || '';
+                        const icon = header.querySelector('.section-icon i');
+                        const iconClass = icon ? icon.className : 'fas fa-circle';
+                        const iconWrapperClass = header.querySelector('.section-icon')?.className || 'section-icon academic-icon';
+
+                        // Update sticky header
+                        stickyContainer.innerHTML = `
+                            <div class="sticky-header-content">
+                                <div class="${iconWrapperClass} sticky-icon">
+                                    <i class="${iconClass}"></i>
+                                </div>
+                                <h3 class="sticky-title">${title}</h3>
+                            </div>
+                        `;
+
+                        stickyContainer.style.display = 'block';
+                        stickyContainer.classList.add('visible');
+                    }
+                } else if (!entry.isIntersecting && entry.boundingClientRect.top > 0) {
+                    // Section is below viewport, hide sticky header
+                    const sectionId = entry.target.getAttribute('id');
+                    if (sectionId === currentSection) {
+                        stickyContainer.classList.remove('visible');
+                        setTimeout(() => {
+                            if (!stickyContainer.classList.contains('visible')) {
+                                stickyContainer.style.display = 'none';
+                            }
+                        }, 300);
+                        currentSection = null;
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all content sections
+        document.querySelectorAll('.content-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        this.log('Sticky headers set up successfully');
     }
 }
 
