@@ -942,15 +942,26 @@ class App {
                         const iconClass = icon ? icon.className : 'fas fa-circle';
                         const iconWrapperClass = header.querySelector('.section-icon')?.className || 'section-icon academic-icon';
 
-                        // Update sticky header
-                        stickyContainer.innerHTML = `
-                            <div class="sticky-header-content">
-                                <div class="${iconWrapperClass} sticky-icon">
-                                    <i class="${iconClass}"></i>
+                        // Add transition class for smooth animation
+                        stickyContainer.classList.add('transitioning');
+
+                        // Small delay for transition effect
+                        setTimeout(() => {
+                            // Update sticky header content
+                            stickyContainer.innerHTML = `
+                                <div class="sticky-header-content">
+                                    <div class="${iconWrapperClass} sticky-icon">
+                                        <i class="${iconClass}"></i>
+                                    </div>
+                                    <h3 class="sticky-title">${title}</h3>
                                 </div>
-                                <h3 class="sticky-title">${title}</h3>
-                            </div>
-                        `;
+                            `;
+
+                            // Remove transition class after content update
+                            setTimeout(() => {
+                                stickyContainer.classList.remove('transitioning');
+                            }, 50);
+                        }, 150);
 
                         stickyContainer.style.display = 'block';
                         stickyContainer.classList.add('visible');
@@ -974,6 +985,32 @@ class App {
         // Observe all content sections
         document.querySelectorAll('.content-section').forEach(section => {
             observer.observe(section);
+        });
+
+        // Watch for sidebar toggle to adjust sticky header position
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        if (sidebarToggle) {
+            sidebarToggle.addEventListener('click', () => {
+                // Small delay to sync with sidebar animation
+                setTimeout(() => {
+                    const isHidden = document.body.classList.contains('sidebar-hidden');
+                    if (isHidden) {
+                        stickyContainer.style.left = '0';
+                    } else {
+                        stickyContainer.style.left = window.innerWidth > 1024 ? '300px' : '0';
+                    }
+                }, 50);
+            });
+        }
+
+        // Adjust on window resize
+        window.addEventListener('resize', () => {
+            const isHidden = document.body.classList.contains('sidebar-hidden');
+            if (!isHidden && window.innerWidth > 1024) {
+                stickyContainer.style.left = '300px';
+            } else {
+                stickyContainer.style.left = '0';
+            }
         });
 
         this.log('Sticky headers set up successfully');
