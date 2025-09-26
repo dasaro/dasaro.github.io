@@ -367,7 +367,6 @@ class AcademicWebsite {
         // Populate sections
         this.populateEducation(data.education);
         this.populateExperience(data.experience);
-        this.populateSupervisedStudents(data.supervisedStudents);
         this.populateProjects(data.projects);
         this.populateCitationMetrics(data.citationMetrics);
         this.populatePublications(data.publications);
@@ -806,20 +805,6 @@ class AcademicWebsite {
         return item;
     }
 
-    /**
-     * Populate supervised students section
-     */
-    populateSupervisedStudents(supervisedStudents) {
-        const studentsGrid = document.querySelector('#supervised-students .students-grid');
-        if (!studentsGrid || !supervisedStudents) return;
-
-        studentsGrid.innerHTML = '';
-
-        supervisedStudents.forEach(student => {
-            const studentItem = this.createStudentItem(student);
-            studentsGrid.appendChild(studentItem);
-        });
-    }
 
     /**
      * Populate projects section
@@ -922,62 +907,6 @@ class AcademicWebsite {
         }
     }
 
-    /**
-     * Create student item element
-     */
-    createStudentItem(student) {
-        const template = document.getElementById('student-template');
-        const item = template.content.cloneNode(true);
-
-        // Name
-        const name = item.querySelector('.student-name');
-        if (name) name.textContent = student.name;
-
-        // Meta information
-        const level = item.querySelector('.student-level');
-        const period = item.querySelector('.student-period');
-        const status = item.querySelector('.student-status');
-
-        if (level) level.textContent = student.level;
-        if (period) period.textContent = student.year || `${student.startDate || ''} - ${student.endDate || 'Present'}`;
-        if (status) status.textContent = student.status;
-
-        // Description
-        const description = item.querySelector('.student-description');
-        if (description) {
-            if (typeof student.description === 'object' && student.description !== null) {
-                // Handle multilingual description
-                const currentLang = window.i18n?.getCurrentLanguage() || 'en';
-                description.textContent = student.description[currentLang] || student.description.en || '';
-            } else {
-                description.textContent = student.description || '';
-            }
-        }
-
-        // Links
-        const linksContainer = item.querySelector('.student-links');
-        if (linksContainer && student.links) {
-            student.links.forEach(link => {
-                const linkElement = document.createElement('a');
-                linkElement.href = link.url;
-                linkElement.textContent = link.title;
-                linkElement.target = '_blank';
-                linkElement.rel = 'noopener';
-                linksContainer.appendChild(linkElement);
-            });
-        }
-
-        // Badges
-        const badgesContainer = item.querySelector('.student-badges');
-        if (badgesContainer && student.badges) {
-            student.badges.forEach(badge => {
-                const badgeElement = this.createBadge(badge);
-                badgesContainer.appendChild(badgeElement);
-            });
-        }
-
-        return item;
-    }
 
     /**
      * Create project item element
@@ -1446,7 +1375,7 @@ class AcademicWebsite {
                     this.populateExperience(data.data);
                     break;
                 case 'supervisedStudents':
-                    this.populateSupervisedStudents(data.data);
+                    // Handled by supervised-students.js module
                     break;
                 case 'projects':
                     this.populateProjects(data.data);
