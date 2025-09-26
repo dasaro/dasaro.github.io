@@ -52,7 +52,7 @@ class AcademicAffiliationsPage {
             return;
         }
 
-        // Create enhanced section header
+        // Create enhanced section header (icon only)
         const sectionHeader = document.createElement('div');
         sectionHeader.className = 'section-header-enhanced';
 
@@ -60,11 +60,7 @@ class AcademicAffiliationsPage {
         icon.className = 'academic-icon academic-icon-success';
         icon.innerHTML = '<i class="fas fa-university"></i>';
 
-        const title = document.createElement('h2');
-        title.textContent = 'Academic Affiliations';
-
         sectionHeader.appendChild(icon);
-        sectionHeader.appendChild(title);
         container.appendChild(sectionHeader);
 
         // Create stats section

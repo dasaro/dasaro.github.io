@@ -86,11 +86,7 @@ class EducationPage {
         icon.className = 'academic-icon academic-icon-success';
         icon.innerHTML = '<i class="fas fa-graduation-cap"></i>';
 
-        const title = document.createElement('h2');
-        title.textContent = 'Education';
-
         header.appendChild(icon);
-        header.appendChild(title);
 
         return header;
     }

@@ -97,11 +97,7 @@ class AboutPage {
         icon.className = 'academic-icon academic-icon-primary';
         icon.innerHTML = '<i class="fas fa-user"></i>';
 
-        const title = document.createElement('h2');
-        title.textContent = 'About Me';
-
         header.appendChild(icon);
-        header.appendChild(title);
 
         return header;
     }

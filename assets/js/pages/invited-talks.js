@@ -52,7 +52,7 @@ class InvitedTalksPage {
             return;
         }
 
-        // Create enhanced section header
+        // Create enhanced section header (icon only)
         const sectionHeader = document.createElement('div');
         sectionHeader.className = 'section-header-enhanced';
 
@@ -60,11 +60,7 @@ class InvitedTalksPage {
         icon.className = 'academic-icon academic-icon-warning';
         icon.innerHTML = '<i class="fas fa-microphone-alt"></i>';
 
-        const title = document.createElement('h2');
-        title.textContent = 'Invited Talks';
-
         sectionHeader.appendChild(icon);
-        sectionHeader.appendChild(title);
         container.appendChild(sectionHeader);
 
         // Create stats section

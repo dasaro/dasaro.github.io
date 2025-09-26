@@ -2047,6 +2047,7 @@ select:focus {
 .section-header-enhanced {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
   margin-bottom: 2rem;
   padding-bottom: 1rem;

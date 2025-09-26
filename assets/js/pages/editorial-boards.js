@@ -52,7 +52,7 @@ class EditorialBoardsPage {
             return;
         }
 
-        // Create enhanced section header
+        // Create enhanced section header (icon only)
         const sectionHeader = document.createElement('div');
         sectionHeader.className = 'section-header-enhanced';
 
@@ -60,11 +60,7 @@ class EditorialBoardsPage {
         icon.className = 'academic-icon academic-icon-primary';
         icon.innerHTML = '<i class="fas fa-edit"></i>';
 
-        const title = document.createElement('h2');
-        title.textContent = 'Editorial Boards';
-
         sectionHeader.appendChild(icon);
-        sectionHeader.appendChild(title);
         container.appendChild(sectionHeader);
 
         // Create stats section

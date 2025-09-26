@@ -85,11 +85,7 @@ class ExperiencePage {
         icon.className = 'academic-icon academic-icon-secondary';
         icon.innerHTML = '<i class="fas fa-briefcase"></i>';
 
-        const title = document.createElement('h2');
-        title.textContent = 'Experience';
-
         header.appendChild(icon);
-        header.appendChild(title);
 
         return header;
     }
