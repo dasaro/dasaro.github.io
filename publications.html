@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Publications by Fabio Aurelio D'Asaro - Research papers, journals, conferences, and workshops in Logic and AI.">
+  <meta name="author" content="Fabio Aurelio D'Asaro">
+
+  <title>Publications - Fabio Aurelio D'Asaro</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    .publication-card {
+      margin-bottom: var(--space-lg);
+    }
+
+    .publication-title {
+      color: var(--color-black);
+      margin-bottom: var(--space-sm);
+    }
+
+    .publication-authors {
+      font-size: var(--text-base);
+      margin-bottom: var(--space-xs);
+    }
+
+    .publication-venue {
+      color: var(--color-accent-2);
+      margin-bottom: var(--space-md);
+    }
+
+    .publication-links {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .btn-sm {
+      padding: var(--space-xs) var(--space-sm);
+      font-size: var(--text-xs);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--color-link);
+      color: white;
+      border-radius: 3px;
+      font-size: var(--text-xs);
+      margin-left: var(--space-sm);
+    }
+
+    .search-filter-container {
+      background: var(--color-accent-3);
+      padding: var(--space-lg);
+      border-radius: 4px;
+      margin-bottom: var(--space-xl);
+    }
+
+    .search-input {
+      width: 100%;
+      padding: var(--space-sm);
+      font-family: 'Fira Code', monospace;
+      border: 2px solid var(--color-accent-2);
+      border-radius: 4px;
+      margin-bottom: var(--space-md);
+    }
+
+    .filters {
+      display: flex;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .select-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .filter-select {
+      padding: var(--space-sm);
+      font-family: 'Fira Code', monospace;
+      border: 2px solid var(--color-accent-2);
+      border-radius: 4px;
+    }
+
+    .metrics-widget {
+      background: var(--color-code-bg);
+      color: var(--color-white);
+      margin-bottom: var(--space-xl);
+    }
+
+    .metrics-widget h3 {
+      color: var(--color-white);
+      font-family: 'Fira Code', monospace;
+    }
+
+    .metrics-grid {
+      text-align: center;
+    }
+
+    .metric-value {
+      font-family: 'Fira Code', monospace;
+      font-size: var(--text-3xl);
+      color: var(--color-code-text);
+      font-weight: bold;
+    }
+
+    .metric-label {
+      font-family: 'Fira Code', monospace;
+      font-size: var(--text-sm);
+      color: var(--color-white);
+    }
+
+    .metric-note {
+      text-align: center;
+      font-size: var(--text-xs);
+      color: var(--color-accent-3);
+      margin-top: var(--space-md);
+    }
+  </style>
+</head>
+<body class="enable-back-to-top" data-page="publications">
+  <!-- Mathematical Background Canvas -->
+  <canvas id="bg-animation-canvas" data-default-animation="primes"></canvas>
+  <button id="animation-toggle" class="animation-toggle" aria-label="Toggle background animation" title="Toggle animation (A)">
+    <span class="symbol">∀</span>
+  </button>
+
+  <!-- Navigation -->
+  <div class="nav-wrapper">
+    <nav>
+      <a href="index.html" class="nav-brand">
+        <span class="logic-symbol">∀</span>
+        F.A. D'Asaro
+      </a>
+
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="publications.html" class="nav-link">Publications</a></li>
+        <li><a href="teaching.html" class="nav-link">Teaching</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="service.html" class="nav-link">Service</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <section id="publications">
+      <div class="container">
+        <h1 class="fade-in">Publications</h1>
+
+        <!-- Scholar Metrics -->
+        <div class="card metrics-widget fade-in-delay-1">
+          <h3>Google Scholar Metrics</h3>
+          <div class="metrics-grid grid grid-3">
+            <div class="metric">
+              <div class="metric-value">227</div>
+              <div class="metric-label">Citations</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">10</div>
+              <div class="metric-label">h-index</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">10</div>
+              <div class="metric-label">i10-index</div>
+            </div>
+          </div>
+          <p class="metric-note">Last updated: September 2025</p>
+        </div>
+
+        <!-- Search and Filter -->
+        <div class="search-filter-container fade-in-delay-2">
+          <input
+            type="search"
+            id="search-input"
+            class="search-input"
+            placeholder="Search publications by title, author, or venue..."
+          >
+
+          <div class="filters">
+            <div class="select-container">
+              <label for="year-filter">Year</label>
+              <select id="year-filter" class="filter-select">
+                <option value="all">All Years</option>
+                <!-- Will be populated dynamically -->
+              </select>
+            </div>
+
+            <div class="select-container">
+              <label for="type-filter">Type</label>
+              <select id="type-filter" class="filter-select">
+                <option value="all">All Types</option>
+                <option value="journal">Journal</option>
+                <option value="conference">Conference</option>
+                <option value="workshop">Workshop</option>
+                <option value="book">Book Chapter</option>
+              </select>
+            </div>
+
+            <div class="select-container">
+              <label for="sort-by">Sort By</label>
+              <select id="sort-by" class="filter-select">
+                <option value="year-desc">Year (newest first)</option>
+                <option value="year-asc">Year (oldest first)</option>
+                <option value="title-asc">Title (A-Z)</option>
+                <option value="title-desc">Title (Z-A)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mt-md">
+            <button class="btn" onclick="exportAllBibTeX()">Export All BibTeX</button>
+          </div>
+        </div>
+
+        <!-- Selected Publications -->
+        <div id="selected-publications">
+          <h2 class="section-title">Selected Publications</h2>
+          <div id="selected-container">
+            <p class="loading-message">Selected publications will be loaded from data/publications.json</p>
+          </div>
+        </div>
+
+        <!-- All Publications -->
+        <div id="all-publications" class="mt-xl">
+          <h2 class="section-title">All Publications</h2>
+          <div id="publications-container">
+            <p class="loading-message">All publications will be loaded from data/publications.json</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-text">
+        <p>&copy; <span class="footer-year">2025</span> Fabio Aurelio D'Asaro</p>
+        <p>∀x (Logic(x) → Elegant(x))</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="https://github.com/dasaro" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/publications.js"></script>
+  <script src="js/search.js"></script>
+
+  <!-- Page-specific script -->
+  <script>
+    let allPublications = [];
+    let filteredPublications = [];
+    let currentFilters = {
+      search: '',
+      year: 'all',
+      type: 'all',
+      sortBy: 'year',
+      sortOrder: 'desc'
+    };
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      console.log('[publications.html] DOM loaded, starting data load...');
+
+      try {
+        // Load publications data
+        console.log('[publications.html] Loading publications data...');
+        const pubData = await loadJSON('./data/publications.json');
+        console.log('[publications.html] Publications data loaded:', pubData);
+
+        if (!pubData) {
+          throw new Error('Failed to load publications data');
+        }
+
+        // Store all publications
+        allPublications = pubData.all || [];
+        filteredPublications = [...allPublications];
+        console.log('[publications.html] Stored', allPublications.length, 'total publications');
+
+        // Display selected publications
+        if (pubData.selected && pubData.selected.length > 0) {
+          console.log('[publications.html] Found', pubData.selected.length, 'selected publications');
+          const selectedContainer = document.getElementById('selected-container');
+          console.log('[publications.html] Selected container found:', !!selectedContainer);
+          renderPublicationsToContainer(pubData.selected, selectedContainer);
+          console.log('[publications.html] Selected publications rendered');
+        } else {
+          console.warn('[publications.html] No selected publications found');
+        }
+
+        // Populate year filter
+        console.log('[publications.html] Populating year filter...');
+        populateYearFilter(allPublications);
+        console.log('[publications.html] Year filter populated');
+
+        // Display all publications
+        console.log('[publications.html] Rendering all publications...');
+        renderPublications();
+        console.log('[publications.html] All publications rendered');
+
+        // Set up event listeners
+        console.log('[publications.html] Setting up event listeners...');
+        setupEventListeners();
+        console.log('[publications.html] Event listeners configured');
+
+        console.log('[publications.html] Data loading complete.');
+
+      } catch (error) {
+        console.error('[publications.html] ERROR loading publications:', error);
+        console.error('[publications.html] Error stack:', error.stack);
+        document.getElementById('selected-container').innerHTML = '<p class="error-message">Error loading publications.</p>';
+        document.getElementById('publications-container').innerHTML = '<p class="error-message">Error loading publications.</p>';
+      }
+    });
+
+    function renderPublicationsToContainer(pubs, container) {
+      if (!pubs || pubs.length === 0) {
+        container.innerHTML = '<p class="no-results">No publications found.</p>';
+        return;
+      }
+
+      const html = pubs.map(pub => createPublicationHTML(pub)).join('');
+      container.innerHTML = html;
+      console.log('[publications.html] Rendered', pubs.length, 'publications to container');
+    }
+
+    function createPublicationHTML(pub) {
+      const authors = Array.isArray(pub.authors) ? pub.authors.join(', ') : pub.authors;
+      // Highlight author (now uses CSS classes)
+      const highlightedAuthors = authors.replace(/F\. A\. D'Asaro/g, '<strong>F. A. D\'Asaro</strong>');
+
+      return `
+        <div class="publication-card" data-id="${pub.id}">
+          <h3>${pub.title}</h3>
+          <p class="publication-authors">${highlightedAuthors}</p>
+          <p class="publication-venue">
+            <strong>${pub.venue}</strong> ${pub.volume ? `Vol. ${pub.volume}` : ''} (${pub.year}) ${pub.pages ? `pp. ${pub.pages}` : ''}
+            ${pub.open_access ? '<span class="badge-oa">OPEN ACCESS</span>' : ''}
+            ${pub.status === 'accepted' ? '<span class="badge-accepted">ACCEPTED</span>' : ''}
+          </p>
+          <div class="publication-links">
+            ${pub.doi ? `<a href="https://doi.org/${pub.doi}" target="_blank">DOI</a>` : ''}
+            ${pub.url ? `<a href="${pub.url}" target="_blank">Link</a>` : ''}
+            ${pub.pdf ? `<a href="${pub.pdf}" target="_blank">PDF</a>` : ''}
+            <button onclick="exportSingleBibTeX('${pub.id}')">BibTeX ⊢</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderPublications() {
+      const container = document.getElementById('publications-container');
+
+      // Apply filters
+      let filtered = [...allPublications];
+
+      // Search filter
+      if (currentFilters.search) {
+        filtered = searchPublications(currentFilters.search, filtered);
+      }
+
+      // Year filter
+      if (currentFilters.year !== 'all') {
+        filtered = filterByYear(parseInt(currentFilters.year), filtered);
+      }
+
+      // Type filter
+      if (currentFilters.type !== 'all') {
+        filtered = filterByType(currentFilters.type, filtered);
+      }
+
+      // Sort
+      filtered = sortPublications(filtered, currentFilters.sortBy, currentFilters.sortOrder);
+
+      filteredPublications = filtered;
+
+      // Render
+      renderPublicationsToContainer(filtered, container);
+
+      // Show count (now uses CSS class)
+      const countEl = document.createElement('p');
+      countEl.className = 'publication-count';
+      countEl.textContent = `⊢ Showing ${filtered.length} of ${allPublications.length} publications`;
+      container.parentElement.insertBefore(countEl, container);
+      console.log('[publications.html] Display count:', filtered.length, 'of', allPublications.length);
+    }
+
+    function populateYearFilter(publications) {
+      const years = [...new Set(publications.map(pub => pub.year))].sort((a, b) => b - a);
+      const select = document.getElementById('year-filter');
+
+      years.forEach(year => {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        select.appendChild(option);
+      });
+    }
+
+    function setupEventListeners() {
+      // Search
+      const searchInput = document.getElementById('search-input');
+      searchInput.addEventListener('input', debounce((e) => {
+        currentFilters.search = e.target.value;
+        renderPublications();
+      }, 300));
+
+      // Year filter
+      document.getElementById('year-filter').addEventListener('change', (e) => {
+        currentFilters.year = e.target.value;
+        renderPublications();
+      });
+
+      // Type filter
+      document.getElementById('type-filter').addEventListener('change', (e) => {
+        currentFilters.type = e.target.value;
+        renderPublications();
+      });
+
+      // Sort
+      document.getElementById('sort-by').addEventListener('change', (e) => {
+        const [field, order] = e.target.value.split('-');
+        currentFilters.sortBy = field;
+        currentFilters.sortOrder = order;
+        renderPublications();
+      });
+    }
+
+    // Export single publication BibTeX
+    window.exportSingleBibTeX = function(pubId) {
+      const pub = allPublications.find(p => p.id === pubId);
+      if (pub && pub.bibtex) {
+        downloadBibTeX(pub.bibtex, `${pubId}.bib`);
+      }
+    };
+
+    // Export all BibTeX
+    window.exportAllBibTeX = function() {
+      const bibtexEntries = filteredPublications
+        .filter(pub => pub.bibtex)
+        .map(pub => pub.bibtex)
+        .join('\n\n');
+
+      if (bibtexEntries) {
+        downloadBibTeX(bibtexEntries, 'dasaro_publications.bib');
+      }
+    };
+
+    function downloadBibTeX(content, filename) {
+      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>

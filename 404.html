@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Page not found - 404 Error">
+  <meta name="author" content="Fabio Aurelio D'Asaro">
+
+  <title>404 - Page Not Found</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    .error-hero {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-2xl) var(--space-lg);
+    }
+
+    .error-code {
+      font-size: 120px;
+      font-family: 'Fira Code', monospace;
+      color: var(--color-link);
+      font-weight: bold;
+      line-height: 1;
+      margin-bottom: var(--space-md);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .error-logic {
+      font-size: var(--text-2xl);
+      font-family: 'Fira Code', monospace;
+      color: var(--color-accent-1);
+      margin-bottom: var(--space-xl);
+      font-weight: normal;
+    }
+
+    .error-message {
+      font-size: var(--text-lg);
+      color: var(--color-accent-2);
+      max-width: 600px;
+      margin: 0 auto var(--space-xl);
+      line-height: 1.6;
+    }
+
+    .error-links {
+      display: flex;
+      gap: var(--space-md);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .logic-jokes {
+      background: var(--color-accent-3);
+      padding: var(--space-xl);
+      border-radius: 4px;
+      margin: var(--space-2xl) 0;
+      border-left: 4px solid var(--color-link);
+    }
+
+    .logic-jokes h3 {
+      font-family: 'Fira Code', monospace;
+      color: var(--color-accent-1);
+      margin-bottom: var(--space-lg);
+      text-align: center;
+    }
+
+    .joke-item {
+      font-family: 'Fira Code', monospace;
+      padding: var(--space-md);
+      margin-bottom: var(--space-md);
+      background: white;
+      border-radius: 4px;
+      font-size: var(--text-sm);
+      text-align: center;
+      color: var(--color-accent-2);
+    }
+
+    .back-arrow {
+      display: inline-block;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateX(0);
+      }
+      40% {
+        transform: translateX(-10px);
+      }
+      60% {
+        transform: translateX(-5px);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .error-code {
+        font-size: 80px;
+      }
+
+      .error-logic {
+        font-size: var(--text-lg);
+      }
+    }
+  </style>
+</head>
+<body data-page="404">
+  <!-- Mathematical Background Canvas -->
+  <canvas id="bg-animation-canvas" data-default-animation="primes"></canvas>
+  <button id="animation-toggle" class="animation-toggle" aria-label="Toggle background animation" title="Toggle animation (A)">
+    <span class="symbol">∀</span>
+  </button>
+
+  <!-- Navigation -->
+  <div class="nav-wrapper">
+    <nav>
+      <a href="index.html" class="nav-brand">
+        <span class="logic-symbol">∀</span>
+        F.A. D'Asaro
+      </a>
+
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="publications.html" class="nav-link">Publications</a></li>
+        <li><a href="teaching.html" class="nav-link">Teaching</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="service.html" class="nav-link">Service</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <section class="error-hero">
+      <div class="container">
+        <div class="fade-in">
+          <div class="error-code">404</div>
+          <div class="error-logic">∃ page · ¬Found(page)</div>
+          <p class="error-message">
+            The page you're looking for exists in some possible world, but unfortunately not in this one.
+            Perhaps you've discovered a counterexample to the completeness theorem of this website's navigation.
+          </p>
+          <div class="error-links">
+            <a href="index.html" class="btn btn-primary">
+              <span class="back-arrow">←</span> Back to Home
+            </a>
+            <a href="publications.html" class="btn">View Publications</a>
+            <a href="contact.html" class="btn">Contact</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="logic-jokes">
+          <h3>⊢ While You're Here, Enjoy Some Logical Truths:</h3>
+
+          <div class="joke-item">
+            ∀x (Page(x) → (Exists(x) ∨ ¬Exists(x)))
+            <br><small>Every page either exists or doesn't exist. This one chose the latter.</small>
+          </div>
+
+          <div class="joke-item">
+            Found(page) → False
+            <br><small>If the page is found, then false. Therefore, by modus tollens...</small>
+          </div>
+
+          <div class="joke-item">
+            ∃ε > 0 · |YourExpectations - Reality| < ε
+            <br><small>For any positive distance, your expectations were at least that far from reality.</small>
+          </div>
+
+          <div class="joke-item">
+            P(Page Exists | You Arrived Here) = 0
+            <br><small>Given that you've arrived at this page, the probability the page exists is zero.</small>
+          </div>
+
+          <div class="joke-item">
+            404 ∈ ℕ ∧ 404 ∉ ValidPages
+            <br><small>404 is a natural number, but not a member of the set of valid pages.</small>
+          </div>
+        </div>
+
+        <div class="card text-center">
+          <h2 class="section-title">Lost in Logical Space?</h2>
+          <p>
+            If you believe this page should exist, or if you followed a broken link,
+            please let me know so I can fix it.
+          </p>
+          <p class="mt-md">
+            <a href="contact.html" class="btn btn-primary">Report This Issue →</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-text">
+        <p>&copy; <span class="footer-year">2025</span> Fabio Aurelio D'Asaro</p>
+        <p>∀x (Logic(x) → Elegant(x))</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="https://github.com/dasaro" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+
+  <script>
+    // Update footer year
+    document.addEventListener('DOMContentLoaded', () => {
+      const yearEl = document.querySelector('.footer-year');
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+
+      // Add a fun console message for developers
+      console.log('%c∃ Developer · Curious(Developer)', 'font-size: 16px; color: #2980B9; font-family: monospace;');
+      console.log('%cYou found the 404 page! If you\'re seeing this in production and shouldn\'t be, please report it.', 'color: #7f8c8d;');
+      console.log('%c⊢ Contact: fabioaurelio.dasaro@unisalento.it', 'color: #27ae60;');
+    });
+  </script>
+</body>
+</html>

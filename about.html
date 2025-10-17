@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Fabio Aurelio D'Asaro - Education, experience, and research background in Logic and AI.">
+  <meta name="author" content="Fabio Aurelio D'Asaro">
+
+  <title>About - Fabio Aurelio D'Asaro</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="about">
+  <!-- Mathematical Background Canvas -->
+  <canvas id="bg-animation-canvas" data-default-animation="fibonacci"></canvas>
+  <button id="animation-toggle" class="animation-toggle" aria-label="Toggle background animation" title="Toggle animation (A)">
+    <span class="symbol">∀</span>
+  </button>
+
+  <!-- Navigation -->
+  <div class="nav-wrapper">
+    <nav>
+      <a href="index.html" class="nav-brand">
+        <span class="logic-symbol">∀</span>
+        F.A. D'Asaro
+      </a>
+
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="publications.html" class="nav-link">Publications</a></li>
+        <li><a href="teaching.html" class="nav-link">Teaching</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="service.html" class="nav-link">Service</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <!-- About Section -->
+    <section id="about">
+      <div class="container">
+        <h1 class="fade-in">About Me</h1>
+
+        <div class="about-bio">
+          <p class="fade-in-delay-1">
+            I am a researcher in Logic (PHIL-02/A) working at the interface of formal epistemology and AI,
+            probabilistic and temporal reasoning, argumentation, and logic programming (ASP/ILASP).
+          </p>
+          <p class="fade-in-delay-2">
+            My work explores how formal logical frameworks can be used to model and reason about uncertainty,
+            knowledge, actions, and their effects in dynamic environments. I am particularly interested in
+            developing explainable AI systems that combine the precision of formal logic with the flexibility
+            of probabilistic reasoning.
+          </p>
+          <p class="fade-in-delay-3">
+            Born in Palermo, Italy, I currently work between Lecce and Verona, Italy, contributing to
+            cutting-edge research in ethical and symbiotic AI.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+      <div class="container">
+        <h2 class="section-title">Education</h2>
+
+        <div class="timeline">
+          <div class="card timeline-item scroll-animate">
+            <div class="timeline-marker"><span class="logic-symbol">⊢</span></div>
+            <div class="timeline-content">
+              <h3>PhD in Artificial Intelligence</h3>
+              <p class="institution">University College London, UK</p>
+              <p class="period">2014 - 2019</p>
+              <p><strong>Thesis:</strong> Probabilistic Epistemic Reasoning About Actions</p>
+              <p><strong>Supervisors:</strong> Rob Miller, Antonis Bikakis, Luke Dickens</p>
+              <p>
+                My PhD thesis explored how to model uncertainty (Probability Theory) and knowledge-producing
+                actions in the Event Calculus framework.
+              </p>
+            </div>
+          </div>
+
+          <div class="card timeline-item scroll-animate">
+            <div class="timeline-marker"><span class="logic-symbol">∃</span></div>
+            <div class="timeline-content">
+              <h3>MSc in Pure Mathematics and Mathematical Logic</h3>
+              <p class="institution">University of Manchester, UK</p>
+              <p class="period">2013 - 2014</p>
+              <p><strong>Grade:</strong> Distinction (110/110 cum laude equivalent)</p>
+              <p><strong>Thesis:</strong> Analogical Reasoning in Unary Inductive Logic</p>
+              <p><strong>Supervisor:</strong> Jeff B. Paris</p>
+            </div>
+          </div>
+
+          <div class="card timeline-item scroll-animate">
+            <div class="timeline-marker"><span class="logic-symbol">∀</span></div>
+            <div class="timeline-content">
+              <h3>BSc in Computer Science</h3>
+              <p class="institution">University of Palermo, Italy</p>
+              <p class="period">2006 - 2011</p>
+              <p><strong>Grade:</strong> 110/110 cum laude</p>
+              <p><strong>Thesis:</strong> La Tesi di Church-Turing e il suo rapporto con alcuni nuovi modelli di calcolo</p>
+              <p><strong>Supervisor:</strong> Settimo Termini</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+      <div class="container">
+        <h2 class="section-title">Professional Experience</h2>
+
+        <div id="experience-container">
+          <!-- Experience will be loaded from JSON -->
+          <p class="loading-message">Content will be populated from data/experience.json in Phase 4</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-text">
+        <p>&copy; <span class="footer-year">2025</span> Fabio Aurelio D'Asaro</p>
+        <p>∀x (Logic(x) → Elegant(x))</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="https://github.com/dasaro" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+
+  <!-- Page-specific script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      console.log('[about.html] DOM loaded, starting data load...');
+
+      try {
+        // Load personal data for bio
+        console.log('[about.html] Loading personal data...');
+        const personalData = await loadJSON('./data/personal.json');
+        console.log('[about.html] Personal data loaded:', personalData);
+
+        if (personalData && personalData.bio_long) {
+          console.log('[about.html] Updating bio section...');
+          const bioContainer = document.querySelector('.about-bio');
+          console.log('[about.html] Bio container found:', !!bioContainer);
+
+          if (bioContainer) {
+            bioContainer.innerHTML = `
+              <p class="fade-in-delay-1">${personalData.bio_long}</p>
+            `;
+            console.log('[about.html] Bio updated successfully');
+          }
+        } else {
+          console.warn('[about.html] No bio_long found in personal data');
+        }
+
+        // Load education data
+        console.log('[about.html] Loading education data...');
+        const educationData = await loadJSON('./data/education.json');
+        console.log('[about.html] Education data loaded:', educationData);
+
+        if (educationData && educationData.degrees) {
+          console.log('[about.html] Found', educationData.degrees.length, 'degrees');
+          const educationTimeline = document.querySelector('#education .timeline');
+          console.log('[about.html] Education timeline container found:', !!educationTimeline);
+
+          if (educationTimeline) {
+            const symbols = ['⊢', '∃', '∀', 'λ']; // Logical symbols for variety
+
+            const html = educationData.degrees.map((degree, index) => {
+              console.log(`[about.html] Processing degree ${index + 1}:`, degree.degree);
+              const symbol = symbols[index % symbols.length];
+              return `
+                <div class="timeline-card">
+                  <div class="timeline-marker">
+                    <span>${symbol}</span>
+                  </div>
+                  <div class="timeline-content">
+                    <span class="timeline-date">${symbol} ${degree.year_start} - ${degree.year_end}</span>
+                    <h3>${degree.degree}</h3>
+                    <p class="institution">${degree.institution}, ${degree.location}</p>
+                    ${degree.grade ? `<p class="grade">Grade: ${degree.grade}${degree.grade_note ? ` (${degree.grade_note})` : ''}</p>` : ''}
+                    <p><strong>Thesis:</strong> ${degree.thesis}</p>
+                    ${degree.thesis_en ? `<p class="location">English: ${degree.thesis_en}</p>` : ''}
+                    <p><strong>Supervisor${degree.supervisors && degree.supervisors.length > 1 ? 's' : ''}:</strong> ${degree.supervisors ? degree.supervisors.join(', ') : 'N/A'}</p>
+                    ${degree.description ? `<p>${degree.description}</p>` : ''}
+                  </div>
+                </div>
+              `;
+            }).join('');
+
+            console.log('[about.html] Generated education HTML length:', html.length);
+            educationTimeline.innerHTML = html;
+            console.log('[about.html] Education timeline updated successfully');
+          }
+        } else {
+          console.warn('[about.html] No degrees found in education data');
+        }
+
+        // Load experience data
+        console.log('[about.html] Loading experience data...');
+        const experienceData = await loadJSON('./data/experience.json');
+        console.log('[about.html] Experience data loaded:', experienceData);
+
+        const expContainer = document.getElementById('experience-container');
+        console.log('[about.html] Experience container found:', !!expContainer);
+
+        if (experienceData && experienceData.positions) {
+          console.log('[about.html] Found', experienceData.positions.length, 'positions');
+
+          const html = experienceData.positions.map((position, index) => {
+            console.log(`[about.html] Processing position ${index + 1}:`, position.title);
+            const currentClass = position.current ? ' current' : '';
+            const currentBadge = position.current ? '<span class="badge-current">CURRENT</span>' : '';
+            return `
+              <div class="timeline-card${currentClass}">
+                <div class="timeline-marker">
+                  <span>→</span>
+                </div>
+                <div class="timeline-content">
+                  <span class="timeline-date">→ ${position.year_start} - ${position.year_end}${position.months ? ` (${position.months})` : ''}</span>
+                  <h3>${position.title}${currentBadge}</h3>
+                  <p class="institution">
+                    ${position.institution}${position.department ? `, ${position.department}` : ''}
+                  </p>
+                  <p class="location">${position.location}</p>
+                  <p>${position.description}</p>
+                  ${position.research_focus ? `
+                    <div>
+                      <p><strong>Research Focus:</strong></p>
+                      <ul>
+                        ${position.research_focus.map(focus => `<li>${focus}</li>`).join('')}
+                      </ul>
+                    </div>
+                  ` : ''}
+                  ${position.teaching_load ? `<p><strong>Teaching:</strong> ${position.teaching_load}</p>` : ''}
+                  ${position.project ? `<p><strong>Project:</strong> ${position.project}</p>` : ''}
+                </div>
+              </div>
+            `;
+          }).join('');
+
+          console.log('[about.html] Generated experience HTML length:', html.length);
+          expContainer.innerHTML = `<div class="timeline">${html}</div>`;
+          console.log('[about.html] Experience section updated successfully');
+        } else {
+          console.warn('[about.html] No positions found in experience data');
+          expContainer.innerHTML = '<p>No experience data available.</p>';
+        }
+
+        console.log('[about.html] Data loading complete.');
+
+      } catch (error) {
+        console.error('[about.html] ERROR loading about page data:', error);
+        console.error('[about.html] Error stack:', error.stack);
+      }
+    });
+  </script>
+</body>
+</html>

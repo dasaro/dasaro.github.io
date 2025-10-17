@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Fabio Aurelio D'Asaro - Email, social media, and professional profiles.">
+  <meta name="author" content="Fabio Aurelio D'Asaro">
+
+  <title>Contact - Fabio Aurelio D'Asaro</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .contact-card {
+      background: var(--color-code-bg);
+      color: var(--color-white);
+      padding: var(--space-lg);
+      border-radius: 4px;
+    }
+
+    .contact-card h3 {
+      color: var(--color-code-text);
+      font-family: 'Fira Code', monospace;
+      margin-bottom: var(--space-md);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+      font-family: 'Fira Code', monospace;
+      font-size: var(--text-sm);
+    }
+
+    .contact-icon {
+      font-size: var(--text-xl);
+      color: var(--color-code-text);
+    }
+
+    .contact-link {
+      color: var(--color-white);
+      text-decoration: underline;
+      word-break: break-all;
+    }
+
+    .contact-link:hover {
+      color: var(--color-code-text);
+    }
+
+    .copy-btn {
+      background: var(--color-accent-1);
+      color: var(--color-white);
+      border: none;
+      padding: 4px 8px;
+      cursor: pointer;
+      font-family: 'Fira Code', monospace;
+      font-size: var(--text-xs);
+      border-radius: 3px;
+      margin-left: var(--space-sm);
+    }
+
+    .copy-btn:hover {
+      background: var(--color-link);
+    }
+
+    .copy-btn.copied {
+      background: var(--color-code-text);
+      color: var(--color-black);
+    }
+
+    .profile-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+
+    .profile-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-sm) var(--space-md);
+      background: var(--color-accent-1);
+      color: var(--color-white);
+      text-decoration: none;
+      border-radius: 4px;
+      font-family: 'Fira Code', monospace;
+      transition: all 0.2s ease;
+    }
+
+    .profile-link:hover {
+      background: var(--color-link);
+      transform: translateY(-2px);
+    }
+
+    .location-info {
+      background: var(--color-accent-3);
+      padding: var(--space-lg);
+      border-radius: 4px;
+      margin-top: var(--space-xl);
+    }
+  </style>
+</head>
+<body data-page="contact">
+  <!-- Mathematical Background Canvas -->
+  <canvas id="bg-animation-canvas" data-default-animation="primes"></canvas>
+  <button id="animation-toggle" class="animation-toggle" aria-label="Toggle background animation" title="Toggle animation (A)">
+    <span class="symbol">∀</span>
+  </button>
+
+  <!-- Navigation -->
+  <div class="nav-wrapper">
+    <nav>
+      <a href="index.html" class="nav-brand">
+        <span class="logic-symbol">∀</span>
+        F.A. D'Asaro
+      </a>
+
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="publications.html" class="nav-link">Publications</a></li>
+        <li><a href="teaching.html" class="nav-link">Teaching</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="service.html" class="nav-link">Service</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <section id="contact">
+      <div class="container">
+        <h1 class="fade-in">Contact</h1>
+
+        <div class="contact-grid">
+          <!-- Email -->
+          <div class="contact-card fade-in-delay-1">
+            <h3>∃ Email</h3>
+            <div class="contact-item">
+              <span class="contact-icon">@</span>
+              <div>
+                <div>
+                  <strong>Primary:</strong><br>
+                  <a href="mailto:fabioaurelio.dasaro@unisalento.it" class="contact-link">
+                    fabioaurelio.dasaro@unisalento.it
+                  </a>
+                  <button class="copy-btn" onclick="copyToClipboard('fabioaurelio.dasaro@unisalento.it', this)">
+                    Copy
+                  </button>
+                </div>
+                <div class="mt-sm">
+                  <strong>Institutional:</strong><br>
+                  <a href="mailto:fabioaurelio.dasaro@univr.it" class="contact-link">
+                    fabioaurelio.dasaro@univr.it
+                  </a>
+                  <button class="copy-btn" onclick="copyToClipboard('fabioaurelio.dasaro@univr.it', this)">
+                    Copy
+                  </button>
+                </div>
+                <div class="mt-sm">
+                  <a href="mailto:fabio.d'asaro.14@ucl.ac.uk" class="contact-link">
+                    fabio.d'asaro.14@ucl.ac.uk
+                  </a>
+                  <button class="copy-btn" onclick="copyToClipboard('fabio.d\'asaro.14@ucl.ac.uk', this)">
+                    Copy
+                  </button>
+                </div>
+                <div class="mt-sm">
+                  <strong>Personal:</strong><br>
+                  <a href="mailto:fdasaro@gmail.com" class="contact-link">
+                    fdasaro@gmail.com
+                  </a>
+                  <button class="copy-btn" onclick="copyToClipboard('fdasaro@gmail.com', this)">
+                    Copy
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="contact-card fade-in-delay-2">
+            <h3>∀ Phone</h3>
+            <div class="contact-item">
+              <span class="contact-icon">☎</span>
+              <div>
+                <a href="tel:+393473001762" class="contact-link">+39 347 300 1762</a>
+                <button class="copy-btn" onclick="copyToClipboard('+39 347 300 1762', this)">
+                  Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Academic Profiles -->
+        <div class="card mt-xl fade-in-delay-3">
+          <h2 class="section-title">Academic & Professional Profiles</h2>
+          <div class="profile-links">
+            <a href="https://github.com/dasaro" target="_blank" rel="noopener" class="profile-link">
+              <span>→</span> GitHub
+            </a>
+            <a href="https://scholar.google.com" target="_blank" rel="noopener" class="profile-link">
+              <span>→</span> Google Scholar
+            </a>
+            <a href="https://sites.google.com/view/fdasaro" target="_blank" rel="noopener" class="profile-link">
+              <span>→</span> Personal Website
+            </a>
+            <a href="https://orcid.org" target="_blank" rel="noopener" class="profile-link">
+              <span>→</span> ORCID
+            </a>
+            <a href="https://www.researchgate.net" target="_blank" rel="noopener" class="profile-link">
+              <span>→</span> ResearchGate
+            </a>
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="location-info fade-in">
+          <h2 class="section-title">Location</h2>
+          <div class="grid grid-2">
+            <div>
+              <h3>Primary Affiliation</h3>
+              <p><strong>University of Salento</strong></p>
+              <p>Department of Human Studies</p>
+              <p>Lecce, Italy</p>
+            </div>
+            <div>
+              <h3>Secondary Affiliation</h3>
+              <p><strong>University of Verona</strong></p>
+              <p>Department of Cultures and Civilizations</p>
+              <p>Verona, Italy</p>
+            </div>
+          </div>
+          <p class="mt-md">
+            <span class="logic-symbol">⊢</span>
+            <em>Birthplace:</em> Palermo, Italy
+          </p>
+        </div>
+
+        <!-- Get in Touch -->
+        <div class="card mt-xl">
+          <h2 class="section-title">Get in Touch</h2>
+          <p>
+            I'm always happy to discuss research collaborations, potential projects, or opportunities
+            for student supervision. Feel free to reach out via email or connect with me on any of
+            the platforms listed above.
+          </p>
+          <p class="mt-md">
+            For prospective PhD students, please see the <a href="teaching.html#prospective-students">
+            Teaching page</a> for information about research opportunities.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-text">
+        <p>&copy; <span class="footer-year">2025</span> Fabio Aurelio D'Asaro</p>
+        <p>∀x (Logic(x) → Elegant(x))</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="https://github.com/dasaro" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+
+  <script>
+    // Copy to clipboard function
+    function copyToClipboard(text, button) {
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = button.textContent;
+        button.textContent = 'Copied!';
+        button.classList.add('copied');
+
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy:', err);
+        button.textContent = 'Error';
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Research projects by Fabio Aurelio D'Asaro - Current and past funded research initiatives.">
+  <meta name="author" content="Fabio Aurelio D'Asaro">
+
+  <title>Projects - Fabio Aurelio D'Asaro</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    .project-card {
+      position: relative;
+      border-left: 4px solid var(--color-link);
+      padding-left: var(--space-lg);
+    }
+
+    .project-card.current {
+      border-left-color: var(--color-code-text);
+    }
+
+    .project-status {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--color-code-text);
+      color: var(--color-black);
+      font-family: 'Fira Code', monospace;
+      font-size: var(--text-xs);
+      font-weight: bold;
+      border-radius: 3px;
+      margin-bottom: var(--space-sm);
+    }
+
+    .project-status.past {
+      background: var(--color-accent-2);
+      color: var(--color-white);
+    }
+  </style>
+</head>
+<body data-page="projects">
+  <!-- Mathematical Background Canvas -->
+  <canvas id="bg-animation-canvas" data-default-animation="gameOfLife"></canvas>
+  <button id="animation-toggle" class="animation-toggle" aria-label="Toggle background animation" title="Toggle animation (A)">
+    <span class="symbol">∀</span>
+  </button>
+
+  <!-- Navigation -->
+  <div class="nav-wrapper">
+    <nav>
+      <a href="index.html" class="nav-brand">
+        <span class="logic-symbol">∀</span>
+        F.A. D'Asaro
+      </a>
+
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="publications.html" class="nav-link">Publications</a></li>
+        <li><a href="teaching.html" class="nav-link">Teaching</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="service.html" class="nav-link">Service</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <section id="projects">
+      <div class="container">
+        <h1 class="fade-in">Research Projects</h1>
+
+        <!-- Current Projects -->
+        <div id="current-projects">
+          <h2 class="section-title">Current Projects</h2>
+
+          <div class="card project-card current scroll-animate">
+            <span class="project-status">CURRENT</span>
+            <h3>FAIR - Future AI Research</h3>
+            <p><strong>Funding:</strong> PNRR Extended Partnership (PE00000013)</p>
+            <p><strong>Role:</strong> Postdoctoral Researcher</p>
+            <p><strong>Period:</strong> 2025 - Present</p>
+            <p><strong>Institution:</strong> University of Salento</p>
+            <p><strong>Spoke:</strong> Spoke 6 (Symbiotic AI)</p>
+            <p><strong>PI:</strong> Paolo Baldi</p>
+            <p>
+              Working on logic for ethical human–AI collaboration (eDefAI). This project explores
+              formal frameworks for building trustworthy and symbiotic AI systems that can work
+              seamlessly with humans while maintaining ethical principles.
+            </p>
+          </div>
+
+          <div id="current-projects-container" class="mt-lg">
+            <p class="loading-message">Additional current projects will be loaded from data/projects.json</p>
+          </div>
+        </div>
+
+        <!-- Past Projects -->
+        <div id="past-projects" class="mt-xl">
+          <h2 class="section-title">Past Projects</h2>
+          <div id="past-projects-container">
+            <p class="loading-message">Past projects will be loaded from data/projects.json</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-text">
+        <p>&copy; <span class="footer-year">2025</span> Fabio Aurelio D'Asaro</p>
+        <p>∀x (Logic(x) → Elegant(x))</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="https://github.com/dasaro" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+
+  <!-- Page-specific script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        // Load projects data
+        const projectsData = await loadJSON('./data/projects.json');
+        console.log('[projects.html] Projects data loaded:', projectsData);
+
+        // Current Projects (inline styles to ensure visibility)
+        const currentContainer = document.getElementById('current-projects-container');
+        if (projectsData.current_projects && projectsData.current_projects.length > 0) {
+          const currentHTML = projectsData.current_projects.map(project => `
+            <div style="background: #0a0a0a; color: #00ff00; padding: 24px; border-radius: 8px; margin-bottom: 24px; border-left: 4px solid #00ff00; font-family: 'Courier New', monospace;">
+              <div style="display: inline-block; padding: 4px 12px; background: #00ff00; color: #000000; font-weight: bold; font-size: 0.75rem; border-radius: 3px; margin-bottom: 16px;">
+                ▸ ACTIVE
+              </div>
+              <h3 style="color: #00ff00 !important; font-size: 1.5rem; margin-bottom: 12px; font-family: 'Courier New', monospace;">
+                ${project.name}
+              </h3>
+              <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 8px; opacity: 0.9;">
+                <strong style="color: #00ff00 !important;">$ funding:</strong> ${project.funding_program}
+              </div>
+              ${project.ids ? `
+                <div style="color: #00ff00 !important; font-size: 0.75rem; margin-bottom: 8px; opacity: 0.8;">
+                  <strong style="color: #00ff00 !important;">$ ids:</strong> ${project.ids}
+                </div>
+              ` : ''}
+              <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 8px; opacity: 0.9;">
+                <strong style="color: #00ff00 !important;">$ role:</strong> ${project.role}
+              </div>
+              <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 8px; opacity: 0.9;">
+                <strong style="color: #00ff00 !important;">$ period:</strong> ${project.years}
+              </div>
+              <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 8px; opacity: 0.9;">
+                <strong style="color: #00ff00 !important;">$ institution:</strong> ${project.institution}
+              </div>
+              ${project.spoke ? `
+                <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 8px; opacity: 0.9;">
+                  <strong style="color: #00ff00 !important;">$ spoke:</strong> ${project.spoke}
+                </div>
+              ` : ''}
+              <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 16px; opacity: 0.9;">
+                <strong style="color: #00ff00 !important;">$ pi:</strong> ${project.pi}
+              </div>
+              <p style="color: #00ff00 !important; font-size: 1rem; line-height: 1.6; margin-bottom: 16px;">
+                ${project.description}
+              </p>
+              ${project.outputs && project.outputs.length > 0 ? `
+                <div style="margin-top: 16px;">
+                  <strong style="color: #00ff00 !important; display: block; margin-bottom: 8px;">$ outputs:</strong>
+                  <ul style="color: #00ff00 !important; list-style: none; padding-left: 20px; margin: 0;">
+                    ${project.outputs.map(output => `
+                      <li style="color: #00ff00 !important; margin-bottom: 4px;">→ ${output}</li>
+                    `).join('')}
+                  </ul>
+                </div>
+              ` : ''}
+              ${project.website ? `
+                <div style="margin-top: 16px;">
+                  <a href="${project.website}" target="_blank" rel="noopener" style="color: #00ff00 !important; text-decoration: none; border: 1px solid #00ff00; padding: 8px 16px; display: inline-block; border-radius: 4px; font-size: 0.875rem; transition: all 0.2s;">
+                    → Project Website
+                  </a>
+                </div>
+              ` : ''}
+            </div>
+          `).join('');
+          currentContainer.innerHTML = currentHTML;
+          console.log('[projects.html] ✅ Current projects displayed!', projectsData.current_projects.length, 'projects');
+        } else {
+          currentContainer.innerHTML = '';
+        }
+
+        // Past Projects (inline styles with gray terminal theme)
+        const pastContainer = document.getElementById('past-projects-container');
+        if (projectsData.past_projects && projectsData.past_projects.length > 0) {
+          const pastHTML = projectsData.past_projects.map(project => `
+            <div style="background: #1a1a1a; color: #888888; padding: 24px; border-radius: 8px; margin-bottom: 24px; border-left: 4px solid #555555; font-family: 'Courier New', monospace;">
+              <div style="display: inline-block; padding: 4px 12px; background: #555555; color: #FFFFFF; font-weight: bold; font-size: 0.75rem; border-radius: 3px; margin-bottom: 16px;">
+                ■ COMPLETED
+              </div>
+              <h3 style="color: #CCCCCC !important; font-size: 1.5rem; margin-bottom: 12px; font-family: 'Courier New', monospace;">
+                ${project.name}
+              </h3>
+              <div style="color: #888888 !important; font-size: 0.875rem; margin-bottom: 8px;">
+                <strong style="color: #CCCCCC !important;">$ funding:</strong> ${project.funding_program}
+              </div>
+              <div style="color: #888888 !important; font-size: 0.875rem; margin-bottom: 8px;">
+                <strong style="color: #CCCCCC !important;">$ role:</strong> ${project.role}
+              </div>
+              <div style="color: #888888 !important; font-size: 0.875rem; margin-bottom: 8px;">
+                <strong style="color: #CCCCCC !important;">$ period:</strong> ${project.years}
+              </div>
+              <div style="color: #888888 !important; font-size: 0.875rem; margin-bottom: 8px;">
+                <strong style="color: #CCCCCC !important;">$ institution:</strong> ${project.institution}
+              </div>
+              <div style="color: #888888 !important; font-size: 0.875rem; margin-bottom: 16px;">
+                <strong style="color: #CCCCCC !important;">$ pi:</strong> ${project.pi}
+              </div>
+              <p style="color: #888888 !important; font-size: 1rem; line-height: 1.6; margin-bottom: 16px;">
+                ${project.description}
+              </p>
+              ${project.outputs && project.outputs.length > 0 ? `
+                <div style="margin-top: 16px;">
+                  <strong style="color: #CCCCCC !important; display: block; margin-bottom: 8px;">$ outputs:</strong>
+                  <ul style="color: #888888 !important; list-style: none; padding-left: 20px; margin: 0;">
+                    ${project.outputs.map(output => `
+                      <li style="color: #888888 !important; margin-bottom: 4px;">→ ${output}</li>
+                    `).join('')}
+                  </ul>
+                </div>
+              ` : ''}
+            </div>
+          `).join('');
+          pastContainer.innerHTML = pastHTML;
+          console.log('[projects.html] ✅ Past projects displayed!', projectsData.past_projects.length, 'projects');
+        }
+
+      } catch (error) {
+        console.error('[projects.html] ❌ Error loading projects data:', error);
+        document.getElementById('current-projects-container').innerHTML =
+          '<p style="color: #ff0000 !important; font-style: italic;">Error loading project data.</p>';
+        document.getElementById('past-projects-container').innerHTML =
+          '<p style="color: #ff0000 !important; font-style: italic;">Error loading project data.</p>';
+      }
+    });
+  </script>
+</body>
+</html>

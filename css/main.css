@@ -1,0 +1,1165 @@
+/* ============================================
+   GOOGLE FONTS IMPORT - MUST BE FIRST!
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+
+/* ============================================
+   CSS Reset
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* ============================================
+   CSS Variables - Color Palette
+   ============================================ */
+:root {
+  /* Colors - Red/Brown Aesthetic */
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-accent-1: #5C2C2C; /* Dark red-brown */
+  --color-accent-2: #8B4545; /* Medium red-brown */
+  --color-accent-3: #F5ECEC; /* Very light red tint */
+  --color-link: #8B0000; /* Dark red */
+  --color-link-hover: #CD5C5C; /* Indian red */
+  --color-code-bg: #1E1E1E;
+  --color-code-text: #CD5C5C; /* Indian red instead of green */
+  --color-badge-green: #8B4513; /* Saddle brown (replacing green) */
+  --color-badge-red: #8B0000; /* Dark red */
+
+  /* Spacing Scale */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* Font Sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.5rem;
+
+  /* Layout */
+  --max-width: 1200px;
+  --nav-height: 70px;
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+
+body {
+  font-family: 'Crimson Text', 'Palatino', 'Georgia', serif;
+  font-size: var(--text-base);
+  color: var(--color-black);
+  background-color: var(--color-white);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: var(--space-md);
+  color: var(--color-accent-1);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+h1 { font-size: var(--text-4xl); }
+h2 { font-size: var(--text-3xl); }
+h3 { font-size: var(--text-2xl); }
+h4 { font-size: var(--text-xl); }
+h5 { font-size: var(--text-lg); }
+h6 { font-size: var(--text-base); }
+
+p {
+  margin-bottom: var(--space-md);
+  text-shadow: 0 0.5px 1px rgba(255, 255, 255, 0.5);
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
+
+code {
+  font-family: 'Fira Code', 'Courier New', monospace;
+  background-color: var(--color-accent-3);
+  padding: 0.125rem 0.25rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+/* ============================================
+   Layout & Grid System
+   ============================================ */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* ============================================
+   Navigation
+   ============================================ */
+.nav-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #FFFFFF; /* Fully opaque */
+  border-bottom: 2px solid var(--color-black);
+  z-index: 100; /* Navigation on top */
+  height: var(--nav-height);
+}
+
+nav {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-brand {
+  font-family: 'Fira Code', monospace;
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-black);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.nav-brand .logic-symbol {
+  font-size: var(--text-xl);
+  color: var(--color-accent-1);
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.nav-link {
+  font-family: 'Fira Code', monospace;
+  font-size: var(--text-sm);
+  color: var(--color-black);
+  text-decoration: none;
+  position: relative;
+  padding: var(--space-xs) 0;
+  transition: color 0.2s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-accent-1);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: var(--color-accent-1);
+}
+
+.nav-link.active {
+  color: var(--color-accent-1);
+  font-weight: 600;
+}
+
+/* Mobile Menu Toggle */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-xs);
+}
+
+.nav-toggle span {
+  width: 25px;
+  height: 2px;
+  background-color: var(--color-black);
+  transition: all 0.3s ease;
+}
+
+.nav-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* ============================================
+   Main Content Area
+   ============================================ */
+main {
+  margin-top: var(--nav-height);
+  min-height: calc(100vh - var(--nav-height) - 120px);
+  position: relative;
+  z-index: 1; /* Content above canvas */
+}
+
+section {
+  padding: var(--space-2xl) 0;
+}
+
+.section-title {
+  position: relative;
+  padding-left: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.section-title::before {
+  content: '∀';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent-3);
+  font-size: var(--text-3xl);
+}
+
+/* ============================================
+   Cards
+   ============================================ */
+.card {
+  background: rgba(255, 255, 255, 0.85); /* Consistent transparency */
+  border: 1px solid rgba(236, 240, 241, 0.8);
+  border-radius: 8px;
+  padding: var(--space-lg);
+  margin-bottom: var(--space-lg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 2; /* Cards above canvas */
+}
+
+.card:hover {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  border-color: var(--color-accent-2);
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+.btn {
+  font-family: 'Fira Code', monospace;
+  font-size: var(--text-sm);
+  padding: var(--space-sm) var(--space-md);
+  border: 2px solid var(--color-black);
+  background: transparent;
+  color: var(--color-black);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn:hover {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.btn-primary {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-1);
+  border-color: var(--color-accent-1);
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+footer {
+  background-color: #FFFFFF; /* Fully opaque */
+  border-top: 2px solid var(--color-accent-2);
+  padding: var(--space-xl) 0;
+  margin-top: var(--space-2xl);
+  position: relative;
+  z-index: 100;
+}
+
+.footer-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.footer-text {
+  font-family: 'Fira Code', monospace;
+  font-size: var(--text-sm);
+  color: var(--color-accent-2);
+}
+
+.footer-links {
+  display: flex;
+  gap: var(--space-lg);
+  list-style: none;
+}
+
+.footer-links a {
+  font-family: 'Fira Code', monospace;
+  font-size: var(--text-sm);
+  color: var(--color-accent-2);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--color-accent-1);
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.mt-sm { margin-top: var(--space-sm); }
+.mt-md { margin-top: var(--space-md); }
+.mt-lg { margin-top: var(--space-lg); }
+.mt-xl { margin-top: var(--space-xl); }
+.mb-sm { margin-bottom: var(--space-sm); }
+.mb-md { margin-bottom: var(--space-md); }
+.mb-lg { margin-bottom: var(--space-lg); }
+.mb-xl { margin-bottom: var(--space-xl); }
+
+.hidden { display: none; }
+.visible { display: block; }
+
+/* Logic Symbols Decorative */
+.logic-symbol {
+  font-family: 'Fira Code', monospace;
+  color: var(--color-accent-3);
+  user-select: none;
+}
+
+/* ============================================
+   Logical Symbol Variations
+   ============================================ */
+
+/* Symbol-specific section titles */
+#research-interests .section-title::before,
+#recent-publications .section-title::before,
+.section-exists .section-title::before {
+  content: '∃';  /* there exists */
+}
+
+#publications .section-title::before,
+.section-proves .section-title::before {
+  content: '⊢';  /* proves */
+}
+
+#education .section-title::before,
+.section-lambda .section-title::before {
+  content: 'λ';  /* lambda */
+}
+
+#experience .section-title::before,
+.section-implies .section-title::before {
+  content: '→';  /* implies */
+}
+
+#teaching .section-title::before,
+#current-courses .section-title::before,
+#past-courses .section-title::before,
+#guest-lectures .section-title::before,
+#supervision .section-title::before,
+#prospective-students .section-title::before,
+.section-and .section-title::before {
+  content: '∧';  /* and */
+}
+
+#projects .section-title::before,
+#current-projects .section-title::before,
+#past-projects .section-title::before,
+.section-models .section-title::before {
+  content: '⊨';  /* models */
+}
+
+#service .section-title::before,
+.section-or .section-title::before {
+  content: '∨';  /* or */
+}
+
+#skills .section-title::before,
+.section-forall .section-title::before {
+  content: '∀';  /* for all */
+}
+
+#contact .section-title::before,
+.section-top .section-title::before {
+  content: '⊤';  /* top */
+}
+
+/* Additional symbol variations for flexibility */
+.section-not .section-title::before {
+  content: '¬';  /* not */
+}
+
+.section-empty .section-title::before {
+  content: '∅';  /* empty set */
+}
+
+.section-bottom .section-title::before {
+  content: '⊥';  /* bottom */
+}
+
+/* Timeline markers using different symbols */
+.timeline-item::before {
+  font-family: 'Fira Code', monospace;
+  color: var(--color-accent-1);
+  margin-right: var(--space-sm);
+}
+
+.timeline-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--color-accent-3);
+  border-radius: 50%;
+  margin-right: var(--space-md);
+  flex-shrink: 0;
+}
+
+.timeline-marker .logic-symbol {
+  font-size: var(--text-xl);
+  color: var(--color-accent-1);
+}
+
+/* ============================================
+   Timeline Layout
+   ============================================ */
+.timeline {
+  position: relative;
+  padding-left: var(--space-lg);
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.timeline-content {
+  flex: 1;
+}
+
+.timeline-content h3 {
+  margin-bottom: var(--space-sm);
+}
+
+.timeline-content .institution,
+.timeline-content .period {
+  color: var(--color-accent-2);
+  font-style: italic;
+  margin-bottom: var(--space-sm);
+}
+
+.timeline-content .period {
+  font-family: 'Fira Code', monospace;
+  font-size: var(--text-sm);
+}
+
+/* ============================================
+   Publication Cards
+   ============================================ */
+.publication-card {
+  background: rgba(255, 255, 255, 0.85); /* More transparent - 85% opaque */
+  border: 1px solid rgba(236, 240, 241, 0.8);
+  border-radius: 4px;
+  padding: var(--space-lg);
+  margin-bottom: var(--space-lg);
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 2; /* Cards above canvas */
+}
+
+.publication-card:hover {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-accent-2);
+}
+
+/* Publication Title */
+.publication-title,
+.publication-card h3 {
+  color: var(--color-black) !important;
+  font-family: 'Crimson Text', serif !important;
+  font-size: var(--text-xl) !important;
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+  line-height: 1.4;
+}
+
+/* Publication Authors */
+.publication-authors,
+.publication-card .publication-authors {
+  color: var(--color-accent-2) !important;
+  font-family: 'Crimson Text', serif;
+  font-size: var(--text-base);
+  margin-bottom: var(--space-xs);
+  line-height: 1.5;
+}
+
+.publication-authors strong {
+  color: var(--color-black);
+  font-weight: 700;
+}
+
+/* Publication Venue */
+.publication-venue,
+.publication-card .publication-venue {
+  color: var(--color-accent-1) !important;
+  font-family: 'Fira Code', monospace;
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-md);
+}
+
+.publication-venue strong {
+  color: var(--color-accent-1);
+  font-weight: 600;
+}
+
+/* Publication Links */
+.publication-links {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin-top: var(--space-md);
+}
+
+.publication-links a,
+.publication-links button {
+  color: var(--color-link) !important;
+  background: transparent;
+  border: 1px solid var(--color-link);
+  padding: var(--space-xs) var(--space-sm);
+  font-size: var(--text-xs);
+  font-family: 'Fira Code', monospace;
+  border-radius: 3px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.publication-links a:hover,
+.publication-links button:hover {
+  background: var(--color-link);
+  color: var(--color-white) !important;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: var(--text-xs);
+  font-family: 'Fira Code', monospace;
+  border-radius: 3px;
+  font-weight: 500;
+  margin-left: var(--space-sm);
+}
+
+.badge-oa,
+.publication-venue .badge {
+  background: #8B4513; /* Saddle brown for open access */
+  color: white !important;
+}
+
+.badge-accepted {
+  background: #CD853F; /* Peru/tan for accepted */
+  color: white !important;
+}
+
+.badge-current {
+  background: #8B0000; /* Dark red for current */
+  color: white !important;
+}
+
+/* Loading and Error Messages */
+.loading-message {
+  color: var(--color-accent-2);
+  font-style: italic;
+  text-align: center;
+  padding: var(--space-xl);
+}
+
+.error-message {
+  color: #e74c3c;
+  font-style: italic;
+  text-align: center;
+  padding: var(--space-xl);
+}
+
+/* ============================================
+   Hero Section
+   ============================================ */
+.hero {
+  background: rgba(255, 255, 255, 0.88); /* Semi-transparent to show animations */
+  padding: var(--space-2xl) 0;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.hero-content {
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: var(--text-4xl);
+  color: var(--color-black);
+  margin-bottom: var(--space-md);
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9); /* Enhanced for readability */
+}
+
+.hero-subtitle {
+  font-family: 'Crimson Text', serif;
+  font-size: var(--text-xl);
+  color: var(--color-accent-2);
+  margin-bottom: var(--space-sm);
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
+}
+
+.hero-affiliations {
+  font-family: 'Fira Code', monospace;
+  font-size: var(--text-sm);
+  color: var(--color-accent-2);
+  margin-bottom: var(--space-lg);
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
+}
+
+.hero-tagline {
+  font-family: 'Crimson Text', serif;
+  font-size: var(--text-lg);
+  font-style: italic;
+  color: var(--color-accent-1);
+  max-width: 800px;
+  margin: 0 auto;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
+}
+
+/* ============================================
+   Metrics Widget (Scholar Stats)
+   ============================================ */
+.metrics-widget {
+  background: var(--color-code-bg);
+  color: var(--color-white);
+  padding: var(--space-xl);
+  margin: var(--space-xl) 0;
+  border: 2px solid var(--color-link); /* Red border */
+  border-radius: 4px;
+}
+
+.metrics-widget h3 {
+  color: var(--color-white) !important;
+  font-family: 'Fira Code', monospace;
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.metrics-grid {
+  text-align: center;
+}
+
+.metric {
+  text-align: center;
+}
+
+.metric-value {
+  font-family: 'Fira Code', monospace;
+  font-size: var(--text-3xl);
+  color: var(--color-code-text);
+  font-weight: bold;
+  display: block;
+  margin-bottom: var(--space-xs);
+}
+
+.metric-label {
+  font-family: 'Fira Code', monospace;
+  font-size: var(--text-sm);
+  color: var(--color-white);
+  display: block;
+}
+
+.metric-note {
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--color-accent-3);
+  margin-top: var(--space-md);
+  font-style: italic;
+}
+
+/* ============================================
+   About Preview Section
+   ============================================ */
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-content p {
+  color: var(--color-black);
+  font-size: var(--text-lg);
+  line-height: 1.8;
+  margin-bottom: var(--space-lg);
+}
+
+.about-bio {
+  color: var(--color-black);
+}
+
+.about-bio p {
+  color: var(--color-black);
+  margin-bottom: var(--space-lg);
+}
+
+/* ==========================================
+   PUBLICATION CARDS - REFACTORED FROM INLINE STYLES
+   Fixed: 2025-10-16 - Restored proper CSS architecture
+
+   HISTORY:
+   - Bug discovered: JavaScript apostrophe error in "D'Asaro"
+   - Fixed apostrophe escaping in index.html:248, publications.html:344
+   - Moved @import to line 4 (must be at top of CSS file)
+   - Publications loading but text invisible due to CSS specificity
+   - Applied inline styles as "nuclear option" to make text visible
+   - Refactored inline styles → CSS classes for maintainability
+
+   IMPORTANT: Using !important flags to override specificity issues
+   that were causing invisible text. This is necessary because of
+   conflicting styles from earlier in the cascade. Do not remove
+   !important flags or text may become invisible again.
+
+   REFACTORED FILES:
+   - index.html (lines 298-319): 3 recent publications
+   - publications.html (lines 343-365): createPublicationHTML function
+   - about.html (lines 188-208): education timeline
+   - about.html (lines 229-259): experience timeline
+   ========================================== */
+
+.publication-card {
+  background: rgba(255, 255, 255, 0.85); /* More transparent - 85% opaque */
+  border: 2px solid rgba(236, 240, 241, 0.8);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 2; /* Cards above canvas */
+}
+
+.publication-card:hover {
+  background: rgba(255, 255, 255, 0.95); /* More opaque on hover */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.publication-card .publication-title,
+.publication-card h3 {
+  color: var(--color-black) !important;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.4;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+}
+
+.publication-card .publication-authors {
+  color: #34495E !important;
+  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.6;
+}
+
+.publication-card .publication-authors strong {
+  color: var(--color-black) !important;
+  font-weight: 700;
+}
+
+.publication-card .publication-venue {
+  color: #2C3E50 !important;
+  font-family: 'Fira Code', Consolas, monospace;
+  font-size: 0.875rem;
+  margin: 0 0 1rem 0;
+}
+
+.publication-card .publication-venue strong {
+  color: #2C3E50 !important;
+}
+
+.publication-card .publication-links {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.publication-card .publication-links a,
+.publication-card .publication-links button {
+  color: var(--color-link) !important; /* Dark red */
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--color-link); /* Dark red */
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: 'Fira Code', Consolas, monospace;
+  transition: all 0.2s;
+  display: inline-block;
+  background: transparent;
+  cursor: pointer;
+}
+
+.publication-card .publication-links a:hover,
+.publication-card .publication-links button:hover {
+  background: var(--color-link); /* Dark red */
+  color: var(--color-white) !important;
+}
+
+/* ==========================================
+   BADGES
+   ========================================== */
+
+.badge {
+  background: #8B4513; /* Saddle brown */
+  color: var(--color-white) !important;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: 'Fira Code', Consolas, monospace;
+  display: inline-block;
+  margin-left: 0.75rem;
+}
+
+.badge-oa {
+  background: #8B4513; /* Saddle brown for open access */
+  color: var(--color-white) !important;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: 'Fira Code', Consolas, monospace;
+  display: inline-block;
+  margin-left: 0.75rem;
+}
+
+.badge-accepted {
+  background: #CD853F; /* Peru/tan for accepted */
+  color: var(--color-white) !important;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: 'Fira Code', Consolas, monospace;
+  display: inline-block;
+  margin-left: 0.75rem;
+}
+
+.badge-current {
+  background: #8B0000; /* Dark red for current */
+  color: var(--color-white) !important;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: 'Fira Code', Consolas, monospace;
+  margin-left: 0.5rem;
+}
+
+/* ==========================================
+   TIMELINE CARDS (Education & Experience)
+   ========================================== */
+
+.timeline-card {
+  background: rgba(255, 255, 255, 0.85); /* More transparent */
+  border-left: 4px solid var(--color-link);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  gap: 1rem;
+  transition: background 0.2s ease;
+  position: relative;
+  z-index: 2; /* Cards above canvas */
+}
+
+.timeline-card.current {
+  border-left-color: #8B0000; /* Dark red for current */
+}
+
+.timeline-card:hover {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.timeline-card .timeline-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  background: #ECF0F1;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.timeline-card .timeline-marker span {
+  font-family: 'Fira Code', monospace;
+  font-size: 1.25rem;
+  color: #2C3E50;
+}
+
+.timeline-card .timeline-content {
+  flex: 1;
+}
+
+.timeline-card .timeline-date {
+  color: var(--color-link) !important; /* Now dark red */
+  font-family: 'Fira Code', monospace;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.timeline-card h3 {
+  color: var(--color-black) !important;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+}
+
+.timeline-card .institution {
+  color: #34495E !important;
+  font-size: 1rem;
+  margin: 0 0 0.25rem 0;
+}
+
+.timeline-card .location {
+  color: #34495E !important;
+  font-size: 1rem;
+  margin: 0 0 0.75rem 0;
+  font-style: italic;
+}
+
+.timeline-card p {
+  color: #2C3E50 !important;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0 0 0.5rem 0;
+}
+
+.timeline-card p strong {
+  color: #2C3E50 !important;
+}
+
+.timeline-card .grade {
+  color: #8B0000 !important; /* Dark red for grade emphasis */
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.timeline-card ul {
+  color: #2C3E50 !important;
+  font-size: 0.875rem;
+  margin: 0;
+  padding-left: 1.25rem;
+  line-height: 1.5;
+}
+
+.timeline-card ul li {
+  margin-bottom: 0.25rem;
+}
+
+/* ==========================================
+   UTILITY CLASSES
+   ========================================== */
+
+.publication-count {
+  color: #2C3E50 !important;
+  font-family: 'Fira Code', Consolas, monospace;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.no-results {
+  color: #e74c3c !important;
+  font-style: italic;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* ==========================================
+   MATHEMATICAL BACKGROUND ANIMATIONS
+   Phase 2: Spectacular but Subtle
+   ========================================== */
+
+#bg-animation-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Behind everything */
+  pointer-events: none;
+  opacity: 0.25; /* Increased visibility */
+  transition: opacity 0.5s ease;
+}
+
+#bg-animation-canvas.active {
+  opacity: 0.3; /* More visible when active */
+}
+
+#bg-animation-canvas.hidden {
+  opacity: 0;
+}
+
+/* Animation Toggle Button */
+.animation-toggle {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid var(--color-accent-3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--color-accent-1);
+  z-index: 1000; /* Toggle button on top of everything */
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Fira Code', monospace;
+}
+
+.animation-toggle:hover {
+  background: var(--color-accent-1);
+  color: var(--color-white);
+  transform: scale(1.1) rotate(15deg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.animation-toggle:active {
+  transform: scale(0.95) rotate(15deg);
+}
+
+.animation-toggle .symbol {
+  transition: transform 0.3s ease;
+}
+
+.animation-toggle:hover .symbol {
+  transform: rotate(-15deg);
+}
+
+/* Hide on mobile for performance */
+@media (max-width: 768px) {
+  #bg-animation-canvas {
+    display: none;
+  }
+  .animation-toggle {
+    display: none;
+  }
+}
+
+/* Accessibility: respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  #bg-animation-canvas {
+    display: none;
+  }
+  .animation-toggle {
+    display: none;
+  }
+}

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Teaching and student supervision by Fabio Aurelio D'Asaro - Courses, workshops, and mentorship.">
+  <meta name="author" content="Fabio Aurelio D'Asaro">
+
+  <title>Teaching - Fabio Aurelio D'Asaro</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    .course-card {
+      border-left: 4px solid var(--color-link);
+      position: relative;
+    }
+
+    .course-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--color-link);
+      color: white;
+      border-radius: 3px;
+      font-size: var(--text-xs);
+      font-family: 'Fira Code', monospace;
+      margin-right: var(--space-sm);
+    }
+
+    .course-badge.ba {
+      background: #3498db;
+    }
+
+    .course-badge.ma {
+      background: #9b59b6;
+    }
+
+    .course-badge.msc {
+      background: #e74c3c;
+    }
+
+    .course-meta {
+      color: var(--color-accent-2);
+      font-size: var(--text-sm);
+      margin-bottom: var(--space-sm);
+    }
+
+    .topics-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      margin-top: var(--space-sm);
+    }
+
+    .topics-list li {
+      background: var(--color-accent-3);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: 3px;
+      font-size: var(--text-xs);
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: var(--space-xl);
+      border-left: 2px solid var(--color-accent-3);
+    }
+
+    .timeline-item {
+      margin-bottom: var(--space-xl);
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '→';
+      position: absolute;
+      left: calc(-1 * var(--space-xl) - 8px);
+      color: var(--color-link);
+      font-size: var(--text-lg);
+      font-family: 'Fira Code', monospace;
+    }
+
+    .timeline-date {
+      color: var(--color-accent-2);
+      font-family: 'Fira Code', monospace;
+      font-size: var(--text-sm);
+      margin-bottom: var(--space-xs);
+    }
+
+    .collapsible-header {
+      cursor: pointer;
+      background: var(--color-accent-3);
+      padding: var(--space-md);
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-md);
+    }
+
+    .collapsible-header:hover {
+      background: var(--color-accent-2);
+      color: white;
+    }
+
+    .collapsible-content {
+      display: none;
+      margin-bottom: var(--space-xl);
+    }
+
+    .collapsible-content.active {
+      display: block;
+    }
+
+    .stats-widget {
+      background: var(--color-code-bg);
+      color: white;
+      padding: var(--space-xl);
+      border-radius: 4px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: var(--text-3xl);
+      font-family: 'Fira Code', monospace;
+      color: var(--color-code-text);
+      font-weight: bold;
+    }
+
+    .stat-label {
+      font-size: var(--text-sm);
+      color: var(--color-white);
+      margin-top: var(--space-xs);
+    }
+
+    .past-course-card {
+      background: var(--color-accent-3);
+      padding: var(--space-md);
+      margin-bottom: var(--space-md);
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body data-page="teaching">
+  <!-- Mathematical Background Canvas -->
+  <canvas id="bg-animation-canvas" data-default-animation="riemann"></canvas>
+  <button id="animation-toggle" class="animation-toggle" aria-label="Toggle background animation" title="Toggle animation (A)">
+    <span class="symbol">∀</span>
+  </button>
+
+  <!-- Navigation -->
+  <div class="nav-wrapper">
+    <nav>
+      <a href="index.html" class="nav-brand">
+        <span class="logic-symbol">∀</span>
+        F.A. D'Asaro
+      </a>
+
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="publications.html" class="nav-link">Publications</a></li>
+        <li><a href="teaching.html" class="nav-link">Teaching</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="service.html" class="nav-link">Service</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <section id="teaching">
+      <div class="container">
+        <h1 class="fade-in">Teaching</h1>
+
+        <!-- Teaching Philosophy -->
+        <div class="card fade-in-delay-1">
+          <div id="philosophy-container">
+            <h2>Teaching Philosophy</h2>
+            <p class="loading-message">Loading teaching philosophy...</p>
+          </div>
+        </div>
+
+        <!-- Teaching Statistics -->
+        <div class="mt-xl fade-in-delay-2">
+          <div id="stats-container">
+            <p class="loading-message">Loading teaching statistics...</p>
+          </div>
+        </div>
+
+        <!-- Current Courses -->
+        <div id="current-courses" class="mt-xl">
+          <h2 class="section-title">Current Courses</h2>
+          <div id="current-courses-container">
+            <p class="loading-message">Loading current courses...</p>
+          </div>
+        </div>
+
+        <!-- Past Courses -->
+        <div id="past-courses" class="mt-xl">
+          <h2 class="section-title">Past Courses</h2>
+          <div class="collapsible-header" onclick="toggleCollapsible('past-courses-content')">
+            <span>View Past Courses (6)</span>
+            <span class="arrow">▶</span>
+          </div>
+          <div id="past-courses-content" class="collapsible-content">
+            <div id="past-courses-container">
+              <p class="loading-message">Loading past courses...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guest Lectures & Workshops -->
+        <div id="guest-lectures" class="mt-xl">
+          <h2 class="section-title">Guest Lectures & Workshops</h2>
+          <div id="guest-lectures-container">
+            <p class="loading-message">Loading guest lectures...</p>
+          </div>
+        </div>
+
+        <!-- Student Supervision -->
+        <div id="supervision" class="mt-xl">
+          <h2 class="section-title">Student Supervision</h2>
+          <div id="supervision-container">
+            <p class="loading-message">Loading supervision data...</p>
+          </div>
+        </div>
+
+        <!-- For Prospective Students -->
+        <div id="prospective-students" class="mt-xl">
+          <h2 class="section-title">For Prospective Students</h2>
+          <div class="card">
+            <h3>Research Opportunities</h3>
+            <p>
+              I am interested in supervising students working on topics in:
+            </p>
+            <ul>
+              <li>Uncertain and Epistemic Reasoning</li>
+              <li>Temporal and Probabilistic Logics</li>
+              <li>Logic Programming Applications</li>
+              <li>Explainable AI</li>
+              <li>Formal Argumentation</li>
+            </ul>
+            <p class="mt-md">
+              <strong>Interested in pursuing a PhD?</strong> Visit the dedicated page for detailed information
+              about supervision, application process, and current openings.
+            </p>
+            <p class="mt-md">
+              <a href="dissertation-info.html" class="btn btn-primary">PhD Student Information →</a>
+            </p>
+            <p class="mt-md">
+              For other inquiries, please <a href="contact.html">get in touch</a>
+              with your CV and a brief description of your research interests.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-text">
+        <p>&copy; <span class="footer-year">2025</span> Fabio Aurelio D'Asaro</p>
+        <p>∀x (Logic(x) → Elegant(x))</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="https://github.com/dasaro" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+
+  <!-- Page-specific script -->
+  <script>
+    // Collapsible sections toggle
+    function toggleCollapsible(contentId) {
+      const content = document.getElementById(contentId);
+      const arrow = event.currentTarget.querySelector('.arrow');
+
+      content.classList.toggle('active');
+      arrow.textContent = content.classList.contains('active') ? '▼' : '▶';
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        // Load teaching data
+        const teachingData = await loadJSON('./data/teaching.json');
+        console.log('[teaching.html] Teaching data loaded:', teachingData);
+
+        // 1. Teaching Philosophy - INLINE STYLES FOR VISIBILITY
+        const philosophyContainer = document.getElementById('philosophy-container');
+        if (teachingData.teaching_philosophy) {
+          const html = `
+            <h2 style="color: #000000 !important; font-size: 1.5rem; margin-bottom: 16px;">${teachingData.teaching_philosophy.title}</h2>
+            ${teachingData.teaching_philosophy.paragraphs.map(p => `
+              <p style="color: #000000 !important; font-size: 1rem; line-height: 1.6; margin-bottom: 16px;">${p}</p>
+            `).join('')}
+          `;
+          philosophyContainer.innerHTML = html;
+          console.log('[teaching.html] ✅ Teaching Philosophy displayed!');
+        }
+
+        // 2. Teaching Statistics - INLINE STYLES FOR VISIBILITY
+        const statsContainer = document.getElementById('stats-container');
+        if (teachingData.teaching_statistics) {
+          const stats = teachingData.teaching_statistics;
+          const html = `
+            <div style="background: #1E1E1E; color: #FFFFFF; padding: 32px; border-radius: 8px;">
+              <h2 style="color: #FFFFFF !important; font-size: 1.5rem; margin-bottom: 24px; text-align: center;">Teaching Experience</h2>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 24px; margin-top: 24px;">
+                <div style="text-align: center;">
+                  <div style="font-size: 2.5rem; font-family: 'Fira Code', monospace; color: #00FF00; font-weight: bold;">${stats.years_experience}+</div>
+                  <div style="font-size: 0.875rem; color: #FFFFFF; margin-top: 8px;">Years Experience</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="font-size: 2.5rem; font-family: 'Fira Code', monospace; color: #00FF00; font-weight: bold;">${stats.current_courses}</div>
+                  <div style="font-size: 0.875rem; color: #FFFFFF; margin-top: 8px;">Current Courses</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="font-size: 2.5rem; font-family: 'Fira Code', monospace; color: #00FF00; font-weight: bold;">${stats.total_courses_taught}</div>
+                  <div style="font-size: 0.875rem; color: #FFFFFF; margin-top: 8px;">Total Courses</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="font-size: 2.5rem; font-family: 'Fira Code', monospace; color: #00FF00; font-weight: bold;">${stats.total_institutions}</div>
+                  <div style="font-size: 0.875rem; color: #FFFFFF; margin-top: 8px;">Institutions</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="font-size: 2.5rem; font-family: 'Fira Code', monospace; color: #00FF00; font-weight: bold;">${stats.average_hours_per_year}+</div>
+                  <div style="font-size: 0.875rem; color: #FFFFFF; margin-top: 8px;">Hours/Year</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="font-size: 2.5rem; font-family: 'Fira Code', monospace; color: #00FF00; font-weight: bold;">${stats.students_supervised.masters + stats.students_supervised.bachelors}</div>
+                  <div style="font-size: 0.875rem; color: #FFFFFF; margin-top: 8px;">Students Supervised</div>
+                </div>
+              </div>
+              <p style="margin-top: 24px; text-align: center; color: #FFFFFF !important; font-size: 0.875rem;">
+                Teaching across: ${stats.institutions.join(', ')}
+              </p>
+            </div>
+          `;
+          statsContainer.innerHTML = html;
+          console.log('[teaching.html] ✅ Teaching Statistics displayed!');
+        }
+
+        // 3. Current Courses - INLINE STYLES FOR VISIBILITY
+        const currentCoursesContainer = document.getElementById('current-courses-container');
+        if (teachingData.current_courses && teachingData.current_courses.length > 0) {
+          const getBadgeColor = (level) => {
+            const colors = {
+              'ba': '#3498db',
+              'ma': '#9b59b6',
+              'msc': '#e74c3c'
+            };
+            return colors[level.toLowerCase()] || '#2980B9';
+          };
+
+          const html = `
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px;">
+              ${teachingData.current_courses.map(course => `
+                <div style="background: #FFFFFF; border: 2px solid #e0e0e0; border-left: 4px solid #2980B9; padding: 24px; border-radius: 8px;">
+                  <h3 style="color: #000000 !important; font-size: 1.25rem; font-weight: 600; margin-bottom: 12px;">
+                    <span style="display: inline-block; padding: 2px 8px; background: ${getBadgeColor(course.level)}; color: #FFFFFF; border-radius: 3px; font-size: 0.75rem; font-family: 'Fira Code', monospace; margin-right: 8px;">${course.level}</span>
+                    ${course.title}
+                  </h3>
+                  <div style="color: #34495E !important; font-size: 0.875rem; margin-bottom: 12px;">
+                    <strong style="color: #000000 !important;">${course.institution}</strong><br>
+                    ${course.program} | ${course.credits} credits | ${course.hours_per_year}h/year<br>
+                    <span style="font-family: 'Fira Code', monospace;">${course.year_start}-${course.year_end}</span>
+                  </div>
+                  <p style="color: #000000 !important; font-size: 1rem; line-height: 1.6; margin-bottom: 12px;">${course.description}</p>
+                  ${course.topics && course.topics.length > 0 ? `
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;">
+                      ${course.topics.map(topic => `
+                        <span style="background: #ECF0F1; padding: 4px 8px; border-radius: 3px; font-size: 0.75rem; color: #000000 !important;">${topic}</span>
+                      `).join('')}
+                    </div>
+                  ` : ''}
+                </div>
+              `).join('')}
+            </div>
+          `;
+          currentCoursesContainer.innerHTML = html;
+          console.log('[teaching.html] ✅ Current Courses displayed!', teachingData.current_courses.length, 'courses');
+        }
+
+        // 4. Past Courses - INLINE STYLES FOR VISIBILITY
+        const pastCoursesContainer = document.getElementById('past-courses-container');
+        if (teachingData.past_courses && teachingData.past_courses.length > 0) {
+          const getBadgeColor = (level) => {
+            const colors = {
+              'ba': '#3498db',
+              'bsc': '#3498db',
+              'ma': '#9b59b6',
+              'msc': '#e74c3c'
+            };
+            return colors[level.toLowerCase()] || '#2980B9';
+          };
+
+          const html = teachingData.past_courses.map(course => `
+            <div style="background: #ECF0F1; padding: 20px; margin-bottom: 16px; border-radius: 8px;">
+              <h3 style="color: #000000 !important; font-size: 1.125rem; font-weight: 600; margin-bottom: 8px;">
+                <span style="display: inline-block; padding: 2px 8px; background: ${getBadgeColor(course.level)}; color: #FFFFFF; border-radius: 3px; font-size: 0.75rem; font-family: 'Fira Code', monospace; margin-right: 8px;">${course.level}</span>
+                ${course.title}
+              </h3>
+              <div style="color: #34495E !important; font-size: 0.875rem; margin-bottom: 8px;">
+                <strong style="color: #000000 !important;">${course.institution}</strong> | ${course.role}<br>
+                ${course.program} | ${course.years} | ${course.hours_total}h total
+              </div>
+              <p style="color: #000000 !important; font-size: 0.9375rem; line-height: 1.6; margin-bottom: 8px;">${course.description}</p>
+              ${course.topics && course.topics.length > 0 ? `
+                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;">
+                  ${course.topics.map(topic => `
+                    <span style="background: #FFFFFF; padding: 4px 8px; border-radius: 3px; font-size: 0.75rem; color: #000000 !important;">${topic}</span>
+                  `).join('')}
+                </div>
+              ` : ''}
+            </div>
+          `).join('');
+          pastCoursesContainer.innerHTML = html;
+          console.log('[teaching.html] ✅ Past Courses displayed!', teachingData.past_courses.length, 'courses');
+        }
+
+        // 5. Guest Lectures - INLINE STYLES FOR VISIBILITY
+        const guestLecturesContainer = document.getElementById('guest-lectures-container');
+        if (teachingData.guest_lectures && teachingData.guest_lectures.length > 0) {
+          const html = `
+            <div style="position: relative; padding-left: 32px; border-left: 2px solid #ECF0F1;">
+              ${teachingData.guest_lectures.map(lecture => `
+                <div style="margin-bottom: 32px; position: relative;">
+                  <span style="position: absolute; left: -41px; color: #2980B9; font-size: 1.25rem; font-family: 'Fira Code', monospace;">→</span>
+                  <div style="color: #34495E !important; font-family: 'Fira Code', monospace; font-size: 0.875rem; margin-bottom: 8px;">${lecture.date}</div>
+                  <h3 style="color: #000000 !important; font-size: 1.125rem; font-weight: 600; margin-bottom: 8px;">${lecture.title}</h3>
+                  <p style="color: #000000 !important; font-size: 0.9375rem; margin-bottom: 4px;"><strong>${lecture.event}</strong> | ${lecture.institution}</p>
+                  <p style="color: #34495E !important; font-size: 0.875rem; margin-bottom: 8px;">${lecture.location} | ${lecture.hours}h</p>
+                  <p style="color: #000000 !important; font-size: 0.9375rem; line-height: 1.6; margin-bottom: 8px;">${lecture.description}</p>
+                  ${lecture.topics && lecture.topics.length > 0 ? `
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;">
+                      ${lecture.topics.map(topic => `
+                        <span style="background: #ECF0F1; padding: 4px 8px; border-radius: 3px; font-size: 0.75rem; color: #000000 !important;">${topic}</span>
+                      `).join('')}
+                    </div>
+                  ` : ''}
+                </div>
+              `).join('')}
+            </div>
+          `;
+          guestLecturesContainer.innerHTML = html;
+          console.log('[teaching.html] ✅ Guest Lectures displayed!', teachingData.guest_lectures.length, 'lectures');
+        }
+
+        // 6. Load supervision data - INLINE STYLES FOR VISIBILITY
+        const supervisionData = await loadJSON('./data/supervision.json');
+        const supervisionContainer = document.getElementById('supervision-container');
+
+        if (supervisionData && supervisionData.students && supervisionData.students.length > 0) {
+          const html = supervisionData.students.map(student => `
+            <div style="background: #FFFFFF; border: 2px solid #e0e0e0; border-left: 4px solid #27ae60; padding: 24px; margin-bottom: 16px; border-radius: 8px;">
+              <h3 style="color: #000000 !important; font-size: 1.25rem; font-weight: 600; margin-bottom: 12px;">${student.name}</h3>
+              <p style="color: #000000 !important; font-size: 0.9375rem; margin-bottom: 8px;"><strong>Institution:</strong> ${student.institution}</p>
+              <p style="color: #000000 !important; font-size: 0.9375rem; margin-bottom: 8px;"><strong>Level:</strong> ${student.level}</p>
+              <p style="color: #000000 !important; font-size: 0.9375rem; margin-bottom: 8px;"><strong>Year:</strong> ${student.year}</p>
+              <p style="color: #000000 !important; font-size: 0.9375rem; margin-bottom: 12px;"><strong>Topic:</strong> ${student.topic}</p>
+              ${student.outcomes && student.outcomes.length > 0 ? `
+                <p style="color: #000000 !important; font-weight: 600; margin-bottom: 8px;">Outcomes:</p>
+                <ul style="color: #000000 !important; margin-left: 20px; margin-bottom: 12px;">
+                  ${student.outcomes.map(outcome => `<li style="color: #000000 !important; margin-bottom: 4px;">${outcome}</li>`).join('')}
+                </ul>
+              ` : ''}
+              ${student.publications && student.publications.length > 0 ? `
+                <p style="color: #000000 !important; font-size: 0.9375rem;"><strong>Publications:</strong> ${student.publications.join(', ')}</p>
+              ` : ''}
+            </div>
+          `).join('');
+          supervisionContainer.innerHTML = html;
+          console.log('[teaching.html] ✅ Supervision data displayed!', supervisionData.students.length, 'students');
+        } else {
+          supervisionContainer.innerHTML = `
+            <div style="background: #FFFFFF; border: 2px solid #e0e0e0; padding: 24px; border-radius: 8px;">
+              <p style="color: #34495E !important; font-style: italic; font-size: 1rem;">
+                I have supervised multiple undergraduate and graduate students on topics in logic,
+                AI, and formal reasoning. Student outcomes and publications will be added soon.
+              </p>
+            </div>
+          `;
+          console.log('[teaching.html] ℹ️ No supervision data available, showing placeholder');
+        }
+
+      } catch (error) {
+        console.error('Error loading teaching data:', error);
+
+        // Show error messages in containers
+        document.querySelectorAll('.loading-message').forEach(el => {
+          el.textContent = 'Error loading data. Please try again later.';
+          el.style.color = '#e74c3c';
+        });
+      }
+    });
+  </script>
+</body>
+</html>

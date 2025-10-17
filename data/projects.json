@@ -1,0 +1,76 @@
+{
+  "current_projects": [
+    {
+      "id": "fair-pnrr",
+      "name": "FAIR - Future AI Research",
+      "funding_program": "PNRR (NextGenerationEU)",
+      "role": "Postdoctoral Researcher",
+      "institution": "University of Salento",
+      "years": "2025-present",
+      "pi": "Paolo Baldi",
+      "spoke": "Spoke 6 - Symbiotic AI",
+      "ids": "PNRR Extended Partnership PE00000013; Spoke 6 CUP H97G22000210007",
+      "description": "Working on logic for ethical human–AI collaboration (eDefAI), focusing on explainability, trust, and ethical AI reasoning.",
+      "outputs": [
+        "Logic frameworks for human-AI collaboration",
+        "eDefAI Summer School organization (2025)",
+        "Publications on ethical AI reasoning"
+      ],
+      "website": "https://future-ai-research.it/",
+      "status": "active"
+    }
+  ],
+  "past_projects": [
+    {
+      "id": "brio",
+      "name": "BRIO - Brains and Robots Interaction in Organizations",
+      "funding_program": "University of Verona Strategic Research Project",
+      "role": "Research Fellow",
+      "institution": "University of Verona",
+      "years": "2021-2024",
+      "pi": "Roberta Ferrario",
+      "description": "Interdisciplinary project exploring human-robot interaction in organizational contexts, combining philosophy, AI, and cognitive science.",
+      "outputs": [
+        "Publications on HRI and organizational ontology",
+        "Workshop presentations",
+        "Collaborative research with cognitive scientists and roboticists"
+      ],
+      "website": null,
+      "status": "completed"
+    },
+    {
+      "id": "revo",
+      "name": "REVO - Reasoning on Video",
+      "funding_program": "UK Research and Innovation",
+      "role": "Postdoctoral Research Associate",
+      "institution": "University College London",
+      "years": "2019-2021",
+      "pi": "Anthony G. Cohn & David C. Hogg",
+      "description": "Developing automated reasoning systems for video understanding, combining computer vision with logical reasoning frameworks.",
+      "outputs": [
+        "JAIR 2025 publication on resource transforming procedures",
+        "Automated reasoning algorithms for video analysis",
+        "Event Calculus extensions for temporal reasoning"
+      ],
+      "website": null,
+      "status": "completed"
+    },
+    {
+      "id": "avatea",
+      "name": "AVATEA - Affective Virtual Agents for Training and Evaluation in Autism",
+      "funding_program": "EU Horizon 2020",
+      "role": "Research Collaborator",
+      "institution": "University of Naples Federico II",
+      "years": "2018-2020",
+      "pi": "Silvia Rossi",
+      "description": "Developing virtual agents and robotic systems for autism therapy and assessment, using probabilistic reasoning and HRI techniques.",
+      "outputs": [
+        "ICSR 2020 publication",
+        "WOA 2021 publication on intent recognition",
+        "HRI pipeline for automated test administration"
+      ],
+      "website": null,
+      "status": "completed"
+    }
+  ]
+}

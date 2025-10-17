@@ -1,0 +1,116 @@
+{
+  "title": "Information for Prospective PhD Students",
+  "introduction": "I am interested in supervising PhD students working at the intersection of logic, artificial intelligence, and formal reasoning. If you are passionate about foundational questions in AI and enjoy both theoretical and practical work, I encourage you to get in touch.",
+  "phd_topics": [
+    {
+      "area": "Uncertain and Epistemic Reasoning",
+      "description": "Developing formal frameworks for reasoning about uncertainty, knowledge, and belief in multi-agent systems"
+    },
+    {
+      "area": "Temporal and Probabilistic Logics",
+      "description": "Combining temporal reasoning with probabilistic models for dynamic environments"
+    },
+    {
+      "area": "Logic Programming Applications",
+      "description": "Using Answer Set Programming (ASP) and Inductive Logic Programming (ILASP) for real-world problems"
+    },
+    {
+      "area": "Explainable AI",
+      "description": "Creating interpretable AI systems using formal logic and argumentation theory"
+    },
+    {
+      "area": "Formal Argumentation",
+      "description": "Learning argumentation semantics and developing computational models of argument"
+    },
+    {
+      "area": "Event Calculus and Action Theories",
+      "description": "Reasoning about actions, their effects, and knowledge-producing operations"
+    }
+  ],
+  "supervision_approach": {
+    "title": "My Supervision Philosophy",
+    "paragraphs": [
+      "I emphasize hands-on research with strong theoretical foundations. My approach combines rigorous formal methods with practical implementation, typically leading to both publications and open-source contributions.",
+      "Students I supervise are encouraged to present their work at conferences, collaborate with international researchers, and engage with the broader AI and logic communities.",
+      "I believe in regular meetings, clear milestones, and maintaining a balance between independent exploration and structured guidance."
+    ]
+  },
+  "current_openings": {
+    "status": true,
+    "message": "I am currently open to discussing potential PhD supervision opportunities at the University of Salento, University of Verona, and University College London.",
+    "notes": [
+      "Funding availability varies by institution and program",
+      "Competitive scholarships are available for excellent candidates",
+      "I can assist with scholarship applications and institutional procedures"
+    ]
+  },
+  "application_process": {
+    "title": "How to Apply",
+    "steps": [
+      {
+        "step": 1,
+        "action": "Review my publications",
+        "details": "Familiarize yourself with my research areas and recent publications to ensure alignment with your interests"
+      },
+      {
+        "step": 2,
+        "action": "Prepare a research proposal",
+        "details": "Draft a 2-3 page outline describing your research interests, potential research questions, and how they relate to my work"
+      },
+      {
+        "step": 3,
+        "action": "Contact me via email",
+        "details": "Send your CV, transcript, research proposal, and a brief cover letter to fabioaurelio.dasaro@unisalento.it"
+      },
+      {
+        "step": 4,
+        "action": "Official application",
+        "details": "After initial discussion, apply through the official PhD program at the relevant institution"
+      }
+    ],
+    "requirements": [
+      "Strong background in logic, computer science, mathematics, or philosophy",
+      "Experience with formal methods or programming (Python, ASP, Prolog, or similar)",
+      "Excellent written and spoken English",
+      "Curiosity, independence, and strong problem-solving skills"
+    ]
+  },
+  "phd_programs": [
+    {
+      "institution": "University of Salento",
+      "program": "PhD in Human Sciences",
+      "website": "https://www.unisalento.it/phd",
+      "location": "Lecce, Italy"
+    },
+    {
+      "institution": "University of Verona",
+      "program": "PhD in Philosophy",
+      "website": "https://www.univr.it/",
+      "location": "Verona, Italy"
+    },
+    {
+      "institution": "University College London",
+      "program": "PhD in Computer Science",
+      "website": "https://www.ucl.ac.uk/prospective-students/graduate/research-degrees",
+      "location": "London, UK"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Do I need to know Italian?",
+      "answer": "No. While research in Italy, all my supervision and research work is conducted in English. However, learning Italian can enhance your experience."
+    },
+    {
+      "question": "Can I work remotely?",
+      "answer": "PhD programs typically require physical presence, but flexible arrangements may be possible for part of the time, depending on the institution and project."
+    },
+    {
+      "question": "What is the typical duration?",
+      "answer": "PhD programs in Italy are typically 3 years, while UK programs are usually 3-4 years."
+    },
+    {
+      "question": "Do you supervise master's students?",
+      "answer": "Yes, I supervise master's thesis projects at both the University of Salento and University of Verona. Contact me to discuss potential topics."
+    }
+  ]
+}

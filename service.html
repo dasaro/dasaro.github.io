@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Academic service by Fabio Aurelio D'Asaro - Conference organization, program committees, editorial boards, and professional activities.">
+  <meta name="author" content="Fabio Aurelio D'Asaro">
+
+  <title>Service - Fabio Aurelio D'Asaro</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    .service-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .service-list li {
+      padding: var(--space-sm) 0;
+      border-bottom: 1px solid var(--color-accent-3);
+    }
+
+    .service-list li:last-child {
+      border-bottom: none;
+    }
+
+    .service-list li::before {
+      content: '→';
+      color: var(--color-accent-1);
+      font-family: 'Fira Code', monospace;
+      margin-right: var(--space-sm);
+    }
+
+    .accordion {
+      margin-bottom: var(--space-md);
+    }
+
+    .accordion-header {
+      cursor: pointer;
+      padding: var(--space-md);
+      background: var(--color-accent-3);
+      border: none;
+      width: 100%;
+      text-align: left;
+      font-family: 'Fira Code', monospace;
+      font-size: var(--text-lg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.2s ease;
+    }
+
+    .accordion-header:hover {
+      background: var(--color-accent-2);
+      color: var(--color-white);
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .accordion-content.active {
+      max-height: 2000px;
+    }
+
+    .accordion-content-inner {
+      padding: var(--space-md);
+    }
+  </style>
+</head>
+<body data-page="service">
+  <!-- Mathematical Background Canvas -->
+  <canvas id="bg-animation-canvas" data-default-animation="fibonacci"></canvas>
+  <button id="animation-toggle" class="animation-toggle" aria-label="Toggle background animation" title="Toggle animation (A)">
+    <span class="symbol">∀</span>
+  </button>
+
+  <!-- Navigation -->
+  <div class="nav-wrapper">
+    <nav>
+      <a href="index.html" class="nav-brand">
+        <span class="logic-symbol">∀</span>
+        F.A. D'Asaro
+      </a>
+
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="publications.html" class="nav-link">Publications</a></li>
+        <li><a href="teaching.html" class="nav-link">Teaching</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="service.html" class="nav-link">Service</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <section id="service">
+      <div class="container">
+        <h1 class="fade-in">Academic Service</h1>
+
+        <!-- Conference Organization -->
+        <div class="card fade-in-delay-1">
+          <h2 class="section-title">Conference & Summer School Organization</h2>
+          <ul class="service-list">
+            <li>
+              <strong>Co-organizer</strong> - 3rd Logic for the AI Spring Summer School (eDefAI), Lecce, Italy, 2025
+              <br><a href="http://sites.google.com/view/edefai" target="_blank">http://sites.google.com/view/edefai</a>
+            </li>
+          </ul>
+          <div id="organizing-container" class="mt-md">
+            <p class="loading-message">Additional organizing activities will be loaded from data/service.json</p>
+          </div>
+        </div>
+
+        <!-- Program Committees -->
+        <div class="card mt-xl fade-in-delay-2">
+          <h2 class="section-title">Program Committees</h2>
+          <ul class="service-list">
+            <li><strong>IJCAI</strong> (International Joint Conference on Artificial Intelligence) - 2020, 2024, 2025</li>
+          </ul>
+          <div id="pc-container" class="mt-md">
+            <p class="loading-message">Full program committee service will be loaded from data/service.json</p>
+          </div>
+        </div>
+
+        <!-- Editorial Service -->
+        <div class="card mt-xl fade-in-delay-3">
+          <h2 class="section-title">Editorial Boards</h2>
+          <ul class="service-list">
+            <li>
+              <strong>Review Editor</strong> - Frontiers in Artificial Intelligence
+              <br>Section: Machine Learning and Artificial Intelligence (2022 - Present)
+            </li>
+          </ul>
+          <div id="editorial-container" class="mt-md">
+            <p class="loading-message">Additional editorial service will be loaded from data/service.json</p>
+          </div>
+        </div>
+
+        <!-- Reviewing -->
+        <div class="card mt-xl">
+          <h2 class="section-title">Reviewing</h2>
+          <div id="reviewing-container">
+            <p class="loading-message">Reviewing activities will be loaded from data/service.json</p>
+          </div>
+        </div>
+
+        <!-- Research Groups -->
+        <div class="card mt-xl">
+          <h2 class="section-title">Research Groups & Professional Societies</h2>
+          <div id="groups-container">
+            <p class="loading-message">Memberships will be loaded from data/groups.json</p>
+          </div>
+        </div>
+
+        <!-- Invited Talks -->
+        <div class="card mt-xl">
+          <h2 class="section-title">Invited Talks</h2>
+          <div id="talks-container">
+            <p class="loading-message">Invited talks will be loaded from data/talks.json</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-text">
+        <p>&copy; <span class="footer-year">2025</span> Fabio Aurelio D'Asaro</p>
+        <p>∀x (Logic(x) → Elegant(x))</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="https://github.com/dasaro" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+
+  <script>
+    // Simple accordion functionality and data loading
+    document.addEventListener('DOMContentLoaded', async () => {
+      const accordions = document.querySelectorAll('.accordion-header');
+
+      accordions.forEach(header => {
+        header.addEventListener('click', () => {
+          const content = header.nextElementSibling;
+          content.classList.toggle('active');
+
+          // Toggle arrow
+          const arrow = header.querySelector('.arrow');
+          if (arrow) {
+            arrow.textContent = content.classList.contains('active') ? '▼' : '▶';
+          }
+        });
+      });
+
+      // Load service data
+      try {
+        const serviceData = await loadJSON('./data/service.json');
+        const affiliationsData = await loadJSON('./data/affiliations.json');
+        console.log('[service.html] Service data loaded:', serviceData);
+        console.log('[service.html] Affiliations data loaded:', affiliationsData);
+
+        // Conference Organization (inline styles)
+        const organizingContainer = document.getElementById('organizing-container');
+        if (serviceData.organizing && serviceData.organizing.length > 0) {
+          const organizingHTML = serviceData.organizing.map(org => `
+            <div style="background: #0a0a0a; color: #00ff00; padding: 20px; border-radius: 8px; margin-bottom: 16px; border-left: 4px solid #00ff00; font-family: 'Courier New', monospace;">
+              <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 8px; opacity: 0.9;">
+                <strong style="color: #00ff00 !important;">$ role:</strong> ${org.role}
+              </div>
+              <h3 style="color: #00ff00 !important; font-size: 1.125rem; margin-bottom: 8px;">
+                ${org.event}
+              </h3>
+              <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 8px; opacity: 0.9;">
+                <strong style="color: #00ff00 !important;">$ location:</strong> ${org.location}
+              </div>
+              <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 8px; opacity: 0.9;">
+                <strong style="color: #00ff00 !important;">$ year:</strong> ${org.year}
+              </div>
+              ${org.website ? `
+                <div style="margin-top: 12px;">
+                  <a href="${org.website}" target="_blank" rel="noopener" style="color: #00ff00 !important; text-decoration: none; border: 1px solid #00ff00; padding: 6px 12px; display: inline-block; border-radius: 4px; font-size: 0.75rem;">
+                    → Website
+                  </a>
+                </div>
+              ` : ''}
+            </div>
+          `).join('');
+          organizingContainer.innerHTML = organizingHTML;
+          console.log('[service.html] ✅ Organizing activities displayed!', serviceData.organizing.length, 'events');
+        } else {
+          organizingContainer.innerHTML = '';
+        }
+
+        // Program Committees (terminal style with years list)
+        const pcContainer = document.getElementById('pc-container');
+        if (serviceData.program_committees && serviceData.program_committees.length > 0) {
+          const pcHTML = serviceData.program_committees.map(pc => `
+            <div style="background: #1a1a1a; color: #888888; padding: 16px; border-radius: 6px; margin-bottom: 12px; border-left: 3px solid #555555; font-family: 'Courier New', monospace;">
+              <h4 style="color: #CCCCCC !important; font-size: 1rem; margin-bottom: 6px;">
+                ${pc.event}
+              </h4>
+              <div style="color: #888888 !important; font-size: 0.875rem;">
+                <strong style="color: #CCCCCC !important;">$ years:</strong> ${Array.isArray(pc.years) ? pc.years.join(', ') : pc.years}
+              </div>
+              <div style="color: #888888 !important; font-size: 0.875rem;">
+                <strong style="color: #CCCCCC !important;">$ role:</strong> ${pc.role}
+              </div>
+            </div>
+          `).join('');
+          pcContainer.innerHTML = pcHTML;
+          console.log('[service.html] ✅ Program committees displayed!', serviceData.program_committees.length, 'committees');
+        }
+
+        // Editorial Service (inline styles)
+        const editorialContainer = document.getElementById('editorial-container');
+        if (serviceData.editorial && serviceData.editorial.length > 0) {
+          const editorialHTML = serviceData.editorial.map(ed => `
+            <div style="background: #0a0a0a; color: #00ff00; padding: 20px; border-radius: 8px; margin-bottom: 16px; border-left: 4px solid #00ff00; font-family: 'Courier New', monospace;">
+              <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 8px; opacity: 0.9;">
+                <strong style="color: #00ff00 !important;">$ role:</strong> ${ed.role}
+              </div>
+              <h3 style="color: #00ff00 !important; font-size: 1.125rem; margin-bottom: 8px;">
+                ${ed.journal}
+              </h3>
+              ${ed.section ? `
+                <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 8px; opacity: 0.9;">
+                  <strong style="color: #00ff00 !important;">$ section:</strong> ${ed.section}
+                </div>
+              ` : ''}
+              <div style="color: #00ff00 !important; font-size: 0.875rem; opacity: 0.9;">
+                <strong style="color: #00ff00 !important;">$ period:</strong> ${ed.year_start} - ${ed.year_end}
+              </div>
+            </div>
+          `).join('');
+          editorialContainer.innerHTML = editorialHTML;
+          console.log('[service.html] ✅ Editorial service displayed!', serviceData.editorial.length, 'boards');
+        } else {
+          editorialContainer.innerHTML = '';
+        }
+
+        // Reviewing (compact list with terminal style)
+        const reviewingContainer = document.getElementById('reviewing-container');
+        if (serviceData.reviewing && serviceData.reviewing.length > 0) {
+          const journals = serviceData.reviewing.filter(r => r.type === 'journal');
+          const conferences = serviceData.reviewing.filter(r => r.type === 'conference');
+
+          const reviewingHTML = `
+            <div style="background: #1a1a1a; color: #CCCCCC; padding: 20px; border-radius: 8px; font-family: 'Courier New', monospace;">
+              ${journals.length > 0 ? `
+                <h4 style="color: #CCCCCC !important; font-size: 1rem; margin-bottom: 12px; border-bottom: 1px solid #333; padding-bottom: 8px;">
+                  $ journals
+                </h4>
+                <ul style="list-style: none; padding-left: 0; margin-bottom: 20px;">
+                  ${journals.map(j => `
+                    <li style="color: #888888 !important; margin-bottom: 6px; padding-left: 20px; position: relative;">
+                      <span style="position: absolute; left: 0; color: #555;">→</span> ${j.venue}
+                    </li>
+                  `).join('')}
+                </ul>
+              ` : ''}
+              ${conferences.length > 0 ? `
+                <h4 style="color: #CCCCCC !important; font-size: 1rem; margin-bottom: 12px; border-bottom: 1px solid #333; padding-bottom: 8px;">
+                  $ conferences
+                </h4>
+                <ul style="list-style: none; padding-left: 0;">
+                  ${conferences.map(c => `
+                    <li style="color: #888888 !important; margin-bottom: 6px; padding-left: 20px; position: relative;">
+                      <span style="position: absolute; left: 0; color: #555;">→</span> ${c.venue}
+                    </li>
+                  `).join('')}
+                </ul>
+              ` : ''}
+            </div>
+          `;
+          reviewingContainer.innerHTML = reviewingHTML;
+          console.log('[service.html] ✅ Reviewing activities displayed!', serviceData.reviewing.length, 'venues');
+        }
+
+        // Research Groups & Professional Societies (from affiliations.json)
+        const groupsContainer = document.getElementById('groups-container');
+        if (affiliationsData) {
+          let groupsHTML = '';
+
+          if (affiliationsData.research_groups && affiliationsData.research_groups.length > 0) {
+            groupsHTML += `
+              <h3 style="color: #000000 !important; font-size: 1.25rem; margin-bottom: 16px; font-family: 'Fira Code', monospace;">
+                Research Groups
+              </h3>
+              ${affiliationsData.research_groups.map(group => `
+                <div style="background: #0a0a0a; color: #00ff00; padding: 20px; border-radius: 8px; margin-bottom: 16px; border-left: 4px solid #00ff00; font-family: 'Courier New', monospace;">
+                  <h4 style="color: #00ff00 !important; font-size: 1.125rem; margin-bottom: 8px;">
+                    ${group.name}
+                  </h4>
+                  <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 6px; opacity: 0.9;">
+                    <strong style="color: #00ff00 !important;">$ institution:</strong> ${group.institution}
+                  </div>
+                  ${group.department ? `
+                    <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 6px; opacity: 0.9;">
+                      <strong style="color: #00ff00 !important;">$ department:</strong> ${group.department}
+                    </div>
+                  ` : ''}
+                  <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 6px; opacity: 0.9;">
+                    <strong style="color: #00ff00 !important;">$ role:</strong> ${group.role}
+                  </div>
+                  <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 12px; opacity: 0.9;">
+                    <strong style="color: #00ff00 !important;">$ period:</strong> ${group.year_start} - ${group.year_end}
+                  </div>
+                  ${group.description ? `
+                    <p style="color: #00ff00 !important; font-size: 0.875rem; opacity: 0.9;">
+                      ${group.description}
+                    </p>
+                  ` : ''}
+                  ${group.website ? `
+                    <div style="margin-top: 12px;">
+                      <a href="${group.website}" target="_blank" rel="noopener" style="color: #00ff00 !important; text-decoration: none; border: 1px solid #00ff00; padding: 6px 12px; display: inline-block; border-radius: 4px; font-size: 0.75rem;">
+                        → Website
+                      </a>
+                    </div>
+                  ` : ''}
+                </div>
+              `).join('')}
+            `;
+          }
+
+          if (affiliationsData.professional_memberships && affiliationsData.professional_memberships.length > 0) {
+            groupsHTML += `
+              <h3 style="color: #000000 !important; font-size: 1.25rem; margin-top: 32px; margin-bottom: 16px; font-family: 'Fira Code', monospace;">
+                Professional Societies
+              </h3>
+              <div style="background: #1a1a1a; color: #CCCCCC; padding: 20px; border-radius: 8px; font-family: 'Courier New', monospace;">
+                ${affiliationsData.professional_memberships.map(mem => `
+                  <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #333;">
+                    <h4 style="color: #CCCCCC !important; font-size: 1rem; margin-bottom: 8px;">
+                      ${mem.organization} - ${mem.full_name}
+                    </h4>
+                    ${mem.full_name_en ? `
+                      <div style="color: #888888 !important; font-size: 0.875rem; margin-bottom: 6px; font-style: italic;">
+                        ${mem.full_name_en}
+                      </div>
+                    ` : ''}
+                    <div style="color: #888888 !important; font-size: 0.875rem; margin-bottom: 6px;">
+                      <strong style="color: #CCCCCC !important;">$ role:</strong> ${mem.role}
+                    </div>
+                    <div style="color: #888888 !important; font-size: 0.875rem; margin-bottom: 6px;">
+                      <strong style="color: #CCCCCC !important;">$ period:</strong> ${mem.year_start} - ${mem.year_end}
+                    </div>
+                    ${mem.website ? `
+                      <div style="margin-top: 8px;">
+                        <a href="${mem.website}" target="_blank" rel="noopener" style="color: #CCCCCC !important; text-decoration: none; border: 1px solid #555; padding: 4px 10px; display: inline-block; border-radius: 4px; font-size: 0.75rem;">
+                          → Website
+                        </a>
+                      </div>
+                    ` : ''}
+                  </div>
+                `).join('')}
+              </div>
+            `;
+          }
+
+          groupsContainer.innerHTML = groupsHTML;
+          console.log('[service.html] ✅ Affiliations displayed!');
+        }
+
+        // Invited Talks (load from teaching.json guest_lectures)
+        const talksContainer = document.getElementById('talks-container');
+        try {
+          const teachingData = await loadJSON('./data/teaching.json');
+          if (teachingData.guest_lectures && teachingData.guest_lectures.length > 0) {
+            const talksHTML = teachingData.guest_lectures.map(lecture => `
+              <div style="background: #0a0a0a; color: #00ff00; padding: 20px; border-radius: 8px; margin-bottom: 16px; border-left: 4px solid #00ff00; font-family: 'Courier New', monospace;">
+                <h3 style="color: #00ff00 !important; font-size: 1.125rem; margin-bottom: 8px;">
+                  ${lecture.title}
+                </h3>
+                <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 6px; opacity: 0.9;">
+                  <strong style="color: #00ff00 !important;">$ event:</strong> ${lecture.event}
+                </div>
+                <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 6px; opacity: 0.9;">
+                  <strong style="color: #00ff00 !important;">$ institution:</strong> ${lecture.institution}
+                </div>
+                <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 6px; opacity: 0.9;">
+                  <strong style="color: #00ff00 !important;">$ date:</strong> ${lecture.date}
+                </div>
+                <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 6px; opacity: 0.9;">
+                  <strong style="color: #00ff00 !important;">$ location:</strong> ${lecture.location}
+                </div>
+                ${lecture.description ? `
+                  <p style="color: #00ff00 !important; font-size: 0.875rem; margin-top: 12px; opacity: 0.9;">
+                    ${lecture.description}
+                  </p>
+                ` : ''}
+              </div>
+            `).join('');
+            talksContainer.innerHTML = talksHTML;
+            console.log('[service.html] ✅ Invited talks displayed!', teachingData.guest_lectures.length, 'talks');
+          }
+        } catch (error) {
+          console.error('[service.html] Error loading talks:', error);
+          talksContainer.innerHTML = '<p style="color: #000000 !important; font-style: italic;">Invited talk information available in the Teaching section.</p>';
+        }
+
+      } catch (error) {
+        console.error('[service.html] ❌ Error loading service data:', error);
+      }
+    });
+  </script>
+</body>
+</html>

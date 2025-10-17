@@ -1,0 +1,36 @@
+{
+  "degrees": [
+    {
+      "degree": "PhD in Artificial Intelligence",
+      "institution": "University College London",
+      "location": "London, UK",
+      "year_start": 2014,
+      "year_end": 2019,
+      "thesis": "Probabilistic Epistemic Reasoning About Actions",
+      "supervisors": ["Rob Miller", "Antonis Bikakis", "Luke Dickens"],
+      "description": "My PhD thesis explored how to model uncertainty (Probability Theory, in particular) and knowledge-producing actions in a popular narrative-based framework for Reasoning About Actions called the Event Calculus. Excerpts of my PhD thesis were published in top Logic and AI journals and conferences, including Artificial Intelligence (AIJ) and the International Conference on Logic Programming and Nonmonotonic Reasoning (LPNMR)."
+    },
+    {
+      "degree": "MSc in Pure Mathematics and Mathematical Logic",
+      "institution": "University of Manchester",
+      "location": "Manchester, UK",
+      "year_start": 2013,
+      "year_end": 2014,
+      "grade": "Distinction",
+      "grade_note": "equivalent to 110/110 cum laude in the Italian grading system",
+      "thesis": "Analogical Reasoning in Unary Inductive Logic",
+      "supervisors": ["Jeff B. Paris"]
+    },
+    {
+      "degree": "BSc in Computer Science",
+      "institution": "University of Palermo",
+      "location": "Palermo, Italy",
+      "year_start": 2006,
+      "year_end": 2011,
+      "grade": "110/110 cum laude",
+      "thesis": "La Tesi di Church-Turing e il suo rapporto con alcuni nuovi modelli di calcolo",
+      "thesis_en": "The Church-Turing Thesis and its relation with some new computation models",
+      "supervisors": ["Settimo Termini"]
+    }
+  ]
+}

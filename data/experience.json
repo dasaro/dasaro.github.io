@@ -1,0 +1,65 @@
+{
+  "positions": [
+    {
+      "title": "Postdoctoral Researcher",
+      "institution": "University of Salento",
+      "department": "Department of Human Studies (SSD PHIL-02/A)",
+      "location": "Lecce, Italy",
+      "year_start": 2025,
+      "year_end": "present",
+      "current": true,
+      "description": "Working in the context of Project FAIR–Future AI Research (PE00000013) under the NRRP MUR program funded by NextGenerationEU, Spoke 6 (Symbiotic AI), PI: Paolo Baldi.",
+      "research_focus": ["Logic", "Explainability", "Trust", "Ethical AI"]
+    },
+    {
+      "title": "Assistant Professor (RTD-A)",
+      "institution": "University of Verona",
+      "location": "Verona, Italy",
+      "year_start": 2022,
+      "year_end": 2025,
+      "current": false,
+      "description": "Taught and researched on Uncertain and Epistemic Reasoning, Temporal and Probabilistic Logics, Logic Programming, Reasoning about Actions and Change, Bounded Reasoning, Formal Argumentation, and their applications to Artificial Intelligence and Explainable AI. Position partially funded by PON R&I 2014-2020, DM 1062/2021 (Action IV.4); UniVR selection code 2021rtdaPON03; CUP B39J21025840001; company secondment at REVO SPAC (12 months).",
+      "teaching_load": "100+ lecture hours per year on average"
+    },
+    {
+      "title": "Postdoctoral Researcher",
+      "institution": "University of Milan",
+      "location": "Milan, Italy",
+      "year_start": 2020,
+      "year_end": 2021,
+      "current": false,
+      "description": "Postdoctoral fellow in the Logic Group at the University of Milan, working on uncertain, depth-bounded and epistemic logics."
+    },
+    {
+      "title": "Postdoctoral Researcher",
+      "institution": "CRDC Tecnologie",
+      "location": "Naples, Italy",
+      "year_start": 2019,
+      "year_end": 2020,
+      "current": false,
+      "description": "Worked on the AVATEA Project, which aims to develop an AI system to support the rehabilitation process of children with neuro-motor disorders. Carried out research on explainable AI systems for robotics and preference learning.",
+      "project": "AVATEA"
+    },
+    {
+      "title": "Research Assistant",
+      "institution": "University of Palermo",
+      "location": "Palermo, Italy",
+      "year_start": 2013,
+      "year_end": 2014,
+      "current": false,
+      "description": "Worked under the supervision of prof. Settimo Termini and Marco Elio Tabacchi as a fully funded graduate research assistant in the NEVERLOST Project (PO-FESR 2007-2013). Developed and implemented an algorithm to find the (sub)optimal displacement of antennas in arbitrarily shaped 2D spaces, using techniques from soft-computing (mainly Fuzzy Logic and Genetic Algorithms).",
+      "project": "NEVERLOST"
+    },
+    {
+      "title": "Undergraduate Intern",
+      "institution": "ICAR CNR Palermo",
+      "location": "Palermo, Italy",
+      "year_start": 2011,
+      "year_end": 2011,
+      "months": "Jun-Sep",
+      "current": false,
+      "description": "Collaborated on the IMPULSO project, developing a path visualization tool using Google Maps APIs.",
+      "project": "IMPULSO"
+    }
+  ]
+}

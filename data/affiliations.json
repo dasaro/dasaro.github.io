@@ -1,0 +1,86 @@
+{
+  "research_groups": [
+    {
+      "name": "EThOS - Ethics and Technologies Of the Self",
+      "institution": "University of Verona",
+      "department": "Department of Cultures and Civilizations",
+      "role": "Member",
+      "year_start": 2022,
+      "year_end": "present",
+      "website": "https://www.ethos.univr.it/",
+      "description": "Research group focused on ethics, technology, and human identity"
+    },
+    {
+      "name": "LUCI - Logic, Computation and Information",
+      "institution": "University of Verona",
+      "department": "Department of Computer Science",
+      "role": "Affiliate Member",
+      "year_start": 2022,
+      "year_end": "present",
+      "website": null,
+      "description": "Logic and computation research group"
+    },
+    {
+      "name": "SPIKE - Symbolic and Probabilistic reasoning, Inductive Knowledge Engineering",
+      "institution": "University of Verona",
+      "department": "Department of Computer Science",
+      "role": "Collaborator",
+      "year_start": 2023,
+      "year_end": "present",
+      "website": null,
+      "description": "Research group on symbolic AI and probabilistic reasoning"
+    },
+    {
+      "name": "KIDS - Knowledge and Intelligent Data Systems",
+      "institution": "University College London",
+      "department": "Department of Computer Science",
+      "role": "Former Member",
+      "year_start": 2014,
+      "year_end": 2021,
+      "website": null,
+      "description": "UCL research group on knowledge representation and intelligent systems"
+    }
+  ],
+  "professional_memberships": [
+    {
+      "organization": "AILA",
+      "full_name": "Associazione Italiana di Logica e sue Applicazioni",
+      "full_name_en": "Italian Association for Logic and its Applications",
+      "country": "Italy",
+      "role": "Member",
+      "year_start": 2020,
+      "year_end": "present",
+      "website": "http://www.ailalogica.it/"
+    },
+    {
+      "organization": "SILFS",
+      "full_name": "Società Italiana di Logica e Filosofia delle Scienze",
+      "full_name_en": "Italian Society for Logic and Philosophy of Science",
+      "country": "Italy",
+      "role": "Member",
+      "year_start": 2022,
+      "year_end": "present",
+      "website": "http://www.silfs.it/"
+    },
+    {
+      "organization": "AIxIA",
+      "full_name": "Associazione Italiana per l'Intelligenza Artificiale",
+      "full_name_en": "Italian Association for Artificial Intelligence",
+      "country": "Italy",
+      "role": "Member",
+      "year_start": 2019,
+      "year_end": "present",
+      "website": "https://aixia.it/"
+    },
+    {
+      "organization": "GULP",
+      "full_name": "Gruppo Ricercatori e Utenti di Logic Programming",
+      "full_name_en": "Italian Association for Logic Programming",
+      "country": "Italy",
+      "role": "Member",
+      "year_start": 2021,
+      "year_end": "present",
+      "website": "https://gulp-it.github.io/"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "students": [
+    {
+      "name": "Zlatina Mileva",
+      "institution": "Imperial College London",
+      "level": "MSc",
+      "year": 2023,
+      "topic": "A Unifying Framework for Learning Argumentation Semantics",
+      "outcomes": [
+        "Outstanding Project Award",
+        "Selected for Project Showcase Day",
+        "Preprint in preparation"
+      ],
+      "publications": ["Preprint available on arXiv"],
+      "links": {}
+    },
+    {
+      "name": "Daniele Fossemò & Marco D'Aviero",
+      "institution": "University of L'Aquila",
+      "level": "Undergraduate",
+      "year": 2022,
+      "topic": "ILP for Explainable AI",
+      "outcomes": [
+        "Open dataset published on Zenodo",
+        "Workshop paper at BEWARE-22 (AIxIA 2022)"
+      ],
+      "publications": ["BEWARE-22 Workshop (AIxIA 2022)"],
+      "links": {
+        "zenodo": "https://zenodo.org",
+        "workshop": "https://ailab.units.it/beware22/"
+      }
+    },
+    {
+      "name": "Veronica Zenatelli",
+      "institution": "University of Verona",
+      "level": "BA",
+      "year": 2024,
+      "topic": "LLMs & the Frame Problem",
+      "outcomes": [
+        "Released benchmark GitHub dataset for reproducible evaluation"
+      ],
+      "publications": [],
+      "links": {
+        "github": "https://github.com"
+      }
+    },
+    {
+      "name": "Sara Sangiovanni",
+      "institution": "University of Naples Federico II",
+      "level": "MSc",
+      "program": "Human-Robot Interaction",
+      "year": 2020,
+      "topic": "HRI pipeline for automated test administration",
+      "outcomes": [
+        "Published in ICSR 2020"
+      ],
+      "publications": ["ICSR 2020"],
+      "links": {}
+    },
+    {
+      "name": "Gennaro Daniele Acciaro",
+      "institution": "University of Naples Federico II",
+      "level": "MSc",
+      "year": 2021,
+      "topic": "Intent recognition with ProbLog/Event Calculus",
+      "outcomes": [
+        "Published in WOA 2021"
+      ],
+      "publications": ["WOA 2021"],
+      "links": {}
+    },
+    {
+      "name": "Luca Raggioli",
+      "institution": "University of Naples Federico II",
+      "level": "MSc",
+      "year": 2023,
+      "topic": "Deep Reinforcement Learning for human-aware approaching",
+      "outcomes": [
+        "Published in International Journal of Social Robotics (2023)"
+      ],
+      "publications": ["International Journal of Social Robotics (2023)"],
+      "links": {}
+    },
+    {
+      "name": "Francesco Pedrazzoli",
+      "institution": "University of Verona",
+      "level": "PhD",
+      "year": "2023-ongoing",
+      "topic": "Ethics of AI/Recommender systems",
+      "outcomes": [
+        "Poster at BRIO research meeting",
+        "Paper at CEPE-23"
+      ],
+      "publications": ["CEPE-23 proceedings"],
+      "links": {}
+    }
+  ]
+}

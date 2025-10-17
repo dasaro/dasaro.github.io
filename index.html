@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fabio Aurelio D'Asaro - Postdoctoral Researcher in Logic at the interface of formal epistemology, AI, probabilistic and temporal reasoning, argumentation, and logic programming.">
+  <meta name="keywords" content="Logic, Artificial Intelligence, Epistemology, Temporal Reasoning, Probabilistic Logic, Argumentation, ASP, ILASP, Event Calculus">
+  <meta name="author" content="Fabio Aurelio D'Asaro">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Fabio Aurelio D'Asaro - Logic & AI Researcher">
+  <meta property="og:description" content="Postdoctoral Researcher in Logic working at the interface of formal epistemology, AI, and probabilistic reasoning.">
+  <meta property="og:url" content="https://dasaro.github.io">
+
+  <title>Fabio Aurelio D'Asaro - Home</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    /* Publication card styles for home page */
+    .publication-card {
+      margin-bottom: var(--space-lg);
+    }
+
+    .publication-title {
+      color: var(--color-black);
+      margin-bottom: var(--space-sm);
+      font-size: var(--text-lg);
+    }
+
+    .publication-authors {
+      font-size: var(--text-base);
+      margin-bottom: var(--space-xs);
+    }
+
+    .publication-venue {
+      color: var(--color-accent-2);
+      margin-bottom: var(--space-md);
+    }
+
+    .publication-links {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .btn-sm {
+      padding: var(--space-xs) var(--space-sm);
+      font-size: var(--text-xs);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--color-link);
+      color: white;
+      border-radius: 3px;
+      font-size: var(--text-xs);
+      margin-left: var(--space-sm);
+    }
+
+    .error-message {
+      color: #e74c3c;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body data-page="home">
+  <!-- Mathematical Background Canvas -->
+  <canvas id="bg-animation-canvas" data-default-animation="gameOfLife"></canvas>
+  <button id="animation-toggle" class="animation-toggle" aria-label="Toggle background animation" title="Toggle animation (A)">
+    <span class="symbol">∀</span>
+  </button>
+
+  <!-- Navigation -->
+  <div class="nav-wrapper">
+    <nav>
+      <a href="index.html" class="nav-brand">
+        <span class="logic-symbol">∀</span>
+        F.A. D'Asaro
+      </a>
+
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="publications.html" class="nav-link">Publications</a></li>
+        <li><a href="teaching.html" class="nav-link">Teaching</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="service.html" class="nav-link">Service</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content fade-in">
+          <h1>Fabio Aurelio D'Asaro</h1>
+          <p class="hero-subtitle">Postdoctoral Researcher in Logic</p>
+          <p class="hero-affiliations">
+            University of Salento <span class="logic-symbol">∧</span>
+            University of Verona <span class="logic-symbol">∧</span>
+            University College London
+          </p>
+          <p class="hero-tagline">
+            <em>Exploring the interface of formal epistemology, AI, probabilistic reasoning, and argumentation</em>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Preview -->
+    <section id="about-preview">
+      <div class="container">
+        <h2 class="section-title">About</h2>
+        <div class="about-content">
+          <p>
+            I am a researcher in Logic (PHIL-02/A) working at the interface of formal epistemology
+            and AI, probabilistic and temporal reasoning, argumentation, and logic programming (ASP/ILASP).
+          </p>
+          <p>
+            My research focuses on developing formal frameworks for reasoning about uncertainty,
+            knowledge, and actions in dynamic environments.
+          </p>
+          <a href="about.html" class="btn">Learn More →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research Interests -->
+    <section id="research-interests">
+      <div class="container">
+        <h2 class="section-title">Research Interests</h2>
+        <div class="grid grid-3">
+          <div class="card scroll-animate">
+            <h3><span class="logic-symbol">∃</span> Uncertain & Epistemic Logics</h3>
+            <p>Formal systems for reasoning about uncertainty and knowledge</p>
+          </div>
+          <div class="card scroll-animate">
+            <h3><span class="logic-symbol">→</span> Logic Programming</h3>
+            <p>ASP, ILASP, and inductive logic programming applications</p>
+          </div>
+          <div class="card scroll-animate">
+            <h3><span class="logic-symbol">⊢</span> Argumentation</h3>
+            <p>Formal argumentation theory and learning semantics</p>
+          </div>
+          <div class="card scroll-animate">
+            <h3><span class="logic-symbol">λ</span> Explainable AI</h3>
+            <p>Making AI systems transparent and interpretable</p>
+          </div>
+          <div class="card scroll-animate">
+            <h3><span class="logic-symbol">∀</span> Probabilistic Reasoning</h3>
+            <p>Combining logic with probability theory</p>
+          </div>
+          <div class="card scroll-animate">
+            <h3><span class="logic-symbol">⊨</span> Event Calculus</h3>
+            <p>Temporal reasoning about actions and their effects</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Publications -->
+    <section id="recent-publications">
+      <div class="container">
+        <h2 class="section-title">Recent Highlights</h2>
+        <div id="publications-container">
+          <!-- Publications will be loaded here via JavaScript -->
+          <p class="loading-message">Loading publications...</p>
+        </div>
+        <div class="text-center mt-xl">
+          <a href="publications.html" class="btn btn-primary">View All Publications →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scholar Metrics -->
+    <section id="metrics">
+      <div class="container">
+        <div class="card metrics-widget">
+          <h3>Scholar Metrics</h3>
+          <div class="metrics-grid grid grid-3">
+            <div class="metric">
+              <div class="metric-value" id="citations">227</div>
+              <div class="metric-label">Citations</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value" id="h-index">10</div>
+              <div class="metric-label">h-index</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value" id="i10-index">10</div>
+              <div class="metric-label">i10-index</div>
+            </div>
+          </div>
+          <p class="metric-note">Last updated: September 2025</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-text">
+        <p>&copy; <span class="footer-year">2025</span> Fabio Aurelio D'Asaro</p>
+        <p>∀x (Logic(x) → Elegant(x))</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="https://github.com/dasaro" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/publications.js"></script>
+
+  <!-- Page-specific script -->
+  <script>
+    // Load data and populate home page
+    document.addEventListener('DOMContentLoaded', async () => {
+      console.log('[index.html] DOM loaded, starting data load...');
+
+      try {
+        // Load personal data
+        console.log('[index.html] Loading personal data...');
+        const personalData = await loadJSON('./data/personal.json');
+        console.log('[index.html] Personal data loaded:', personalData);
+
+        if (personalData) {
+          // Update hero section
+          console.log('[index.html] Updating hero section...');
+          const h1 = document.querySelector('.hero-content h1');
+          const subtitle = document.querySelector('.hero-subtitle');
+          console.log('[index.html] Hero elements found:', {h1: !!h1, subtitle: !!subtitle});
+
+          if (h1) h1.textContent = personalData.name || 'Fabio Aurelio D\'Asaro';
+          if (subtitle) subtitle.textContent = personalData.title || 'Postdoctoral Researcher in Logic';
+
+          // Update about preview
+          const aboutContent = document.querySelector('#about-preview .about-content');
+          if (aboutContent && personalData.bio_short) {
+            const p = aboutContent.querySelector('p');
+            if (p) p.textContent = personalData.bio_short;
+          }
+
+          // Update scholar metrics
+          if (personalData.scholar_metrics) {
+            console.log('[index.html] Updating scholar metrics...');
+            const citationsEl = document.getElementById('citations');
+            const hIndexEl = document.getElementById('h-index');
+            const i10IndexEl = document.getElementById('i10-index');
+
+            if (citationsEl) citationsEl.textContent = personalData.scholar_metrics.citations;
+            if (hIndexEl) hIndexEl.textContent = personalData.scholar_metrics.h_index;
+            if (i10IndexEl) i10IndexEl.textContent = personalData.scholar_metrics.i10_index;
+          }
+        }
+
+        // Load publications data
+        console.log('[index.html] Loading publications data...');
+        const pubData = await loadJSON('./data/publications.json');
+        console.log('[index.html] Publications data received:', pubData);
+
+        const container = document.getElementById('publications-container');
+        console.log('[index.html] Publications container found:', !!container);
+
+        if (!container) {
+          console.error('[index.html] Publications container NOT FOUND!');
+          return;
+        }
+
+        if (pubData && pubData.selected && pubData.selected.length > 0) {
+          console.log('[index.html] Found', pubData.selected.length, 'selected publications');
+
+          // Check if container is visible
+          const containerStyles = window.getComputedStyle(container);
+          console.log('[index.html] Container display:', containerStyles.display);
+          console.log('[index.html] Container visibility:', containerStyles.visibility);
+          console.log('[index.html] Container opacity:', containerStyles.opacity);
+          console.log('[index.html] Container color:', containerStyles.color);
+
+          // Get the 3 most recent from selected
+          const recent = pubData.selected.slice(0, 3);
+          console.log('[index.html] Displaying', recent.length, 'recent publications');
+
+          const html = recent.map((pub, index) => {
+            console.log(`[index.html] Processing publication ${index + 1}:`, pub.title);
+            const authors = Array.isArray(pub.authors) ? pub.authors.join(', ') : pub.authors;
+            // Highlight author (now uses CSS classes)
+            const highlightedAuthors = authors.replace(/F\. A\. D'Asaro/g, '<strong>F. A. D\'Asaro</strong>');
+
+            return `
+              <div class="publication-card">
+                <h3>${pub.title}</h3>
+                <p class="publication-authors">${highlightedAuthors}</p>
+                <p class="publication-venue">
+                  <strong>${pub.venue}</strong> (${pub.year})
+                  ${pub.open_access ? '<span class="badge-oa">OPEN ACCESS</span>' : ''}
+                </p>
+                <div class="publication-links">
+                  ${pub.doi ? `<a href="https://doi.org/${pub.doi}" target="_blank">DOI</a>` : ''}
+                  ${pub.url ? `<a href="${pub.url}" target="_blank">Link</a>` : ''}
+                  ${pub.pdf ? `<a href="${pub.pdf}" target="_blank">PDF</a>` : ''}
+                </div>
+              </div>
+            `;
+          }).join('');
+
+          console.log('[index.html] Generated HTML length:', html.length);
+          console.log('[index.html] First 500 chars:', html.substring(0, 500));
+          console.log('[index.html] Setting innerHTML...');
+          container.innerHTML = html;
+          console.log('[index.html] Container now has', container.children.length, 'children');
+          console.log('[index.html] First child HTML:', container.children[0]?.outerHTML.substring(0, 200));
+          console.log('[index.html] Publications displayed successfully!');
+        } else {
+          console.warn('[index.html] No publications data available');
+          console.warn('[index.html] pubData:', pubData);
+          console.warn('[index.html] pubData.selected:', pubData ? pubData.selected : 'pubData is null');
+          container.innerHTML = '<p>No recent publications found.</p>';
+        }
+      } catch (error) {
+        console.error('[index.html] ERROR loading home page data:', error);
+        console.error('[index.html] Error stack:', error.stack);
+        const errorContainer = document.getElementById('publications-container');
+        if (errorContainer) {
+          errorContainer.innerHTML = '<p class="error-message">Error loading publications. Check console for details.</p>';
+        }
+      }
+
+      console.log('[index.html] Data loading complete.');
+    });
+  </script>
+</body>
+</html>

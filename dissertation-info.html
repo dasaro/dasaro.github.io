@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Information for prospective PhD students interested in working with Fabio Aurelio D'Asaro on logic, AI, and formal reasoning.">
+  <meta name="author" content="Fabio Aurelio D'Asaro">
+
+  <title>PhD Student Information - Fabio Aurelio D'Asaro</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    .topic-card {
+      background: var(--color-accent-3);
+      padding: var(--space-lg);
+      border-radius: 4px;
+      margin-bottom: var(--space-md);
+      border-left: 4px solid var(--color-link);
+    }
+
+    .topic-card h3 {
+      color: var(--color-accent-1);
+      margin-bottom: var(--space-sm);
+      font-family: 'Fira Code', monospace;
+    }
+
+    .step-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .step-list li {
+      background: var(--color-accent-3);
+      padding: var(--space-md);
+      margin-bottom: var(--space-md);
+      border-radius: 4px;
+      position: relative;
+      padding-left: calc(var(--space-xl) + var(--space-md));
+    }
+
+    .step-number {
+      position: absolute;
+      left: var(--space-md);
+      top: var(--space-md);
+      width: 32px;
+      height: 32px;
+      background: var(--color-link);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-family: 'Fira Code', monospace;
+    }
+
+    .requirements-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .requirements-list li {
+      padding: var(--space-sm) 0;
+      padding-left: var(--space-lg);
+      position: relative;
+    }
+
+    .requirements-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--color-link);
+      font-weight: bold;
+    }
+
+    .program-card {
+      background: var(--color-code-bg);
+      color: var(--color-white);
+      padding: var(--space-lg);
+      border-radius: 4px;
+      margin-bottom: var(--space-md);
+    }
+
+    .program-card h3 {
+      color: var(--color-code-text);
+      font-family: 'Fira Code', monospace;
+      margin-bottom: var(--space-sm);
+    }
+
+    .faq-item {
+      margin-bottom: var(--space-lg);
+    }
+
+    .faq-question {
+      font-weight: bold;
+      color: var(--color-accent-1);
+      margin-bottom: var(--space-sm);
+      font-size: var(--text-lg);
+    }
+
+    .faq-question::before {
+      content: 'Q: ';
+      color: var(--color-link);
+      font-family: 'Fira Code', monospace;
+    }
+
+    .faq-answer {
+      padding-left: var(--space-lg);
+      color: var(--color-accent-2);
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: var(--space-xs) var(--space-md);
+      background: var(--color-link);
+      color: white;
+      border-radius: 3px;
+      font-family: 'Fira Code', monospace;
+      font-size: var(--text-sm);
+      font-weight: bold;
+    }
+
+    .status-badge.open {
+      background: #27ae60;
+    }
+
+    .note-box {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: var(--space-md);
+      margin: var(--space-lg) 0;
+      border-radius: 4px;
+    }
+
+    .supervision-outcome {
+      background: var(--color-accent-3);
+      padding: var(--space-md);
+      margin-bottom: var(--space-md);
+      border-radius: 4px;
+      border-left: 4px solid var(--color-code-text);
+    }
+  </style>
+</head>
+<body data-page="dissertation-info">
+  <!-- Mathematical Background Canvas -->
+  <canvas id="bg-animation-canvas" data-default-animation="proofTree"></canvas>
+  <button id="animation-toggle" class="animation-toggle" aria-label="Toggle background animation" title="Toggle animation (A)">
+    <span class="symbol">∀</span>
+  </button>
+
+  <!-- Navigation -->
+  <div class="nav-wrapper">
+    <nav>
+      <a href="index.html" class="nav-brand">
+        <span class="logic-symbol">∀</span>
+        F.A. D'Asaro
+      </a>
+
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="publications.html" class="nav-link">Publications</a></li>
+        <li><a href="teaching.html" class="nav-link">Teaching</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="service.html" class="nav-link">Service</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <section id="dissertation-info">
+      <div class="container">
+        <h1 class="fade-in">∃ Prospective PhD Students</h1>
+
+        <div class="card fade-in-delay-1">
+          <div id="introduction-container">
+            <p class="loading-message">Loading information...</p>
+          </div>
+        </div>
+
+        <!-- Research Topics -->
+        <div class="mt-xl fade-in-delay-2">
+          <h2 class="section-title">Research Topics I Supervise</h2>
+          <div id="topics-container">
+            <p class="loading-message">Loading topics...</p>
+          </div>
+        </div>
+
+        <!-- Supervision Approach -->
+        <div class="card mt-xl fade-in-delay-3">
+          <h2 class="section-title">My Supervision Philosophy</h2>
+          <div id="supervision-container">
+            <p class="loading-message">Loading supervision approach...</p>
+          </div>
+        </div>
+
+        <!-- Recent Supervised Students -->
+        <div class="mt-xl">
+          <h2 class="section-title">Recent Supervised Students</h2>
+          <div id="students-container">
+            <p class="loading-message">Loading student outcomes...</p>
+          </div>
+        </div>
+
+        <!-- Current Openings -->
+        <div class="card mt-xl">
+          <h2 class="section-title">Current Openings</h2>
+          <div id="openings-container">
+            <p class="loading-message">Loading current openings...</p>
+          </div>
+        </div>
+
+        <!-- How to Apply -->
+        <div class="mt-xl">
+          <h2 class="section-title">How to Apply</h2>
+          <div id="application-container">
+            <p class="loading-message">Loading application process...</p>
+          </div>
+        </div>
+
+        <!-- PhD Programs -->
+        <div class="mt-xl">
+          <h2 class="section-title">PhD Programs</h2>
+          <div id="programs-container">
+            <p class="loading-message">Loading program information...</p>
+          </div>
+        </div>
+
+        <!-- FAQs -->
+        <div class="card mt-xl">
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <div id="faqs-container">
+            <p class="loading-message">Loading FAQs...</p>
+          </div>
+        </div>
+
+        <!-- Contact CTA -->
+        <div class="card mt-xl text-center">
+          <h2 class="section-title">Get in Touch</h2>
+          <p>
+            If you're interested in pursuing a PhD under my supervision, I'd love to hear from you!
+          </p>
+          <p class="mt-md">
+            <a href="contact.html" class="btn btn-primary">Contact Me →</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-text">
+        <p>&copy; <span class="footer-year">2025</span> Fabio Aurelio D'Asaro</p>
+        <p>∀x (Logic(x) → Elegant(x))</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="https://github.com/dasaro" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        // Load dissertation instructions
+        const data = await loadJSON('./data/dissertation_instructions.json');
+
+        if (!data) {
+          console.error('Failed to load dissertation instructions');
+          return;
+        }
+
+        // Introduction
+        const introContainer = document.getElementById('introduction-container');
+        if (data.introduction) {
+          introContainer.innerHTML = `<p>${data.introduction}</p>`;
+        }
+
+        // Research Topics
+        const topicsContainer = document.getElementById('topics-container');
+        if (data.phd_topics && data.phd_topics.length > 0) {
+          topicsContainer.innerHTML = data.phd_topics.map(topic => `
+            <div class="topic-card">
+              <h3><span class="logic-symbol">→</span> ${topic.area}</h3>
+              <p>${topic.description}</p>
+            </div>
+          `).join('');
+        }
+
+        // Supervision Approach
+        const supervisionContainer = document.getElementById('supervision-container');
+        if (data.supervision_approach) {
+          supervisionContainer.innerHTML = data.supervision_approach.paragraphs.map(p =>
+            `<p>${p}</p>`
+          ).join('');
+        }
+
+        // Load supervision data for student outcomes
+        const supervisionData = await loadJSON('./data/supervision.json');
+        const studentsContainer = document.getElementById('students-container');
+
+        if (supervisionData && supervisionData.students && supervisionData.students.length > 0) {
+          studentsContainer.innerHTML = supervisionData.students.map(student => `
+            <div class="supervision-outcome">
+              <h3>${student.name}</h3>
+              <p><strong>${student.level}</strong> - ${student.institution} (${student.year})</p>
+              <p><em>Topic:</em> ${student.topic}</p>
+              ${student.outcomes && student.outcomes.length > 0 ? `
+                <p><strong>Outcomes:</strong></p>
+                <ul>
+                  ${student.outcomes.map(outcome => `<li>${outcome}</li>`).join('')}
+                </ul>
+              ` : ''}
+            </div>
+          `).join('');
+        } else {
+          studentsContainer.innerHTML = '<p style="font-style: italic;">Recent supervision outcomes will be added soon.</p>';
+        }
+
+        // Current Openings
+        const openingsContainer = document.getElementById('openings-container');
+        if (data.current_openings) {
+          const statusClass = data.current_openings.status ? 'open' : '';
+          openingsContainer.innerHTML = `
+            <p>
+              <span class="status-badge ${statusClass}">
+                ${data.current_openings.status ? '✓ OPEN' : 'CURRENTLY CLOSED'}
+              </span>
+            </p>
+            <p class="mt-md">${data.current_openings.message}</p>
+            ${data.current_openings.notes && data.current_openings.notes.length > 0 ? `
+              <div class="note-box mt-md">
+                <strong>Important Notes:</strong>
+                <ul>
+                  ${data.current_openings.notes.map(note => `<li>${note}</li>`).join('')}
+                </ul>
+              </div>
+            ` : ''}
+          `;
+        }
+
+        // Application Process
+        const applicationContainer = document.getElementById('application-container');
+        if (data.application_process) {
+          applicationContainer.innerHTML = `
+            <div class="card">
+              <ol class="step-list">
+                ${data.application_process.steps.map(step => `
+                  <li>
+                    <span class="step-number">${step.step}</span>
+                    <strong>${step.action}</strong>
+                    <p>${step.details}</p>
+                  </li>
+                `).join('')}
+              </ol>
+
+              <h3 class="mt-xl">Requirements</h3>
+              <ul class="requirements-list">
+                ${data.application_process.requirements.map(req => `
+                  <li>${req}</li>
+                `).join('')}
+              </ul>
+            </div>
+          `;
+        }
+
+        // PhD Programs
+        const programsContainer = document.getElementById('programs-container');
+        if (data.phd_programs && data.phd_programs.length > 0) {
+          programsContainer.innerHTML = data.phd_programs.map(program => `
+            <div class="program-card">
+              <h3>${program.institution}</h3>
+              <p><strong>${program.program}</strong></p>
+              <p>${program.location}</p>
+              <p class="mt-sm">
+                <a href="${program.website}" target="_blank" rel="noopener" style="color: var(--color-code-text);">
+                  Official Program Website →
+                </a>
+              </p>
+            </div>
+          `).join('');
+        }
+
+        // FAQs
+        const faqsContainer = document.getElementById('faqs-container');
+        if (data.faqs && data.faqs.length > 0) {
+          faqsContainer.innerHTML = data.faqs.map(faq => `
+            <div class="faq-item">
+              <div class="faq-question">${faq.question}</div>
+              <div class="faq-answer">${faq.answer}</div>
+            </div>
+          `).join('');
+        }
+
+      } catch (error) {
+        console.error('Error loading dissertation info:', error);
+        document.querySelectorAll('.loading-message').forEach(el => {
+          el.textContent = 'Error loading data. Please try again later.';
+          el.classList.add('error-message');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

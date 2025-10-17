@@ -1,0 +1,198 @@
+/* ============================================
+   Responsive Design - Mobile First Approach
+   ============================================ */
+
+/* Tablet and below (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  :root {
+    --space-lg: 1rem;
+    --space-xl: 1.5rem;
+    --space-2xl: 2rem;
+  }
+
+  /* Typography adjustments */
+  h1 { font-size: var(--text-3xl); }
+  h2 { font-size: var(--text-2xl); }
+  h3 { font-size: var(--text-xl); }
+
+  /* Navigation - Mobile Menu */
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    background-color: var(--color-white);
+    flex-direction: column;
+    gap: 0;
+    padding: var(--space-md);
+    border-bottom: 2px solid var(--color-black);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .nav-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-menu li {
+    width: 100%;
+    text-align: center;
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--color-accent-3);
+  }
+
+  .nav-menu li:last-child {
+    border-bottom: none;
+  }
+
+  .nav-link {
+    display: block;
+    width: 100%;
+    font-size: var(--text-base);
+  }
+
+  /* Grid system */
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Footer */
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  /* Container padding */
+  .container {
+    padding: 0 var(--space-md);
+  }
+
+  /* Section spacing */
+  section {
+    padding: var(--space-xl) 0;
+  }
+}
+
+/* Small mobile (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  :root {
+    --text-4xl: 2rem;
+    --text-3xl: 1.75rem;
+    --text-2xl: 1.5rem;
+  }
+
+  .nav-brand {
+    font-size: var(--text-base);
+  }
+
+  .container {
+    padding: 0 var(--space-sm);
+  }
+
+  .card {
+    padding: var(--space-md);
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Tablet landscape and small desktop (min-width: 769px and max-width: 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Large desktop (min-width: 1440px) */
+@media screen and (min-width: 1440px) {
+  :root {
+    --max-width: 1400px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .nav-wrapper,
+  .nav-toggle,
+  footer,
+  .btn {
+    display: none;
+  }
+
+  main {
+    margin-top: 0;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .card {
+    border: 1px solid #000;
+    break-inside: avoid;
+  }
+
+  a {
+    color: black;
+    text-decoration: underline;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --color-link: #0000EE;
+    --color-link-hover: #0000CC;
+  }
+
+  .nav-link::after {
+    height: 3px;
+  }
+
+  .card {
+    border-width: 2px;
+  }
+}

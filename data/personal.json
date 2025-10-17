@@ -1,0 +1,101 @@
+{
+  "name": "Fabio Aurelio D'Asaro",
+  "title": "Postdoctoral Researcher in Logic",
+  "current_position": "Postdoctoral Researcher, University of Salento",
+  "affiliations": [
+    "University of Salento",
+    "University of Verona",
+    "University College London"
+  ],
+  "bio_short": "I am a researcher in Logic (PHIL-02/A) working at the interface of formal epistemology and AI, probabilistic and temporal reasoning, argumentation, and logic programming (ASP/ILASP) with teaching and supervision spanning Logic & Philosophy of Science, AI, Theoretical, Applied Computer Science, Epistemology of Big Data and Logic Programming.",
+  "bio_long": "I am currently a postdoctoral researcher at the University of Salento in the Department of Human Studies (SSD PHIL-02/A), working in the context of Project FAIR–Future AI Research (PE00000013) under the NRRP MUR program funded by NextGenerationEU, Spoke 6 (Symbiotic AI), PI: Paolo Baldi. My research focuses on the intersection of formal epistemology and artificial intelligence, with particular emphasis on probabilistic and temporal reasoning, argumentation theory, and logic programming. From 2022 to 2025, I served as Assistant Professor (RTD-A) at the University of Verona, where I taught and researched on Uncertain and Epistemic Reasoning, Temporal and Probabilistic Logics, Logic Programming, Reasoning about Actions and Change, Bounded Reasoning, Formal Argumentation, and their applications to Artificial Intelligence and Explainable AI.",
+  "research_interests": [
+    "Uncertain, Epistemic and Temporal Logics",
+    "Logic Programming (ASP/ILASP)",
+    "Formal Argumentation",
+    "Explainable Artificial Intelligence",
+    "Probabilistic Reasoning about Actions",
+    "Event Calculus",
+    "Trustworthy and Ethical AI",
+    "Bounded Reasoning"
+  ],
+  "current_work": [
+    {
+      "topic": "Trustworthy and ethical AI",
+      "collaborators": ["P. Baldi", "G. Primiero"]
+    },
+    {
+      "topic": "Probabilistic extensions of typed natural deduction systems",
+      "collaborators": ["G. Primiero"]
+    },
+    {
+      "topic": "Game Theory and Cognitive Science",
+      "collaborators": ["C. Sinigaglia", "M. Fanghella", "CIALab"]
+    },
+    {
+      "topic": "Extensions and applications of the Event Calculus",
+      "collaborators": ["R. Miller", "L. Dickens"]
+    },
+    {
+      "topic": "Depth-bounded extensions of ASP system clingo",
+      "collaborators": ["P. Baldi", "M. D'Agostino"]
+    },
+    {
+      "topic": "Applications of ILASP to explainable AI",
+      "collaborators": ["A. Russo", "M. Law", "A. Bikakis"]
+    }
+  ],
+  "contact": {
+    "emails": [
+      {
+        "type": "institutional-main",
+        "address": "fabioaurelio.dasaro@unisalento.it",
+        "label": "University of Salento (Main)"
+      },
+      {
+        "type": "institutional",
+        "address": "fabioaurelio.dasaro@univr.it",
+        "label": "University of Verona"
+      },
+      {
+        "type": "institutional",
+        "address": "fabio.d'asaro.14@ucl.ac.uk",
+        "label": "University College London"
+      },
+      {
+        "type": "personal",
+        "address": "fdasaro@gmail.com",
+        "label": "Personal"
+      }
+    ],
+    "phone": "+39 347 300 1762",
+    "website": "https://sites.google.com/view/fdasaro",
+    "github": "dasaro",
+    "scholar": "YOUR_GOOGLE_SCHOLAR_ID",
+    "orcid": "YOUR_ORCID_ID"
+  },
+  "birthplace": "Palermo, Italy",
+  "location": "Verona, Veneto, Italy",
+  "scholar_metrics": {
+    "citations": 227,
+    "h_index": 10,
+    "i10_index": 10,
+    "last_updated": "2025-09-16"
+  },
+  "news": [
+    {
+      "date": "2025-05-01",
+      "text": "Co-organizing the 3rd summer school Logic for the AI Spring - eDefAI",
+      "link": "http://sites.google.com/view/edefai"
+    },
+    {
+      "date": "2025-03-01",
+      "text": "Started as postdoctoral researcher at the University of Salento, focusing on Logic, Explainability, Trust, and Ethical AI"
+    },
+    {
+      "date": "2025-02-01",
+      "text": "Co-founder of gen.ia",
+      "link": "https://geniacademy.org"
+    }
+  ]
+}
