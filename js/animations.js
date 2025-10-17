@@ -155,16 +155,23 @@ class BackgroundAnimations {
 
     // ==========================================
     // ANIMATION 1: Conway's Game of Life
+    // Fixed with proper cleanup
     // ==========================================
     gameOfLife() {
         const cellSize = 12;
         const cols = Math.floor(this.canvas.width / cellSize);
         const rows = Math.floor(this.canvas.height / cellSize);
 
-        // Initialize with random cells (sparse)
-        let grid = Array(rows).fill().map(() =>
-            Array(cols).fill().map(() => Math.random() < 0.15 ? 1 : 0)
-        );
+        // Initialize with random cells (sparse) - DEFENSIVE CHECK
+        let grid = [];
+        try {
+            grid = Array(rows).fill().map(() =>
+                Array(cols).fill().map(() => Math.random() < 0.15 ? 1 : 0)
+            );
+        } catch (e) {
+            console.error('[Game of Life] Grid initialization error:', e);
+            return;
+        }
 
         const countNeighbors = (x, y) => {
             let count = 0;
@@ -173,73 +180,85 @@ class BackgroundAnimations {
                     if (i === 0 && j === 0) continue;
                     const row = (y + i + rows) % rows;
                     const col = (x + j + cols) % cols;
-                    count += grid[row][col];
+                    count += grid[row][col] || 0; // DEFENSIVE: handle undefined
                 }
             }
             return count;
         };
 
         let frameCount = 0;
+        let running = true; // Flag to control animation
+
         const animate = () => {
+            // CRITICAL: Check if animation should stop
+            if (!running || !this.ctx) {
+                return;
+            }
+
             frameCount++;
 
-            // Update every 8 frames for slower, more contemplative pace
+            // Update every 8 frames
             if (frameCount % 8 === 0) {
-                // Create next generation
-                const nextGrid = grid.map((row, y) =>
-                    row.map((cell, x) => {
-                        const neighbors = countNeighbors(x, y);
-                        if (cell === 1) {
-                            return (neighbors === 2 || neighbors === 3) ? 1 : 0;
-                        } else {
-                            return neighbors === 3 ? 1 : 0;
-                        }
-                    })
-                );
+                try {
+                    // Create next generation
+                    const nextGrid = grid.map((row, y) =>
+                        row.map((cell, x) => {
+                            const neighbors = countNeighbors(x, y);
+                            if (cell === 1) {
+                                return (neighbors === 2 || neighbors === 3) ? 1 : 0;
+                            } else {
+                                return neighbors === 3 ? 1 : 0;
+                            }
+                        })
+                    );
 
-                grid = nextGrid;
+                    grid = nextGrid;
 
-                // Clear canvas
-                this.ctx.fillStyle = '#FFFFFF';
-                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+                    // Clear canvas
+                    this.ctx.fillStyle = '#FFFFFF';
+                    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-                // Draw cells with fade effect - subtle red accent
-                for (let y = 0; y < rows; y++) {
-                    for (let x = 0; x < cols; x++) {
-                        if (grid[y][x] === 1) {
-                            // Subtle red gradient for cells - REDUCED VISIBILITY
-                            const gradient = this.ctx.createRadialGradient(
-                                x * cellSize + cellSize / 2,
-                                y * cellSize + cellSize / 2,
-                                0,
-                                x * cellSize + cellSize / 2,
-                                y * cellSize + cellSize / 2,
-                                cellSize / 2
-                            );
-                            gradient.addColorStop(0, 'rgba(139, 0, 0, 0.15)'); // CHANGED - was solid '#8B0000'
-                            gradient.addColorStop(1, 'rgba(0, 0, 0, 0.08)'); // CHANGED - was solid '#000000'
-                            this.ctx.fillStyle = gradient;
+                    // Draw cells
+                    for (let y = 0; y < rows; y++) {
+                        for (let x = 0; x < cols; x++) {
+                            if (grid[y][x] === 1) {
+                                const gradient = this.ctx.createRadialGradient(
+                                    x * cellSize + cellSize / 2,
+                                    y * cellSize + cellSize / 2,
+                                    0,
+                                    x * cellSize + cellSize / 2,
+                                    y * cellSize + cellSize / 2,
+                                    cellSize / 2
+                                );
+                                gradient.addColorStop(0, 'rgba(139, 0, 0, 0.15)');
+                                gradient.addColorStop(1, 'rgba(0, 0, 0, 0.08)');
+                                this.ctx.fillStyle = gradient;
 
-                            this.ctx.beginPath();
-                            this.ctx.arc(
-                                x * cellSize + cellSize / 2,
-                                y * cellSize + cellSize / 2,
-                                cellSize / 3,
-                                0,
-                                Math.PI * 2
-                            );
-                            this.ctx.fill();
+                                this.ctx.beginPath();
+                                this.ctx.arc(
+                                    x * cellSize + cellSize / 2,
+                                    y * cellSize + cellSize / 2,
+                                    cellSize / 3,
+                                    0,
+                                    Math.PI * 2
+                                );
+                                this.ctx.fill();
+                            }
                         }
                     }
-                }
 
-                // Reseed occasionally to prevent extinction
-                if (frameCount % 400 === 0) {
-                    for (let i = 0; i < 5; i++) {
-                        const x = Math.floor(Math.random() * cols);
-                        const y = Math.floor(Math.random() * rows);
-                        grid[y][x] = 1;
+                    // Reseed to prevent extinction
+                    if (frameCount % 400 === 0) {
+                        for (let i = 0; i < 5; i++) {
+                            const x = Math.floor(Math.random() * cols);
+                            const y = Math.floor(Math.random() * rows);
+                            grid[y][x] = 1;
+                        }
                     }
+                } catch (e) {
+                    console.error('[Game of Life] Animation error:', e);
+                    running = false;
+                    return;
                 }
             }
 
@@ -247,6 +266,11 @@ class BackgroundAnimations {
         };
 
         animate();
+
+        // Return cleanup function (not currently used but good practice)
+        return () => {
+            running = false;
+        };
     }
 
     // ==========================================
