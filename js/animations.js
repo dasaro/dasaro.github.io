@@ -144,32 +144,58 @@ class BackgroundAnimations {
     }
 
     stop() {
+        console.log('[BackgroundAnimations] Stopping animation');
+
+        // Cancel animation frame
         if (this.animationId) {
             cancelAnimationFrame(this.animationId);
             this.animationId = null;
         }
-        if (this.ctx) {
+
+        // Clear canvas completely
+        if (this.ctx && this.canvas) {
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            this.ctx.fillStyle = '#FFFFFF';
+            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
         }
+
+        // Reset current animation reference
+        this.currentAnimation = null;
     }
 
     // ==========================================
     // ANIMATION 1: Conway's Game of Life
-    // Fixed with proper cleanup
+    // Robust version with proper cleanup
     // ==========================================
     gameOfLife() {
+        // CRITICAL: Clear canvas immediately
+        if (!this.ctx) return;
+
+        this.ctx.fillStyle = '#FFFFFF';
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
         const cellSize = 12;
         const cols = Math.floor(this.canvas.width / cellSize);
         const rows = Math.floor(this.canvas.height / cellSize);
 
-        // Initialize with random cells (sparse) - DEFENSIVE CHECK
-        let grid = [];
+        // Validate dimensions
+        if (cols <= 0 || rows <= 0 || !isFinite(cols) || !isFinite(rows)) {
+            console.error('[Game of Life] Invalid dimensions:', { cols, rows });
+            return;
+        }
+
+        // Initialize grid with proper error handling
+        let grid;
         try {
-            grid = Array(rows).fill().map(() =>
-                Array(cols).fill().map(() => Math.random() < 0.15 ? 1 : 0)
-            );
+            grid = [];
+            for (let y = 0; y < rows; y++) {
+                grid[y] = [];
+                for (let x = 0; x < cols; x++) {
+                    grid[y][x] = Math.random() < 0.15 ? 1 : 0;
+                }
+            }
         } catch (e) {
-            console.error('[Game of Life] Grid initialization error:', e);
+            console.error('[Game of Life] Grid initialization failed:', e);
             return;
         }
 
@@ -178,39 +204,59 @@ class BackgroundAnimations {
             for (let i = -1; i <= 1; i++) {
                 for (let j = -1; j <= 1; j++) {
                     if (i === 0 && j === 0) continue;
+
                     const row = (y + i + rows) % rows;
                     const col = (x + j + cols) % cols;
-                    count += grid[row][col] || 0; // DEFENSIVE: handle undefined
+
+                    // Defensive checks
+                    if (grid[row] && typeof grid[row][col] !== 'undefined') {
+                        count += grid[row][col];
+                    }
                 }
             }
             return count;
         };
 
         let frameCount = 0;
-        let running = true; // Flag to control animation
+        let lastFrameTime = performance.now();
 
         const animate = () => {
-            // CRITICAL: Check if animation should stop
-            if (!running || !this.ctx) {
+            // CRITICAL: Check if this animation should still be running
+            if (!this.ctx || !this.canvas) {
+                console.log('[Game of Life] Stopping - no context');
                 return;
             }
 
+            // Throttle to prevent excessive updates
+            const currentTime = performance.now();
+            const deltaTime = currentTime - lastFrameTime;
+
+            if (deltaTime < 16) { // ~60fps max
+                this.animationId = requestAnimationFrame(animate);
+                return;
+            }
+
+            lastFrameTime = currentTime;
             frameCount++;
 
             // Update every 8 frames
             if (frameCount % 8 === 0) {
                 try {
-                    // Create next generation
-                    const nextGrid = grid.map((row, y) =>
-                        row.map((cell, x) => {
+                    // Create next generation with defensive coding
+                    const nextGrid = [];
+                    for (let y = 0; y < rows; y++) {
+                        nextGrid[y] = [];
+                        for (let x = 0; x < cols; x++) {
+                            const cell = grid[y][x];
                             const neighbors = countNeighbors(x, y);
+
                             if (cell === 1) {
-                                return (neighbors === 2 || neighbors === 3) ? 1 : 0;
+                                nextGrid[y][x] = (neighbors === 2 || neighbors === 3) ? 1 : 0;
                             } else {
-                                return neighbors === 3 ? 1 : 0;
+                                nextGrid[y][x] = (neighbors === 3) ? 1 : 0;
                             }
-                        })
-                    );
+                        }
+                    }
 
                     grid = nextGrid;
 
@@ -218,31 +264,29 @@ class BackgroundAnimations {
                     this.ctx.fillStyle = '#FFFFFF';
                     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-                    // Draw cells
+                    // Draw cells with error handling
                     for (let y = 0; y < rows; y++) {
                         for (let x = 0; x < cols; x++) {
                             if (grid[y][x] === 1) {
-                                const gradient = this.ctx.createRadialGradient(
-                                    x * cellSize + cellSize / 2,
-                                    y * cellSize + cellSize / 2,
-                                    0,
-                                    x * cellSize + cellSize / 2,
-                                    y * cellSize + cellSize / 2,
-                                    cellSize / 2
-                                );
-                                gradient.addColorStop(0, 'rgba(139, 0, 0, 0.15)');
-                                gradient.addColorStop(1, 'rgba(0, 0, 0, 0.08)');
-                                this.ctx.fillStyle = gradient;
+                                try {
+                                    // Subtle red gradient
+                                    const centerX = x * cellSize + cellSize / 2;
+                                    const centerY = y * cellSize + cellSize / 2;
 
-                                this.ctx.beginPath();
-                                this.ctx.arc(
-                                    x * cellSize + cellSize / 2,
-                                    y * cellSize + cellSize / 2,
-                                    cellSize / 3,
-                                    0,
-                                    Math.PI * 2
-                                );
-                                this.ctx.fill();
+                                    const gradient = this.ctx.createRadialGradient(
+                                        centerX, centerY, 0,
+                                        centerX, centerY, cellSize / 2
+                                    );
+                                    gradient.addColorStop(0, 'rgba(139, 0, 0, 0.15)');
+                                    gradient.addColorStop(1, 'rgba(0, 0, 0, 0.08)');
+                                    this.ctx.fillStyle = gradient;
+
+                                    this.ctx.beginPath();
+                                    this.ctx.arc(centerX, centerY, cellSize / 3, 0, Math.PI * 2);
+                                    this.ctx.fill();
+                                } catch (drawError) {
+                                    console.error('[Game of Life] Draw error at', x, y, drawError);
+                                }
                             }
                         }
                     }
@@ -252,25 +296,23 @@ class BackgroundAnimations {
                         for (let i = 0; i < 5; i++) {
                             const x = Math.floor(Math.random() * cols);
                             const y = Math.floor(Math.random() * rows);
-                            grid[y][x] = 1;
+                            if (grid[y]) {
+                                grid[y][x] = 1;
+                            }
                         }
                     }
                 } catch (e) {
                     console.error('[Game of Life] Animation error:', e);
-                    running = false;
-                    return;
+                    // Don't return - try to continue
                 }
             }
 
             this.animationId = requestAnimationFrame(animate);
         };
 
+        // Start animation
+        console.log('[Game of Life] Starting with dimensions:', { cols, rows, cellSize });
         animate();
-
-        // Return cleanup function (not currently used but good practice)
-        return () => {
-            running = false;
-        };
     }
 
     // ==========================================
