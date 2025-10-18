@@ -1091,12 +1091,12 @@ footer {
   height: 100%;
   z-index: -1; /* Behind everything */
   pointer-events: none;
-  opacity: 0.25; /* Increased visibility */
+  opacity: 0.15; /* Subtle background effect - barely visible */
   transition: opacity 0.5s ease;
 }
 
 #bg-animation-canvas.active {
-  opacity: 0.3; /* More visible when active */
+  opacity: 0.15; /* Subtle background effect when active */
 }
 
 #bg-animation-canvas.hidden {
