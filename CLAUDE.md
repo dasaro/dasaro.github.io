@@ -20,15 +20,24 @@ Build a modern, elegant academic website for a logician/AI researcher that blend
 
 ## Design Specifications
 
-### Color Palette
+### Color Palette (UPDATED 2025)
+**Primary Academic Colors:**
 - **Background:** `#FFFFFF` (pure white)
 - **Primary Text:** `#000000` (pure black)
-- **Accent 1:** `#2C3E50` (dark blue-gray for headers)
-- **Accent 2:** `#34495E` (medium gray for secondary text)
-- **Accent 3:** `#ECF0F1` (light gray for subtle backgrounds)
-- **Link Color:** `#2980B9` (blue)
+- **Accent Dark Red:** `#8B0000` (primary accent for headers, highlights, active states)
+- **Accent Indian Red:** `#CD5C5C` (secondary accent for hovers)
+- **Accent Tan:** `#CD853F` (tertiary accent for completed/past items)
+- **Text Secondary:** `#2C3E50` (dark gray for body text)
+- **Text Tertiary:** `#34495E` (medium gray for metadata)
+- **Background Subtle:** `#ECF0F1` (light gray for subtle backgrounds)
+- **Link Color:** `#2980B9` (blue - preserved for standard links)
 - **Link Hover:** `#3498DB` (lighter blue)
-- **Code/Terminal:** `#1E1E1E` background with `#00FF00` or `#FFFFFF` text
+
+**Card & Border System:**
+- **Standard Card Background:** `rgba(255, 255, 255, 0.95)` (white with slight transparency)
+- **Standard Card Border:** `rgba(139, 0, 0, 0.2)` (subtle dark red border)
+- **Standard Card Shadow:** `0 2px 8px rgba(0, 0, 0, 0.08)` (soft shadow for depth)
+- **Code/Terminal (RARE USE):** `#1E1E1E` background with `#FFFFFF` text (ONLY for actual code blocks)
 
 ### Typography
 ```css
@@ -1033,6 +1042,122 @@ function searchPublications(query, publications) {
   background: var(--color-black);
   color: var(--color-white);
 }
+```
+
+---
+
+## Unified Design System (2025 Update)
+
+### Design Philosophy: "Hacker-meets-Philosopher"
+
+The website achieves a balance between **terminal aesthetics** (monospace fonts, geometric symbols) and **academic elegance** (serif fonts, clean white backgrounds). This is implemented through a strict card system and limited use of terminal styling.
+
+### Card System
+
+**Two Card Types Only:**
+
+1. **Standard Academic Card** (90%+ of use cases)
+   ```css
+   background: rgba(255, 255, 255, 0.95);
+   color: #000000;
+   padding: 20px-24px;
+   border: 1px solid rgba(139, 0, 0, 0.2); /* Subtle red border */
+   border-radius: 8px;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+   font-family: 'Crimson Text', serif; /* Body text */
+   ```
+   **When to use:** Contact info, service records, projects, research groups, invited talks, editorial boards, program committees
+
+2. **Terminal/Code Card** (<10% of use cases)
+   ```css
+   background: #1E1E1E;
+   color: #FFFFFF;
+   font-family: 'Courier New', monospace;
+   ```
+   **When to use:** ONLY for actual code blocks, terminal commands, or BibTeX previews
+
+### Typography Hierarchy
+
+**Within Cards:**
+- **Headings:** `'Fira Code', monospace` in `#8B0000` (Dark Red)
+- **Body Text:** `'Crimson Text', serif` in `#2C3E50` (Dark Gray)
+- **Labels/Strong:** `#8B0000` (Dark Red) for emphasis
+- **Metadata:** `#2C3E50` with slightly smaller size
+
+### Badge/Status System
+
+**Color-coded for meaning:**
+
+1. **Active/Current Projects:** `#8B0000` (Dark Red) background with white text
+   ```html
+   <span style="background: #8B0000; color: #FFFFFF;">ACTIVE</span>
+   ```
+
+2. **Completed/Past Projects:** `#CD853F` (Tan) background with white text
+   ```html
+   <span style="background: #CD853F; color: #FFFFFF;">COMPLETED</span>
+   ```
+
+3. **Open Access Publications:** `#8B4513` (Saddle Brown) background
+   ```html
+   <span class="badge-oa">OPEN ACCESS</span>
+   ```
+
+### Button/Link System
+
+**Within Cards:**
+- **Primary Action Button:**
+  ```css
+  background: #8B0000;
+  color: #FFFFFF;
+  font-family: 'Fira Code', monospace;
+  padding: 6px-12px;
+  border-radius: 4px;
+  ```
+  Hover: `background: #CD5C5C` (Indian Red)
+
+- **Secondary/Text Links:**
+  ```css
+  color: #2C3E50;
+  text-decoration: underline;
+  ```
+  Hover: `color: #8B0000`
+
+### Usage Rules
+
+**DO:**
+- Use standard white cards for 90%+ of content (contact, service, projects, etc.)
+- Use `'Crimson Text'` serif for body text within cards (academic elegance)
+- Use `'Fira Code'` monospace for headers, labels, and buttons
+- Use dark red (`#8B0000`) as primary accent color
+- Use subtle red borders for cards (`rgba(139, 0, 0, 0.2)`)
+- Use logic symbols (→, ∀, ∃, ⊢) as subtle bullets and decorations
+
+**DON'T:**
+- Use green (#00ff00) - removed entirely
+- Use black terminal backgrounds (#0a0a0a, #1a1a1a) except for actual code
+- Use terminal styling for regular content cards
+- Mix serif and monospace within the same text block
+- Over-use terminal aesthetic (keep it to <20% of page)
+
+### Example Implementations
+
+**Service Page - Program Committee Card:**
+```html
+<div style="background: rgba(255, 255, 255, 0.95); color: #000000; padding: 16px; border-radius: 8px; border: 1px solid rgba(139, 0, 0, 0.2); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); font-family: 'Crimson Text', serif;">
+  <h4 style="color: #8B0000; font-family: 'Fira Code', monospace;">IJCAI</h4>
+  <div style="color: #2C3E50;"><strong style="color: #8B0000;">Years:</strong> 2020, 2024, 2025</div>
+  <div style="color: #2C3E50;"><strong style="color: #8B0000;">Role:</strong> PC Member</div>
+</div>
+```
+
+**Projects Page - Active Project Card:**
+```html
+<div style="background: rgba(255, 255, 255, 0.95); padding: 24px; border: 1px solid rgba(139, 0, 0, 0.2); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);">
+  <div style="background: #8B0000; color: #FFFFFF; padding: 4px 12px; border-radius: 3px; font-family: 'Fira Code', monospace;">ACTIVE</div>
+  <h3 style="color: #8B0000; font-family: 'Fira Code', monospace;">FAIR - Future AI Research</h3>
+  <p style="color: #2C3E50; font-family: 'Crimson Text', serif;">Working on logic for ethical human–AI collaboration...</p>
+</div>
 ```
 
 ---

@@ -223,26 +223,26 @@
         console.log('[service.html] Service data loaded:', serviceData);
         console.log('[service.html] Affiliations data loaded:', affiliationsData);
 
-        // Conference Organization (inline styles)
+        // Conference Organization (elegant white cards)
         const organizingContainer = document.getElementById('organizing-container');
         if (serviceData.organizing && serviceData.organizing.length > 0) {
           const organizingHTML = serviceData.organizing.map(org => `
-            <div style="background: #0a0a0a; color: #00ff00; padding: 20px; border-radius: 8px; margin-bottom: 16px; border-left: 4px solid #00ff00; font-family: 'Courier New', monospace;">
-              <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 8px; opacity: 0.9;">
-                <strong style="color: #00ff00 !important;">$ role:</strong> ${org.role}
+            <div style="background: rgba(255, 255, 255, 0.95); color: #000000; padding: 20px; border-radius: 8px; margin-bottom: 16px; border: 1px solid rgba(139, 0, 0, 0.2); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); font-family: 'Crimson Text', serif;">
+              <div style="color: #8B0000 !important; font-size: 0.875rem; margin-bottom: 8px; font-family: 'Fira Code', monospace;">
+                <strong style="color: #8B0000 !important;">Role:</strong> ${org.role}
               </div>
-              <h3 style="color: #00ff00 !important; font-size: 1.125rem; margin-bottom: 8px;">
+              <h3 style="color: #8B0000 !important; font-size: 1.125rem; margin-bottom: 8px; font-family: 'Fira Code', monospace;">
                 ${org.event}
               </h3>
-              <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 8px; opacity: 0.9;">
-                <strong style="color: #00ff00 !important;">$ location:</strong> ${org.location}
+              <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 8px;">
+                <strong style="color: #8B0000 !important;">Location:</strong> ${org.location}
               </div>
-              <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 8px; opacity: 0.9;">
-                <strong style="color: #00ff00 !important;">$ year:</strong> ${org.year}
+              <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 8px;">
+                <strong style="color: #8B0000 !important;">Year:</strong> ${org.year}
               </div>
               ${org.website ? `
                 <div style="margin-top: 12px;">
-                  <a href="${org.website}" target="_blank" rel="noopener" style="color: #00ff00 !important; text-decoration: none; border: 1px solid #00ff00; padding: 6px 12px; display: inline-block; border-radius: 4px; font-size: 0.75rem;">
+                  <a href="${org.website}" target="_blank" rel="noopener" style="color: #FFFFFF !important; background: #8B0000; text-decoration: none; border: none; padding: 6px 12px; display: inline-block; border-radius: 4px; font-size: 0.75rem; font-family: 'Fira Code', monospace; transition: background 0.2s ease;">
                     → Website
                   </a>
                 </div>
@@ -255,19 +255,19 @@
           organizingContainer.innerHTML = '';
         }
 
-        // Program Committees (terminal style with years list)
+        // Program Committees (elegant white cards)
         const pcContainer = document.getElementById('pc-container');
         if (serviceData.program_committees && serviceData.program_committees.length > 0) {
           const pcHTML = serviceData.program_committees.map(pc => `
-            <div style="background: #1a1a1a; color: #888888; padding: 16px; border-radius: 6px; margin-bottom: 12px; border-left: 3px solid #555555; font-family: 'Courier New', monospace;">
-              <h4 style="color: #CCCCCC !important; font-size: 1rem; margin-bottom: 6px;">
+            <div style="background: rgba(255, 255, 255, 0.95); color: #000000; padding: 16px; border-radius: 8px; margin-bottom: 12px; border: 1px solid rgba(139, 0, 0, 0.2); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); font-family: 'Crimson Text', serif;">
+              <h4 style="color: #8B0000 !important; font-size: 1rem; margin-bottom: 6px; font-family: 'Fira Code', monospace;">
                 ${pc.event}
               </h4>
-              <div style="color: #888888 !important; font-size: 0.875rem;">
-                <strong style="color: #CCCCCC !important;">$ years:</strong> ${Array.isArray(pc.years) ? pc.years.join(', ') : pc.years}
+              <div style="color: #2C3E50 !important; font-size: 0.875rem;">
+                <strong style="color: #8B0000 !important;">Years:</strong> ${Array.isArray(pc.years) ? pc.years.join(', ') : pc.years}
               </div>
-              <div style="color: #888888 !important; font-size: 0.875rem;">
-                <strong style="color: #CCCCCC !important;">$ role:</strong> ${pc.role}
+              <div style="color: #2C3E50 !important; font-size: 0.875rem;">
+                <strong style="color: #8B0000 !important;">Role:</strong> ${pc.role}
               </div>
             </div>
           `).join('');
@@ -275,24 +275,24 @@
           console.log('[service.html] ✅ Program committees displayed!', serviceData.program_committees.length, 'committees');
         }
 
-        // Editorial Service (inline styles)
+        // Editorial Service (elegant white cards)
         const editorialContainer = document.getElementById('editorial-container');
         if (serviceData.editorial && serviceData.editorial.length > 0) {
           const editorialHTML = serviceData.editorial.map(ed => `
-            <div style="background: #0a0a0a; color: #00ff00; padding: 20px; border-radius: 8px; margin-bottom: 16px; border-left: 4px solid #00ff00; font-family: 'Courier New', monospace;">
-              <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 8px; opacity: 0.9;">
-                <strong style="color: #00ff00 !important;">$ role:</strong> ${ed.role}
+            <div style="background: rgba(255, 255, 255, 0.95); color: #000000; padding: 20px; border-radius: 8px; margin-bottom: 16px; border: 1px solid rgba(139, 0, 0, 0.2); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); font-family: 'Crimson Text', serif;">
+              <div style="color: #8B0000 !important; font-size: 0.875rem; margin-bottom: 8px; font-family: 'Fira Code', monospace;">
+                <strong style="color: #8B0000 !important;">Role:</strong> ${ed.role}
               </div>
-              <h3 style="color: #00ff00 !important; font-size: 1.125rem; margin-bottom: 8px;">
+              <h3 style="color: #8B0000 !important; font-size: 1.125rem; margin-bottom: 8px; font-family: 'Fira Code', monospace;">
                 ${ed.journal}
               </h3>
               ${ed.section ? `
-                <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 8px; opacity: 0.9;">
-                  <strong style="color: #00ff00 !important;">$ section:</strong> ${ed.section}
+                <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 8px;">
+                  <strong style="color: #8B0000 !important;">Section:</strong> ${ed.section}
                 </div>
               ` : ''}
-              <div style="color: #00ff00 !important; font-size: 0.875rem; opacity: 0.9;">
-                <strong style="color: #00ff00 !important;">$ period:</strong> ${ed.year_start} - ${ed.year_end}
+              <div style="color: #2C3E50 !important; font-size: 0.875rem;">
+                <strong style="color: #8B0000 !important;">Period:</strong> ${ed.year_start} - ${ed.year_end}
               </div>
             </div>
           `).join('');
@@ -302,34 +302,34 @@
           editorialContainer.innerHTML = '';
         }
 
-        // Reviewing (compact list with terminal style)
+        // Reviewing (elegant white card)
         const reviewingContainer = document.getElementById('reviewing-container');
         if (serviceData.reviewing && serviceData.reviewing.length > 0) {
           const journals = serviceData.reviewing.filter(r => r.type === 'journal');
           const conferences = serviceData.reviewing.filter(r => r.type === 'conference');
 
           const reviewingHTML = `
-            <div style="background: #1a1a1a; color: #CCCCCC; padding: 20px; border-radius: 8px; font-family: 'Courier New', monospace;">
+            <div style="background: rgba(255, 255, 255, 0.95); color: #000000; padding: 20px; border-radius: 8px; border: 1px solid rgba(139, 0, 0, 0.2); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); font-family: 'Crimson Text', serif;">
               ${journals.length > 0 ? `
-                <h4 style="color: #CCCCCC !important; font-size: 1rem; margin-bottom: 12px; border-bottom: 1px solid #333; padding-bottom: 8px;">
-                  $ journals
+                <h4 style="color: #8B0000 !important; font-size: 1rem; margin-bottom: 12px; border-bottom: 1px solid rgba(139, 0, 0, 0.2); padding-bottom: 8px; font-family: 'Fira Code', monospace;">
+                  Journals
                 </h4>
                 <ul style="list-style: none; padding-left: 0; margin-bottom: 20px;">
                   ${journals.map(j => `
-                    <li style="color: #888888 !important; margin-bottom: 6px; padding-left: 20px; position: relative;">
-                      <span style="position: absolute; left: 0; color: #555;">→</span> ${j.venue}
+                    <li style="color: #2C3E50 !important; margin-bottom: 6px; padding-left: 20px; position: relative;">
+                      <span style="position: absolute; left: 0; color: #8B0000;">→</span> ${j.venue}
                     </li>
                   `).join('')}
                 </ul>
               ` : ''}
               ${conferences.length > 0 ? `
-                <h4 style="color: #CCCCCC !important; font-size: 1rem; margin-bottom: 12px; border-bottom: 1px solid #333; padding-bottom: 8px;">
-                  $ conferences
+                <h4 style="color: #8B0000 !important; font-size: 1rem; margin-bottom: 12px; border-bottom: 1px solid rgba(139, 0, 0, 0.2); padding-bottom: 8px; font-family: 'Fira Code', monospace;">
+                  Conferences
                 </h4>
                 <ul style="list-style: none; padding-left: 0;">
                   ${conferences.map(c => `
-                    <li style="color: #888888 !important; margin-bottom: 6px; padding-left: 20px; position: relative;">
-                      <span style="position: absolute; left: 0; color: #555;">→</span> ${c.venue}
+                    <li style="color: #2C3E50 !important; margin-bottom: 6px; padding-left: 20px; position: relative;">
+                      <span style="position: absolute; left: 0; color: #8B0000;">→</span> ${c.venue}
                     </li>
                   `).join('')}
                 </ul>
@@ -347,36 +347,36 @@
 
           if (affiliationsData.research_groups && affiliationsData.research_groups.length > 0) {
             groupsHTML += `
-              <h3 style="color: #000000 !important; font-size: 1.25rem; margin-bottom: 16px; font-family: 'Fira Code', monospace;">
+              <h3 style="color: #8B0000 !important; font-size: 1.25rem; margin-bottom: 16px; font-family: 'Fira Code', monospace;">
                 Research Groups
               </h3>
               ${affiliationsData.research_groups.map(group => `
-                <div style="background: #0a0a0a; color: #00ff00; padding: 20px; border-radius: 8px; margin-bottom: 16px; border-left: 4px solid #00ff00; font-family: 'Courier New', monospace;">
-                  <h4 style="color: #00ff00 !important; font-size: 1.125rem; margin-bottom: 8px;">
+                <div style="background: rgba(255, 255, 255, 0.95); color: #000000; padding: 20px; border-radius: 8px; margin-bottom: 16px; border: 1px solid rgba(139, 0, 0, 0.2); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); font-family: 'Crimson Text', serif;">
+                  <h4 style="color: #8B0000 !important; font-size: 1.125rem; margin-bottom: 8px; font-family: 'Fira Code', monospace;">
                     ${group.name}
                   </h4>
-                  <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 6px; opacity: 0.9;">
-                    <strong style="color: #00ff00 !important;">$ institution:</strong> ${group.institution}
+                  <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 6px;">
+                    <strong style="color: #8B0000 !important;">Institution:</strong> ${group.institution}
                   </div>
                   ${group.department ? `
-                    <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 6px; opacity: 0.9;">
-                      <strong style="color: #00ff00 !important;">$ department:</strong> ${group.department}
+                    <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 6px;">
+                      <strong style="color: #8B0000 !important;">Department:</strong> ${group.department}
                     </div>
                   ` : ''}
-                  <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 6px; opacity: 0.9;">
-                    <strong style="color: #00ff00 !important;">$ role:</strong> ${group.role}
+                  <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 6px;">
+                    <strong style="color: #8B0000 !important;">Role:</strong> ${group.role}
                   </div>
-                  <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 12px; opacity: 0.9;">
-                    <strong style="color: #00ff00 !important;">$ period:</strong> ${group.year_start} - ${group.year_end}
+                  <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 12px;">
+                    <strong style="color: #8B0000 !important;">Period:</strong> ${group.year_start} - ${group.year_end}
                   </div>
                   ${group.description ? `
-                    <p style="color: #00ff00 !important; font-size: 0.875rem; opacity: 0.9;">
+                    <p style="color: #2C3E50 !important; font-size: 0.875rem;">
                       ${group.description}
                     </p>
                   ` : ''}
                   ${group.website ? `
                     <div style="margin-top: 12px;">
-                      <a href="${group.website}" target="_blank" rel="noopener" style="color: #00ff00 !important; text-decoration: none; border: 1px solid #00ff00; padding: 6px 12px; display: inline-block; border-radius: 4px; font-size: 0.75rem;">
+                      <a href="${group.website}" target="_blank" rel="noopener" style="color: #FFFFFF !important; background: #8B0000; text-decoration: none; padding: 6px 12px; display: inline-block; border-radius: 4px; font-size: 0.75rem; font-family: 'Fira Code', monospace;">
                         → Website
                       </a>
                     </div>
@@ -388,29 +388,29 @@
 
           if (affiliationsData.professional_memberships && affiliationsData.professional_memberships.length > 0) {
             groupsHTML += `
-              <h3 style="color: #000000 !important; font-size: 1.25rem; margin-top: 32px; margin-bottom: 16px; font-family: 'Fira Code', monospace;">
+              <h3 style="color: #8B0000 !important; font-size: 1.25rem; margin-top: 32px; margin-bottom: 16px; font-family: 'Fira Code', monospace;">
                 Professional Societies
               </h3>
-              <div style="background: #1a1a1a; color: #CCCCCC; padding: 20px; border-radius: 8px; font-family: 'Courier New', monospace;">
+              <div style="background: rgba(255, 255, 255, 0.95); color: #000000; padding: 20px; border-radius: 8px; border: 1px solid rgba(139, 0, 0, 0.2); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); font-family: 'Crimson Text', serif;">
                 ${affiliationsData.professional_memberships.map(mem => `
-                  <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #333;">
-                    <h4 style="color: #CCCCCC !important; font-size: 1rem; margin-bottom: 8px;">
+                  <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(139, 0, 0, 0.2);">
+                    <h4 style="color: #8B0000 !important; font-size: 1rem; margin-bottom: 8px; font-family: 'Fira Code', monospace;">
                       ${mem.organization} - ${mem.full_name}
                     </h4>
                     ${mem.full_name_en ? `
-                      <div style="color: #888888 !important; font-size: 0.875rem; margin-bottom: 6px; font-style: italic;">
+                      <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 6px; font-style: italic;">
                         ${mem.full_name_en}
                       </div>
                     ` : ''}
-                    <div style="color: #888888 !important; font-size: 0.875rem; margin-bottom: 6px;">
-                      <strong style="color: #CCCCCC !important;">$ role:</strong> ${mem.role}
+                    <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 6px;">
+                      <strong style="color: #8B0000 !important;">Role:</strong> ${mem.role}
                     </div>
-                    <div style="color: #888888 !important; font-size: 0.875rem; margin-bottom: 6px;">
-                      <strong style="color: #CCCCCC !important;">$ period:</strong> ${mem.year_start} - ${mem.year_end}
+                    <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 6px;">
+                      <strong style="color: #8B0000 !important;">Period:</strong> ${mem.year_start} - ${mem.year_end}
                     </div>
                     ${mem.website ? `
                       <div style="margin-top: 8px;">
-                        <a href="${mem.website}" target="_blank" rel="noopener" style="color: #CCCCCC !important; text-decoration: none; border: 1px solid #555; padding: 4px 10px; display: inline-block; border-radius: 4px; font-size: 0.75rem;">
+                        <a href="${mem.website}" target="_blank" rel="noopener" style="color: #FFFFFF !important; background: #8B0000; text-decoration: none; padding: 4px 10px; display: inline-block; border-radius: 4px; font-size: 0.75rem; font-family: 'Fira Code', monospace;">
                           → Website
                         </a>
                       </div>
@@ -425,30 +425,30 @@
           console.log('[service.html] ✅ Affiliations displayed!');
         }
 
-        // Invited Talks (load from teaching.json guest_lectures)
+        // Invited Talks (elegant white cards)
         const talksContainer = document.getElementById('talks-container');
         try {
           const teachingData = await loadJSON('./data/teaching.json');
           if (teachingData.guest_lectures && teachingData.guest_lectures.length > 0) {
             const talksHTML = teachingData.guest_lectures.map(lecture => `
-              <div style="background: #0a0a0a; color: #00ff00; padding: 20px; border-radius: 8px; margin-bottom: 16px; border-left: 4px solid #00ff00; font-family: 'Courier New', monospace;">
-                <h3 style="color: #00ff00 !important; font-size: 1.125rem; margin-bottom: 8px;">
+              <div style="background: rgba(255, 255, 255, 0.95); color: #000000; padding: 20px; border-radius: 8px; margin-bottom: 16px; border: 1px solid rgba(139, 0, 0, 0.2); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); font-family: 'Crimson Text', serif;">
+                <h3 style="color: #8B0000 !important; font-size: 1.125rem; margin-bottom: 8px; font-family: 'Fira Code', monospace;">
                   ${lecture.title}
                 </h3>
-                <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 6px; opacity: 0.9;">
-                  <strong style="color: #00ff00 !important;">$ event:</strong> ${lecture.event}
+                <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 6px;">
+                  <strong style="color: #8B0000 !important;">Event:</strong> ${lecture.event}
                 </div>
-                <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 6px; opacity: 0.9;">
-                  <strong style="color: #00ff00 !important;">$ institution:</strong> ${lecture.institution}
+                <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 6px;">
+                  <strong style="color: #8B0000 !important;">Institution:</strong> ${lecture.institution}
                 </div>
-                <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 6px; opacity: 0.9;">
-                  <strong style="color: #00ff00 !important;">$ date:</strong> ${lecture.date}
+                <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 6px;">
+                  <strong style="color: #8B0000 !important;">Date:</strong> ${lecture.date}
                 </div>
-                <div style="color: #00ff00 !important; font-size: 0.875rem; margin-bottom: 6px; opacity: 0.9;">
-                  <strong style="color: #00ff00 !important;">$ location:</strong> ${lecture.location}
+                <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 6px;">
+                  <strong style="color: #8B0000 !important;">Location:</strong> ${lecture.location}
                 </div>
                 ${lecture.description ? `
-                  <p style="color: #00ff00 !important; font-size: 0.875rem; margin-top: 12px; opacity: 0.9;">
+                  <p style="color: #2C3E50 !important; font-size: 0.875rem; margin-top: 12px;">
                     ${lecture.description}
                   </p>
                 ` : ''}
@@ -459,7 +459,7 @@
           }
         } catch (error) {
           console.error('[service.html] Error loading talks:', error);
-          talksContainer.innerHTML = '<p style="color: #000000 !important; font-style: italic;">Invited talk information available in the Teaching section.</p>';
+          talksContainer.innerHTML = '<p style="color: #2C3E50 !important; font-style: italic;">Invited talk information available in the Teaching section.</p>';
         }
 
       } catch (error) {
