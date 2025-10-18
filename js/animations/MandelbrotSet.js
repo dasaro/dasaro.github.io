@@ -95,17 +95,6 @@ export class MandelbrotSet extends AnimationBase {
         return Math.abs(d);
     }
 
-    // Clear canvas to white
-    clearWhite() {
-        const len = this.canvas.width * this.canvas.height * 4;
-        for (let i = 0; i < len; i += 4) {
-            this.imageData.data[i] = 255;     // R
-            this.imageData.data[i + 1] = 255; // G
-            this.imageData.data[i + 2] = 255; // B
-            this.imageData.data[i + 3] = 255; // A
-        }
-    }
-
     // Render a chunk of rows
     renderChunk() {
         if (!this.isRunning) return;
@@ -159,19 +148,27 @@ export class MandelbrotSet extends AnimationBase {
             // Continue rendering this frame
             this.animationId = requestAnimationFrame(() => this.renderChunk());
         } else {
-            // Frame complete - advance zoom and start next frame
+            // Frame complete - advance zoom
             this.view.width *= this.config.zoomSpeed;
 
-            // Reset for next frame
-            this.yRow = 0;
-            this.clearWhite();
-
-            // Check if zoomed too far (reset)
+            // Check if we need to reset
             if (this.view.width < 1e-14) {
+                // Smooth reset
                 this.view.cx = this.startView.cx;
                 this.view.cy = this.startView.cy;
-                this.view.width = this.startView.width;
+                this.view.width = this.startView.width * 1.2; // Start slightly zoomed out
+
+                // Gentle fade on reset (30% opacity)
+                this.ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+                this.ctx.fillRect(0, 0, W, H);
+            } else {
+                // Normal inter-frame: very subtle fade
+                this.ctx.fillStyle = 'rgba(255, 255, 255, 0.02)';
+                this.ctx.fillRect(0, 0, W, H);
             }
+
+            // Reset row counter for next frame
+            this.yRow = 0;
 
             // Start next frame
             this.animationId = requestAnimationFrame(() => this.renderChunk());
@@ -187,7 +184,14 @@ export class MandelbrotSet extends AnimationBase {
                 this.canvas.width,
                 this.canvas.height
             );
-            this.clearWhite();
+            // Initial clear only (one time)
+            const len = this.imageData.data.length;
+            for (let i = 0; i < len; i += 4) {
+                this.imageData.data[i] = 255;     // R
+                this.imageData.data[i + 1] = 255; // G
+                this.imageData.data[i + 2] = 255; // B
+                this.imageData.data[i + 3] = 255; // A
+            }
         }
 
         // Start progressive rendering
