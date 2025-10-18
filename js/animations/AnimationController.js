@@ -136,31 +136,31 @@ export class AnimationController {
         updateTooltip();
 
         button.addEventListener('click', () => {
-            this.enabled = !this.enabled;
-            localStorage.setItem('bg-animation-enabled', this.enabled);
+            // Get all animation keys
+            const keys = Array.from(this.animations.keys());
+            const currentKey = this.getCurrentKey();
 
-            if (this.enabled) {
-                // Cycle through animations
-                const keys = Array.from(this.animations.keys());
-                const currentKey = this.getCurrentKey();
+            // Find next animation
+            let nextIndex = 0;
+            if (currentKey) {
                 const currentIndex = keys.indexOf(currentKey);
-                const nextKey = keys[(currentIndex + 1) % keys.length];
-
-                this.start(nextKey);
-
-                // Change symbol
-                symbolIndex = (symbolIndex + 1) % symbols.length;
-                button.querySelector('.symbol').textContent = symbols[symbolIndex];
-            } else {
-                this.stop();
-                this.canvas.classList.add('hidden');
-                this.canvas.classList.remove('active');
+                nextIndex = (currentIndex + 1) % keys.length;
             }
+
+            const nextKey = keys[nextIndex];
+            const AnimClass = this.animations.get(nextKey);
+
+            console.log(`[AnimationController] Cycling: ${currentKey || 'none'} → ${nextKey}`);
+            console.log(`[AnimationController] Starting: ${AnimClass.getMetadata().name}`);
+
+            this.start(nextKey);
+
+            // Cycle symbol
+            symbolIndex = (symbolIndex + 1) % symbols.length;
+            button.querySelector('.symbol').textContent = symbols[symbolIndex];
 
             // Update tooltip after toggle
             updateTooltip();
-
-            console.log('[AnimationController] Animation toggled:', this.enabled, this.getCurrentKey());
         });
     }
 
