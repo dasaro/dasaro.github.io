@@ -1162,6 +1162,316 @@ The website achieves a balance between **terminal aesthetics** (monospace fonts,
 
 ---
 
+## CSS Architecture Guidelines (2025)
+
+### ⚠️ ABSOLUTE RULE: NEVER USE INLINE STYLES
+
+**This is a strict architectural requirement. All styling MUST be in CSS files.**
+
+### NO Inline Styles Policy
+
+**CRITICAL RULE:** This project maintains a strict separation of content (HTML) and presentation (CSS).
+
+❌ **NEVER DO THIS:**
+```html
+<!-- WRONG - inline styles -->
+<div style="color: red; margin-bottom: 20px;">
+<p style="font-size: 1.2rem; font-weight: bold;">
+<span style="background: rgba(255,255,255,0.95);">
+```
+
+✅ **ALWAYS DO THIS:**
+```html
+<!-- CORRECT - CSS classes -->
+<div class="text-accent mb-lg">
+<p class="text-xl text-bold">
+<span class="card">
+```
+
+**NEVER:**
+- Use `style=""` attributes in HTML files
+- Add `<style>` blocks to HTML files (except for truly exceptional cases, documented with comments)
+- Use inline styling in JavaScript-generated HTML
+- Hardcode colors like `#FF0000` or `rgb(255,0,0)` - always use CSS variables
+
+**ALWAYS:**
+- Define all styling in `/css/main.css` or other CSS files
+- Use semantic CSS class names
+- Reference classes via `class=""` attributes
+- Use CSS variables for all colors, spacing, and sizes
+
+### CSS File Organization
+
+The `css/main.css` file follows this structure:
+
+```css
+/* 1. Imports (Google Fonts) */
+@import url('...');
+
+/* 2. CSS Reset */
+*, *::before, *::after { ... }
+
+/* 3. CSS Variables */
+:root {
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-link: #8B0000;
+  /* ... all design tokens */
+}
+
+/* 4. Typography */
+body, h1, h2, h3, p, a, code { ... }
+
+/* 5. Layout & Grid System */
+.container, .grid, .grid-2, .grid-3, .grid-4 { ... }
+
+/* 6. Navigation */
+.nav-wrapper, nav, .nav-brand, .nav-menu, .nav-link { ... }
+
+/* 7. Main Content */
+main, section, .section-title { ... }
+
+/* 8. Cards */
+.card, .card:hover { ... }
+
+/* 9. Component-Specific Styles */
+/* Publication Cards */
+.publication-card, .publication-title, .publication-authors { ... }
+
+/* Timeline Cards */
+.timeline-card, .timeline-marker, .timeline-content { ... }
+
+/* Contact Components */
+.contact-card, .contact-item, .contact-link { ... }
+
+/* Service Components */
+.service-card, .service-year, .service-role { ... }
+
+/* Project Components */
+.project-card, .project-status, .project-meta { ... }
+
+/* 10. Buttons */
+.btn, .btn-primary, .btn:hover { ... }
+
+/* 11. Badges */
+.badge, .badge-oa, .badge-current, .badge-accepted { ... }
+
+/* 12. Footer */
+footer, .footer-content, .footer-links { ... }
+
+/* 13. Animations */
+#bg-animation-canvas, .animation-toggle { ... }
+
+/* 14. Utility Classes */
+.text-center, .mt-sm, .mb-md, .hidden { ... }
+
+/* 15. Responsive (Media Queries) */
+@media (max-width: 768px) { ... }
+```
+
+### CSS Class Naming Conventions
+
+**Use kebab-case for all class names:**
+```css
+.publication-card      /* CORRECT */
+.publicationCard       /* WRONG */
+.publication_card      /* WRONG */
+```
+
+**Component-based naming (BEM-inspired):**
+```css
+/* Component */
+.project-card { ... }
+
+/* Component modifiers */
+.project-card.current { ... }
+.project-card.past { ... }
+
+/* Component children */
+.project-meta { ... }
+.project-description { ... }
+.project-outputs { ... }
+```
+
+**Utility class prefixes:**
+```css
+/* Spacing */
+.mt-sm, .mb-md, .p-lg     /* margin-top, margin-bottom, padding */
+
+/* Typography */
+.text-center, .text-bold, .text-xs
+
+/* Display */
+.flex, .inline-block, .hidden
+```
+
+### Semantic CSS Classes
+
+**Defined in main.css (lines 1086-1345):**
+
+**Utility Classes:**
+- Spacing: `.mb-xs`, `.mt-xs`, `.p-sm`, `.p-md`, `.p-lg`, `.p-xl`
+- Typography: `.text-accent`, `.text-secondary`, `.text-bold`, `.text-xs`, `.text-sm`, `.text-lg`, `.text-xl`, `.font-mono`, `.font-serif`
+- Display: `.flex`, `.inline-block`, `.flex-gap-sm`, `.flex-gap-md`, `.align-center`
+
+**Component Classes:**
+- Contact: `.contact-card`, `.contact-grid`, `.contact-section-title`, `.contact-item`, `.contact-icon`, `.contact-link`, `.copy-btn`, `.profile-links`, `.profile-link`, `.location-info`
+- Service: `.service-card`, `.service-year`, `.service-role`, `.service-list`
+- Projects: `.project-card`, `.project-status`, `.project-meta`, `.project-description`, `.project-outputs`, `.project-link`
+
+### Maintaining the Architecture
+
+**When adding new features:**
+
+1. **Add CSS classes to main.css** in the appropriate section
+2. **Use the classes in HTML** via `class=""` attributes
+3. **Never use inline styles** as a shortcut
+
+**When updating styles:**
+
+1. **Find the existing class** in main.css
+2. **Edit the CSS rule** directly
+3. **Never add `style=""` overrides** in HTML
+
+**When generating HTML via JavaScript:**
+
+```javascript
+// CORRECT - Uses CSS classes
+const html = `
+  <div class="project-card current">
+    <span class="project-status">ACTIVE</span>
+    <h3>${project.name}</h3>
+    <div class="project-meta">
+      <strong>Role:</strong> ${project.role}
+    </div>
+  </div>
+`;
+
+// WRONG - Uses inline styles
+const html = `
+  <div style="background: white; padding: 24px;">
+    <span style="background: #8B0000; color: white;">ACTIVE</span>
+    <h3 style="color: #8B0000;">${project.name}</h3>
+  </div>
+`;
+```
+
+### Cache Busting
+
+When making CSS changes:
+
+1. **Edit css/main.css** (or other CSS files)
+2. **Increment the version number** in all HTML files:
+   ```html
+   <!-- Old -->
+   <link rel="stylesheet" href="css/main.css?v=8">
+
+   <!-- New -->
+   <link rel="stylesheet" href="css/main.css?v=9">
+   ```
+3. **Update JavaScript includes** as well:
+   ```html
+   <script src="js/main.js?v=9"></script>
+   <script src="js/animations.js?v=9"></script>
+   ```
+
+**Current version: v=9** (as of 2025-10-18)
+
+### Benefits of This Architecture
+
+1. **Maintainability:** All styles in one place, easy to find and update
+2. **Consistency:** Reusable classes ensure visual consistency
+3. **Performance:** Browser can cache CSS files effectively
+4. **Separation of Concerns:** HTML for structure, CSS for presentation
+5. **Collaboration:** Other developers can understand and modify styling easily
+6. **DRY Principle:** Don't Repeat Yourself - define once, use everywhere
+
+### Why This Rule Exists
+
+1. **Maintainability**: One place to update styles (CSS files)
+2. **Consistency**: Reusable classes ensure uniform appearance
+3. **Performance**: Browsers cache CSS efficiently
+4. **Separation of Concerns**: Structure (HTML) separated from presentation (CSS)
+5. **Debugging**: Easier to find and fix styling issues
+6. **Collaboration**: Clear, documented styling system
+
+### Common Patterns
+
+**Creating a new page:**
+
+1. Copy an existing HTML file structure
+2. Use existing CSS classes for layout and components
+3. If you need new styling, add classes to main.css first
+4. Apply classes in your HTML
+
+**Adding dynamic content (JavaScript):**
+
+1. Define CSS classes in main.css for the component
+2. Generate HTML with class references in JavaScript
+3. Never embed style values in JavaScript strings
+
+**Debugging styling issues:**
+
+1. Use browser DevTools to inspect element
+2. Check which CSS classes are applied
+3. Edit the CSS rule in main.css
+4. Refresh with cache cleared (Cmd/Ctrl + Shift + R)
+
+### Common Mistakes to Avoid
+
+❌ **Mixing inline and class styles:**
+```html
+<div class="card" style="margin-top: 20px;">  <!-- NO! -->
+```
+✅ Instead: `<div class="card mt-lg">`
+
+❌ **Hardcoded colors:**
+```css
+.my-class { color: #8B0000; }  <!-- NO! -->
+```
+✅ Instead: `color: var(--color-accent-primary);`
+
+❌ **Hardcoded spacing:**
+```css
+.my-class { margin-bottom: 24px; }  <!-- NO! -->
+```
+✅ Instead: `margin-bottom: var(--space-lg);`
+
+❌ **!important to override inline styles:**
+```css
+.my-class { color: red !important; }  <!-- NO! -->
+```
+✅ Instead: Remove inline styles, use CSS classes
+
+### Quick Reference: When You Need Styling
+
+**Need to style something?**
+1. ✅ Check utility classes first (`.mb-md`, `.text-accent`, etc.)
+2. ✅ Check component classes second (`.card`, `.project-card`, etc.)
+3. ✅ Add to main.css third (if neither exists)
+4. ❌ NEVER add inline styles
+
+**Common patterns:**
+- **Spacing:** Use `.mb-md`, `.mt-lg`, `.p-xl`
+- **Colors:** Use `.text-accent`, `var(--color-accent-primary)`
+- **Cards:** Use `.card`, `.project-card`, `.contact-card`
+- **Typography:** Use `.text-xl`, `.text-bold`, `.font-mono`
+
+**When in doubt:** Add to CSS file, not HTML!
+
+### Enforcement
+
+**Before committing code:**
+- [ ] Search for `style="` in all HTML files → Should be ZERO results
+- [ ] Search for `<style>` blocks → Should be minimal, well-documented
+- [ ] Check JavaScript files for inline styling → Should use classes only
+- [ ] Verify all colors use CSS variables
+- [ ] Verify all spacing uses utility classes or variables
+
+**This CSS architecture is MANDATORY. All future updates must follow these guidelines.**
+
+---
+
 ## Success Criteria
 
 ### Before declaring each phase complete, verify:
@@ -1211,3 +1521,272 @@ The site will serve as both a professional showcase and a working example of cle
 ---
 
 **Ready to start building?** Begin with Phase 1! 🚀⚡📐
+---
+
+## Animation Architecture (2025 Refactor)
+
+### Modular Structure
+
+As of 2025-10-18, the animation system has been refactored into a clean modular architecture. Each animation is now a self-contained module in `js/animations/`:
+
+**File Organization:**
+```
+js/animations/
+├── AnimationBase.js       # Base class with common functionality
+├── AnimationController.js # Main controller/router
+├── GameOfLife.js          # Conway's Game of Life
+├── FibonacciSpiral.js     # Fibonacci spiral
+├── PrimeSpiral.js         # Prime number spiral (Ulam)
+├── RiemannZeta.js         # Riemann zeta function
+├── MandelbrotSet.js       # Mandelbrot set zoom
+├── ProofTree.js           # Logic proof tree
+├── PacMan.js              # Pac-Man game
+└── Rule30.js              # Rule 30 cellular automaton
+```
+
+### Architecture Benefits
+
+1. **Maintainability**: Easy to find and edit specific animations
+2. **Modularity**: Each animation completely independent
+3. **Scalability**: Easy to add/remove animations
+4. **Configuration**: Each animation has own settings
+5. **Testing**: Can test animations individually
+6. **Performance**: Only load what's needed
+7. **Clean Code**: Much more organized and readable
+
+### Base Class (AnimationBase.js)
+
+All animations extend from `AnimationBase` which provides:
+
+```javascript
+export class AnimationBase {
+    constructor(canvas, ctx) {
+        this.canvas = canvas;
+        this.ctx = ctx;
+        this.animationId = null;
+        this.timeoutId = null;
+        this.isRunning = false;
+        
+        // Default config (overridable)
+        this.config = {
+            opacity: 0.15,
+            speed: 1.0,
+            fadeAmount: 0.02
+        };
+    }
+    
+    start()    // Start animation
+    stop()     // Stop and cleanup
+    animate()  // To be implemented by subclasses
+    static getMetadata() // Returns name, key, description
+}
+```
+
+### Adding a New Animation
+
+**Step 1:** Create `js/animations/NewAnimation.js`:
+
+```javascript
+import { AnimationBase } from './AnimationBase.js';
+
+export class NewAnimation extends AnimationBase {
+    constructor(canvas, ctx) {
+        super(canvas, ctx);
+        
+        // Animation-specific config
+        this.config = {
+            opacity: 0.3,
+            speed: 1.0,
+            fadeAmount: 0.02,
+            // ... custom parameters
+        };
+        
+        // Initialize state variables
+        this.myState = 0;
+    }
+    
+    static getMetadata() {
+        return {
+            name: 'New Animation',
+            key: 'newAnimation',
+            description: 'Description here'
+        };
+    }
+    
+    animate() {
+        if (!this.isRunning) return;
+        
+        // Animation implementation
+        // ...
+        
+        this.animationId = requestAnimationFrame(() => this.animate());
+    }
+}
+```
+
+**Step 2:** Register in `AnimationController.js`:
+
+```javascript
+import { NewAnimation } from './NewAnimation.js';
+
+// In constructor:
+this.animations = new Map([
+    // ... existing animations ...
+    ['newAnimation', NewAnimation]
+]);
+```
+
+**Step 3:** Test and commit!
+
+### Animation Configuration
+
+Each animation defines its own config object with parameters like:
+
+- `opacity`: Visibility level (0.1-0.6)
+- `speed`: Animation speed multiplier
+- `fadeAmount`: Canvas fade per frame
+- Animation-specific parameters (e.g., `cellSize`, `maxIterations`, `seriesTerms`)
+
+**Example from RiemannZeta.js:**
+```javascript
+this.config = {
+    opacity: 0.6,
+    speed: 0.12,
+    fadeAmount: 0.04,
+    lineWidth: 2.5,
+    dotRadius: 7,
+    seriesTerms: 500
+};
+```
+
+### Animation Controller
+
+The `AnimationController` manages all animations:
+
+- **Registration**: All animations registered in a Map
+- **Random Start**: Picks random animation on page load
+- **Toggle Button**: Cycles through animations
+- **Keyboard Shortcut**: Press 'A' to toggle
+- **Canvas Management**: Handles resize, visibility
+- **Cleanup**: Proper stop/start between animations
+
+### Metadata System
+
+Each animation provides metadata via static method:
+
+```javascript
+static getMetadata() {
+    return {
+        name: 'Riemann Zeta',        // Display name
+        key: 'riemann',              // Internal key
+        description: 'Polar plot...' // Tooltip description
+    };
+}
+```
+
+### State Management
+
+Each animation manages its own state:
+
+- **Constructor**: Initialize all state variables as `this.property`
+- **animate()**: Update state, draw frame, request next frame
+- **stop()**: Inherited from AnimationBase, cleans up automatically
+
+**Example:**
+```javascript
+constructor(canvas, ctx) {
+    super(canvas, ctx);
+    this.t = 14.134725;  // State variable
+    this.path = [];      // State variable
+}
+
+animate() {
+    if (!this.isRunning) return;  // Guard check
+    
+    // Update state
+    this.t += this.config.speed;
+    
+    // Draw frame
+    // ...
+    
+    // Request next frame
+    this.animationId = requestAnimationFrame(() => this.animate());
+}
+```
+
+### Best Practices
+
+1. **Always guard animate()**: `if (!this.isRunning) return;`
+2. **Use arrow functions for RAF**: `requestAnimationFrame(() => this.animate())`
+3. **Store timeouts**: `this.timeoutId = setTimeout(...)`
+4. **Parameterize config**: Don't hard-code values
+5. **Clean metadata**: Descriptive names and descriptions
+6. **Test individually**: Each animation should work standalone
+
+### Migration from Monolithic (Pre-2025)
+
+The old `js/animations.js` (2000+ lines) has been split into:
+
+- 1 base class (AnimationBase.js)
+- 1 controller (AnimationController.js)
+- 8 animation modules (one per animation)
+
+**Old structure:**
+```javascript
+class BackgroundAnimations {
+    gameOfLife() { /* 100 lines */ }
+    fibonacciSpiral() { /* 100 lines */ }
+    // ... 6 more methods
+}
+```
+
+**New structure:**
+```javascript
+// Each animation is a separate file/class
+export class GameOfLife extends AnimationBase {
+    // Self-contained implementation
+}
+```
+
+### Cache Busting
+
+When making changes to animations:
+
+1. Edit the animation file (e.g., `RiemannZeta.js`)
+2. Update version in HTML files:
+   ```html
+   <script type="module" src="js/animations/AnimationController.js?v=19"></script>
+   ```
+3. Increment version number (`v=18` → `v=19`)
+4. Commit changes
+
+**Current version: v=18** (as of 2025-10-18)
+
+### HTML Integration
+
+All HTML files use ES6 modules:
+
+```html
+<script type="module" src="js/animations/AnimationController.js?v=18"></script>
+```
+
+**Note:** Must use `type="module"` for ES6 imports to work.
+
+### Troubleshooting
+
+**Animation not starting:**
+- Check browser console for import errors
+- Verify all animation files exist in `js/animations/`
+- Check that AnimationController imports match file names
+
+**Animation not stopping cleanly:**
+- Verify `if (!this.isRunning) return;` guard at start of `animate()`
+- Check that timeouts use `this.timeoutId`
+- Ensure base class `stop()` is called
+
+**Animation looks different:**
+- Check `config` object for opacity, speed, etc.
+- Verify canvas fade amount (`fadeAmount`)
+- Compare with old implementation if needed
+
+---
