@@ -573,12 +573,10 @@ class BackgroundAnimations {
                 this.ctx.fill();
             }
 
-            // Reset when complete
+            // Loop indefinitely - reset immediately when reaching tMax
             if (t >= tMax) {
-                setTimeout(() => {
-                    t = T_ZERO + 0.001;
-                    path = [];
-                }, 2000);
+                t = T_ZERO + 0.001;
+                path = [];
             }
 
             this.animationId = requestAnimationFrame(animate);
