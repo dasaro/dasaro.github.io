@@ -1,6 +1,6 @@
 // ==========================================
-// MANDELBROT SET ZOOM
-// Only the inner set boundary visible
+// MANDELBROT SET - DISTANCE ESTIMATOR
+// Border-only rendering with progressive chunks
 // ==========================================
 
 import { AnimationBase } from './AnimationBase.js';
@@ -9,128 +9,202 @@ export class MandelbrotSet extends AnimationBase {
     constructor(canvas, ctx) {
         super(canvas, ctx);
 
+        // Animation-specific config
         this.config = {
-            maxIterations: 200,
-            zoomSpeed: 0.018,
-            opacity: 0.50
+            opacity: 0.5,
+            zoomSpeed: 0.98,     // Scale multiplier per frame (smaller = faster)
+            rowsPerChunk: 16,    // Rows rendered per tick
+            epsFactor: 1.0,      // Border thickness factor
+            baseIterations: 120,  // Base iteration count
+            borderColor: { r: 139, g: 0, b: 0 },  // RED for border
+            fadeAmount: 0.01
         };
 
-        this.centerX = this.canvas.width / 2;
-        this.centerY = this.canvas.height / 2;
-        this.zoom = 1;
-        this.centerRe = -0.7;
-        this.centerIm = 0;
-        this.frameCount = 0;
+        // Seahorse Valley coordinates (beautiful zoom target)
+        this.start = {
+            cx: -0.743643887037158704752191506114774,
+            cy: 0.131825904205311970493132056385139,
+            width: 3.5
+        };
 
-        this.regions = [
-            { re: -0.7, im: 0 },
-            { re: -0.5, im: 0.5 },
-            { re: 0.285, im: 0.01 },
-            { re: -0.8, im: 0.156 },
-            { re: -0.4, im: 0.6 },
-            { re: -0.7269, im: 0.1889 }
-        ];
+        // Current viewport
+        this.view = {
+            cx: this.start.cx,
+            cy: this.start.cy,
+            width: this.start.width
+        };
+
+        // Progressive rendering state
+        this.yRow = 0;
+        this.imageData = null;
     }
 
     static getMetadata() {
         return {
             name: 'Mandelbrot Set',
             key: 'mandelbrot',
-            description: 'Mandelbrot set boundary zoom with red fractal edges'
+            description: 'Distance-estimator border zoom on Seahorse Valley'
         };
     }
 
-    mandelbrot(cRe, cIm) {
-        let zRe = 0, zIm = 0;
-        let iteration = 0;
-
-        while (zRe * zRe + zIm * zIm <= 4 && iteration < this.config.maxIterations) {
-            const temp = zRe * zRe - zIm * zIm + cRe;
-            zIm = 2 * zRe * zIm + cIm;
-            zRe = temp;
-            iteration++;
-        }
-
-        return iteration;
+    // Calculate pixel size in complex plane
+    pixelSize() {
+        return this.view.width / this.canvas.width;
     }
 
-    isInnerBoundary(x, y) {
-        const cRe = this.centerRe + (x - this.centerX) / (this.zoom * 200);
-        const cIm = this.centerIm + (y - this.centerY) / (this.zoom * 200);
+    // Convert canvas pixel to complex coordinates
+    toComplex(pixelX, pixelY) {
+        const pix = this.pixelSize();
+        const cx = this.view.cx + (pixelX - this.canvas.width / 2) * pix;
+        const cy = this.view.cy + (pixelY - this.canvas.height / 2) * pix;
+        return [cx, cy];
+    }
 
-        const centerIter = this.mandelbrot(cRe, cIm);
+    // Mandelbrot distance estimator
+    // Returns distance estimate (Infinity if inside set)
+    mandelDE(cx, cy, maxIter) {
+        let zx = 0, zy = 0;    // z
+        let dx = 0, dy = 0;    // dz/dc derivative
+        let it = 0;
+        const bailout = 4.0;
 
-        // If this point is IN the set, check if neighbors are OUT
-        if (centerIter === this.config.maxIterations) {
-            // Check 4 neighbors (up, down, left, right)
-            const neighbors = [
-                [x, y - 1], [x, y + 1], [x - 1, y], [x + 1, y]
-            ];
+        for (; it < maxIter; it++) {
+            // z^2 + c
+            const zx2 = zx * zx - zy * zy + cx;
+            const zy2 = 2 * zx * zy + cy;
 
-            for (const [nx, ny] of neighbors) {
-                const nRe = this.centerRe + (nx - this.centerX) / (this.zoom * 200);
-                const nIm = this.centerIm + (ny - this.centerY) / (this.zoom * 200);
-                const nIter = this.mandelbrot(nRe, nIm);
+            // Derivative: dz' = 2z * dz + 1
+            const ndx = 2 * (zx * dx - zy * dy) + 1;
+            const ndy = 2 * (zx * dy + zy * dx);
 
-                // If any neighbor is NOT in the set, we're on the boundary
-                if (nIter < this.config.maxIterations) {
-                    return true;
+            zx = zx2;
+            zy = zy2;
+            dx = ndx;
+            dy = ndy;
+
+            if (zx * zx + zy * zy > bailout) break;
+        }
+
+        if (it >= maxIter) return Infinity;
+
+        const modz = Math.hypot(zx, zy);
+        const moddz = Math.hypot(dx, dy);
+
+        // Distance estimate: d ≈ |z| ln|z| / |dz/dc|
+        const d = (modz * Math.log(modz)) / (moddz || 1e-16);
+        return Math.abs(d);
+    }
+
+    // Clear canvas to white
+    clearWhite() {
+        const len = this.canvas.width * this.canvas.height * 4;
+        for (let i = 0; i < len; i += 4) {
+            this.imageData.data[i] = 255;     // R
+            this.imageData.data[i + 1] = 255; // G
+            this.imageData.data[i + 2] = 255; // B
+            this.imageData.data[i + 3] = 255; // A
+        }
+    }
+
+    // Render a chunk of rows
+    renderChunk() {
+        if (!this.isRunning) return;
+
+        const W = this.canvas.width;
+        const H = this.canvas.height;
+        const rowsPerTick = this.config.rowsPerChunk;
+        const epsFactor = this.config.epsFactor;
+        const pix = this.pixelSize();
+
+        // Adaptive iteration count based on zoom level
+        const mag = this.start.width / this.view.width;
+        const extra = Math.max(0, Math.floor(20 * Math.log2(mag)));
+        const maxIter = this.config.baseIterations + extra;
+
+        // Border threshold
+        const borderThresh = epsFactor * pix * 1.2;
+
+        // Render rows
+        for (let row = 0; row < rowsPerTick && this.yRow < H; row++, this.yRow++) {
+            let offset = this.yRow * W * 4;
+
+            for (let x = 0; x < W; x++) {
+                const [cx, cy] = this.toComplex(x, this.yRow);
+                const d = this.mandelDE(cx, cy, maxIter);
+
+                // Check if on border
+                const isBorder = (d !== Infinity) && (d < borderThresh);
+
+                // Write pixel (RED for border, white otherwise)
+                if (isBorder) {
+                    this.imageData.data[offset] = this.config.borderColor.r;
+                    this.imageData.data[offset + 1] = this.config.borderColor.g;
+                    this.imageData.data[offset + 2] = this.config.borderColor.b;
+                } else {
+                    this.imageData.data[offset] = 255;
+                    this.imageData.data[offset + 1] = 255;
+                    this.imageData.data[offset + 2] = 255;
                 }
+                this.imageData.data[offset + 3] = 255;
+
+                offset += 4;
             }
         }
 
-        return false;
+        // Update canvas
+        this.ctx.putImageData(this.imageData, 0, 0);
+
+        // Check if frame complete
+        if (this.yRow < H) {
+            // Continue rendering this frame
+            this.animationId = requestAnimationFrame(() => this.renderChunk());
+        } else {
+            // Frame complete - advance zoom and start next frame
+            this.view.width *= this.config.zoomSpeed;
+
+            // Reset for next frame
+            this.yRow = 0;
+            this.clearWhite();
+
+            // Check if zoomed too far (reset)
+            if (this.view.width < 1e-14) {
+                this.view.cx = this.start.cx;
+                this.view.cy = this.start.cy;
+                this.view.width = this.start.width;
+            }
+
+            // Start next frame
+            this.animationId = requestAnimationFrame(() => this.renderChunk());
+        }
     }
 
     animate() {
         if (!this.isRunning) return;
 
-        this.frameCount++;
-
-        // Clear to pure white
-        this.ctx.fillStyle = '#FFFFFF';
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-
-        // Enable high-quality rendering
-        this.ctx.imageSmoothingEnabled = true;
-        this.ctx.imageSmoothingQuality = 'high';
-
-        // Detect and draw only inner boundary
-        const step = 1; // Pixel-perfect for smooth curves
-
-        // Collect boundary pixels
-        const boundaryPixels = [];
-
-        for (let x = 0; x < this.canvas.width; x += step) {
-            for (let y = 0; y < this.canvas.height; y += step) {
-                if (this.isInnerBoundary(x, y)) {
-                    boundaryPixels.push({ x, y });
-                }
-            }
+        // Initialize image data if needed
+        if (!this.imageData) {
+            this.imageData = this.ctx.createImageData(
+                this.canvas.width,
+                this.canvas.height
+            );
+            this.clearWhite();
         }
 
-        // Draw boundary pixels with subtle red
-        boundaryPixels.forEach(({ x, y }) => {
-            this.ctx.fillStyle = `rgba(139, 0, 0, ${this.config.opacity})`;
-            this.ctx.fillRect(x - 0.5, y - 0.5, step + 1, step + 1);
-        });
+        // Start progressive rendering
+        this.yRow = 0;
+        this.renderChunk();
+    }
 
-        // Apply light blur for smooth curves
-        this.ctx.filter = 'blur(0.8px)';
-        this.ctx.drawImage(this.canvas, 0, 0);
-        this.ctx.filter = 'none';
+    stop() {
+        super.stop();
 
-        // Zoom
-        this.zoom *= (1 + this.config.zoomSpeed);
-
-        // Reset
-        if (this.zoom > 120) {
-            this.zoom = 1;
-            const region = this.regions[Math.floor(Math.random() * this.regions.length)];
-            this.centerRe = region.re;
-            this.centerIm = region.im;
-        }
-
-        this.animationId = requestAnimationFrame(() => this.animate());
+        // Reset state
+        this.view = {
+            cx: this.start.cx,
+            cy: this.start.cy,
+            width: this.start.width
+        };
+        this.yRow = 0;
+        this.imageData = null;
     }
 }
