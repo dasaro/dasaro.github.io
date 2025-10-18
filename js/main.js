@@ -255,12 +255,43 @@ function showError(container, message = 'Error loading data') {
 // Initialize on DOM Content Loaded
 // ============================================
 
+/**
+ * Load and populate footer with personal data
+ */
+async function loadFooterData() {
+  try {
+    const personalData = await loadJSON('./data/personal.json');
+    if (personalData) {
+      // Update footer name
+      const footerName = document.getElementById('footer-name');
+      if (footerName) {
+        footerName.textContent = personalData.name;
+      }
+
+      // Update footer GitHub link
+      const footerGithub = document.getElementById('footer-github');
+      if (footerGithub && personalData.contact && personalData.contact.github) {
+        footerGithub.href = `https://github.com/${personalData.contact.github}`;
+      }
+
+      // Update footer Scholar link
+      const footerScholar = document.getElementById('footer-scholar');
+      if (footerScholar && personalData.contact && personalData.contact.scholar) {
+        footerScholar.href = personalData.contact.scholar;
+      }
+    }
+  } catch (error) {
+    console.error('Error loading footer data:', error);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   // Core initialization
   initNavigation();
   initSmoothScroll();
   initScrollAnimations();
   updateFooterYear();
+  loadFooterData(); // Load footer data on all pages
 
   // Optional features
   if (document.body.classList.contains('enable-back-to-top')) {

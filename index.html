@@ -60,12 +60,10 @@
     <section class="hero">
       <div class="container">
         <div class="hero-content fade-in">
-          <h1>Fabio Aurelio D'Asaro</h1>
-          <p class="hero-subtitle">Postdoctoral Researcher in Logic</p>
-          <p class="hero-affiliations">
-            University of Salento <span class="logic-symbol">∧</span>
-            University of Verona <span class="logic-symbol">∧</span>
-            University College London
+          <h1 id="hero-name">Loading...</h1>
+          <p class="hero-subtitle" id="hero-title">Loading...</p>
+          <p class="hero-affiliations" id="hero-affiliations">
+            <!-- Affiliations loaded from JSON -->
           </p>
           <p class="hero-tagline">
             <em>Exploring the interface of formal epistemology, AI, probabilistic reasoning, and argumentation</em>
@@ -78,16 +76,9 @@
     <section id="about-preview">
       <div class="container">
         <h2 class="section-title">About</h2>
-        <div class="about-content">
-          <p>
-            I am a researcher in Logic (PHIL-02/A) working at the interface of formal epistemology
-            and AI, probabilistic and temporal reasoning, argumentation, and logic programming (ASP/ILASP).
-          </p>
-          <p>
-            My research focuses on developing formal frameworks for reasoning about uncertainty,
-            knowledge, and actions in dynamic environments.
-          </p>
-          <a href="about.html" class="btn">Learn More →</a>
+        <div class="about-content" id="about-content">
+          <!-- About text loaded from JSON -->
+          <p class="loading-message">Loading...</p>
         </div>
       </div>
     </section>
@@ -96,31 +87,9 @@
     <section id="research-interests">
       <div class="container">
         <h2 class="section-title">Research Interests</h2>
-        <div class="grid grid-3">
-          <div class="card scroll-animate">
-            <h3><span class="logic-symbol">∃</span> Uncertain & Epistemic Logics</h3>
-            <p>Formal systems for reasoning about uncertainty and knowledge</p>
-          </div>
-          <div class="card scroll-animate">
-            <h3><span class="logic-symbol">→</span> Logic Programming</h3>
-            <p>ASP, ILASP, and inductive logic programming applications</p>
-          </div>
-          <div class="card scroll-animate">
-            <h3><span class="logic-symbol">⊢</span> Argumentation</h3>
-            <p>Formal argumentation theory and learning semantics</p>
-          </div>
-          <div class="card scroll-animate">
-            <h3><span class="logic-symbol">λ</span> Explainable AI</h3>
-            <p>Making AI systems transparent and interpretable</p>
-          </div>
-          <div class="card scroll-animate">
-            <h3><span class="logic-symbol">∀</span> Probabilistic Reasoning</h3>
-            <p>Combining logic with probability theory</p>
-          </div>
-          <div class="card scroll-animate">
-            <h3><span class="logic-symbol">⊨</span> Event Calculus</h3>
-            <p>Temporal reasoning about actions and their effects</p>
-          </div>
+        <div class="grid grid-3" id="research-interests-grid">
+          <!-- Research interests loaded from JSON -->
+          <p class="loading-message">Loading research interests...</p>
         </div>
       </div>
     </section>
@@ -146,19 +115,19 @@
           <h3>Scholar Metrics</h3>
           <div class="metrics-grid grid grid-3">
             <div class="metric">
-              <div class="metric-value" id="citations">227</div>
+              <div class="metric-value" id="citations">—</div>
               <div class="metric-label">Citations</div>
             </div>
             <div class="metric">
-              <div class="metric-value" id="h-index">10</div>
+              <div class="metric-value" id="h-index">—</div>
               <div class="metric-label">h-index</div>
             </div>
             <div class="metric">
-              <div class="metric-value" id="i10-index">10</div>
+              <div class="metric-value" id="i10-index">—</div>
               <div class="metric-label">i10-index</div>
             </div>
           </div>
-          <p class="metric-note">Last updated: September 2025</p>
+          <p class="metric-note" id="metrics-updated">Loading...</p>
         </div>
       </div>
     </section>
@@ -168,12 +137,12 @@
   <footer>
     <div class="footer-content">
       <div class="footer-text">
-        <p>&copy; <span class="footer-year">2025</span> Fabio Aurelio D'Asaro</p>
+        <p>&copy; <span class="footer-year">2025</span> <span id="footer-name">Loading...</span></p>
         <p>∀x (Logic(x) → Elegant(x))</p>
       </div>
       <ul class="footer-links">
-        <li><a href="https://github.com/dasaro" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a></li>
+        <li><a href="https://github.com/dasaro" target="_blank" rel="noopener" id="footer-github">GitHub</a></li>
+        <li><a href="https://scholar.google.com" target="_blank" rel="noopener" id="footer-scholar">Google Scholar</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
@@ -181,7 +150,7 @@
 
   <!-- Scripts -->
   <script src="js/main.js?v=11"></script>
-  <script type="module" src="js/animations/AnimationController.js?v=28"></script>
+  <script type="module" src="js/animations/AnimationController.js?v=29"></script>
   <script src="js/publications.js?v=11"></script>
 
   <!-- Page-specific script -->
@@ -197,20 +166,45 @@
         console.log('[index.html] Personal data loaded:', personalData);
 
         if (personalData) {
-          // Update hero section
-          console.log('[index.html] Updating hero section...');
-          const h1 = document.querySelector('.hero-content h1');
-          const subtitle = document.querySelector('.hero-subtitle');
-          console.log('[index.html] Hero elements found:', {h1: !!h1, subtitle: !!subtitle});
+          // Update hero section - NAME
+          const heroName = document.getElementById('hero-name');
+          if (heroName) heroName.textContent = personalData.name;
 
-          if (h1) h1.textContent = personalData.name || 'Fabio Aurelio D\'Asaro';
-          if (subtitle) subtitle.textContent = personalData.title || 'Postdoctoral Researcher in Logic';
+          // Update hero section - TITLE
+          const heroTitle = document.getElementById('hero-title');
+          if (heroTitle) heroTitle.textContent = personalData.title;
+
+          // Update hero section - AFFILIATIONS
+          const affiliationsEl = document.getElementById('hero-affiliations');
+          if (affiliationsEl && personalData.affiliations) {
+            affiliationsEl.innerHTML = personalData.affiliations
+              .map((aff, idx) => {
+                if (idx < personalData.affiliations.length - 1) {
+                  return `${aff} <span class="logic-symbol">∧</span> `;
+                }
+                return aff;
+              })
+              .join('');
+          }
 
           // Update about preview
-          const aboutContent = document.querySelector('#about-preview .about-content');
-          if (aboutContent && personalData.bio_short) {
-            const p = aboutContent.querySelector('p');
-            if (p) p.textContent = personalData.bio_short;
+          const aboutContentEl = document.getElementById('about-content');
+          if (aboutContentEl && personalData.bio_short) {
+            aboutContentEl.innerHTML = `
+              <p>${personalData.bio_short}</p>
+              <a href="about.html" class="btn">Learn More →</a>
+            `;
+          }
+
+          // Update research interests dynamically
+          const researchGrid = document.getElementById('research-interests-grid');
+          if (researchGrid && personalData.research_interests) {
+            researchGrid.innerHTML = personalData.research_interests.map(interest => `
+              <div class="card scroll-animate">
+                <h3><span class="logic-symbol">${interest.symbol}</span> ${interest.title}</h3>
+                <p>${interest.description}</p>
+              </div>
+            `).join('');
           }
 
           // Update scholar metrics
@@ -219,10 +213,31 @@
             const citationsEl = document.getElementById('citations');
             const hIndexEl = document.getElementById('h-index');
             const i10IndexEl = document.getElementById('i10-index');
+            const metricsUpdated = document.getElementById('metrics-updated');
 
             if (citationsEl) citationsEl.textContent = personalData.scholar_metrics.citations;
             if (hIndexEl) hIndexEl.textContent = personalData.scholar_metrics.h_index;
             if (i10IndexEl) i10IndexEl.textContent = personalData.scholar_metrics.i10_index;
+            if (metricsUpdated) {
+              const date = new Date(personalData.scholar_metrics.last_updated);
+              const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+              metricsUpdated.textContent = `Last updated: ${formattedDate}`;
+            }
+          }
+
+          // Update footer
+          const footerName = document.getElementById('footer-name');
+          if (footerName) footerName.textContent = personalData.name;
+
+          // Update footer links
+          const footerGithub = document.getElementById('footer-github');
+          if (footerGithub && personalData.contact.github) {
+            footerGithub.href = `https://github.com/${personalData.contact.github}`;
+          }
+
+          const footerScholar = document.getElementById('footer-scholar');
+          if (footerScholar && personalData.contact.scholar) {
+            footerScholar.href = personalData.contact.scholar;
           }
         }
 

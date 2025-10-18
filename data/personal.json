@@ -10,6 +10,38 @@
   "bio_short": "I am a researcher in Logic (PHIL-02/A) working at the interface of formal epistemology and AI, probabilistic and temporal reasoning, argumentation, and logic programming (ASP/ILASP) with teaching and supervision spanning Logic & Philosophy of Science, AI, Theoretical, Applied Computer Science, Epistemology of Big Data and Logic Programming.",
   "bio_long": "I am currently a postdoctoral researcher at the University of Salento in the Department of Human Studies (SSD PHIL-02/A), working in the context of Project FAIR–Future AI Research (PE00000013) under the NRRP MUR program funded by NextGenerationEU, Spoke 6 (Symbiotic AI), PI: Paolo Baldi. My research focuses on the intersection of formal epistemology and artificial intelligence, with particular emphasis on probabilistic and temporal reasoning, argumentation theory, and logic programming. From 2022 to 2025, I served as Assistant Professor (RTD-A) at the University of Verona, where I taught and researched on Uncertain and Epistemic Reasoning, Temporal and Probabilistic Logics, Logic Programming, Reasoning about Actions and Change, Bounded Reasoning, Formal Argumentation, and their applications to Artificial Intelligence and Explainable AI.",
   "research_interests": [
+    {
+      "title": "Uncertain & Epistemic Logics",
+      "symbol": "∃",
+      "description": "Formal systems for reasoning about uncertainty and knowledge"
+    },
+    {
+      "title": "Logic Programming",
+      "symbol": "→",
+      "description": "ASP, ILASP, and inductive logic programming applications"
+    },
+    {
+      "title": "Argumentation",
+      "symbol": "⊢",
+      "description": "Formal argumentation theory and learning semantics"
+    },
+    {
+      "title": "Explainable AI",
+      "symbol": "λ",
+      "description": "Making AI systems transparent and interpretable"
+    },
+    {
+      "title": "Probabilistic Reasoning",
+      "symbol": "∀",
+      "description": "Combining logic with probability theory"
+    },
+    {
+      "title": "Event Calculus",
+      "symbol": "⊨",
+      "description": "Temporal reasoning about actions and their effects"
+    }
+  ],
+  "research_interests_simple": [
     "Uncertain, Epistemic and Temporal Logics",
     "Logic Programming (ASP/ILASP)",
     "Formal Argumentation",
