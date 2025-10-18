@@ -1,3 +1,71 @@
 {
-  "invited": []
+  "invited": [
+    {
+      "title": "Learning Argumentation Semantics",
+      "event": "PACMAN 2025 (Proof, Argumentation, Computation, Modalities And Negation)",
+      "institution": "University of Roma Tre",
+      "date": "2025-05",
+      "type": "invited"
+    },
+    {
+      "title": "Logic programming for Explainable AI",
+      "event": "PACMAN 2024 (Proof, Argumentation, Computation, Modalities And Negation)",
+      "institution": "University of Verona",
+      "date": "2024-03",
+      "type": "invited"
+    },
+    {
+      "title": "Explainable AI applications of Inductive Logic Programming",
+      "event": "Research Seminar",
+      "institution": "University of Salento",
+      "date": "2023-06",
+      "type": "invited"
+    },
+    {
+      "title": "Explainable AI applications of Inductive Logic Programming",
+      "event": "Research Seminar",
+      "institution": "University of Lugano",
+      "date": "2023-04",
+      "type": "invited"
+    },
+    {
+      "title": "Probabilistic epistemic reasoning about actions",
+      "event": "Research Seminar",
+      "institution": "University College London",
+      "location": "UK",
+      "date": "2022-03",
+      "type": "invited"
+    },
+    {
+      "title": "Explaining black-boxes using ILASP",
+      "event": "Research Seminar",
+      "institution": "University of Trieste",
+      "location": "Italy",
+      "date": "2021-12",
+      "type": "invited"
+    },
+    {
+      "title": "Probabilistic Reasoning About Epistemic Action Narratives",
+      "event": "IJCAI 2021",
+      "institution": "Online",
+      "date": "2021-08",
+      "type": "invited",
+      "note": "Invited talk on AIJ paper",
+      "video": "https://ijcai-21.org/videos-slides/?video=J26"
+    },
+    {
+      "title": "Explainable Medical AI demo",
+      "event": "Lorenz Center Workshop on Explainable Medical AI: Ethics, Epistemology, and Formal Methods",
+      "date": "2021-04-13",
+      "type": "invited demo"
+    },
+    {
+      "title": "Explaining black-boxes using ILASP",
+      "event": "SPIKE Group Seminar",
+      "institution": "Imperial College London",
+      "location": "UK",
+      "date": "2020-06-05",
+      "type": "invited"
+    }
+  ]
 }

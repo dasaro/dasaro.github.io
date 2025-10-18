@@ -12,12 +12,13 @@ export class MandelbrotSet extends AnimationBase {
         // Animation-specific config
         this.config = {
             opacity: 0.5,
-            zoomSpeed: 0.98,     // Scale multiplier per frame (smaller = faster)
-            rowsPerChunk: 16,    // Rows rendered per tick
-            epsFactor: 1.0,      // Border thickness factor
-            baseIterations: 120,  // Base iteration count
+            zoomSpeed: 0.97,           // Slightly faster zoom
+            rowsPerChunk: 32,          // 2x faster rendering (was 16)
+            epsFactor: 1.0,            // Border thickness factor
+            baseIterations: 120,       // Base iteration count
             borderColor: { r: 139, g: 0, b: 0 },  // RED for border
-            fadeAmount: 0.01
+            fadeAmount: 0.01,
+            transitionDuration: 350    // ms for smooth cross-fade
         };
 
         // Seahorse Valley coordinates (beautiful zoom target)
@@ -36,7 +37,14 @@ export class MandelbrotSet extends AnimationBase {
 
         // Progressive rendering state
         this.yRow = 0;
-        this.imageData = null;
+
+        // Double buffering
+        this.frontBuffer = null;  // Currently displayed
+        this.backBuffer = null;   // Being drawn offscreen
+        this.imageData = null;    // Points to backBuffer during rendering
+
+        // Transition state
+        this.transitionStart = null;
     }
 
     static getMetadata() {
@@ -121,53 +129,109 @@ export class MandelbrotSet extends AnimationBase {
                 const [cx, cy] = this.toComplex(x, this.yRow);
                 const d = this.mandelDE(cx, cy, maxIter);
 
-                // Check if on border
-                const isBorder = (d !== Infinity) && (d < borderThresh);
+                let r, g, b;
 
-                // Write pixel (RED for border, white otherwise)
-                if (isBorder) {
-                    this.imageData.data[offset] = this.config.borderColor.r;
-                    this.imageData.data[offset + 1] = this.config.borderColor.g;
-                    this.imageData.data[offset + 2] = this.config.borderColor.b;
+                if (d === Infinity) {
+                    r = g = b = 255;
                 } else {
-                    this.imageData.data[offset] = 255;
-                    this.imageData.data[offset + 1] = 255;
-                    this.imageData.data[offset + 2] = 255;
+                    // Multi-stage smooth interpolation
+                    const distRatio = d / borderThresh;
+
+                    // Logarithmic scaling for better distribution
+                    const logRatio = Math.log1p(distRatio) / Math.log1p(10);
+                    const clamped = Math.min(logRatio, 1.0);
+
+                    // Ultra-smooth interpolation (Ken Perlin's improved smoothstep)
+                    const t = clamped;
+                    const smooth1 = t * t * t * (t * (t * 6 - 15) + 10);
+
+                    // Apply again for even smoother result
+                    const smooth2 = smooth1 * smooth1 * (3 - 2 * smooth1);
+
+                    // Final smooth value
+                    const s = smooth2;
+
+                    // Color interpolation with natural curve
+                    // Very dark red → dark red → red → rose → light rose → white
+                    r = Math.round(80 + 175 * s); // 80 → 255
+                    g = Math.round(0 + 255 * s * s); // Slower rise for red tint
+                    b = Math.round(0 + 255 * s * s); // Slower rise for red tint
                 }
+
+                this.imageData.data[offset] = r;
+                this.imageData.data[offset + 1] = g;
+                this.imageData.data[offset + 2] = b;
                 this.imageData.data[offset + 3] = 255;
 
                 offset += 4;
             }
         }
 
-        // Update canvas
-        this.ctx.putImageData(this.imageData, 0, 0);
-
         // Check if frame complete
         if (this.yRow < H) {
-            // Continue rendering this frame
+            // Continue rendering back buffer (DON'T display yet)
             this.animationId = requestAnimationFrame(() => this.renderChunk());
         } else {
-            // Frame complete - advance zoom
+            // Frame complete - start cross-fade transition
+            this.animateTransition();
+        }
+    }
+
+    animateTransition() {
+        if (!this.isRunning) return;
+
+        if (!this.transitionStart) {
+            this.transitionStart = performance.now();
+        }
+
+        const elapsed = performance.now() - this.transitionStart;
+        const progress = Math.min(1.0, elapsed / this.config.transitionDuration);
+
+        // Clear canvas
+        this.ctx.fillStyle = '#FFFFFF';
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+        // Draw old frame fading out
+        this.ctx.globalAlpha = 1.0 - progress;
+        this.ctx.putImageData(this.frontBuffer, 0, 0);
+
+        // Draw new frame fading in
+        this.ctx.globalAlpha = progress;
+        this.ctx.putImageData(this.backBuffer, 0, 0);
+
+        // Reset alpha
+        this.ctx.globalAlpha = 1.0;
+
+        if (progress < 1.0) {
+            // Continue transition
+            this.animationId = requestAnimationFrame(() => this.animateTransition());
+        } else {
+            // Transition complete
+            this.transitionStart = null;
+
+            // Swap buffers
+            const temp = this.frontBuffer;
+            this.frontBuffer = this.backBuffer;
+            this.backBuffer = temp;
+
+            // Advance zoom
             this.view.width *= this.config.zoomSpeed;
 
-            // Check if we need to reset
             if (this.view.width < 1e-14) {
-                // Smooth reset
                 this.view.cx = this.startView.cx;
                 this.view.cy = this.startView.cy;
-                this.view.width = this.startView.width * 1.2; // Start slightly zoomed out
-
-                // Gentle fade on reset (30% opacity)
-                this.ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-                this.ctx.fillRect(0, 0, W, H);
-            } else {
-                // Normal inter-frame: very subtle fade
-                this.ctx.fillStyle = 'rgba(255, 255, 255, 0.02)';
-                this.ctx.fillRect(0, 0, W, H);
+                this.view.width = this.startView.width * 1.2;
             }
 
-            // Reset row counter for next frame
+            // Prepare next frame
+            for (let i = 0; i < this.backBuffer.data.length; i += 4) {
+                this.backBuffer.data[i] = Math.min(255, this.frontBuffer.data[i] + 5);
+                this.backBuffer.data[i + 1] = Math.min(255, this.frontBuffer.data[i + 1] + 5);
+                this.backBuffer.data[i + 2] = Math.min(255, this.frontBuffer.data[i + 2] + 5);
+                this.backBuffer.data[i + 3] = 255;
+            }
+
+            this.imageData = this.backBuffer;
             this.yRow = 0;
 
             // Start next frame
@@ -178,21 +242,37 @@ export class MandelbrotSet extends AnimationBase {
     animate() {
         if (!this.isRunning) return;
 
-        // Initialize image data if needed
-        if (!this.imageData) {
-            this.imageData = this.ctx.createImageData(
+        // Initialize double buffers if needed
+        if (!this.frontBuffer || !this.backBuffer) {
+            this.frontBuffer = this.ctx.createImageData(
                 this.canvas.width,
                 this.canvas.height
             );
-            // Initial clear only (one time)
-            const len = this.imageData.data.length;
+            this.backBuffer = this.ctx.createImageData(
+                this.canvas.width,
+                this.canvas.height
+            );
+
+            // Initialize both buffers to white
+            const len = this.frontBuffer.data.length;
             for (let i = 0; i < len; i += 4) {
-                this.imageData.data[i] = 255;     // R
-                this.imageData.data[i + 1] = 255; // G
-                this.imageData.data[i + 2] = 255; // B
-                this.imageData.data[i + 3] = 255; // A
+                this.frontBuffer.data[i] = 255;
+                this.frontBuffer.data[i + 1] = 255;
+                this.frontBuffer.data[i + 2] = 255;
+                this.frontBuffer.data[i + 3] = 255;
+
+                this.backBuffer.data[i] = 255;
+                this.backBuffer.data[i + 1] = 255;
+                this.backBuffer.data[i + 2] = 255;
+                this.backBuffer.data[i + 3] = 255;
             }
+
+            // Display front buffer initially
+            this.ctx.putImageData(this.frontBuffer, 0, 0);
         }
+
+        // Point imageData to back buffer for rendering
+        this.imageData = this.backBuffer;
 
         // Start progressive rendering
         this.yRow = 0;

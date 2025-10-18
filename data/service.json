@@ -2,68 +2,58 @@
   "organizing": [
     {
       "role": "Co-organizer",
-      "event": "3rd Logic for the AI Spring Summer School (eDefAI)",
+      "event": "eDefAI (Ethical Design for AI) - 3rd Logic for the AI Spring Summer School",
       "location": "Lecce, Italy",
       "year": 2025,
-      "website": "http://sites.google.com/view/edefai",
-      "description": "Summer school on logic for ethical human-AI collaboration"
+      "website": "http://sites.google.com/view/edefai"
     },
     {
       "role": "Co-organizer",
-      "event": "2nd Logic for the AI Spring Summer School (BRIO)",
-      "location": "Verona, Italy",
-      "year": 2024,
-      "website": "http://sites.google.com/view/brio-research",
-      "description": "Summer school on logic and AI reasoning"
+      "event": "EThOS series of seminars",
+      "year_start": 2022,
+      "year_end": "present",
+      "institution": "University of Verona"
+    },
+    {
+      "role": "Workshop Chair",
+      "event": "BEWARE - 1st, 2nd and 3rd Workshops on Bias, Ethical AI, Explainability and the Role of Logic and Logic Programming",
+      "year_start": 2022,
+      "year_end": "present",
+      "colocated_with": "AIxIA conference"
+    },
+    {
+      "role": "Workshop Chair",
+      "event": "ME and E - 1st Workshop on Machine Ethics and Explainability",
+      "year": 2021,
+      "colocated_with": "ICLP 2021"
+    },
+    {
+      "role": "Workshop Chair",
+      "event": "AI3 - 5th Workshop on Advances in Argumentation in Artificial Intelligence",
+      "year": 2021,
+      "colocated_with": "AIxIA conference 2021"
     },
     {
       "role": "Co-organizer",
-      "event": "1st Logic for the AI Spring Summer School (BRIO)",
-      "location": "Verona, Italy",
-      "year": 2023,
-      "website": "http://sites.google.com/view/brio-research",
-      "description": "Inaugural summer school on logic and AI"
+      "event": "LUCI Lab (Unimi, Dept. of Philosophy) seminars",
+      "year": "2020/2021",
+      "institution": "University of Milan"
     }
   ],
   "program_committees": [
     {
-      "event": "IJCAI - International Joint Conference on Artificial Intelligence",
+      "event": "International Joint Conference on Artificial Intelligence (IJCAI)",
       "years": [2020, 2024, 2025],
       "role": "PC Member"
     },
     {
-      "event": "KR - International Conference on Principles of Knowledge Representation and Reasoning",
+      "event": "International Conference on Principles of Knowledge Representation and Reasoning (KR)",
       "years": [2022, 2023, 2024, 2025],
       "role": "PC Member"
     },
     {
-      "event": "ECAI - European Conference on Artificial Intelligence",
-      "years": [2023, 2024],
-      "role": "PC Member"
-    },
-    {
-      "event": "AAMAS - International Conference on Autonomous Agents and Multiagent Systems",
-      "years": [2021, 2022, 2023],
-      "role": "PC Member"
-    },
-    {
-      "event": "COMMA - International Conference on Computational Models of Argument",
-      "years": [2022, 2024],
-      "role": "PC Member"
-    },
-    {
-      "event": "JELIA - European Conference on Logics in Artificial Intelligence",
+      "event": "European Conference on Artificial Intelligence (ECAI)",
       "years": [2023],
-      "role": "PC Member"
-    },
-    {
-      "event": "LPNMR - International Conference on Logic Programming and Nonmonotonic Reasoning",
-      "years": [2022],
-      "role": "PC Member"
-    },
-    {
-      "event": "WOA - Workshop from Objects to Agents",
-      "years": [2021, 2022, 2023],
       "role": "PC Member"
     }
   ],
@@ -74,44 +64,48 @@
       "section": "Machine Learning and Artificial Intelligence",
       "year_start": 2022,
       "year_end": "present"
+    },
+    {
+      "role": "Review Editor",
+      "journal": "Frontiers in Big Data",
+      "section": "Machine Learning and Artificial Intelligence",
+      "year_start": 2022,
+      "year_end": "present"
+    },
+    {
+      "role": "Review Editor",
+      "journal": "Frontiers in Artificial Intelligence in Neurology",
+      "section": "Machine Learning and Artificial Intelligence",
+      "year_start": 2022,
+      "year_end": "present"
+    },
+    {
+      "role": "Co-editor",
+      "description": "Special Issue on Explainable Artificial Intelligence models and methods in Finance and Healthcare",
+      "journal": "Frontiers in Artificial Intelligence",
+      "year": 2022
     }
   ],
   "reviewing": [
-    {
-      "venue": "International Journal of Approximate Reasoning (IJAR)",
-      "type": "journal"
-    },
-    {
-      "venue": "Artificial Intelligence Journal (AIJ)",
-      "type": "journal"
-    },
-    {
-      "venue": "Journal of Artificial Intelligence Research (JAIR)",
-      "type": "journal"
-    },
-    {
-      "venue": "Theory and Practice of Logic Programming (TPLP)",
-      "type": "journal"
-    },
-    {
-      "venue": "Journal of Logic and Computation",
-      "type": "journal"
-    },
-    {
-      "venue": "Argument & Computation",
-      "type": "journal"
-    },
-    {
-      "venue": "AAAI Conference on Artificial Intelligence",
-      "type": "conference"
-    },
-    {
-      "venue": "NeurIPS - Neural Information Processing Systems",
-      "type": "conference"
-    },
-    {
-      "venue": "ICLP - International Conference on Logic Programming",
-      "type": "conference"
-    }
+    "International Journal of Approximate Reasoning (IJAR), 2025",
+    "22nd International Conference on Principles of Knowledge Representation and Reasoning (KR 2025)",
+    "34th International Joint Conference on Artificial Intelligence (IJCAI 2025)",
+    "33rd International Joint Conference on Artificial Intelligence (IJCAI 2024)",
+    "21st International Conference on Principles of Knowledge Representation and Reasoning (KR 2024)",
+    "26th European Conference on Artificial Intelligence (ECAI 2023)",
+    "20th International Conference on Principles of Knowledge Representation and Reasoning (KR 2023)",
+    "19th International Conference on Principles of Knowledge Representation and Reasoning (KR 2022)",
+    "Special Issue on Reasoning about Social Networks of the Journal of Logic and Computation",
+    "12th International Conference on Social Robotics (ICSR-2020)",
+    "Journal of Hydrologic Engineering (J. Hydrol. Eng.)",
+    "IEEE International Conference on Systems, Man, and Cybernetics 2019 (SMC-19)",
+    "20th workshop From Objects to Agents (WOA-19)",
+    "28th International Joint Conference on Artificial Intelligence (IJCAI-19)",
+    "Special Issue on Commonsense Reasoning of the journal Annals of Mathematics and Artificial Intelligence (AMAI)",
+    "32nd AAAI Conference on Artificial Intelligence (AAAI-18)",
+    "27th International Joint Conference on Artificial Intelligence (IJCAI-18)",
+    "33rd International Conference on Logic Programming (ICLP-17)",
+    "26th International Joint Conference on Artificial Intelligence (IJCAI-17)",
+    "25th International Joint Conference on Artificial Intelligence (IJCAI-16)"
   ]
 }

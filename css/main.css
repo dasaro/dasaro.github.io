@@ -722,14 +722,23 @@ footer {
 
 /* ============================================
    Metrics Widget (Scholar Stats)
+   Fixed: 2025-10-18 - Maintain readability with subtle hover
    ============================================ */
 .metrics-widget {
-  background: var(--color-code-bg);
+  background: var(--color-code-bg); /* #1E1E1E dark background */
   color: var(--color-white);
   padding: var(--space-xl);
   margin: var(--space-xl) 0;
-  border: 2px solid var(--color-link); /* Red border */
+  border: 2px solid var(--color-link); /* Dark red border */
   border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+/* Subtle hover: slightly lighter background + brighter border */
+.metrics-widget:hover {
+  background: #2A2A2A; /* Slightly lighter dark gray */
+  border-color: var(--color-link-hover); /* Brighter red */
+  box-shadow: 0 4px 12px rgba(139, 0, 0, 0.2); /* Subtle red glow */
 }
 
 .metrics-widget h3 {
@@ -737,23 +746,42 @@ footer {
   font-family: 'Fira Code', monospace;
   text-align: center;
   margin-bottom: var(--space-lg);
+  transition: color 0.3s ease;
+}
+
+.metrics-widget:hover h3 {
+  color: var(--color-link-hover) !important; /* Red highlight on hover */
 }
 
 .metrics-grid {
   text-align: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
 }
 
 .metric {
   text-align: center;
+  transition: transform 0.3s ease;
+}
+
+/* Individual metric hover: subtle scale */
+.metric:hover {
+  transform: translateY(-2px);
 }
 
 .metric-value {
   font-family: 'Fira Code', monospace;
   font-size: var(--text-3xl);
-  color: var(--color-code-text);
+  color: var(--color-code-text); /* #CD5C5C Indian red */
   font-weight: bold;
   display: block;
   margin-bottom: var(--space-xs);
+  transition: color 0.3s ease;
+}
+
+.metric:hover .metric-value {
+  color: #FF6B6B; /* Brighter red on hover */
 }
 
 .metric-label {
@@ -761,6 +789,11 @@ footer {
   font-size: var(--text-sm);
   color: var(--color-white);
   display: block;
+  transition: color 0.3s ease;
+}
+
+.metric:hover .metric-label {
+  color: var(--color-link-hover);
 }
 
 .metric-note {
@@ -1076,6 +1109,448 @@ footer {
   font-style: italic;
   text-align: center;
   padding: 2rem;
+}
+
+/* ==========================================
+   SEMANTIC UTILITY CLASSES
+   Complete set for removing inline styles
+   ========================================== */
+
+/* Additional Spacing Utilities */
+.mb-xs { margin-bottom: var(--space-xs); }
+.mt-xs { margin-top: var(--space-xs); }
+.p-sm { padding: var(--space-sm); }
+.p-md { padding: var(--space-md); }
+.p-lg { padding: var(--space-lg); }
+.p-xl { padding: var(--space-xl); }
+
+/* Typography Utilities */
+.text-accent { color: var(--color-accent-1); }
+.text-secondary { color: var(--color-accent-2); }
+.text-bold { font-weight: 600; }
+.text-xs { font-size: var(--text-xs); }
+.text-sm { font-size: var(--text-sm); }
+.text-lg { font-size: var(--text-lg); }
+.text-xl { font-size: var(--text-xl); }
+.font-mono { font-family: 'Fira Code', monospace; }
+.font-serif { font-family: 'Crimson Text', serif; }
+
+/* Display Utilities */
+.flex { display: flex; }
+.inline-block { display: inline-block; }
+.flex-gap-sm { gap: var(--space-sm); }
+.flex-gap-md { gap: var(--space-md); }
+.align-center { align-items: center; }
+
+/* ==========================================
+   CONTACT PAGE COMPONENTS
+   ========================================== */
+
+.contact-card {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--color-black);
+  border: 2px solid rgba(139, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: var(--space-xl);
+  margin-bottom: var(--space-lg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.contact-section-title {
+  color: var(--color-link);
+  font-family: 'Fira Code', monospace;
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-md);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+  font-family: 'Crimson Text', serif;
+}
+
+.contact-icon {
+  font-size: var(--text-xl);
+  color: var(--color-link);
+}
+
+.contact-link {
+  color: #2C3E50;
+  text-decoration: underline;
+  word-break: break-all;
+}
+
+.contact-link:hover {
+  color: var(--color-link);
+}
+
+.copy-btn {
+  background: var(--color-link);
+  color: var(--color-white);
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-family: 'Fira Code', monospace;
+  font-size: var(--text-xs);
+  border-radius: 3px;
+  margin-left: var(--space-sm);
+  transition: background 0.2s ease;
+}
+
+.copy-btn:hover {
+  background: var(--color-link-hover);
+}
+
+.copy-btn.copied {
+  background: #CD853F;
+  color: var(--color-white);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+}
+
+.profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.profile-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-link);
+  color: var(--color-white);
+  text-decoration: none;
+  border-radius: 4px;
+  font-family: 'Fira Code', monospace;
+  transition: all 0.2s ease;
+}
+
+.profile-link:hover {
+  background: var(--color-link-hover);
+  transform: translateY(-2px);
+}
+
+.location-info {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(139, 0, 0, 0.2);
+  padding: var(--space-lg);
+  border-radius: 8px;
+  margin-top: var(--space-xl);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================
+   TEACHING PAGE COMPONENTS
+   ========================================== */
+
+.lecture-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(139, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: var(--space-xl);
+  margin-bottom: var(--space-xl);
+  transition: all 0.2s ease;
+}
+
+.lecture-card:hover {
+  border-color: var(--color-link);
+  box-shadow: 0 4px 12px rgba(139, 0, 0, 0.12);
+}
+
+.lecture-date {
+  color: var(--color-link);
+  font-family: 'Fira Code', monospace;
+  font-weight: 600;
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.lecture-title {
+  color: var(--color-black);
+  font-family: 'Crimson Text', serif;
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+}
+
+.lecture-venue {
+  color: #2C3E50;
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+
+.lecture-location {
+  color: #2C3E50;
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-md);
+}
+
+.lecture-description {
+  color: var(--color-black);
+  line-height: 1.6;
+  margin-bottom: var(--space-md);
+}
+
+.lecture-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.lecture-tag {
+  background: rgba(139, 0, 0, 0.1);
+  color: var(--color-link);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: 4px;
+  font-size: var(--text-xs);
+  font-family: 'Fira Code', monospace;
+  font-weight: 500;
+}
+
+.teaching-section {
+  margin-bottom: var(--space-2xl);
+}
+
+.course-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(139, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.course-code {
+  color: var(--color-link);
+  font-family: 'Fira Code', monospace;
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+
+.course-title {
+  color: var(--color-black);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+}
+
+.teaching-stats-widget {
+  background: var(--color-code-bg);
+  color: var(--color-white);
+  padding: var(--space-2xl);
+  border-radius: 8px;
+  margin: var(--space-xl) 0;
+  border: 2px solid var(--color-link);
+}
+
+.teaching-stats-widget h2 {
+  color: var(--color-white) !important;
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-xl);
+  text-align: center;
+}
+
+.teaching-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-xl);
+  margin-top: var(--space-xl);
+}
+
+.teaching-stat {
+  text-align: center;
+}
+
+.teaching-stat-value {
+  font-size: 2.5rem;
+  font-family: 'Fira Code', monospace;
+  color: var(--color-code-text);
+  font-weight: bold;
+  display: block;
+  margin-bottom: var(--space-xs);
+}
+
+.teaching-stat-label {
+  font-size: var(--text-sm);
+  color: var(--color-white);
+  display: block;
+}
+
+/* ==========================================
+   SERVICE PAGE COMPONENTS
+   ========================================== */
+
+.service-card {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--color-black);
+  border: 2px solid rgba(139, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: var(--space-lg);
+  margin-bottom: var(--space-lg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  font-family: 'Crimson Text', serif;
+}
+
+.service-card h3 {
+  color: var(--color-link);
+  font-family: 'Fira Code', monospace;
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-sm);
+}
+
+.service-year {
+  color: var(--color-link);
+  font-family: 'Fira Code', monospace;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+  display: block;
+}
+
+.service-role {
+  color: #2C3E50;
+  font-size: var(--text-base);
+  margin-bottom: var(--space-xs);
+}
+
+.service-role strong {
+  color: var(--color-link);
+}
+
+.service-list {
+  color: #2C3E50;
+  list-style: none;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.service-list li {
+  color: #2C3E50;
+  margin-bottom: 4px;
+  position: relative;
+}
+
+.service-list li::before {
+  content: '→';
+  position: absolute;
+  left: -20px;
+  color: var(--color-link);
+}
+
+/* ==========================================
+   PROJECT PAGE COMPONENTS
+   ========================================== */
+
+.project-card {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--color-black);
+  padding: var(--space-lg);
+  border-radius: 8px;
+  margin-bottom: var(--space-lg);
+  border: 2px solid rgba(139, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  font-family: 'Crimson Text', serif;
+}
+
+.project-card.current {
+  border-left: 4px solid var(--color-link);
+}
+
+.project-status {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--color-link);
+  color: var(--color-white);
+  font-weight: bold;
+  font-size: var(--text-xs);
+  border-radius: 3px;
+  margin-bottom: var(--space-md);
+  font-family: 'Fira Code', monospace;
+}
+
+.project-status.past {
+  background: #CD853F;
+  color: var(--color-white);
+}
+
+.project-card h3 {
+  color: var(--color-link);
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-sm);
+  font-family: 'Fira Code', monospace;
+}
+
+.project-meta {
+  color: #2C3E50;
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.project-meta strong {
+  color: var(--color-link);
+}
+
+.project-description {
+  color: #2C3E50;
+  font-size: var(--text-base);
+  line-height: 1.6;
+  margin-bottom: var(--space-md);
+}
+
+.project-outputs {
+  margin-top: var(--space-md);
+}
+
+.project-outputs strong {
+  color: var(--color-link);
+  display: block;
+  margin-bottom: var(--space-xs);
+}
+
+.project-outputs ul {
+  color: #2C3E50;
+  list-style: none;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.project-outputs li {
+  color: #2C3E50;
+  margin-bottom: 4px;
+  position: relative;
+}
+
+.project-outputs li::before {
+  content: '→';
+  position: absolute;
+  left: -20px;
+  color: var(--color-link);
+}
+
+.project-link {
+  color: var(--color-white);
+  background: var(--color-link);
+  text-decoration: none;
+  padding: 8px 16px;
+  display: inline-block;
+  border-radius: 4px;
+  font-size: var(--text-sm);
+  font-family: 'Fira Code', monospace;
+  transition: all 0.2s;
+  margin-top: var(--space-md);
+}
+
+.project-link:hover {
+  background: var(--color-link-hover);
+  transform: translateY(-2px);
 }
 
 /* ==========================================

@@ -1,76 +1,55 @@
 {
-  "current_projects": [
+  "current": [
     {
-      "id": "fair-pnrr",
       "name": "FAIR - Future AI Research",
-      "funding_program": "PNRR (NextGenerationEU)",
+      "acronym": "FAIR",
+      "funding": "PNRR Extended Partnership",
+      "id": "PE00000013",
       "role": "Postdoctoral Researcher",
+      "year_start": 2025,
+      "year_end": "present",
       "institution": "University of Salento",
-      "years": "2025-present",
+      "spoke": "Spoke 6 (Symbiotic AI)",
       "pi": "Paolo Baldi",
-      "spoke": "Spoke 6 - Symbiotic AI",
-      "ids": "PNRR Extended Partnership PE00000013; Spoke 6 CUP H97G22000210007",
-      "description": "Working on logic for ethical human–AI collaboration (eDefAI), focusing on explainability, trust, and ethical AI reasoning.",
-      "outputs": [
-        "Logic frameworks for human-AI collaboration",
-        "eDefAI Summer School organization (2025)",
-        "Publications on ethical AI reasoning"
-      ],
-      "website": "https://future-ai-research.it/",
-      "status": "active"
+      "description": "Working on logic for ethical human–AI collaboration (eDefAI, Ethical Design for AI).",
+      "cup": "H97G22000210007"
     }
   ],
-  "past_projects": [
+  "past": [
     {
-      "id": "brio",
-      "name": "BRIO - Brains and Robots Interaction in Organizations",
-      "funding_program": "University of Verona Strategic Research Project",
-      "role": "Research Fellow",
+      "name": "REVO",
+      "acronym": "REVO",
+      "funding": "PON R&I 2014-2020",
+      "role": "Researcher (Assistant Professor, University of Verona)",
+      "year_start": 2022,
+      "year_end": 2024,
       "institution": "University of Verona",
-      "years": "2021-2024",
-      "pi": "Roberta Ferrario",
-      "description": "Interdisciplinary project exploring human-robot interaction in organizational contexts, combining philosophy, AI, and cognitive science.",
-      "outputs": [
-        "Publications on HRI and organizational ontology",
-        "Workshop presentations",
-        "Collaborative research with cognitive scientists and roboticists"
-      ],
-      "website": null,
-      "status": "completed"
+      "description": "Developed handwritten recognition tools, entity matching, and eligibility pre-screening modules. Requirements analysis with REVO Insurance. Company secondment at REVO SPAC (12 months).",
+      "ids": "PON R&I 2014-2020, DM 1062/2021 (Action IV.4); UniVR selection code 2021rtdaPON03",
+      "cup": "B39J21025840001"
     },
     {
-      "id": "revo",
-      "name": "REVO - Reasoning on Video",
-      "funding_program": "UK Research and Innovation",
-      "role": "Postdoctoral Research Associate",
-      "institution": "University College London",
-      "years": "2019-2021",
-      "pi": "Anthony G. Cohn & David C. Hogg",
-      "description": "Developing automated reasoning systems for video understanding, combining computer vision with logical reasoning frameworks.",
-      "outputs": [
-        "JAIR 2025 publication on resource transforming procedures",
-        "Automated reasoning algorithms for video analysis",
-        "Event Calculus extensions for temporal reasoning"
-      ],
-      "website": null,
-      "status": "completed"
+      "name": "BRIO",
+      "acronym": "BRIO",
+      "funding": "PRIN 2020",
+      "id": "2020SSKZ7R_001",
+      "role": "Proponent and internal collaborator/PRIN participant (University of Milan); external collaborator after institutional move (EThOS Group, University of Verona)",
+      "year_start": 2022,
+      "year_end": 2025,
+      "institution": "University of Milan / University of Verona",
+      "description": "Worked on formal frameworks for trust/bias and tooling.",
+      "sector": "ERC SH4"
     },
     {
-      "id": "avatea",
-      "name": "AVATEA - Affective Virtual Agents for Training and Evaluation in Autism",
-      "funding_program": "EU Horizon 2020",
-      "role": "Research Collaborator",
-      "institution": "University of Naples Federico II",
-      "years": "2018-2020",
-      "pi": "Silvia Rossi",
-      "description": "Developing virtual agents and robotic systems for autism therapy and assessment, using probabilistic reasoning and HRI techniques.",
-      "outputs": [
-        "ICSR 2020 publication",
-        "WOA 2021 publication on intent recognition",
-        "HRI pipeline for automated test administration"
-      ],
-      "website": null,
-      "status": "completed"
+      "name": "AVATEA",
+      "acronym": "AVATEA",
+      "funding": "POR Campania FESR 2014-2020",
+      "role": "Postdoctoral Researcher",
+      "year_start": 2018,
+      "year_end": 2019,
+      "institution": "CRDC Tecnologie",
+      "description": "Designed and implemented a runtime epistemic probabilistic Event Calculus architecture for sensor fusion and decision-making in rehabilitation serious games.",
+      "cup": "B13D18000130007"
     }
   ]
 }

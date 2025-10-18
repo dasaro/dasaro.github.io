@@ -1,4 +1,54 @@
 {
-  "memberships": [],
-  "professional_societies": []
+  "memberships": [
+    {
+      "name": "EThOS – Ethics and Technologies Of the Self",
+      "institution": "University of Verona",
+      "location": "Italy",
+      "role": "Member",
+      "description": "Research center at the University of Verona"
+    },
+    {
+      "name": "LUCI - Logic Uncertainty Computation and Information",
+      "institution": "University of Milan",
+      "location": "Italy",
+      "role": "Member",
+      "description": "Logic research group at the University of Milan"
+    },
+    {
+      "name": "SPIKE - Structured and Probabilistic Intelligent Knowledge Engineering",
+      "institution": "Imperial College London",
+      "location": "UK",
+      "role": "Member",
+      "description": "Research group at Imperial College London"
+    },
+    {
+      "name": "KIDS - Knowledge, Information and Data Science",
+      "institution": "University College London",
+      "location": "UK",
+      "role": "Member",
+      "description": "Research group at University College London"
+    }
+  ],
+  "professional_societies": [
+    {
+      "name": "AILA",
+      "full_name": "Associazione Italiana di Logica e sue Applicazioni",
+      "role": "Member"
+    },
+    {
+      "name": "SILFS",
+      "full_name": "Società Italiana di Logica e Filosofia delle Scienze",
+      "role": "Member"
+    },
+    {
+      "name": "AIxIA",
+      "full_name": "Associazione Italiana per l'Intelligenza Artificiale",
+      "role": "Member"
+    },
+    {
+      "name": "GULP",
+      "full_name": "Gruppo Ricercatori e Utenti di Programmazione Logica",
+      "role": "Member"
+    }
+  ]
 }

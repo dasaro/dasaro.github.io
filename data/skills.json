@@ -1,9 +1,12 @@
 {
   "programming": {
-    "expert": [],
-    "proficient": [],
-    "familiar": []
+    "expert": ["Answer Set Programming (clingo)", "Prolog/ProbLog", "ILASP/FastLAS", "Python"],
+    "proficient": ["Java", "JavaScript/TypeScript", "PHP", "SQL", "HTML/CSS"],
+    "familiar": ["C", "MATLAB", "Common Lisp", "Clojure", "Anglican"]
   },
-  "languages": [],
-  "other": []
+  "languages": [
+    {"language": "Italian", "level": "Native"},
+    {"language": "English", "level": "Full professional proficiency"}
+  ],
+  "other": ["Vibe Coding", "Docker", "Git/GitHub", "Data Analysis", "LaTeX"]
 }

@@ -1,323 +1,156 @@
 {
-  "teaching_philosophy": {
-    "title": "Teaching Philosophy",
-    "paragraphs": [
-      "I believe in hands-on learning that combines rigorous theoretical foundations with practical applications. My teaching emphasizes critical thinking, formal reasoning, and the development of computational skills that prepare students for both academic research and industry careers.",
-      "I strive to make abstract concepts concrete through examples, interactive demonstrations, and real-world applications. Students learn best when they can connect formal theories to practical problems and see the relevance of logic and AI in modern technology.",
-      "My approach encourages active participation, collaborative problem-solving, and independent exploration. I aim to foster curiosity and equip students with tools for lifelong learning in rapidly evolving fields."
-    ]
-  },
+  "teaching_philosophy": "From my first appointments as a BSc student to the present, I have taught every year without interruption across Philosophy, Information Studies, and Computer/Data Science programs. I design and deliver courses for diverse cohorts along two axes–expertise (from non-specialists to experts) and academic level (pre-BSc through PhD and postdoc). Student evaluations have been consistently strong, with my courses frequently among the highest-rated in their cohorts. My teaching spans Logic, Philosophy of Science, Logic Programming, Computer Programming, Applied and Theoretical Computer Science. I also place a strong emphasis on supervision and mentoring, with consistently excellent outcomes across theses and projects, evidenced by external recognition, publications, and open research outputs.",
   "current_courses": [
     {
       "title": "Logic and Philosophy of Science",
       "code": "M-FIL/02",
       "institution": "University of Verona",
-      "department": "Department of Cultures and Civilizations",
       "level": "BA",
       "program": "Philosophy",
       "year_start": 2022,
       "year_end": "present",
-      "hours_per_year": 60,
-      "credits": 12,
-      "description": "Foundational course covering propositional and predicate logic, philosophy of science, scientific method, and the relationship between formal logic and scientific reasoning. Topics include logical consequence, proof systems, scientific explanation, and epistemological foundations.",
-      "topics": [
-        "Propositional and predicate logic",
-        "Formal proof systems",
-        "Philosophy of science fundamentals",
-        "Scientific method and explanation",
-        "Logic and scientific reasoning"
-      ]
+      "description": "Foundational course covering propositional and predicate logic, philosophy of science, scientific method, and the relationship between formal logic and scientific reasoning."
     },
     {
       "title": "Epistemology of Big Data",
       "code": "M-FIL/02",
       "institution": "University of Verona",
-      "department": "Department of Cultures and Civilizations",
-      "level": "MA",
-      "program": "Philosophy",
-      "year_start": 2023,
+      "level": "MSc",
+      "program": "Data Analytics",
+      "year_start": 2022,
       "year_end": "present",
-      "hours_per_year": 30,
-      "credits": 6,
-      "description": "Graduate seminar exploring epistemological questions raised by big data analytics, machine learning, and data-driven science. Examines issues of induction, explanation, causality, bias, and the nature of knowledge in data science.",
-      "topics": [
-        "Epistemology of data science",
-        "Inductive reasoning with big data",
-        "Causality and correlation",
-        "Algorithmic bias and fairness",
-        "Explainability in ML"
-      ]
+      "description": "Graduate course exploring epistemological questions raised by big data analytics, machine learning, and data-driven science."
     },
     {
       "title": "Computational Epistemology",
       "code": "M-FIL/02",
       "institution": "University of Verona",
-      "department": "Department of Cultures and Civilizations",
-      "level": "MA",
-      "program": "Digital Humanities",
-      "year_start": 2024,
+      "level": "MSc",
+      "program": "Artificial Intelligence",
+      "year_start": 2022,
       "year_end": "present",
-      "hours_per_year": 30,
-      "credits": 6,
-      "description": "Advanced course on formal models of knowledge, belief revision, epistemic logic, and computational approaches to epistemological problems. Covers modal logics, dynamic epistemic logic, and applications to AI and multi-agent systems.",
-      "topics": [
-        "Epistemic and doxastic logic",
-        "Knowledge representation",
-        "Belief revision theory",
-        "Dynamic epistemic logic",
-        "Multi-agent epistemic reasoning"
-      ]
+      "description": "Advanced course on formal models of knowledge, belief revision, epistemic logic, and computational approaches to epistemological problems."
     },
     {
-      "title": "Logic in Physiotherapy Practice",
+      "title": "Logic and Philosophy of Science in Physiotherapy",
       "code": "M-FIL/02",
       "institution": "University of Verona",
-      "department": "Department of Neurosciences, Biomedicine and Movement Sciences",
-      "level": "BA",
+      "level": "BSc",
       "program": "Physiotherapy",
       "year_start": 2022,
       "year_end": "present",
-      "hours_per_year": 20,
-      "credits": 3,
-      "description": "Introduction to logical reasoning and critical thinking for healthcare professionals. Covers reasoning in clinical practice, evaluation of evidence, diagnostic reasoning, and avoiding common logical fallacies in medical decision-making.",
-      "topics": [
-        "Fundamentals of logic",
-        "Clinical reasoning",
-        "Evidence evaluation",
-        "Diagnostic logic",
-        "Critical thinking in healthcare"
-      ]
+      "description": "Introduction to logical reasoning and critical thinking for healthcare professionals, covering reasoning in clinical practice and evidence evaluation."
     },
     {
-      "title": "Computer Science Laboratory",
+      "title": "Laboratory of Computer Science and Multimedia Technologies",
       "code": "INF/01",
       "institution": "University of Verona",
-      "department": "Department of Computer Science",
       "level": "BA",
-      "program": "Computer Science",
-      "year_start": 2023,
+      "program": "Philosophy",
+      "year_start": 2022,
       "year_end": "present",
-      "hours_per_year": 40,
-      "credits": 6,
-      "description": "Hands-on programming course covering Python fundamentals, data structures, algorithms, and introduction to AI/ML libraries. Students develop practical coding skills and learn to implement algorithms for data processing and analysis.",
-      "topics": [
-        "Python programming",
-        "Data structures and algorithms",
-        "Introduction to NumPy and Pandas",
-        "Basic ML with scikit-learn",
-        "Software development practices"
-      ]
+      "description": "Hands-on course covering programming fundamentals, data structures, and multimedia technologies."
     },
     {
-      "title": "AI and Neuroscience Laboratory",
-      "code": "M-PSI/01",
+      "title": "Laboratory of Artificial Intelligence and Neuroscience",
       "institution": "University of Verona",
-      "department": "Department of Human Sciences",
-      "level": "MA",
-      "program": "Cognitive Neuroscience",
-      "year_start": 2024,
+      "level": "PhD",
+      "program": "Human Sciences",
+      "year_start": 2022,
       "year_end": "present",
-      "hours_per_year": 30,
-      "credits": 6,
-      "description": "Interdisciplinary lab exploring connections between artificial intelligence and neuroscience. Covers neural networks, computational models of cognition, brain-inspired computing, and applications of AI to neuroscience research.",
-      "topics": [
-        "Neural networks and deep learning",
-        "Computational neuroscience",
-        "Cognitive modeling",
-        "Brain-computer interfaces",
-        "AI for neuroscience applications"
-      ]
-    }
-  ],
-  "past_courses": [
-    {
-      "title": "Machine Reasoning",
-      "institution": "University College London",
-      "department": "Department of Computer Science",
-      "level": "MSc",
-      "program": "Computer Science",
-      "years": "2021-2023",
-      "role": "Graduate Teaching Assistant",
-      "hours_total": 120,
-      "description": "Graduate course on automated reasoning, logic programming, constraint satisfaction, and knowledge representation. Assisted with tutorials, lab sessions, and student project supervision.",
-      "topics": [
-        "Answer Set Programming",
-        "Constraint logic programming",
-        "SAT/SMT solvers",
-        "Knowledge representation",
-        "Automated theorem proving"
-      ]
-    },
-    {
-      "title": "Foundations of Machine Learning",
-      "institution": "University College London",
-      "department": "Department of Computer Science",
-      "level": "MSc",
-      "program": "Machine Learning",
-      "years": "2020-2022",
-      "role": "Graduate Teaching Assistant",
-      "hours_total": 80,
-      "description": "Core ML course covering supervised and unsupervised learning, statistical learning theory, and practical implementation. Led tutorial sessions on probabilistic models and optimization algorithms.",
-      "topics": [
-        "Supervised learning algorithms",
-        "Unsupervised learning",
-        "Statistical learning theory",
-        "Probabilistic graphical models",
-        "Optimization methods"
-      ]
-    },
-    {
-      "title": "Programming Principles",
-      "institution": "University College London",
-      "department": "Department of Computer Science",
-      "level": "BSc",
-      "program": "Computer Science",
-      "years": "2018-2020",
-      "role": "Graduate Teaching Assistant",
-      "hours_total": 100,
-      "description": "Introductory programming course in Java covering object-oriented programming, data structures, and software design principles. Conducted lab sessions and provided one-on-one student support.",
-      "topics": [
-        "Object-oriented programming in Java",
-        "Data structures",
-        "Algorithm design",
-        "Software engineering principles",
-        "Testing and debugging"
-      ]
-    },
-    {
-      "title": "Logic and Computation",
-      "institution": "University College London",
-      "department": "Department of Computer Science",
-      "level": "BSc",
-      "program": "Computer Science",
-      "years": "2016-2018",
-      "role": "Graduate Teaching Assistant",
-      "hours_total": 60,
-      "description": "Undergraduate logic course covering propositional and predicate logic, proof theory, and computational aspects of logic. Assisted with problem sets and exam preparation.",
-      "topics": [
-        "Propositional logic",
-        "First-order logic",
-        "Natural deduction",
-        "Soundness and completeness",
-        "Computational complexity of logic"
-      ]
-    },
-    {
-      "title": "Introduction to Artificial Intelligence",
-      "institution": "University College London",
-      "department": "Department of Computer Science",
-      "level": "BSc",
-      "program": "Computer Science",
-      "years": "2015-2017",
-      "role": "Graduate Teaching Assistant",
-      "hours_total": 70,
-      "description": "Foundational AI course covering search algorithms, knowledge representation, planning, and reasoning under uncertainty. Led tutorial sessions on probabilistic reasoning and logic-based AI.",
-      "topics": [
-        "Search algorithms",
-        "Knowledge representation",
-        "Planning and reasoning",
-        "Probabilistic reasoning",
-        "Logic-based AI"
-      ]
-    },
-    {
-      "title": "Theoretical Computer Science",
-      "institution": "University of Palermo",
-      "department": "Department of Mathematics and Computer Science",
-      "level": "BSc",
-      "program": "Computer Science",
-      "years": "2013-2014",
-      "role": "Teaching Assistant",
-      "hours_total": 40,
-      "description": "Undergraduate course on formal languages, automata theory, computability, and complexity theory. Assisted with exercises on Turing machines and complexity classes.",
-      "topics": [
-        "Formal languages and automata",
-        "Turing machines",
-        "Computability theory",
-        "Complexity classes",
-        "Decidability"
-      ]
+      "description": "Interdisciplinary lab exploring connections between artificial intelligence and neuroscience for doctoral students."
     }
   ],
   "guest_lectures": [
     {
-      "title": "Introduction to Machine Learning for Linguists",
+      "title": "Introduction to Machine Learning",
       "event": "8th Winter School in Linguistics",
-      "institution": "University of Verona / Free University of Bolzano",
+      "institution": "University of Verona/Free University of Bolzano",
       "date": "2025-01",
-      "location": "Verona, Italy",
       "hours": 1.5,
-      "description": "Introductory lecture on machine learning concepts tailored for linguistics students, covering supervised learning, feature engineering, and applications to NLP.",
-      "topics": ["ML fundamentals", "NLP applications", "Feature engineering"]
+      "description": "Overview of learning paradigms and evaluation for linguistics audiences"
     },
     {
-      "title": "Bayesian Methods in Statistics and Machine Learning",
-      "event": "Graduate Research Seminar",
-      "institution": "University of Verona",
-      "date": "2025-03",
-      "location": "Verona, Italy",
-      "hours": 2,
-      "description": "Seminar on Bayesian inference, prior selection, posterior computation, and applications to machine learning and data analysis.",
-      "topics": ["Bayesian inference", "MCMC methods", "Bayesian ML"]
-    },
-    {
-      "title": "Probabilistic Reasoning and Bayesian Networks",
-      "event": "PhD Summer School in AI",
-      "institution": "University of Trento",
-      "date": "2023-07",
-      "location": "Trento, Italy",
+      "title": "Introduction to Bayesian Probability",
+      "event": "3rd and 4th Summer School on Bayesian Statistical Analysis",
+      "institution": "Verona",
+      "date": "2023, 2025",
       "hours": 3,
-      "description": "Tutorial on probabilistic graphical models, Bayesian networks, inference algorithms, and learning from data.",
-      "topics": ["Bayesian networks", "Probabilistic inference", "Structure learning"]
+      "description": "Priors, likelihood, posterior updating, Bayes factors"
     },
     {
-      "title": "Logic Programming and Answer Set Programming",
-      "event": "Advanced Topics in AI Course",
+      "title": "Logic Programming and Explainable AI",
+      "event": "IECS Doctoral School",
       "institution": "University of Trento",
-      "date": "2023-11",
-      "location": "Trento, Italy",
-      "hours": 2,
-      "description": "Guest lecture on logic programming paradigms, Answer Set Programming, and applications to knowledge representation and reasoning.",
-      "topics": ["Logic programming", "ASP/ILASP", "Knowledge representation"]
+      "date": "2023-09",
+      "hours": 20,
+      "description": "Intensive course for PhD students, September 4-8, 2023"
     },
     {
-      "title": "Machine Learning meets Logic: Inductive Logic Programming",
-      "event": "AI and Philosophy Workshop",
+      "title": "Machine Learning",
+      "event": "Guest lecture in Probability Logic course",
       "institution": "University of Milan",
-      "date": "2021-10",
-      "location": "Milan, Italy",
+      "date": "2021-04",
       "hours": 2,
-      "description": "Workshop talk on the intersection of machine learning and logic, focusing on inductive logic programming and learning from structured data.",
-      "topics": ["Inductive logic programming", "Structured learning", "Explainable AI"]
+      "description": "Topics and trends in Machine Learning for MSc students in Philosophy (Reasoning, Analysis and Modelling track)"
     },
     {
-      "title": "Epistemic Logic and Knowledge Representation",
-      "event": "Graduate Logic Seminar",
+      "title": "Topics in Logic, Probability and Computation",
+      "event": "PhD course",
+      "institution": "University of Milan",
+      "date": "2021-01",
+      "description": "Course for PhD students in Mind, Brain and Reasoning, jointly taught with H. Hosni and P. Baldi"
+    }
+  ],
+  "teaching_assistant_positions": [
+    {
+      "period": "2015-2023",
       "institution": "University College London",
-      "date": "2019-05",
-      "location": "London, UK",
-      "hours": 1.5,
-      "description": "Seminar on modal epistemic logic, knowledge representation in multi-agent systems, and dynamic epistemic logic.",
-      "topics": ["Epistemic logic", "Multi-agent systems", "Dynamic logic"]
+      "department": "Department of Information Studies",
+      "courses": [
+        {
+          "code": "INST0074 (formerly INST0043)",
+          "title": "Machine Reasoning for Artificial Intelligence",
+          "years": "2015-2023",
+          "note": "Lectured the Formal Argumentation module in 2022/23"
+        },
+        {
+          "code": "INST0060",
+          "title": "Foundations of Machine Learning and Data Science",
+          "years": "2018-2020"
+        },
+        {
+          "code": "INST0019",
+          "title": "Introduction to Programming and Scripting",
+          "years": "2017-2020"
+        },
+        {
+          "code": "INST0029",
+          "title": "Server Programming and Structured Data",
+          "years": "2018-2019"
+        },
+        {
+          "code": "INST0004",
+          "title": "Programming 2",
+          "years": "2015-2019"
+        }
+      ]
+    },
+    {
+      "period": "2013-2014",
+      "institution": "University of Palermo",
+      "department": "Department of Mathematics and Computer Science",
+      "courses": [
+        {
+          "title": "Theoretical Computer Science",
+          "role": "Lab Demonstrator"
+        }
+      ]
     }
   ],
   "teaching_statistics": {
     "years_experience": 12,
-    "total_institutions": 4,
-    "institutions": [
-      "University of Verona",
-      "University of Salento",
-      "University College London",
-      "University of Palermo"
-    ],
-    "average_hours_per_year": 100,
-    "total_courses_taught": 12,
-    "current_courses": 6,
-    "students_supervised": {
-      "phd": 0,
-      "masters": 3,
-      "bachelors": 5
-    },
-    "countries": ["Italy", "United Kingdom"]
+    "average_hours_per_year": "100+",
+    "note": "Student evaluations consistently strong, courses frequently among highest-rated in cohorts"
   }
 }
