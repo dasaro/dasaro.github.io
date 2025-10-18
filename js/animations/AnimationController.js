@@ -3,6 +3,8 @@
 // Main controller for managing background animations
 // ==========================================
 
+console.log('[AnimationController] Module loaded');
+
 import { GameOfLife } from './GameOfLife.js';
 import { FibonacciSpiral } from './FibonacciSpiral.js';
 import { PrimeSpiral } from './PrimeSpiral.js';
@@ -12,12 +14,20 @@ import { ProofTree } from './ProofTree.js';
 import { PacMan } from './PacMan.js';
 import { Rule30 } from './Rule30.js';
 
+console.log('[AnimationController] All imports successful');
+
 export class AnimationController {
     constructor() {
+        console.log('[AnimationController] Constructor called');
+        console.log('[AnimationController] Canvas element:', document.getElementById('bg-animation-canvas'));
+
         this.canvas = document.getElementById('bg-animation-canvas');
         this.ctx = this.canvas ? this.canvas.getContext('2d') : null;
         this.currentAnimation = null;
         this.enabled = true;
+
+        console.log('[AnimationController] Canvas:', this.canvas);
+        console.log('[AnimationController] Context:', this.ctx);
 
         // Register all available animations
         this.animations = new Map([
@@ -181,8 +191,12 @@ export class AnimationController {
 }
 
 // Initialize when DOM is ready
+console.log('[AnimationController] Setting up DOMContentLoaded listener');
+
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('[AnimationController] DOMContentLoaded fired, initializing...');
     window.animationController = new AnimationController();
+    console.log('[AnimationController] Instance created:', window.animationController);
 });
 
-console.log('[AnimationController] Module loaded - Phase 2 modular animations ready');
+console.log('[AnimationController] Module fully loaded - Phase 2 modular animations ready');

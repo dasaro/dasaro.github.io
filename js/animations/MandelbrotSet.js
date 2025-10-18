@@ -21,7 +21,7 @@ export class MandelbrotSet extends AnimationBase {
         };
 
         // Seahorse Valley coordinates (beautiful zoom target)
-        this.start = {
+        this.startView = {
             cx: -0.743643887037158704752191506114774,
             cy: 0.131825904205311970493132056385139,
             width: 3.5
@@ -29,9 +29,9 @@ export class MandelbrotSet extends AnimationBase {
 
         // Current viewport
         this.view = {
-            cx: this.start.cx,
-            cy: this.start.cy,
-            width: this.start.width
+            cx: this.startView.cx,
+            cy: this.startView.cy,
+            width: this.startView.width
         };
 
         // Progressive rendering state
@@ -117,7 +117,7 @@ export class MandelbrotSet extends AnimationBase {
         const pix = this.pixelSize();
 
         // Adaptive iteration count based on zoom level
-        const mag = this.start.width / this.view.width;
+        const mag = this.startView.width / this.view.width;
         const extra = Math.max(0, Math.floor(20 * Math.log2(mag)));
         const maxIter = this.config.baseIterations + extra;
 
@@ -168,9 +168,9 @@ export class MandelbrotSet extends AnimationBase {
 
             // Check if zoomed too far (reset)
             if (this.view.width < 1e-14) {
-                this.view.cx = this.start.cx;
-                this.view.cy = this.start.cy;
-                this.view.width = this.start.width;
+                this.view.cx = this.startView.cx;
+                this.view.cy = this.startView.cy;
+                this.view.width = this.startView.width;
             }
 
             // Start next frame
@@ -200,9 +200,9 @@ export class MandelbrotSet extends AnimationBase {
 
         // Reset state
         this.view = {
-            cx: this.start.cx,
-            cy: this.start.cy,
-            width: this.start.width
+            cx: this.startView.cx,
+            cy: this.startView.cy,
+            width: this.startView.width
         };
         this.yRow = 0;
         this.imageData = null;
