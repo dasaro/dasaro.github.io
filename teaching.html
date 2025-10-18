@@ -176,50 +176,31 @@
         // 1. Teaching Philosophy
         const philosophyContainer = document.getElementById('philosophy-container');
         if (teachingData.teaching_philosophy) {
-          const html = `
-            <h2>${teachingData.teaching_philosophy.title}</h2>
-            ${teachingData.teaching_philosophy.paragraphs.map(p => `<p>${p}</p>`).join('')}
-          `;
+          const philosophy = typeof teachingData.teaching_philosophy === 'string'
+            ? teachingData.teaching_philosophy
+            : teachingData.teaching_philosophy.paragraphs?.join('</p><p>') || '';
+
+          const html = `<p>${philosophy}</p>`;
           philosophyContainer.innerHTML = html;
           console.log('[teaching.html] ✅ Teaching Philosophy displayed!');
         }
 
-        // 2. Teaching Statistics - Using CSS classes (NO GREEN!)
+        // 2. Teaching Statistics
         const statsContainer = document.getElementById('stats-container');
         if (teachingData.teaching_statistics) {
           const stats = teachingData.teaching_statistics;
           const html = `
-            <div class="teaching-stats-widget">
-              <h2>Teaching Experience</h2>
-              <div class="teaching-stats-grid">
-                <div class="teaching-stat">
-                  <span class="teaching-stat-value">${stats.years_experience}+</span>
-                  <span class="teaching-stat-label">Years Experience</span>
+            <div class="card">
+              <h3>Teaching Experience</h3>
+              <div class="grid grid-2">
+                <div>
+                  <strong>Years of Experience:</strong> ${stats.years_experience} years
                 </div>
-                <div class="teaching-stat">
-                  <span class="teaching-stat-value">${stats.current_courses}</span>
-                  <span class="teaching-stat-label">Current Courses</span>
-                </div>
-                <div class="teaching-stat">
-                  <span class="teaching-stat-value">${stats.total_courses_taught}</span>
-                  <span class="teaching-stat-label">Total Courses</span>
-                </div>
-                <div class="teaching-stat">
-                  <span class="teaching-stat-value">${stats.total_institutions}</span>
-                  <span class="teaching-stat-label">Institutions</span>
-                </div>
-                <div class="teaching-stat">
-                  <span class="teaching-stat-value">${stats.average_hours_per_year}+</span>
-                  <span class="teaching-stat-label">Hours/Year</span>
-                </div>
-                <div class="teaching-stat">
-                  <span class="teaching-stat-value">${stats.students_supervised.masters + stats.students_supervised.bachelors}</span>
-                  <span class="teaching-stat-label">Students Supervised</span>
+                <div>
+                  <strong>Average Hours/Year:</strong> ${stats.average_hours_per_year}
                 </div>
               </div>
-              <p class="mt-xl text-center text-sm text-white">
-                Teaching across: ${stats.institutions.join(', ')}
-              </p>
+              <p class="mt-md"><em>${stats.note || ''}</em></p>
             </div>
           `;
           statsContainer.innerHTML = html;
@@ -232,22 +213,14 @@
           const html = `
             <div class="grid grid-2">
               ${teachingData.current_courses.map(course => `
-                <div class="course-card">
-                  <h3>
-                    <span class="course-code">${course.level}</span>
-                    <span class="course-title">${course.title}</span>
-                  </h3>
-                  <div class="course-meta">
+                <div class="card">
+                  <h3>${course.title}</h3>
+                  <div class="course-meta mb-md">
                     <strong>${course.institution}</strong><br>
-                    ${course.program} | ${course.credits} credits | ${course.hours_per_year}h/year<br>
-                    <span class="monospace">${course.year_start}-${course.year_end}</span>
+                    ${course.code} | ${course.level} | ${course.program}<br>
+                    <span class="monospace">${course.year_start}–${course.year_end}</span>
                   </div>
-                  <p class="course-description">${course.description}</p>
-                  ${course.topics && course.topics.length > 0 ? `
-                    <div class="lecture-tags mt-md">
-                      ${course.topics.map(topic => `<span class="lecture-tag">${topic}</span>`).join('')}
-                    </div>
-                  ` : ''}
+                  ${course.description ? `<p class="course-description">${course.description}</p>` : ''}
                 </div>
               `).join('')}
             </div>
@@ -256,50 +229,42 @@
           console.log('[teaching.html] ✅ Current Courses displayed!', teachingData.current_courses.length, 'courses');
         }
 
-        // 4. Past Courses
-        const pastCoursesContainer = document.getElementById('past-courses-container');
-        if (teachingData.past_courses && teachingData.past_courses.length > 0) {
-          const html = teachingData.past_courses.map(course => `
-            <div class="course-card">
-              <h3>
-                <span class="course-code">${course.level}</span>
-                <span class="course-title">${course.title}</span>
-              </h3>
-              <div class="course-meta">
-                <strong>${course.institution}</strong> | ${course.role}<br>
-                ${course.program} | ${course.years} | ${course.hours_total}h total
-              </div>
-              <p class="course-description">${course.description}</p>
-              ${course.topics && course.topics.length > 0 ? `
-                <div class="lecture-tags mt-md">
-                  ${course.topics.map(topic => `<span class="lecture-tag">${topic}</span>`).join('')}
-                </div>
-              ` : ''}
-            </div>
-          `).join('');
-          pastCoursesContainer.innerHTML = html;
-          console.log('[teaching.html] ✅ Past Courses displayed!', teachingData.past_courses.length, 'courses');
-        }
-
-        // 5. Guest Lectures
+        // 4. Guest Lectures
         const guestLecturesContainer = document.getElementById('guest-lectures-container');
         if (teachingData.guest_lectures && teachingData.guest_lectures.length > 0) {
           const html = teachingData.guest_lectures.map(lecture => `
-            <div class="lecture-card">
-              <div class="lecture-date">${lecture.date}</div>
-              <h3 class="lecture-title">${lecture.title}</h3>
-              <p class="lecture-venue"><strong>${lecture.event}</strong> | ${lecture.institution}</p>
-              <p class="lecture-location">${lecture.location} | ${lecture.hours}h</p>
-              <p class="lecture-description">${lecture.description}</p>
-              ${lecture.topics && lecture.topics.length > 0 ? `
-                <div class="lecture-tags">
-                  ${lecture.topics.map(topic => `<span class="lecture-tag">${topic}</span>`).join('')}
-                </div>
-              ` : ''}
+            <div class="card">
+              <div class="mb-sm"><strong>${lecture.date || lecture.year || ''}</strong></div>
+              <h3>${lecture.title}</h3>
+              <p><strong>${lecture.event}</strong></p>
+              <p>${lecture.institution || ''}</p>
+              ${lecture.hours ? `<p>${lecture.hours} hours</p>` : ''}
+              ${lecture.description ? `<p class="mt-md">${lecture.description}</p>` : ''}
             </div>
           `).join('');
           guestLecturesContainer.innerHTML = html;
           console.log('[teaching.html] ✅ Guest Lectures displayed!', teachingData.guest_lectures.length, 'lectures');
+        }
+
+        // 5. Teaching Assistant Positions
+        const taContainer = document.getElementById('ta-positions-container');
+        if (teachingData.teaching_assistant_positions && teachingData.teaching_assistant_positions.length > 0) {
+          const html = teachingData.teaching_assistant_positions.map(position => `
+            <div class="card">
+              <h3>${position.institution}</h3>
+              <p><strong>${position.period}</strong> | ${position.department || ''}</p>
+              ${position.courses && position.courses.length > 0 ? `
+                <ul class="mt-md">
+                  ${position.courses.map(course => `
+                    <li><strong>${course.code || ''}:</strong> ${course.title} ${course.years ? `(${course.years})` : ''}
+                    ${course.note ? `<br><em>${course.note}</em>` : ''}</li>
+                  `).join('')}
+                </ul>
+              ` : ''}
+            </div>
+          `).join('');
+          taContainer.innerHTML = html;
+          console.log('[teaching.html] ✅ TA Positions displayed!');
         }
 
         // 6. Load supervision data
