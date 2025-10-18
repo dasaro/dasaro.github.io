@@ -436,105 +436,150 @@ class BackgroundAnimations {
 
     // ==========================================
     // ANIMATION 4: Riemann Zeta Polar Plot
-    // Accurate polar visualization: r = |ζ(1/2 + it)|, θ = arg(ζ(1/2 + it))
+    // Single evolving curve using Dirichlet eta series
     // ==========================================
     riemannZeta() {
         const centerX = this.canvas.width / 2;
         const centerY = this.canvas.height / 2;
-        const maxRadius = Math.min(this.canvas.width, this.canvas.height) / 2.5;
+        const pxPerUnit = Math.min(this.canvas.width, this.canvas.height) / 8; // Scale
 
-        let time = 0;
-        const tMax = 50; // Parameter range
-        const numPoints = 500; // Smooth curve
+        const T_ZERO = 14.134725; // First non-trivial zero
+        let t = T_ZERO + 0.001; // Start just above first zero
+        const tMax = 50; // Upper limit for t
+        const sigma = 0.5; // Critical line Re(s) = 1/2
+        const N = 500; // Number of series terms
 
-        // Compute zeta function on critical line using Dirichlet series
-        const computeZeta = (t) => {
-            let real = 0;
-            let imag = 0;
-            const maxTerms = 100; // More terms = more accuracy
+        let path = []; // Store traced path points
 
-            for (let n = 1; n <= maxTerms; n++) {
-                const nToHalf = Math.pow(n, -0.5); // n^(-1/2)
-                const angle = -t * Math.log(n); // -t * log(n)
+        // Complex number helpers
+        const cadd = (a, b) => ({re: a.re + b.re, im: a.im + b.im});
+        const cmul = (a, b) => ({
+            re: a.re * b.re - a.im * b.im,
+            im: a.re * b.im + a.im * b.re
+        });
+        const cdiv = (a, b) => {
+            const d = b.re * b.re + b.im * b.im;
+            return {
+                re: (a.re * b.re + a.im * b.im) / d,
+                im: (a.im * b.re - a.re * b.im) / d
+            };
+        };
+        const cabs = (a) => Math.hypot(a.re, a.im);
+        const carg = (a) => Math.atan2(a.im, a.re);
 
-                real += nToHalf * Math.cos(angle);
-                imag += nToHalf * Math.sin(angle);
+        // Compute Dirichlet eta: η(s) = Σ(-1)^(n-1) n^(-s)
+        const etaOf = (sigma, t, N) => {
+            let sr = 0, si = 0;
+            for (let n = 1; n <= N; n++) {
+                const alt = (n & 1) ? 1 : -1; // (-1)^(n-1)
+                const a = Math.pow(n, -sigma); // n^(-sigma)
+                const th = t * Math.log(n); // t ln(n)
+                const ce = Math.cos(th);
+                const se = Math.sin(th);
+                // n^(-s) = n^(-sigma) * e^(-it ln n)
+                sr += alt * a * ce;
+                si += alt * a * (-se);
             }
-
-            return { real, imag };
+            return {re: sr, im: si};
         };
 
+        // Compute zeta: ζ(s) = η(s) / (1 - 2^(1-s))
+        const zetaOf = (sigma, t, N) => {
+            const eta = etaOf(sigma, t, N);
+            // denom = 1 - 2^(1-σ) * e^(-it ln 2)
+            const A = Math.pow(2, 1 - sigma);
+            const th2 = t * Math.log(2);
+            const denom = {
+                re: 1 - A * Math.cos(th2),
+                im: A * Math.sin(th2)
+            };
+            return cdiv(eta, denom);
+        };
+
+        // Convert polar to canvas coordinates
+        const polarToXY = (r, th) => ({
+            x: centerX + pxPerUnit * r * Math.cos(th),
+            y: centerY - pxPerUnit * r * Math.sin(th) // Flip Y for canvas
+        });
+
         const animate = () => {
-            // Clear with subtle fade
-            this.ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+            // Subtle fade instead of full clear
+            this.ctx.fillStyle = 'rgba(255, 255, 255, 0.04)';
             this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-            // Draw reference circles (subtle)
-            this.ctx.strokeStyle = 'rgba(200, 200, 200, 0.15)';
+            // Draw subtle reference circles
+            this.ctx.strokeStyle = 'rgba(200, 200, 200, 0.08)';
             this.ctx.lineWidth = 1;
             this.ctx.setLineDash([3, 3]);
-            for (let r = 0.5; r <= 3.5; r += 0.5) {
+            for (let k = 1; k <= 3; k++) {
                 this.ctx.beginPath();
-                this.ctx.arc(centerX, centerY, r * maxRadius / 4, 0, Math.PI * 2);
+                this.ctx.arc(centerX, centerY, k * pxPerUnit, 0, Math.PI * 2);
                 this.ctx.stroke();
             }
             this.ctx.setLineDash([]);
 
-            // Compute points for BOTH the curve AND zero detection (single pass)
-            const points = [];
+            // Compute next point
+            if (t < tMax) {
+                const z = zetaOf(sigma, t, N);
+                const r = cabs(z);
+                const th = carg(z);
+                const pt = polarToXY(r, th);
 
-            // Main Riemann zeta polar plot (RED - the correct visualization)
-            this.ctx.strokeStyle = 'rgba(139, 0, 0, 0.6)';
-            this.ctx.lineWidth = 3;
-            this.ctx.beginPath();
+                path.push({x: pt.x, y: pt.y, r, t});
 
-            for (let i = 0; i <= numPoints; i++) {
-                const t = (i / numPoints) * tMax;
-                const zeta = computeZeta(t + time * 0.5); // Single computation
-
-                const magnitude = Math.sqrt(zeta.real * zeta.real + zeta.imag * zeta.imag);
-                const argument = Math.atan2(zeta.imag, zeta.real);
-
-                const radius = magnitude * maxRadius / 4;
-                const x = centerX + radius * Math.cos(argument);
-                const y = centerY + radius * Math.sin(argument);
-
-                // Store for zero detection
-                points.push({ x, y, t, magnitude });
-
-                // Draw curve
-                if (i === 0) {
-                    this.ctx.moveTo(x, y);
-                } else {
-                    this.ctx.lineTo(x, y);
-                }
-            }
-            this.ctx.stroke();
-
-            // Draw dots at zeros (where magnitude ≈ 0)
-            points.forEach((point, i) => {
-                if (point.magnitude < 0.15) { // Near zero
-                    // Red dot - BIGGER
+                // Mark zeros (where r ≈ 0)
+                if (r < 0.08) {
+                    // Large red dot at zero
                     this.ctx.fillStyle = 'rgba(139, 0, 0, 0.9)';
                     this.ctx.beginPath();
-                    this.ctx.arc(point.x, point.y, 6, 0, Math.PI * 2);
+                    this.ctx.arc(pt.x, pt.y, 7, 0, Math.PI * 2);
                     this.ctx.fill();
 
-                    // Glow - BIGGER and BRIGHTER
+                    // Glow around zero
                     const gradient = this.ctx.createRadialGradient(
-                        point.x, point.y, 0,
-                        point.x, point.y, 18
+                        pt.x, pt.y, 0,
+                        pt.x, pt.y, 20
                     );
-                    gradient.addColorStop(0, 'rgba(139, 0, 0, 0.4)');
+                    gradient.addColorStop(0, 'rgba(139, 0, 0, 0.5)');
                     gradient.addColorStop(1, 'rgba(139, 0, 0, 0)');
                     this.ctx.fillStyle = gradient;
                     this.ctx.beginPath();
-                    this.ctx.arc(point.x, point.y, 18, 0, Math.PI * 2);
+                    this.ctx.arc(pt.x, pt.y, 20, 0, Math.PI * 2);
                     this.ctx.fill();
                 }
-            });
 
-            time += 0.03; // Animation speed
+                t += 0.12; // Speed of animation
+            }
+
+            // Limit path length to prevent memory issues
+            if (path.length > 2000) path.shift();
+
+            // Draw the traced path (RED)
+            if (path.length > 1) {
+                this.ctx.strokeStyle = 'rgba(139, 0, 0, 0.6)';
+                this.ctx.lineWidth = 2.5;
+                this.ctx.beginPath();
+                this.ctx.moveTo(path[0].x, path[0].y);
+                for (let i = 1; i < path.length; i++) {
+                    this.ctx.lineTo(path[i].x, path[i].y);
+                }
+                this.ctx.stroke();
+
+                // Current point marker
+                const curr = path[path.length - 1];
+                this.ctx.fillStyle = 'rgba(139, 0, 0, 0.8)';
+                this.ctx.beginPath();
+                this.ctx.arc(curr.x, curr.y, 3.5, 0, Math.PI * 2);
+                this.ctx.fill();
+            }
+
+            // Reset when complete
+            if (t >= tMax) {
+                setTimeout(() => {
+                    t = T_ZERO + 0.001;
+                    path = [];
+                }, 2000);
+            }
 
             this.animationId = requestAnimationFrame(animate);
         };
