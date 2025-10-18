@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Canvas Test</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: white;
+    }
+    #test-canvas {
+      border: 2px solid red;
+      display: block;
+      margin: 20px 0;
+    }
+    .info {
+      font-family: monospace;
+      padding: 10px;
+      background: #f0f0f0;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Canvas Animation Test</h1>
+  <div class="info" id="info">Initializing...</div>
+  <canvas id="test-canvas" width="800" height="600"></canvas>
+
+  <script>
+    const info = document.getElementById('info');
+    const canvas = document.getElementById('test-canvas');
+    const ctx = canvas.getContext('2d');
+
+    info.innerHTML = `
+      Canvas found: ${!!canvas}<br>
+      Context found: ${!!ctx}<br>
+      Canvas size: ${canvas.width} x ${canvas.height}
+    `;
+
+    // Draw a simple red circle animation
+    let x = 100;
+    let y = 100;
+    let dx = 2;
+    let dy = 2;
+
+    function animate() {
+      // Clear
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw red circle
+      ctx.fillStyle = '#8B0000';
+      ctx.beginPath();
+      ctx.arc(x, y, 30, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Move
+      x += dx;
+      y += dy;
+
+      if (x > canvas.width - 30 || x < 30) dx = -dx;
+      if (y > canvas.height - 30 || y < 30) dy = -dy;
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+    console.log('Test animation started');
+  </script>
+</body>
+</html>

@@ -281,7 +281,7 @@ class BackgroundAnimations {
     fibonacciSpiral() {
         const centerX = this.canvas.width / 2;
         const centerY = this.canvas.height / 2;
-        const scale = Math.min(this.canvas.width, this.canvas.height) / 40;
+        const scale = Math.min(this.canvas.width, this.canvas.height) / 60; // Smaller scale = tighter spiral
 
         let angle = 0;
         let progress = 0;
@@ -301,8 +301,8 @@ class BackgroundAnimations {
             this.ctx.shadowColor = 'rgba(139, 0, 0, 0.5)';
             this.ctx.beginPath();
 
-            for (let i = 0; i <= progress * 50; i++) {
-                const theta = i * 0.1;
+            for (let i = 0; i <= progress * 70; i++) { // More iterations
+                const theta = i * 0.08; // Smaller angle increment = tighter spiral
                 const r = scale * Math.pow(phi, theta / (Math.PI / 2));
                 const x = centerX + r * Math.cos(theta + angle);
                 const y = centerY + r * Math.sin(theta + angle);
@@ -435,83 +435,106 @@ class BackgroundAnimations {
     }
 
     // ==========================================
-    // ANIMATION 4: Riemann Zeta Visualization
-    // Logarithmic progression for smooth appearance
+    // ANIMATION 4: Riemann Zeta Polar Plot
+    // Accurate polar visualization: r = |ζ(1/2 + it)|, θ = arg(ζ(1/2 + it))
     // ==========================================
     riemannZeta() {
         const centerX = this.canvas.width / 2;
         const centerY = this.canvas.height / 2;
+        const maxRadius = Math.min(this.canvas.width, this.canvas.height) / 2.5;
+
         let time = 0;
-        let progress = 0; // Start at 0, will grow logarithmically
-        const maxProgress = 100; // Full visibility at 100
+        const tMax = 50; // Parameter range
+        const numPoints = 500; // Smooth curve
 
-        const animate = () => {
-            // Clear with fade
-            this.ctx.fillStyle = 'rgba(255, 255, 255, 0.02)';
-            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        // Compute zeta function on critical line using Dirichlet series
+        const computeZeta = (t) => {
+            let real = 0;
+            let imag = 0;
+            const maxTerms = 100; // More terms = more accuracy
 
-            // Logarithmic progression: fast growth initially, then slows
-            // Using natural log for smooth transition
-            if (progress < maxProgress) {
-                progress += 0.5; // Increment slowly
+            for (let n = 1; n <= maxTerms; n++) {
+                const nToHalf = Math.pow(n, -0.5); // n^(-1/2)
+                const angle = -t * Math.log(n); // -t * log(n)
+
+                real += nToHalf * Math.cos(angle);
+                imag += nToHalf * Math.sin(angle);
             }
 
-            // Calculate visible range based on logarithmic progress
-            // Maps 0->100 progress to -5->50 t-range logarithmically
-            const visibleRange = progress < maxProgress
-                ? 5 * Math.log(progress + 1) / Math.log(maxProgress + 1)
-                : 50;
+            return { real, imag };
+        };
 
-            this.ctx.strokeStyle = 'rgba(139, 0, 0, 0.25)'; // CHANGED - 25% opacity instead of solid
-            this.ctx.lineWidth = 1.5; // CHANGED from 2.5
-            this.ctx.shadowBlur = 2; // CHANGED from 4
-            this.ctx.shadowColor = 'rgba(139, 0, 0, 0.15)'; // CHANGED from 0.4
+        const animate = () => {
+            // Clear with subtle fade
+            this.ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-            // Draw critical line (Re(s) = 1/2) visualization
+            // Draw reference circles (subtle)
+            this.ctx.strokeStyle = 'rgba(200, 200, 200, 0.15)';
+            this.ctx.lineWidth = 1;
+            this.ctx.setLineDash([3, 3]);
+            for (let r = 0.5; r <= 3.5; r += 0.5) {
+                this.ctx.beginPath();
+                this.ctx.arc(centerX, centerY, r * maxRadius / 4, 0, Math.PI * 2);
+                this.ctx.stroke();
+            }
+            this.ctx.setLineDash([]);
+
+            // Compute points for BOTH the curve AND zero detection (single pass)
+            const points = [];
+
+            // Main Riemann zeta polar plot (RED - the correct visualization)
+            this.ctx.strokeStyle = 'rgba(139, 0, 0, 0.6)';
+            this.ctx.lineWidth = 3;
             this.ctx.beginPath();
 
-            const tStart = -visibleRange;
-            const tEnd = visibleRange;
-            const step = 0.1;
+            for (let i = 0; i <= numPoints; i++) {
+                const t = (i / numPoints) * tMax;
+                const zeta = computeZeta(t + time * 0.5); // Single computation
 
-            for (let t = tStart; t < tEnd; t += step) {
-                // Simplified visualization of zeta function behavior
-                const realPart = 0.5;
-                const imagPart = t + time * 0.5;
+                const magnitude = Math.sqrt(zeta.real * zeta.real + zeta.imag * zeta.imag);
+                const argument = Math.atan2(zeta.imag, zeta.real);
 
-                // Approximate magnitude behavior with multiple harmonics
-                const magnitude = Math.abs(
-                    Math.sin(imagPart * 0.5) +
-                    Math.cos(imagPart * 0.3) * 0.5 +
-                    Math.sin(imagPart * 0.7) * 0.3
-                );
-                const phase = Math.atan2(
-                    Math.sin(imagPart * 0.7),
-                    Math.cos(imagPart * 0.5)
-                );
+                const radius = magnitude * maxRadius / 4;
+                const x = centerX + radius * Math.cos(argument);
+                const y = centerY + radius * Math.sin(argument);
 
-                // Calculate position with smooth scaling
-                const scale = Math.min(1, progress / 20); // Gradually scale up
-                const x = centerX + magnitude * 100 * Math.cos(phase) * scale;
-                const y = centerY + t * 5 + magnitude * 50 * Math.sin(phase) * scale;
+                // Store for zero detection
+                points.push({ x, y, t, magnitude });
 
-                if (t === tStart) {
+                // Draw curve
+                if (i === 0) {
                     this.ctx.moveTo(x, y);
                 } else {
                     this.ctx.lineTo(x, y);
                 }
             }
-
             this.ctx.stroke();
-            this.ctx.shadowBlur = 0;
 
-            time += 0.01;
+            // Draw dots at zeros (where magnitude ≈ 0)
+            points.forEach((point, i) => {
+                if (point.magnitude < 0.15) { // Near zero
+                    // Red dot - BIGGER
+                    this.ctx.fillStyle = 'rgba(139, 0, 0, 0.9)';
+                    this.ctx.beginPath();
+                    this.ctx.arc(point.x, point.y, 6, 0, Math.PI * 2);
+                    this.ctx.fill();
 
-            // Reset after full cycle
-            if (progress >= maxProgress && time > 30) {
-                progress = 0;
-                time = 0;
-            }
+                    // Glow - BIGGER and BRIGHTER
+                    const gradient = this.ctx.createRadialGradient(
+                        point.x, point.y, 0,
+                        point.x, point.y, 18
+                    );
+                    gradient.addColorStop(0, 'rgba(139, 0, 0, 0.4)');
+                    gradient.addColorStop(1, 'rgba(139, 0, 0, 0)');
+                    this.ctx.fillStyle = gradient;
+                    this.ctx.beginPath();
+                    this.ctx.arc(point.x, point.y, 18, 0, Math.PI * 2);
+                    this.ctx.fill();
+                }
+            });
+
+            time += 0.03; // Animation speed
 
             this.animationId = requestAnimationFrame(animate);
         };
