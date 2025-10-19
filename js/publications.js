@@ -81,6 +81,57 @@ class PublicationsManager {
   }
 
   /**
+   * Topic groupings for the filter dropdown
+   */
+  getTopicGroups() {
+    return {
+      'logic-reasoning': {
+        label: 'Logic & Reasoning',
+        tags: ['logic', 'reasoning', 'formalisms', 'epistemic-logic', 'non-monotonic-logic',
+               'bounded-reasoning', 'formal-methods', 'natural-deduction', 'type-theory',
+               'foundations', 'philosophy', 'epistemology', 'carnap', 'analogy', 'history']
+      },
+      'logic-programming': {
+        label: 'Logic Programming & AI',
+        tags: ['answer-set-programming', 'inductive-logic-programming', 'event-calculus',
+               'probabilistic-logic', 'probabilistic-reasoning', 'problog', 'depth-bounded',
+               'inductive-logic']
+      },
+      'xai-ethics': {
+        label: 'Explainable AI & Ethics',
+        tags: ['explainable-ai', 'argumentation', 'aba', 'ethics', 'trustworthiness',
+               'bias', 'bias-detection', 'proof-checking', 'preference-learning', 'labeling']
+      },
+      'applications': {
+        label: 'Applications & Domains',
+        tags: ['e-health', 'healthcare', 'robotics', 'hri', 'rehabilitation', 'smart-city',
+               'finance', 'decision-support', 'decision-making', 'cognitive-tests', 'education',
+               'elearning', 'nudging', 'human-sciences', 'agent-displacement', 'agents',
+               'information-overload', 'book']
+      },
+      'ai-methods': {
+        label: 'AI Methods & Tools',
+        tags: ['reinforcement-learning', 'neural-networks', 'mdp', 'evolutionary-computation',
+               'fuzzy-logic', 'multi-modal-fusion', 'intent-recognition', 'computational-intelligence',
+               'tools', 'artificial-intelligence', 'technology']
+      }
+    };
+  }
+
+  /**
+   * Map individual tag to its topic group
+   */
+  getTopicGroup(tag) {
+    const groups = this.getTopicGroups();
+    for (const [groupKey, groupData] of Object.entries(groups)) {
+      if (groupData.tags.includes(tag)) {
+        return groupKey;
+      }
+    }
+    return null;
+  }
+
+  /**
    * Populate year and topic filter dropdowns
    */
   populateFilterOptions() {
@@ -95,19 +146,12 @@ class PublicationsManager {
       this.elements.yearFilter.appendChild(option);
     });
 
-    // Populate topics
-    const topics = new Set();
-    this.allPublications.forEach(pub => {
-      if (pub.tags && Array.isArray(pub.tags)) {
-        pub.tags.forEach(tag => topics.add(tag));
-      }
-    });
-
-    const sortedTopics = [...topics].sort();
-    sortedTopics.forEach(topic => {
+    // Populate topic groups
+    const topicGroups = this.getTopicGroups();
+    Object.entries(topicGroups).forEach(([groupKey, groupData]) => {
       const option = document.createElement('option');
-      option.value = topic;
-      option.textContent = topic.charAt(0).toUpperCase() + topic.slice(1);
+      option.value = groupKey;
+      option.textContent = groupData.label;
       this.elements.topicFilter.appendChild(option);
     });
 
@@ -213,11 +257,17 @@ class PublicationsManager {
       filtered = filtered.filter(pub => pub.year === parseInt(this.filters.year));
     }
 
-    // Filter by topic
+    // Filter by topic group
     if (this.filters.topic !== 'all') {
-      filtered = filtered.filter(pub => {
-        return pub.tags && pub.tags.includes(this.filters.topic);
-      });
+      const topicGroups = this.getTopicGroups();
+      const selectedGroup = topicGroups[this.filters.topic];
+
+      if (selectedGroup) {
+        filtered = filtered.filter(pub => {
+          // Check if any of the publication's tags belong to the selected group
+          return pub.tags && pub.tags.some(tag => selectedGroup.tags.includes(tag));
+        });
+      }
     }
 
     // Filter by type
@@ -354,9 +404,14 @@ class PublicationsManager {
     }
 
     if (this.filters.topic !== 'all') {
-      publications = publications.filter(pub => {
-        return pub.tags && pub.tags.includes(this.filters.topic);
-      });
+      const topicGroups = this.getTopicGroups();
+      const selectedGroup = topicGroups[this.filters.topic];
+
+      if (selectedGroup) {
+        publications = publications.filter(pub => {
+          return pub.tags && pub.tags.some(tag => selectedGroup.tags.includes(tag));
+        });
+      }
     }
 
     if (this.filters.type !== 'all') {
