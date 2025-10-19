@@ -184,21 +184,41 @@
           <p class="metric-note">Last updated: September 2025</p>
         </div>
 
-        <!-- Search and Filter -->
+        <!-- Filter Controls -->
         <div class="search-filter-container fade-in-delay-2">
+          <!-- Selected/All Toggle Buttons -->
+          <div class="filter-toggle-group">
+            <button id="filter-selected" class="filter-toggle-btn active" data-filter="selected">
+              Selected Publications
+            </button>
+            <button id="filter-all" class="filter-toggle-btn" data-filter="all">
+              All Publications
+            </button>
+          </div>
+
+          <!-- Search Bar -->
           <input
             type="search"
             id="search-input"
             class="search-input"
-            placeholder="Search publications by title, author, or venue..."
+            placeholder="Search by title, author, or venue..."
           >
 
+          <!-- Filter Dropdowns -->
           <div class="filters">
             <div class="select-container">
               <label for="year-filter">Year</label>
               <select id="year-filter" class="filter-select">
                 <option value="all">All Years</option>
-                <!-- Will be populated dynamically -->
+                <!-- Populated dynamically -->
+              </select>
+            </div>
+
+            <div class="select-container">
+              <label for="topic-filter">Topic</label>
+              <select id="topic-filter" class="filter-select">
+                <option value="all">All Topics</option>
+                <!-- Populated dynamically -->
               </select>
             </div>
 
@@ -212,37 +232,23 @@
                 <option value="book">Book Chapter</option>
               </select>
             </div>
-
-            <div class="select-container">
-              <label for="sort-by">Sort By</label>
-              <select id="sort-by" class="filter-select">
-                <option value="year-desc">Year (newest first)</option>
-                <option value="year-asc">Year (oldest first)</option>
-                <option value="title-asc">Title (A-Z)</option>
-                <option value="title-desc">Title (Z-A)</option>
-              </select>
-            </div>
           </div>
 
-          <div class="mt-md">
-            <button class="btn" onclick="exportAllBibTeX()">Export All BibTeX</button>
+          <!-- Action Buttons -->
+          <div class="filter-actions">
+            <button class="btn btn-secondary" id="reset-filters">Reset Filters</button>
+            <button class="btn btn-primary" id="export-bibtex">Export BibTeX</button>
           </div>
         </div>
 
-        <!-- Selected Publications -->
-        <div id="selected-publications">
-          <h2 class="section-title">Selected Publications</h2>
-          <div id="selected-container">
-            <p class="loading-message">Selected publications will be loaded from data/publications.json</p>
-          </div>
+        <!-- Publications Count -->
+        <div id="publications-count" class="publications-count">
+          <p class="loading-message">Loading publications...</p>
         </div>
 
-        <!-- All Publications -->
-        <div id="all-publications" class="mt-xl">
-          <h2 class="section-title">All Publications</h2>
-          <div id="publications-container">
-            <p class="loading-message">All publications will be loaded from data/publications.json</p>
-          </div>
+        <!-- Unified Publications Container -->
+        <div id="publications-container">
+          <p class="loading-message">Loading publications...</p>
         </div>
       </div>
     </section>
@@ -264,221 +270,8 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="js/main.js?v=11"></script>
-  <script type="module" src="js/animations/AnimationController.js?v=29"></script>
-  <script src="js/publications.js?v=11"></script>
-  <script src="js/search.js?v=11"></script>
-
-  <!-- Page-specific script -->
-  <script>
-    let allPublications = [];
-    let filteredPublications = [];
-    let currentFilters = {
-      search: '',
-      year: 'all',
-      type: 'all',
-      sortBy: 'year',
-      sortOrder: 'desc'
-    };
-
-    document.addEventListener('DOMContentLoaded', async () => {
-      console.log('[publications.html] DOM loaded, starting data load...');
-
-      try {
-        // Load publications data
-        console.log('[publications.html] Loading publications data...');
-        const pubData = await loadJSON('./data/publications.json');
-        console.log('[publications.html] Publications data loaded:', pubData);
-
-        if (!pubData) {
-          throw new Error('Failed to load publications data');
-        }
-
-        // Store all publications
-        allPublications = pubData.all || [];
-        filteredPublications = [...allPublications];
-        console.log('[publications.html] Stored', allPublications.length, 'total publications');
-
-        // Display selected publications
-        if (pubData.selected && pubData.selected.length > 0) {
-          console.log('[publications.html] Found', pubData.selected.length, 'selected publications');
-          const selectedContainer = document.getElementById('selected-container');
-          console.log('[publications.html] Selected container found:', !!selectedContainer);
-          renderPublicationsToContainer(pubData.selected, selectedContainer);
-          console.log('[publications.html] Selected publications rendered');
-        } else {
-          console.warn('[publications.html] No selected publications found');
-        }
-
-        // Populate year filter
-        console.log('[publications.html] Populating year filter...');
-        populateYearFilter(allPublications);
-        console.log('[publications.html] Year filter populated');
-
-        // Display all publications
-        console.log('[publications.html] Rendering all publications...');
-        renderPublications();
-        console.log('[publications.html] All publications rendered');
-
-        // Set up event listeners
-        console.log('[publications.html] Setting up event listeners...');
-        setupEventListeners();
-        console.log('[publications.html] Event listeners configured');
-
-        console.log('[publications.html] Data loading complete.');
-
-      } catch (error) {
-        console.error('[publications.html] ERROR loading publications:', error);
-        console.error('[publications.html] Error stack:', error.stack);
-        document.getElementById('selected-container').innerHTML = '<p class="error-message">Error loading publications.</p>';
-        document.getElementById('publications-container').innerHTML = '<p class="error-message">Error loading publications.</p>';
-      }
-    });
-
-    function renderPublicationsToContainer(pubs, container) {
-      if (!pubs || pubs.length === 0) {
-        container.innerHTML = '<p class="no-results">No publications found.</p>';
-        return;
-      }
-
-      const html = pubs.map(pub => createPublicationHTML(pub)).join('');
-      container.innerHTML = html;
-      console.log('[publications.html] Rendered', pubs.length, 'publications to container');
-    }
-
-    function createPublicationHTML(pub) {
-      const authors = Array.isArray(pub.authors) ? pub.authors.join(', ') : pub.authors;
-      // Highlight author (now uses CSS classes)
-      const highlightedAuthors = authors.replace(/F\. A\. D'Asaro/g, '<strong>F. A. D\'Asaro</strong>');
-
-      return `
-        <div class="publication-card" data-id="${pub.id}">
-          <h3>${pub.title}</h3>
-          <p class="publication-authors">${highlightedAuthors}</p>
-          <p class="publication-venue">
-            <strong>${pub.venue}</strong> ${pub.volume ? `Vol. ${pub.volume}` : ''} (${pub.year}) ${pub.pages ? `pp. ${pub.pages}` : ''}
-            ${pub.open_access ? '<span class="badge-oa">OPEN ACCESS</span>' : ''}
-            ${pub.status === 'accepted' ? '<span class="badge-accepted">ACCEPTED</span>' : ''}
-          </p>
-          <div class="publication-links">
-            ${pub.doi ? `<a href="https://doi.org/${pub.doi}" target="_blank">DOI</a>` : ''}
-            ${pub.url ? `<a href="${pub.url}" target="_blank">Link</a>` : ''}
-            ${pub.pdf ? `<a href="${pub.pdf}" target="_blank">PDF</a>` : ''}
-            <button onclick="exportSingleBibTeX('${pub.id}')">BibTeX ⊢</button>
-          </div>
-        </div>
-      `;
-    }
-
-    function renderPublications() {
-      const container = document.getElementById('publications-container');
-
-      // Apply filters
-      let filtered = [...allPublications];
-
-      // Search filter
-      if (currentFilters.search) {
-        filtered = searchPublications(currentFilters.search, filtered);
-      }
-
-      // Year filter
-      if (currentFilters.year !== 'all') {
-        filtered = filterByYear(parseInt(currentFilters.year), filtered);
-      }
-
-      // Type filter
-      if (currentFilters.type !== 'all') {
-        filtered = filterByType(currentFilters.type, filtered);
-      }
-
-      // Sort
-      filtered = sortPublications(filtered, currentFilters.sortBy, currentFilters.sortOrder);
-
-      filteredPublications = filtered;
-
-      // Render
-      renderPublicationsToContainer(filtered, container);
-
-      // Show count (now uses CSS class)
-      const countEl = document.createElement('p');
-      countEl.className = 'publication-count';
-      countEl.textContent = `⊢ Showing ${filtered.length} of ${allPublications.length} publications`;
-      container.parentElement.insertBefore(countEl, container);
-      console.log('[publications.html] Display count:', filtered.length, 'of', allPublications.length);
-    }
-
-    function populateYearFilter(publications) {
-      const years = [...new Set(publications.map(pub => pub.year))].sort((a, b) => b - a);
-      const select = document.getElementById('year-filter');
-
-      years.forEach(year => {
-        const option = document.createElement('option');
-        option.value = year;
-        option.textContent = year;
-        select.appendChild(option);
-      });
-    }
-
-    function setupEventListeners() {
-      // Search
-      const searchInput = document.getElementById('search-input');
-      searchInput.addEventListener('input', debounce((e) => {
-        currentFilters.search = e.target.value;
-        renderPublications();
-      }, 300));
-
-      // Year filter
-      document.getElementById('year-filter').addEventListener('change', (e) => {
-        currentFilters.year = e.target.value;
-        renderPublications();
-      });
-
-      // Type filter
-      document.getElementById('type-filter').addEventListener('change', (e) => {
-        currentFilters.type = e.target.value;
-        renderPublications();
-      });
-
-      // Sort
-      document.getElementById('sort-by').addEventListener('change', (e) => {
-        const [field, order] = e.target.value.split('-');
-        currentFilters.sortBy = field;
-        currentFilters.sortOrder = order;
-        renderPublications();
-      });
-    }
-
-    // Export single publication BibTeX
-    window.exportSingleBibTeX = function(pubId) {
-      const pub = allPublications.find(p => p.id === pubId);
-      if (pub && pub.bibtex) {
-        downloadBibTeX(pub.bibtex, `${pubId}.bib`);
-      }
-    };
-
-    // Export all BibTeX
-    window.exportAllBibTeX = function() {
-      const bibtexEntries = filteredPublications
-        .filter(pub => pub.bibtex)
-        .map(pub => pub.bibtex)
-        .join('\n\n');
-
-      if (bibtexEntries) {
-        downloadBibTeX(bibtexEntries, 'dasaro_publications.bib');
-      }
-    };
-
-    function downloadBibTeX(content, filename) {
-      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    }
-  </script>
+  <script src="js/main.js?v=30"></script>
+  <script type="module" src="js/animations/AnimationController.js?v=30"></script>
+  <script type="module" src="js/publications.js?v=30"></script>
 </body>
 </html>
