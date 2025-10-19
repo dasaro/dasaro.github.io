@@ -186,16 +186,6 @@
 
         <!-- Filter Controls -->
         <div class="search-filter-container fade-in-delay-2">
-          <!-- Selected/All Toggle Buttons -->
-          <div class="filter-toggle-group">
-            <button id="filter-selected" class="filter-toggle-btn active" data-filter="selected">
-              Selected Publications
-            </button>
-            <button id="filter-all" class="filter-toggle-btn" data-filter="all">
-              All Publications
-            </button>
-          </div>
-
           <!-- Search Bar -->
           <input
             type="search"
@@ -207,17 +197,18 @@
           <!-- Filter Dropdowns -->
           <div class="filters">
             <div class="select-container">
-              <label for="year-filter">Year</label>
-              <select id="year-filter" class="filter-select">
-                <option value="all">All Years</option>
-                <!-- Populated dynamically -->
+              <label for="topic-filter">Topic</label>
+              <select id="topic-filter" class="filter-select">
+                <option value="all">All Publications</option>
+                <option value="selected">Selected Publications</option>
+                <!-- Other topics populated dynamically -->
               </select>
             </div>
 
             <div class="select-container">
-              <label for="topic-filter">Topic</label>
-              <select id="topic-filter" class="filter-select">
-                <option value="all">All Topics</option>
+              <label for="year-filter">Year</label>
+              <select id="year-filter" class="filter-select">
+                <option value="all">All Years</option>
                 <!-- Populated dynamically -->
               </select>
             </div>
@@ -272,6 +263,6 @@
   <!-- Scripts -->
   <script src="js/main.js?v=30"></script>
   <script type="module" src="js/animations/AnimationController.js?v=30"></script>
-  <script type="module" src="js/publications.js?v=31"></script>
+  <script type="module" src="js/publications.js?v=32"></script>
 </body>
 </html>

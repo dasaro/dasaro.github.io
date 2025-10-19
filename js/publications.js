@@ -7,11 +7,10 @@ class PublicationsManager {
   constructor() {
     this.allPublications = [];
     this.selectedPublicationIds = [];
-    this.currentFilter = 'selected'; // 'selected' or 'all'
     this.filters = {
       search: '',
       year: 'all',
-      topic: 'all',
+      topic: 'selected', // Default to 'selected' publications
       type: 'all'
     };
     this.elements = {};
@@ -31,8 +30,6 @@ class PublicationsManager {
       yearFilter: document.getElementById('year-filter'),
       topicFilter: document.getElementById('topic-filter'),
       typeFilter: document.getElementById('type-filter'),
-      selectedBtn: document.getElementById('filter-selected'),
-      allBtn: document.getElementById('filter-all'),
       resetBtn: document.getElementById('reset-filters'),
       exportBtn: document.getElementById('export-bibtex')
     };
@@ -146,7 +143,7 @@ class PublicationsManager {
       this.elements.yearFilter.appendChild(option);
     });
 
-    // Populate topic groups
+    // Populate topic groups (after "All Publications" and "Selected Publications")
     const topicGroups = this.getTopicGroups();
     Object.entries(topicGroups).forEach(([groupKey, groupData]) => {
       const option = document.createElement('option');
@@ -155,6 +152,9 @@ class PublicationsManager {
       this.elements.topicFilter.appendChild(option);
     });
 
+    // Set default topic to "selected"
+    this.elements.topicFilter.value = 'selected';
+
     console.log('[PublicationsManager] Filter options populated');
   }
 
@@ -162,34 +162,21 @@ class PublicationsManager {
    * Set up event listeners for all filters
    */
   setupFilters() {
-    // Selected/All toggle buttons
-    this.elements.selectedBtn.addEventListener('click', () => {
-      this.currentFilter = 'selected';
-      this.updateToggleButtons();
-      this.applyFilters();
-    });
-
-    this.elements.allBtn.addEventListener('click', () => {
-      this.currentFilter = 'all';
-      this.updateToggleButtons();
-      this.applyFilters();
-    });
-
     // Search input with debouncing
     this.elements.searchInput.addEventListener('input', this.debounce((e) => {
       this.filters.search = e.target.value.toLowerCase();
       this.applyFilters();
     }, 300));
 
-    // Year filter
-    this.elements.yearFilter.addEventListener('change', (e) => {
-      this.filters.year = e.target.value;
-      this.applyFilters();
-    });
-
     // Topic filter
     this.elements.topicFilter.addEventListener('change', (e) => {
       this.filters.topic = e.target.value;
+      this.applyFilters();
+    });
+
+    // Year filter
+    this.elements.yearFilter.addEventListener('change', (e) => {
+      this.filters.year = e.target.value;
       this.applyFilters();
     });
 
@@ -213,27 +200,26 @@ class PublicationsManager {
   }
 
   /**
-   * Update toggle button active states
-   */
-  updateToggleButtons() {
-    if (this.currentFilter === 'selected') {
-      this.elements.selectedBtn.classList.add('active');
-      this.elements.allBtn.classList.remove('active');
-    } else {
-      this.elements.selectedBtn.classList.remove('active');
-      this.elements.allBtn.classList.add('active');
-    }
-  }
-
-  /**
    * Apply all current filters and display results
    */
   applyFilters() {
     let filtered = [...this.allPublications];
 
-    // Filter by selected/all
-    if (this.currentFilter === 'selected') {
+    // Filter by topic (including "selected" as a special topic)
+    if (this.filters.topic === 'selected') {
+      // Show only selected publications
       filtered = filtered.filter(pub => this.selectedPublicationIds.includes(pub.id));
+    } else if (this.filters.topic !== 'all') {
+      // Show publications matching the topic group
+      const topicGroups = this.getTopicGroups();
+      const selectedGroup = topicGroups[this.filters.topic];
+
+      if (selectedGroup) {
+        filtered = filtered.filter(pub => {
+          // Check if any of the publication's tags belong to the selected group
+          return pub.tags && pub.tags.some(tag => selectedGroup.tags.includes(tag));
+        });
+      }
     }
 
     // Filter by search query
@@ -255,19 +241,6 @@ class PublicationsManager {
     // Filter by year
     if (this.filters.year !== 'all') {
       filtered = filtered.filter(pub => pub.year === parseInt(this.filters.year));
-    }
-
-    // Filter by topic group
-    if (this.filters.topic !== 'all') {
-      const topicGroups = this.getTopicGroups();
-      const selectedGroup = topicGroups[this.filters.topic];
-
-      if (selectedGroup) {
-        filtered = filtered.filter(pub => {
-          // Check if any of the publication's tags belong to the selected group
-          return pub.tags && pub.tags.some(tag => selectedGroup.tags.includes(tag));
-        });
-      }
     }
 
     // Filter by type
@@ -339,13 +312,27 @@ class PublicationsManager {
    * Update the publications count display
    */
   updateCount(filteredCount) {
-    const totalCount = this.currentFilter === 'selected'
-      ? this.selectedPublicationIds.length
-      : this.allPublications.length;
+    const totalCount = this.allPublications.length;
+    const topicLabel = this.getTopicLabel();
 
     this.elements.countContainer.innerHTML = `
-      <p>⊢ Showing ${filteredCount} of ${totalCount} ${this.currentFilter} publications</p>
+      <p>⊢ Showing ${filteredCount} of ${totalCount} publications${topicLabel}</p>
     `;
+  }
+
+  /**
+   * Get a human-readable label for the current topic filter
+   */
+  getTopicLabel() {
+    if (this.filters.topic === 'all') {
+      return '';
+    } else if (this.filters.topic === 'selected') {
+      return ' (selected)';
+    } else {
+      const topicGroups = this.getTopicGroups();
+      const group = topicGroups[this.filters.topic];
+      return group ? ` (${group.label})` : '';
+    }
   }
 
   /**
@@ -355,19 +342,16 @@ class PublicationsManager {
     this.filters = {
       search: '',
       year: 'all',
-      topic: 'all',
+      topic: 'selected', // Default to selected publications
       type: 'all'
     };
-
-    this.currentFilter = 'selected';
 
     // Reset UI
     this.elements.searchInput.value = '';
     this.elements.yearFilter.value = 'all';
-    this.elements.topicFilter.value = 'all';
+    this.elements.topicFilter.value = 'selected';
     this.elements.typeFilter.value = 'all';
 
-    this.updateToggleButtons();
     this.applyFilters();
 
     console.log('[PublicationsManager] Filters reset');
@@ -379,11 +363,21 @@ class PublicationsManager {
   exportBibTeX() {
     let publications = [...this.allPublications];
 
-    // Apply current filters to get the exact list shown
-    if (this.currentFilter === 'selected') {
+    // Apply topic filter (including "selected")
+    if (this.filters.topic === 'selected') {
       publications = publications.filter(pub => this.selectedPublicationIds.includes(pub.id));
+    } else if (this.filters.topic !== 'all') {
+      const topicGroups = this.getTopicGroups();
+      const selectedGroup = topicGroups[this.filters.topic];
+
+      if (selectedGroup) {
+        publications = publications.filter(pub => {
+          return pub.tags && pub.tags.some(tag => selectedGroup.tags.includes(tag));
+        });
+      }
     }
 
+    // Apply search filter
     if (this.filters.search) {
       publications = publications.filter(pub => {
         const searchText = this.filters.search;
@@ -399,21 +393,12 @@ class PublicationsManager {
       });
     }
 
+    // Apply year filter
     if (this.filters.year !== 'all') {
       publications = publications.filter(pub => pub.year === parseInt(this.filters.year));
     }
 
-    if (this.filters.topic !== 'all') {
-      const topicGroups = this.getTopicGroups();
-      const selectedGroup = topicGroups[this.filters.topic];
-
-      if (selectedGroup) {
-        publications = publications.filter(pub => {
-          return pub.tags && pub.tags.some(tag => selectedGroup.tags.includes(tag));
-        });
-      }
-    }
-
+    // Apply type filter
     if (this.filters.type !== 'all') {
       publications = publications.filter(pub => pub.type === this.filters.type);
     }
