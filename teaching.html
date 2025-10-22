@@ -247,8 +247,8 @@
           console.log('[teaching.html] ✅ Guest Lectures displayed!', teachingData.guest_lectures.length, 'lectures');
         }
 
-        // 5. Teaching Assistant Positions
-        const taContainer = document.getElementById('ta-positions-container');
+        // 5. Past Courses (Teaching Assistant Positions)
+        const pastCoursesContainer = document.getElementById('past-courses-container');
         if (teachingData.teaching_assistant_positions && teachingData.teaching_assistant_positions.length > 0) {
           const html = teachingData.teaching_assistant_positions.map(position => `
             <div class="card">
@@ -264,8 +264,8 @@
               ` : ''}
             </div>
           `).join('');
-          taContainer.innerHTML = html;
-          console.log('[teaching.html] ✅ TA Positions displayed!');
+          pastCoursesContainer.innerHTML = html;
+          console.log('[teaching.html] ✅ Past Courses (TA Positions) displayed!', teachingData.teaching_assistant_positions.length, 'positions');
         }
 
         // 6. Load supervision data

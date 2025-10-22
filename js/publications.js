@@ -474,6 +474,3 @@ document.addEventListener('DOMContentLoaded', () => {
   const manager = new PublicationsManager();
   manager.init();
 });
-
-// Export for module use
-export default PublicationsManager;
