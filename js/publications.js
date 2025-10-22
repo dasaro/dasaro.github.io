@@ -14,6 +14,8 @@ class PublicationsManager {
       type: 'all'
     };
     this.elements = {};
+    this.currentBibtex = '';  // Store current BibTeX for modal
+    this.currentFilename = '';  // Store filename for download
   }
 
   /**
@@ -31,7 +33,14 @@ class PublicationsManager {
       topicFilter: document.getElementById('topic-filter'),
       typeFilter: document.getElementById('type-filter'),
       resetBtn: document.getElementById('reset-filters'),
-      exportBtn: document.getElementById('export-bibtex')
+      exportBtn: document.getElementById('export-bibtex'),
+      // Modal elements
+      modal: document.getElementById('bibtex-modal'),
+      modalOverlay: document.querySelector('#bibtex-modal .modal-overlay'),
+      modalClose: document.querySelector('#bibtex-modal .modal-close'),
+      bibtexContent: document.getElementById('bibtex-content'),
+      copyBtn: document.getElementById('copy-bibtex'),
+      downloadBtn: document.getElementById('download-bibtex')
     };
 
     // Only run on publications page (check for required filter elements)
@@ -200,6 +209,30 @@ class PublicationsManager {
     // Export BibTeX button
     this.elements.exportBtn.addEventListener('click', () => {
       this.exportBibTeX();
+    });
+
+    // Modal event listeners
+    this.elements.modalClose.addEventListener('click', () => {
+      this.hideModal();
+    });
+
+    this.elements.modalOverlay.addEventListener('click', () => {
+      this.hideModal();
+    });
+
+    this.elements.copyBtn.addEventListener('click', () => {
+      this.copyBibtexToClipboard();
+    });
+
+    this.elements.downloadBtn.addEventListener('click', () => {
+      this.downloadBibTeX(this.currentBibtex, this.currentFilename);
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.elements.modal.style.display !== 'none') {
+        this.hideModal();
+      }
     });
 
     console.log('[PublicationsManager] Event listeners configured');
@@ -415,8 +448,9 @@ class PublicationsManager {
       .join('\n\n');
 
     if (bibtexEntries) {
-      this.downloadBibTeX(bibtexEntries, 'dasaro_publications.bib');
-      console.log('[PublicationsManager] Exported', publications.length, 'BibTeX entries');
+      // Show modal instead of direct download
+      this.showBibtexModal(bibtexEntries, 'dasaro_publications.bib');
+      console.log('[PublicationsManager] Showing BibTeX modal for', publications.length, 'entries');
     } else {
       console.warn('[PublicationsManager] No BibTeX entries to export');
     }
@@ -429,8 +463,9 @@ class PublicationsManager {
     const pub = this.allPublications.find(p => p.id === pubId);
 
     if (pub && pub.bibtex) {
-      this.downloadBibTeX(pub.bibtex, `${pubId}.bib`);
-      console.log('[PublicationsManager] Exported BibTeX for', pubId);
+      // Show modal instead of direct download
+      this.showBibtexModal(pub.bibtex, `${pubId}.bib`);
+      console.log('[PublicationsManager] Showing BibTeX modal for', pubId);
     } else {
       console.warn('[PublicationsManager] No BibTeX found for', pubId);
     }
@@ -449,6 +484,56 @@ class PublicationsManager {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+  }
+
+  /**
+   * Show BibTeX in modal
+   */
+  showBibtexModal(bibtexContent, filename) {
+    this.currentBibtex = bibtexContent;
+    this.currentFilename = filename;
+
+    // Update modal content
+    this.elements.bibtexContent.textContent = bibtexContent;
+
+    // Show modal
+    this.elements.modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Prevent background scroll
+
+    console.log('[PublicationsManager] Modal displayed');
+  }
+
+  /**
+   * Hide BibTeX modal
+   */
+  hideModal() {
+    this.elements.modal.style.display = 'none';
+    document.body.style.overflow = ''; // Restore scroll
+    console.log('[PublicationsManager] Modal hidden');
+  }
+
+  /**
+   * Copy BibTeX to clipboard
+   */
+  async copyBibtexToClipboard() {
+    try {
+      await navigator.clipboard.writeText(this.currentBibtex);
+
+      // Visual feedback - change button text temporarily
+      const originalText = this.elements.copyBtn.innerHTML;
+      this.elements.copyBtn.innerHTML = '<span class="btn-icon">✓</span> Copied!';
+      this.elements.copyBtn.style.background = 'var(--color-link)';
+
+      setTimeout(() => {
+        this.elements.copyBtn.innerHTML = originalText;
+        this.elements.copyBtn.style.background = '';
+      }, 2000);
+
+      console.log('[PublicationsManager] BibTeX copied to clipboard');
+    } catch (err) {
+      console.error('[PublicationsManager] Failed to copy:', err);
+      alert('Failed to copy to clipboard. Please try selecting and copying manually.');
+    }
   }
 
   /**

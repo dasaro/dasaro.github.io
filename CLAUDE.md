@@ -5,6 +5,26 @@
 
 ---
 
+## ⚠️ META-RULE: Keep This Document Updated
+
+**CRITICAL:** Whenever you make architectural changes, component additions, or establish new patterns, you **MUST** update this CLAUDE.md document to reflect those changes.
+
+**This includes:**
+- ✅ New component patterns (modals, tooltips, cards, etc.)
+- ✅ Layout architecture changes (grid systems, hierarchy rules)
+- ✅ Styling standards or conventions
+- ✅ JavaScript patterns or utilities
+- ✅ Data structure modifications
+- ✅ File organization changes
+- ✅ Naming conventions
+- ✅ Accessibility patterns
+
+**Why:** This document serves as the single source of truth for development standards. Keeping it updated ensures consistency across all future changes and prevents technical debt.
+
+**When:** Update CLAUDE.md in the **same commit** as the architectural change.
+
+---
+
 ## Table of Contents
 
 1. [Architecture Principles](#architecture-principles)
@@ -631,6 +651,111 @@ echo $?  # Should output 0 if valid
   <div>Column 3</div>
 </div>
 ```
+
+### Modal Components
+
+Modals provide elegant popups for displaying content without leaving the current page.
+
+#### Modal Structure
+```html
+<!-- Modal overlay (hidden by default) -->
+<div id="modal-id" class="modal" style="display: none;">
+  <div class="modal-overlay"></div>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Modal Title</h3>
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <!-- Modal content goes here -->
+      <pre><code id="modal-text-content">Text content to display</code></pre>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="copyToClipboard()">Copy</button>
+      <button class="btn btn-primary" onclick="downloadFile()">Download</button>
+    </div>
+  </div>
+</div>
+```
+
+#### Modal CSS Classes
+```css
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  position: relative;
+  background: white;
+  border-radius: 8px;
+  max-width: 90%;
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+}
+
+.modal-body {
+  padding: var(--space-lg);
+  overflow-y: auto;
+  max-height: 60vh;
+}
+```
+
+#### Modal JavaScript Pattern
+```javascript
+// Show modal
+function showModal(modalId, content) {
+  const modal = document.getElementById(modalId);
+  const contentEl = modal.querySelector('#modal-text-content');
+  contentEl.textContent = content;
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden'; // Prevent background scroll
+}
+
+// Hide modal
+function hideModal(modalId) {
+  const modal = document.getElementById(modalId);
+  modal.style.display = 'none';
+  document.body.style.overflow = ''; // Restore scroll
+}
+
+// Close on overlay click
+modal.querySelector('.modal-overlay').addEventListener('click', () => {
+  hideModal('modal-id');
+});
+
+// Close on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    hideModal('modal-id');
+  }
+});
+```
+
+#### Modal Use Cases
+- **BibTeX Display:** Show formatted citation with copy/download options
+- **Image Lightbox:** Full-size image preview
+- **Confirmation Dialogs:** Delete confirmations, form submissions
+- **Extended Information:** Show detailed content without page navigation
 
 **📘 Full component library:** See `css/COMPONENTS.md`
 
