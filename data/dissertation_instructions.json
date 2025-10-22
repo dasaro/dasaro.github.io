@@ -1,100 +1,280 @@
 {
-  "title": "Information for Prospective PhD Students",
-  "introduction": "I am interested in supervising PhD students working at the intersection of logic, artificial intelligence, and formal reasoning. If you are passionate about foundational questions in AI and enjoy both theoretical and practical work, I encourage you to get in touch.",
-  "phd_topics": [
-    {
-      "area": "Uncertain and Epistemic Reasoning",
-      "description": "Developing formal frameworks for reasoning about uncertainty, knowledge, and belief in multi-agent systems"
-    },
-    {
-      "area": "Temporal and Probabilistic Logics",
-      "description": "Combining temporal reasoning with probabilistic models for dynamic environments"
-    },
-    {
-      "area": "Logic Programming Applications",
-      "description": "Using Answer Set Programming (ASP) and Inductive Logic Programming (ILASP) for real-world problems"
-    },
-    {
-      "area": "Explainable AI",
-      "description": "Creating interpretable AI systems using formal logic and argumentation theory"
-    },
-    {
-      "area": "Formal Argumentation",
-      "description": "Learning argumentation semantics and developing computational models of argument"
-    },
-    {
-      "area": "Event Calculus and Action Theories",
-      "description": "Reasoning about actions, their effects, and knowledge-producing operations"
-    }
-  ],
-  "supervision_approach": {
-    "title": "My Supervision Philosophy",
-    "paragraphs": [
-      "I emphasize hands-on research with strong theoretical foundations. My approach combines rigorous formal methods with practical implementation, typically leading to both publications and open-source contributions.",
-      "Students I supervise are encouraged to present their work at conferences, collaborate with international researchers, and engage with the broader AI and logic communities.",
-      "I believe in regular meetings, clear milestones, and maintaining a balance between independent exploration and structured guidance."
-    ]
-  },
-  "current_openings": {
-    "status": true,
-    "message": "I am currently open to discussing potential PhD supervision opportunities at the University of Salento, University of Verona, and University College London.",
-    "notes": [
-      "Funding availability varies by institution and program",
-      "Competitive scholarships are available for excellent candidates",
-      "I can assist with scholarship applications and institutional procedures"
-    ]
-  },
-  "application_process": {
-    "title": "How to Apply",
-    "steps": [
+  "title": "Information for Prospective Students",
+  "subtitle": "PhD, Master's, and Bachelor's Thesis Opportunities",
+
+  "phd_students": {
+    "title": "PhD Opportunities",
+    "introduction": "I am interested in supervising PhD students working at the intersection of logic, artificial intelligence, and formal reasoning. If you are passionate about foundational questions in AI and enjoy both theoretical and practical work, I encourage you to get in touch.",
+    "topics": [
       {
-        "step": 1,
-        "action": "Review my publications",
-        "details": "Familiarize yourself with my research areas and recent publications to ensure alignment with your interests"
+        "area": "Uncertain and Epistemic Reasoning",
+        "description": "Developing formal frameworks for reasoning about uncertainty, knowledge, and belief in multi-agent systems"
       },
       {
-        "step": 2,
-        "action": "Prepare a research proposal",
-        "details": "Draft a 2-3 page outline describing your research interests, potential research questions, and how they relate to my work"
+        "area": "Temporal and Probabilistic Logics",
+        "description": "Combining temporal reasoning with probabilistic models for dynamic environments"
       },
       {
-        "step": 3,
-        "action": "Contact me via email",
-        "details": "Send your CV, transcript, research proposal, and a brief cover letter to fabioaurelio.dasaro@unisalento.it"
+        "area": "Logic Programming Applications",
+        "description": "Using Answer Set Programming (ASP) and Inductive Logic Programming (ILASP) for real-world problems"
       },
       {
-        "step": 4,
-        "action": "Official application",
-        "details": "After initial discussion, apply through the official PhD program at the relevant institution"
+        "area": "Explainable AI",
+        "description": "Creating interpretable AI systems using formal logic and argumentation theory"
+      },
+      {
+        "area": "Formal Argumentation",
+        "description": "Learning argumentation semantics and developing computational models of argument"
+      },
+      {
+        "area": "Event Calculus and Action Theories",
+        "description": "Reasoning about actions, their effects, and knowledge-producing operations"
       }
     ],
-    "requirements": [
-      "Strong background in logic, computer science, mathematics, or philosophy",
-      "Experience with formal methods or programming (Python, ASP, Prolog, or similar)",
-      "Excellent written and spoken English",
-      "Curiosity, independence, and strong problem-solving skills"
+    "supervision_approach": {
+      "title": "My Supervision Philosophy",
+      "paragraphs": [
+        "I emphasize hands-on research with strong theoretical foundations. My approach combines rigorous formal methods with practical implementation, typically leading to both publications and open-source contributions.",
+        "Students I supervise are encouraged to present their work at conferences, collaborate with international researchers, and engage with the broader AI and logic communities.",
+        "I believe in regular meetings, clear milestones, and maintaining a balance between independent exploration and structured guidance."
+      ]
+    },
+    "current_openings": {
+      "status": true,
+      "message": "I am currently open to discussing potential PhD supervision opportunities at the University of Salento, University of Verona, and University College London.",
+      "notes": [
+        "Funding availability varies by institution and program",
+        "Competitive scholarships are available for excellent candidates",
+        "I can assist with scholarship applications and institutional procedures"
+      ]
+    },
+    "application_process": {
+      "title": "How to Apply",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Review my publications",
+          "details": "Familiarize yourself with my research areas and recent publications to ensure alignment with your interests"
+        },
+        {
+          "step": 2,
+          "action": "Prepare a research proposal",
+          "details": "Draft a 2-3 page outline describing your research interests, potential research questions, and how they relate to my work"
+        },
+        {
+          "step": 3,
+          "action": "Contact me via email",
+          "details": "Send your CV, transcript, research proposal, and a brief cover letter to fabioaurelio.dasaro@unisalento.it"
+        },
+        {
+          "step": 4,
+          "action": "Official application",
+          "details": "After initial discussion, apply through the official PhD program at the relevant institution"
+        }
+      ],
+      "requirements": [
+        "Strong background in logic, computer science, mathematics, or philosophy",
+        "Experience with formal methods or programming (Python, ASP, Prolog, or similar)",
+        "Excellent written and spoken English",
+        "Curiosity, independence, and strong problem-solving skills"
+      ]
+    },
+    "programs": [
+      {
+        "institution": "University of Salento",
+        "program": "PhD in Human Sciences",
+        "website": "https://www.unisalento.it/phd",
+        "location": "Lecce, Italy"
+      },
+      {
+        "institution": "University of Verona",
+        "program": "PhD in Philosophy",
+        "website": "https://www.univr.it/",
+        "location": "Verona, Italy"
+      },
+      {
+        "institution": "University College London",
+        "program": "PhD in Computer Science",
+        "website": "https://www.ucl.ac.uk/prospective-students/graduate/research-degrees",
+        "location": "London, UK"
+      }
     ]
   },
-  "phd_programs": [
-    {
-      "institution": "University of Salento",
-      "program": "PhD in Human Sciences",
-      "website": "https://www.unisalento.it/phd",
-      "location": "Lecce, Italy"
+
+  "masters_students": {
+    "title": "Master's Thesis (Laurea Magistrale)",
+    "institution": "University of Verona",
+    "introduction": "On this page you will find information for students at the University of Verona interested in writing a Master's thesis under my supervision.",
+    "how_to_proceed": {
+      "title": "How to Proceed",
+      "text": "I invite you to first review my publications and research interests (summarized below among the proposed topics), and then express your interest by sending me an email."
     },
-    {
-      "institution": "University of Verona",
-      "program": "PhD in Philosophy",
-      "website": "https://www.univr.it/",
-      "location": "Verona, Italy"
+    "prerequisites": {
+      "title": "Prerequisites",
+      "general": "My research methodologies belong primarily to formal logic and computer science, but each of these topics has implications for ethical and epistemological problems that can also be explored in a Philosophy thesis.",
+      "requirements": "Master's students (laurea magistrale) will be required to have greater competencies and prerequisites, which will vary depending on the topic and the candidate's background."
     },
-    {
-      "institution": "University College London",
-      "program": "PhD in Computer Science",
-      "website": "https://www.ucl.ac.uk/prospective-students/graduate/research-degrees",
-      "location": "London, UK"
+    "topics": [
+      {
+        "id": 1,
+        "title": "The Logical Omniscience Problem",
+        "description": "The logical omniscience problem in epistemic logic and propositional attitudes.",
+        "references": "For an introduction, see the Wikipedia page on propositional attitudes, the Stanford Encyclopedia of Philosophy page on epistemic logics, particularly section 4."
+      },
+      {
+        "id": 2,
+        "title": "Bounded Rationality and Depth-Bounded Logics",
+        "description": "Bounded rationality and depth-bounded logics.",
+        "references": "See for example the articles 'The Enduring Scandal of Deduction' by M. D'Agostino and L. Floridi, 'An informational view of classical logic' by M. D'Agostino, the k-lingo system and associated publication."
+      },
+      {
+        "id": 3,
+        "title": "Analysis of Turing's Writings",
+        "description": "Historical, conceptual, and philological analysis of Alan Turing's writings, with particular emphasis on interpreting certain (more or less) controversial passages.",
+        "references": "Such as the formal analysis of the Church-Turing Thesis (is it physically plausible?)."
+      },
+      {
+        "id": 4,
+        "title": "Bias and Fairness in Machine Learning",
+        "description": "Conceptual and experimental analysis of bias and fairness in modern Machine Learning systems.",
+        "references": "ChatGPT, Stable Diffusion, etc."
+      },
+      {
+        "id": 5,
+        "title": "Knowledge Representation and Common-Sense Reasoning",
+        "description": "Knowledge representation and common-sense reasoning logics, especially Event Calculus.",
+        "references": "See a web interface under development."
+      },
+      {
+        "id": 6,
+        "title": "Inductive Logic Programming Applications",
+        "description": "Applications of Inductive Logic Programming.",
+        "references": "See the ILASP system and a video of its application."
+      },
+      {
+        "id": 7,
+        "title": "Explainable AI for Machine Learning",
+        "description": "Explainable AI for Machine Learning systems, especially the use of ILASP and FASTLAS to explain the output of Deep Learning systems, and the connections between Reinforcement Learning and Probabilistic Event Calculus.",
+        "references": "Here a publication on this topic."
+      },
+      {
+        "id": 8,
+        "title": "Formal Argumentation",
+        "description": "Formal argumentation, especially their interaction with temporal logics.",
+        "references": "See, for example, the Wikipedia page on argumentation frameworks."
+      },
+      {
+        "id": 9,
+        "title": "The Problem of Time in Logic",
+        "description": "The problem of time in logic: the frame problem, qualification problem, ramification problem and their extensions.",
+        "references": "See Wikipedia and an article by Daniel Dennett for a quick introduction, and extensions in the field of affordances and in ethics."
+      },
+      {
+        "id": 10,
+        "title": "Fairness Measures",
+        "description": "Fairness measures.",
+        "references": "See for example TPTND and themes from the BRIO project."
+      }
+    ],
+    "latex_guidance": {
+      "title": "Typography and LaTeX",
+      "preference": "Theses can be written in Word, but I generally prefer that theses be written in LaTeX, especially if you choose to work on topics related to Logic.",
+      "about_latex": "LaTeX is software widely used in academia for writing articles, books, and presentations. Learning to use it is simpler than it may seem at first glance, especially since the online collaborative version Overleaf is available, which requires no installation on your computer.",
+      "support": "Moreover, I'm always here to help! The result, I assure you, will be much more aesthetically pleasing and will give you numerous long-term advantages."
+    },
+    "contact": {
+      "email": "fabioaurelio.dasaro@univr.it",
+      "note": "Please send me an email expressing your interest, along with your academic background and which research topic interests you most."
     }
-  ],
+  },
+
+  "bachelors_students": {
+    "title": "Bachelor's Thesis (Laurea Triennale)",
+    "institution": "University of Verona",
+    "introduction": "On this page you will find information for students at the University of Verona interested in writing a Bachelor's thesis under my supervision.",
+    "how_to_proceed": {
+      "title": "How to Proceed",
+      "text": "I invite you to first review my publications and research interests (summarized below among the proposed topics), and then express your interest by sending me an email."
+    },
+    "prerequisites": {
+      "title": "Prerequisites",
+      "general": "My research methodologies belong primarily to formal logic and computer science, but each of these topics has implications for ethical and epistemological problems that can also be explored in a Philosophy thesis.",
+      "requirements": "A good bachelor's thesis (laurea triennale) can be undertaken even without prior knowledge in these areas, provided that the candidate demonstrates genuine interest in the topic and shows willingness to develop the necessary skills to understand it—whether logical-formal, philosophical, or computational."
+    },
+    "topics": [
+      {
+        "id": 1,
+        "title": "The Logical Omniscience Problem",
+        "description": "The logical omniscience problem in epistemic logic and propositional attitudes.",
+        "references": "For an introduction, see the Wikipedia page on propositional attitudes, the Stanford Encyclopedia of Philosophy page on epistemic logics, particularly section 4."
+      },
+      {
+        "id": 2,
+        "title": "Bounded Rationality and Depth-Bounded Logics",
+        "description": "Bounded rationality and depth-bounded logics.",
+        "references": "See for example the articles 'The Enduring Scandal of Deduction' by M. D'Agostino and L. Floridi, 'An informational view of classical logic' by M. D'Agostino, the k-lingo system and associated publication."
+      },
+      {
+        "id": 3,
+        "title": "Analysis of Turing's Writings",
+        "description": "Historical, conceptual, and philological analysis of Alan Turing's writings, with particular emphasis on interpreting certain (more or less) controversial passages.",
+        "references": "Such as the formal analysis of the Church-Turing Thesis (is it physically plausible?)."
+      },
+      {
+        "id": 4,
+        "title": "Bias and Fairness in Machine Learning",
+        "description": "Conceptual and experimental analysis of bias and fairness in modern Machine Learning systems.",
+        "references": "ChatGPT, Stable Diffusion, etc."
+      },
+      {
+        "id": 5,
+        "title": "Knowledge Representation and Common-Sense Reasoning",
+        "description": "Knowledge representation and common-sense reasoning logics, especially Event Calculus.",
+        "references": "See a web interface under development."
+      },
+      {
+        "id": 6,
+        "title": "Inductive Logic Programming Applications",
+        "description": "Applications of Inductive Logic Programming.",
+        "references": "See the ILASP system and a video of its application."
+      },
+      {
+        "id": 7,
+        "title": "Explainable AI for Machine Learning",
+        "description": "Explainable AI for Machine Learning systems, especially the use of ILASP and FASTLAS to explain the output of Deep Learning systems, and the connections between Reinforcement Learning and Probabilistic Event Calculus.",
+        "references": "Here a publication on this topic."
+      },
+      {
+        "id": 8,
+        "title": "Formal Argumentation",
+        "description": "Formal argumentation, especially their interaction with temporal logics.",
+        "references": "See, for example, the Wikipedia page on argumentation frameworks."
+      },
+      {
+        "id": 9,
+        "title": "The Problem of Time in Logic",
+        "description": "The problem of time in logic: the frame problem, qualification problem, ramification problem and their extensions.",
+        "references": "See Wikipedia and an article by Daniel Dennett for a quick introduction, and extensions in the field of affordances and in ethics."
+      },
+      {
+        "id": 10,
+        "title": "Fairness Measures",
+        "description": "Fairness measures.",
+        "references": "See for example TPTND and themes from the BRIO project."
+      }
+    ],
+    "latex_guidance": {
+      "title": "Typography and LaTeX",
+      "preference": "Theses can be written in Word, but I generally prefer that theses be written in LaTeX, especially if you choose to work on topics related to Logic.",
+      "about_latex": "LaTeX is software widely used in academia for writing articles, books, and presentations. Learning to use it is simpler than it may seem at first glance, especially since the online collaborative version Overleaf is available, which requires no installation on your computer.",
+      "support": "Moreover, I'm always here to help! The result, I assure you, will be much more aesthetically pleasing and will give you numerous long-term advantages."
+    },
+    "contact": {
+      "email": "fabioaurelio.dasaro@univr.it",
+      "note": "Please send me an email expressing your interest, along with your academic background and which research topic interests you most."
+    }
+  },
+
   "faqs": [
     {
       "question": "Do I need to know Italian?",
@@ -106,11 +286,19 @@
     },
     {
       "question": "What is the typical duration?",
-      "answer": "PhD programs in Italy are typically 3 years, while UK programs are usually 3-4 years."
+      "answer": "PhD programs in Italy are typically 3 years, while UK programs are usually 3-4 years. Bachelor's and Master's theses typically take 6-12 months depending on the project scope."
     },
     {
-      "question": "Do you supervise master's students?",
-      "answer": "Yes, I supervise master's thesis projects at both the University of Salento and University of Verona. Contact me to discuss potential topics."
+      "question": "What is the difference between Laurea Triennale and Laurea Magistrale?",
+      "answer": "Laurea triennale is a 3-year bachelor's degree, while laurea magistrale is a 2-year master's degree. Both require a thesis for completion. Master's students are expected to have more advanced competencies and deeper engagement with research."
+    },
+    {
+      "question": "Can I propose my own thesis topic?",
+      "answer": "Yes! While I've listed several research areas, I'm open to discussing topics that combine your interests with my research expertise. Contact me to explore possibilities."
+    },
+    {
+      "question": "Do I need programming experience?",
+      "answer": "For bachelor's theses, prior programming experience is not required if you show willingness to learn. For master's and PhD work, some technical background is beneficial, though the specific requirements vary by topic."
     }
   ]
 }

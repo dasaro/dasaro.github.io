@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
-  <meta name="description" content="Information for prospective PhD students interested in working with Fabio Aurelio D'Asaro on logic, AI, and formal reasoning.">
+  <meta name="description" content="Information for prospective Bachelor's, Master's, and PhD students interested in working with Fabio Aurelio D'Asaro on logic, AI, and formal reasoning.">
   <meta name="author" content="Fabio Aurelio D'Asaro">
 
-  <title>PhD Student Information - Fabio Aurelio D'Asaro</title>
+  <title>Information for Prospective Students - Fabio Aurelio D'Asaro</title>
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/main.css">
@@ -15,6 +15,53 @@
   <link rel="stylesheet" href="css/responsive.css">
 
   <style>
+    /* Tab Navigation */
+    .student-tabs {
+      display: flex;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+      border-bottom: 2px solid var(--color-accent-3);
+      flex-wrap: wrap;
+    }
+
+    .tab-button {
+      padding: var(--space-md) var(--space-lg);
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      font-family: 'Fira Code', monospace;
+      font-size: var(--text-base);
+      color: var(--color-accent-2);
+      transition: all 0.3s ease;
+      margin-bottom: -2px;
+    }
+
+    .tab-button:hover {
+      color: var(--color-link);
+      background: var(--color-accent-3);
+    }
+
+    .tab-button.active {
+      color: var(--color-link);
+      border-bottom-color: var(--color-link);
+      font-weight: bold;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .topic-card {
       background: var(--color-accent-3);
       padding: var(--space-lg);
@@ -198,13 +245,25 @@
   <main>
     <section id="dissertation-info">
       <div class="container">
-        <h1 class="fade-in">∃ Prospective PhD Students</h1>
+        <h1 class="fade-in">∃ Information for Prospective Students</h1>
+        <p class="subtitle fade-in-delay-1" style="text-align: center; font-size: var(--text-lg); color: var(--color-accent-2); margin-bottom: var(--space-xl);">
+          PhD, Master's (Laurea Magistrale), and Bachelor's (Laurea Triennale) Opportunities
+        </p>
 
-        <div class="card fade-in-delay-1">
-          <div id="introduction-container">
-            <p class="loading-message">Loading information...</p>
-          </div>
+        <!-- Student Level Tabs -->
+        <div class="student-tabs fade-in-delay-2">
+          <button class="tab-button active" data-tab="phd">PhD Students</button>
+          <button class="tab-button" data-tab="masters">Master's Thesis</button>
+          <button class="tab-button" data-tab="bachelors">Bachelor's Thesis</button>
         </div>
+
+        <!-- PhD Content -->
+        <div id="phd-content" class="tab-content active">
+          <div class="card fade-in-delay-1">
+            <div id="phd-introduction-container">
+              <p class="loading-message">Loading information...</p>
+            </div>
+          </div>
 
         <!-- Research Topics -->
         <div class="mt-xl fade-in-delay-2">
@@ -246,15 +305,107 @@
           </div>
         </div>
 
-        <!-- PhD Programs -->
-        <div class="mt-xl">
-          <h2 class="section-title">PhD Programs</h2>
-          <div id="programs-container">
-            <p class="loading-message">Loading program information...</p>
+          <!-- PhD Programs -->
+          <div class="mt-xl">
+            <h2 class="section-title">PhD Programs</h2>
+            <div id="programs-container">
+              <p class="loading-message">Loading program information...</p>
+            </div>
           </div>
         </div>
+        <!-- End PhD Content -->
 
-        <!-- FAQs -->
+        <!-- Master's Content -->
+        <div id="masters-content" class="tab-content">
+          <div class="card">
+            <div id="masters-introduction-container">
+              <p class="loading-message">Loading information...</p>
+            </div>
+          </div>
+
+          <div class="mt-xl">
+            <h2 class="section-title">How to Proceed</h2>
+            <div id="masters-proceed-container" class="card">
+              <p class="loading-message">Loading...</p>
+            </div>
+          </div>
+
+          <div class="mt-xl">
+            <h2 class="section-title">Prerequisites</h2>
+            <div id="masters-prerequisites-container" class="card">
+              <p class="loading-message">Loading...</p>
+            </div>
+          </div>
+
+          <div class="mt-xl">
+            <h2 class="section-title">Research Topics</h2>
+            <div id="masters-topics-container">
+              <p class="loading-message">Loading topics...</p>
+            </div>
+          </div>
+
+          <div class="mt-xl">
+            <h2 class="section-title">Typography and LaTeX</h2>
+            <div id="masters-latex-container" class="card">
+              <p class="loading-message">Loading...</p>
+            </div>
+          </div>
+
+          <div class="mt-xl">
+            <h2 class="section-title">Contact</h2>
+            <div id="masters-contact-container" class="card">
+              <p class="loading-message">Loading...</p>
+            </div>
+          </div>
+        </div>
+        <!-- End Master's Content -->
+
+        <!-- Bachelor's Content -->
+        <div id="bachelors-content" class="tab-content">
+          <div class="card">
+            <div id="bachelors-introduction-container">
+              <p class="loading-message">Loading information...</p>
+            </div>
+          </div>
+
+          <div class="mt-xl">
+            <h2 class="section-title">How to Proceed</h2>
+            <div id="bachelors-proceed-container" class="card">
+              <p class="loading-message">Loading...</p>
+            </div>
+          </div>
+
+          <div class="mt-xl">
+            <h2 class="section-title">Prerequisites</h2>
+            <div id="bachelors-prerequisites-container" class="card">
+              <p class="loading-message">Loading...</p>
+            </div>
+          </div>
+
+          <div class="mt-xl">
+            <h2 class="section-title">Research Topics</h2>
+            <div id="bachelors-topics-container">
+              <p class="loading-message">Loading topics...</p>
+            </div>
+          </div>
+
+          <div class="mt-xl">
+            <h2 class="section-title">Typography and LaTeX</h2>
+            <div id="bachelors-latex-container" class="card">
+              <p class="loading-message">Loading...</p>
+            </div>
+          </div>
+
+          <div class="mt-xl">
+            <h2 class="section-title">Contact</h2>
+            <div id="bachelors-contact-container" class="card">
+              <p class="loading-message">Loading...</p>
+            </div>
+          </div>
+        </div>
+        <!-- End Bachelor's Content -->
+
+        <!-- FAQs (Shared across all tabs) -->
         <div class="card mt-xl">
           <h2 class="section-title">Frequently Asked Questions</h2>
           <div id="faqs-container">
@@ -296,6 +447,26 @@
   <script type="module" src="js/animations/AnimationController.js?v=30"></script>
 
   <script>
+    // Tab switching functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabButtons = document.querySelectorAll('.tab-button');
+      const tabContents = document.querySelectorAll('.tab-content');
+
+      tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const targetTab = button.dataset.tab;
+
+          // Remove active class from all tabs and contents
+          tabButtons.forEach(btn => btn.classList.remove('active'));
+          tabContents.forEach(content => content.classList.remove('active'));
+
+          // Add active class to clicked tab and corresponding content
+          button.classList.add('active');
+          document.getElementById(`${targetTab}-content`).classList.add('active');
+        });
+      });
+    });
+
     document.addEventListener('DOMContentLoaded', async () => {
       try {
         // Load dissertation instructions
@@ -306,16 +477,19 @@
           return;
         }
 
-        // Introduction
-        const introContainer = document.getElementById('introduction-container');
-        if (data.introduction) {
-          introContainer.innerHTML = `<p>${data.introduction}</p>`;
+        // ===== PhD STUDENTS CONTENT =====
+        const phdData = data.phd_students || {};
+
+        // PhD Introduction
+        const phdIntroContainer = document.getElementById('phd-introduction-container');
+        if (phdData.introduction) {
+          phdIntroContainer.innerHTML = `<p>${phdData.introduction}</p>`;
         }
 
-        // Research Topics
+        // PhD Research Topics
         const topicsContainer = document.getElementById('topics-container');
-        if (data.phd_topics && data.phd_topics.length > 0) {
-          topicsContainer.innerHTML = data.phd_topics.map(topic => `
+        if (phdData.topics && phdData.topics.length > 0) {
+          topicsContainer.innerHTML = phdData.topics.map(topic => `
             <div class="topic-card">
               <h3><span class="logic-symbol">→</span> ${topic.area}</h3>
               <p>${topic.description}</p>
@@ -323,10 +497,10 @@
           `).join('');
         }
 
-        // Supervision Approach
+        // PhD Supervision Approach
         const supervisionContainer = document.getElementById('supervision-container');
-        if (data.supervision_approach) {
-          supervisionContainer.innerHTML = data.supervision_approach.paragraphs.map(p =>
+        if (phdData.supervision_approach) {
+          supervisionContainer.innerHTML = phdData.supervision_approach.paragraphs.map(p =>
             `<p>${p}</p>`
           ).join('');
         }
@@ -353,35 +527,35 @@
           studentsContainer.innerHTML = '<p class="text-muted">Recent supervision outcomes will be added soon.</p>';
         }
 
-        // Current Openings
+        // PhD Current Openings
         const openingsContainer = document.getElementById('openings-container');
-        if (data.current_openings) {
-          const statusClass = data.current_openings.status ? 'open' : '';
+        if (phdData.current_openings) {
+          const statusClass = phdData.current_openings.status ? 'open' : '';
           openingsContainer.innerHTML = `
             <p>
               <span class="status-badge ${statusClass}">
-                ${data.current_openings.status ? '✓ OPEN' : 'CURRENTLY CLOSED'}
+                ${phdData.current_openings.status ? '✓ OPEN' : 'CURRENTLY CLOSED'}
               </span>
             </p>
-            <p class="mt-md">${data.current_openings.message}</p>
-            ${data.current_openings.notes && data.current_openings.notes.length > 0 ? `
+            <p class="mt-md">${phdData.current_openings.message}</p>
+            ${phdData.current_openings.notes && phdData.current_openings.notes.length > 0 ? `
               <div class="note-box mt-md">
                 <strong>Important Notes:</strong>
                 <ul>
-                  ${data.current_openings.notes.map(note => `<li>${note}</li>`).join('')}
+                  ${phdData.current_openings.notes.map(note => `<li>${note}</li>`).join('')}
                 </ul>
               </div>
             ` : ''}
           `;
         }
 
-        // Application Process
+        // PhD Application Process
         const applicationContainer = document.getElementById('application-container');
-        if (data.application_process) {
+        if (phdData.application_process) {
           applicationContainer.innerHTML = `
             <div class="card">
               <ol class="step-list">
-                ${data.application_process.steps.map(step => `
+                ${phdData.application_process.steps.map(step => `
                   <li>
                     <span class="step-number">${step.step}</span>
                     <strong>${step.action}</strong>
@@ -392,7 +566,7 @@
 
               <h3 class="mt-xl">Requirements</h3>
               <ul class="requirements-list">
-                ${data.application_process.requirements.map(req => `
+                ${phdData.application_process.requirements.map(req => `
                   <li>${req}</li>
                 `).join('')}
               </ul>
@@ -402,8 +576,8 @@
 
         // PhD Programs
         const programsContainer = document.getElementById('programs-container');
-        if (data.phd_programs && data.phd_programs.length > 0) {
-          programsContainer.innerHTML = data.phd_programs.map(program => `
+        if (phdData.programs && phdData.programs.length > 0) {
+          programsContainer.innerHTML = phdData.programs.map(program => `
             <div class="program-card">
               <h3>${program.institution}</h3>
               <p><strong>${program.program}</strong></p>
@@ -415,6 +589,106 @@
               </p>
             </div>
           `).join('');
+        }
+
+        // ===== MASTER'S STUDENTS CONTENT =====
+        const mastersData = data.masters_students || {};
+
+        // Master's Introduction
+        document.getElementById('masters-introduction-container').innerHTML =
+          `<p>${mastersData.introduction || ''}</p>`;
+
+        // Master's How to Proceed
+        if (mastersData.how_to_proceed) {
+          document.getElementById('masters-proceed-container').innerHTML =
+            `<p>${mastersData.how_to_proceed.text}</p>`;
+        }
+
+        // Master's Prerequisites
+        if (mastersData.prerequisites) {
+          document.getElementById('masters-prerequisites-container').innerHTML = `
+            <p>${mastersData.prerequisites.general}</p>
+            <p class="mt-md"><strong>Requirements:</strong> ${mastersData.prerequisites.requirements}</p>
+          `;
+        }
+
+        // Master's Topics
+        const mastersTopicsContainer = document.getElementById('masters-topics-container');
+        if (mastersData.topics && mastersData.topics.length > 0) {
+          mastersTopicsContainer.innerHTML = mastersData.topics.map(topic => `
+            <div class="topic-card">
+              <h3><span class="logic-symbol">→</span> ${topic.title}</h3>
+              <p>${topic.description}</p>
+              ${topic.references ? `<p class="text-muted mt-sm"><small>${topic.references}</small></p>` : ''}
+            </div>
+          `).join('');
+        }
+
+        // Master's LaTeX Guidance
+        if (mastersData.latex_guidance) {
+          document.getElementById('masters-latex-container').innerHTML = `
+            <p><strong>${mastersData.latex_guidance.preference}</strong></p>
+            <p class="mt-md">${mastersData.latex_guidance.about_latex}</p>
+            <p class="mt-md">${mastersData.latex_guidance.support}</p>
+          `;
+        }
+
+        // Master's Contact
+        if (mastersData.contact) {
+          document.getElementById('masters-contact-container').innerHTML = `
+            <p><strong>Email:</strong> <a href="mailto:${mastersData.contact.email}">${mastersData.contact.email}</a></p>
+            <p class="mt-md">${mastersData.contact.note}</p>
+          `;
+        }
+
+        // ===== BACHELOR'S STUDENTS CONTENT =====
+        const bachelorsData = data.bachelors_students || {};
+
+        // Bachelor's Introduction
+        document.getElementById('bachelors-introduction-container').innerHTML =
+          `<p>${bachelorsData.introduction || ''}</p>`;
+
+        // Bachelor's How to Proceed
+        if (bachelorsData.how_to_proceed) {
+          document.getElementById('bachelors-proceed-container').innerHTML =
+            `<p>${bachelorsData.how_to_proceed.text}</p>`;
+        }
+
+        // Bachelor's Prerequisites
+        if (bachelorsData.prerequisites) {
+          document.getElementById('bachelors-prerequisites-container').innerHTML = `
+            <p>${bachelorsData.prerequisites.general}</p>
+            <p class="mt-md"><strong>Requirements:</strong> ${bachelorsData.prerequisites.requirements}</p>
+          `;
+        }
+
+        // Bachelor's Topics
+        const bachelorsTopicsContainer = document.getElementById('bachelors-topics-container');
+        if (bachelorsData.topics && bachelorsData.topics.length > 0) {
+          bachelorsTopicsContainer.innerHTML = bachelorsData.topics.map(topic => `
+            <div class="topic-card">
+              <h3><span class="logic-symbol">→</span> ${topic.title}</h3>
+              <p>${topic.description}</p>
+              ${topic.references ? `<p class="text-muted mt-sm"><small>${topic.references}</small></p>` : ''}
+            </div>
+          `).join('');
+        }
+
+        // Bachelor's LaTeX Guidance
+        if (bachelorsData.latex_guidance) {
+          document.getElementById('bachelors-latex-container').innerHTML = `
+            <p><strong>${bachelorsData.latex_guidance.preference}</strong></p>
+            <p class="mt-md">${bachelorsData.latex_guidance.about_latex}</p>
+            <p class="mt-md">${bachelorsData.latex_guidance.support}</p>
+          `;
+        }
+
+        // Bachelor's Contact
+        if (bachelorsData.contact) {
+          document.getElementById('bachelors-contact-container').innerHTML = `
+            <p><strong>Email:</strong> <a href="mailto:${bachelorsData.contact.email}">${bachelorsData.contact.email}</a></p>
+            <p class="mt-md">${bachelorsData.contact.note}</p>
+          `;
         }
 
         // FAQs
