@@ -224,6 +224,9 @@
               <div class="card scroll-animate visible">
                 <h3><span class="logic-symbol">${interest.symbol}</span> ${interest.title}</h3>
                 <p>${interest.description}</p>
+                <div class="chip-group">
+                  <span class="chip chip-research chip-sm">Research</span>
+                </div>
               </div>
             `).join('');
 
@@ -302,13 +305,24 @@
             // Highlight author (now uses CSS classes)
             const highlightedAuthors = authors.replace(/F\. A\. D'Asaro/g, '<strong>F. A. D\'Asaro</strong>');
 
+            // Determine publication type chip
+            const typeChip = pub.type === 'journal' ? 'chip-journal' :
+                           pub.type === 'conference' ? 'chip-conference' :
+                           pub.type === 'workshop' ? 'chip-workshop' :
+                           pub.type === 'book' ? 'chip-book' : 'chip-preprint';
+            const typeLabel = pub.type ? pub.type.charAt(0).toUpperCase() + pub.type.slice(1) : 'Publication';
+
             return `
               <div class="publication-card">
+                <div class="chip-group">
+                  <span class="chip chip-year chip-sm">${pub.year}</span>
+                  <span class="chip ${typeChip} chip-sm">${typeLabel}</span>
+                  ${pub.open_access ? '<span class="chip chip-featured chip-sm">Open Access</span>' : ''}
+                </div>
                 <h3>${pub.title}</h3>
                 <p class="publication-authors">${highlightedAuthors}</p>
                 <p class="publication-venue">
-                  <strong>${pub.venue}</strong> (${pub.year})
-                  ${pub.open_access ? '<span class="badge-oa">OPEN ACCESS</span>' : ''}
+                  <strong>${pub.venue}</strong>
                 </p>
                 <div class="publication-links">
                   ${pub.doi ? `<a href="https://doi.org/${pub.doi}" target="_blank">DOI</a>` : ''}

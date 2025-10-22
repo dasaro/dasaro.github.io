@@ -122,7 +122,11 @@
         if (projectsData.current && projectsData.current.length > 0) {
           const currentHTML = projectsData.current.map(project => `
             <div class="project-card current">
-              <span class="project-status">ACTIVE</span>
+              <div class="chip-group">
+                <span class="chip chip-year chip-sm">${project.year_start}–${project.year_end}</span>
+                <span class="chip chip-current chip-sm">Active</span>
+                <span class="chip chip-research chip-sm">Research</span>
+              </div>
               <h3>${project.name}</h3>
               <div class="project-meta">
                 <strong>Funding:</strong> ${project.funding}
@@ -195,7 +199,11 @@
         if (projectsData.past && projectsData.past.length > 0) {
           const pastHTML = projectsData.past.map(project => `
             <div class="project-card">
-              <span class="project-status past">COMPLETED</span>
+              <div class="chip-group">
+                <span class="chip chip-year chip-sm">${project.year_start}–${project.year_end}</span>
+                <span class="chip chip-completed chip-sm">Completed</span>
+                <span class="chip chip-research chip-sm">Research</span>
+              </div>
               <h3>${project.name}</h3>
               <div class="project-meta">
                 <strong>Funding:</strong> ${project.funding}

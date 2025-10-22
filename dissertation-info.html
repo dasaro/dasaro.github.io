@@ -491,6 +491,10 @@
         if (phdData.topics && phdData.topics.length > 0) {
           topicsContainer.innerHTML = phdData.topics.map(topic => `
             <div class="topic-card">
+              <div class="chip-group">
+                <span class="chip chip-phd chip-sm">PhD</span>
+                <span class="chip chip-research chip-sm">Research</span>
+              </div>
               <h3><span class="logic-symbol">→</span> ${topic.area}</h3>
               <p>${topic.description}</p>
             </div>
@@ -617,6 +621,10 @@
         if (mastersData.topics && mastersData.topics.length > 0) {
           mastersTopicsContainer.innerHTML = mastersData.topics.map(topic => `
             <div class="topic-card">
+              <div class="chip-group">
+                <span class="chip chip-msc chip-sm">MSc</span>
+                <span class="chip chip-research chip-sm">Thesis</span>
+              </div>
               <h3><span class="logic-symbol">→</span> ${topic.title}</h3>
               <p>${topic.description}</p>
               ${topic.references ? `<p class="text-muted mt-sm"><small>${topic.references}</small></p>` : ''}
@@ -667,6 +675,10 @@
         if (bachelorsData.topics && bachelorsData.topics.length > 0) {
           bachelorsTopicsContainer.innerHTML = bachelorsData.topics.map(topic => `
             <div class="topic-card">
+              <div class="chip-group">
+                <span class="chip chip-bsc chip-sm">BSc</span>
+                <span class="chip chip-research chip-sm">Thesis</span>
+              </div>
               <h3><span class="logic-symbol">→</span> ${topic.title}</h3>
               <p>${topic.description}</p>
               ${topic.references ? `<p class="text-muted mt-sm"><small>${topic.references}</small></p>` : ''}

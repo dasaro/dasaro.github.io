@@ -1038,6 +1038,225 @@ footer {
 }
 
 /* ==========================================
+   CHIPS & BADGES SYSTEM
+   Enhanced visual indicators
+   ========================================== */
+
+/* Base chip (reusable) */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+/* Year chips (timeline context) */
+.chip-year {
+  background: rgba(139, 0, 0, 0.08);
+  border: 1px solid rgba(139, 0, 0, 0.25);
+  color: #8B0000;
+}
+
+/* Status chips */
+.chip-current {
+  background: rgba(34, 139, 34, 0.1);
+  border: 1px solid rgba(34, 139, 34, 0.3);
+  color: #228B22;
+}
+
+.chip-past {
+  background: rgba(105, 105, 105, 0.08);
+  border: 1px solid rgba(105, 105, 105, 0.25);
+  color: #696969;
+}
+
+.chip-ongoing {
+  background: rgba(41, 128, 185, 0.1);
+  border: 1px solid rgba(41, 128, 185, 0.3);
+  color: #2980B9;
+}
+
+.chip-completed {
+  background: rgba(139, 0, 0, 0.08);
+  border: 1px solid rgba(139, 0, 0, 0.25);
+  color: #8B0000;
+}
+
+/* Publication type chips */
+.chip-journal {
+  background: rgba(139, 0, 0, 0.1);
+  border: 1px solid rgba(139, 0, 0, 0.3);
+  color: #8B0000;
+}
+
+.chip-conference {
+  background: rgba(41, 128, 185, 0.1);
+  border: 1px solid rgba(41, 128, 185, 0.3);
+  color: #2980B9;
+}
+
+.chip-workshop {
+  background: rgba(243, 156, 18, 0.1);
+  border: 1px solid rgba(243, 156, 18, 0.3);
+  color: #F39C12;
+}
+
+.chip-book {
+  background: rgba(142, 68, 173, 0.1);
+  border: 1px solid rgba(142, 68, 173, 0.3);
+  color: #8E44AD;
+}
+
+.chip-preprint {
+  background: rgba(127, 140, 141, 0.1);
+  border: 1px solid rgba(127, 140, 141, 0.3);
+  color: #7F8C8D;
+}
+
+/* Academic level chips */
+.chip-phd {
+  background: rgba(139, 0, 0, 0.1);
+  border: 1px solid rgba(139, 0, 0, 0.3);
+  color: #8B0000;
+}
+
+.chip-msc {
+  background: rgba(41, 128, 185, 0.1);
+  border: 1px solid rgba(41, 128, 185, 0.3);
+  color: #2980B9;
+}
+
+.chip-bsc {
+  background: rgba(34, 139, 34, 0.1);
+  border: 1px solid rgba(34, 139, 34, 0.3);
+  color: #228B22;
+}
+
+/* Category chips */
+.chip-teaching {
+  background: rgba(230, 126, 34, 0.1);
+  border: 1px solid rgba(230, 126, 34, 0.3);
+  color: #E67E22;
+}
+
+.chip-research {
+  background: rgba(139, 0, 0, 0.1);
+  border: 1px solid rgba(139, 0, 0, 0.3);
+  color: #8B0000;
+}
+
+.chip-service {
+  background: rgba(142, 68, 173, 0.1);
+  border: 1px solid rgba(142, 68, 173, 0.3);
+  color: #8E44AD;
+}
+
+.chip-supervision {
+  background: rgba(52, 152, 219, 0.1);
+  border: 1px solid rgba(52, 152, 219, 0.3);
+  color: #3498DB;
+}
+
+/* Special indicators */
+.chip-award {
+  background: rgba(241, 196, 15, 0.15);
+  border: 1px solid rgba(241, 196, 15, 0.4);
+  color: #F1C40F;
+}
+
+.chip-featured {
+  background: rgba(139, 0, 0, 0.12);
+  border: 1px solid rgba(139, 0, 0, 0.35);
+  color: #8B0000;
+  font-weight: 700;
+}
+
+.chip-new {
+  background: rgba(46, 204, 113, 0.12);
+  border: 1px solid rgba(46, 204, 113, 0.35);
+  color: #2ECC71;
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Size variants */
+.chip-sm {
+  padding: 2px 8px;
+  font-size: 10px;
+  border-radius: 10px;
+}
+
+.chip-lg {
+  padding: 6px 14px;
+  font-size: var(--text-sm);
+  border-radius: 14px;
+}
+
+/* Chip grouping */
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+}
+
+/* Clickable chips (for filtering) */
+.chip-clickable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.chip-clickable:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chip-clickable:active {
+  transform: translateY(0);
+}
+
+/* Logical symbols decoration */
+.logical-symbols {
+  font-family: 'Fira Code', monospace;
+  font-size: 1.2em;
+  color: var(--color-accent-2);
+  display: inline-block;
+  margin-right: var(--space-sm);
+  user-select: none;
+}
+
+.symbols-dimmed {
+  opacity: 0.4;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .chip {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+
+  .chip-lg {
+    font-size: var(--text-xs);
+    padding: 5px 12px;
+  }
+
+  .chip-group {
+    gap: 6px;
+  }
+}
+
+/* ==========================================
    TIMELINE CARDS (Education & Experience)
    ========================================== */
 

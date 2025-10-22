@@ -215,11 +215,15 @@
             <div class="grid grid-2">
               ${teachingData.current_courses.map(course => `
                 <div class="card">
+                  <div class="chip-group">
+                    <span class="chip chip-year chip-sm">${course.year_start}–${course.year_end}</span>
+                    <span class="chip chip-current chip-sm">Current</span>
+                    <span class="chip chip-teaching chip-sm">${course.level}</span>
+                  </div>
                   <h3>${course.title}</h3>
                   <div class="course-meta mb-md">
                     <strong>${course.institution}</strong><br>
-                    ${course.code} | ${course.level} | ${course.program}<br>
-                    <span class="monospace">${course.year_start}–${course.year_end}</span>
+                    ${course.code} | ${course.program}
                   </div>
                   ${course.description ? `<p class="course-description">${course.description}</p>` : ''}
                 </div>
@@ -235,7 +239,10 @@
         if (teachingData.guest_lectures && teachingData.guest_lectures.length > 0) {
           const html = teachingData.guest_lectures.map(lecture => `
             <div class="card">
-              <div class="mb-sm"><strong>${lecture.date || lecture.year || ''}</strong></div>
+              <div class="chip-group">
+                <span class="chip chip-year chip-sm">${lecture.date || lecture.year || ''}</span>
+                <span class="chip chip-teaching chip-sm">Guest Lecture</span>
+              </div>
               <h3>${lecture.title}</h3>
               <p><strong>${lecture.event}</strong></p>
               <p>${lecture.institution || ''}</p>
@@ -252,8 +259,13 @@
         if (teachingData.teaching_assistant_positions && teachingData.teaching_assistant_positions.length > 0) {
           const html = teachingData.teaching_assistant_positions.map(position => `
             <div class="card">
+              <div class="chip-group">
+                <span class="chip chip-year chip-sm">${position.period}</span>
+                <span class="chip chip-past chip-sm">Past</span>
+                <span class="chip chip-teaching chip-sm">TA Position</span>
+              </div>
               <h3>${position.institution}</h3>
-              <p><strong>${position.period}</strong> | ${position.department || ''}</p>
+              <p><strong>${position.department || ''}</strong></p>
               ${position.courses && position.courses.length > 0 ? `
                 <ul class="mt-md">
                   ${position.courses.map(course => `
@@ -273,12 +285,21 @@
         const supervisionContainer = document.getElementById('supervision-container');
 
         if (supervisionData && supervisionData.students && supervisionData.students.length > 0) {
-          const html = supervisionData.students.map(student => `
+          const html = supervisionData.students.map(student => {
+            // Determine chip based on level
+            const levelChip = student.level === 'MSc' ? 'chip-msc' :
+                             student.level === 'PhD' ? 'chip-phd' :
+                             student.level === 'BSc' ? 'chip-bsc' : 'chip-msc';
+
+            return `
             <div class="course-card">
+              <div class="chip-group">
+                <span class="chip chip-year chip-sm">${student.year}</span>
+                <span class="chip ${levelChip} chip-sm">${student.level}</span>
+                <span class="chip chip-supervision chip-sm">Supervision</span>
+              </div>
               <h3>${student.name}</h3>
               <p class="course-meta"><strong>Institution:</strong> ${student.institution}</p>
-              <p class="course-meta"><strong>Level:</strong> ${student.level}</p>
-              <p class="course-meta"><strong>Year:</strong> ${student.year}</p>
               <p class="course-meta mb-md"><strong>Topic:</strong> ${student.topic}</p>
               ${student.outcomes && student.outcomes.length > 0 ? `
                 <p class="mb-sm"><strong>Outcomes:</strong></p>
@@ -290,7 +311,8 @@
                 <p><strong>Publications:</strong> ${student.publications.join(', ')}</p>
               ` : ''}
             </div>
-          `).join('');
+          `;
+          }).join('');
           supervisionContainer.innerHTML = html;
           console.log('[teaching.html] ✅ Supervision data displayed!', supervisionData.students.length, 'students');
         } else {

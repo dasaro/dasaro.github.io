@@ -139,10 +139,13 @@
         if (serviceData.organizing && serviceData.organizing.length > 0) {
           const organizingHTML = serviceData.organizing.map(org => `
             <div class="card">
-              <div class="mb-sm"><strong>Role:</strong> ${org.role}</div>
+              <div class="chip-group">
+                <span class="chip chip-year chip-sm">${org.year}</span>
+                <span class="chip chip-service chip-sm">Organizing</span>
+              </div>
               <h3>${org.event}</h3>
+              <p><strong>Role:</strong> ${org.role}</p>
               <p><strong>Location:</strong> ${org.location}</p>
-              <p><strong>Year:</strong> ${org.year}</p>
               ${org.website ? `
                 <p class="mt-md">
                   <a href="${org.website}" target="_blank" rel="noopener" class="btn btn-sm">
@@ -163,6 +166,9 @@
         if (serviceData.program_committees && serviceData.program_committees.length > 0) {
           const pcHTML = serviceData.program_committees.map(pc => `
             <div class="card">
+              <div class="chip-group">
+                <span class="chip chip-service chip-sm">PC Member</span>
+              </div>
               <h3>${pc.event}</h3>
               <p><strong>Years:</strong> ${Array.isArray(pc.years) ? pc.years.join(', ') : pc.years}</p>
               <p><strong>Role:</strong> ${pc.role}</p>
@@ -179,10 +185,13 @@
         if (serviceData.editorial && serviceData.editorial.length > 0) {
           const editorialHTML = serviceData.editorial.map(ed => `
             <div class="card">
-              <div class="mb-sm"><strong>Role:</strong> ${ed.role}</div>
+              <div class="chip-group">
+                <span class="chip chip-year chip-sm">${ed.year_start} - ${ed.year_end}</span>
+                <span class="chip chip-service chip-sm">Editorial</span>
+              </div>
               <h3>${ed.journal}</h3>
+              <p><strong>Role:</strong> ${ed.role}</p>
               ${ed.section ? `<p><strong>Section:</strong> ${ed.section}</p>` : ''}
-              <p><strong>Period:</strong> ${ed.year_start} - ${ed.year_end}</p>
             </div>
           `).join('');
           editorialContainer.innerHTML = editorialHTML;

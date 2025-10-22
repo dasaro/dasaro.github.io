@@ -761,6 +761,201 @@ document.addEventListener('keydown', (e) => {
 
 ---
 
+### Chips & Badges System
+
+Chips provide lightweight visual indicators for categorizing and labeling content. They use soft rgba backgrounds with borders for an elegant, non-intrusive appearance.
+
+#### Basic Chip Usage
+
+```html
+<!-- Simple chip -->
+<span class="chip chip-year chip-sm">2025</span>
+
+<!-- Chip group (recommended for multiple chips) -->
+<div class="chip-group">
+  <span class="chip chip-year chip-sm">2024</span>
+  <span class="chip chip-current chip-sm">Current</span>
+  <span class="chip chip-research chip-sm">Research</span>
+</div>
+```
+
+#### Available Chip Types
+
+**Year/Timeline:**
+- `.chip-year` - Red accent for years/dates
+
+**Status:**
+- `.chip-current` - Green for active/current items
+- `.chip-past` - Gray for completed/past items
+- `.chip-ongoing` - Blue for ongoing activities
+- `.chip-completed` - Dark red for completed projects
+
+**Publication Types:**
+- `.chip-journal` - Dark red
+- `.chip-conference` - Blue
+- `.chip-workshop` - Orange
+- `.chip-book` - Purple
+- `.chip-preprint` - Gray
+
+**Academic Levels:**
+- `.chip-phd` - Dark red
+- `.chip-msc` - Blue
+- `.chip-bsc` - Green
+
+**Categories:**
+- `.chip-teaching` - Orange
+- `.chip-research` - Dark red
+- `.chip-service` - Purple
+- `.chip-supervision` - Light blue
+
+**Special:**
+- `.chip-award` - Gold
+- `.chip-featured` - Bold dark red
+- `.chip-new` - Animated pulse green
+
+#### Size Modifiers
+
+- `.chip-sm` - Small chips (default for most uses)
+- `.chip-lg` - Large chips (for emphasis)
+- Default (no modifier) - Medium size
+
+#### Interactive Chips
+
+```html
+<!-- Clickable chip (for filtering) -->
+<span class="chip chip-clickable chip-conference chip-sm">Conference</span>
+```
+
+Adds hover effects and cursor pointer.
+
+#### Best Practices
+
+**DO:**
+- ✅ Use `.chip-group` to organize multiple chips
+- ✅ Use `.chip-sm` for most UI elements
+- ✅ Combine chip types (e.g., year + status + category)
+- ✅ Place chips at the top of cards for quick scanning
+
+**DON'T:**
+- ❌ Overuse chips (max 3-4 per item)
+- ❌ Mix too many colors in one group
+- ❌ Use chips for critical information (they're supplements)
+
+#### Example: Publication Card
+
+```html
+<div class="publication-card">
+  <div class="chip-group">
+    <span class="chip chip-year chip-sm">2025</span>
+    <span class="chip chip-journal chip-sm">Journal</span>
+    <span class="chip chip-featured chip-sm">Open Access</span>
+  </div>
+  <h3>Publication Title</h3>
+  <p class="publication-authors">Authors...</p>
+  <p class="publication-venue"><strong>Venue Name</strong></p>
+</div>
+```
+
+---
+
+### Logical Symbols System
+
+The Logical Symbols system provides randomized mathematical logic symbols for decorative elements. Symbols refresh on each page load for visual variety.
+
+#### Quick Start
+
+```html
+<!-- Include the script -->
+<script src="js/logical-symbols.js"></script>
+
+<!-- Add symbol container (auto-populated on page load) -->
+<h2><div class="logical-symbols"></div> Section Title</h2>
+```
+
+#### Symbol Categories
+
+The system includes 6 categories:
+- **propositional**: ∧, ∨, ¬, →, ↔, ⊤, ⊥, ⊕, ⊼, ⊽
+- **predicate**: ∀, ∃, ∃!, =, ≠, ≈, ≡, ≢
+- **setTheory**: ∈, ∉, ⊆, ⊂, ⊇, ⊃, ∪, ∩, ∅, ℘, ⊎
+- **categoryTheory**: →, ⇒, ↦, ∘, ≅, ⊗, ⊕, ⊤, ⊥, ∇
+- **proofTheory**: ⊢, ⊨, ⊬, ⊭, ├, ⊣, ⊳, ⊲, ▷, ◁
+- **modalLogic**: □, ◇, ⬚, ⟡, ▫, ⬩, ◊, ⋄
+
+#### Customization via Data Attributes
+
+```html
+<!-- Multiple symbols -->
+<div class="logical-symbols" data-count="3"></div>
+<!-- Output: ∀ ⊢ ∃ (randomized) -->
+
+<!-- Specific category -->
+<div class="logical-symbols" data-category="proofTheory"></div>
+<!-- Output: ⊢ (random from proof theory category) -->
+
+<!-- Custom separator -->
+<div class="logical-symbols" data-count="2" data-separator=" · "></div>
+<!-- Output: ∧ · → -->
+
+<!-- Disable dimming -->
+<div class="logical-symbols" data-dimmed="false"></div>
+```
+
+#### JavaScript API
+
+```javascript
+// Get the global instance
+const symbols = window.logicalSymbols;
+
+// Get a random symbol
+const symbol = symbols.getRandom();
+
+// Get multiple symbols
+const threeSymbols = symbols.getMultiple(3);
+
+// Get from specific category
+const proofSymbol = symbols.getRandomFromCategory('proofTheory');
+
+// Manually populate an element
+const element = document.querySelector('.my-symbol');
+symbols.populate(element, {
+  count: 2,
+  category: 'predicate',
+  separator: ' ',
+  dimmed: true
+});
+
+// Re-initialize all symbols on page
+symbols.initializeAll();
+```
+
+#### Styling
+
+Symbols are automatically dimmed to 40% opacity via the `.symbols-dimmed` class. You can override this:
+
+```css
+.logical-symbols {
+  font-size: 1.5em;
+  opacity: 0.6; /* Override default 0.4 */
+  color: var(--color-accent-1);
+}
+```
+
+#### Best Practices
+
+**DO:**
+- ✅ Use for section headers and decorative elements
+- ✅ Keep dimmed (40% opacity) to avoid distraction
+- ✅ Let symbols randomize on each page load
+- ✅ Use specific categories for thematic consistency
+
+**DON'T:**
+- ❌ Use for conveying critical information
+- ❌ Override the auto-initialization without reason
+- ❌ Make symbols too prominent (they're decorative)
+
+---
+
 ## Layout & Component Architecture Standards
 
 ### ✅ DO: Card Pattern

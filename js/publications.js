@@ -325,17 +325,27 @@ class PublicationsManager {
     const authors = Array.isArray(pub.authors) ? pub.authors.join(', ') : pub.authors;
     const highlightedAuthors = authors.replace(/F\. A\. D'Asaro/g, '<strong>F. A. D\'Asaro</strong>');
 
+    // Determine publication type chip
+    const typeChip = pub.type === 'journal' ? 'chip-journal' :
+                    pub.type === 'conference' ? 'chip-conference' :
+                    pub.type === 'workshop' ? 'chip-workshop' :
+                    pub.type === 'book' ? 'chip-book' : 'chip-preprint';
+    const typeLabel = pub.type ? pub.type.charAt(0).toUpperCase() + pub.type.slice(1) : 'Publication';
+
     return `
       <div class="publication-card">
+        <div class="chip-group">
+          <span class="chip chip-year chip-sm">${pub.year}</span>
+          <span class="chip ${typeChip} chip-sm">${typeLabel}</span>
+          ${pub.open_access ? '<span class="chip chip-featured chip-sm">Open Access</span>' : ''}
+          ${pub.status === 'accepted' ? '<span class="chip chip-new chip-sm">Accepted</span>' : ''}
+        </div>
         <h3>${pub.title}</h3>
         <p class="publication-authors">${highlightedAuthors}</p>
         <p class="publication-venue">
           <strong>${pub.venue}</strong>
           ${pub.volume ? `Vol. ${pub.volume}` : ''}
-          (${pub.year})
           ${pub.pages ? `pp. ${pub.pages}` : ''}
-          ${pub.open_access ? '<span class="badge-oa">OPEN ACCESS</span>' : ''}
-          ${pub.status === 'accepted' ? '<span class="badge-accepted">ACCEPTED</span>' : ''}
         </p>
         <div class="publication-links">
           ${pub.doi ? `<a href="https://doi.org/${pub.doi}" target="_blank" rel="noopener">DOI</a>` : ''}

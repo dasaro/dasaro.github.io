@@ -195,13 +195,31 @@
             const html = educationData.degrees.map((degree, index) => {
               console.log(`[about.html] Processing degree ${index + 1}:`, degree.degree);
               const symbol = symbols[index % symbols.length];
+
+              // Determine degree level for chip
+              let levelChip = 'chip-phd';
+              let levelLabel = 'PhD';
+              if (degree.degree.includes('PhD')) {
+                levelChip = 'chip-phd';
+                levelLabel = 'PhD';
+              } else if (degree.degree.includes('MSc') || degree.degree.includes('Master')) {
+                levelChip = 'chip-msc';
+                levelLabel = 'MSc';
+              } else if (degree.degree.includes('BSc') || degree.degree.includes('Bachelor')) {
+                levelChip = 'chip-bsc';
+                levelLabel = 'BSc';
+              }
+
               return `
                 <div class="timeline-card">
                   <div class="timeline-marker">
                     <span>${symbol}</span>
                   </div>
                   <div class="timeline-content">
-                    <span class="timeline-date">${symbol} ${degree.year_start} - ${degree.year_end}</span>
+                    <div class="chip-group">
+                      <span class="chip chip-year chip-sm">${degree.year_start} - ${degree.year_end}</span>
+                      <span class="chip ${levelChip} chip-sm">${levelLabel}</span>
+                    </div>
                     <h3>${degree.degree}</h3>
                     <p class="institution">${degree.institution}, ${degree.location}</p>
                     ${degree.grade ? `<p class="grade">Grade: ${degree.grade}${degree.grade_note ? ` (${degree.grade_note})` : ''}</p>` : ''}
@@ -236,15 +254,18 @@
           const html = experienceData.positions.map((position, index) => {
             console.log(`[about.html] Processing position ${index + 1}:`, position.title);
             const currentClass = position.current ? ' current' : '';
-            const currentBadge = position.current ? '<span class="badge-current">CURRENT</span>' : '';
             return `
               <div class="timeline-card${currentClass}">
                 <div class="timeline-marker">
                   <span>→</span>
                 </div>
                 <div class="timeline-content">
-                  <span class="timeline-date">→ ${position.year_start} - ${position.year_end}${position.months ? ` (${position.months})` : ''}</span>
-                  <h3>${position.title}${currentBadge}</h3>
+                  <div class="chip-group">
+                    <span class="chip chip-year chip-sm">${position.year_start} - ${position.year_end}</span>
+                    ${position.current ? '<span class="chip chip-current chip-sm">Current</span>' : '<span class="chip chip-past chip-sm">Past</span>'}
+                    <span class="chip chip-research chip-sm">Research</span>
+                  </div>
+                  <h3>${position.title}</h3>
                   <p class="institution">
                     ${position.institution}${position.department ? `, ${position.department}` : ''}
                   </p>
