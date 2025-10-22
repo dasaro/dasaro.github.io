@@ -885,6 +885,13 @@ footer {
   letter-spacing: 0.5px;
 }
 
+.stat-icon {
+  font-size: var(--text-3xl);
+  margin-bottom: var(--space-sm);
+  display: block;
+  text-align: center;
+}
+
 /* Metrics Grid (inside dashboard card) */
 .dashboard-card .metrics-grid {
   display: grid;
