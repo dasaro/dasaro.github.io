@@ -1991,6 +1991,45 @@ footer {
   transform: rotate(-15deg);
 }
 
+/* ============================================
+   Collapsible Sections
+   ============================================ */
+.collapsible-header {
+  background: var(--color-accent-3);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  margin-bottom: var(--space-md);
+  font-family: 'Fira Code', monospace;
+  font-weight: 500;
+  color: var(--color-accent-1);
+}
+
+.collapsible-header:hover {
+  background: var(--color-accent-2);
+  color: var(--color-white);
+}
+
+.collapsible-header .arrow {
+  font-size: var(--text-lg);
+  transition: transform 0.3s ease;
+}
+
+.collapsible-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out;
+}
+
+.collapsible-content.active {
+  max-height: 5000px; /* Large enough to accommodate content */
+  transition: max-height 0.7s ease-in;
+}
+
 /* Hide on mobile for performance */
 @media (max-width: 768px) {
   #bg-animation-canvas {
