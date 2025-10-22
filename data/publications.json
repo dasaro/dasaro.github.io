@@ -9,7 +9,7 @@
       "type": "journal",
       "doi": "10.1613/jair.1.18606",
       "url": "https://doi.org/10.1613/jair.1.18606",
-      "pdf": null,
+      "pdf": "https://jair.org/index.php/jair/article/view/18606/27241",
       "bibtex": "@article{bikakis2025graphical,\n  title={A Graphical Formalism for Reasoning about Substitution in Resource Transforming Procedures},\n  author={Bikakis, A. and D'Asaro, F. A. and Diallo, A. and Dickens, L. and Hunter, T. and Miller, R.},\n  journal={Journal of Artificial Intelligence Research},\n  year={2025},\n  doi={10.1613/jair.1.18606}\n}",
       "tags": ["reasoning", "formalisms", "event-calculus"],
       "open_access": true,
@@ -117,14 +117,14 @@
       "type": "conference",
       "doi": "10.24963/kr.2020/88",
       "url": "https://doi.org/10.24963/kr.2020/88",
-      "pdf": null,
+      "pdf": "https://proceedings.kr.org/2020/88/kr2020-0088-dasaro-et-al.pdf",
       "bibtex": "@inproceedings{dasaro2020ilp,\n  title={Towards an Inductive Logic Programming approach for explaining black-box preference learning systems},\n  author={D'Asaro, F. A. and Spezialetti, M. and Raggioli, L. and Rossi, S.},\n  booktitle={Proceedings of KR 2020},\n  year={2020},\n  doi={10.24963/kr.2020/88}\n}",
       "tags": ["inductive-logic-programming", "explainable-ai", "preference-learning"],
       "open_access": true,
       "status": "published"
     }
   ],
-  
+
   "all": [
     {
       "id": "pub_2025_mdp",
@@ -150,7 +150,7 @@
       "type": "journal",
       "doi": "10.1613/jair.1.18606",
       "url": "https://doi.org/10.1613/jair.1.18606",
-      "pdf": null,
+      "pdf": "https://jair.org/index.php/jair/article/view/18606/27241",
       "bibtex": "@article{bikakis2025graphical,\n  title={A Graphical Formalism for Reasoning about Substitution in Resource Transforming Procedures},\n  author={Bikakis, A. and D'Asaro, F. A. and Diallo, A. and Dickens, L. and Hunter, T. and Miller, R.},\n  journal={Journal of Artificial Intelligence Research},\n  year={2025},\n  doi={10.1613/jair.1.18606}\n}",
       "tags": ["reasoning", "formalisms", "event-calculus"],
       "open_access": true,
@@ -305,7 +305,7 @@
       "type": "conference",
       "doi": "10.24963/kr.2020/88",
       "url": "https://doi.org/10.24963/kr.2020/88",
-      "pdf": null,
+      "pdf": "https://proceedings.kr.org/2020/88/kr2020-0088-dasaro-et-al.pdf",
       "bibtex": "@inproceedings{dasaro2020ilp,\n  title={Towards an Inductive Logic Programming approach for explaining black-box preference learning systems},\n  author={D'Asaro, F. A. and Spezialetti, M. and Raggioli, L. and Rossi, S.},\n  booktitle={Proceedings of KR 2020},\n  year={2020},\n  doi={10.24963/kr.2020/88}\n}",
       "tags": ["inductive-logic-programming", "explainable-ai", "preference-learning"],
       "open_access": true,
@@ -411,7 +411,7 @@
       "type": "journal",
       "doi": "10.3389/frai.2022.970246",
       "url": "https://doi.org/10.3389/frai.2022.970246",
-      "pdf": null,
+      "pdf": "https://www.frontiersin.org/articles/10.3389/frai.2022.970246/pdf",
       "bibtex": "@article{caffo2022explainable,\n  title={Explainable artificial intelligence models and methods in finance and healthcare},\n  author={Caffo, B. S. and D'Asaro, F. A. and D'Avila Garcez, A. and Raffinetti, E.},\n  journal={Frontiers in Artificial Intelligence},\n  year={2022},\n  doi={10.3389/frai.2022.970246}\n}",
       "tags": ["explainable-ai", "finance", "healthcare"],
       "open_access": true,
