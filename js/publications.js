@@ -34,6 +34,12 @@ class PublicationsManager {
       exportBtn: document.getElementById('export-bibtex')
     };
 
+    // Only run on publications page (check for required filter elements)
+    if (!this.elements.searchInput || !this.elements.yearFilter) {
+      console.log('[PublicationsManager] Not on publications page, skipping initialization');
+      return;
+    }
+
     try {
       // Load publications data
       await this.loadPublications();

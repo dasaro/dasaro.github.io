@@ -152,7 +152,6 @@
   <!-- Scripts -->
   <script src="js/main.js?v=30"></script>
   <script type="module" src="js/animations/AnimationController.js?v=30"></script>
-  <script src="js/publications.js?v=11"></script>
 
   <!-- Page-specific script -->
   <script>
@@ -199,13 +198,21 @@
 
           // Update research interests dynamically
           const researchGrid = document.getElementById('research-interests-grid');
+          console.log('[index.html] Research grid element:', researchGrid);
+          console.log('[index.html] Research interests data:', personalData.research_interests);
+
           if (researchGrid && personalData.research_interests) {
-            researchGrid.innerHTML = personalData.research_interests.map(interest => `
+            const html = personalData.research_interests.map(interest => `
               <div class="card scroll-animate">
                 <h3><span class="logic-symbol">${interest.symbol}</span> ${interest.title}</h3>
                 <p>${interest.description}</p>
               </div>
             `).join('');
+
+            researchGrid.innerHTML = html;
+            console.log('[index.html] ✅ Research interests displayed!', personalData.research_interests.length, 'interests');
+          } else {
+            console.error('[index.html] ❌ Research interests NOT displayed - grid:', !!researchGrid, 'data:', !!personalData.research_interests);
           }
 
           // Update scholar metrics

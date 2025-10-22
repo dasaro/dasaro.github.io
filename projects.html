@@ -119,14 +119,19 @@
 
         // Current Projects (using CSS classes)
         const currentContainer = document.getElementById('current-projects-container');
-        if (projectsData.current_projects && projectsData.current_projects.length > 0) {
-          const currentHTML = projectsData.current_projects.map(project => `
+        if (projectsData.current && projectsData.current.length > 0) {
+          const currentHTML = projectsData.current.map(project => `
             <div class="project-card current">
               <span class="project-status">ACTIVE</span>
               <h3>${project.name}</h3>
               <div class="project-meta">
-                <strong>Funding:</strong> ${project.funding_program}
+                <strong>Funding:</strong> ${project.funding}
               </div>
+              ${project.id ? `
+                <div class="project-meta">
+                  <strong>ID:</strong> ${project.id}
+                </div>
+              ` : ''}
               ${project.ids ? `
                 <div class="project-meta">
                   <strong>IDs:</strong> ${project.ids}
@@ -136,7 +141,7 @@
                 <strong>Role:</strong> ${project.role}
               </div>
               <div class="project-meta">
-                <strong>Period:</strong> ${project.years}
+                <strong>Period:</strong> ${project.year_start}–${project.year_end}
               </div>
               <div class="project-meta">
                 <strong>Institution:</strong> ${project.institution}
@@ -146,9 +151,16 @@
                   <strong>Spoke:</strong> ${project.spoke}
                 </div>
               ` : ''}
-              <div class="project-meta">
-                <strong>PI:</strong> ${project.pi}
-              </div>
+              ${project.pi ? `
+                <div class="project-meta">
+                  <strong>PI:</strong> ${project.pi}
+                </div>
+              ` : ''}
+              ${project.cup ? `
+                <div class="project-meta">
+                  <strong>CUP:</strong> ${project.cup}
+                </div>
+              ` : ''}
               <p class="project-description">
                 ${project.description}
               </p>
@@ -172,33 +184,51 @@
             </div>
           `).join('');
           currentContainer.innerHTML = currentHTML;
-          console.log('[projects.html] ✅ Current projects displayed!', projectsData.current_projects.length, 'projects');
+          console.log('[projects.html] ✅ Current projects displayed!', projectsData.current.length, 'projects');
         } else {
           currentContainer.innerHTML = '';
+          console.log('[projects.html] ℹ️ No current projects found');
         }
 
         // Past Projects (using CSS classes)
         const pastContainer = document.getElementById('past-projects-container');
-        if (projectsData.past_projects && projectsData.past_projects.length > 0) {
-          const pastHTML = projectsData.past_projects.map(project => `
+        if (projectsData.past && projectsData.past.length > 0) {
+          const pastHTML = projectsData.past.map(project => `
             <div class="project-card">
               <span class="project-status past">COMPLETED</span>
               <h3>${project.name}</h3>
               <div class="project-meta">
-                <strong>Funding:</strong> ${project.funding_program}
+                <strong>Funding:</strong> ${project.funding}
               </div>
+              ${project.id ? `
+                <div class="project-meta">
+                  <strong>ID:</strong> ${project.id}
+                </div>
+              ` : ''}
+              ${project.ids ? `
+                <div class="project-meta">
+                  <strong>IDs:</strong> ${project.ids}
+                </div>
+              ` : ''}
               <div class="project-meta">
                 <strong>Role:</strong> ${project.role}
               </div>
               <div class="project-meta">
-                <strong>Period:</strong> ${project.years}
+                <strong>Period:</strong> ${project.year_start}–${project.year_end}
               </div>
               <div class="project-meta">
                 <strong>Institution:</strong> ${project.institution}
               </div>
-              <div class="project-meta">
-                <strong>PI:</strong> ${project.pi}
-              </div>
+              ${project.sector ? `
+                <div class="project-meta">
+                  <strong>Sector:</strong> ${project.sector}
+                </div>
+              ` : ''}
+              ${project.cup ? `
+                <div class="project-meta">
+                  <strong>CUP:</strong> ${project.cup}
+                </div>
+              ` : ''}
               <p class="project-description">
                 ${project.description}
               </p>
@@ -215,7 +245,10 @@
             </div>
           `).join('');
           pastContainer.innerHTML = pastHTML;
-          console.log('[projects.html] ✅ Past projects displayed!', projectsData.past_projects.length, 'projects');
+          console.log('[projects.html] ✅ Past projects displayed!', projectsData.past.length, 'projects');
+        } else {
+          pastContainer.innerHTML = '';
+          console.log('[projects.html] ℹ️ No past projects found');
         }
 
       } catch (error) {

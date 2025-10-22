@@ -306,39 +306,25 @@
         // Reviewing (elegant white card)
         const reviewingContainer = document.getElementById('reviewing-container');
         if (serviceData.reviewing && serviceData.reviewing.length > 0) {
-          const journals = serviceData.reviewing.filter(r => r.type === 'journal');
-          const conferences = serviceData.reviewing.filter(r => r.type === 'conference');
-
           const reviewingHTML = `
             <div style="background: rgba(255, 255, 255, 0.95); color: #000000; padding: 20px; border-radius: 8px; border: 1px solid rgba(139, 0, 0, 0.2); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); font-family: 'Crimson Text', serif;">
-              ${journals.length > 0 ? `
-                <h4 style="color: #8B0000 !important; font-size: 1rem; margin-bottom: 12px; border-bottom: 1px solid rgba(139, 0, 0, 0.2); padding-bottom: 8px; font-family: 'Fira Code', monospace;">
-                  Journals
-                </h4>
-                <ul style="list-style: none; padding-left: 0; margin-bottom: 20px;">
-                  ${journals.map(j => `
-                    <li style="color: #2C3E50 !important; margin-bottom: 6px; padding-left: 20px; position: relative;">
-                      <span style="position: absolute; left: 0; color: #8B0000;">→</span> ${j.venue}
-                    </li>
-                  `).join('')}
-                </ul>
-              ` : ''}
-              ${conferences.length > 0 ? `
-                <h4 style="color: #8B0000 !important; font-size: 1rem; margin-bottom: 12px; border-bottom: 1px solid rgba(139, 0, 0, 0.2); padding-bottom: 8px; font-family: 'Fira Code', monospace;">
-                  Conferences
-                </h4>
-                <ul style="list-style: none; padding-left: 0;">
-                  ${conferences.map(c => `
-                    <li style="color: #2C3E50 !important; margin-bottom: 6px; padding-left: 20px; position: relative;">
-                      <span style="position: absolute; left: 0; color: #8B0000;">→</span> ${c.venue}
-                    </li>
-                  `).join('')}
-                </ul>
-              ` : ''}
+              <p style="color: #2C3E50; margin-bottom: 16px; font-style: italic;">
+                Selected peer review activities (${serviceData.reviewing.length} venues):
+              </p>
+              <ul style="list-style: none; padding-left: 0; column-count: 1; column-gap: 20px;">
+                ${serviceData.reviewing.map(venue => `
+                  <li style="color: #2C3E50 !important; margin-bottom: 6px; padding-left: 20px; position: relative; break-inside: avoid;">
+                    <span style="position: absolute; left: 0; color: #8B0000;">→</span> ${venue}
+                  </li>
+                `).join('')}
+              </ul>
             </div>
           `;
           reviewingContainer.innerHTML = reviewingHTML;
           console.log('[service.html] ✅ Reviewing activities displayed!', serviceData.reviewing.length, 'venues');
+        } else {
+          reviewingContainer.innerHTML = '<p class="text-muted">No reviewing activities found.</p>';
+          console.log('[service.html] ℹ️ No reviewing data available');
         }
 
         // Research Groups & Professional Societies (from affiliations.json)
