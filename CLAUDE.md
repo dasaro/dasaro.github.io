@@ -636,6 +636,220 @@ echo $?  # Should output 0 if valid
 
 ---
 
+## Image Architecture & Standards
+
+### Directory Structure
+
+```
+images/
+├── profile/          # Profile photos (e.g., profile-fabio-dasaro.jpg)
+├── research/         # Research-related images (diagrams, visualizations)
+├── institutions/     # Institutional logos (universities, labs)
+├── misc/            # Other images
+└── favicon/         # Favicon files (all sizes)
+    ├── favicon-512x512.png
+    ├── favicon-192x192.png
+    ├── favicon-32x32.png
+    ├── favicon-16x16.png
+    ├── apple-touch-icon.png
+    └── site.webmanifest
+```
+
+### Image Naming Convention
+
+**Format:** `[type]-[descriptor]-[variant].[ext]`
+
+**Examples:**
+- `profile-fabio-dasaro.jpg` - Main profile photo
+- `logo-unisalento.png` - University of Salento logo
+- `diagram-event-calculus-v2.svg` - Research diagram, version 2
+- `favicon-512x512.png` - Favicon at 512x512 resolution
+
+### Optimization Standards
+
+#### File Formats
+- **Photos:** Use JPEG (`.jpg`) at 85% quality
+- **Logos/Graphics:** Use PNG (`.png`) for transparency, SVG (`.svg`) when possible
+- **Icons:** Use SVG for scalability
+- **Favicons:** Use PNG for broad compatibility
+
+#### Size Guidelines
+- **Profile photos:** Max 400px width, ~50-80KB
+- **Hero images:** Max 1200px width, ~150KB
+- **Thumbnails:** Max 300px width, ~30KB
+- **Logos:** Max 200px height, ~20KB
+- **Favicons:** Standard sizes (512, 192, 180, 32, 16)
+
+#### Compression
+- Use tools like ImageOptim, TinyPNG, or Squoosh
+- Target: Reduce file size by 50-70% without visible quality loss
+- Progressive JPEGs for photos > 50KB
+
+### HTML Integration
+
+#### Profile Photo (Hero Section)
+```html
+<div class="hero-content">
+  <div class="hero-image-container">
+    <img src="images/profile/profile-fabio-dasaro.jpg"
+         alt="Fabio Aurelio D'Asaro, Postdoctoral Researcher in Logic"
+         class="hero-profile-photo"
+         width="200"
+         height="200"
+         loading="eager">
+  </div>
+  <div class="hero-text-container">
+    <h1>Name</h1>
+    <p class="hero-subtitle">Title</p>
+  </div>
+</div>
+```
+
+#### Lazy Loading (Content Images)
+```html
+<img src="images/research/diagram-example.jpg"
+     alt="Detailed description of the diagram"
+     loading="lazy"
+     width="800"
+     height="600">
+```
+
+#### Responsive Images
+```html
+<img src="images/profile/profile-fabio-dasaro.jpg"
+     srcset="images/profile/profile-fabio-dasaro-400w.jpg 400w,
+             images/profile/profile-fabio-dasaro-800w.jpg 800w"
+     sizes="(max-width: 768px) 100vw, 400px"
+     alt="Description"
+     loading="lazy">
+```
+
+### CSS Styling
+
+#### Profile Photo
+```css
+.hero-profile-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--color-accent-primary);
+  box-shadow: 0 4px 12px rgba(139, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-profile-photo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(139, 0, 0, 0.3);
+}
+```
+
+#### Institutional Logos
+```css
+.institution-logo {
+  max-width: 150px;
+  max-height: 80px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.institution-logo:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+```
+
+### Accessibility
+
+#### Alt Text Requirements
+1. **Profile photos:** Include name and role
+   ```html
+   alt="Fabio Aurelio D'Asaro, Postdoctoral Researcher in Logic"
+   ```
+
+2. **Logos:** Include institution name
+   ```html
+   alt="University of Salento logo"
+   ```
+
+3. **Diagrams:** Provide detailed description OR link to text alternative
+   ```html
+   alt="Event Calculus diagram showing temporal reasoning flow from actions to fluents"
+   ```
+
+4. **Decorative images:** Use empty alt
+   ```html
+   alt=""
+   ```
+
+#### ARIA Labels
+For complex images with associated descriptions:
+```html
+<figure role="figure" aria-labelledby="diagram-caption">
+  <img src="images/research/complex-diagram.jpg" alt="">
+  <figcaption id="diagram-caption">
+    Detailed explanation of the diagram...
+  </figcaption>
+</figure>
+```
+
+### Favicon Setup
+
+#### Required Files
+- `favicon-512x512.png` - Android Chrome
+- `favicon-192x192.png` - Android Chrome
+- `favicon-32x32.png` - Modern browsers
+- `favicon-16x16.png` - Legacy browsers
+- `apple-touch-icon.png` (180x180) - iOS
+- `site.webmanifest` - PWA support
+
+#### HTML Integration
+```html
+<link rel="icon" type="image/png" sizes="512x512" href="images/favicon/favicon-512x512.png">
+<link rel="icon" type="image/png" sizes="192x192" href="images/favicon/favicon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+<link rel="manifest" href="images/favicon/site.webmanifest">
+```
+
+### Design Guidelines
+
+#### Academic & Professional Aesthetic
+- **Profile photos:** Professional headshot, neutral background
+- **Logos:** Use official institutional assets
+- **Research images:** Clean diagrams with high contrast
+- **Color scheme:** Match site colors (dark red #8B0000, white, black)
+
+#### Consistency
+- All profile photos: Circular crop, 200x200 display size
+- All logos: Grayscale default, color on hover
+- All diagrams: High contrast, readable at small sizes
+- Consistent borders and shadows matching site design
+
+### Performance
+
+#### Loading Strategy
+1. **Above the fold (hero):** `loading="eager"` for profile photo
+2. **Below the fold:** `loading="lazy"` for all other images
+3. **Preload critical images:**
+   ```html
+   <link rel="preload" as="image" href="images/profile/profile-fabio-dasaro.jpg">
+   ```
+
+#### Image Optimization Checklist
+- [ ] All images compressed
+- [ ] Proper format selected (JPEG/PNG/SVG)
+- [ ] Dimensions appropriate for use case
+- [ ] Alt text provided
+- [ ] Width/height attributes set (prevent layout shift)
+- [ ] Lazy loading configured
+- [ ] Responsive sizes defined if needed
+
+---
+
 ## Common Tasks
 
 ### 1. Add New Publication

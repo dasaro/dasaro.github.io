@@ -1,0 +1,21 @@
+{
+  "name": "Fabio Aurelio D'Asaro",
+  "short_name": "F.A. D'Asaro",
+  "description": "Postdoctoral Researcher in Logic at the interface of formal epistemology, AI, and probabilistic reasoning",
+  "icons": [
+    {
+      "src": "favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#8B0000",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/"
+}
