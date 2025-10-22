@@ -203,7 +203,7 @@
 
           if (researchGrid && personalData.research_interests) {
             const html = personalData.research_interests.map(interest => `
-              <div class="card scroll-animate">
+              <div class="card scroll-animate visible">
                 <h3><span class="logic-symbol">${interest.symbol}</span> ${interest.title}</h3>
                 <p>${interest.description}</p>
               </div>
@@ -211,6 +211,8 @@
 
             researchGrid.innerHTML = html;
             console.log('[index.html] ✅ Research interests displayed!', personalData.research_interests.length, 'interests');
+            console.log('[index.html] Grid innerHTML length:', researchGrid.innerHTML.length);
+            console.log('[index.html] Grid children count:', researchGrid.children.length);
           } else {
             console.error('[index.html] ❌ Research interests NOT displayed - grid:', !!researchGrid, 'data:', !!personalData.research_interests);
           }
