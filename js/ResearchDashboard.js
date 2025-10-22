@@ -3,10 +3,10 @@
  *
  * Displays research metrics, publication timeline, and topic cloud
  * @author Fabio Aurelio D'Asaro
- * @version 2.0 - Phase 2: JavaScript Implementation
+ * @version 3.0 - Phase 3: Interactivity, Polish & Enhancements
  */
 
-import { loadJSON, getElement, createElement } from './utils.js';
+import { loadJSON, getElement, createElement, showError, showLoading } from './utils.js';
 
 /**
  * ResearchDashboard class - Manages dashboard data and visualization
@@ -16,6 +16,9 @@ class ResearchDashboard {
     this.personalData = null;
     this.publicationsData = null;
     this.stats = null;
+    this.chartBars = []; // Store bar positions for interactivity
+    this.tooltip = null;
+    this.isLoading = true;
   }
 
   /**
@@ -25,11 +28,15 @@ class ResearchDashboard {
     console.log('[ResearchDashboard] Initializing...');
 
     try {
+      // Show loading states
+      this.showLoadingStates();
+
       // Load data
       await this.loadData();
 
       if (!this.personalData || !this.publicationsData) {
         console.error('[ResearchDashboard] Failed to load required data');
+        this.showErrorState();
         return;
       }
 
@@ -42,10 +49,59 @@ class ResearchDashboard {
       this.renderMetrics();
       this.renderTopicsCloud();
 
+      // Set up interactivity
+      this.setupTooltip();
+      this.setupChartInteractivity();
+      this.setupScrollAnimations();
+
+      this.isLoading = false;
       console.log('[ResearchDashboard] ✓ Initialization complete');
     } catch (error) {
       console.error('[ResearchDashboard] Initialization error:', error);
+      this.showErrorState();
     }
+  }
+
+  /**
+   * Show loading skeleton states
+   */
+  showLoadingStates() {
+    // Quick stats loading
+    const statsContainer = getElement('quick-stats-container', 'ResearchDashboard');
+    if (statsContainer) {
+      statsContainer.innerHTML = `
+        <div class="stat-card skeleton"></div>
+        <div class="stat-card skeleton"></div>
+        <div class="stat-card skeleton"></div>
+        <div class="stat-card skeleton"></div>
+      `;
+    }
+
+    // Timeline loading
+    const timelineCard = document.querySelector('.timeline-card');
+    if (timelineCard) {
+      timelineCard.classList.add('loading');
+    }
+
+    console.log('[ResearchDashboard] ✓ Loading states displayed');
+  }
+
+  /**
+   * Show error state
+   */
+  showErrorState() {
+    const container = getElement('research-overview', 'ResearchDashboard');
+    if (!container) return;
+
+    const errorHTML = `
+      <div class="dashboard-error">
+        <p><strong>⚠️ Unable to load research data</strong></p>
+        <p>Please refresh the page or check back later.</p>
+      </div>
+    `;
+
+    container.innerHTML = errorHTML;
+    console.log('[ResearchDashboard] ✓ Error state displayed');
   }
 
   /**
@@ -158,8 +214,8 @@ class ResearchDashboard {
       }
     ];
 
-    const html = stats.map(stat => `
-      <div class="stat-card scroll-animate visible">
+    const html = stats.map((stat, index) => `
+      <div class="stat-card scroll-animate visible" style="animation-delay: ${index * 0.1}s">
         <div class="stat-icon">${stat.icon}</div>
         <div class="stat-value">${stat.value}</div>
         <div class="stat-label">${stat.label}</div>
@@ -191,8 +247,9 @@ class ResearchDashboard {
     canvas.width = width;
     canvas.height = height;
 
-    // Clear canvas
+    // Clear canvas and bar positions
     ctx.clearRect(0, 0, width, height);
+    this.chartBars = [];
 
     // Chart parameters
     const padding = 40;
@@ -221,6 +278,16 @@ class ResearchDashboard {
       const barHeight = (count / maxCount) * chartHeight;
       const x = padding + (chartWidth / years.length) * i + barGap / 2;
       const y = height - padding - barHeight;
+
+      // Store bar position for interactivity
+      this.chartBars.push({
+        year,
+        count,
+        x,
+        y,
+        width: barWidth,
+        height: barHeight
+      });
 
       // Draw bar with gradient
       const gradient = ctx.createLinearGradient(x, y, x, height - padding);
@@ -254,7 +321,166 @@ class ResearchDashboard {
       ctx.fillText(value, padding - 10, y + 4);
     }
 
+    // Remove loading state
+    const timelineCard = document.querySelector('.timeline-card');
+    if (timelineCard) {
+      timelineCard.classList.remove('loading');
+    }
+
     console.log('[ResearchDashboard] ✓ Timeline chart rendered');
+  }
+
+  /**
+   * Set up tooltip for chart
+   */
+  setupTooltip() {
+    // Create tooltip element if it doesn't exist
+    if (!this.tooltip) {
+      this.tooltip = document.createElement('div');
+      this.tooltip.className = 'chart-tooltip';
+      this.tooltip.style.display = 'none';
+      document.body.appendChild(this.tooltip);
+    }
+
+    console.log('[ResearchDashboard] ✓ Tooltip initialized');
+  }
+
+  /**
+   * Set up chart interactivity (hover, click)
+   */
+  setupChartInteractivity() {
+    const canvas = getElement('publications-timeline', 'ResearchDashboard');
+    if (!canvas) return;
+
+    // Mouse move for tooltips
+    canvas.addEventListener('mousemove', (e) => this.handleChartHover(e));
+
+    // Mouse leave to hide tooltip
+    canvas.addEventListener('mouseleave', () => this.hideTooltip());
+
+    // Click to navigate to publications
+    canvas.addEventListener('click', (e) => this.handleChartClick(e));
+
+    // Change cursor on hover
+    canvas.style.cursor = 'pointer';
+
+    console.log('[ResearchDashboard] ✓ Chart interactivity enabled');
+  }
+
+  /**
+   * Handle chart hover - show tooltip
+   */
+  handleChartHover(e) {
+    if (!this.tooltip || this.chartBars.length === 0) return;
+
+    const canvas = e.target;
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // Find hovered bar
+    const hoveredBar = this.chartBars.find(bar =>
+      x >= bar.x &&
+      x <= bar.x + bar.width &&
+      y >= bar.y &&
+      y <= bar.y + bar.height
+    );
+
+    if (hoveredBar) {
+      // Show tooltip
+      const publicationType = this.getPublicationBreakdown(hoveredBar.year);
+      this.tooltip.innerHTML = `
+        <strong>${hoveredBar.year}</strong><br>
+        ${hoveredBar.count} publication${hoveredBar.count !== 1 ? 's' : ''}<br>
+        <small style="opacity: 0.8;">${publicationType}</small><br>
+        <em style="font-size: 0.85em; opacity: 0.7;">Click to view</em>
+      `;
+      this.tooltip.style.display = 'block';
+      this.tooltip.style.left = (e.clientX + 10) + 'px';
+      this.tooltip.style.top = (e.clientY - 10) + 'px';
+    } else {
+      this.hideTooltip();
+    }
+  }
+
+  /**
+   * Get publication breakdown for a year
+   */
+  getPublicationBreakdown(year) {
+    const pubs = this.publicationsData.all.filter(p => p.year === year);
+    const types = {};
+
+    pubs.forEach(pub => {
+      if (pub.type) {
+        types[pub.type] = (types[pub.type] || 0) + 1;
+      }
+    });
+
+    const breakdown = Object.entries(types)
+      .map(([type, count]) => {
+        const label = type === 'book-chapter' ? 'book ch.' : type;
+        return `${count} ${label}`;
+      })
+      .join(', ');
+
+    return breakdown || 'Various types';
+  }
+
+  /**
+   * Hide tooltip
+   */
+  hideTooltip() {
+    if (this.tooltip) {
+      this.tooltip.style.display = 'none';
+    }
+  }
+
+  /**
+   * Handle chart click - navigate to filtered publications
+   */
+  handleChartClick(e) {
+    if (this.chartBars.length === 0) return;
+
+    const canvas = e.target;
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // Find clicked bar
+    const clickedBar = this.chartBars.find(bar =>
+      x >= bar.x &&
+      x <= bar.x + bar.width &&
+      y >= bar.y &&
+      y <= bar.y + bar.height
+    );
+
+    if (clickedBar) {
+      // Navigate to publications page with year filter
+      window.location.href = `publications.html?year=${clickedBar.year}`;
+      console.log(`[ResearchDashboard] Navigating to publications for ${clickedBar.year}`);
+    }
+  }
+
+  /**
+   * Set up scroll animations for dashboard
+   */
+  setupScrollAnimations() {
+    const dashboardSection = document.getElementById('research-overview');
+    if (!dashboardSection) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    observer.observe(dashboardSection);
+    console.log('[ResearchDashboard] ✓ Scroll animations enabled');
   }
 
   /**
@@ -287,7 +513,7 @@ class ResearchDashboard {
       });
     }
 
-    // Animate progress bars
+    // Animate progress bars with delay
     setTimeout(() => {
       this.animateProgressBars(metrics);
     }, 300);
@@ -316,7 +542,10 @@ class ResearchDashboard {
       const bar = item.querySelector('.metric-bar-fill');
       if (bar) {
         const metric = ['citations', 'h_index', 'i10_index'][index];
-        bar.style.width = percentages[metric] + '%';
+        // Animate with slight delay between bars
+        setTimeout(() => {
+          bar.style.width = percentages[metric] + '%';
+        }, index * 100);
       }
     });
 
@@ -356,7 +585,7 @@ class ResearchDashboard {
       .slice(0, 12);
 
     const html = topTags.map(({ tag, count }) => `
-      <a href="publications.html#${tag}" class="topic-tag" title="${count} publication${count !== 1 ? 's' : ''}">
+      <a href="publications.html?tag=${encodeURIComponent(tag)}" class="topic-tag" title="${count} publication${count !== 1 ? 's' : ''}">
         ${tag} <span style="font-size: 0.8em; opacity: 0.7;">(${count})</span>
       </a>
     `).join('');
@@ -379,6 +608,7 @@ class ResearchDashboard {
     this.resizeTimeout = setTimeout(() => {
       if (this.stats) {
         this.renderTimeline();
+        this.setupChartInteractivity(); // Re-setup after redraw
       }
     }, 250);
   }
