@@ -14,66 +14,6 @@
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/responsive.css">
 
-  <style>
-    .service-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .service-list li {
-      padding: var(--space-sm) 0;
-      border-bottom: 1px solid var(--color-accent-3);
-    }
-
-    .service-list li:last-child {
-      border-bottom: none;
-    }
-
-    .service-list li::before {
-      content: '→';
-      color: var(--color-accent-1);
-      font-family: 'Fira Code', monospace;
-      margin-right: var(--space-sm);
-    }
-
-    .accordion {
-      margin-bottom: var(--space-md);
-    }
-
-    .accordion-header {
-      cursor: pointer;
-      padding: var(--space-md);
-      background: var(--color-accent-3);
-      border: none;
-      width: 100%;
-      text-align: left;
-      font-family: 'Fira Code', monospace;
-      font-size: var(--text-lg);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: background 0.2s ease;
-    }
-
-    .accordion-header:hover {
-      background: var(--color-accent-2);
-      color: var(--color-white);
-    }
-
-    .accordion-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-    }
-
-    .accordion-content.active {
-      max-height: 2000px;
-    }
-
-    .accordion-content-inner {
-      padding: var(--space-md);
-    }
-  </style>
 </head>
 <body data-page="service">
   <!-- Mathematical Background Canvas -->
@@ -115,65 +55,50 @@
         <h1 class="fade-in">Academic Service</h1>
 
         <!-- Conference Organization -->
-        <div class="card fade-in-delay-1">
+        <div class="mt-xl fade-in-delay-1">
           <h2 class="section-title">Conference & Summer School Organization</h2>
-          <ul class="service-list">
-            <li>
-              <strong>Co-organizer</strong> - 3rd Logic for the AI Spring Summer School (eDefAI), Lecce, Italy, 2025
-              <br><a href="http://sites.google.com/view/edefai" target="_blank">http://sites.google.com/view/edefai</a>
-            </li>
-          </ul>
-          <div id="organizing-container" class="mt-md">
-            <p class="loading-message">Additional organizing activities will be loaded from data/service.json</p>
+          <div id="organizing-container">
+            <p class="loading-message">Loading organizing activities...</p>
           </div>
         </div>
 
         <!-- Program Committees -->
-        <div class="card mt-xl fade-in-delay-2">
+        <div class="mt-xl fade-in-delay-2">
           <h2 class="section-title">Program Committees</h2>
-          <ul class="service-list">
-            <li><strong>IJCAI</strong> (International Joint Conference on Artificial Intelligence) - 2020, 2024, 2025</li>
-          </ul>
-          <div id="pc-container" class="mt-md">
-            <p class="loading-message">Full program committee service will be loaded from data/service.json</p>
+          <div id="pc-container">
+            <p class="loading-message">Loading program committees...</p>
           </div>
         </div>
 
         <!-- Editorial Service -->
-        <div class="card mt-xl fade-in-delay-3">
+        <div class="mt-xl fade-in-delay-3">
           <h2 class="section-title">Editorial Boards</h2>
-          <ul class="service-list">
-            <li>
-              <strong>Review Editor</strong> - Frontiers in Artificial Intelligence
-              <br>Section: Machine Learning and Artificial Intelligence (2022 - Present)
-            </li>
-          </ul>
-          <div id="editorial-container" class="mt-md">
-            <p class="loading-message">Additional editorial service will be loaded from data/service.json</p>
+          <div id="editorial-container">
+            <p class="loading-message">Loading editorial service...</p>
           </div>
         </div>
 
         <!-- Reviewing -->
-        <div class="card mt-xl">
+        <div class="mt-xl">
           <h2 class="section-title">Reviewing</h2>
           <div id="reviewing-container">
-            <p class="loading-message">Reviewing activities will be loaded from data/service.json</p>
+            <p class="loading-message">Loading reviewing activities...</p>
           </div>
         </div>
 
         <!-- Research Groups -->
-        <div class="card mt-xl">
+        <div class="mt-xl">
           <h2 class="section-title">Research Groups & Professional Societies</h2>
           <div id="groups-container">
-            <p class="loading-message">Memberships will be loaded from data/groups.json</p>
+            <p class="loading-message">Loading memberships...</p>
           </div>
         </div>
 
         <!-- Invited Talks -->
-        <div class="card mt-xl">
+        <div class="mt-xl">
           <h2 class="section-title">Invited Talks</h2>
           <div id="talks-container">
-            <p class="loading-message">Invited talks will be loaded from data/talks.json</p>
+            <p class="loading-message">Loading invited talks...</p>
           </div>
         </div>
       </div>
@@ -200,23 +125,8 @@
   <script type="module" src="js/animations/AnimationController.js?v=30"></script>
 
   <script>
-    // Simple accordion functionality and data loading
+    // Load and display service data
     document.addEventListener('DOMContentLoaded', async () => {
-      const accordions = document.querySelectorAll('.accordion-header');
-
-      accordions.forEach(header => {
-        header.addEventListener('click', () => {
-          const content = header.nextElementSibling;
-          content.classList.toggle('active');
-
-          // Toggle arrow
-          const arrow = header.querySelector('.arrow');
-          if (arrow) {
-            arrow.textContent = content.classList.contains('active') ? '▼' : '▶';
-          }
-        });
-      });
-
       // Load service data
       try {
         const serviceData = await loadJSON('./data/service.json');
@@ -224,99 +134,71 @@
         console.log('[service.html] Service data loaded:', serviceData);
         console.log('[service.html] Affiliations data loaded:', affiliationsData);
 
-        // Conference Organization (elegant white cards)
+        // Conference Organization
         const organizingContainer = document.getElementById('organizing-container');
         if (serviceData.organizing && serviceData.organizing.length > 0) {
           const organizingHTML = serviceData.organizing.map(org => `
-            <div style="background: rgba(255, 255, 255, 0.95); color: #000000; padding: 20px; border-radius: 8px; margin-bottom: 16px; border: 1px solid rgba(139, 0, 0, 0.2); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); font-family: 'Crimson Text', serif;">
-              <div style="color: #8B0000 !important; font-size: 0.875rem; margin-bottom: 8px; font-family: 'Fira Code', monospace;">
-                <strong style="color: #8B0000 !important;">Role:</strong> ${org.role}
-              </div>
-              <h3 style="color: #8B0000 !important; font-size: 1.125rem; margin-bottom: 8px; font-family: 'Fira Code', monospace;">
-                ${org.event}
-              </h3>
-              <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 8px;">
-                <strong style="color: #8B0000 !important;">Location:</strong> ${org.location}
-              </div>
-              <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 8px;">
-                <strong style="color: #8B0000 !important;">Year:</strong> ${org.year}
-              </div>
+            <div class="card">
+              <div class="mb-sm"><strong>Role:</strong> ${org.role}</div>
+              <h3>${org.event}</h3>
+              <p><strong>Location:</strong> ${org.location}</p>
+              <p><strong>Year:</strong> ${org.year}</p>
               ${org.website ? `
-                <div style="margin-top: 12px;">
-                  <a href="${org.website}" target="_blank" rel="noopener" style="color: #FFFFFF !important; background: #8B0000; text-decoration: none; border: none; padding: 6px 12px; display: inline-block; border-radius: 4px; font-size: 0.75rem; font-family: 'Fira Code', monospace; transition: background 0.2s ease;">
+                <p class="mt-md">
+                  <a href="${org.website}" target="_blank" rel="noopener" class="btn btn-sm">
                     → Website
                   </a>
-                </div>
+                </p>
               ` : ''}
             </div>
           `).join('');
           organizingContainer.innerHTML = organizingHTML;
           console.log('[service.html] ✅ Organizing activities displayed!', serviceData.organizing.length, 'events');
         } else {
-          organizingContainer.innerHTML = '';
+          organizingContainer.innerHTML = '<p class="text-muted">No organizing activities found.</p>';
         }
 
-        // Program Committees (elegant white cards)
+        // Program Committees
         const pcContainer = document.getElementById('pc-container');
         if (serviceData.program_committees && serviceData.program_committees.length > 0) {
           const pcHTML = serviceData.program_committees.map(pc => `
-            <div style="background: rgba(255, 255, 255, 0.95); color: #000000; padding: 16px; border-radius: 8px; margin-bottom: 12px; border: 1px solid rgba(139, 0, 0, 0.2); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); font-family: 'Crimson Text', serif;">
-              <h4 style="color: #8B0000 !important; font-size: 1rem; margin-bottom: 6px; font-family: 'Fira Code', monospace;">
-                ${pc.event}
-              </h4>
-              <div style="color: #2C3E50 !important; font-size: 0.875rem;">
-                <strong style="color: #8B0000 !important;">Years:</strong> ${Array.isArray(pc.years) ? pc.years.join(', ') : pc.years}
-              </div>
-              <div style="color: #2C3E50 !important; font-size: 0.875rem;">
-                <strong style="color: #8B0000 !important;">Role:</strong> ${pc.role}
-              </div>
+            <div class="card">
+              <h3>${pc.event}</h3>
+              <p><strong>Years:</strong> ${Array.isArray(pc.years) ? pc.years.join(', ') : pc.years}</p>
+              <p><strong>Role:</strong> ${pc.role}</p>
             </div>
           `).join('');
           pcContainer.innerHTML = pcHTML;
           console.log('[service.html] ✅ Program committees displayed!', serviceData.program_committees.length, 'committees');
+        } else {
+          pcContainer.innerHTML = '<p class="text-muted">No program committee service found.</p>';
         }
 
-        // Editorial Service (elegant white cards)
+        // Editorial Service
         const editorialContainer = document.getElementById('editorial-container');
         if (serviceData.editorial && serviceData.editorial.length > 0) {
           const editorialHTML = serviceData.editorial.map(ed => `
-            <div style="background: rgba(255, 255, 255, 0.95); color: #000000; padding: 20px; border-radius: 8px; margin-bottom: 16px; border: 1px solid rgba(139, 0, 0, 0.2); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); font-family: 'Crimson Text', serif;">
-              <div style="color: #8B0000 !important; font-size: 0.875rem; margin-bottom: 8px; font-family: 'Fira Code', monospace;">
-                <strong style="color: #8B0000 !important;">Role:</strong> ${ed.role}
-              </div>
-              <h3 style="color: #8B0000 !important; font-size: 1.125rem; margin-bottom: 8px; font-family: 'Fira Code', monospace;">
-                ${ed.journal}
-              </h3>
-              ${ed.section ? `
-                <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 8px;">
-                  <strong style="color: #8B0000 !important;">Section:</strong> ${ed.section}
-                </div>
-              ` : ''}
-              <div style="color: #2C3E50 !important; font-size: 0.875rem;">
-                <strong style="color: #8B0000 !important;">Period:</strong> ${ed.year_start} - ${ed.year_end}
-              </div>
+            <div class="card">
+              <div class="mb-sm"><strong>Role:</strong> ${ed.role}</div>
+              <h3>${ed.journal}</h3>
+              ${ed.section ? `<p><strong>Section:</strong> ${ed.section}</p>` : ''}
+              <p><strong>Period:</strong> ${ed.year_start} - ${ed.year_end}</p>
             </div>
           `).join('');
           editorialContainer.innerHTML = editorialHTML;
           console.log('[service.html] ✅ Editorial service displayed!', serviceData.editorial.length, 'boards');
         } else {
-          editorialContainer.innerHTML = '';
+          editorialContainer.innerHTML = '<p class="text-muted">No editorial service found.</p>';
         }
 
-        // Reviewing (elegant white card)
+        // Reviewing
         const reviewingContainer = document.getElementById('reviewing-container');
         if (serviceData.reviewing && serviceData.reviewing.length > 0) {
           const reviewingHTML = `
-            <div style="background: rgba(255, 255, 255, 0.95); color: #000000; padding: 20px; border-radius: 8px; border: 1px solid rgba(139, 0, 0, 0.2); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); font-family: 'Crimson Text', serif;">
-              <p style="color: #2C3E50; margin-bottom: 16px; font-style: italic;">
-                Selected peer review activities (${serviceData.reviewing.length} venues):
-              </p>
-              <ul style="list-style: none; padding-left: 0; column-count: 1; column-gap: 20px;">
-                ${serviceData.reviewing.map(venue => `
-                  <li style="color: #2C3E50 !important; margin-bottom: 6px; padding-left: 20px; position: relative; break-inside: avoid;">
-                    <span style="position: absolute; left: 0; color: #8B0000;">→</span> ${venue}
-                  </li>
-                `).join('')}
+            <div class="card">
+              <p class="text-muted mb-md">Selected peer review activities (${serviceData.reviewing.length} venues):</p>
+              <ul class="service-list">
+                ${serviceData.reviewing.map(venue => `<li>${venue}</li>`).join('')}
               </ul>
             </div>
           `;
@@ -327,46 +209,28 @@
           console.log('[service.html] ℹ️ No reviewing data available');
         }
 
-        // Research Groups & Professional Societies (from affiliations.json)
+        // Research Groups & Professional Societies
         const groupsContainer = document.getElementById('groups-container');
         if (affiliationsData) {
           let groupsHTML = '';
 
           if (affiliationsData.research_groups && affiliationsData.research_groups.length > 0) {
             groupsHTML += `
-              <h3 style="color: #8B0000 !important; font-size: 1.25rem; margin-bottom: 16px; font-family: 'Fira Code', monospace;">
-                Research Groups
-              </h3>
+              <h3 class="mt-lg mb-md">Research Groups</h3>
               ${affiliationsData.research_groups.map(group => `
-                <div style="background: rgba(255, 255, 255, 0.95); color: #000000; padding: 20px; border-radius: 8px; margin-bottom: 16px; border: 1px solid rgba(139, 0, 0, 0.2); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); font-family: 'Crimson Text', serif;">
-                  <h4 style="color: #8B0000 !important; font-size: 1.125rem; margin-bottom: 8px; font-family: 'Fira Code', monospace;">
-                    ${group.name}
-                  </h4>
-                  <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 6px;">
-                    <strong style="color: #8B0000 !important;">Institution:</strong> ${group.institution}
-                  </div>
-                  ${group.department ? `
-                    <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 6px;">
-                      <strong style="color: #8B0000 !important;">Department:</strong> ${group.department}
-                    </div>
-                  ` : ''}
-                  <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 6px;">
-                    <strong style="color: #8B0000 !important;">Role:</strong> ${group.role}
-                  </div>
-                  <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 12px;">
-                    <strong style="color: #8B0000 !important;">Period:</strong> ${group.year_start} - ${group.year_end}
-                  </div>
-                  ${group.description ? `
-                    <p style="color: #2C3E50 !important; font-size: 0.875rem;">
-                      ${group.description}
-                    </p>
-                  ` : ''}
+                <div class="card">
+                  <h4>${group.name}</h4>
+                  <p><strong>Institution:</strong> ${group.institution}</p>
+                  ${group.department ? `<p><strong>Department:</strong> ${group.department}</p>` : ''}
+                  <p><strong>Role:</strong> ${group.role}</p>
+                  <p><strong>Period:</strong> ${group.year_start} - ${group.year_end}</p>
+                  ${group.description ? `<p class="mt-md">${group.description}</p>` : ''}
                   ${group.website ? `
-                    <div style="margin-top: 12px;">
-                      <a href="${group.website}" target="_blank" rel="noopener" style="color: #FFFFFF !important; background: #8B0000; text-decoration: none; padding: 6px 12px; display: inline-block; border-radius: 4px; font-size: 0.75rem; font-family: 'Fira Code', monospace;">
+                    <p class="mt-md">
+                      <a href="${group.website}" target="_blank" rel="noopener" class="btn btn-sm">
                         → Website
                       </a>
-                    </div>
+                    </p>
                   ` : ''}
                 </div>
               `).join('')}
@@ -375,36 +239,22 @@
 
           if (affiliationsData.professional_memberships && affiliationsData.professional_memberships.length > 0) {
             groupsHTML += `
-              <h3 style="color: #8B0000 !important; font-size: 1.25rem; margin-top: 32px; margin-bottom: 16px; font-family: 'Fira Code', monospace;">
-                Professional Societies
-              </h3>
-              <div style="background: rgba(255, 255, 255, 0.95); color: #000000; padding: 20px; border-radius: 8px; border: 1px solid rgba(139, 0, 0, 0.2); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); font-family: 'Crimson Text', serif;">
-                ${affiliationsData.professional_memberships.map(mem => `
-                  <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(139, 0, 0, 0.2);">
-                    <h4 style="color: #8B0000 !important; font-size: 1rem; margin-bottom: 8px; font-family: 'Fira Code', monospace;">
-                      ${mem.organization} - ${mem.full_name}
-                    </h4>
-                    ${mem.full_name_en ? `
-                      <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 6px; font-style: italic;">
-                        ${mem.full_name_en}
-                      </div>
-                    ` : ''}
-                    <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 6px;">
-                      <strong style="color: #8B0000 !important;">Role:</strong> ${mem.role}
-                    </div>
-                    <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 6px;">
-                      <strong style="color: #8B0000 !important;">Period:</strong> ${mem.year_start} - ${mem.year_end}
-                    </div>
-                    ${mem.website ? `
-                      <div style="margin-top: 8px;">
-                        <a href="${mem.website}" target="_blank" rel="noopener" style="color: #FFFFFF !important; background: #8B0000; text-decoration: none; padding: 4px 10px; display: inline-block; border-radius: 4px; font-size: 0.75rem; font-family: 'Fira Code', monospace;">
-                          → Website
-                        </a>
-                      </div>
-                    ` : ''}
-                  </div>
-                `).join('')}
-              </div>
+              <h3 class="mt-xl mb-md">Professional Societies</h3>
+              ${affiliationsData.professional_memberships.map(mem => `
+                <div class="card">
+                  <h4>${mem.organization} - ${mem.full_name}</h4>
+                  ${mem.full_name_en ? `<p class="text-muted"><em>${mem.full_name_en}</em></p>` : ''}
+                  <p><strong>Role:</strong> ${mem.role}</p>
+                  <p><strong>Period:</strong> ${mem.year_start} - ${mem.year_end}</p>
+                  ${mem.website ? `
+                    <p class="mt-md">
+                      <a href="${mem.website}" target="_blank" rel="noopener" class="btn btn-sm">
+                        → Website
+                      </a>
+                    </p>
+                  ` : ''}
+                </div>
+              `).join('')}
             `;
           }
 
@@ -412,33 +262,20 @@
           console.log('[service.html] ✅ Affiliations displayed!');
         }
 
-        // Invited Talks (elegant white cards)
+        // Invited Talks
         const talksContainer = document.getElementById('talks-container');
         try {
           const teachingData = await loadJSON('./data/teaching.json');
           if (teachingData.guest_lectures && teachingData.guest_lectures.length > 0) {
             const talksHTML = teachingData.guest_lectures.map(lecture => `
-              <div style="background: rgba(255, 255, 255, 0.95); color: #000000; padding: 20px; border-radius: 8px; margin-bottom: 16px; border: 1px solid rgba(139, 0, 0, 0.2); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); font-family: 'Crimson Text', serif;">
-                <h3 style="color: #8B0000 !important; font-size: 1.125rem; margin-bottom: 8px; font-family: 'Fira Code', monospace;">
-                  ${lecture.title}
-                </h3>
-                <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 6px;">
-                  <strong style="color: #8B0000 !important;">Event:</strong> ${lecture.event}
-                </div>
-                <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 6px;">
-                  <strong style="color: #8B0000 !important;">Institution:</strong> ${lecture.institution}
-                </div>
-                <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 6px;">
-                  <strong style="color: #8B0000 !important;">Date:</strong> ${lecture.date}
-                </div>
-                <div style="color: #2C3E50 !important; font-size: 0.875rem; margin-bottom: 6px;">
-                  <strong style="color: #8B0000 !important;">Location:</strong> ${lecture.location}
-                </div>
-                ${lecture.description ? `
-                  <p style="color: #2C3E50 !important; font-size: 0.875rem; margin-top: 12px;">
-                    ${lecture.description}
-                  </p>
-                ` : ''}
+              <div class="card">
+                <div class="mb-sm"><strong>${lecture.date || lecture.year || ''}</strong></div>
+                <h3>${lecture.title}</h3>
+                <p><strong>Event:</strong> ${lecture.event}</p>
+                <p><strong>Institution:</strong> ${lecture.institution}</p>
+                ${lecture.location ? `<p><strong>Location:</strong> ${lecture.location}</p>` : ''}
+                ${lecture.hours ? `<p>${lecture.hours} hours</p>` : ''}
+                ${lecture.description ? `<p class="mt-md">${lecture.description}</p>` : ''}
               </div>
             `).join('');
             talksContainer.innerHTML = talksHTML;
@@ -446,7 +283,7 @@
           }
         } catch (error) {
           console.error('[service.html] Error loading talks:', error);
-          talksContainer.innerHTML = '<p style="color: #2C3E50 !important; font-style: italic;">Invited talk information available in the Teaching section.</p>';
+          talksContainer.innerHTML = '<p class="text-muted">Invited talk information available in the Teaching section.</p>';
         }
 
       } catch (error) {

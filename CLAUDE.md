@@ -636,6 +636,124 @@ echo $?  # Should output 0 if valid
 
 ---
 
+## Layout & Component Architecture Standards
+
+### ✅ DO: Card Pattern
+
+**Each item is its own card:**
+```html
+<!-- CORRECT: Teaching page pattern -->
+<div id="guest-lectures-container">
+  <div class="card">
+    <h3>Talk Title 1</h3>
+    <p><strong>Event Name</strong></p>
+    <p>Institution</p>
+  </div>
+  <div class="card">
+    <h3>Talk Title 2</h3>
+    <p><strong>Event Name</strong></p>
+    <p>Institution</p>
+  </div>
+</div>
+```
+
+### ❌ DON'T: Boxes-Inside-Boxes
+
+**Avoid wrapping cards in outer cards with inline-styled inner boxes:**
+```html
+<!-- WRONG: Creates visual nesting confusion -->
+<div class="card">
+  <h2>Section Title</h2>
+  <div style="background: white; padding: 20px; border: 1px solid...">
+    <h3>Item 1</h3>
+  </div>
+  <div style="background: white; padding: 20px; border: 1px solid...">
+    <h3>Item 2</h3>
+  </div>
+</div>
+```
+
+### Standard Patterns by Content Type
+
+#### List of Items (Conferences, Talks, Courses)
+```html
+<!-- Section header outside cards -->
+<div class="mt-xl">
+  <h2 class="section-title">Section Name</h2>
+  <div id="items-container">
+    <!-- Each item is its own card -->
+    <div class="card">
+      <h3>Item Title</h3>
+      <p>Content</p>
+    </div>
+  </div>
+</div>
+```
+
+#### Single Content Block
+```html
+<!-- Use ONE card for contained content -->
+<div class="card">
+  <h2>Section Title</h2>
+  <p>Paragraph content that belongs together.</p>
+  <ul class="service-list">
+    <li>List item 1</li>
+    <li>List item 2</li>
+  </ul>
+</div>
+```
+
+#### Grid of Cards
+```html
+<div class="grid grid-2">
+  <div class="card">
+    <h3>Card 1</h3>
+    <p>Content</p>
+  </div>
+  <div class="card">
+    <h3>Card 2</h3>
+    <p>Content</p>
+  </div>
+</div>
+```
+
+### Styling Standards
+
+**✅ DO:**
+- Use CSS classes from `main.css` (`.card`, `.mt-xl`, `.mb-md`, etc.)
+- Use utility classes for spacing (`.mt-*`, `.mb-*`, `.ml-*`, `.mr-*`)
+- Use semantic classes (`.service-list`, `.course-card`, `.publication-card`)
+- Keep styles in CSS files, not inline
+
+**❌ DON'T:**
+- Use inline styles (`style="background: white; padding: 20px..."`)
+- Create nested boxes with similar backgrounds
+- Duplicate card-like styling inside `.card` elements
+- Mix inline styles with CSS classes
+
+### Hierarchy Rules
+
+1. **Page Container**: `<div class="container">`
+2. **Section Wrapper**: `<div class="mt-xl">` or `<div class="mt-xl fade-in-delay-N">`
+3. **Section Header**: `<h2 class="section-title">` (outside cards)
+4. **Content Cards**: `<div class="card">` for each distinct item
+5. **Card Content**: Semantic HTML without additional box-like divs
+
+**Example from teaching.html (correct):**
+```html
+<div class="mt-xl">
+  <h2 class="section-title">Guest Lectures</h2>
+  <div id="guest-lectures-container">
+    <div class="card">
+      <h3>Lecture Title</h3>
+      <p>Details</p>
+    </div>
+  </div>
+</div>
+```
+
+---
+
 ## Image Architecture & Standards
 
 ### Directory Structure
