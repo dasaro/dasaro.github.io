@@ -1,12 +1,170 @@
 {
   "programming": {
-    "expert": ["Answer Set Programming (clingo)", "Prolog/ProbLog", "ILASP/FastLAS", "Python"],
-    "proficient": ["Java", "JavaScript/TypeScript", "PHP", "SQL", "HTML/CSS"],
-    "familiar": ["C", "MATLAB", "Common Lisp", "Clojure", "Anglican"]
+    "expert": [
+      "Answer Set Programming (clingo)",
+      "Prolog/ProbLog",
+      "ILASP/FastLAS",
+      "Python"
+    ],
+    "proficient": [
+      "Java",
+      "JavaScript/TypeScript",
+      "PHP",
+      "SQL",
+      "HTML/CSS"
+    ],
+    "familiar": [
+      "C",
+      "MATLAB",
+      "Common Lisp",
+      "Clojure",
+      "Anglican"
+    ]
+  },
+  "ai_ml_frameworks": {
+    "machine_learning": [
+      "scikit-learn",
+      "NumPy",
+      "Pandas",
+      "Matplotlib"
+    ],
+    "deep_learning": [
+      "PyTorch",
+      "TensorFlow/Keras"
+    ],
+    "probabilistic_programming": [
+      "ProbLog",
+      "Anglican",
+      "PyMC"
+    ]
+  },
+  "logic_reasoning": {
+    "asp_systems": [
+      "clingo",
+      "DLV",
+      "ILASP",
+      "FastLAS"
+    ],
+    "theorem_provers": [
+      "Prolog (SWI-Prolog)",
+      "Event Calculus implementations"
+    ],
+    "formal_methods": [
+      "Model checking",
+      "Satisfiability solving",
+      "Constraint programming"
+    ]
+  },
+  "research_tools": {
+    "academic_writing": [
+      "LaTeX",
+      "BibTeX",
+      "Overleaf",
+      "Zotero"
+    ],
+    "data_analysis": [
+      "Jupyter Notebooks",
+      "R (basic)",
+      "Statistical analysis",
+      "Data visualization"
+    ],
+    "collaboration": [
+      "Git/GitHub",
+      "GitLab",
+      "Version control workflows",
+      "Code review"
+    ]
+  },
+  "development_tools": {
+    "containers_deployment": [
+      "Docker",
+      "Docker Compose"
+    ],
+    "version_control": [
+      "Git",
+      "GitHub",
+      "GitLab"
+    ],
+    "databases": [
+      "SQL (PostgreSQL, MySQL)",
+      "NoSQL (basic)"
+    ],
+    "web_development": [
+      "HTML5/CSS3",
+      "JavaScript (ES6+)",
+      "Node.js",
+      "REST APIs"
+    ]
+  },
+  "domain_expertise": {
+    "logic": [
+      "Temporal Logic",
+      "Epistemic Logic",
+      "Probabilistic Logic",
+      "Non-monotonic Reasoning",
+      "Modal Logic"
+    ],
+    "ai_specializations": [
+      "Explainable AI (XAI)",
+      "Knowledge Representation",
+      "Reasoning About Actions",
+      "Formal Argumentation",
+      "Inductive Logic Programming"
+    ],
+    "applications": [
+      "Human-Robot Interaction",
+      "Decision Support Systems",
+      "E-Health Systems",
+      "Ethical AI",
+      "Bias Detection"
+    ]
+  },
+  "teaching_skills": {
+    "course_design": [
+      "Curriculum development",
+      "Assessment design",
+      "Interactive teaching methods"
+    ],
+    "subjects": [
+      "Logic and Philosophy of Science",
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Logic Programming",
+      "Computational Epistemology",
+      "Computer Science fundamentals"
+    ],
+    "levels": [
+      "Undergraduate (BA/BSc)",
+      "Graduate (MSc)",
+      "Doctoral (PhD)",
+      "Professional training"
+    ]
   },
   "languages": [
-    {"language": "Italian", "level": "Native"},
-    {"language": "English", "level": "Full professional proficiency"}
+    {
+      "language": "Italian",
+      "level": "Native"
+    },
+    {
+      "language": "English",
+      "level": "Full professional proficiency"
+    }
   ],
-  "other": ["Vibe Coding", "Docker", "Git/GitHub", "Data Analysis", "LaTeX"]
+  "soft_skills": [
+    "Research project management",
+    "Grant writing",
+    "Student supervision and mentoring",
+    "Conference organization",
+    "Peer review and editorial work",
+    "Interdisciplinary collaboration",
+    "Public speaking and presentations",
+    "Technical writing",
+    "Teaching and pedagogy"
+  ],
+  "certifications_training": [
+    "12+ years teaching experience",
+    "Editorial board member (Frontiers journals)",
+    "Program committee member (IJCAI, KR, ECAI)",
+    "Workshop chair and organizer"
+  ]
 }
