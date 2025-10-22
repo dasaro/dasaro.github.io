@@ -95,6 +95,59 @@
       </div>
     </section>
 
+    <!-- Research Overview Dashboard -->
+    <section id="research-overview" class="section">
+      <div class="container">
+        <h2 class="section-title">Research at a Glance</h2>
+
+        <!-- Quick Stats -->
+        <div id="quick-stats-container" class="quick-stats"></div>
+
+        <!-- Dashboard Grid -->
+        <div class="research-dashboard">
+
+          <!-- Publications Timeline -->
+          <div class="dashboard-card timeline-card">
+            <h3 class="dashboard-card-title">Publications Over Time</h3>
+            <canvas id="publications-timeline" class="chart-canvas"></canvas>
+          </div>
+
+          <!-- Citation Metrics -->
+          <div class="dashboard-card metrics-card">
+            <h3 class="dashboard-card-title">Citation Metrics</h3>
+            <div class="metrics-grid">
+              <div class="metric-item">
+                <div class="metric-icon">📊</div>
+                <div class="metric-value" data-metric="citations">0</div>
+                <div class="metric-label">Citations</div>
+                <div class="metric-bar"><div class="metric-bar-fill"></div></div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-icon">📈</div>
+                <div class="metric-value" data-metric="h_index">0</div>
+                <div class="metric-label">h-index</div>
+                <div class="metric-bar"><div class="metric-bar-fill"></div></div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-icon">📑</div>
+                <div class="metric-value" data-metric="i10_index">0</div>
+                <div class="metric-label">i10-index</div>
+                <div class="metric-bar"><div class="metric-bar-fill"></div></div>
+              </div>
+            </div>
+            <div class="metrics-footer">Last updated: <span id="metrics-date"></span></div>
+          </div>
+
+          <!-- Topics Cloud -->
+          <div class="dashboard-card topics-card">
+            <h3 class="dashboard-card-title">Research Topics</h3>
+            <div id="topics-cloud" class="topics-cloud"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
     <!-- Recent Publications -->
     <section id="recent-publications">
       <div class="container">
