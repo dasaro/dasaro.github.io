@@ -26,7 +26,7 @@ export class TuringMachine extends AnimationBase {
     this.headColor = '#8B0000'; // Dark red
     this.symbolColor = '#1a1a1a';
     this.tapeY = 0; // Will be set in initialize
-    this.scrollOffset = 0; // For smooth scrolling
+    this.tapeStartX = 0; // Fixed tape position (no scrolling)
 
     // State colors
     this.stateColors = {
@@ -93,15 +93,16 @@ export class TuringMachine extends AnimationBase {
     const num2 = 2 + Math.floor(Math.random() * 6);
 
     // Create tape: spaces + first number + separator + second number + spaces
-    this.tape = Array(10).fill(' '); // Leading spaces
+    // Start further right for better visibility
+    this.tape = Array(25).fill(' '); // More leading spaces
+    const startPos = 25; // Position where input starts
     for (let i = 0; i < num1; i++) this.tape.push('|');
     this.tape.push('_'); // Separator
     for (let i = 0; i < num2; i++) this.tape.push('|');
-    this.tape.push(...Array(20).fill(' ')); // Trailing spaces
+    this.tape.push(...Array(50).fill(' ')); // More trailing spaces
 
-    this.headPosition = 10; // Start at first |
+    this.headPosition = startPos; // Start at first |
     this.state = 'q0';
-    this.scrollOffset = 0;
   }
 
   /**
@@ -144,10 +145,6 @@ export class TuringMachine extends AnimationBase {
     // Move head
     if (direction === 'L') this.headPosition--;
     else if (direction === 'R') this.headPosition++;
-
-    // Update scroll offset to follow head
-    const targetScroll = this.headPosition * this.cellWidth;
-    this.scrollOffset += (targetScroll - this.scrollOffset) * 0.1;
   }
 
   animate(currentTime) {
@@ -170,16 +167,22 @@ export class TuringMachine extends AnimationBase {
       this.stepProgress = 0;
     }
 
-    // Calculate tape position
+    // Calculate tape position (fixed)
     this.tapeY = height / 2;
-    const centerX = width / 2;
 
-    // Draw tape cells
-    const visibleStart = Math.max(0, Math.floor((this.scrollOffset - centerX) / this.cellWidth) - 2);
-    const visibleEnd = Math.min(this.tape.length, Math.ceil((this.scrollOffset + centerX) / this.cellWidth) + 2);
+    // Calculate how many cells fit on screen
+    const numVisibleCells = Math.ceil(width / this.cellWidth) + 2;
+
+    // Start tape from left edge with a small margin
+    const marginLeft = 20;
+    this.tapeStartX = marginLeft;
+
+    // Draw visible portion of tape
+    const visibleStart = Math.max(0, 0);
+    const visibleEnd = Math.min(this.tape.length, numVisibleCells);
 
     for (let i = visibleStart; i < visibleEnd; i++) {
-      const x = centerX + (i * this.cellWidth) - this.scrollOffset;
+      const x = this.tapeStartX + (i * this.cellWidth) + this.cellWidth/2;
       const isHead = i === this.headPosition;
 
       // Draw cell background
@@ -204,8 +207,8 @@ export class TuringMachine extends AnimationBase {
       }
     }
 
-    // Draw read/write head indicator
-    const headX = centerX + (this.headPosition * this.cellWidth) - this.scrollOffset;
+    // Draw read/write head indicator (moves with head position)
+    const headX = this.tapeStartX + (this.headPosition * this.cellWidth) + this.cellWidth/2;
     ctx.fillStyle = this.headColor;
     ctx.globalAlpha = 0.7;
 
@@ -250,11 +253,11 @@ export class TuringMachine extends AnimationBase {
     ctx.fillStyle = 'rgba(26, 26, 26, 0.5)';
     ctx.font = '12px "Fira Code", monospace';
     ctx.textAlign = 'center';
-    ctx.fillText('Unary Addition on Infinite Tape', centerX, 30);
+    ctx.fillText('Unary Addition on Infinite Tape', width / 2, 30);
 
-    // Draw step counter
+    // Draw head position indicator
     ctx.textAlign = 'right';
-    ctx.fillText(`Tape: [${visibleStart}..${visibleEnd}]`, width - 20, 30);
+    ctx.fillText(`Head at position ${this.headPosition}`, width - 20, 30);
 
     // Continue animation loop
     if (this.isRunning) {
