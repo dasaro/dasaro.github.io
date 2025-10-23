@@ -13,6 +13,8 @@ import { MandelbrotSet } from './MandelbrotSet.js';
 import { ProofTree } from './ProofTree.js';
 import { PacMan } from './PacMan.js';
 import { Rule30 } from './Rule30.js';
+import TuringMachine from './TuringMachine.js';
+import TuringPattern from './TuringPattern.js';
 
 console.log('[AnimationController] All imports successful');
 
@@ -38,7 +40,9 @@ export class AnimationController {
             ['mandelbrot', MandelbrotSet],
             ['proofTree', ProofTree],
             ['pacman', PacMan],
-            ['rule30', Rule30]
+            ['rule30', Rule30],
+            ['turingMachine', TuringMachine],
+            ['turingPattern', TuringPattern]
         ]);
 
         if (this.canvas && this.ctx) {

@@ -140,7 +140,10 @@ dasaro.github.io/
 │       ├── RiemannZeta.js
 │       ├── MandelbrotSet.js
 │       ├── ProofTree.js
-│       └── PacmanGame.js
+│       ├── PacmanGame.js
+│       ├── Rule30.js
+│       ├── TuringMachine.js
+│       └── TuringPattern.js
 │
 ├── data/
 │   ├── personal.json       # Personal info, contact, metrics
@@ -1166,6 +1169,8 @@ Each animation gets a dedicated card with:
 6. **Proof Tree**: Formal logic, automated theorem proving, Curry-Howard
 7. **Pac-Man**: Gaming history, AI algorithms, cultural impact
 8. **Rule 30**: Cellular automaton, deterministic chaos, randomness from order
+9. **Turing Machine**: Universal computation, unary addition, foundation of computer science
+10. **Turing Pattern**: Reaction-diffusion, morphogenesis, self-organizing patterns in nature
 
 #### Activation Mechanism
 
@@ -1174,7 +1179,7 @@ Buttons call `activateAnimation(key, button)` which:
 window.animationController.start(animationKey);
 ```
 
-Available keys: `'gameOfLife'`, `'fibonacci'`, `'primes'`, `'riemann'`, `'mandelbrot'`, `'proofTree'`, `'pacman'`, `'rule30'`
+Available keys: `'gameOfLife'`, `'fibonacci'`, `'primes'`, `'riemann'`, `'mandelbrot'`, `'proofTree'`, `'pacman'`, `'rule30'`, `'turingMachine'`, `'turingPattern'`
 
 #### Design Notes
 
