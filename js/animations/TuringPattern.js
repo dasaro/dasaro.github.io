@@ -1,4 +1,4 @@
-import AnimationBase from './AnimationBase.js';
+import { AnimationBase } from './AnimationBase.js';
 
 /**
  * Turing Pattern Animation (Reaction-Diffusion)
@@ -17,7 +17,7 @@ import AnimationBase from './AnimationBase.js';
  * Different F (feed) and k (kill) parameters create different patterns:
  * - Spots, stripes, spirals, and more
  */
-export default class TuringPattern extends AnimationBase {
+export class TuringPattern extends AnimationBase {
   constructor(canvas) {
     super(canvas);
 

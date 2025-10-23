@@ -1,4 +1,4 @@
-import AnimationBase from './AnimationBase.js';
+import { AnimationBase } from './AnimationBase.js';
 
 /**
  * Turing Machine Animation
@@ -11,7 +11,7 @@ import AnimationBase from './AnimationBase.js';
  * - Output: |||||| (their sum)
  * - Then resets and repeats
  */
-export default class TuringMachine extends AnimationBase {
+export class TuringMachine extends AnimationBase {
   constructor(canvas) {
     super(canvas);
 
