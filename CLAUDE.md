@@ -1122,6 +1122,200 @@ This creates a more compact, scannable supervision section while maintaining rea
 
 ---
 
+### Implementing New Background Animations
+
+When adding new background animations to the site, follow this **exact pattern** to avoid common pitfalls.
+
+#### Step 1: Create Animation Class File
+
+Create `js/animations/YourAnimation.js`:
+
+```javascript
+import { AnimationBase } from './AnimationBase.js';
+
+/**
+ * Your Animation Description
+ *
+ * Detailed explanation of what this animation does
+ */
+export class YourAnimation extends AnimationBase {
+  constructor(canvas, ctx) {
+    super(canvas, ctx);  // ✅ CRITICAL: Pass BOTH parameters
+
+    // Initialize your animation properties
+    this.frameCount = 0;
+    // ... more properties
+  }
+
+  animate(currentTime) {
+    // ✅ CRITICAL: Clear canvas first
+    this.ctx.fillStyle = '#FFFFFF';
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+    // Your animation logic here
+    // ...
+
+    // ✅ CRITICAL: Request next frame to create continuous loop
+    if (this.isRunning) {
+      this.animationId = requestAnimationFrame((time) => this.animate(time));
+    }
+  }
+
+  cleanup() {
+    // Clean up resources
+    super.cleanup();
+  }
+}
+```
+
+#### Step 2: Register in AnimationController
+
+Edit `js/animations/AnimationController.js`:
+
+```javascript
+// Add import (use named import, NOT default)
+import { YourAnimation } from './YourAnimation.js';  // ✅ Named import
+
+// Add to animations Map
+this.animations = new Map([
+  // ... existing animations
+  ['yourAnimationKey', YourAnimation]  // ✅ Add your animation
+]);
+```
+
+#### Step 3: Add to backgrounds.html
+
+Add a card in `backgrounds.html`:
+
+```html
+<!-- Your Animation -->
+<div class="animation-card" data-animation="yourAnimationKey">
+  <div class="animation-header">
+    <div class="animation-title">
+      <h2>⊢ Your Animation Title</h2>
+      <p class="animation-subtitle">Catchy Subtitle</p>
+    </div>
+    <div class="animation-symbol">⊢</div>
+  </div>
+
+  <div class="animation-description">
+    <p>Brief 1-2 sentence description accessible to general audience.</p>
+  </div>
+
+  <div class="animation-story">
+    <h3>📖 The Story Behind It</h3>
+    <p>Who discovered it, when, why? Human element!</p>
+  </div>
+
+  <div class="animation-facts">
+    <h3>✨ Curious Facts</h3>
+    <ul>
+      <li><strong>Fact 1:</strong> Interesting detail</li>
+      <li><strong>Fact 2:</strong> Another detail</li>
+      <!-- 4-5 facts total -->
+    </ul>
+  </div>
+
+  <button class="activate-btn" onclick="activateAnimation('yourAnimationKey', this)">
+    Activate This Background
+  </button>
+</div>
+```
+
+#### Step 4: Update CLAUDE.md
+
+Update this file's animation list:
+
+1. Add to **Project Structure** (line ~145)
+2. Add to **Animations Covered** (line ~1169)
+3. Add to **Available keys** (line ~1179)
+
+#### Critical Checklist
+
+**✅ Must Do:**
+
+1. **Import/Export Syntax**
+   - ✅ Use `import { AnimationBase } from './AnimationBase.js'` (named, not default)
+   - ✅ Use `export class YourAnimation` (named, not default)
+
+2. **Constructor**
+   - ✅ Accept TWO parameters: `constructor(canvas, ctx)`
+   - ✅ Call `super(canvas, ctx)` with BOTH parameters
+   - ❌ DON'T use `constructor(canvas)` - ctx will be undefined!
+
+3. **animate() Method**
+   - ✅ Clear canvas FIRST: `ctx.fillRect(0, 0, width, height)`
+   - ✅ Draw your animation
+   - ✅ Request next frame LAST: `requestAnimationFrame(() => this.animate())`
+   - ✅ Check `if (this.isRunning)` before requesting next frame
+   - ❌ DON'T forget to clear canvas - creates ghosting/overlapping
+   - ❌ DON'T forget requestAnimationFrame - animation won't loop
+
+4. **Visual Opacity**
+   - ✅ Use opacity 0.4-0.6 for good visibility
+   - ✅ Use site red accent colors (#8B0000, #B22222) when appropriate
+   - ❌ DON'T use opacity below 0.3 - too subtle for backgrounds
+
+5. **Registration**
+   - ✅ Import with named import in AnimationController.js
+   - ✅ Add to animations Map with unique key
+   - ✅ Use same key in backgrounds.html data-animation attribute
+
+#### Common Pitfalls
+
+**Problem: "does not provide an export named 'default'"**
+- ❌ Cause: Used `import X from` or `export default class X`
+- ✅ Fix: Use `import { X }` and `export class X`
+
+**Problem: "Cannot set properties of undefined"**
+- ❌ Cause: `this.ctx` is undefined
+- ✅ Fix: Constructor must be `constructor(canvas, ctx)` with `super(canvas, ctx)`
+
+**Problem: "Animation doesn't move/update"**
+- ❌ Cause: No `requestAnimationFrame` call
+- ✅ Fix: Add `requestAnimationFrame(() => this.animate())` at end of animate()
+
+**Problem: "Ghosting/overlapping images"**
+- ❌ Cause: Canvas not cleared between frames
+- ✅ Fix: Add `ctx.fillRect(0, 0, width, height)` at start of animate()
+
+**Problem: "Animation barely visible"**
+- ❌ Cause: Opacity too low
+- ✅ Fix: Use alpha 0.4-0.6, not 0.1-0.2
+
+#### Example: Minimal Working Animation
+
+```javascript
+import { AnimationBase } from './AnimationBase.js';
+
+export class MinimalAnimation extends AnimationBase {
+  constructor(canvas, ctx) {
+    super(canvas, ctx);
+    this.x = 0;
+  }
+
+  animate(currentTime) {
+    // Clear
+    this.ctx.fillStyle = '#FFFFFF';
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+    // Draw
+    this.ctx.fillStyle = 'rgba(139, 0, 0, 0.5)';
+    this.ctx.fillRect(this.x, 100, 50, 50);
+    this.x = (this.x + 2) % this.canvas.width;
+
+    // Loop
+    if (this.isRunning) {
+      this.animationId = requestAnimationFrame((t) => this.animate(t));
+    }
+  }
+}
+```
+
+This will create a red square moving across the screen - simple but complete!
+
+---
+
 ### Mathematical Backgrounds Page
 
 The `backgrounds.html` page provides an engaging, educational exploration of the mathematical concepts behind each background animation.

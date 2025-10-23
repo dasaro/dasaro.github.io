@@ -237,25 +237,25 @@ export class TuringPattern extends AnimationBase {
         const v = this.v[idx];
 
         // Color mapping: V concentration determines color
-        // High V = dark red/black (the pattern)
-        // Low V = white/light (the background)
-        const intensity = 1.0 - v; // Invert: pattern is dark
+        // High V = dark red (the pattern, like leopard spots)
+        // Low V = white (the background)
 
-        // Create subtle red-tinted grayscale
-        const r = Math.floor(intensity * 255);
-        const g = Math.floor(intensity * 255 * 0.95);
-        const b = Math.floor(intensity * 255 * 0.95);
+        // Use site's red accent colors: #8B0000 (dark red) = rgb(139, 0, 0)
+        // Interpolate between white (background) and dark red (pattern)
+        const patternStrength = v; // Higher V = more pattern
 
-        // Alternative: highlight the pattern in red
-        // const r = Math.floor((1 - v * 0.5) * 255);
-        // const g = Math.floor(intensity * 255);
-        // const b = Math.floor(intensity * 255);
+        // Red channel: stays high (white 255 to red 139)
+        const r = Math.floor(255 - patternStrength * (255 - 139));
+
+        // Green and Blue channels: fade to 0 for red pattern
+        const g = Math.floor((1 - patternStrength) * 255);
+        const b = Math.floor((1 - patternStrength) * 255);
 
         const pixelIdx = (py * width + px) * 4;
         data[pixelIdx] = r;
         data[pixelIdx + 1] = g;
         data[pixelIdx + 2] = b;
-        data[pixelIdx + 3] = 255 * 0.25; // Overall opacity (subtle background)
+        data[pixelIdx + 3] = 255 * 0.6; // Increased opacity for better visibility
       }
     }
 
