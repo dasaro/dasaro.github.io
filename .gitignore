@@ -1,3 +1,9 @@
+# Admin panel (local only, never deploy)
+admin.html
+admin.js
+ADMIN_USAGE.md
+start-admin.sh
+
 .DS_Store
 node_modules/
 *.log
