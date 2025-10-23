@@ -12,8 +12,8 @@ import { AnimationBase } from './AnimationBase.js';
  * - Then resets and repeats
  */
 export class TuringMachine extends AnimationBase {
-  constructor(canvas) {
-    super(canvas);
+  constructor(canvas, ctx) {
+    super(canvas, ctx);
 
     // Tape configuration
     this.tape = [];

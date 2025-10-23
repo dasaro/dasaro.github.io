@@ -18,8 +18,8 @@ import { AnimationBase } from './AnimationBase.js';
  * - Spots, stripes, spirals, and more
  */
 export class TuringPattern extends AnimationBase {
-  constructor(canvas) {
-    super(canvas);
+  constructor(canvas, ctx) {
+    super(canvas, ctx);
 
     // Grid size (lower resolution for performance)
     this.gridWidth = 200;
