@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+  <meta name="description" content="Discover the mathematical curiosities behind the animated backgrounds - from Conway's Game of Life to the Fibonacci Spiral.">
+  <meta name="author" content="Fabio Aurelio D'Asaro">
+
+  <title>Mathematical Backgrounds - Fabio Aurelio D'Asaro</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    .animation-card {
+      background: rgba(255, 255, 255, 0.95);
+      border: 2px solid rgba(139, 0, 0, 0.2);
+      border-radius: 8px;
+      padding: var(--space-lg);
+      margin-bottom: var(--space-xl);
+      transition: all 0.3s ease;
+    }
+
+    .animation-card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      border-color: var(--color-link);
+    }
+
+    .animation-card.active {
+      border-color: var(--color-link);
+      border-width: 3px;
+      background: rgba(41, 128, 185, 0.05);
+    }
+
+    .animation-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    .animation-title {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .animation-title h2 {
+      margin: 0 0 var(--space-xs) 0;
+      color: var(--color-accent-1);
+      font-family: 'Fira Code', monospace;
+    }
+
+    .animation-subtitle {
+      color: var(--color-accent-2);
+      font-style: italic;
+      font-size: var(--text-sm);
+    }
+
+    .animation-symbol {
+      font-size: 3rem;
+      color: var(--color-link);
+      opacity: 0.3;
+      user-select: none;
+    }
+
+    .animation-description {
+      margin-bottom: var(--space-md);
+      line-height: 1.7;
+    }
+
+    .animation-story {
+      background: var(--color-accent-3);
+      padding: var(--space-md);
+      border-radius: 4px;
+      margin-bottom: var(--space-md);
+      border-left: 4px solid var(--color-link);
+    }
+
+    .animation-story h3 {
+      margin-top: 0;
+      color: var(--color-accent-1);
+      font-size: var(--text-lg);
+    }
+
+    .animation-facts {
+      margin-bottom: var(--space-md);
+    }
+
+    .animation-facts ul {
+      margin: var(--space-sm) 0;
+      padding-left: 2rem;
+    }
+
+    .animation-facts li {
+      margin-bottom: var(--space-xs);
+      line-height: 1.6;
+    }
+
+    .activate-btn {
+      background: var(--color-link);
+      color: white;
+      border: none;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: 4px;
+      font-family: 'Fira Code', monospace;
+      font-size: var(--text-sm);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 600;
+    }
+
+    .activate-btn:hover {
+      background: var(--color-link-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 2px 8px rgba(41, 128, 185, 0.3);
+    }
+
+    .activate-btn:active {
+      transform: translateY(0);
+    }
+
+    .activate-btn.active {
+      background: #228B22;
+    }
+
+    .activate-btn.active::before {
+      content: '✓ ';
+    }
+
+    .intro-text {
+      background: rgba(139, 0, 0, 0.05);
+      padding: var(--space-lg);
+      border-radius: 4px;
+      margin-bottom: var(--space-xl);
+      border-left: 4px solid #8B0000;
+    }
+
+    @media (max-width: 768px) {
+      .animation-header {
+        flex-direction: column;
+      }
+
+      .animation-symbol {
+        font-size: 2rem;
+        align-self: flex-end;
+      }
+    }
+  </style>
+</head>
+<body data-page="backgrounds">
+  <!-- Mathematical Background Canvas -->
+  <canvas id="bg-animation-canvas"></canvas>
+  <button id="animation-toggle" class="animation-toggle" aria-label="Toggle background animation" title="Toggle animation (A)">
+    <span class="symbol">∀</span>
+  </button>
+
+  <!-- Navigation -->
+  <div class="nav-wrapper">
+    <nav>
+      <a href="index.html" class="nav-brand">
+        <span class="logic-symbol">∀</span>
+        F.A. D'Asaro
+      </a>
+
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="publications.html" class="nav-link">Publications</a></li>
+        <li><a href="teaching.html" class="nav-link">Teaching</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="service.html" class="nav-link">Service</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <section id="backgrounds">
+      <div class="container">
+        <h1 class="fade-in">Mathematical Curiosities</h1>
+
+        <div class="intro-text">
+          <p><strong>The backgrounds on this website aren't just decoration—they're living mathematical phenomena!</strong></p>
+          <p>Each animation represents a different concept from mathematics, computer science, or logic. Click any "Activate" button below to switch the background and watch these beautiful patterns come to life.</p>
+          <p><em>Pro tip: Press 'A' on your keyboard to cycle through different animations at any time!</em></p>
+        </div>
+
+        <!-- Conway's Game of Life -->
+        <div class="animation-card" data-animation="gameOfLife">
+          <div class="animation-header">
+            <div class="animation-title">
+              <h2>⊞ Conway's Game of Life</h2>
+              <p class="animation-subtitle">The Universe in Four Simple Rules</p>
+            </div>
+            <div class="animation-symbol">⊞</div>
+          </div>
+
+          <div class="animation-description">
+            <p>Imagine a universe where cells live, die, and reproduce according to just four rules. That's Conway's Game of Life—a "zero-player game" where you set up initial conditions and watch evolution unfold.</p>
+          </div>
+
+          <div class="animation-story">
+            <h3>📖 The Story Behind It</h3>
+            <p>Created by mathematician John Conway in 1970, this isn't really a game—it's a cellular automaton. Conway wanted to create the simplest possible system that could support complex behavior. He succeeded beyond imagination: the Game of Life is <strong>Turing complete</strong>, meaning it can theoretically simulate any computer!</p>
+            <p>Tragically, Conway died in April 2020 from COVID-19. His simple rules continue to fascinate mathematicians, physicists, and computer scientists worldwide.</p>
+          </div>
+
+          <div class="animation-facts">
+            <h3>✨ Curious Facts</h3>
+            <ul>
+              <li><strong>Four Rules:</strong> Birth (3 neighbors), Survival (2-3 neighbors), Death (loneliness or overcrowding)</li>
+              <li><strong>Patterns have names:</strong> "Gliders" travel across space, "Blinkers" oscillate, "Still lifes" never change</li>
+              <li><strong>Unexpected complexity:</strong> People have built entire computers inside the Game of Life!</li>
+              <li><strong>Philosophy:</strong> It demonstrates how complex behavior emerges from simple rules—relevant to biology, physics, and philosophy</li>
+            </ul>
+          </div>
+
+          <button class="activate-btn" onclick="activateAnimation('gameOfLife', this)">Activate This Background</button>
+        </div>
+
+        <!-- Fibonacci Spiral -->
+        <div class="animation-card" data-animation="fibonacci">
+          <div class="animation-header">
+            <div class="animation-title">
+              <h2>φ Fibonacci Spiral</h2>
+              <p class="animation-subtitle">Nature's Favorite Pattern</p>
+            </div>
+            <div class="animation-symbol">φ</div>
+          </div>
+
+          <div class="animation-description">
+            <p>The Fibonacci sequence (1, 1, 2, 3, 5, 8, 13...) appears everywhere in nature: flower petals, pinecones, hurricanes, galaxies. When you draw squares with Fibonacci side lengths and connect their corners, you get this elegant spiral.</p>
+          </div>
+
+          <div class="animation-story">
+            <h3>📖 The Story Behind It</h3>
+            <p>Leonardo Fibonacci introduced this sequence to Europe in 1202 while solving a rabbit breeding problem! But the sequence was actually known to Indian mathematicians centuries earlier. The ratio between consecutive Fibonacci numbers approaches φ (phi) ≈ 1.618, called the <strong>Golden Ratio</strong>.</p>
+            <p>Ancient Greeks considered it the most aesthetically pleasing proportion. The Parthenon, Leonardo da Vinci's paintings, and even credit cards use these proportions!</p>
+          </div>
+
+          <div class="animation-facts">
+            <h3>✨ Curious Facts</h3>
+            <ul>
+              <li><strong>In nature:</strong> Sunflower seeds spiral in Fibonacci numbers (often 34 and 55 spirals)</li>
+              <li><strong>In art:</strong> Salvador Dalí's "The Sacrament of the Last Supper" is a perfect golden rectangle</li>
+              <li><strong>In music:</strong> Many compositions use Fibonacci numbers for timing and structure</li>
+              <li><strong>In your body:</strong> The ratio of your forearm to hand is approximately φ!</li>
+            </ul>
+          </div>
+
+          <button class="activate-btn" onclick="activateAnimation('fibonacci', this)">Activate This Background</button>
+        </div>
+
+        <!-- Prime Spiral (Ulam Spiral) -->
+        <div class="animation-card" data-animation="primes">
+          <div class="animation-header">
+            <div class="animation-title">
+              <h2>⊢ Prime Number Spiral</h2>
+              <p class="animation-subtitle">The Mysterious Pattern in Chaos</p>
+            </div>
+            <div class="animation-symbol">⊢</div>
+          </div>
+
+          <div class="animation-description">
+            <p>Prime numbers (2, 3, 5, 7, 11...) seem random, but when you arrange them in a spiral, mysterious diagonal patterns emerge. This is the Ulam Spiral—an unexpected order in what appears to be mathematical chaos.</p>
+          </div>
+
+          <div class="animation-story">
+            <h3>📖 The Story Behind It</h3>
+            <p>Polish mathematician Stanisław Ulam discovered this in 1963 while <strong>doodling during a boring presentation</strong>! He wrote numbers in a spiral and circled the primes. To his astonishment, they aligned in diagonal lines. Nobody fully understands why.</p>
+            <p>This simple doodle revealed something deep about number theory that mathematicians still don't completely understand. It's a reminder that major discoveries can come from playful curiosity!</p>
+          </div>
+
+          <div class="animation-facts">
+            <h3>✨ Curious Facts</h3>
+            <ul>
+              <li><strong>Still unsolved:</strong> Why do primes form diagonal patterns? It's connected to polynomial expressions</li>
+              <li><strong>Infinite mystery:</strong> There are infinitely many primes (proven by Euclid ~300 BCE)</li>
+              <li><strong>Cryptography:</strong> Your internet security relies on the difficulty of factoring large primes</li>
+              <li><strong>Prime gap records:</strong> The largest known prime has over 24 million digits!</li>
+            </ul>
+          </div>
+
+          <button class="activate-btn" onclick="activateAnimation('primes', this)">Activate This Background</button>
+        </div>
+
+        <!-- Riemann Zeta -->
+        <div class="animation-card" data-animation="riemann">
+          <div class="animation-header">
+            <div class="animation-title">
+              <h2>ζ Riemann Zeta Function</h2>
+              <p class="animation-subtitle">The $1,000,000 Problem</p>
+            </div>
+            <div class="animation-symbol">ζ</div>
+          </div>
+
+          <div class="animation-description">
+            <p>This animation visualizes the Riemann Zeta function on the complex plane—a function so important that solving its biggest mystery (the Riemann Hypothesis) is worth $1 million from the Clay Mathematics Institute.</p>
+          </div>
+
+          <div class="animation-story">
+            <h3>📖 The Story Behind It</h3>
+            <p>Bernhard Riemann proposed his hypothesis in 1859: "All non-trivial zeros of the zeta function have real part ½." This simple statement connects prime numbers to complex analysis in a way nobody expected. The critical line (where Re(s) = ½) is where all the action happens.</p>
+            <p>It's been tested for trillions of zeros—all on the critical line! But until someone proves it's <em>always</em> true, mathematics holds its breath.</p>
+          </div>
+
+          <div class="animation-facts">
+            <h3>✨ Curious Facts</h3>
+            <ul>
+              <li><strong>Prime connection:</strong> The zeta function encodes the distribution of all prime numbers</li>
+              <li><strong>$1M prize:</strong> It's one of the seven Millennium Prize Problems</li>
+              <li><strong>Physics too:</strong> Appears in quantum mechanics and statistical mechanics</li>
+              <li><strong>Musical analogy:</strong> Zeros of the zeta function are like the "harmonics" of prime numbers</li>
+            </ul>
+          </div>
+
+          <button class="activate-btn" onclick="activateAnimation('riemann', this)">Activate This Background</button>
+        </div>
+
+        <!-- Mandelbrot Set -->
+        <div class="animation-card" data-animation="mandelbrot">
+          <div class="animation-header">
+            <div class="animation-title">
+              <h2>∞ Mandelbrot Set</h2>
+              <p class="animation-subtitle">Infinite Complexity from a Simple Formula</p>
+            </div>
+            <div class="animation-symbol">∞</div>
+          </div>
+
+          <div class="animation-description">
+            <p>Perhaps the most famous fractal of all—the Mandelbrot Set is infinitely complex, yet defined by the simple formula z → z² + c. No matter how far you zoom in, you'll always find new, intricate patterns.</p>
+          </div>
+
+          <div class="animation-story">
+            <h3>📖 The Story Behind It</h3>
+            <p>Benoît Mandelbrot discovered this set in 1980 while working at IBM. He was studying complex dynamical systems and rendered the first computer-generated images of the set. The boundary between order and chaos creates that iconic shape—sometimes called the "Mandelbrot bug."</p>
+            <p>Mandelbrot coined the term "fractal" from the Latin <em>fractus</em> (broken). The set's boundary is <strong>infinitely detailed</strong>—you can zoom forever and always find new structures!</p>
+          </div>
+
+          <div class="animation-facts">
+            <h3>✨ Curious Facts</h3>
+            <ul>
+              <li><strong>Self-similar:</strong> Tiny copies of the entire set hide within itself</li>
+              <li><strong>Dimension:</strong> The boundary has a fractal dimension of 2 (not quite 1D, not quite 2D!)</li>
+              <li><strong>Connected:</strong> Despite appearances, the entire set is one continuous piece</li>
+              <li><strong>Pop culture:</strong> Featured in music videos, art, and even fashion designs</li>
+            </ul>
+          </div>
+
+          <button class="activate-btn" onclick="activateAnimation('mandelbrot', this)">Activate This Background</button>
+        </div>
+
+        <!-- Proof Tree -->
+        <div class="animation-card" data-animation="proofTree">
+          <div class="animation-header">
+            <div class="animation-title">
+              <h2>⊢ Logical Proof Tree</h2>
+              <p class="animation-subtitle">How Mathematicians Think</p>
+            </div>
+            <div class="animation-symbol">⊢</div>
+          </div>
+
+          <div class="animation-description">
+            <p>This animation shows a proof tree growing—a visual representation of logical deduction. Each branch represents an inference step, building from axioms to conclusions. It's how mathematical proofs are structured!</p>
+          </div>
+
+          <div class="animation-story">
+            <h3>📖 The Story Behind It</h3>
+            <p>Proof trees formalize what mathematicians do instinctively: break complex arguments into simpler steps. This visual approach originated with Gerhard Gentzen's <strong>sequent calculus</strong> in the 1930s, revolutionizing mathematical logic.</p>
+            <p>The symbol ⊢ (turnstile) means "proves" or "entails." Reading a proof tree is like watching a logical argument construct itself from the ground up—or deconstruct from conclusion to axioms!</p>
+          </div>
+
+          <div class="animation-facts">
+            <h3>✨ Curious Facts</h3>
+            <ul>
+              <li><strong>Automated theorem proving:</strong> Computers use proof trees to verify mathematical theorems</li>
+              <li><strong>Program verification:</strong> Software correctness relies on these logical structures</li>
+              <li><strong>Natural deduction:</strong> How humans naturally reason, formalized mathematically</li>
+              <li><strong>Curry-Howard:</strong> Proofs correspond to programs—a deep connection between logic and computation</li>
+            </ul>
+          </div>
+
+          <button class="activate-btn" onclick="activateAnimation('proofTree', this)">Activate This Background</button>
+        </div>
+
+        <!-- Pac-Man -->
+        <div class="animation-card" data-animation="pacman">
+          <div class="animation-header">
+            <div class="animation-title">
+              <h2>👾 Pac-Man Arcade</h2>
+              <p class="animation-subtitle">A Playful Tribute to Computing History</p>
+            </div>
+            <div class="animation-symbol">👾</div>
+          </div>
+
+          <div class="animation-description">
+            <p>Everyone's favorite yellow circle chomping through a maze! This playful animation celebrates the intersection of mathematics, computer science, and gaming culture that defined a generation.</p>
+          </div>
+
+          <div class="animation-story">
+            <h3>📖 The Story Behind It</h3>
+            <p>Pac-Man (1980) revolutionized gaming, but it's also full of mathematics! The ghost AI uses <strong>pathfinding algorithms</strong>—each ghost has its own strategy. Blinky chases you directly, Pinky tries to ambush, Inky uses vector math, and Clyde... is Clyde.</p>
+            <p>Creator Toru Iwatani designed Pac-Man to appeal to everyone, especially women (hence the maze and eating theme rather than shooting). The iconic shape? Inspired by a pizza with a slice missing!</p>
+          </div>
+
+          <div class="animation-facts">
+            <h3>✨ Curious Facts</h3>
+            <ul>
+              <li><strong>Perfect game:</strong> Billy Mitchell achieved a perfect score (3,333,360) in 1999</li>
+              <li><strong>Map 256 kill screen:</strong> The game crashes at level 256 due to an integer overflow bug</li>
+              <li><strong>AI personalities:</strong> Each ghost has distinct "personality" coded with different algorithms</li>
+              <li><strong>Cultural icon:</strong> More recognizable worldwide than Mickey Mouse!</li>
+            </ul>
+          </div>
+
+          <button class="activate-btn" onclick="activateAnimation('pacman', this)">Activate This Background</button>
+        </div>
+
+        <!-- Rule 30 -->
+        <div class="animation-card" data-animation="rule30">
+          <div class="animation-header">
+            <div class="animation-title">
+              <h2>◼ Rule 30 Cellular Automaton</h2>
+              <p class="animation-subtitle">Randomness from Determinism</p>
+            </div>
+            <div class="animation-symbol">◼</div>
+          </div>
+
+          <div class="animation-description">
+            <p>Rule 30 is one of Stephen Wolfram's elementary cellular automata—incredibly simple rules that produce seemingly random patterns. It's so "random" that it's used for random number generation!</p>
+          </div>
+
+          <div class="animation-story">
+            <h3>📖 The Story Behind It</h3>
+            <p>Stephen Wolfram discovered Rule 30 in the 1980s while studying all 256 possible elementary cellular automata rules. He was shocked to find that such simple rules (just looking at three cells) could generate patterns that appear completely random.</p>
+            <p>Wolfram was so convinced of its randomness that <strong>Mathematica's random number generator used Rule 30</strong> for years! Nature seems to agree: it appears in the shell patterns of certain mollusks.</p>
+          </div>
+
+          <div class="animation-facts">
+            <h3>✨ Curious Facts</h3>
+            <ul>
+              <li><strong>Class 3 chaos:</strong> Wolfram classified automata; Rule 30 is "chaotic" Class 3</li>
+              <li><strong>In nature:</strong> The cone snail <em>Conus textile</em> has a Rule 30 pattern on its shell!</li>
+              <li><strong>Deterministic chaos:</strong> Completely determined by initial conditions, yet unpredictable</li>
+              <li><strong>Universal computer:</strong> Like Game of Life, it's Turing complete—it can compute anything!</li>
+            </ul>
+          </div>
+
+          <button class="activate-btn" onclick="activateAnimation('rule30', this)">Activate This Background</button>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-text">
+        <p>&copy; <span class="footer-year">2025</span> <span id="footer-name">Loading...</span></p>
+        <p>∀x (Logic(x) → Elegant(x))</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="https://github.com/dasaro" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js?v=30"></script>
+  <script type="module" src="js/animations/AnimationController.js?v=30"></script>
+
+  <script>
+    // Track currently active animation
+    let currentActiveBtn = null;
+
+    // Function to activate a specific animation
+    function activateAnimation(animationKey, button) {
+      // Remove active class from previously active button
+      if (currentActiveBtn) {
+        currentActiveBtn.classList.remove('active');
+      }
+
+      // Remove active class from all cards
+      document.querySelectorAll('.animation-card').forEach(card => {
+        card.classList.remove('active');
+      });
+
+      // Add active class to current button and card
+      button.classList.add('active');
+      const card = button.closest('.animation-card');
+      if (card) {
+        card.classList.add('active');
+      }
+
+      currentActiveBtn = button;
+
+      // Start the animation using the global controller
+      if (window.animationController) {
+        window.animationController.start(animationKey);
+        console.log(`[backgrounds.html] Activated animation: ${animationKey}`);
+      } else {
+        console.warn('[backgrounds.html] Animation controller not yet initialized, retrying...');
+        // Retry after a short delay
+        setTimeout(() => {
+          if (window.animationController) {
+            window.animationController.start(animationKey);
+          }
+        }, 500);
+      }
+    }
+
+    // On page load, detect which animation is running and mark it as active
+    document.addEventListener('DOMContentLoaded', () => {
+      // Wait a bit for the animation controller to initialize
+      setTimeout(() => {
+        if (window.animationController && window.animationController.currentAnimation) {
+          const currentKey = window.animationController.currentAnimation.constructor.name
+            .replace('GameOfLife', 'gameOfLife')
+            .replace('FibonacciSpiral', 'fibonacci')
+            .replace('PrimeSpiral', 'primes')
+            .replace('RiemannZeta', 'riemann')
+            .replace('MandelbrotSet', 'mandelbrot')
+            .replace('ProofTree', 'proofTree')
+            .replace('PacMan', 'pacman')
+            .replace('Rule30', 'rule30');
+
+          // Find and activate the corresponding card
+          const card = document.querySelector(`[data-animation="${currentKey}"]`);
+          if (card) {
+            const btn = card.querySelector('.activate-btn');
+            if (btn) {
+              btn.classList.add('active');
+              card.classList.add('active');
+              currentActiveBtn = btn;
+            }
+          }
+        }
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

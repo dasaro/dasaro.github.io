@@ -116,6 +116,7 @@ dasaro.github.io/
 ├── teaching.html           # Teaching experience & supervision
 ├── projects.html           # Research projects (current & past)
 ├── service.html            # Professional service activities
+├── backgrounds.html        # Mathematical curiosities behind animations
 ├── contact.html            # Contact information
 ├── dissertation-info.html  # PhD supervision topics
 ├── 404.html                # Custom 404 error page
@@ -1089,6 +1090,81 @@ The `.course-card` class is optimized for supervision entries:
 - **H3 size**: `var(--text-lg)` (proportional headers)
 
 This creates a more compact, scannable supervision section while maintaining readability.
+
+---
+
+### Mathematical Backgrounds Page
+
+The `backgrounds.html` page provides an engaging, educational exploration of the mathematical concepts behind each background animation.
+
+#### Purpose
+
+- **Educational outreach**: Make mathematics accessible and exciting
+- **Interactive demonstration**: Let visitors choose which animation to view
+- **Storytelling**: Share the human stories behind mathematical discoveries
+- **Engagement**: Encourage curiosity about logic, mathematics, and computer science
+
+#### Content Structure
+
+Each animation gets a dedicated card with:
+
+1. **Header**: Title, subtitle, and iconic symbol
+2. **Description**: Accessible 2-3 sentence explanation (no jargon!)
+3. **Story Behind It**: Historical context, discovery story, human element
+4. **Curious Facts**: 4-5 interesting bullet points mixing math, history, and pop culture
+5. **Activate Button**: Direct interaction to switch background animation
+
+#### Writing Guidelines
+
+**DO:**
+- ✅ Write for a general audience (high school level)
+- ✅ Include human stories (who discovered it, when, why)
+- ✅ Mix technical facts with pop culture references
+- ✅ Use analogies and metaphors
+- ✅ Explain *why* it's beautiful or important
+- ✅ Include surprising connections (nature, art, music, etc.)
+
+**DON'T:**
+- ❌ Use dense mathematical notation without explanation
+- ❌ Assume prior knowledge of advanced concepts
+- ❌ Make it dry or textbook-like
+- ❌ Forget the human element (who? why? what happened?)
+
+#### Animations Covered
+
+1. **Conway's Game of Life**: Cellular automaton, emergence, complexity from simple rules
+2. **Fibonacci Spiral**: Golden ratio, nature's patterns, art and architecture
+3. **Prime Spiral (Ulam)**: Serendipitous discovery, hidden patterns, unsolved mysteries
+4. **Riemann Zeta**: Million-dollar problem, connection to primes, complex analysis
+5. **Mandelbrot Set**: Fractals, infinite detail, chaos and order
+6. **Proof Tree**: Formal logic, automated theorem proving, Curry-Howard
+7. **Pac-Man**: Gaming history, AI algorithms, cultural impact
+8. **Rule 30**: Cellular automaton, deterministic chaos, randomness from order
+
+#### Activation Mechanism
+
+Buttons call `activateAnimation(key, button)` which:
+```javascript
+window.animationController.start(animationKey);
+```
+
+Available keys: `'gameOfLife'`, `'fibonacci'`, `'primes'`, `'riemann'`, `'mandelbrot'`, `'proofTree'`, `'pacman'`, `'rule30'`
+
+#### Design Notes
+
+- Cards highlight when their animation is active (blue border, light background)
+- Buttons show checkmark (✓) when active
+- Page auto-detects current animation on load
+- Mobile-responsive cards with flexible header layout
+- Consistent with site's terminal-meets-philosophy aesthetic
+
+#### Maintenance
+
+When adding new animations:
+1. Add animation class to `js/animations/`
+2. Register in `AnimationController.animations` Map
+3. Add card to `backgrounds.html` with story and facts
+4. Update this documentation
 
 ---
 
