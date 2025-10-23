@@ -866,12 +866,18 @@ The Logical Symbols system provides randomized mathematical logic symbols for de
 #### Quick Start
 
 ```html
-<!-- Include the script -->
+<!-- Include the script (add to every page) -->
 <script src="js/logical-symbols.js"></script>
 
-<!-- Add symbol container (auto-populated on page load) -->
-<h2><div class="logical-symbols"></div> Section Title</h2>
+<!-- Add symbol before section titles (auto-populated on page load) -->
+<h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Section Title</h2>
 ```
+
+**Key Features:**
+- Symbols randomize on **every page refresh** for visual variety
+- Empty `<span>` elements are auto-populated by the script on DOMContentLoaded
+- Used consistently across all section headers site-wide
+- Subtle appearance with 40% opacity via `.symbols-dimmed` class
 
 #### Symbol Categories
 
@@ -942,18 +948,38 @@ Symbols are automatically dimmed to 40% opacity via the `.symbols-dimmed` class.
 }
 ```
 
+#### Section Title Pattern (Standard Usage)
+
+**All section headers should use this pattern:**
+```html
+<h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Education</h2>
+<h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Research Interests</h2>
+<h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Current Projects</h2>
+```
+
+**Pages using this pattern:**
+- index.html (About, Research Interests, Recent Highlights)
+- about.html (Education, Professional Experience)
+- teaching.html (all section headers)
+- projects.html (Current Projects, Past Projects)
+- service.html (all section headers)
+- dissertation-info.html (all section headers)
+- publications.html, contact.html, backgrounds.html
+
 #### Best Practices
 
 **DO:**
-- ✅ Use for section headers and decorative elements
+- ✅ Use for **all section headers** with `.section-title` class
 - ✅ Keep dimmed (40% opacity) to avoid distraction
-- ✅ Let symbols randomize on each page load
-- ✅ Use specific categories for thematic consistency
+- ✅ Let symbols randomize on each page load (never hardcode symbols)
+- ✅ Use the empty `<span class="logical-symbols symbols-dimmed"></span>` pattern
+- ✅ Use specific categories for thematic consistency (if needed)
 
 **DON'T:**
 - ❌ Use for conveying critical information
 - ❌ Override the auto-initialization without reason
 - ❌ Make symbols too prominent (they're decorative)
+- ❌ Hardcode symbols (e.g., `<span>λ</span>`) - let the script populate them
 
 ---
 
