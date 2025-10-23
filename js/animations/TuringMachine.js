@@ -251,6 +251,11 @@ export class TuringMachine extends AnimationBase {
     // Draw step counter
     ctx.textAlign = 'right';
     ctx.fillText(`Tape: [${visibleStart}..${visibleEnd}]`, width - 20, 30);
+
+    // Continue animation loop
+    if (this.isRunning) {
+      this.animationId = requestAnimationFrame((time) => this.animate(time));
+    }
   }
 
   cleanup() {

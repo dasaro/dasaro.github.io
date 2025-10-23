@@ -203,6 +203,11 @@ export class TuringPattern extends AnimationBase {
 
     // Render the pattern
     this.render();
+
+    // Continue animation loop
+    if (this.isRunning) {
+      this.animationId = requestAnimationFrame((time) => this.animate(time));
+    }
   }
 
   /**
