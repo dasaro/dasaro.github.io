@@ -154,6 +154,10 @@ export class TuringMachine extends AnimationBase {
     const ctx = this.ctx;
     const { width, height } = this.canvas;
 
+    // Clear canvas
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(0, 0, width, height);
+
     // Calculate timing
     if (!this.lastStepTime) this.lastStepTime = currentTime;
     const elapsed = currentTime - this.lastStepTime;

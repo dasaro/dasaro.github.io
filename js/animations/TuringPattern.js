@@ -190,6 +190,10 @@ export class TuringPattern extends AnimationBase {
       this.initialize();
     }
 
+    // Clear canvas
+    this.ctx.fillStyle = '#FFFFFF';
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
     // Check if we should change pattern
     if (currentTime - this.lastPatternChange > this.patternChangeInterval) {
       this.changePattern();
