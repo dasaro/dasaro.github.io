@@ -1257,6 +1257,69 @@ footer {
 }
 
 /* ==========================================
+   LIST STYLES (Unified System)
+   ========================================== */
+
+/* Base list reset for cards */
+.card ul,
+.course-card ul,
+.timeline-card ul,
+.project-card ul,
+.topic-card ul {
+  margin: var(--space-md) 0;
+  padding-left: 2rem;
+  line-height: 1.6;
+}
+
+.card ul li,
+.course-card ul li,
+.timeline-card ul li,
+.project-card ul li,
+.topic-card ul li {
+  margin-bottom: var(--space-sm);
+  color: var(--color-accent-1);
+}
+
+/* Custom bullet lists with arrow symbol */
+.service-list,
+.project-outputs ul {
+  list-style: none;
+  padding-left: 1.5rem;
+  margin: var(--space-md) 0;
+}
+
+.service-list li,
+.project-outputs li {
+  margin-bottom: var(--space-sm);
+  position: relative;
+  padding-left: 0.5rem;
+  line-height: 1.6;
+  color: var(--color-accent-1);
+}
+
+.service-list li::before,
+.project-outputs li::before {
+  content: '→';
+  position: absolute;
+  left: -1.5rem;
+  color: var(--color-link);
+  font-weight: bold;
+}
+
+/* Margin utilities for lists */
+.ml-xs { margin-left: var(--space-xs); }
+.ml-sm { margin-left: var(--space-sm); }
+.ml-md { margin-left: var(--space-md); }
+.ml-lg { margin-left: var(--space-lg); }
+.ml-xl { margin-left: var(--space-xl); }
+
+.pl-xs { padding-left: var(--space-xs); }
+.pl-sm { padding-left: var(--space-sm); }
+.pl-md { padding-left: var(--space-md); }
+.pl-lg { padding-left: var(--space-lg); }
+.pl-xl { padding-left: var(--space-xl); }
+
+/* ==========================================
    TIMELINE CARDS (Education & Experience)
    ========================================== */
 
@@ -1351,18 +1414,6 @@ footer {
   font-weight: 600;
   margin: 0 0 0.5rem 0;
   font-size: 0.9rem;
-}
-
-.timeline-card ul {
-  color: #2C3E50 !important;
-  font-size: 0.875rem;
-  margin: 0;
-  padding-left: 1.25rem;
-  line-height: 1.5;
-}
-
-.timeline-card ul li {
-  margin-bottom: 0.25rem;
 }
 
 /* ==========================================
@@ -1597,8 +1648,24 @@ footer {
   background: rgba(255, 255, 255, 0.95);
   border: 2px solid rgba(139, 0, 0, 0.2);
   border-radius: 8px;
-  padding: var(--space-lg);
-  margin-bottom: var(--space-lg);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  font-size: var(--text-sm);
+}
+
+.course-card h3 {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-sm);
+}
+
+.course-card p {
+  margin-bottom: var(--space-xs);
+  line-height: 1.5;
+}
+
+.course-meta {
+  font-size: var(--text-sm);
+  color: var(--color-accent-2);
 }
 
 .course-code {
@@ -1698,26 +1765,6 @@ footer {
   color: var(--color-link);
 }
 
-.service-list {
-  color: #2C3E50;
-  list-style: none;
-  padding-left: 20px;
-  margin: 0;
-}
-
-.service-list li {
-  color: #2C3E50;
-  margin-bottom: 4px;
-  position: relative;
-}
-
-.service-list li::before {
-  content: '→';
-  position: absolute;
-  left: -20px;
-  color: var(--color-link);
-}
-
 /* ==========================================
    PROJECT PAGE COMPONENTS
    ========================================== */
@@ -1786,26 +1833,6 @@ footer {
   color: var(--color-link);
   display: block;
   margin-bottom: var(--space-xs);
-}
-
-.project-outputs ul {
-  color: #2C3E50;
-  list-style: none;
-  padding-left: 20px;
-  margin: 0;
-}
-
-.project-outputs li {
-  color: #2C3E50;
-  margin-bottom: 4px;
-  position: relative;
-}
-
-.project-outputs li::before {
-  content: '→';
-  position: absolute;
-  left: -20px;
-  color: var(--color-link);
 }
 
 .project-link {

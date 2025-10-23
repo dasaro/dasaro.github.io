@@ -956,6 +956,142 @@ Symbols are automatically dimmed to 40% opacity via the `.symbols-dimmed` class.
 
 ---
 
+### List & Bullet Point Styling
+
+Unified list styling system with proper spacing and consistent appearance across all card types.
+
+#### Automatic List Styling
+
+Lists inside cards automatically receive proper spacing and styling:
+
+```html
+<div class="card">
+  <h3>Research Focus</h3>
+  <ul>
+    <li>Logic Programming</li>
+    <li>Temporal Reasoning</li>
+    <li>Explainable AI</li>
+  </ul>
+</div>
+```
+
+**Applies to:**
+- `.card ul` and `.card li`
+- `.course-card ul` and `.course-card li`
+- `.timeline-card ul` and `.timeline-card li`
+- `.project-card ul` and `.project-card li`
+- `.topic-card ul` and `.topic-card li`
+
+**Default styles:**
+- Margin: `var(--space-md)` (1rem) top and bottom
+- Padding-left: `2rem` (proper indentation from card edge)
+- Line-height: `1.6` (readable spacing)
+- List item margin-bottom: `var(--space-sm)` (0.5rem)
+
+#### Custom Arrow Lists
+
+For special lists with arrow bullets (→):
+
+```html
+<div class="card">
+  <p>Selected peer review activities:</p>
+  <ul class="service-list">
+    <li>International Journal of Approximate Reasoning</li>
+    <li>KR Conference</li>
+    <li>IJCAI</li>
+  </ul>
+</div>
+```
+
+**Classes:**
+- `.service-list` - For reviewing venues, service activities
+- `.project-outputs ul` - For project deliverables
+
+**Styles:**
+- Custom `→` bullets in link color
+- No default bullets (list-style: none)
+- Proper left padding with positioned arrows
+
+#### Margin & Padding Utilities
+
+**Left Margin:**
+- `.ml-xs` - 0.25rem
+- `.ml-sm` - 0.5rem
+- `.ml-md` - 1rem
+- `.ml-lg` - 1.5rem
+- `.ml-xl` - 2rem
+
+**Left Padding:**
+- `.pl-xs` - 0.25rem
+- `.pl-sm` - 0.5rem
+- `.pl-md` - 1rem
+- `.pl-lg` - 1.5rem
+- `.pl-xl` - 2rem
+
+#### Best Practices
+
+**DO:**
+- ✅ Let automatic styling handle standard lists in cards
+- ✅ Use `.service-list` for arrow-style lists
+- ✅ Use margin utilities (`.ml-lg`, `.mb-md`) for fine-tuning
+- ✅ Keep lists inside cards for proper spacing
+- ✅ Use semantic HTML (`<ul>`, `<li>`)
+
+**DON'T:**
+- ❌ Add inline styles for list spacing
+- ❌ Override padding-left without good reason (creates inconsistency)
+- ❌ Nest lists too deeply (max 2 levels)
+- ❌ Use excessive margin utilities (prefer defaults)
+
+#### Common Patterns
+
+**Supervision/Student Outcomes:**
+```html
+<div class="course-card">
+  <h3>Student Name</h3>
+  <p><strong>Outcomes:</strong></p>
+  <ul class="ml-lg mb-md">
+    <li>Outstanding Project Award</li>
+    <li>Selected for Showcase</li>
+  </ul>
+</div>
+```
+
+**Research Focus:**
+```html
+<div class="timeline-card">
+  <h3>Position Title</h3>
+  <p><strong>Research Focus:</strong></p>
+  <ul>
+    <li>Temporal Logics</li>
+    <li>Probabilistic Reasoning</li>
+  </ul>
+</div>
+```
+
+**Service Activities:**
+```html
+<div class="card">
+  <p>Reviewing activities:</p>
+  <ul class="service-list">
+    <li>IJAR</li>
+    <li>KR 2024-2025</li>
+  </ul>
+</div>
+```
+
+#### Supervision Section Sizing
+
+The `.course-card` class is optimized for supervision entries:
+- **Padding**: `var(--space-md)` (reduced from lg)
+- **Margin-bottom**: `var(--space-md)` (compact spacing)
+- **Font-size**: `var(--text-sm)` (smaller, denser text)
+- **H3 size**: `var(--text-lg)` (proportional headers)
+
+This creates a more compact, scannable supervision section while maintaining readability.
+
+---
+
 ## Layout & Component Architecture Standards
 
 ### ✅ DO: Card Pattern
