@@ -92,14 +92,15 @@ export class TuringMachine extends AnimationBase {
     const num1 = 2 + Math.floor(Math.random() * 6);
     const num2 = 2 + Math.floor(Math.random() * 6);
 
-    // Create tape: spaces + first number + separator + second number + spaces
-    // Start further right for better visibility
-    this.tape = Array(25).fill(' '); // More leading spaces
-    const startPos = 25; // Position where input starts
+    // Create tape starting from the very left
+    // This allows the head to move across the full screen width
+    this.tape = [];
+    const startPos = 0; // Start at position 0
+
     for (let i = 0; i < num1; i++) this.tape.push('|');
     this.tape.push('_'); // Separator
     for (let i = 0; i < num2; i++) this.tape.push('|');
-    this.tape.push(...Array(50).fill(' ')); // More trailing spaces
+    this.tape.push(...Array(100).fill(' ')); // Lots of trailing spaces for computation
 
     this.headPosition = startPos; // Start at first |
     this.state = 'q0';
