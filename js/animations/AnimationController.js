@@ -16,6 +16,7 @@ import { PacMan } from './PacMan.js';
 import { Rule30 } from './Rule30.js';
 import { TuringMachine } from './TuringMachine.js';
 import { TuringPattern } from './TuringPattern.js';
+import { SituationCalculus } from './SituationCalculus.js';
 
 console.log('[AnimationController] All imports successful');
 
@@ -44,7 +45,8 @@ export class AnimationController {
             ['pacman', PacMan],
             ['rule30', Rule30],
             ['turingMachine', TuringMachine],
-            ['turingPattern', TuringPattern]
+            ['turingPattern', TuringPattern],
+            ['situationCalculus', SituationCalculus]
         ]);
 
         if (this.canvas && this.ctx) {

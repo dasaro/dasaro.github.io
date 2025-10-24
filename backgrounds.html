@@ -389,6 +389,40 @@
           <button class="btn btn-primary activate-btn" onclick="activateAnimation('proofTree', this)">Activate This Background</button>
         </div>
 
+        <!-- Situation Calculus -->
+        <div class="animation-card" data-animation="situationCalculus">
+          <div class="animation-header">
+            <div class="animation-title">
+              <h2>⊨ Situation Calculus</h2>
+              <p class="animation-subtitle">Reasoning About Actions and Change</p>
+            </div>
+            <div class="animation-symbol">⊨</div>
+          </div>
+
+          <div class="animation-description">
+            <p>Watch how AI reasons about actions transforming the world! Each circle is a <strong>situation</strong> (a possible state of the world), and arrows represent <strong>actions</strong>. The tree shows all possible futures branching from an initial situation S₀.</p>
+          </div>
+
+          <div class="animation-story">
+            <h3>📖 The Story Behind It</h3>
+            <p>Developed by John McCarthy (who coined "Artificial Intelligence") in 1963, situation calculus provides a formal way to reason about how actions change the world. The key insight? Represent actions as functions: <code>do(action, situation) = new_situation</code>.</p>
+            <p>This simple idea revolutionized AI planning! Instead of programming every possibility, we can reason logically about what happens when a robot picks up a block, moves left, or opens a door. It's the foundation of modern AI planning systems used in robotics, game AI, and automated scheduling.</p>
+          </div>
+
+          <div class="animation-facts">
+            <h3>✨ Curious Facts</h3>
+            <ul>
+              <li><strong>Frame problem:</strong> McCarthy's formalism helped address "what doesn't change" when actions occur—a major AI challenge</li>
+              <li><strong>Event Calculus:</strong> A related formalism focusing on events and time (used in my research!)</li>
+              <li><strong>Blocks World:</strong> The classic AI domain where robots rearrange colored blocks using situation calculus</li>
+              <li><strong>NASA planning:</strong> Variants of situation calculus help plan spacecraft operations and rover missions</li>
+              <li><strong>Video games:</strong> Modern game AI uses these ideas for NPC planning and decision-making</li>
+            </ul>
+          </div>
+
+          <button class="btn btn-primary activate-btn" onclick="activateAnimation('situationCalculus', this)">Activate This Background</button>
+        </div>
+
         <!-- Pac-Man -->
         <div class="animation-card" data-animation="pacman">
           <div class="animation-header">

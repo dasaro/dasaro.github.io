@@ -30,8 +30,8 @@
 ### Data Files (13 total)
 `personal.json`, `publications.json`, `teaching.json`, `supervision.json`, `projects.json`, `service.json`, `education.json`, `experience.json`, `skills.json`, `talks.json`, `groups.json`, `affiliations.json`, `dissertation_instructions.json`
 
-### Animations (11 total)
-Conway's Game of Life, Fibonacci Spiral, Fibonacci Boxes, Prime Spiral (Ulam), Riemann Zeta, Mandelbrot Set, Proof Tree, Pac-Man, Rule 30, Turing Machine, Turing Pattern
+### Animations (12 total)
+Conway's Game of Life, Fibonacci Spiral, Fibonacci Boxes, Prime Spiral (Ulam), Riemann Zeta, Mandelbrot Set, Proof Tree, Situation Calculus, Pac-Man, Rule 30, Turing Machine, Turing Pattern
 
 ---
 
@@ -67,7 +67,7 @@ dasaro.github.io/
 ├── js/
 │   ├── navigation.js (🆕 independent nav component)
 │   ├── utils.js, main.js, publications.js
-│   └── animations/ (AnimationController, AnimationBase, 11 animation classes)
+│   └── animations/ (AnimationController, AnimationBase, 12 animation classes)
 ├── data/ (13 JSON files + SCHEMAS.md)
 ├── images/ (profile, research, institutions, favicon)
 └── CLAUDE.md, README.md, BUGS_FOUND.md
