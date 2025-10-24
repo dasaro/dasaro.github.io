@@ -241,16 +241,27 @@ async function loadFooterData() {
       const footerGithub = document.getElementById('footer-github');
       if (footerGithub && personalData.contact && personalData.contact.github) {
         footerGithub.href = `https://github.com/${personalData.contact.github}`;
+        console.log('[Footer] ✓ Updated GitHub link');
       }
 
-      // Update footer Scholar link
+      // Update footer Google Scholar link
       const footerScholar = document.getElementById('footer-scholar');
       if (footerScholar && personalData.contact && personalData.contact.scholar) {
-        footerScholar.href = personalData.contact.scholar;
+        footerScholar.href = `https://scholar.google.com/citations?user=${personalData.contact.scholar}`;
+        console.log('[Footer] ✓ Updated Google Scholar link');
       }
+
+      // Update footer ORCID link
+      const footerOrcid = document.getElementById('footer-orcid');
+      if (footerOrcid && personalData.contact && personalData.contact.orcid) {
+        footerOrcid.href = `https://orcid.org/${personalData.contact.orcid}`;
+        console.log('[Footer] ✓ Updated ORCID link');
+      }
+
+      console.log('[Footer] ✓ Footer data loaded from personal.json');
     }
   } catch (error) {
-    console.error('Error loading footer data:', error);
+    console.error('[Footer] Error loading footer data:', error);
   }
 }
 

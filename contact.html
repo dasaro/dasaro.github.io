@@ -151,8 +151,9 @@
         <p>∀x (Logic(x) → Elegant(x))</p>
       </div>
       <ul class="footer-links">
-        <li><a href="https://github.com/dasaro" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a></li>
+        <li><a href="https://github.com/dasaro" target="_blank" rel="noopener" id="footer-github">GitHub</a></li>
+        <li><a href="https://scholar.google.com" target="_blank" rel="noopener" id="footer-scholar">Google Scholar</a></li>
+        <li><a href="https://orcid.org" target="_blank" rel="noopener" id="footer-orcid">ORCID</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
@@ -215,6 +216,37 @@
         if (birthplaceText && personalData?.birthplace) {
           birthplaceText.textContent = personalData.birthplace;
           console.log('[Contact] ✓ Loaded birthplace');
+        }
+
+        // Update profile links with data from personal.json
+        if (personalData?.contact) {
+          // GitHub
+          const githubLink = document.querySelector('a[href*="github.com/dasaro"]');
+          if (githubLink && personalData.contact.github) {
+            githubLink.href = `https://github.com/${personalData.contact.github}`;
+            console.log('[Contact] ✓ Updated GitHub link');
+          }
+
+          // Google Scholar
+          const scholarLink = document.querySelector('a[href*="scholar.google.com"]');
+          if (scholarLink && personalData.contact.scholar) {
+            scholarLink.href = `https://scholar.google.com/citations?user=${personalData.contact.scholar}`;
+            console.log('[Contact] ✓ Updated Google Scholar link');
+          }
+
+          // ORCID
+          const orcidLink = document.querySelector('a[href*="orcid.org"]');
+          if (orcidLink && personalData.contact.orcid) {
+            orcidLink.href = `https://orcid.org/${personalData.contact.orcid}`;
+            console.log('[Contact] ✓ Updated ORCID link');
+          }
+
+          // Personal Website
+          const websiteLink = document.querySelector('a[href*="sites.google.com"]');
+          if (websiteLink && personalData.contact.website) {
+            websiteLink.href = personalData.contact.website;
+            console.log('[Contact] ✓ Updated personal website link');
+          }
         }
 
       } catch (error) {

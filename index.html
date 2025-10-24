@@ -139,6 +139,7 @@
       <ul class="footer-links">
         <li><a href="https://github.com/dasaro" target="_blank" rel="noopener" id="footer-github">GitHub</a></li>
         <li><a href="https://scholar.google.com" target="_blank" rel="noopener" id="footer-scholar">Google Scholar</a></li>
+        <li><a href="https://orcid.org" target="_blank" rel="noopener" id="footer-orcid">ORCID</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
@@ -247,7 +248,12 @@
 
           const footerScholar = document.getElementById('footer-scholar');
           if (footerScholar && personalData.contact.scholar) {
-            footerScholar.href = personalData.contact.scholar;
+            footerScholar.href = `https://scholar.google.com/citations?user=${personalData.contact.scholar}`;
+          }
+
+          const footerOrcid = document.getElementById('footer-orcid');
+          if (footerOrcid && personalData.contact.orcid) {
+            footerOrcid.href = `https://orcid.org/${personalData.contact.orcid}`;
           }
         }
 
