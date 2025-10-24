@@ -13,32 +13,38 @@
     {
       "title": "Uncertain & Epistemic Logics",
       "symbol": "∃",
-      "description": "Formal systems for reasoning about uncertainty and knowledge"
+      "description": "Formal systems for reasoning about uncertainty and knowledge",
+      "tags": ["epistemic-logic", "probabilistic-logic", "type-theory", "natural-deduction", "trustworthiness"]
     },
     {
       "title": "Logic Programming",
       "symbol": "→",
-      "description": "ASP, ILASP, and inductive logic programming applications"
+      "description": "ASP, ILASP, and inductive logic programming applications",
+      "tags": ["answer-set-programming", "inductive-logic-programming", "bounded-reasoning", "depth-bounded"]
     },
     {
       "title": "Argumentation",
       "symbol": "⊢",
-      "description": "Formal argumentation theory and learning semantics"
+      "description": "Formal argumentation theory and learning semantics",
+      "tags": ["argumentation", "aba", "formal-methods", "ethics"]
     },
     {
       "title": "Explainable AI",
       "symbol": "λ",
-      "description": "Making AI systems transparent and interpretable"
+      "description": "Making AI systems transparent and interpretable",
+      "tags": ["explainable-ai", "bias-detection", "trustworthiness", "agents", "preference-learning"]
     },
     {
       "title": "Probabilistic Reasoning",
       "symbol": "∀",
-      "description": "Combining logic with probability theory"
+      "description": "Combining logic with probability theory",
+      "tags": ["probabilistic-reasoning", "probabilistic-logic", "mdp", "problog"]
     },
     {
       "title": "Event Calculus",
       "symbol": "⊨",
-      "description": "Temporal reasoning about actions and their effects"
+      "description": "Temporal reasoning about actions and their effects",
+      "tags": ["event-calculus", "reasoning", "formalisms", "decision-making"]
     }
   ],
   "research_interests_simple": [

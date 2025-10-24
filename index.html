@@ -194,21 +194,52 @@
             `;
           }
 
-          // Update research interests dynamically
+          // Load publications data for research interests
+          const publicationsData = await loadJSON('./data/publications.json');
+          const allPublications = publicationsData ? publicationsData.all : [];
+
+          // Update research interests dynamically with publications
           const researchGrid = document.getElementById('research-interests-grid');
           console.log('[index.html] Research grid element:', researchGrid);
           console.log('[index.html] Research interests data:', personalData.research_interests);
 
           if (researchGrid && personalData.research_interests) {
-            const html = personalData.research_interests.map(interest => `
-              <div class="card scroll-animate visible">
-                <h3><span class="logic-symbol">${interest.symbol}</span> ${interest.title}</h3>
-                <p>${interest.description}</p>
-                <div class="chip-group">
-                  <span class="chip chip-research chip-sm">Research</span>
+            const html = personalData.research_interests.map(interest => {
+              // Filter publications by matching tags
+              const relatedPubs = allPublications.filter(pub =>
+                pub.tags && pub.tags.some(tag => interest.tags.includes(tag))
+              );
+
+              // Get top 2 most recent publications
+              const topPubs = relatedPubs
+                .sort((a, b) => b.year - a.year)
+                .slice(0, 2);
+
+              // Create publication links HTML
+              const pubLinks = topPubs.length > 0 ? `
+                <div class="mt-sm" style="font-size: var(--text-xs); line-height: 1.5;">
+                  ${topPubs.map(pub => `
+                    <div style="margin-bottom: var(--space-xs);">
+                      <a href="${pub.url || 'publications.html'}" target="_blank" style="color: var(--color-link); text-decoration: none;">
+                        ▸ ${pub.title.substring(0, 60)}${pub.title.length > 60 ? '...' : ''} (${pub.year})
+                      </a>
+                    </div>
+                  `).join('')}
                 </div>
-              </div>
-            `).join('');
+              ` : '';
+
+              return `
+                <div class="card scroll-animate visible">
+                  <h3><span class="logic-symbol">${interest.symbol}</span> ${interest.title}</h3>
+                  <p>${interest.description}</p>
+                  <div class="chip-group">
+                    <span class="chip chip-current chip-sm">${relatedPubs.length} publication${relatedPubs.length !== 1 ? 's' : ''}</span>
+                    ${relatedPubs.length > 0 ? `<span class="chip chip-year chip-sm">${topPubs[0].year}</span>` : ''}
+                  </div>
+                  ${pubLinks}
+                </div>
+              `;
+            }).join('');
 
             researchGrid.innerHTML = html;
             console.log('[index.html] ✅ Research interests displayed!', personalData.research_interests.length, 'interests');

@@ -698,6 +698,22 @@ footer {
   line-height: 1.5;
 }
 
+/* Research Interest Publication Links */
+.card a[href*="doi.org"],
+.card a[href*="publications.html"] {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.card a[href*="doi.org"]:hover,
+.card a[href*="publications.html"]:hover {
+  color: var(--color-accent-1);
+  text-decoration: underline;
+  transform: translateX(2px);
+}
+
 .publication-authors strong {
   color: var(--color-black);
   font-weight: 700;
