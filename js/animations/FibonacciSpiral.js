@@ -39,7 +39,13 @@ export class FibonacciSpiral extends AnimationBase {
 
         const centerX = this.canvas.width / 2;
         const centerY = this.canvas.height / 2;
-        const scale = Math.min(this.canvas.width, this.canvas.height) / 60;
+
+        // Dynamic scaling: as the spiral grows (progress increases),
+        // we shrink the scale to keep it visible on screen
+        // This creates a smooth zoom-out effect as the spiral expands
+        const baseScale = Math.min(this.canvas.width, this.canvas.height) / 60;
+        const scaleFactor = 1 / (1 + this.progress * 0.15); // Gradually shrink as it grows
+        const scale = baseScale * scaleFactor;
 
         // Clear with fade effect
         this.ctx.fillStyle = `rgba(255, 255, 255, ${this.config.fadeAmount})`;
@@ -52,6 +58,7 @@ export class FibonacciSpiral extends AnimationBase {
         this.ctx.shadowColor = 'rgba(139, 0, 0, 0.5)';
         this.ctx.beginPath();
 
+        // Draw the spiral with exponential growth
         for (let i = 0; i <= this.progress * 70; i++) {
             const theta = i * 0.08;
             const r = scale * Math.pow(this.phi, theta / (Math.PI / 2));
@@ -72,6 +79,7 @@ export class FibonacciSpiral extends AnimationBase {
         this.progress += this.config.growSpeed;
         this.angle += this.config.rotateSpeed;
 
+        // Reset when spiral completes its cycle
         if (this.progress > this.config.maxProgress) {
             this.progress = 0;
             this.angle = 0;
