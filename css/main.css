@@ -894,28 +894,29 @@ footer {
 }
 
 /* ============================================
-   Metrics Widget (Scholar Stats)
-   Fixed: 2025-10-18 - Maintain readability with subtle hover
+   Metrics Widget (Scholar Stats) - Light Theme
+   Consistent with site's light aesthetic
    ============================================ */
 .metrics-widget {
-  background: var(--color-code-bg); /* #1E1E1E dark background */
-  color: var(--color-white);
+  background: rgba(255, 255, 255, 0.95); /* Light background like cards */
+  color: var(--color-black);
   padding: var(--space-xl);
   margin: var(--space-xl) 0;
-  border: 2px solid var(--color-link); /* Dark red border */
-  border-radius: 4px;
-  transition: all 0.3s ease;
+  border: 2px solid rgba(139, 0, 0, 0.2); /* Subtle red border */
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Subtle hover: slightly lighter background + brighter border */
+/* Hover: Enhanced border and shadow */
 .metrics-widget:hover {
-  background: #2A2A2A; /* Slightly lighter dark gray */
-  border-color: var(--color-link-hover); /* Brighter red */
-  box-shadow: 0 4px 12px rgba(139, 0, 0, 0.2); /* Subtle red glow */
+  border-color: var(--color-link); /* Brighter red border */
+  box-shadow: 0 4px 16px rgba(139, 0, 0, 0.15); /* Enhanced shadow */
+  transform: translateY(-2px);
 }
 
 .metrics-widget h3 {
-  color: var(--color-white) !important;
+  color: var(--color-accent-1) !important;
   font-family: 'Fira Code', monospace;
   text-align: center;
   margin-bottom: var(--space-lg);
@@ -923,7 +924,7 @@ footer {
 }
 
 .metrics-widget:hover h3 {
-  color: var(--color-link-hover) !important; /* Red highlight on hover */
+  color: var(--color-link) !important; /* Red highlight on hover */
 }
 
 .metrics-grid {
@@ -935,44 +936,51 @@ footer {
 
 .metric {
   text-align: center;
-  transition: transform 0.3s ease;
+  padding: var(--space-md);
+  border-radius: 6px;
+  transition: all 0.3s ease;
 }
 
-/* Individual metric hover: subtle scale */
+/* Individual metric hover: subtle background */
 .metric:hover {
+  background: rgba(139, 0, 0, 0.05);
   transform: translateY(-2px);
 }
 
 .metric-value {
   font-family: 'Fira Code', monospace;
-  font-size: var(--text-3xl);
-  color: var(--color-code-text); /* #CD5C5C Indian red */
+  font-size: var(--text-4xl); /* Larger for emphasis */
+  color: var(--color-link); /* Dark red */
   font-weight: bold;
   display: block;
   margin-bottom: var(--space-xs);
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .metric:hover .metric-value {
-  color: #FF6B6B; /* Brighter red on hover */
+  color: var(--color-link-hover); /* Brighter red on hover */
+  transform: scale(1.1);
 }
 
 .metric-label {
   font-family: 'Fira Code', monospace;
   font-size: var(--text-sm);
-  color: var(--color-white);
+  color: var(--color-accent-2); /* Medium red-brown */
   display: block;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   transition: color 0.3s ease;
 }
 
 .metric:hover .metric-label {
-  color: var(--color-link-hover);
+  color: var(--color-link);
 }
 
 .metric-note {
   text-align: center;
   font-size: var(--text-xs);
-  color: var(--color-accent-3);
+  color: var(--color-accent-2); /* Medium red-brown */
   margin-top: var(--space-md);
   font-style: italic;
 }
