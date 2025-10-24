@@ -7,6 +7,7 @@ console.log('[AnimationController] Module loaded');
 
 import { GameOfLife } from './GameOfLife.js';
 import { FibonacciSpiral } from './FibonacciSpiral.js';
+import { FibonacciBoxes } from './FibonacciBoxes.js';
 import { PrimeSpiral } from './PrimeSpiral.js';
 import { RiemannZeta } from './RiemannZeta.js';
 import { MandelbrotSet } from './MandelbrotSet.js';
@@ -35,6 +36,7 @@ export class AnimationController {
         this.animations = new Map([
             ['gameOfLife', GameOfLife],
             ['fibonacci', FibonacciSpiral],
+            ['fibonacciBoxes', FibonacciBoxes],
             ['primes', PrimeSpiral],
             ['riemann', RiemannZeta],
             ['mandelbrot', MandelbrotSet],
