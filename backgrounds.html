@@ -101,31 +101,14 @@
       line-height: 1.6;
     }
 
+    /* Activate buttons use unified button system from main.css */
     .activate-btn {
-      background: var(--color-link);
-      color: white;
-      border: none;
-      padding: var(--space-sm) var(--space-lg);
-      border-radius: 4px;
-      font-family: 'Fira Code', monospace;
-      font-size: var(--text-sm);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-weight: 600;
-    }
-
-    .activate-btn:hover {
-      background: var(--color-link-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 2px 8px rgba(41, 128, 185, 0.3);
-    }
-
-    .activate-btn:active {
-      transform: translateY(0);
+      /* Base styles from .btn-primary */
     }
 
     .activate-btn.active {
-      background: #228B22;
+      background: #228B22 !important;
+      border-color: #228B22 !important;
     }
 
     .activate-btn.active::before {
@@ -204,7 +187,7 @@
             </ul>
           </div>
 
-          <button class="activate-btn" onclick="activateAnimation('gameOfLife', this)">Activate This Background</button>
+          <button class="btn btn-primary activate-btn" onclick="activateAnimation('gameOfLife', this)">Activate This Background</button>
         </div>
 
         <!-- Fibonacci Spiral -->
@@ -237,7 +220,7 @@
             </ul>
           </div>
 
-          <button class="activate-btn" onclick="activateAnimation('fibonacci', this)">Activate This Background</button>
+          <button class="btn btn-primary activate-btn" onclick="activateAnimation('fibonacci', this)">Activate This Background</button>
         </div>
 
         <!-- Prime Spiral (Ulam Spiral) -->
@@ -270,7 +253,7 @@
             </ul>
           </div>
 
-          <button class="activate-btn" onclick="activateAnimation('primes', this)">Activate This Background</button>
+          <button class="btn btn-primary activate-btn" onclick="activateAnimation('primes', this)">Activate This Background</button>
         </div>
 
         <!-- Riemann Zeta -->
@@ -303,7 +286,7 @@
             </ul>
           </div>
 
-          <button class="activate-btn" onclick="activateAnimation('riemann', this)">Activate This Background</button>
+          <button class="btn btn-primary activate-btn" onclick="activateAnimation('riemann', this)">Activate This Background</button>
         </div>
 
         <!-- Mandelbrot Set -->
@@ -336,7 +319,7 @@
             </ul>
           </div>
 
-          <button class="activate-btn" onclick="activateAnimation('mandelbrot', this)">Activate This Background</button>
+          <button class="btn btn-primary activate-btn" onclick="activateAnimation('mandelbrot', this)">Activate This Background</button>
         </div>
 
         <!-- Proof Tree -->
@@ -369,7 +352,7 @@
             </ul>
           </div>
 
-          <button class="activate-btn" onclick="activateAnimation('proofTree', this)">Activate This Background</button>
+          <button class="btn btn-primary activate-btn" onclick="activateAnimation('proofTree', this)">Activate This Background</button>
         </div>
 
         <!-- Pac-Man -->
@@ -402,7 +385,7 @@
             </ul>
           </div>
 
-          <button class="activate-btn" onclick="activateAnimation('pacman', this)">Activate This Background</button>
+          <button class="btn btn-primary activate-btn" onclick="activateAnimation('pacman', this)">Activate This Background</button>
         </div>
 
         <!-- Rule 30 -->
@@ -435,7 +418,7 @@
             </ul>
           </div>
 
-          <button class="activate-btn" onclick="activateAnimation('rule30', this)">Activate This Background</button>
+          <button class="btn btn-primary activate-btn" onclick="activateAnimation('rule30', this)">Activate This Background</button>
         </div>
 
         <!-- Turing Machine -->
@@ -469,7 +452,7 @@
             </ul>
           </div>
 
-          <button class="activate-btn" onclick="activateAnimation('turingMachine', this)">Activate This Background</button>
+          <button class="btn btn-primary activate-btn" onclick="activateAnimation('turingMachine', this)">Activate This Background</button>
         </div>
 
         <!-- Turing Pattern (Morphogenesis) -->
@@ -504,7 +487,7 @@
             </ul>
           </div>
 
-          <button class="activate-btn" onclick="activateAnimation('turingPattern', this)">Activate This Background</button>
+          <button class="btn btn-primary activate-btn" onclick="activateAnimation('turingPattern', this)">Activate This Background</button>
         </div>
 
       </div>

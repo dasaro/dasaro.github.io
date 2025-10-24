@@ -256,6 +256,74 @@ function showModal(id, content) {
 }
 ```
 
+### Button Standards (Unified System) 🎨
+
+**ALL buttons use the consistent red theme.** No exceptions.
+
+**Available Button Classes:**
+
+```html
+<!-- Base Button - Outlined Red -->
+<button class="btn">Click Me</button>
+<a href="#" class="btn">Link Button</a>
+
+<!-- Primary Button - Filled Red (use for main actions) -->
+<button class="btn btn-primary">Submit</button>
+<a href="#" class="btn btn-primary">Learn More →</a>
+
+<!-- Secondary Button - Outlined Light Red (use for secondary actions) -->
+<button class="btn btn-secondary">Cancel</button>
+
+<!-- Small Button - Compact variant -->
+<button class="btn btn-sm">Small</button>
+```
+
+**Button Specifications:**
+
+| Class | Background | Border | Text Color | Use Case |
+|-------|------------|--------|------------|----------|
+| `.btn` | Transparent | 2px solid red (#8B0000) | Red (#8B0000) | Default, neutral actions |
+| `.btn-primary` | Red (#8B0000) | 2px solid red | White | Primary CTAs, important actions |
+| `.btn-secondary` | Transparent | 2px solid light red (#8B4545) | Light red (#8B4545) | Secondary actions, cancel |
+| `.btn-sm` | (modifier) | 1px border | (inherits) | Compact spaces, inline actions |
+
+**Hover Effects (Consistent Across All):**
+- Lifts up 2px (`translateY(-2px)`)
+- Adds shadow (rgba(139, 0, 0, 0.2-0.3))
+- Background fills with red for outlined buttons
+- Background lightens to #CD5C5C for filled buttons
+
+**Critical Rules:**
+
+✅ **DO:**
+- Use `.btn` or `.btn-primary` for all buttons
+- Use red theme colors only (#8B0000, #8B4545, #CD5C5C)
+- Include hover/active states
+- Make buttons keyboard accessible
+- Use Fira Code monospace font
+
+❌ **DON'T:**
+- Create custom button styles (use existing classes)
+- Use blue, green, or other colors (red theme only!)
+- Mix button styles inconsistently
+- Skip accessibility attributes
+- Override unified button styles
+
+**Example Usage:**
+```html
+<!-- Publications page -->
+<button class="btn btn-primary" id="export-bibtex">Export BibTeX</button>
+<button class="btn btn-secondary" id="reset-filters">Reset Filters</button>
+
+<!-- Home page CTA -->
+<a href="publications.html" class="btn btn-primary">View All Publications →</a>
+
+<!-- Backgrounds page -->
+<button class="btn btn-primary activate-btn" onclick="activate()">
+  Activate This Background
+</button>
+```
+
 ---
 
 ## Navigation Component (🆕 v2.3 - Fully Dynamic)
@@ -570,7 +638,7 @@ git add . && git commit -m "Type: Description" && git push origin main
 
 ---
 
-**Version:** 2.3
+**Version:** 2.4
 **Status:** ✅ Production-Ready (Maintenance Mode)
 **Last Updated:** 2025-10-24
 
@@ -583,6 +651,15 @@ git add . && git commit -m "Type: Description" && git push origin main
 ---
 
 ## Version History
+
+**v2.4 (2025-10-24)** - Unified Button System & Enhanced Navigation
+- ✅ Standardized ALL buttons to consistent red theme
+- ✅ Created unified button system (`.btn`, `.btn-primary`, `.btn-secondary`)
+- ✅ Removed duplicate button definitions from CSS
+- ✅ Added fancy navigation effects (glassmorphism, animations, scroll effects)
+- ✅ Enhanced mobile menu with staggered animations
+- ✅ Documented button standards in CLAUDE.md
+- ✅ Fixed button inconsistencies across all pages
 
 **v2.3 (2025-10-24)** - Fully Dynamic Navigation
 - ✅ Navigation now fully dynamically generated and injected

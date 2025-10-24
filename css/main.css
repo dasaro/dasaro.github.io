@@ -383,34 +383,77 @@ section {
 }
 
 /* ============================================
-   Buttons
+   Unified Button System 🎨
+   All buttons use consistent red theme
    ============================================ */
+
+/* Base Button - Outlined Red */
 .btn {
   font-family: 'Fira Code', monospace;
   font-size: var(--text-sm);
-  padding: var(--space-sm) var(--space-md);
-  border: 2px solid var(--color-black);
+  font-weight: 500;
+  padding: var(--space-sm) var(--space-lg);
+  border: 2px solid var(--color-link);
   background: transparent;
-  color: var(--color-black);
+  color: var(--color-link);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
   display: inline-block;
+  border-radius: 6px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn:hover {
-  background: var(--color-black);
+  background: var(--color-link);
   color: var(--color-white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(139, 0, 0, 0.2);
 }
 
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Primary Button - Filled Red */
 .btn-primary {
-  background: var(--color-black);
+  background: var(--color-link);
+  border: 2px solid var(--color-link);
   color: var(--color-white);
 }
 
 .btn-primary:hover {
-  background: var(--color-accent-1);
-  border-color: var(--color-accent-1);
+  background: var(--color-link-hover);
+  border-color: var(--color-link-hover);
+  box-shadow: 0 6px 16px rgba(139, 0, 0, 0.3);
+}
+
+/* Secondary Button - Outlined Light Red */
+.btn-secondary {
+  background: transparent;
+  border: 2px solid var(--color-accent-2);
+  color: var(--color-accent-2);
+}
+
+.btn-secondary:hover {
+  background: var(--color-accent-2);
+  border-color: var(--color-accent-2);
+  color: var(--color-white);
+}
+
+/* Small Button Variant */
+.btn-sm {
+  padding: var(--space-xs) var(--space-sm);
+  font-size: var(--text-xs);
+  border-width: 1px;
+}
+
+/* Icon Buttons */
+.btn-icon {
+  display: inline-block;
+  margin-right: var(--space-xs);
 }
 
 /* ============================================
@@ -2036,27 +2079,7 @@ footer {
   margin-top: var(--space-md);
 }
 
-.btn-secondary {
-  background: transparent;
-  border: 2px solid var(--color-accent-2);
-  color: var(--color-accent-2);
-}
-
-.btn-secondary:hover {
-  background: var(--color-accent-2);
-  color: var(--color-white);
-}
-
-.btn-primary {
-  background: var(--color-link);
-  border: 2px solid var(--color-link);
-  color: var(--color-white);
-}
-
-.btn-primary:hover {
-  background: var(--color-link-hover);
-  border-color: var(--color-link-hover);
-}
+/* Button styles defined in main Unified Button System section above */
 
 /* Publications Count Display */
 .publications-count {
