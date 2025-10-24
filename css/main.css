@@ -365,7 +365,7 @@ section {
    Cards
    ============================================ */
 .card {
-  background: rgba(255, 255, 255, 0.85); /* Consistent transparency */
+  background: rgba(255, 255, 255, 0.75); /* More transparent to show background animations */
   border: 1px solid rgba(236, 240, 241, 0.8);
   border-radius: 8px;
   padding: var(--space-lg);
@@ -377,7 +377,7 @@ section {
 }
 
 .card:hover {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.90);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   border-color: var(--color-accent-2);
 }
