@@ -270,7 +270,39 @@ document.addEventListener('DOMContentLoaded', () => {
   // Log that the site is loaded
   console.log('Academic Website Loaded | Fabio Aurelio D\'Asaro');
   console.log('∀x (Logic(x) → Elegant(x))');
+
+  // Initialize fancy navigation scroll effect
+  initFancyNavigation();
 });
+
+// ============================================
+// Fancy Navigation Scroll Effects ✨
+// ============================================
+
+/**
+ * Adds fancy scroll effects to navigation bar
+ */
+function initFancyNavigation() {
+  const navWrapper = document.querySelector('.nav-wrapper');
+  if (!navWrapper) return;
+
+  let lastScroll = 0;
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+
+    // Add enhanced shadow effect when scrolled
+    if (currentScroll > 50) {
+      navWrapper.classList.add('scrolled');
+    } else {
+      navWrapper.classList.remove('scrolled');
+    }
+
+    lastScroll = currentScroll;
+  });
+
+  console.log('[main.js] ✨ Fancy navigation effects initialized');
+}
 
 // ============================================
 // Export functions for use in other modules
