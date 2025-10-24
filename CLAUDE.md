@@ -30,8 +30,8 @@
 ### Data Files (13 total)
 `personal.json`, `publications.json`, `teaching.json`, `supervision.json`, `projects.json`, `service.json`, `education.json`, `experience.json`, `skills.json`, `talks.json`, `groups.json`, `affiliations.json`, `dissertation_instructions.json`
 
-### Animations (12 total)
-Conway's Game of Life, Fibonacci Spiral, Fibonacci Boxes, Prime Spiral (Ulam), Riemann Zeta, Mandelbrot Set, Proof Tree, Situation Calculus, Pac-Man, Rule 30, Turing Machine, Turing Pattern
+### Animations (13 total)
+Conway's Game of Life, Fibonacci Spiral, Fibonacci Boxes, Prime Spiral (Ulam), Riemann Zeta, Mandelbrot Set, Proof Tree, Situation Calculus, Achilles and the Tortoise, Pac-Man, Rule 30, Turing Machine, Turing Pattern
 
 ---
 
@@ -67,7 +67,7 @@ dasaro.github.io/
 ├── js/
 │   ├── navigation.js (🆕 independent nav component)
 │   ├── utils.js, main.js, publications.js
-│   └── animations/ (AnimationController, AnimationBase, 12 animation classes)
+│   └── animations/ (AnimationController, AnimationBase, 13 animation classes)
 ├── data/ (13 JSON files + SCHEMAS.md)
 ├── images/ (profile, research, institutions, favicon)
 └── CLAUDE.md, README.md, BUGS_FOUND.md
@@ -565,6 +565,7 @@ git push origin main
 9. Commit without testing
 10. Use single quotes in JSON
 11. Skip SCHEMAS.md when changing JSON
+12. **Add animation without updating `backgrounds.html`** - MANDATORY to add educational card
 
 ### ALWAYS ✅
 
@@ -578,6 +579,7 @@ git push origin main
 8. Document new features (SCHEMAS.md, COMPONENTS.md, CLAUDE.md)
 9. Use CSS variables
 10. Follow accessibility standards
+11. **Update `backgrounds.html` when adding animations** - Add educational card with story, facts, and activation button
 
 ---
 

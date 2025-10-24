@@ -17,6 +17,7 @@ import { Rule30 } from './Rule30.js';
 import { TuringMachine } from './TuringMachine.js';
 import { TuringPattern } from './TuringPattern.js';
 import { SituationCalculus } from './SituationCalculus.js';
+import { AchillesAndTortoise } from './AchillesAndTortoise.js';
 
 console.log('[AnimationController] All imports successful');
 
@@ -46,7 +47,8 @@ export class AnimationController {
             ['rule30', Rule30],
             ['turingMachine', TuringMachine],
             ['turingPattern', TuringPattern],
-            ['situationCalculus', SituationCalculus]
+            ['situationCalculus', SituationCalculus],
+            ['achillesAndTortoise', AchillesAndTortoise]
         ]);
 
         if (this.canvas && this.ctx) {
