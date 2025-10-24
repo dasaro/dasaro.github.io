@@ -22,32 +22,8 @@
     <span class="symbol">∀</span>
   </button>
 
-  <!-- Navigation -->
-  <div class="nav-wrapper">
-    <nav>
-      <a href="index.html" class="nav-brand">
-        <span class="logic-symbol">∀</span>
-        F.A. D'Asaro
-      </a>
-
-      <button class="nav-toggle" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <ul class="nav-menu">
-        <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="about.html" class="nav-link">About</a></li>
-        <li><a href="publications.html" class="nav-link">Publications</a></li>
-        <li><a href="teaching.html" class="nav-link">Teaching</a></li>
-        <li><a href="projects.html" class="nav-link">Projects</a></li>
-        <li><a href="service.html" class="nav-link">Service</a></li>
-        <li><a href="backgrounds.html" class="nav-link">Backgrounds</a></li>
-        <li><a href="contact.html" class="nav-link">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
+  <!-- Navigation (dynamically injected by navigation.js) -->
+  <div id="nav-placeholder"></div>
 
   <!-- Main Content -->
   <main>
@@ -58,25 +34,8 @@
         <!-- Current Projects -->
         <div id="current-projects">
           <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Current Projects</h2>
-
-          <div class="card project-card current scroll-animate">
-            <span class="project-status">CURRENT</span>
-            <h3>FAIR - Future AI Research</h3>
-            <p><strong>Funding:</strong> PNRR Extended Partnership (PE00000013)</p>
-            <p><strong>Role:</strong> Postdoctoral Researcher</p>
-            <p><strong>Period:</strong> 2025 - Present</p>
-            <p><strong>Institution:</strong> University of Salento</p>
-            <p><strong>Spoke:</strong> Spoke 6 (Symbiotic AI)</p>
-            <p><strong>PI:</strong> Paolo Baldi</p>
-            <p>
-              Working on logic for ethical human–AI collaboration (eDefAI). This project explores
-              formal frameworks for building trustworthy and symbiotic AI systems that can work
-              seamlessly with humans while maintaining ethical principles.
-            </p>
-          </div>
-
-          <div id="current-projects-container" class="mt-lg">
-            <p class="loading-message">Additional current projects will be loaded from data/projects.json</p>
+          <div id="current-projects-container">
+            <p class="loading-message">Loading current projects...</p>
           </div>
         </div>
 
@@ -107,9 +66,10 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="js/main.js?v=30"></script>
-  <script type="module" src="js/animations/AnimationController.js?v=30"></script>
-  <script src="js/logical-symbols.js"></script>
+    <script src="js/navigation.js?v=31"></script>
+  <script src="js/main.js?v=31"></script>
+  <script type="module" src="js/animations/AnimationController.js?v=31"></script>
+  <script src="js/logical-symbols.js?v=31"></script>
 
   <!-- Page-specific script -->
   <script>

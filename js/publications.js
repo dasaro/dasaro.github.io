@@ -53,6 +53,9 @@ class PublicationsManager {
       // Load publications data
       await this.loadPublications();
 
+      // Load scholar metrics
+      await this.loadScholarMetrics();
+
       // Populate filter options
       this.populateFilterOptions();
 
@@ -90,6 +93,47 @@ class PublicationsManager {
 
     console.log('[PublicationsManager] Loaded', this.allPublications.length, 'total publications');
     console.log('[PublicationsManager] Selected publications:', this.selectedPublicationIds.length);
+  }
+
+  /**
+   * Load and display scholar metrics from personal.json
+   */
+  async loadScholarMetrics() {
+    console.log('[PublicationsManager] Loading scholar metrics...');
+
+    const personalData = await loadJSON('./data/personal.json');
+
+    if (!personalData || !personalData.scholar_metrics) {
+      console.warn('[PublicationsManager] Scholar metrics not available');
+      return;
+    }
+
+    const metrics = personalData.scholar_metrics;
+
+    // Update citations
+    const citationsEl = document.getElementById('pub-citations');
+    if (citationsEl) citationsEl.textContent = metrics.citations;
+
+    // Update h-index
+    const hIndexEl = document.getElementById('pub-h-index');
+    if (hIndexEl) hIndexEl.textContent = metrics.h_index;
+
+    // Update i10-index
+    const i10IndexEl = document.getElementById('pub-i10-index');
+    if (i10IndexEl) i10IndexEl.textContent = metrics.i10_index;
+
+    // Update last updated date
+    const updatedEl = document.getElementById('pub-metrics-updated');
+    if (updatedEl && metrics.last_updated) {
+      const date = new Date(metrics.last_updated);
+      const formatted = date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long'
+      });
+      updatedEl.textContent = `Last updated: ${formatted}`;
+    }
+
+    console.log('[PublicationsManager] ✓ Scholar metrics updated');
   }
 
   /**

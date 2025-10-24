@@ -22,32 +22,8 @@
     <span class="symbol">∀</span>
   </button>
 
-  <!-- Navigation -->
-  <div class="nav-wrapper">
-    <nav>
-      <a href="index.html" class="nav-brand">
-        <span class="logic-symbol">∀</span>
-        F.A. D'Asaro
-      </a>
-
-      <button class="nav-toggle" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <ul class="nav-menu">
-        <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="about.html" class="nav-link">About</a></li>
-        <li><a href="publications.html" class="nav-link">Publications</a></li>
-        <li><a href="teaching.html" class="nav-link">Teaching</a></li>
-        <li><a href="projects.html" class="nav-link">Projects</a></li>
-        <li><a href="service.html" class="nav-link">Service</a></li>
-        <li><a href="backgrounds.html" class="nav-link">Backgrounds</a></li>
-        <li><a href="contact.html" class="nav-link">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
+  <!-- Navigation (dynamically injected by navigation.js) -->
+  <div id="nav-placeholder"></div>
 
   <!-- Main Content -->
   <main>
@@ -141,23 +117,12 @@
         <!-- Location -->
         <div class="location-info fade-in">
           <h2 class="section-title">Location</h2>
-          <div class="grid grid-2">
-            <div>
-              <h3>Primary Affiliation</h3>
-              <p><strong>University of Salento</strong></p>
-              <p>Department of Human Studies</p>
-              <p>Lecce, Italy</p>
-            </div>
-            <div>
-              <h3>Secondary Affiliation</h3>
-              <p><strong>University of Verona</strong></p>
-              <p>Department of Cultures and Civilizations</p>
-              <p>Verona, Italy</p>
-            </div>
+          <div id="affiliations-container" class="grid grid-2">
+            <p class="loading-message">Loading affiliations...</p>
           </div>
-          <p class="mt-md">
+          <p class="mt-md" id="birthplace-container">
             <span class="logic-symbol">⊢</span>
-            <em>Birthplace:</em> Palermo, Italy
+            <em>Birthplace:</em> <span id="birthplace-text">—</span>
           </p>
         </div>
 
@@ -194,9 +159,10 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="js/main.js?v=30"></script>
-  <script type="module" src="js/animations/AnimationController.js?v=30"></script>
-  <script src="js/logical-symbols.js"></script>
+    <script src="js/navigation.js?v=31"></script>
+  <script src="js/main.js?v=31"></script>
+  <script type="module" src="js/animations/AnimationController.js?v=31"></script>
+  <script src="js/logical-symbols.js?v=31"></script>
 
   <script>
     // Copy to clipboard function
@@ -215,6 +181,46 @@
         button.textContent = 'Error';
       });
     }
+
+    // Load affiliations and birthplace from JSON
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        // Load experience data for affiliations
+        const experienceData = await loadJSON('./data/experience.json', 'Contact');
+        const personalData = await loadJSON('./data/personal.json', 'Contact');
+
+        // Load current affiliations (positions where current: true)
+        const currentPositions = experienceData?.positions?.filter(p => p.current) || [];
+
+        const affiliationsContainer = document.getElementById('affiliations-container');
+
+        if (currentPositions.length > 0 && affiliationsContainer) {
+          const html = currentPositions.map((pos, index) => `
+            <div>
+              <h3>${index === 0 ? 'Primary' : 'Secondary'} Affiliation</h3>
+              <p><strong>${pos.institution}</strong></p>
+              <p>${pos.department}</p>
+              <p>${pos.location}</p>
+            </div>
+          `).join('');
+
+          affiliationsContainer.innerHTML = html;
+          console.log('[Contact] ✓ Loaded', currentPositions.length, 'current affiliations');
+        } else if (affiliationsContainer) {
+          affiliationsContainer.innerHTML = '<p>No current affiliations found.</p>';
+        }
+
+        // Load birthplace
+        const birthplaceText = document.getElementById('birthplace-text');
+        if (birthplaceText && personalData?.birthplace) {
+          birthplaceText.textContent = personalData.birthplace;
+          console.log('[Contact] ✓ Loaded birthplace');
+        }
+
+      } catch (error) {
+        console.error('[Contact] Error loading affiliations:', error);
+      }
+    });
   </script>
 </body>
 </html>

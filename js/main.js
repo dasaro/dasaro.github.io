@@ -36,58 +36,27 @@ async function loadJSON(path) {
 // ============================================
 // Navigation Functionality
 // ============================================
+// NOTE: Navigation is now handled by js/navigation.js
+// This section kept for backward compatibility but delegates to NavigationManager
 
 /**
  * Initializes navigation menu including mobile hamburger menu
+ * @deprecated Use NavigationManager.init() from navigation.js instead
  */
 function initNavigation() {
-  const navToggle = document.querySelector('.nav-toggle');
-  const navMenu = document.querySelector('.nav-menu');
-  const navLinks = document.querySelectorAll('.nav-link');
-
-  // Mobile menu toggle
-  if (navToggle && navMenu) {
-    navToggle.addEventListener('click', () => {
-      navToggle.classList.toggle('active');
-      navMenu.classList.toggle('active');
-    });
-
-    // Close menu when clicking on a link
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        navToggle.classList.remove('active');
-        navMenu.classList.remove('active');
-      });
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
-        navToggle.classList.remove('active');
-        navMenu.classList.remove('active');
-      }
-    });
-  }
-
-  // Set active page in navigation
-  setActivePage();
+  console.log('[main.js] initNavigation() called - delegating to NavigationManager');
+  // Navigation is now handled by navigation.js
+  // This function kept for backward compatibility
 }
 
 /**
  * Sets the active class on the current page's navigation link
+ * @deprecated Use NavigationManager.setActivePage() instead
  */
 function setActivePage() {
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  const navLinks = document.querySelectorAll('.nav-link');
-
-  navLinks.forEach(link => {
-    const linkPage = link.getAttribute('href');
-    if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
-      link.classList.add('active');
-    } else {
-      link.classList.remove('active');
-    }
-  });
+  console.log('[main.js] setActivePage() called - delegating to NavigationManager');
+  // Navigation is now handled by navigation.js
+  // This function kept for backward compatibility
 }
 
 // ============================================
@@ -287,7 +256,7 @@ async function loadFooterData() {
 
 document.addEventListener('DOMContentLoaded', () => {
   // Core initialization
-  initNavigation();
+  // NOTE: Navigation handled by navigation.js (auto-initializes)
   initSmoothScroll();
   initScrollAnimations();
   updateFooterYear();

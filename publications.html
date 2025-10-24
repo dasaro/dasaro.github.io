@@ -268,32 +268,8 @@
     <span class="symbol">∀</span>
   </button>
 
-  <!-- Navigation -->
-  <div class="nav-wrapper">
-    <nav>
-      <a href="index.html" class="nav-brand">
-        <span class="logic-symbol">∀</span>
-        F.A. D'Asaro
-      </a>
-
-      <button class="nav-toggle" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <ul class="nav-menu">
-        <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="about.html" class="nav-link">About</a></li>
-        <li><a href="publications.html" class="nav-link">Publications</a></li>
-        <li><a href="teaching.html" class="nav-link">Teaching</a></li>
-        <li><a href="projects.html" class="nav-link">Projects</a></li>
-        <li><a href="service.html" class="nav-link">Service</a></li>
-        <li><a href="backgrounds.html" class="nav-link">Backgrounds</a></li>
-        <li><a href="contact.html" class="nav-link">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
+  <!-- Navigation (dynamically injected by navigation.js) -->
+  <div id="nav-placeholder"></div>
 
   <!-- Main Content -->
   <main>
@@ -306,19 +282,19 @@
           <h3>Google Scholar Metrics</h3>
           <div class="metrics-grid grid grid-3">
             <div class="metric">
-              <div class="metric-value">227</div>
+              <div class="metric-value" id="pub-citations">—</div>
               <div class="metric-label">Citations</div>
             </div>
             <div class="metric">
-              <div class="metric-value">10</div>
+              <div class="metric-value" id="pub-h-index">—</div>
               <div class="metric-label">h-index</div>
             </div>
             <div class="metric">
-              <div class="metric-value">10</div>
+              <div class="metric-value" id="pub-i10-index">—</div>
               <div class="metric-label">i10-index</div>
             </div>
           </div>
-          <p class="metric-note">Last updated: September 2025</p>
+          <p class="metric-note" id="pub-metrics-updated">Last updated: —</p>
         </div>
 
         <!-- Filter Controls -->
@@ -420,9 +396,10 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/main.js?v=30"></script>
-  <script type="module" src="js/animations/AnimationController.js?v=30"></script>
-  <script src="js/logical-symbols.js"></script>
+    <script src="js/navigation.js?v=31"></script>
+  <script src="js/main.js?v=31"></script>
+  <script type="module" src="js/animations/AnimationController.js?v=31"></script>
+  <script src="js/logical-symbols.js?v=31"></script>
   <script type="module" src="js/publications.js?v=33"></script>
 </body>
 </html>

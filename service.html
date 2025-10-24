@@ -22,32 +22,8 @@
     <span class="symbol">∀</span>
   </button>
 
-  <!-- Navigation -->
-  <div class="nav-wrapper">
-    <nav>
-      <a href="index.html" class="nav-brand">
-        <span class="logic-symbol">∀</span>
-        F.A. D'Asaro
-      </a>
-
-      <button class="nav-toggle" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <ul class="nav-menu">
-        <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="about.html" class="nav-link">About</a></li>
-        <li><a href="publications.html" class="nav-link">Publications</a></li>
-        <li><a href="teaching.html" class="nav-link">Teaching</a></li>
-        <li><a href="projects.html" class="nav-link">Projects</a></li>
-        <li><a href="service.html" class="nav-link">Service</a></li>
-        <li><a href="backgrounds.html" class="nav-link">Backgrounds</a></li>
-        <li><a href="contact.html" class="nav-link">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
+  <!-- Navigation (dynamically injected by navigation.js) -->
+  <div id="nav-placeholder"></div>
 
   <!-- Main Content -->
   <main>
@@ -122,9 +98,10 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="js/main.js?v=30"></script>
-  <script type="module" src="js/animations/AnimationController.js?v=30"></script>
-  <script src="js/logical-symbols.js"></script>
+    <script src="js/navigation.js?v=31"></script>
+  <script src="js/main.js?v=31"></script>
+  <script type="module" src="js/animations/AnimationController.js?v=31"></script>
+  <script src="js/logical-symbols.js?v=31"></script>
 
   <script>
     // Load and display service data
