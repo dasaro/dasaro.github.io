@@ -580,6 +580,7 @@ git push origin main
 9. Use CSS variables
 10. Follow accessibility standards
 11. **Update `backgrounds.html` when adding animations** - Add educational card with story, facts, and activation button
+12. **Let AnimationBase handle frame requests** - Don't call `requestAnimationFrame` in individual animations
 
 ---
 
@@ -634,6 +635,13 @@ git push origin main
 - Cache DOM queries
 - Debounce search inputs
 - Use `requestAnimationFrame` for animations
+
+**Background Animations (CPU Optimization):**
+- **Frame rate throttling:** All animations run at 30fps (not 60fps) to save ~50% CPU
+- **Page Visibility API:** Animations automatically pause when tab is hidden
+- **Centralized frame loop:** `AnimationBase.throttledAnimate()` handles all frame requests
+- **Individual animations:** Just implement `animate()` - no `requestAnimationFrame` calls
+- **Performance monitoring:** Console logs show pause/resume events
 
 **CSS:**
 - Use CSS transforms (GPU accelerated)

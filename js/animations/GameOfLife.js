@@ -2,13 +2,10 @@
 // CONWAY'S GAME OF LIFE
 // Clean, simple cellular automaton
 // ==========================================
-
 import { AnimationBase } from './AnimationBase.js';
-
 export class GameOfLife extends AnimationBase {
     constructor(canvas, ctx) {
         super(canvas, ctx);
-
         // Animation-specific config
         this.config = {
             opacity: 0.30,
@@ -17,12 +14,10 @@ export class GameOfLife extends AnimationBase {
             reseedInterval: 400,
             initialDensity: 0.15
         };
-
         // Initialize grid
         this.frameCount = 0;
         this.setupGrid();
     }
-
     static getMetadata() {
         return {
             name: "Conway's Game of Life",
@@ -30,20 +25,16 @@ export class GameOfLife extends AnimationBase {
             description: 'Cellular automaton with red cells'
         };
     }
-
     setupGrid() {
         const cols = Math.floor(this.canvas.width / this.config.cellSize);
         const rows = Math.floor(this.canvas.height / this.config.cellSize);
-
         this.cols = cols;
         this.rows = rows;
-
         // Initialize grid - simple and straightforward
         this.grid = Array(rows).fill().map(() =>
             Array(cols).fill().map(() => Math.random() < this.config.initialDensity ? 1 : 0)
         );
     }
-
     countNeighbors(x, y) {
         let count = 0;
         for (let i = -1; i <= 1; i++) {
@@ -56,12 +47,9 @@ export class GameOfLife extends AnimationBase {
         }
         return count;
     }
-
     animate() {
         if (!this.isRunning) return;
-
         this.frameCount++;
-
         // Update every updateInterval frames
         if (this.frameCount % this.config.updateInterval === 0) {
             // Compute next generation
@@ -74,11 +62,9 @@ export class GameOfLife extends AnimationBase {
                 })
             );
             this.grid = nextGrid;
-
             // Clear canvas
             this.ctx.fillStyle = '#FFFFFF';
             this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-
             // Draw cells
             for (let y = 0; y < this.rows; y++) {
                 for (let x = 0; x < this.cols; x++) {
@@ -106,7 +92,6 @@ export class GameOfLife extends AnimationBase {
                     }
                 }
             }
-
             // Reseed to prevent extinction
             if (this.frameCount % this.config.reseedInterval === 0) {
                 for (let i = 0; i < 5; i++) {
@@ -116,7 +101,5 @@ export class GameOfLife extends AnimationBase {
                 }
             }
         }
-
-        this.animationId = requestAnimationFrame(() => this.animate());
     }
 }

@@ -65,6 +65,38 @@ export class AnimationController {
     setupCanvas() {
         this.resizeCanvas();
         window.addEventListener('resize', () => this.resizeCanvas());
+        this.setupVisibilityListener();
+    }
+
+    setupVisibilityListener() {
+        // Pause animations when tab is hidden to save CPU
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                console.log('[AnimationController] ⏸ Tab hidden - pausing animation to save CPU');
+                this.pause();
+            } else {
+                console.log('[AnimationController] ▶ Tab visible - resuming animation');
+                this.resume();
+            }
+        });
+    }
+
+    pause() {
+        if (this.currentAnimation && this.currentAnimation.isRunning) {
+            this.currentAnimation.isRunning = false;
+            if (this.currentAnimation.animationId) {
+                cancelAnimationFrame(this.currentAnimation.animationId);
+                this.currentAnimation.animationId = null;
+            }
+        }
+    }
+
+    resume() {
+        if (this.currentAnimation && !this.currentAnimation.isRunning) {
+            this.currentAnimation.isRunning = true;
+            this.currentAnimation.lastFrameTime = performance.now();
+            this.currentAnimation.throttledAnimate(performance.now());
+        }
     }
 
     resizeCanvas() {
