@@ -326,6 +326,62 @@ function showModal(id, content) {
 
 ---
 
+## Metrics Widget Standards (MANDATORY) ⚠️
+
+**CRITICAL RULE: The metrics widget MUST use the SAME style on ALL pages.**
+
+The Scholar Metrics widget appears on:
+- `index.html` (home page)
+- `publications.html` (publications page)
+
+**Mandatory Requirements:**
+
+✅ **DO:**
+- Use the unified light theme styles from `main.css`
+- Light background: `rgba(255, 255, 255, 0.95)`
+- Dark red metric values: `var(--color-link)` (#8B0000)
+- Subtle red border: `rgba(139, 0, 0, 0.2)`
+- Consistent with card design
+
+❌ **DON'T:**
+- Override `.metrics-widget` styles in individual HTML files
+- Use dark theme (`var(--color-code-bg)`)
+- Use white text on dark background
+- Create page-specific styles for metrics widget
+
+**HTML Structure:**
+```html
+<div class="card metrics-widget">
+  <h3>Scholar Metrics</h3>
+  <div class="metrics-grid grid grid-3">
+    <div class="metric">
+      <div class="metric-value" id="citations">—</div>
+      <div class="metric-label">Citations</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value" id="h-index">—</div>
+      <div class="metric-label">h-index</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value" id="i10-index">—</div>
+      <div class="metric-label">i10-index</div>
+    </div>
+  </div>
+  <p class="metric-note" id="metrics-updated">Last updated: —</p>
+</div>
+```
+
+**CSS Location:**
+All metrics widget styles are defined in `css/main.css` starting at line ~900.
+
+**Why This Matters:**
+The metrics widget was previously inconsistent - dark on one page, light on another. This creates a jarring user experience and breaks visual consistency. The unified light theme ensures the widget blends seamlessly with the rest of the site's professional, clean aesthetic.
+
+**Enforcement:**
+If you find `.metrics-widget` styles in `<style>` tags within HTML files, **remove them immediately**. All styling must come from `main.css`.
+
+---
+
 ## Navigation Component (🆕 v2.3 - Fully Dynamic)
 
 **File:** `js/navigation.js`
@@ -500,14 +556,15 @@ git push origin main
 
 1. Hardcode content in HTML
 2. Use inline styles (except dynamic JS)
-3. Load scripts in wrong order
-4. Forget null checks
-5. Forget try-catch on async functions
-6. Use different cache versions on same page
-7. Load `publications.js` globally (only on `publications.html`)
-8. Commit without testing
-9. Use single quotes in JSON
-10. Skip SCHEMAS.md when changing JSON
+3. **Override `.metrics-widget` styles in HTML files** - MUST use unified styles from main.css
+4. Load scripts in wrong order
+5. Forget null checks
+6. Forget try-catch on async functions
+7. Use different cache versions on same page
+8. Load `publications.js` globally (only on `publications.html`)
+9. Commit without testing
+10. Use single quotes in JSON
+11. Skip SCHEMAS.md when changing JSON
 
 ### ALWAYS ✅
 
@@ -638,7 +695,7 @@ git add . && git commit -m "Type: Description" && git push origin main
 
 ---
 
-**Version:** 2.4
+**Version:** 2.5
 **Status:** ✅ Production-Ready (Maintenance Mode)
 **Last Updated:** 2025-10-24
 
@@ -651,6 +708,15 @@ git add . && git commit -m "Type: Description" && git push origin main
 ---
 
 ## Version History
+
+**v2.5 (2025-10-24)** - Metrics Widget Consistency (MANDATORY)
+- ✅ **Enforced unified metrics widget styling across ALL pages**
+- ✅ Removed dark theme overrides from publications.html
+- ✅ Metrics widget now uses light theme consistently on index.html AND publications.html
+- ✅ Added "Metrics Widget Standards (MANDATORY)" section to CLAUDE.md
+- ✅ Added rule #3 to NEVER list: Do not override .metrics-widget styles
+- ✅ Documented enforcement policy for metrics widget styling
+- ✅ Updated all profile links to use data from personal.json (GitHub, Scholar, ORCID)
 
 **v2.4 (2025-10-24)** - Unified Button System & Enhanced Navigation
 - ✅ Standardized ALL buttons to consistent red theme
