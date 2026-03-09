@@ -16,6 +16,7 @@ export class Rule30 extends AnimationBase {
         this.rows = Math.floor(this.canvas.height / this.config.cellSize);
         // Rule 30: [111, 110, 101, 100, 011, 010, 001, 000] -> [0, 0, 0, 1, 1, 1, 1, 0]
         this.rule30 = [0, 1, 1, 1, 1, 0, 0, 0];
+        this.lastGenerationTime = 0;
         this.initializeState();
     }
     static getMetadata() {
@@ -107,49 +108,55 @@ export class Rule30 extends AnimationBase {
         }
         this.cells = newCells;
     }
-    animate() {
+    animate(currentTime) {
         if (!this.isRunning) return;
+
+        if (!this.lastGenerationTime) {
+            this.lastGenerationTime = currentTime;
+        }
+
+        if (this.currentRow >= this.rows) {
+            if (!this.timeoutId) {
+                this.timeoutId = setTimeout(() => {
+                    if (!this.isRunning) return;
+
+                    this.timeoutId = null;
+                    this.ctx.fillStyle = '#FFFFFF';
+                    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+                    this.initializeState();
+                    this.lastGenerationTime = performance.now();
+                }, this.config.restartDelay);
+            }
+            return;
+        }
+
+        if (currentTime - this.lastGenerationTime < this.config.generationDelay) {
+            return;
+        }
+
+        this.lastGenerationTime = currentTime;
+
         // Gentle fade instead of harsh clear
         this.ctx.fillStyle = `rgba(255, 255, 255, ${this.config.fadeAmount})`;
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-        // Only draw and compute if we're within bounds
-        if (this.currentRow < this.rows) {
-            const y = this.currentRow;
-            // Mark current generation's live cells
-            for (let x = 0; x < this.cols; x++) {
-                if (this.cells[x] === 1) {
-                    this.cellBirthGen[y][x] = this.generation;
-                }
+
+        const y = this.currentRow;
+        for (let x = 0; x < this.cols; x++) {
+            if (this.cells[x] === 1) {
+                this.cellBirthGen[y][x] = this.generation;
             }
-            // Redraw ALL cells with updated ages
-            this.drawAllCells();
-            // Compute next generation
-            this.computeNextGeneration();
-            this.currentRow++;
-            this.generation++;
         }
-        // When animation reaches the bottom, RESTART FROM BEGINNING
-        if (this.currentRow >= this.rows) {
-            this.timeoutId = setTimeout(() => {
-                if (!this.isRunning) return;
-                // COMPLETE RESTART: Clear everything and start fresh
-                this.ctx.fillStyle = '#FFFFFF';
-                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-                // Reset to initial state
-                this.initializeState();
-                // Resume animation
-                this.animate();
-            }, this.config.restartDelay);
-            return; // Stop this animation loop
-        }
-        // Delay between generations
-        this.timeoutId = setTimeout(() => {
-        }, this.config.generationDelay);
+
+        this.drawAllCells();
+        this.computeNextGeneration();
+        this.currentRow++;
+        this.generation++;
     }
     start() {
         // Initial clear
         this.ctx.fillStyle = '#FFFFFF';
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        this.lastGenerationTime = 0;
         super.start();
     }
 }

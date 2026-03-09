@@ -512,10 +512,17 @@
   <!-- Scripts -->
     <script src="js/navigation.js?v=32"></script>
   <script src="js/main.js?v=32"></script>
-  <script type="module" src="js/animations/AnimationController.js?v=31"></script>
+  <script type="module" src="js/animations/AnimationController.js?v=32"></script>
   <script src="js/logical-symbols.js?v=33"></script>
 
   <script>
+    window.addEventListener('background-animation-change', (event) => {
+      const animationKey = event.detail?.key;
+      if (animationKey) {
+        setActiveAnimation(animationKey);
+      }
+    });
+
     function setActiveAnimation(animationKey) {
       document.querySelectorAll('.activate-btn').forEach(btn => {
         const isActive = btn.closest('.animation-card')?.dataset.animation === animationKey;
@@ -571,10 +578,6 @@
             activateAnimation(animationKey);
           }
         });
-      });
-
-      document.getElementById('animation-toggle')?.addEventListener('click', () => {
-        setTimeout(syncActiveAnimation, 0);
       });
 
       const syncWhenReady = (attempts = 0) => {

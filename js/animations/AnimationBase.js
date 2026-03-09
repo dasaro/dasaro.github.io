@@ -63,6 +63,9 @@ export class AnimationBase {
             this.timeoutId = null;
         }
 
+        this.lastFrameTime = 0;
+        this.cleanup();
+
         // Clear canvas
         if (this.ctx && this.canvas) {
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -75,6 +78,8 @@ export class AnimationBase {
     animate() {
         throw new Error('animate() must be implemented by subclass');
     }
+
+    cleanup() {}
 
     // Get animation metadata
     static getMetadata() {

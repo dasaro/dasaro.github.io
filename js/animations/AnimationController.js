@@ -3,8 +3,6 @@
 // Main controller for managing background animations
 // ==========================================
 
-console.log('[AnimationController] Module loaded');
-
 import { GameOfLife } from './GameOfLife.js';
 import { FibonacciSpiral } from './FibonacciSpiral.js';
 import { FibonacciBoxes } from './FibonacciBoxes.js';
@@ -19,20 +17,16 @@ import { TuringPattern } from './TuringPattern.js';
 import { SituationCalculus } from './SituationCalculus.js';
 import { AchillesAndTortoise } from './AchillesAndTortoise.js';
 
-console.log('[AnimationController] All imports successful');
+const ANIMATION_CHANGE_EVENT = 'background-animation-change';
 
 export class AnimationController {
     constructor() {
-        console.log('[AnimationController] Constructor called');
-        console.log('[AnimationController] Canvas element:', document.getElementById('bg-animation-canvas'));
-
         this.canvas = document.getElementById('bg-animation-canvas');
         this.ctx = this.canvas ? this.canvas.getContext('2d') : null;
         this.currentAnimation = null;
         this.enabled = true;
-
-        console.log('[AnimationController] Canvas:', this.canvas);
-        console.log('[AnimationController] Context:', this.ctx);
+        this.resizeTimeoutId = null;
+        this.toggleButton = null;
 
         // Register all available animations
         this.animations = new Map([
@@ -51,52 +45,91 @@ export class AnimationController {
             ['achillesAndTortoise', AchillesAndTortoise]
         ]);
 
-        if (this.canvas && this.ctx) {
-            this.setupCanvas();
-            this.setupToggleButton();
-            this.setupKeyboardShortcut();
-            this.loadPreferences();
-            this.startRandomAnimation();
-        } else {
-            console.error('[AnimationController] Failed to initialize: Canvas or context not found');
+        this.animationSymbols = new Map([
+            ['gameOfLife', '⊞'],
+            ['fibonacci', 'φ'],
+            ['fibonacciBoxes', '□'],
+            ['primes', '⊢'],
+            ['riemann', 'ζ'],
+            ['mandelbrot', '∞'],
+            ['proofTree', '⊢'],
+            ['pacman', '👾'],
+            ['rule30', '◼'],
+            ['turingMachine', '⊢'],
+            ['turingPattern', '∇'],
+            ['situationCalculus', '⊨'],
+            ['achillesAndTortoise', '∞']
+        ]);
+
+        if (!this.canvas || !this.ctx) {
+            return;
         }
+
+        this.setupCanvas();
+        this.setupToggleButton();
+        this.setupKeyboardShortcut();
+        this.loadPreferences();
+        this.startInitialAnimation();
     }
 
     setupCanvas() {
         this.resizeCanvas();
-        window.addEventListener('resize', () => this.resizeCanvas());
+        window.addEventListener('resize', () => {
+            this.resizeCanvas();
+
+            if (this.resizeTimeoutId) {
+                clearTimeout(this.resizeTimeoutId);
+            }
+
+            this.resizeTimeoutId = setTimeout(() => {
+                this.resizeTimeoutId = null;
+
+                const currentKey = this.getCurrentKey();
+                if (currentKey && !document.hidden) {
+                    this.start(currentKey);
+                }
+            }, 150);
+        });
+
         this.setupVisibilityListener();
     }
 
     setupVisibilityListener() {
-        // Pause animations when tab is hidden to save CPU
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) {
-                console.log('[AnimationController] ⏸ Tab hidden - pausing animation to save CPU');
                 this.pause();
             } else {
-                console.log('[AnimationController] ▶ Tab visible - resuming animation');
                 this.resume();
             }
         });
     }
 
     pause() {
-        if (this.currentAnimation && this.currentAnimation.isRunning) {
-            this.currentAnimation.isRunning = false;
-            if (this.currentAnimation.animationId) {
-                cancelAnimationFrame(this.currentAnimation.animationId);
-                this.currentAnimation.animationId = null;
-            }
+        if (!this.currentAnimation || !this.currentAnimation.isRunning) {
+            return;
+        }
+
+        this.currentAnimation.isRunning = false;
+
+        if (this.currentAnimation.animationId) {
+            cancelAnimationFrame(this.currentAnimation.animationId);
+            this.currentAnimation.animationId = null;
+        }
+
+        if (this.currentAnimation.timeoutId) {
+            clearTimeout(this.currentAnimation.timeoutId);
+            this.currentAnimation.timeoutId = null;
         }
     }
 
     resume() {
-        if (this.currentAnimation && !this.currentAnimation.isRunning) {
-            this.currentAnimation.isRunning = true;
-            this.currentAnimation.lastFrameTime = performance.now();
-            this.currentAnimation.throttledAnimate(performance.now());
+        if (!this.currentAnimation || this.currentAnimation.isRunning) {
+            return;
         }
+
+        this.currentAnimation.isRunning = true;
+        this.currentAnimation.lastFrameTime = performance.now();
+        this.currentAnimation.throttledAnimate(this.currentAnimation.lastFrameTime);
     }
 
     resizeCanvas() {
@@ -105,46 +138,90 @@ export class AnimationController {
     }
 
     loadPreferences() {
-        const savedEnabled = localStorage.getItem('bg-animation-enabled');
-        // Clear any 'false' value from localStorage - animations enabled by default
-        if (savedEnabled === 'false') {
-            localStorage.removeItem('bg-animation-enabled');
+        try {
+            const savedEnabled = localStorage.getItem('bg-animation-enabled');
+            if (savedEnabled === 'false') {
+                localStorage.removeItem('bg-animation-enabled');
+            }
+        } catch (error) {
+            // Ignore storage access failures and keep animations enabled.
         }
+
         this.enabled = true;
     }
 
-    startRandomAnimation() {
-        if (!this.enabled) return;
+    getRandomAnimationKey(excludeKey = null) {
+        const keys = Array.from(this.animations.keys()).filter(key => key !== excludeKey);
+        if (keys.length === 0) {
+            return null;
+        }
 
-        const keys = Array.from(this.animations.keys());
-        const seed = new Date().getTime();
-        const randomIndex = seed % keys.length;
-        const randomKey = keys[randomIndex];
+        if (window.crypto && typeof window.crypto.getRandomValues === 'function') {
+            const randomValues = new Uint32Array(1);
+            window.crypto.getRandomValues(randomValues);
+            return keys[randomValues[0] % keys.length];
+        }
 
-        this.start(randomKey);
+        return keys[Math.floor(Math.random() * keys.length)];
     }
 
-    start(animationKey) {
-        this.stop();
+    getNextAnimationKey(currentKey) {
+        const keys = Array.from(this.animations.keys());
+        if (keys.length === 0) {
+            return null;
+        }
 
-        const AnimationClass = this.animations.get(animationKey);
-        if (!AnimationClass) {
-            console.error(`[AnimationController] Animation not found: ${animationKey}`);
+        if (!currentKey) {
+            return keys[0];
+        }
+
+        const currentIndex = keys.indexOf(currentKey);
+        if (currentIndex === -1) {
+            return keys[0];
+        }
+
+        return keys[(currentIndex + 1) % keys.length];
+    }
+
+    resolveInitialAnimationKey() {
+        const defaultKey = this.canvas.dataset.defaultAnimation;
+        if (defaultKey && this.animations.has(defaultKey)) {
+            return defaultKey;
+        }
+
+        return this.getRandomAnimationKey();
+    }
+
+    startInitialAnimation() {
+        if (!this.enabled) {
             return;
         }
 
-        // Ensure canvas is visible
+        const initialKey = this.resolveInitialAnimationKey();
+        if (initialKey) {
+            this.start(initialKey);
+        }
+    }
+
+    start(animationKey) {
+        const AnimationClass = this.animations.get(animationKey);
+        if (!AnimationClass) {
+            return false;
+        }
+
+        this.stop();
+
         this.canvas.style.display = 'block';
         this.canvas.style.visibility = 'visible';
         this.canvas.classList.remove('hidden');
         this.canvas.classList.add('active');
 
-        // Create and start animation
         this.currentAnimation = new AnimationClass(this.canvas, this.ctx);
         this.currentAnimation.start();
 
-        const metadata = AnimationClass.getMetadata();
-        console.log(`[AnimationController] Started: ${metadata.name}`);
+        this.updateToggleButton();
+        this.emitAnimationChange(animationKey, AnimationClass.getMetadata());
+        return true;
     }
 
     stop() {
@@ -155,90 +232,77 @@ export class AnimationController {
     }
 
     getCurrentKey() {
-        for (const [key, AnimClass] of this.animations) {
-            if (this.currentAnimation instanceof AnimClass) {
+        for (const [key, AnimationClass] of this.animations) {
+            if (this.currentAnimation instanceof AnimationClass) {
                 return key;
             }
         }
+
         return null;
+    }
+
+    emitAnimationChange(key, metadata) {
+        window.dispatchEvent(new CustomEvent(ANIMATION_CHANGE_EVENT, {
+            detail: { key, metadata }
+        }));
+    }
+
+    updateToggleButton() {
+        if (!this.toggleButton) {
+            return;
+        }
+
+        const currentKey = this.getCurrentKey();
+        if (!currentKey) {
+            this.toggleButton.title = 'Toggle animation (Press A)';
+            this.toggleButton.querySelector('.symbol').textContent = '∀';
+            return;
+        }
+
+        const AnimationClass = this.animations.get(currentKey);
+        const metadata = AnimationClass ? AnimationClass.getMetadata() : null;
+        this.toggleButton.title = metadata ? `${metadata.name} (Press A to cycle)` : 'Toggle animation (Press A)';
+        this.toggleButton.querySelector('.symbol').textContent =
+            this.animationSymbols.get(currentKey) || '∀';
     }
 
     setupToggleButton() {
         const button = document.getElementById('animation-toggle');
-        if (!button) return;
+        if (!button) {
+            return;
+        }
 
-        const symbols = ['∀', '∃', '→', '⊢', 'λ', '∅', '∧', '∨', '¬', '⊨'];
-        let symbolIndex = 0;
-
-        // Update tooltip helper
-        const updateTooltip = () => {
-            if (this.enabled && this.currentAnimation) {
-                const currentKey = this.getCurrentKey();
-                if (currentKey) {
-                    const AnimClass = this.animations.get(currentKey);
-                    const metadata = AnimClass.getMetadata();
-                    button.title = `${metadata.name} (Press A to toggle)`;
-                }
-            } else {
-                button.title = 'Toggle animation (Press A)';
-            }
-        };
-
-        // Set initial tooltip
-        updateTooltip();
+        this.toggleButton = button;
+        this.updateToggleButton();
 
         button.addEventListener('click', () => {
-            // Get all animation keys
-            const keys = Array.from(this.animations.keys());
-            const currentKey = this.getCurrentKey();
-
-            // Find next animation
-            let nextIndex = 0;
-            if (currentKey) {
-                const currentIndex = keys.indexOf(currentKey);
-                nextIndex = (currentIndex + 1) % keys.length;
+            const nextKey = this.getNextAnimationKey(this.getCurrentKey());
+            if (nextKey) {
+                this.start(nextKey);
             }
-
-            const nextKey = keys[nextIndex];
-            const AnimClass = this.animations.get(nextKey);
-
-            console.log(`[AnimationController] Cycling: ${currentKey || 'none'} → ${nextKey}`);
-            console.log(`[AnimationController] Starting: ${AnimClass.getMetadata().name}`);
-
-            this.start(nextKey);
-
-            // Cycle symbol
-            symbolIndex = (symbolIndex + 1) % symbols.length;
-            button.querySelector('.symbol').textContent = symbols[symbolIndex];
-
-            // Update tooltip after toggle
-            updateTooltip();
         });
     }
 
     setupKeyboardShortcut() {
-        document.addEventListener('keydown', (e) => {
-            // Press 'A' to toggle animations
-            if (e.key === 'a' || e.key === 'A') {
-                if (!e.ctrlKey && !e.metaKey && !e.shiftKey) {
-                    const button = document.getElementById('animation-toggle');
-                    if (button && document.activeElement.tagName !== 'INPUT' &&
-                        document.activeElement.tagName !== 'TEXTAREA') {
-                        button.click();
-                    }
-                }
+        document.addEventListener('keydown', (event) => {
+            if (event.key !== 'a' && event.key !== 'A') {
+                return;
             }
+
+            if (event.ctrlKey || event.metaKey || event.shiftKey) {
+                return;
+            }
+
+            const activeTagName = document.activeElement?.tagName;
+            if (activeTagName === 'INPUT' || activeTagName === 'TEXTAREA') {
+                return;
+            }
+
+            this.toggleButton?.click();
         });
     }
 }
 
-// Initialize when DOM is ready
-console.log('[AnimationController] Setting up DOMContentLoaded listener');
-
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('[AnimationController] DOMContentLoaded fired, initializing...');
     window.animationController = new AnimationController();
-    console.log('[AnimationController] Instance created:', window.animationController);
 });
-
-console.log('[AnimationController] Module fully loaded - Phase 2 modular animations ready');
