@@ -1,7 +1,7 @@
 # Data Schemas Documentation
 
-**Version:** 1.0
-**Last Updated:** October 2025
+**Version:** 1.1
+**Last Updated:** March 2026
 **Maintainer:** Fabio Aurelio D'Asaro
 
 This document defines the expected structure for all JSON data files in the `/data` directory.
@@ -12,11 +12,12 @@ This document defines the expected structure for all JSON data files in the `/da
 
 1. [personal.json](#personaljson)
 2. [publications.json](#publicationsjson)
-3. [teaching.json](#teachingjson)
-4. [supervision.json](#supervisionjson)
-5. [projects.json](#projectsjson)
-6. [service.json](#servicejson)
-7. [Validation](#validation)
+3. [dissertation_instructions.json](#dissertation_instructionsjson)
+4. [teaching.json](#teachingjson)
+5. [supervision.json](#supervisionjson)
+6. [projects.json](#projectsjson)
+7. [service.json](#servicejson)
+8. [Validation](#validation)
 
 ---
 
@@ -149,6 +150,112 @@ This document defines the expected structure for all JSON data files in the `/da
 **Tag Guidelines:**
 - Use lowercase, hyphenated tags
 - Common tags: `logic`, `reasoning`, `argumentation`, `explainable-ai`, `answer-set-programming`
+
+---
+
+## dissertation_instructions.json
+
+**Purpose:** Prospective student guidance for PhD supervision and thesis work.
+
+**Used By:** `dissertation-info.html`
+
+```json
+{
+  "title": "string (required)",
+  "subtitle": "string (required)",
+
+  "phd_students": {
+    "title": "string (required)",
+    "introduction": "string (required)",
+    "topics": [
+      {
+        "area": "string (required)",
+        "description": "string (required)"
+      }
+    ],
+    "supervision_approach": {
+      "title": "string (required)",
+      "paragraphs": ["string (required, 1+ items)"]
+    },
+    "current_openings": {
+      "status": "boolean (required)",
+      "message": "string (required)",
+      "notes": ["string (optional)"]
+    },
+    "application_process": {
+      "title": "string (required)",
+      "steps": [
+        {
+          "step": "number (required, positive integer)",
+          "action": "string (required)",
+          "details": "string (required)"
+        }
+      ],
+      "requirements": ["string (required, 1+ items)"]
+    },
+    "programs": [
+      {
+        "institution": "string (required)",
+        "program": "string (required)",
+        "website": "string (required, URL)",
+        "location": "string (required)"
+      }
+    ]
+  },
+
+  "thesis_students": {
+    "title": "string (required)",
+    "institution": "string (required)",
+    "introduction": "string (required)",
+    "how_to_proceed": {
+      "title": "string (required)",
+      "text": "string (required)"
+    },
+    "prerequisites": {
+      "title": "string (required)",
+      "general": "string (required)",
+      "scope_note": "string (optional)",
+      "expectations": [
+        {
+          "label": "string (required)",
+          "description": "string (required)"
+        }
+      ]
+    },
+    "topics": [
+      {
+        "id": "number (required, unique within file)",
+        "title": "string (required)",
+        "description": "string (required)",
+        "references": "string (optional)"
+      }
+    ],
+    "latex_guidance": {
+      "title": "string (required)",
+      "preference": "string (required)",
+      "about_latex": "string (required)",
+      "support": "string (required)"
+    },
+    "contact": {
+      "email": "string (required, valid email)",
+      "note": "string (required)"
+    }
+  },
+
+  "faqs": [
+    {
+      "question": "string (required)",
+      "answer": "string (required)"
+    }
+  ]
+}
+```
+
+**Validation Rules:**
+- `phd_students.topics`: At least 1 research area recommended
+- `thesis_students.topics`: Shared across BA/BSc and MA/MSc pathways unless a page-specific override is intentionally added later
+- `thesis_students.prerequisites.expectations`: Use this for level-specific differences instead of duplicating full topic lists
+- `phd_students.current_openings.status`: Boolean only
 
 ---
 
