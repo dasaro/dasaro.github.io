@@ -17,6 +17,8 @@ export class AchillesAndTortoise extends AnimationBase {
       stageDuration: 950,
       pauseDuration: 140,
       resolutionDuration: 1100,
+      postStageCount: 3,
+      postStageDuration: 420,
       resetPause: 700,
       trackPadding: 84
     };
@@ -24,6 +26,7 @@ export class AchillesAndTortoise extends AnimationBase {
     this.segments = this.buildSegments();
     this.phase = 'segment';
     this.segmentIndex = 0;
+    this.postSegmentIndex = 0;
     this.phaseElapsed = 0;
     this.lastTimestamp = null;
   }
@@ -66,6 +69,32 @@ export class AchillesAndTortoise extends AnimationBase {
       achilles: achillesStart,
       tortoise: tortoiseStart
     };
+    this.postSegments = [];
+
+    let postAchillesStart = this.finalAchillesPosition;
+    let postTortoiseStart = this.finalTortoisePosition;
+    const postAchillesStride = this.config.headStart * 0.06;
+    const postTortoiseStride = postAchillesStride * this.config.speedRatio;
+
+    for (let index = 0; index < this.config.postStageCount; index++) {
+      const postAchillesEnd = Math.min(0.96, postAchillesStart + postAchillesStride);
+      const postTortoiseEnd = Math.min(0.94, postTortoiseStart + postTortoiseStride);
+
+      this.postSegments.push({
+        achillesStart: postAchillesStart,
+        achillesEnd: postAchillesEnd,
+        tortoiseStart: postTortoiseStart,
+        tortoiseEnd: postTortoiseEnd
+      });
+
+      postAchillesStart = postAchillesEnd;
+      postTortoiseStart = postTortoiseEnd;
+    }
+
+    this.postPassEnd = {
+      achilles: postAchillesStart,
+      tortoise: postTortoiseStart
+    };
 
     return segments;
   }
@@ -73,6 +102,7 @@ export class AchillesAndTortoise extends AnimationBase {
   resetCycle() {
     this.phase = 'segment';
     this.segmentIndex = 0;
+    this.postSegmentIndex = 0;
     this.phaseElapsed = 0;
     this.lastTimestamp = null;
   }
@@ -85,6 +115,8 @@ export class AchillesAndTortoise extends AnimationBase {
         return this.config.pauseDuration;
       case 'resolution':
         return this.config.resolutionDuration;
+      case 'postSegment':
+        return this.config.postStageDuration;
       case 'resetPause':
         return this.config.resetPause;
       default:
@@ -109,7 +141,21 @@ export class AchillesAndTortoise extends AnimationBase {
     }
 
     if (this.phase === 'resolution') {
-      this.phase = 'resetPause';
+      if (this.postSegments.length > 0) {
+        this.postSegmentIndex = 0;
+        this.phase = 'postSegment';
+      } else {
+        this.phase = 'resetPause';
+      }
+      return;
+    }
+
+    if (this.phase === 'postSegment') {
+      if (this.postSegmentIndex < this.postSegments.length - 1) {
+        this.postSegmentIndex += 1;
+      } else {
+        this.phase = 'resetPause';
+      }
       return;
     }
 
@@ -170,6 +216,18 @@ export class AchillesAndTortoise extends AnimationBase {
     return this.segments.length;
   }
 
+  getCompletedPostSegmentCount() {
+    if (this.phase === 'postSegment') {
+      return this.postSegmentIndex;
+    }
+
+    if (this.phase === 'resetPause') {
+      return this.postSegments.length;
+    }
+
+    return 0;
+  }
+
   getCurrentPositions() {
     if (this.phase === 'segment') {
       const segment = this.segments[this.segmentIndex];
@@ -202,9 +260,20 @@ export class AchillesAndTortoise extends AnimationBase {
       };
     }
 
+    if (this.phase === 'postSegment') {
+      const segment = this.postSegments[this.postSegmentIndex];
+      const progress = this.easeInOut(this.phaseElapsed / this.getCurrentPhaseDuration());
+
+      return {
+        achilles: this.lerp(segment.achillesStart, segment.achillesEnd, progress),
+        tortoise: this.lerp(segment.tortoiseStart, segment.tortoiseEnd, progress),
+        currentSegment: null
+      };
+    }
+
     return {
-      achilles: this.finalAchillesPosition,
-      tortoise: this.finalTortoisePosition,
+      achilles: this.postPassEnd.achilles,
+      tortoise: this.postPassEnd.tortoise,
       currentSegment: null
     };
   }
@@ -250,6 +319,7 @@ export class AchillesAndTortoise extends AnimationBase {
     const trackWidth = width - trackPadding * 2;
     const positions = this.getCurrentPositions();
     const completedSegments = this.getCompletedSegmentCount();
+    const completedPostSegments = this.getCompletedPostSegmentCount();
     const achillesX = trackStartX + positions.achilles * trackWidth;
     const tortoiseX = trackStartX + positions.tortoise * trackWidth;
     const limitX = trackStartX + this.limitPosition * trackWidth;
@@ -322,6 +392,49 @@ export class AchillesAndTortoise extends AnimationBase {
       this.ctx.font = '12px "Fira Code", monospace';
       this.ctx.textAlign = 'center';
       this.ctx.fillText('...', limitX - 22, trackY - 24);
+    }
+
+    for (let index = 0; index < this.postSegments.length; index++) {
+      const segment = this.postSegments[index];
+      const isCompleted = index < completedPostSegments;
+      const isCurrent = this.phase === 'postSegment' && index === this.postSegmentIndex;
+      const opacity = isCompleted ? 0.34 : (isCurrent ? 0.54 : 0);
+
+      if (opacity <= 0) {
+        continue;
+      }
+
+      this.drawGuideSegment(
+        trackStartX,
+        trackWidth,
+        trackY,
+        segment.achillesStart,
+        segment.achillesEnd,
+        '132, 92, 73',
+        opacity,
+        -18,
+        isCurrent ? 4 : 3
+      );
+
+      this.drawGuideSegment(
+        trackStartX,
+        trackWidth,
+        trackY,
+        segment.tortoiseStart,
+        segment.tortoiseEnd,
+        '88, 123, 103',
+        isCompleted ? 0.3 : 0.46,
+        18,
+        isCurrent ? 3.2 : 2.4
+      );
+
+      const tickX = trackStartX + segment.achillesEnd * trackWidth;
+      this.ctx.strokeStyle = `rgba(132, 92, 73, ${isCurrent ? 0.56 : 0.4})`;
+      this.ctx.lineWidth = isCurrent ? 2 : 1.6;
+      this.ctx.beginPath();
+      this.ctx.moveTo(tickX, trackY - 28);
+      this.ctx.lineTo(tickX, trackY - 12);
+      this.ctx.stroke();
     }
 
     this.drawRunner(
