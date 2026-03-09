@@ -1,140 +1,159 @@
 // ==========================================
 // FIBONACCI BOXES
-// Classic Fibonacci rectangles forming golden spiral
+// Non-overlapping Fibonacci tiling
 // ==========================================
 import { AnimationBase } from './AnimationBase.js';
-/**
- * Fibonacci Boxes Animation
- *
- * Displays the classic Fibonacci rectangle pattern where each square
- * has a side length equal to a Fibonacci number. When arranged in the
- * iconic spiral pattern, these squares perfectly demonstrate the
- * golden ratio's presence in the Fibonacci sequence.
- */
+
 export class FibonacciBoxes extends AnimationBase {
   constructor(canvas, ctx) {
     super(canvas, ctx);
-    // Animation-specific config
+
     this.config = {
-      opacity: 0.5,
       lineWidth: 2,
-      fillOpacity: 0.15,
-      animationSpeed: 0.02,
-      maxBoxes: 12, // How many Fibonacci rectangles to show
-      rotationSpeed: 0.0005
+      fillOpacity: 0.1,
+      animationSpeed: 0.055,
+      maxBoxes: 12,
+      minimumProgress: 4,
+      holdDuration: 28
     };
-    // Animation state
-    this.progress = 0; // Controls which boxes are visible
-    this.rotation = 0; // Slow rotation for visual interest
-    this.fibonacci = [1, 1]; // Fibonacci sequence
-    // Generate Fibonacci sequence
-    for (let i = 2; i < this.config.maxBoxes; i++) {
-      this.fibonacci[i] = this.fibonacci[i - 1] + this.fibonacci[i - 2];
+
+    this.progress = this.config.minimumProgress;
+    this.holdFrames = 0;
+    this.fibonacci = [1, 1];
+
+    for (let index = 2; index < this.config.maxBoxes; index++) {
+      this.fibonacci[index] = this.fibonacci[index - 1] + this.fibonacci[index - 2];
     }
+
+    const layout = this.buildLayout();
+    this.boxes = layout.boxes;
+    this.bounds = layout.bounds;
   }
+
   static getMetadata() {
     return {
       name: 'Fibonacci Boxes',
       key: 'fibonacciBoxes',
-      description: 'Golden rectangle spiral with Fibonacci squares'
+      description: 'Non-overlapping Fibonacci tiling'
     };
   }
-  animate(currentTime) {
-    if (!this.isRunning) return;
-    // Clear canvas
+
+  buildLayout() {
+    const boxes = [
+      { x: 0, y: 0, size: this.fibonacci[0], direction: 'seed' },
+      { x: 1, y: 0, size: this.fibonacci[1], direction: 'right' }
+    ];
+    const bounds = {
+      minX: 0,
+      minY: 0,
+      maxX: 2,
+      maxY: 1
+    };
+    const directions = ['up', 'left', 'down', 'right'];
+
+    for (let index = 2; index < this.config.maxBoxes; index++) {
+      const size = this.fibonacci[index];
+      const direction = directions[(index - 2) % directions.length];
+      let x = 0;
+      let y = 0;
+
+      switch (direction) {
+        case 'up':
+          x = bounds.minX;
+          y = bounds.minY - size;
+          break;
+        case 'left':
+          x = bounds.minX - size;
+          y = bounds.minY;
+          break;
+        case 'down':
+          x = bounds.minX;
+          y = bounds.maxY;
+          break;
+        case 'right':
+          x = bounds.maxX;
+          y = bounds.minY;
+          break;
+      }
+
+      boxes.push({ x, y, size, direction });
+      bounds.minX = Math.min(bounds.minX, x);
+      bounds.minY = Math.min(bounds.minY, y);
+      bounds.maxX = Math.max(bounds.maxX, x + size);
+      bounds.maxY = Math.max(bounds.maxY, y + size);
+    }
+
+    bounds.width = bounds.maxX - bounds.minX;
+    bounds.height = bounds.maxY - bounds.minY;
+
+    return { boxes, bounds };
+  }
+
+  getScale() {
+    const paddingX = Math.max(40, Math.min(120, this.canvas.width * 0.09));
+    const paddingY = Math.max(36, Math.min(100, this.canvas.height * 0.1));
+    const availableWidth = this.canvas.width - paddingX * 2;
+    const availableHeight = this.canvas.height - paddingY * 2;
+
+    return Math.min(
+      availableWidth / this.bounds.width,
+      availableHeight / this.bounds.height
+    );
+  }
+
+  animate() {
+    if (!this.isRunning) {
+      return;
+    }
+
     this.ctx.fillStyle = '#FFFFFF';
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-    const centerX = this.canvas.width / 2;
-    const centerY = this.canvas.height / 2;
-    // Calculate base scale to fit nicely on screen
-    const maxFib = this.fibonacci[this.config.maxBoxes - 1];
-    const baseScale = Math.min(this.canvas.width, this.canvas.height) / (maxFib * 2.8);
-    // Save context for rotation
-    this.ctx.save();
-    this.ctx.translate(centerX, centerY);
-    this.ctx.rotate(this.rotation);
-    // Draw Fibonacci boxes
-    const numBoxesToDraw = Math.floor(this.progress);
-    // Store all box positions first, then draw with centering offset
-    const boxes = [];
-    let minX = 0, minY = 0, maxX = 0, maxY = 0;
-    // Classic Fibonacci spiral positions
-    // Pattern: Start with 1x1, add 1x1 to right, then spiral: top, left, bottom, right...
-    let currentX = 0;
-    let currentY = 0;
-    for (let i = 0; i < numBoxesToDraw && i < this.config.maxBoxes; i++) {
-      const size = this.fibonacci[i] * baseScale;
-      boxes.push({ x: currentX, y: currentY, size, fib: this.fibonacci[i] });
-      // Update bounds
-      minX = Math.min(minX, currentX);
-      minY = Math.min(minY, currentY);
-      maxX = Math.max(maxX, currentX + size);
-      maxY = Math.max(maxY, currentY + size);
-      // Calculate next position
-      if (i === 0) {
-        // First box at origin, next goes to the right
-        currentX = size;
-      } else if (i === 1) {
-        // After second box, start spiraling upward
-        currentY = -size;
-        currentX = 0;
-      } else {
-        // Spiral pattern: each box added counterclockwise
-        const dir = (i - 2) % 4;
-        switch (dir) {
-          case 0: // Top → Left
-            currentX = minX - size;
-            currentY = minY;
-            break;
-          case 1: // Left → Bottom
-            currentX = minX;
-            currentY = maxY;
-            break;
-          case 2: // Bottom → Right
-            currentX = maxX;
-            currentY = maxY - size;
-            break;
-          case 3: // Right → Top
-            currentX = maxX - size;
-            currentY = minY - size;
-            break;
-        }
+
+    const scale = this.getScale();
+    const drawingWidth = this.bounds.width * scale;
+    const drawingHeight = this.bounds.height * scale;
+    const offsetX = (this.canvas.width - drawingWidth) / 2 - this.bounds.minX * scale;
+    const offsetY = (this.canvas.height - drawingHeight) / 2 - this.bounds.minY * scale;
+    const newestIndex = Math.min(this.boxes.length - 1, Math.floor(this.progress));
+
+    this.boxes.forEach((box, index) => {
+      const localProgress = Math.max(0, Math.min(1, this.progress - index));
+      if (localProgress <= 0) {
+        return;
       }
-    }
-    // Calculate centering offset
-    const offsetX = -(minX + maxX) / 2;
-    const offsetY = -(minY + maxY) / 2;
-    // Draw all boxes with centering
-    boxes.forEach((box, i) => {
-      const boxProgress = this.progress - i;
-      const fadeIn = Math.min(1, Math.max(0, boxProgress));
-      // Draw filled rectangle
-      this.ctx.fillStyle = `rgba(139, 0, 0, ${this.config.fillOpacity * fadeIn})`;
-      this.ctx.fillRect(box.x + offsetX, box.y + offsetY, box.size, box.size);
-      // Draw border
-      this.ctx.strokeStyle = `rgba(139, 0, 0, ${this.config.opacity * fadeIn})`;
-      this.ctx.lineWidth = this.config.lineWidth;
-      this.ctx.strokeRect(box.x + offsetX, box.y + offsetY, box.size, box.size);
-      // Draw Fibonacci number
-      this.ctx.fillStyle = `rgba(139, 0, 0, ${0.6 * fadeIn})`;
-      this.ctx.font = `${Math.max(10, box.size / 4)}px "Fira Code", monospace`;
-      this.ctx.textAlign = 'center';
-      this.ctx.textBaseline = 'middle';
-      this.ctx.fillText(box.fib, box.x + offsetX + box.size / 2, box.y + offsetY + box.size / 2);
+
+      const x = offsetX + box.x * scale;
+      const y = offsetY + box.y * scale;
+      const size = box.size * scale;
+      const isNewest = index === newestIndex;
+      const alpha = 0.18 + localProgress * (isNewest ? 0.26 : 0.18);
+
+      this.ctx.fillStyle = `rgba(132, 92, 73, ${this.config.fillOpacity + localProgress * (isNewest ? 0.08 : 0.05)})`;
+      this.ctx.fillRect(x, y, size, size);
+
+      this.ctx.strokeStyle = `rgba(132, 92, 73, ${alpha})`;
+      this.ctx.lineWidth = isNewest ? this.config.lineWidth + 0.6 : this.config.lineWidth;
+      this.ctx.strokeRect(x, y, size, size);
+
+      if (size > 42) {
+        this.ctx.fillStyle = `rgba(132, 92, 73, ${isNewest ? 0.52 : 0.34})`;
+        this.ctx.font = `${Math.max(12, size / 5)}px "Fira Code", monospace`;
+        this.ctx.textAlign = 'center';
+        this.ctx.textBaseline = 'middle';
+        this.ctx.fillText(String(box.size), x + size / 2, y + size / 2);
+      }
     });
-    this.ctx.restore();
-    // Update animation state
-    this.progress += this.config.animationSpeed;
-    this.rotation += this.config.rotationSpeed;
-    // Reset when all boxes are drawn
-    if (this.progress >= this.config.maxBoxes + 1) {
-      this.progress = 0;
+
+    if (this.progress < this.boxes.length) {
+      this.progress += this.config.animationSpeed;
+      this.holdFrames = 0;
+      return;
     }
-    // Request next frame
-    if (this.isRunning) {
+
+    this.holdFrames += 1;
+    if (this.holdFrames >= this.config.holdDuration) {
+      this.progress = this.config.minimumProgress;
+      this.holdFrames = 0;
     }
-  }
-  cleanup() {
-    super.cleanup();
   }
 }
