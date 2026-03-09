@@ -67,10 +67,11 @@ This document defines the expected structure for all JSON data files in the `/da
       }
     ],
     "phone": "string (optional)",
-    "website": "string (optional, URL)",
+    "website": "string (optional, URL or bare domain)",
     "github": "string (optional, username)",
     "scholar": "string (optional, URL or ID)",
-    "orcid": "string (optional, ORCID ID)"
+    "orcid": "string (optional, ORCID ID)",
+    "researchgate": "string (optional, URL or profile slug)"
   },
 
   "birthplace": "string (optional)",
@@ -99,6 +100,7 @@ This document defines the expected structure for all JSON data files in the `/da
 - `research_interests`: At least 3 items recommended
 - `emails`: At least 1 email with type "institutional-main"
 - `scholar_metrics.last_updated`: ISO 8601 date format
+- `contact.github`, `contact.scholar`, `contact.orcid`, `contact.researchgate`: May be stored as usernames/IDs and normalized into full URLs by `js/main.js`
 
 ---
 

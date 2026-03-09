@@ -3,7 +3,7 @@
 ## Two Fixes Provided:
 
 ### 1. Game of Life Fix
-The fix is in the artifact "Claude Code: Fix Game of Life + Git Push Setup"
+The fix is documented in the repo history and the current maintainer workflow is documented in `AGENTS.md`.
 - Added better error handling
 - Added cleanup flag
 - Defensive checks for undefined values
@@ -60,9 +60,9 @@ git commit -m "Add Rule 30, fix animations, improve site"
 git push -u origin main
 ```
 
-### Option 3: Use Claude Code
+### Option 3: Use Codex
 
-Paste the prompt from the artifact into Claude Code.
+Open the repo in Codex, ask it to read `AGENTS.md`, and then ask it to stage or review the remaining changes before you push.
 
 ## If Authentication Fails
 

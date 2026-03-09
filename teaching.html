@@ -56,7 +56,7 @@
         <!-- Past Courses -->
         <div id="past-courses" class="mt-xl">
           <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Past Courses</h2>
-          <div class="collapsible-header" onclick="toggleCollapsible('past-courses-content')">
+          <div class="collapsible-header" onclick="toggleCollapsible('past-courses-content', this)">
             <span>View Past Courses (6)</span>
             <span class="arrow">▶</span>
           </div>
@@ -132,7 +132,7 @@
   </footer>
 
   <!-- Scripts -->
-    <script src="js/navigation.js?v=31"></script>
+  <script src="js/navigation.js?v=31"></script>
   <script src="js/main.js?v=31"></script>
   <script type="module" src="js/animations/AnimationController.js?v=31"></script>
   <script src="js/logical-symbols.js?v=31"></script>
@@ -140,12 +140,14 @@
   <!-- Page-specific script -->
   <script>
     // Collapsible sections toggle
-    function toggleCollapsible(contentId) {
+    function toggleCollapsible(contentId, trigger) {
       const content = document.getElementById(contentId);
-      const arrow = event.currentTarget.querySelector('.arrow');
+      const arrow = trigger?.querySelector('.arrow');
 
       content.classList.toggle('active');
-      arrow.textContent = content.classList.contains('active') ? '▼' : '▶';
+      if (arrow) {
+        arrow.textContent = content.classList.contains('active') ? '▼' : '▶';
+      }
     }
 
     document.addEventListener('DOMContentLoaded', async () => {

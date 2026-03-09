@@ -1,5 +1,7 @@
 # Handshake for Next Chat: dasaro.github.io Development
 
+> Historical note: this handoff predates the Codex port and parts of it describe an older animation layout. Use `AGENTS.md` as the current source of truth for architecture, workflow, and verification.
+
 ## Project Overview
 
 **Website:** Academic personal website for Fabio Aurelio D'Asaro (dasaro.github.io)  
@@ -173,7 +175,7 @@ dasaro.github.io/
 │   ├── projects.json
 │   ├── service.json
 │   └── affiliations.json
-└── CLAUDE.md (development guide)
+└── AGENTS.md (development guide)
 ```
 
 ---
@@ -397,4 +399,4 @@ User is:
 
 Good luck! The codebase is clean and well-organized. The issue is likely simple - probably over-complicated the Game of Life with too many defensive checks. Strip it back to basics and rebuild from there.
 
--- Previous Claude
+-- Previous agent

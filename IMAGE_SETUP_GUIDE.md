@@ -283,7 +283,7 @@ git commit -m "feat: Add profile photo and favicon
 - Integrate profile photo in hero section with circular styling
 - Add favicon support for all platforms (iOS, Android, desktop)
 
-🖼️ Images follow standards defined in CLAUDE.md"
+🖼️ Images follow standards defined in AGENTS.md"
 
 git push origin main
 ```
@@ -299,7 +299,7 @@ git push origin main
 
 ## Standards Compliance
 
-All image integration follows the standards defined in `CLAUDE.md` under **"Image Architecture & Standards"**:
+All image integration follows the standards documented in `AGENTS.md`:
 
 - ✅ Proper directory structure
 - ✅ Naming conventions followed
@@ -314,7 +314,7 @@ All image integration follows the standards defined in `CLAUDE.md` under **"Imag
 ## Support
 
 **Questions?** Refer to:
-- `CLAUDE.md` - Section "Image Architecture & Standards"
+- `AGENTS.md` - Project workflow and maintenance conventions
 - `css/COMPONENTS.md` - Component usage examples
 - `css/main.css` - Lines 736-775 for image styling
 

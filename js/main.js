@@ -3,6 +3,8 @@
  * Handles JSON loading, navigation, and core functionality
  */
 
+const jsonCache = new Map();
+
 // ============================================
 // JSON Loading Utility
 // ============================================
@@ -13,24 +15,34 @@
  * @returns {Promise<Object|null>} - Parsed JSON data or null on error
  */
 async function loadJSON(path) {
-  console.log(`[loadJSON] Attempting to load: ${path}`);
-  try {
-    const response = await fetch(path);
-    console.log(`[loadJSON] Response status for ${path}:`, response.status, response.statusText);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    console.log(`[loadJSON] Successfully loaded ${path}. Data keys:`, Object.keys(data));
-    console.log(`[loadJSON] Data preview:`, data);
-    return data;
-  } catch (error) {
-    console.error(`[loadJSON] Error loading ${path}:`, error);
-    console.error(`[loadJSON] Error details:`, error.message, error.stack);
-    return null;
+  if (jsonCache.has(path)) {
+    console.log(`[loadJSON] Cache hit for: ${path}`);
+    return jsonCache.get(path);
   }
+
+  console.log(`[loadJSON] Attempting to load: ${path}`);
+  const loadPromise = (async () => {
+    try {
+      const response = await fetch(path);
+      console.log(`[loadJSON] Response status for ${path}:`, response.status, response.statusText);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(`[loadJSON] Successfully loaded ${path}. Data keys:`, Object.keys(data));
+      console.log(`[loadJSON] Data preview:`, data);
+      return data;
+    } catch (error) {
+      console.error(`[loadJSON] Error loading ${path}:`, error);
+      console.error(`[loadJSON] Error details:`, error.message, error.stack);
+      return null;
+    }
+  })();
+
+  jsonCache.set(path, loadPromise);
+  return loadPromise;
 }
 
 // ============================================
@@ -220,6 +232,80 @@ function showError(container, message = 'Error loading data') {
   }
 }
 
+function normalizeContactUrl(type, value) {
+  if (!value || typeof value !== 'string') {
+    return '';
+  }
+
+  if (/^https?:\/\//i.test(value)) {
+    return value;
+  }
+
+  switch (type) {
+    case 'github':
+      return `https://github.com/${value.replace(/^@/, '')}`;
+    case 'scholar':
+      return `https://scholar.google.com/citations?user=${value}`;
+    case 'orcid':
+      return `https://orcid.org/${value}`;
+    case 'researchgate':
+      return `https://www.researchgate.net/profile/${value}`;
+    case 'website':
+      return `https://${value.replace(/^\/+/, '')}`;
+    default:
+      return value;
+  }
+}
+
+function updateContactLinks(personalData) {
+  const contactData = personalData?.contact || {};
+
+  document.querySelectorAll('[data-contact-link]').forEach(link => {
+    const type = link.dataset.contactLink;
+    const href = normalizeContactUrl(type, contactData[type]);
+
+    if (href) {
+      link.href = href;
+      link.hidden = false;
+      return;
+    }
+
+    if (link.dataset.hideIfMissing !== 'false') {
+      link.hidden = true;
+    }
+  });
+}
+
+function updateScholarMetrics(personalData) {
+  const metrics = personalData?.scholar_metrics;
+
+  if (!metrics) {
+    return;
+  }
+
+  const metricMappings = [
+    ['citations', metrics.citations],
+    ['h-index', metrics.h_index],
+    ['i10-index', metrics.i10_index]
+  ];
+
+  metricMappings.forEach(([id, value]) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.textContent = value;
+    }
+  });
+
+  const metricsUpdated = document.getElementById('metrics-updated');
+  if (metricsUpdated && metrics.last_updated) {
+    const date = new Date(metrics.last_updated);
+    metricsUpdated.textContent = `Last updated: ${date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long'
+    })}`;
+  }
+}
+
 // ============================================
 // Initialize on DOM Content Loaded
 // ============================================
@@ -236,6 +322,9 @@ async function loadFooterData() {
       if (footerName) {
         footerName.textContent = personalData.name;
       }
+
+      updateContactLinks(personalData);
+      updateScholarMetrics(personalData);
 
       // Update footer GitHub link
       const footerGithub = document.getElementById('footer-github');
@@ -325,3 +414,4 @@ window.formatDate = formatDate;
 window.debounce = debounce;
 window.showLoading = showLoading;
 window.showError = showError;
+window.normalizeContactUrl = normalizeContactUrl;

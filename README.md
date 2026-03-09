@@ -4,7 +4,7 @@ A modern, elegant academic website built for a logician/AI researcher, blending 
 
 ## Project Overview
 
-This is a static website designed to be hosted on GitHub Pages. All content is dynamically loaded from JSON files, making it easy to update without touching the HTML or JavaScript code.
+This is a static website designed for GitHub Pages. Most content is loaded from JSON files at runtime, so routine updates usually happen in `data/` rather than in the HTML templates.
 
 ## Features
 
@@ -27,17 +27,24 @@ dasaro.github.io/
 ├── teaching.html           # Teaching & supervision
 ├── projects.html           # Research projects
 ├── service.html            # Academic service
+├── backgrounds.html        # Explanations of the math animations
 ├── contact.html            # Contact information
+├── dissertation-info.html  # Information for prospective students
+├── 404.html                # Custom not-found page
 ├── css/
 │   ├── main.css           # Core styles
 │   ├── animations.css     # Animation styles
-│   └── responsive.css     # Responsive design
+│   ├── responsive.css     # Responsive design
+│   └── COMPONENTS.md      # CSS component notes
 ├── js/
+│   ├── navigation.js      # Shared navigation injection
 │   ├── main.js            # Core functionality
 │   ├── publications.js    # Publication handling
-│   ├── animations.js      # Background animations
-│   └── search.js          # Search utilities
-├── data/                  # JSON data files (to be populated)
+│   ├── logical-symbols.js # Decorative logic symbols
+│   ├── search.js          # Search utilities
+│   ├── utils.js           # Shared helper module
+│   └── animations/        # Background animation classes
+├── data/                  # JSON data files
 │   ├── personal.json
 │   ├── education.json
 │   ├── experience.json
@@ -46,12 +53,15 @@ dasaro.github.io/
 │   ├── supervision.json
 │   ├── projects.json
 │   ├── service.json
-│   ├── talks.json
+│   ├── affiliations.json
+│   ├── dissertation_instructions.json
 │   ├── groups.json
-│   └── skills.json
-├── assets/
-│   ├── images/            # Images and photos
-│   └── docs/              # PDFs and documents
+│   ├── talks.json
+│   ├── skills.json
+│   ├── SCHEMAS.md
+│   └── CV.pdf
+├── images/                # Profile image and favicon assets
+├── AGENTS.md              # Maintainer guide for Codex/agents
 └── README.md
 ```
 
@@ -67,9 +77,11 @@ dasaro.github.io/
 
 2. Serve locally using Python's built-in server:
    ```bash
-   python -m http.server 8000
+   python3 -m http.server 8000
    ```
-   Or use any other local server (e.g., Live Server in VS Code)
+   Or use any other local server (e.g. Live Server in VS Code).
+
+   Do not open the pages with `file://` URLs because the site uses `fetch()` to load JSON content.
 
 3. Open in browser:
    ```
@@ -106,7 +118,7 @@ Edit `data/publications.json`:
       "type": "journal",
       "doi": "10.xxxx/xxxxx",
       "url": "https://...",
-      "pdf": "assets/docs/paper.pdf",
+      "pdf": "https://example.org/paper.pdf",
       "bibtex": "@article{...}",
       "tags": ["logic", "ai"],
       "open_access": true
@@ -129,6 +141,15 @@ Edit `data/teaching.json` to add or update courses, guest lectures, and workshop
 ### Managing Projects
 
 Edit `data/projects.json` to add current or past research projects.
+
+## Maintenance
+
+- Read `AGENTS.md` before making structural changes.
+- If you change JSON shapes, update `data/SCHEMAS.md`.
+- If you add or materially change reusable styles, update `css/COMPONENTS.md`.
+- If you change shared navigation behavior, update `js/navigation.js` and reflect the workflow in `AGENTS.md`.
+- If you modify shared JS or CSS referenced with `?v=...`, bump the query string in the HTML pages so GitHub Pages users do not stay on stale cached assets.
+- Image files in `images/profile/` and `images/favicon/` are manually managed; verify they exist before referencing them from HTML.
 
 ## Design System
 
@@ -164,30 +185,9 @@ Used as decorative elements throughout:
 - Safari (latest)
 - Mobile browsers (iOS Safari, Chrome Mobile)
 
-## Development Phases
+## Working With Codex
 
-This project is built in phases:
-
-- **Phase 1** ✅ - Foundation & Core Structure (COMPLETED)
-- **Phase 2** - Home Page with Animated Background
-- **Phase 3** - Publications Page with Search & Export
-- **Phase 4** - About, Education, Experience Pages
-- **Phase 5** - Projects & Service Pages
-- **Phase 6** - Contact Page & Special Pages
-- **Phase 7** - Skills Page & Polish
-- **Phase 8** - Testing & Deployment
-
-## Next Steps
-
-To continue development:
-
-1. **Populate JSON files** in the `data/` directory with your actual data
-2. **Add profile photo** to `assets/images/`
-3. **Add PDF files** of publications to `assets/docs/`
-4. **Complete Phase 2** - Implement home page animations
-5. **Complete Phase 3** - Wire up publications page with JSON data
-
-See `CLAUDE.md` for detailed phase-by-phase implementation instructions.
+The repo now uses `AGENTS.md` as the maintainer-facing source of truth. It documents the actual architecture, page/data mapping, verification commands, and editing rules for future changes.
 
 ## Technologies Used
 
