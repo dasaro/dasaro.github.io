@@ -6,8 +6,8 @@
 
 class LogicalSymbols {
   constructor() {
-    // Symbol categories with extensive collections
-    this.symbols = {
+    // Source collections before filtering out negative symbols.
+    const symbolCatalog = {
       propositional: ['∧', '∨', '¬', '→', '↔', '⊤', '⊥', '⊕', '⊼', '⊽'],
       predicate: ['∀', '∃', '∃!', '=', '≠', '≈', '≡', '≢'],
       setTheory: ['∈', '∉', '⊆', '⊂', '⊇', '⊃', '∪', '∩', '∅', '℘', '⊎'],
@@ -15,6 +15,15 @@ class LogicalSymbols {
       proofTheory: ['⊢', '⊨', '⊬', '⊭', '├', '⊣', '⊳', '⊲', '▷', '◁'],
       modalLogic: ['□', '◇', '⬚', '⟡', '▫', '⬩', '◊', '⋄']
     };
+
+    // Keep the decorative pool affirmative or neutral.
+    this.excludedSymbols = new Set(['¬', '⊥', '⊼', '⊽', '≠', '≢', '∉', '∅', '⊬', '⊭']);
+    this.symbols = Object.fromEntries(
+      Object.entries(symbolCatalog).map(([category, symbols]) => [
+        category,
+        symbols.filter(symbol => !this.excludedSymbols.has(symbol))
+      ])
+    );
 
     // All symbols flattened for easy random selection
     this.allSymbols = Object.values(this.symbols).flat();
