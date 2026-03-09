@@ -2485,23 +2485,29 @@ footer {
    ========================================== */
 
 :root {
-  --color-accent-1: #372e2b;
-  --color-accent-2: #6a5b56;
-  --color-accent-3: #f4eee8;
-  --color-link: #714336;
-  --color-link-hover: #543128;
-  --color-code-text: #8a5a4d;
-  --surface-base: #fffdfa;
-  --surface-subtle: #f8f4ef;
-  --surface-muted: #efe7de;
-  --surface-border: #d8cdc3;
-  --surface-border-strong: #b9a89d;
-  --shadow-soft: 0 1px 2px rgba(30, 22, 17, 0.06), 0 10px 24px rgba(30, 22, 17, 0.04);
+  --color-accent-1: #f7f1ec;
+  --color-accent-2: #dccdc6;
+  --color-accent-3: #a58f89;
+  --color-link: #f4dfd4;
+  --color-link-hover: #ffffff;
+  --color-code-text: #ffe4d5;
+  --surface-shell: rgba(113, 98, 96, 0.96);
+  --surface-shell-highlight: rgba(132, 115, 112, 0.96);
+  --surface-base: rgba(255, 255, 255, 0.045);
+  --surface-subtle: rgba(255, 255, 255, 0.075);
+  --surface-muted: rgba(255, 255, 255, 0.11);
+  --surface-border: rgba(255, 255, 255, 0.16);
+  --surface-border-strong: rgba(255, 255, 255, 0.28);
+  --shadow-soft: 0 1px 0 rgba(255, 255, 255, 0.03), 0 26px 80px rgba(0, 0, 0, 0.34);
+  --content-width: 1020px;
 }
 
 body {
-  background: #fcfaf7;
-  color: #1f1a18;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(154, 118, 99, 0.16), transparent 34%),
+    radial-gradient(circle at 50% 100%, rgba(154, 118, 99, 0.12), transparent 28%),
+    linear-gradient(180deg, #050505 0%, #090808 26%, #050505 100%);
+  color: var(--color-accent-1);
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -2517,12 +2523,42 @@ a {
   transition: color 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
 }
 
+.container {
+  max-width: var(--content-width);
+}
+
 main {
+  width: min(calc(100% - 2.5rem), 1180px);
+  margin: calc(var(--nav-height) + var(--space-xl)) auto var(--space-2xl);
   min-height: calc(100vh - var(--nav-height) - 96px);
+  background: linear-gradient(180deg, var(--surface-shell-highlight), var(--surface-shell));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+main::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 12%, transparent 88%, rgba(0, 0, 0, 0.1)),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05), transparent 8%, transparent 92%, rgba(0, 0, 0, 0.05));
+  pointer-events: none;
+}
+
+main > * {
+  position: relative;
+  z-index: 1;
 }
 
 section {
   padding: calc(var(--space-2xl) - 0.25rem) 0;
+}
+
+main section + section {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .section-title {
@@ -2568,23 +2604,24 @@ section {
 
 /* Navigation */
 .nav-wrapper {
-  background: rgba(252, 250, 247, 0.97);
+  background: rgba(8, 8, 8, 0.86);
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
-  border-bottom: 1px solid var(--surface-border);
-  box-shadow: 0 1px 0 rgba(30, 22, 17, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: none;
   animation: none;
   transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
 }
 
 .nav-wrapper.scrolled {
-  background: rgba(252, 250, 247, 0.99);
-  box-shadow: 0 1px 0 rgba(30, 22, 17, 0.08);
+  background: rgba(8, 8, 8, 0.94);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
 }
 
 .nav-brand,
 .nav-brand:hover {
   transform: none;
+  color: #fff;
 }
 
 .nav-brand .logic-symbol,
@@ -2600,6 +2637,7 @@ section {
 .nav-link {
   padding: 0.35rem 0.6rem;
   border-radius: 999px;
+  color: var(--color-accent-2);
 }
 
 .nav-link::before,
@@ -2613,15 +2651,15 @@ section {
 }
 
 .nav-link:hover {
-  background: var(--surface-subtle);
+  background: rgba(255, 255, 255, 0.06);
   color: var(--color-link);
 }
 
 .nav-link.active {
-  background: var(--surface-muted);
+  background: rgba(255, 255, 255, 0.1);
   color: var(--color-link);
   font-weight: 500;
-  box-shadow: inset 0 0 0 1px var(--surface-border);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
 }
 
 .nav-toggle {
@@ -2629,8 +2667,8 @@ section {
 }
 
 .nav-toggle:hover {
-  background: var(--surface-subtle);
-  border-color: var(--surface-border);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .nav-toggle span,
@@ -2663,8 +2701,8 @@ section {
 .step-list li {
   background: var(--surface-base) !important;
   border: 1px solid var(--surface-border) !important;
-  border-radius: 12px !important;
-  box-shadow: var(--shadow-soft) !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
 }
 
 .publication-card,
@@ -2716,7 +2754,7 @@ section {
 
 .animation-card.active {
   border-color: var(--surface-border-strong) !important;
-  background: rgba(113, 67, 54, 0.04) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
 }
 
 .card:hover,
@@ -2737,18 +2775,24 @@ section {
 .metric:hover {
   transform: none !important;
   background: inherit;
-  box-shadow: var(--shadow-soft) !important;
+  box-shadow: none !important;
 }
 
 .hero {
   background: transparent;
   box-shadow: none;
   min-height: auto;
-  padding: var(--space-xl) 0;
+  padding: calc(var(--space-xl) + 0.5rem) 0;
 }
 
 .hero-content {
   gap: var(--space-lg);
+}
+
+.hero-content h1 {
+  color: #fff !important;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
 }
 
 .hero-subtitle,
@@ -2759,12 +2803,12 @@ section {
 
 .hero-profile-photo {
   border: 2px solid var(--surface-border);
-  box-shadow: var(--shadow-soft);
+  box-shadow: none;
 }
 
 .hero-profile-photo:hover {
   transform: none;
-  box-shadow: var(--shadow-soft);
+  box-shadow: none;
 }
 
 /* Titles and body copy inside boxes */
@@ -2777,10 +2821,11 @@ section {
 .topic-card h3,
 .program-card h3,
 .modal-header h3 {
-  color: var(--color-black) !important;
-  font-family: 'Crimson Text', 'Palatino', serif !important;
+  color: #fff !important;
+  font-family: 'Fira Code', 'Courier New', monospace !important;
   font-weight: 600;
   text-shadow: none !important;
+  letter-spacing: -0.02em;
 }
 
 .publication-authors,
@@ -2804,13 +2849,34 @@ section {
   color: var(--color-accent-2) !important;
 }
 
+p,
+li,
+dd,
+dt,
+blockquote,
+label,
+.about-content,
+.course-description,
+.project-description,
+.publication-card p,
+.topic-card p,
+.program-card p,
+.supervision-outcome p,
+.faq-answer,
+.note-box,
+.intro-text,
+.modal-body,
+.collapsible-content {
+  color: var(--color-accent-1);
+}
+
 .metric-label {
   text-transform: none;
   letter-spacing: 0;
 }
 
 .metric-value {
-  color: var(--color-accent-1);
+  color: #fff;
   font-size: var(--text-3xl);
 }
 
@@ -2837,27 +2903,27 @@ section {
 
 .btn {
   border-width: 1px;
-  border-color: var(--surface-border-strong);
-  background: transparent;
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.04);
   color: var(--color-link);
 }
 
 .btn:hover {
-  background: var(--surface-subtle);
-  border-color: var(--surface-border-strong);
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.28);
   color: var(--color-link-hover);
 }
 
 .btn-primary {
-  background: var(--color-link);
-  border-color: var(--color-link);
-  color: var(--color-white);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: #fff;
 }
 
 .btn-primary:hover {
-  background: var(--color-link-hover);
-  border-color: var(--color-link-hover);
-  color: var(--color-white);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: #fff;
 }
 
 .btn-secondary {
@@ -2870,8 +2936,8 @@ section {
 .publication-links button,
 .profile-link,
 .copy-btn {
-  border: 1px solid var(--surface-border-strong);
-  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.04);
   color: var(--color-link) !important;
 }
 
@@ -2885,7 +2951,7 @@ section {
 .profile-link:hover,
 .publication-links a:hover,
 .publication-links button:hover {
-  background: var(--surface-subtle);
+  background: rgba(255, 255, 255, 0.09);
   color: var(--color-link-hover) !important;
 }
 
@@ -2977,10 +3043,11 @@ section {
 /* Inputs and filters */
 .search-input,
 .filter-select {
-  background: var(--surface-base);
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--surface-border-strong);
   border-radius: 10px;
   box-shadow: none;
+  color: #fff;
 }
 
 .search-input:hover,
@@ -3013,7 +3080,7 @@ section {
 .modal-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(25, 19, 15, 0.28);
+  background: rgba(0, 0, 0, 0.48);
   backdrop-filter: none;
   cursor: pointer;
 }
@@ -3320,7 +3387,7 @@ section {
 
 .program-card,
 .note-box {
-  color: var(--color-black);
+  color: var(--color-accent-1);
 }
 
 .program-link {
@@ -3366,8 +3433,9 @@ section {
 
 /* Footer and misc */
 footer {
-  border-top: 1px solid var(--surface-border);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   background: transparent;
+  color: var(--color-accent-2);
 }
 
 .footer-links {
@@ -3376,23 +3444,24 @@ footer {
 
 #bg-animation-canvas,
 #bg-animation-canvas.active {
-  opacity: 0.08;
+  opacity: 0.04;
 }
 
 .animation-toggle {
   width: 2.75rem;
   height: 2.75rem;
-  background: rgba(252, 250, 247, 0.96);
-  border: 1px solid var(--surface-border);
-  box-shadow: var(--shadow-soft);
+  background: rgba(20, 18, 18, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+  color: var(--color-accent-1);
 }
 
 .animation-toggle:hover,
 .animation-toggle:active {
-  background: var(--surface-base);
-  color: var(--color-link);
+  background: rgba(35, 30, 30, 0.94);
+  color: #fff;
   transform: none;
-  box-shadow: var(--shadow-soft);
+  box-shadow: none;
 }
 
 .animation-toggle:hover .symbol {
