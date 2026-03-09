@@ -2474,11 +2474,8 @@ section {
 }
 
 .section-title::before {
-  position: static;
-  font-size: var(--text-lg);
-  line-height: 1;
-  opacity: 0.45;
-  color: var(--color-accent-2);
+  content: none !important;
+  display: none !important;
 }
 
 /* Decorations */

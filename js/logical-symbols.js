@@ -21,6 +21,26 @@ class LogicalSymbols {
   }
 
   /**
+   * Ensure every section title has exactly one logical symbol placeholder.
+   * Titles that already include a placeholder keep it; titles without one get
+   * a prepended span so JS, not CSS, is the single source of truth.
+   */
+  ensureSectionTitlePlaceholders() {
+    const titles = document.querySelectorAll('.section-title');
+
+    titles.forEach(title => {
+      if (title.querySelector('.logical-symbols')) {
+        return;
+      }
+
+      const placeholder = document.createElement('span');
+      placeholder.className = 'logical-symbols symbols-dimmed';
+      placeholder.setAttribute('aria-hidden', 'true');
+      title.prepend(placeholder);
+    });
+  }
+
+  /**
    * Get a random symbol from a specific category
    * @param {string} category - One of: propositional, predicate, setTheory, categoryTheory, proofTheory, modalLogic
    * @returns {string} A random symbol from that category
@@ -80,6 +100,8 @@ class LogicalSymbols {
    * Can be called on DOMContentLoaded or after dynamic content loads
    */
   initializeAll() {
+    this.ensureSectionTitlePlaceholders();
+
     const elements = document.querySelectorAll('.logical-symbols');
 
     elements.forEach(element => {
