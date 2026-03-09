@@ -291,17 +291,179 @@ export class AchillesAndTortoise extends AnimationBase {
     this.ctx.stroke();
   }
 
-  drawRunner(x, y, radius, fillColor, label, labelOffsetY) {
-    this.ctx.fillStyle = fillColor;
+  drawTrackBackdrop(trackStartX, trackWidth, trackY) {
+    const trackEndX = trackStartX + trackWidth;
+
+    this.ctx.strokeStyle = 'rgba(132, 92, 73, 0.05)';
+    this.ctx.lineWidth = 26;
+    this.ctx.lineCap = 'round';
+    this.ctx.beginPath();
+    this.ctx.moveTo(trackStartX, trackY);
+    this.ctx.lineTo(trackEndX, trackY);
+    this.ctx.stroke();
+
+    this.ctx.strokeStyle = 'rgba(132, 92, 73, 0.1)';
+    this.ctx.lineWidth = 1;
+    this.ctx.beginPath();
+    this.ctx.moveTo(trackStartX, trackY - 13);
+    this.ctx.lineTo(trackEndX, trackY - 13);
+    this.ctx.moveTo(trackStartX, trackY + 13);
+    this.ctx.lineTo(trackEndX, trackY + 13);
+    this.ctx.stroke();
+
+    this.ctx.strokeStyle = 'rgba(132, 92, 73, 0.16)';
+    this.ctx.lineWidth = 2;
+    for (let index = 0; index < 3; index++) {
+      const stripeX = trackStartX + 14 + index * 6;
+      this.ctx.beginPath();
+      this.ctx.moveTo(stripeX, trackY - 14);
+      this.ctx.lineTo(stripeX, trackY + 14);
+      this.ctx.stroke();
+    }
+  }
+
+  drawSpeedTrail(x, y, color, opacity, scale = 1) {
+    this.ctx.strokeStyle = `rgba(${color}, ${opacity})`;
+    this.ctx.lineWidth = 2.4 * scale;
+    this.ctx.lineCap = 'round';
+
+    for (let index = 0; index < 3; index++) {
+      const offsetX = index * 8 * scale;
+      const offsetY = index * 4 * scale;
+      this.ctx.beginPath();
+      this.ctx.moveTo(x - 16 * scale - offsetX, y - 6 * scale + offsetY);
+      this.ctx.lineTo(x - 6 * scale - offsetX, y - 6 * scale + offsetY);
+      this.ctx.stroke();
+    }
+  }
+
+  drawAchillesFigure(x, y, motionPhase) {
+    const stride = Math.sin(motionPhase) * 6;
+    const armSwing = Math.cos(motionPhase) * 5;
+
+    this.ctx.save();
+    this.ctx.translate(x, y - 4);
+
+    this.drawSpeedTrail(0, 0, '132, 92, 73', 0.18, 1);
+
+    this.ctx.fillStyle = 'rgba(132, 92, 73, 0.14)';
+    this.ctx.beginPath();
+    this.ctx.ellipse(0, 18, 13, 4, 0, 0, Math.PI * 2);
+    this.ctx.fill();
+
+    this.ctx.strokeStyle = 'rgba(132, 92, 73, 0.88)';
+    this.ctx.lineWidth = 4;
+    this.ctx.lineCap = 'round';
+    this.ctx.lineJoin = 'round';
+    this.ctx.shadowBlur = 8;
+    this.ctx.shadowColor = 'rgba(132, 92, 73, 0.2)';
+
+    this.ctx.beginPath();
+    this.ctx.moveTo(0, -11);
+    this.ctx.lineTo(2, 1);
+    this.ctx.stroke();
+
+    this.ctx.beginPath();
+    this.ctx.moveTo(0, -7);
+    this.ctx.lineTo(9 - armSwing, -3);
+    this.ctx.moveTo(1, -6);
+    this.ctx.lineTo(-10 + armSwing, -1);
+    this.ctx.stroke();
+
+    this.ctx.beginPath();
+    this.ctx.moveTo(2, 1);
+    this.ctx.lineTo(10 + stride, 13);
+    this.ctx.moveTo(2, 1);
+    this.ctx.lineTo(-8 - stride * 0.7, 11);
+    this.ctx.stroke();
+
+    this.ctx.shadowBlur = 0;
+    this.ctx.fillStyle = 'rgba(132, 92, 73, 0.9)';
+    this.ctx.beginPath();
+    this.ctx.arc(0, -16, 5, 0, Math.PI * 2);
+    this.ctx.fill();
+
+    this.ctx.strokeStyle = 'rgba(182, 132, 110, 0.7)';
+    this.ctx.lineWidth = 2;
+    this.ctx.beginPath();
+    this.ctx.moveTo(-3, -18);
+    this.ctx.lineTo(-11, -21 - armSwing * 0.25);
+    this.ctx.stroke();
+
+    this.ctx.restore();
+  }
+
+  drawTortoiseFigure(x, y, motionPhase) {
+    const shuffle = Math.sin(motionPhase * 0.65) * 1.8;
+
+    this.ctx.save();
+    this.ctx.translate(x, y + 1);
+
+    this.drawSpeedTrail(-2, 2, '88, 123, 103', 0.12, 0.72);
+
+    this.ctx.fillStyle = 'rgba(88, 123, 103, 0.12)';
+    this.ctx.beginPath();
+    this.ctx.ellipse(0, 14, 12, 4, 0, 0, Math.PI * 2);
+    this.ctx.fill();
+
+    this.ctx.shadowBlur = 7;
+    this.ctx.shadowColor = 'rgba(88, 123, 103, 0.18)';
+    this.ctx.fillStyle = 'rgba(88, 123, 103, 0.82)';
+    this.ctx.beginPath();
+    this.ctx.ellipse(0, 0, 14, 10.5, 0, 0, Math.PI * 2);
+    this.ctx.fill();
+    this.ctx.shadowBlur = 0;
+
+    this.ctx.strokeStyle = 'rgba(65, 95, 78, 0.55)';
+    this.ctx.lineWidth = 1.4;
+    this.ctx.beginPath();
+    this.ctx.moveTo(-9, 0);
+    this.ctx.lineTo(9, 0);
+    this.ctx.moveTo(0, -8);
+    this.ctx.lineTo(0, 8);
+    this.ctx.moveTo(-6, -5);
+    this.ctx.lineTo(6, 5);
+    this.ctx.moveTo(-6, 5);
+    this.ctx.lineTo(6, -5);
+    this.ctx.stroke();
+
+    this.ctx.fillStyle = 'rgba(110, 145, 118, 0.78)';
+    this.ctx.beginPath();
+    this.ctx.arc(13, -2, 4.5, 0, Math.PI * 2);
+    this.ctx.fill();
+
+    this.ctx.fillStyle = 'rgba(0, 0, 0, 0.75)';
+    this.ctx.beginPath();
+    this.ctx.arc(14.5, -3, 1.1, 0, Math.PI * 2);
+    this.ctx.fill();
+
+    this.ctx.strokeStyle = 'rgba(88, 123, 103, 0.72)';
+    this.ctx.lineWidth = 2.6;
+    this.ctx.lineCap = 'round';
+    this.ctx.beginPath();
+    this.ctx.moveTo(-8, 8);
+    this.ctx.lineTo(-10, 12 + shuffle);
+    this.ctx.moveTo(-1, 8);
+    this.ctx.lineTo(-2, 12 - shuffle * 0.5);
+    this.ctx.moveTo(5, 8);
+    this.ctx.lineTo(5, 12 + shuffle * 0.5);
+    this.ctx.moveTo(10, 6);
+    this.ctx.lineTo(11, 10 - shuffle);
+    this.ctx.stroke();
+
+    this.ctx.beginPath();
+    this.ctx.moveTo(-13, 1);
+    this.ctx.lineTo(-17, 0);
+    this.ctx.stroke();
+
+    this.ctx.restore();
+  }
+
+  drawCheckpointDot(x, y, color, alpha, radius = 2.4) {
+    this.ctx.fillStyle = `rgba(${color}, ${alpha})`;
     this.ctx.beginPath();
     this.ctx.arc(x, y, radius, 0, Math.PI * 2);
     this.ctx.fill();
-
-    this.ctx.fillStyle = fillColor;
-    this.ctx.font = 'bold 12px "Fira Code", monospace';
-    this.ctx.textAlign = 'center';
-    this.ctx.textBaseline = 'middle';
-    this.ctx.fillText(label, x, y + labelOffsetY);
   }
 
   animate(currentTime) {
@@ -323,9 +485,12 @@ export class AchillesAndTortoise extends AnimationBase {
     const achillesX = trackStartX + positions.achilles * trackWidth;
     const tortoiseX = trackStartX + positions.tortoise * trackWidth;
     const limitX = trackStartX + this.limitPosition * trackWidth;
+    const motionPhase = currentTime / 110;
 
     this.ctx.fillStyle = '#FFFFFF';
     this.ctx.fillRect(0, 0, width, height);
+
+    this.drawTrackBackdrop(trackStartX, trackWidth, trackY);
 
     this.ctx.strokeStyle = `rgba(101, 82, 73, ${this.config.trackOpacity})`;
     this.ctx.lineWidth = 2;
@@ -385,6 +550,23 @@ export class AchillesAndTortoise extends AnimationBase {
         this.ctx.textAlign = 'center';
         this.ctx.fillText(`${index + 1}`, labelX, trackY - 32);
       }
+
+      if (isCompleted || isCurrent) {
+        this.drawCheckpointDot(
+          trackStartX + segment.catchUpPoint * trackWidth,
+          trackY - 18,
+          '132, 92, 73',
+          isCurrent ? 0.5 : 0.32,
+          isCurrent ? 3 : 2
+        );
+        this.drawCheckpointDot(
+          trackStartX + segment.tortoiseEnd * trackWidth,
+          trackY + 18,
+          '88, 123, 103',
+          isCurrent ? 0.44 : 0.28,
+          isCurrent ? 2.8 : 1.8
+        );
+      }
     }
 
     if (this.segments.length > 4) {
@@ -435,25 +617,18 @@ export class AchillesAndTortoise extends AnimationBase {
       this.ctx.moveTo(tickX, trackY - 28);
       this.ctx.lineTo(tickX, trackY - 12);
       this.ctx.stroke();
+
+      this.drawCheckpointDot(
+        tickX,
+        trackY - 18,
+        '132, 92, 73',
+        isCurrent ? 0.56 : 0.36,
+        isCurrent ? 3 : 2.1
+      );
     }
 
-    this.drawRunner(
-      achillesX,
-      trackY,
-      8,
-      'rgba(132, 92, 73, 0.82)',
-      'A',
-      -20
-    );
-
-    this.drawRunner(
-      tortoiseX,
-      trackY,
-      7,
-      'rgba(88, 123, 103, 0.78)',
-      'T',
-      20
-    );
+    this.drawAchillesFigure(achillesX, trackY, motionPhase);
+    this.drawTortoiseFigure(tortoiseX, trackY, motionPhase);
 
   }
 }
