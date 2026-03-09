@@ -3087,8 +3087,7 @@ section {
 }
 
 /* Backgrounds page */
-.intro-text,
-.animation-story {
+.intro-text {
   padding: var(--space-lg);
 }
 
@@ -3144,18 +3143,51 @@ section {
 }
 
 .animation-description,
-.animation-facts {
+.animation-detail {
   margin-bottom: var(--space-md);
 }
 
-.animation-facts ul {
+.animation-detail summary {
+  cursor: pointer;
+  list-style: none;
+  font-family: 'Fira Code', monospace;
+  font-size: var(--text-sm);
+  color: var(--color-accent-1);
+}
+
+.animation-detail summary::-webkit-details-marker {
+  display: none;
+}
+
+.animation-detail summary::before {
+  content: '+';
+  display: inline-block;
+  width: 1rem;
+  margin-right: var(--space-xs);
+  color: var(--color-link);
+}
+
+.animation-detail[open] summary {
+  margin-bottom: var(--space-sm);
+}
+
+.animation-detail[open] summary::before {
+  content: '−';
+}
+
+.animation-detail ul {
   margin: var(--space-sm) 0;
   padding-left: 1.5rem;
 }
 
-.animation-facts li {
+.animation-detail li {
   margin-bottom: var(--space-xs);
   line-height: 1.6;
+}
+
+.animation-detail p:last-child,
+.animation-detail ul:last-child {
+  margin-bottom: 0;
 }
 
 .activate-btn.active {
