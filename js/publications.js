@@ -10,7 +10,7 @@ class PublicationsManager {
     this.filters = {
       search: '',
       year: 'all',
-      topic: 'selected', // Default to 'selected' publications
+      topic: 'all',
       type: 'all'
     };
     this.elements = {};
@@ -62,7 +62,7 @@ class PublicationsManager {
       // Set up event listeners
       this.setupFilters();
 
-      // Display initial publications (selected)
+      // Display the full publication list initially
       this.applyFilters();
 
       console.log('[PublicationsManager] Initialization complete');
@@ -211,8 +211,7 @@ class PublicationsManager {
       this.elements.topicFilter.appendChild(option);
     });
 
-    // Set default topic to "selected"
-    this.elements.topicFilter.value = 'selected';
+    this.elements.topicFilter.value = 'all';
 
     console.log('[PublicationsManager] Filter options populated');
   }
@@ -420,7 +419,7 @@ class PublicationsManager {
     if (this.filters.topic === 'all') {
       return '';
     } else if (this.filters.topic === 'selected') {
-      return ' (selected)';
+      return ' (selected highlights)';
     } else {
       const topicGroups = this.getTopicGroups();
       const group = topicGroups[this.filters.topic];
@@ -435,14 +434,14 @@ class PublicationsManager {
     this.filters = {
       search: '',
       year: 'all',
-      topic: 'selected', // Default to selected publications
+      topic: 'all',
       type: 'all'
     };
 
     // Reset UI
     this.elements.searchInput.value = '';
     this.elements.yearFilter.value = 'all';
-    this.elements.topicFilter.value = 'selected';
+    this.elements.topicFilter.value = 'all';
     this.elements.typeFilter.value = 'all';
 
     this.applyFilters();

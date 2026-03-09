@@ -32,6 +32,8 @@
 
 - Each page owns its markup and usually a page-local inline script near the bottom.
 - Navigation markup is injected by `js/navigation.js`.
+- Primary navigation is intentionally limited to the core paths: home, about, publications, teaching, students, and contact.
+- Secondary destination pages such as projects, service, and backgrounds are linked from page content and the footer instead of the primary nav.
 - Shared footer helpers, JSON loading, and generic utilities live in `js/main.js`.
 
 ### JavaScript

@@ -30,9 +30,20 @@
     <section id="service">
       <div class="container">
         <h1 class="fade-in">Academic Service</h1>
+        <div class="intro-text fade-in-delay-1">
+          <p>A compact overview of organizing, reviewing, editorial work, and professional memberships. Speaking activity is linked from the teaching page so it stays in one place.</p>
+        </div>
+        <nav class="section-index fade-in-delay-2" aria-label="Service sections">
+          <a href="#organizing-section" class="chip chip-neutral chip-sm">Organizing</a>
+          <a href="#pc-section" class="chip chip-neutral chip-sm">Program Committees</a>
+          <a href="#editorial-section" class="chip chip-neutral chip-sm">Editorial</a>
+          <a href="#reviewing-section" class="chip chip-neutral chip-sm">Reviewing</a>
+          <a href="#groups-section" class="chip chip-neutral chip-sm">Groups</a>
+          <a href="#talks-section" class="chip chip-neutral chip-sm">Talks</a>
+        </nav>
 
         <!-- Conference Organization -->
-        <div class="mt-xl fade-in-delay-1">
+        <div id="organizing-section" class="mt-xl fade-in-delay-1">
           <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Conference & Summer School Organization</h2>
           <div id="organizing-container">
             <p class="loading-message">Loading organizing activities...</p>
@@ -40,7 +51,7 @@
         </div>
 
         <!-- Program Committees -->
-        <div class="mt-xl fade-in-delay-2">
+        <div id="pc-section" class="mt-xl fade-in-delay-2">
           <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Program Committees</h2>
           <div id="pc-container">
             <p class="loading-message">Loading program committees...</p>
@@ -48,7 +59,7 @@
         </div>
 
         <!-- Editorial Service -->
-        <div class="mt-xl fade-in-delay-3">
+        <div id="editorial-section" class="mt-xl fade-in-delay-3">
           <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Editorial Boards</h2>
           <div id="editorial-container">
             <p class="loading-message">Loading editorial service...</p>
@@ -56,7 +67,7 @@
         </div>
 
         <!-- Reviewing -->
-        <div class="mt-xl">
+        <div id="reviewing-section" class="mt-xl">
           <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Reviewing</h2>
           <div id="reviewing-container">
             <p class="loading-message">Loading reviewing activities...</p>
@@ -64,18 +75,21 @@
         </div>
 
         <!-- Research Groups -->
-        <div class="mt-xl">
+        <div id="groups-section" class="mt-xl">
           <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Research Groups & Professional Societies</h2>
           <div id="groups-container">
             <p class="loading-message">Loading memberships...</p>
           </div>
         </div>
 
-        <!-- Invited Talks -->
-        <div class="mt-xl">
-          <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Invited Talks</h2>
-          <div id="talks-container">
-            <p class="loading-message">Loading invited talks...</p>
+        <!-- Speaking -->
+        <div id="talks-section" class="mt-xl">
+          <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Talks & Workshops</h2>
+          <div class="card">
+            <p>A single up-to-date list of invited talks, guest lectures, and workshops is maintained on the teaching page.</p>
+            <p class="mt-md">
+              <a href="teaching.html#guest-lectures" class="btn btn-secondary">View Talks & Workshops →</a>
+            </p>
           </div>
         </div>
       </div>
@@ -88,6 +102,7 @@
       <div class="footer-text">
         <p>&copy; <span class="footer-year">2025</span> <span id="footer-name">Loading...</span></p>
         <p>∀x (Logic(x) → Elegant(x))</p>
+        <p class="footer-site-links">Explore: <a href="projects.html">Projects</a> · <a href="service.html">Service</a> · <a href="backgrounds.html">Backgrounds</a></p>
       </div>
       <ul class="footer-links">
         <li><a href="https://github.com/dasaro" target="_blank" rel="noopener" id="footer-github">GitHub</a></li>
@@ -99,8 +114,8 @@
   </footer>
 
   <!-- Scripts -->
-    <script src="js/navigation.js?v=31"></script>
-  <script src="js/main.js?v=31"></script>
+    <script src="js/navigation.js?v=32"></script>
+  <script src="js/main.js?v=32"></script>
   <script type="module" src="js/animations/AnimationController.js?v=31"></script>
   <script src="js/logical-symbols.js?v=33"></script>
 
@@ -111,8 +126,6 @@
       try {
         const serviceData = await loadJSON('./data/service.json');
         const affiliationsData = await loadJSON('./data/affiliations.json');
-        console.log('[service.html] Service data loaded:', serviceData);
-        console.log('[service.html] Affiliations data loaded:', affiliationsData);
 
         // Conference Organization
         const organizingContainer = document.getElementById('organizing-container');
@@ -120,12 +133,12 @@
           const organizingHTML = serviceData.organizing.map(org => `
             <div class="card">
               <div class="chip-group">
-                <span class="chip chip-year chip-sm">${org.year}</span>
+                ${org.year ? `<span class="chip chip-year chip-sm">${org.year}</span>` : ''}
                 <span class="chip chip-service chip-sm">Organizing</span>
               </div>
               <h3>${org.event}</h3>
-              <p><strong>Role:</strong> ${org.role}</p>
-              <p><strong>Location:</strong> ${org.location}</p>
+              ${org.role ? `<p><strong>Role:</strong> ${org.role}</p>` : ''}
+              ${org.location ? `<p><strong>Location:</strong> ${org.location}</p>` : ''}
               ${org.website ? `
                 <p class="mt-md">
                   <a href="${org.website}" target="_blank" rel="noopener" class="btn btn-sm">
@@ -136,7 +149,6 @@
             </div>
           `).join('');
           organizingContainer.innerHTML = organizingHTML;
-          console.log('[service.html] ✅ Organizing activities displayed!', serviceData.organizing.length, 'events');
         } else {
           organizingContainer.innerHTML = '<p class="text-muted">No organizing activities found.</p>';
         }
@@ -155,7 +167,6 @@
             </div>
           `).join('');
           pcContainer.innerHTML = pcHTML;
-          console.log('[service.html] ✅ Program committees displayed!', serviceData.program_committees.length, 'committees');
         } else {
           pcContainer.innerHTML = '<p class="text-muted">No program committee service found.</p>';
         }
@@ -175,7 +186,6 @@
             </div>
           `).join('');
           editorialContainer.innerHTML = editorialHTML;
-          console.log('[service.html] ✅ Editorial service displayed!', serviceData.editorial.length, 'boards');
         } else {
           editorialContainer.innerHTML = '<p class="text-muted">No editorial service found.</p>';
         }
@@ -192,10 +202,8 @@
             </div>
           `;
           reviewingContainer.innerHTML = reviewingHTML;
-          console.log('[service.html] ✅ Reviewing activities displayed!', serviceData.reviewing.length, 'venues');
         } else {
           reviewingContainer.innerHTML = '<p class="text-muted">No reviewing activities found.</p>';
-          console.log('[service.html] ℹ️ No reviewing data available');
         }
 
         // Research Groups & Professional Societies
@@ -248,35 +256,10 @@
           }
 
           groupsContainer.innerHTML = groupsHTML;
-          console.log('[service.html] ✅ Affiliations displayed!');
-        }
-
-        // Invited Talks
-        const talksContainer = document.getElementById('talks-container');
-        try {
-          const teachingData = await loadJSON('./data/teaching.json');
-          if (teachingData.guest_lectures && teachingData.guest_lectures.length > 0) {
-            const talksHTML = teachingData.guest_lectures.map(lecture => `
-              <div class="card">
-                <div class="mb-sm"><strong>${lecture.date || lecture.year || ''}</strong></div>
-                <h3>${lecture.title}</h3>
-                <p><strong>Event:</strong> ${lecture.event}</p>
-                <p><strong>Institution:</strong> ${lecture.institution}</p>
-                ${lecture.location ? `<p><strong>Location:</strong> ${lecture.location}</p>` : ''}
-                ${lecture.hours ? `<p>${lecture.hours} hours</p>` : ''}
-                ${lecture.description ? `<p class="mt-md">${lecture.description}</p>` : ''}
-              </div>
-            `).join('');
-            talksContainer.innerHTML = talksHTML;
-            console.log('[service.html] ✅ Invited talks displayed!', teachingData.guest_lectures.length, 'talks');
-          }
-        } catch (error) {
-          console.error('[service.html] Error loading talks:', error);
-          talksContainer.innerHTML = '<p class="text-muted">Invited talk information available in the Teaching section.</p>';
         }
 
       } catch (error) {
-        console.error('[service.html] ❌ Error loading service data:', error);
+        console.error('[service.html] Error loading service data:', error);
       }
     });
   </script>

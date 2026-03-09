@@ -30,93 +30,53 @@
     <section id="contact">
       <div class="container">
         <h1 class="fade-in">Contact</h1>
+        <div class="intro-text fade-in-delay-1">
+          <p>Email is the best way to reach me for research collaborations, supervision enquiries, and speaking invitations.</p>
+        </div>
+        <nav class="section-index fade-in-delay-2" aria-label="Contact sections">
+          <a href="#primary-contact" class="chip chip-neutral chip-sm">Email & Phone</a>
+          <a href="#profiles" class="chip chip-neutral chip-sm">Profiles</a>
+          <a href="#location" class="chip chip-neutral chip-sm">Location</a>
+        </nav>
 
         <div class="contact-grid">
-          <!-- Email -->
-          <div class="contact-card fade-in-delay-1">
-            <h3>∃ Email</h3>
-            <div class="contact-item">
-              <span class="contact-icon">@</span>
-              <div>
-                <div>
-                  <strong>Primary:</strong><br>
-                  <a href="mailto:fabioaurelio.dasaro@unisalento.it" class="contact-link">
-                    fabioaurelio.dasaro@unisalento.it
-                  </a>
-                  <button class="copy-btn" onclick="copyToClipboard('fabioaurelio.dasaro@unisalento.it', this)">
-                    Copy
-                  </button>
-                </div>
-                <div class="mt-sm">
-                  <strong>Institutional:</strong><br>
-                  <a href="mailto:fabioaurelio.dasaro@univr.it" class="contact-link">
-                    fabioaurelio.dasaro@univr.it
-                  </a>
-                  <button class="copy-btn" onclick="copyToClipboard('fabioaurelio.dasaro@univr.it', this)">
-                    Copy
-                  </button>
-                </div>
-                <div class="mt-sm">
-                  <a href="mailto:fabio.d'asaro.14@ucl.ac.uk" class="contact-link">
-                    fabio.d'asaro.14@ucl.ac.uk
-                  </a>
-                  <button class="copy-btn" onclick="copyToClipboard('fabio.d\'asaro.14@ucl.ac.uk', this)">
-                    Copy
-                  </button>
-                </div>
-                <div class="mt-sm">
-                  <strong>Personal:</strong><br>
-                  <a href="mailto:fdasaro@gmail.com" class="contact-link">
-                    fdasaro@gmail.com
-                  </a>
-                  <button class="copy-btn" onclick="copyToClipboard('fdasaro@gmail.com', this)">
-                    Copy
-                  </button>
-                </div>
-              </div>
+          <div id="primary-contact" class="contact-card fade-in-delay-1">
+            <h2>Best Way to Reach Me</h2>
+            <div id="email-container">
+              <p class="loading-message">Loading email addresses...</p>
             </div>
+            <div id="phone-container" class="mt-lg">
+              <p class="loading-message">Loading phone number...</p>
+            </div>
+            <p class="contact-note">For student enquiries, include your current degree, institution, and the topic you would like to work on.</p>
           </div>
 
-          <!-- Phone -->
-          <div class="contact-card fade-in-delay-2">
-            <h3>∀ Phone</h3>
-            <div class="contact-item">
-              <span class="contact-icon">☎</span>
-              <div>
-                <a href="tel:+393473001762" class="contact-link">+39 347 300 1762</a>
-                <button class="copy-btn" onclick="copyToClipboard('+39 347 300 1762', this)">
-                  Copy
-                </button>
-              </div>
+          <div id="profiles" class="contact-card fade-in-delay-2">
+            <h2>Academic Profiles</h2>
+            <p>Identifiers and external profiles.</p>
+            <div class="profile-links">
+              <a href="https://github.com/dasaro" target="_blank" rel="noopener" class="profile-link" data-contact-link="github">
+                <span>→</span> GitHub
+              </a>
+              <a href="https://scholar.google.com" target="_blank" rel="noopener" class="profile-link" data-contact-link="scholar">
+                <span>→</span> Google Scholar
+              </a>
+              <a href="https://orcid.org" target="_blank" rel="noopener" class="profile-link" data-contact-link="orcid">
+                <span>→</span> ORCID
+              </a>
+              <a href="https://www.researchgate.net" target="_blank" rel="noopener" class="profile-link" data-contact-link="researchgate" hidden>
+                <span>→</span> ResearchGate
+              </a>
             </div>
-          </div>
-        </div>
-
-        <!-- Academic Profiles -->
-        <div class="card mt-xl fade-in-delay-3">
-          <h2 class="section-title">Academic & Professional Profiles</h2>
-          <div class="profile-links">
-            <a href="https://github.com/dasaro" target="_blank" rel="noopener" class="profile-link" data-contact-link="github">
-              <span>→</span> GitHub
-            </a>
-            <a href="https://scholar.google.com" target="_blank" rel="noopener" class="profile-link" data-contact-link="scholar">
-              <span>→</span> Google Scholar
-            </a>
-            <a href="https://sites.google.com/view/fdasaro" target="_blank" rel="noopener" class="profile-link" data-contact-link="website">
-              <span>→</span> Personal Website
-            </a>
-            <a href="https://orcid.org" target="_blank" rel="noopener" class="profile-link" data-contact-link="orcid">
-              <span>→</span> ORCID
-            </a>
-            <a href="https://www.researchgate.net" target="_blank" rel="noopener" class="profile-link" data-contact-link="researchgate" hidden>
-              <span>→</span> ResearchGate
-            </a>
+            <p class="mt-md">
+              Prospective students should start from the <a href="dissertation-info.html#phd">Students page</a> for openings, thesis topics, and application guidance.
+            </p>
           </div>
         </div>
 
         <!-- Location -->
-        <div class="location-info fade-in">
-          <h2 class="section-title">Location</h2>
+        <div id="location" class="location-info fade-in">
+          <h2>Location</h2>
           <div id="affiliations-container" class="grid grid-2">
             <p class="loading-message">Loading affiliations...</p>
           </div>
@@ -126,19 +86,6 @@
           </p>
         </div>
 
-        <!-- Get in Touch -->
-        <div class="card mt-xl">
-          <h2 class="section-title">Get in Touch</h2>
-          <p>
-            I'm always happy to discuss research collaborations, potential projects, or opportunities
-            for student supervision. Feel free to reach out via email or connect with me on any of
-            the platforms listed above.
-          </p>
-          <p class="mt-md">
-            For prospective PhD students, please see the <a href="teaching.html#prospective-students">
-            Teaching page</a> for information about research opportunities.
-          </p>
-        </div>
       </div>
     </section>
   </main>
@@ -149,6 +96,7 @@
       <div class="footer-text">
         <p>&copy; <span class="footer-year">2025</span> <span id="footer-name">Loading...</span></p>
         <p>∀x (Logic(x) → Elegant(x))</p>
+        <p class="footer-site-links">Explore: <a href="projects.html">Projects</a> · <a href="service.html">Service</a> · <a href="backgrounds.html">Backgrounds</a></p>
       </div>
       <ul class="footer-links">
         <li><a href="https://github.com/dasaro" target="_blank" rel="noopener" id="footer-github">GitHub</a></li>
@@ -160,8 +108,8 @@
   </footer>
 
   <!-- Scripts -->
-    <script src="js/navigation.js?v=31"></script>
-  <script src="js/main.js?v=31"></script>
+    <script src="js/navigation.js?v=32"></script>
+  <script src="js/main.js?v=32"></script>
   <script type="module" src="js/animations/AnimationController.js?v=31"></script>
   <script src="js/logical-symbols.js?v=33"></script>
 
@@ -186,9 +134,59 @@
     // Load affiliations and birthplace from JSON
     document.addEventListener('DOMContentLoaded', async () => {
       try {
-        // Load experience data for affiliations
-        const experienceData = await loadJSON('./data/experience.json', 'Contact');
-        const personalData = await loadJSON('./data/personal.json', 'Contact');
+        const experienceData = await loadJSON('./data/experience.json');
+        const personalData = await loadJSON('./data/personal.json');
+        const emails = personalData?.contact?.emails || [];
+        const phone = personalData?.contact?.phone || '';
+
+        const emailContainer = document.getElementById('email-container');
+        if (emailContainer) {
+          if (emails.length > 0) {
+            const [primaryEmail, ...otherEmails] = emails;
+            emailContainer.innerHTML = `
+              <div class="contact-item contact-item--start">
+                <span class="contact-icon">@</span>
+                <div>
+                  <p><strong>Main email</strong></p>
+                  <p class="mt-sm">
+                    <a href="mailto:${primaryEmail.address}" class="contact-link contact-primary-link">${primaryEmail.address}</a>
+                    <button class="copy-btn" data-copy-value="${encodeURIComponent(primaryEmail.address)}" onclick="copyToClipboard(decodeURIComponent(this.dataset.copyValue), this)">Copy</button>
+                  </p>
+                  <p class="contact-note">${primaryEmail.label}</p>
+                </div>
+              </div>
+              ${otherEmails.length > 0 ? `
+                <ul class="contact-list">
+                  ${otherEmails.map(email => `
+                    <li>
+                      <span class="contact-label">${email.label}</span>
+                      <a href="mailto:${email.address}" class="contact-link">${email.address}</a>
+                      <button class="copy-btn" data-copy-value="${encodeURIComponent(email.address)}" onclick="copyToClipboard(decodeURIComponent(this.dataset.copyValue), this)">Copy</button>
+                    </li>
+                  `).join('')}
+                </ul>
+              ` : ''}
+            `;
+          } else {
+            emailContainer.innerHTML = '<p class="text-muted">Email details will be added soon.</p>';
+          }
+        }
+
+        const phoneContainer = document.getElementById('phone-container');
+        if (phoneContainer) {
+          phoneContainer.innerHTML = phone ? `
+            <div class="contact-item">
+              <span class="contact-icon">☎</span>
+              <div>
+                <p><strong>Phone</strong></p>
+                <p class="mt-sm">
+                  <a href="tel:${phone.replace(/\s+/g, '')}" class="contact-link">${phone}</a>
+                  <button class="copy-btn" data-copy-value="${encodeURIComponent(phone)}" onclick="copyToClipboard(decodeURIComponent(this.dataset.copyValue), this)">Copy</button>
+                </p>
+              </div>
+            </div>
+          ` : '<p class="text-muted">Phone details will be added soon.</p>';
+        }
 
         // Load current affiliations (positions where current: true)
         const currentPositions = experienceData?.positions?.filter(p => p.current) || [];
@@ -206,7 +204,6 @@
           `).join('');
 
           affiliationsContainer.innerHTML = html;
-          console.log('[Contact] ✓ Loaded', currentPositions.length, 'current affiliations');
         } else if (affiliationsContainer) {
           affiliationsContainer.innerHTML = '<p>No current affiliations found.</p>';
         }
@@ -215,38 +212,15 @@
         const birthplaceText = document.getElementById('birthplace-text');
         if (birthplaceText && personalData?.birthplace) {
           birthplaceText.textContent = personalData.birthplace;
-          console.log('[Contact] ✓ Loaded birthplace');
         }
 
-        // Update profile links with data from personal.json
-        if (personalData?.contact) {
-          // GitHub
-          const githubLink = document.querySelector('a[href*="github.com/dasaro"]');
-          if (githubLink && personalData.contact.github) {
-            githubLink.href = `https://github.com/${personalData.contact.github}`;
-            console.log('[Contact] ✓ Updated GitHub link');
-          }
+        if (typeof updateContactLinks === 'function' && personalData) {
+          updateContactLinks(personalData);
+        }
 
-          // Google Scholar
-          const scholarLink = document.querySelector('a[href*="scholar.google.com"]');
-          if (scholarLink && personalData.contact.scholar) {
-            scholarLink.href = `https://scholar.google.com/citations?user=${personalData.contact.scholar}`;
-            console.log('[Contact] ✓ Updated Google Scholar link');
-          }
-
-          // ORCID
-          const orcidLink = document.querySelector('a[href*="orcid.org"]');
-          if (orcidLink && personalData.contact.orcid) {
-            orcidLink.href = `https://orcid.org/${personalData.contact.orcid}`;
-            console.log('[Contact] ✓ Updated ORCID link');
-          }
-
-          // Personal Website
-          const websiteLink = document.querySelector('a[href*="sites.google.com"]');
-          if (websiteLink && personalData.contact.website) {
-            websiteLink.href = personalData.contact.website;
-            console.log('[Contact] ✓ Updated personal website link');
-          }
+        const researchGateLink = document.querySelector('[data-contact-link="researchgate"]');
+        if (researchGateLink && !personalData?.contact?.researchgate) {
+          researchGateLink.hidden = true;
         }
 
       } catch (error) {

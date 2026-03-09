@@ -16,27 +16,21 @@ const jsonCache = new Map();
  */
 async function loadJSON(path) {
   if (jsonCache.has(path)) {
-    console.log(`[loadJSON] Cache hit for: ${path}`);
     return jsonCache.get(path);
   }
 
-  console.log(`[loadJSON] Attempting to load: ${path}`);
   const loadPromise = (async () => {
     try {
       const response = await fetch(path);
-      console.log(`[loadJSON] Response status for ${path}:`, response.status, response.statusText);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const data = await response.json();
-      console.log(`[loadJSON] Successfully loaded ${path}. Data keys:`, Object.keys(data));
-      console.log(`[loadJSON] Data preview:`, data);
       return data;
     } catch (error) {
       console.error(`[loadJSON] Error loading ${path}:`, error);
-      console.error(`[loadJSON] Error details:`, error.message, error.stack);
       return null;
     }
   })();
@@ -56,7 +50,6 @@ async function loadJSON(path) {
  * @deprecated Use NavigationManager.init() from navigation.js instead
  */
 function initNavigation() {
-  console.log('[main.js] initNavigation() called - delegating to NavigationManager');
   // Navigation is now handled by navigation.js
   // This function kept for backward compatibility
 }
@@ -66,7 +59,6 @@ function initNavigation() {
  * @deprecated Use NavigationManager.setActivePage() instead
  */
 function setActivePage() {
-  console.log('[main.js] setActivePage() called - delegating to NavigationManager');
   // Navigation is now handled by navigation.js
   // This function kept for backward compatibility
 }
@@ -330,24 +322,19 @@ async function loadFooterData() {
       const footerGithub = document.getElementById('footer-github');
       if (footerGithub && personalData.contact && personalData.contact.github) {
         footerGithub.href = `https://github.com/${personalData.contact.github}`;
-        console.log('[Footer] ✓ Updated GitHub link');
       }
 
       // Update footer Google Scholar link
       const footerScholar = document.getElementById('footer-scholar');
       if (footerScholar && personalData.contact && personalData.contact.scholar) {
         footerScholar.href = `https://scholar.google.com/citations?user=${personalData.contact.scholar}`;
-        console.log('[Footer] ✓ Updated Google Scholar link');
       }
 
       // Update footer ORCID link
       const footerOrcid = document.getElementById('footer-orcid');
       if (footerOrcid && personalData.contact && personalData.contact.orcid) {
         footerOrcid.href = `https://orcid.org/${personalData.contact.orcid}`;
-        console.log('[Footer] ✓ Updated ORCID link');
       }
-
-      console.log('[Footer] ✓ Footer data loaded from personal.json');
     }
   } catch (error) {
     console.error('[Footer] Error loading footer data:', error);
@@ -366,10 +353,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.body.classList.contains('enable-back-to-top')) {
     initBackToTop();
   }
-
-  // Log that the site is loaded
-  console.log('Academic Website Loaded | Fabio Aurelio D\'Asaro');
-  console.log('∀x (Logic(x) → Elegant(x))');
 
   // Initialize fancy navigation scroll effect
   initFancyNavigation();
@@ -400,8 +383,6 @@ function initFancyNavigation() {
 
     lastScroll = currentScroll;
   });
-
-  console.log('[main.js] ✨ Fancy navigation effects initialized');
 }
 
 // ============================================
@@ -415,3 +396,5 @@ window.debounce = debounce;
 window.showLoading = showLoading;
 window.showError = showError;
 window.normalizeContactUrl = normalizeContactUrl;
+window.updateContactLinks = updateContactLinks;
+window.updateScholarMetrics = updateScholarMetrics;

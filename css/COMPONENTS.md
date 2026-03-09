@@ -54,6 +54,7 @@ Use chips for compact labels, state, and metadata.
 - Status: `.chip-current`, `.chip-ongoing`, `.chip-past`, `.chip-completed`
 - Publication metadata: `.chip-year`, `.chip-journal`, `.chip-conference`, `.chip-workshop`, `.chip-book`, `.chip-preprint`
 - Academic context: `.chip-phd`, `.chip-msc`, `.chip-bsc`, `.chip-research`, `.chip-teaching`, `.chip-service`, `.chip-supervision`, `.chip-award`
+- Neutral navigation/meta: `.chip-neutral`
 - Legacy aliases kept for compatibility: `.badge-oa`, `.badge-accepted`, `.badge-current`
 
 **Rule:**
@@ -99,6 +100,7 @@ Use these instead of inline typographic styles:
 - `.page-subtitle` for centered page subtitles
 - `.content-lead` for wide lead paragraphs
 - `.mini-link-list`, `.mini-link-item`, `.mini-link` for compact reference links
+- `.section-index` for compact in-page jump links built from chips
 
 ## Layout and Interaction
 

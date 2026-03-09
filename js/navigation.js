@@ -18,9 +18,7 @@ class NavigationManager {
     { href: 'about.html', label: 'About', page: 'about' },
     { href: 'publications.html', label: 'Publications', page: 'publications' },
     { href: 'teaching.html', label: 'Teaching', page: 'teaching' },
-    { href: 'projects.html', label: 'Projects', page: 'projects' },
-    { href: 'service.html', label: 'Service', page: 'service' },
-    { href: 'backgrounds.html', label: 'Backgrounds', page: 'backgrounds' },
+    { href: 'dissertation-info.html', label: 'Students', page: 'students' },
     { href: 'contact.html', label: 'Contact', page: 'contact' }
   ];
 
@@ -28,8 +26,6 @@ class NavigationManager {
    * Initialize navigation system
    */
   static init() {
-    console.log('[NavigationManager] Initializing...');
-
     // Inject navigation HTML
     this.injectNavigation();
 
@@ -39,7 +35,6 @@ class NavigationManager {
     // Setup mobile menu toggle
     this.setupMobileMenu();
 
-    console.log('[NavigationManager] ✓ Initialized');
   }
 
   /**
@@ -49,13 +44,11 @@ class NavigationManager {
     const navPlaceholder = document.getElementById('nav-placeholder');
 
     if (!navPlaceholder) {
-      console.warn('[NavigationManager] No nav-placeholder found, skipping injection');
       return;
     }
 
     const navHTML = this.generateHTML();
     navPlaceholder.outerHTML = navHTML;
-    console.log('[NavigationManager] ✓ Navigation HTML injected');
   }
 
   /**
@@ -66,8 +59,6 @@ class NavigationManager {
     const pathname = window.location.pathname;
     const filename = pathname.split('/').pop() || 'index.html';
     const dataPage = document.body.getAttribute('data-page');
-
-    console.log('[NavigationManager] Current page:', { pathname, filename, dataPage });
 
     const navLinks = document.querySelectorAll('.nav-link');
 
@@ -93,7 +84,6 @@ class NavigationManager {
 
       if (isActive) {
         link.classList.add('active');
-        console.log('[NavigationManager] Active page:', linkHref);
       } else {
         link.classList.remove('active');
       }
@@ -108,14 +98,19 @@ class NavigationManager {
     const navMenu = document.querySelector('.nav-menu');
 
     if (!navToggle || !navMenu) {
-      console.warn('[NavigationManager] Mobile menu elements not found');
       return;
     }
 
+    const setExpanded = (expanded) => {
+      navToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    };
+
     // Toggle menu on button click
     navToggle.addEventListener('click', () => {
-      navToggle.classList.toggle('active');
-      navMenu.classList.toggle('active');
+      const expanded = !navMenu.classList.contains('active');
+      navToggle.classList.toggle('active', expanded);
+      navMenu.classList.toggle('active', expanded);
+      setExpanded(expanded);
     });
 
     // Close menu when clicking a link
@@ -124,6 +119,7 @@ class NavigationManager {
       link.addEventListener('click', () => {
         navToggle.classList.remove('active');
         navMenu.classList.remove('active');
+        setExpanded(false);
       });
     });
 
@@ -132,6 +128,15 @@ class NavigationManager {
       if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
         navToggle.classList.remove('active');
         navMenu.classList.remove('active');
+        setExpanded(false);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        navToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        setExpanded(false);
       }
     });
   }
@@ -147,19 +152,19 @@ class NavigationManager {
 
     return `
       <div class="nav-wrapper">
-        <nav>
+        <nav aria-label="Primary">
           <a href="index.html" class="nav-brand">
             <span class="logic-symbol">∀</span>
             F.A. D'Asaro
           </a>
 
-          <button class="nav-toggle" aria-label="Toggle navigation">
+          <button class="nav-toggle" aria-label="Toggle navigation" aria-controls="site-navigation" aria-expanded="false">
             <span></span>
             <span></span>
             <span></span>
           </button>
 
-          <ul class="nav-menu">
+          <ul class="nav-menu" id="site-navigation">
             ${navLinks}
           </ul>
         </nav>

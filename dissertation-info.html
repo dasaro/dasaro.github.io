@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="css/responsive.css">
 
 </head>
-<body data-page="dissertation-info">
+<body data-page="students">
   <!-- Mathematical Background Canvas -->
   <canvas id="bg-animation-canvas" data-default-animation="proofTree"></canvas>
   <button id="animation-toggle" class="animation-toggle" aria-label="Toggle background animation" title="Toggle animation (A)">
@@ -29,16 +29,19 @@
   <main>
     <section id="dissertation-info">
       <div class="container">
-        <h1 class="fade-in">∃ Information for Prospective Students</h1>
+        <h1 class="fade-in">Prospective Students</h1>
         <p class="page-subtitle fade-in-delay-1">
           PhD, Master's (Laurea Magistrale), and Bachelor's (Laurea Triennale) Opportunities
         </p>
+        <div class="intro-text fade-in-delay-2">
+          <p>This page gathers current openings, thesis topics, prerequisites, and application guidance in one place so prospective students can find the right entry point quickly.</p>
+        </div>
 
         <!-- Student Level Tabs -->
-        <div class="student-tabs fade-in-delay-2">
-          <button class="tab-button active" data-tab="phd">PhD Students</button>
-          <button class="tab-button" data-tab="masters">Master's Thesis</button>
-          <button class="tab-button" data-tab="bachelors">Bachelor's Thesis</button>
+        <div class="student-tabs fade-in-delay-3">
+          <button class="tab-button active" data-tab="phd">PhD</button>
+          <button class="tab-button" data-tab="masters">Master's</button>
+          <button class="tab-button" data-tab="bachelors">Bachelor's</button>
         </div>
 
         <!-- PhD Content -->
@@ -48,9 +51,16 @@
               <p class="loading-message">Loading information...</p>
             </div>
           </div>
+          <nav class="section-index" aria-label="PhD sections">
+            <a href="#phd-topics" class="chip chip-neutral chip-sm">Research Topics</a>
+            <a href="#phd-openings" class="chip chip-neutral chip-sm">Openings</a>
+            <a href="#phd-apply" class="chip chip-neutral chip-sm">How to Apply</a>
+            <a href="#phd-programs" class="chip chip-neutral chip-sm">Programs</a>
+            <a href="#student-faqs" class="chip chip-neutral chip-sm">FAQs</a>
+          </nav>
 
         <!-- Research Topics -->
-        <div class="mt-xl fade-in-delay-2">
+        <div id="phd-topics" class="mt-xl fade-in-delay-2">
           <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Research Topics I Supervise</h2>
           <div id="topics-container">
             <p class="loading-message">Loading topics...</p>
@@ -74,7 +84,7 @@
         </div>
 
         <!-- Current Openings -->
-        <div class="card mt-xl">
+        <div id="phd-openings" class="card mt-xl">
           <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Current Openings</h2>
           <div id="openings-container">
             <p class="loading-message">Loading current openings...</p>
@@ -82,7 +92,7 @@
         </div>
 
         <!-- How to Apply -->
-        <div class="mt-xl">
+        <div id="phd-apply" class="mt-xl">
           <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> How to Apply</h2>
           <div id="application-container">
             <p class="loading-message">Loading application process...</p>
@@ -90,7 +100,7 @@
         </div>
 
           <!-- PhD Programs -->
-          <div class="mt-xl">
+          <div id="phd-programs" class="mt-xl">
             <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> PhD Programs</h2>
             <div id="programs-container">
               <p class="loading-message">Loading program information...</p>
@@ -106,36 +116,43 @@
               <p class="loading-message">Loading information...</p>
             </div>
           </div>
+          <nav class="section-index" aria-label="Master's sections">
+            <a href="#masters-proceed" class="chip chip-neutral chip-sm">How to Proceed</a>
+            <a href="#masters-prerequisites" class="chip chip-neutral chip-sm">Prerequisites</a>
+            <a href="#masters-topics" class="chip chip-neutral chip-sm">Topics</a>
+            <a href="#masters-latex" class="chip chip-neutral chip-sm">LaTeX</a>
+            <a href="#masters-contact" class="chip chip-neutral chip-sm">Contact</a>
+          </nav>
 
-          <div class="mt-xl">
+          <div id="masters-proceed" class="mt-xl">
             <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> How to Proceed</h2>
             <div id="masters-proceed-container" class="card">
               <p class="loading-message">Loading...</p>
             </div>
           </div>
 
-          <div class="mt-xl">
+          <div id="masters-prerequisites" class="mt-xl">
             <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Prerequisites</h2>
             <div id="masters-prerequisites-container" class="card">
               <p class="loading-message">Loading...</p>
             </div>
           </div>
 
-          <div class="mt-xl">
+          <div id="masters-topics" class="mt-xl">
             <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Research Topics</h2>
             <div id="masters-topics-container">
               <p class="loading-message">Loading topics...</p>
             </div>
           </div>
 
-          <div class="mt-xl">
+          <div id="masters-latex" class="mt-xl">
             <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Typography and LaTeX</h2>
             <div id="masters-latex-container" class="card">
               <p class="loading-message">Loading...</p>
             </div>
           </div>
 
-          <div class="mt-xl">
+          <div id="masters-contact" class="mt-xl">
             <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Contact</h2>
             <div id="masters-contact-container" class="card">
               <p class="loading-message">Loading...</p>
@@ -151,36 +168,43 @@
               <p class="loading-message">Loading information...</p>
             </div>
           </div>
+          <nav class="section-index" aria-label="Bachelor's sections">
+            <a href="#bachelors-proceed" class="chip chip-neutral chip-sm">How to Proceed</a>
+            <a href="#bachelors-prerequisites" class="chip chip-neutral chip-sm">Prerequisites</a>
+            <a href="#bachelors-topics" class="chip chip-neutral chip-sm">Topics</a>
+            <a href="#bachelors-latex" class="chip chip-neutral chip-sm">LaTeX</a>
+            <a href="#bachelors-contact" class="chip chip-neutral chip-sm">Contact</a>
+          </nav>
 
-          <div class="mt-xl">
+          <div id="bachelors-proceed" class="mt-xl">
             <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> How to Proceed</h2>
             <div id="bachelors-proceed-container" class="card">
               <p class="loading-message">Loading...</p>
             </div>
           </div>
 
-          <div class="mt-xl">
+          <div id="bachelors-prerequisites" class="mt-xl">
             <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Prerequisites</h2>
             <div id="bachelors-prerequisites-container" class="card">
               <p class="loading-message">Loading...</p>
             </div>
           </div>
 
-          <div class="mt-xl">
+          <div id="bachelors-topics" class="mt-xl">
             <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Research Topics</h2>
             <div id="bachelors-topics-container">
               <p class="loading-message">Loading topics...</p>
             </div>
           </div>
 
-          <div class="mt-xl">
+          <div id="bachelors-latex" class="mt-xl">
             <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Typography and LaTeX</h2>
             <div id="bachelors-latex-container" class="card">
               <p class="loading-message">Loading...</p>
             </div>
           </div>
 
-          <div class="mt-xl">
+          <div id="bachelors-contact" class="mt-xl">
             <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Contact</h2>
             <div id="bachelors-contact-container" class="card">
               <p class="loading-message">Loading...</p>
@@ -190,7 +214,7 @@
         <!-- End Bachelor's Content -->
 
         <!-- FAQs (Shared across all tabs) -->
-        <div class="card mt-xl">
+        <div id="student-faqs" class="card mt-xl">
           <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Frequently Asked Questions</h2>
           <div id="faqs-container">
             <p class="loading-message">Loading FAQs...</p>
@@ -201,7 +225,7 @@
         <div class="card mt-xl text-center">
           <h2 class="section-title"><span class="logical-symbols symbols-dimmed"></span> Get in Touch</h2>
           <p>
-            If you're interested in pursuing a PhD under my supervision, I'd love to hear from you!
+            If you would like to discuss supervision or thesis topics, send a short message with your background and the area you want to work on.
           </p>
           <p class="mt-md">
             <a href="contact.html" class="btn btn-primary">Contact Me →</a>
@@ -217,6 +241,7 @@
       <div class="footer-text">
         <p>&copy; <span class="footer-year">2025</span> <span id="footer-name">Loading...</span></p>
         <p>∀x (Logic(x) → Elegant(x))</p>
+        <p class="footer-site-links">Explore: <a href="projects.html">Projects</a> · <a href="service.html">Service</a> · <a href="backgrounds.html">Backgrounds</a></p>
       </div>
       <ul class="footer-links">
         <li><a href="https://github.com/dasaro" target="_blank" rel="noopener" id="footer-github">GitHub</a></li>
@@ -228,30 +253,48 @@
   </footer>
 
   <!-- Scripts -->
-    <script src="js/navigation.js?v=31"></script>
-  <script src="js/main.js?v=31"></script>
+    <script src="js/navigation.js?v=32"></script>
+  <script src="js/main.js?v=32"></script>
   <script type="module" src="js/animations/AnimationController.js?v=31"></script>
   <script src="js/logical-symbols.js?v=33"></script>
 
   <script>
-    // Tab switching functionality
     document.addEventListener('DOMContentLoaded', () => {
       const tabButtons = document.querySelectorAll('.tab-button');
       const tabContents = document.querySelectorAll('.tab-content');
+      const validTabs = new Set(['phd', 'masters', 'bachelors']);
+
+      const activateTab = (targetTab) => {
+        if (!validTabs.has(targetTab)) {
+          return;
+        }
+
+        tabButtons.forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.tab === targetTab);
+        });
+
+        tabContents.forEach(content => {
+          content.classList.toggle('active', content.id === `${targetTab}-content`);
+        });
+      };
 
       tabButtons.forEach(button => {
         button.addEventListener('click', () => {
           const targetTab = button.dataset.tab;
-
-          // Remove active class from all tabs and contents
-          tabButtons.forEach(btn => btn.classList.remove('active'));
-          tabContents.forEach(content => content.classList.remove('active'));
-
-          // Add active class to clicked tab and corresponding content
-          button.classList.add('active');
-          document.getElementById(`${targetTab}-content`).classList.add('active');
+          activateTab(targetTab);
+          history.replaceState(null, '', `#${targetTab}`);
         });
       });
+
+      const hash = window.location.hash.slice(1);
+      const initialTab = validTabs.has(hash)
+        ? hash
+        : hash.startsWith('masters-')
+          ? 'masters'
+          : hash.startsWith('bachelors-')
+            ? 'bachelors'
+            : 'phd';
+      activateTab(initialTab);
     });
 
     document.addEventListener('DOMContentLoaded', async () => {
@@ -382,113 +425,55 @@
           `).join('');
         }
 
-        // ===== MASTER'S STUDENTS CONTENT =====
-        const mastersData = data.masters_students || {};
+        const renderThesisTrack = (prefix, trackData, label, chipClass) => {
+          document.getElementById(`${prefix}-introduction-container`).innerHTML =
+            `<p>${trackData.introduction || ''}</p>`;
 
-        // Master's Introduction
-        document.getElementById('masters-introduction-container').innerHTML =
-          `<p>${mastersData.introduction || ''}</p>`;
+          if (trackData.how_to_proceed) {
+            document.getElementById(`${prefix}-proceed-container`).innerHTML =
+              `<p>${trackData.how_to_proceed.text}</p>`;
+          }
 
-        // Master's How to Proceed
-        if (mastersData.how_to_proceed) {
-          document.getElementById('masters-proceed-container').innerHTML =
-            `<p>${mastersData.how_to_proceed.text}</p>`;
-        }
+          if (trackData.prerequisites) {
+            document.getElementById(`${prefix}-prerequisites-container`).innerHTML = `
+              <p>${trackData.prerequisites.general}</p>
+              <p class="mt-md"><strong>Requirements:</strong> ${trackData.prerequisites.requirements}</p>
+            `;
+          }
 
-        // Master's Prerequisites
-        if (mastersData.prerequisites) {
-          document.getElementById('masters-prerequisites-container').innerHTML = `
-            <p>${mastersData.prerequisites.general}</p>
-            <p class="mt-md"><strong>Requirements:</strong> ${mastersData.prerequisites.requirements}</p>
-          `;
-        }
-
-        // Master's Topics
-        const mastersTopicsContainer = document.getElementById('masters-topics-container');
-        if (mastersData.topics && mastersData.topics.length > 0) {
-          mastersTopicsContainer.innerHTML = mastersData.topics.map(topic => `
-            <div class="topic-card">
-              <div class="chip-group">
-                <span class="chip chip-msc chip-sm">MSc</span>
-                <span class="chip chip-research chip-sm">Thesis</span>
+          const topicsContainer = document.getElementById(`${prefix}-topics-container`);
+          if (trackData.topics && trackData.topics.length > 0) {
+            topicsContainer.innerHTML = trackData.topics.map(topic => `
+              <div class="topic-card">
+                <div class="chip-group">
+                  <span class="chip ${chipClass} chip-sm">${label}</span>
+                  <span class="chip chip-research chip-sm">Thesis</span>
+                </div>
+                <h3><span class="logic-symbol">→</span> ${topic.title}</h3>
+                <p>${topic.description}</p>
+                ${topic.references ? `<p class="text-muted mt-sm"><small>${topic.references}</small></p>` : ''}
               </div>
-              <h3><span class="logic-symbol">→</span> ${topic.title}</h3>
-              <p>${topic.description}</p>
-              ${topic.references ? `<p class="text-muted mt-sm"><small>${topic.references}</small></p>` : ''}
-            </div>
-          `).join('');
-        }
+            `).join('');
+          }
 
-        // Master's LaTeX Guidance
-        if (mastersData.latex_guidance) {
-          document.getElementById('masters-latex-container').innerHTML = `
-            <p><strong>${mastersData.latex_guidance.preference}</strong></p>
-            <p class="mt-md">${mastersData.latex_guidance.about_latex}</p>
-            <p class="mt-md">${mastersData.latex_guidance.support}</p>
-          `;
-        }
+          if (trackData.latex_guidance) {
+            document.getElementById(`${prefix}-latex-container`).innerHTML = `
+              <p><strong>${trackData.latex_guidance.preference}</strong></p>
+              <p class="mt-md">${trackData.latex_guidance.about_latex}</p>
+              <p class="mt-md">${trackData.latex_guidance.support}</p>
+            `;
+          }
 
-        // Master's Contact
-        if (mastersData.contact) {
-          document.getElementById('masters-contact-container').innerHTML = `
-            <p><strong>Email:</strong> <a href="mailto:${mastersData.contact.email}">${mastersData.contact.email}</a></p>
-            <p class="mt-md">${mastersData.contact.note}</p>
-          `;
-        }
+          if (trackData.contact) {
+            document.getElementById(`${prefix}-contact-container`).innerHTML = `
+              <p><strong>Email:</strong> <a href="mailto:${trackData.contact.email}">${trackData.contact.email}</a></p>
+              <p class="mt-md">${trackData.contact.note}</p>
+            `;
+          }
+        };
 
-        // ===== BACHELOR'S STUDENTS CONTENT =====
-        const bachelorsData = data.bachelors_students || {};
-
-        // Bachelor's Introduction
-        document.getElementById('bachelors-introduction-container').innerHTML =
-          `<p>${bachelorsData.introduction || ''}</p>`;
-
-        // Bachelor's How to Proceed
-        if (bachelorsData.how_to_proceed) {
-          document.getElementById('bachelors-proceed-container').innerHTML =
-            `<p>${bachelorsData.how_to_proceed.text}</p>`;
-        }
-
-        // Bachelor's Prerequisites
-        if (bachelorsData.prerequisites) {
-          document.getElementById('bachelors-prerequisites-container').innerHTML = `
-            <p>${bachelorsData.prerequisites.general}</p>
-            <p class="mt-md"><strong>Requirements:</strong> ${bachelorsData.prerequisites.requirements}</p>
-          `;
-        }
-
-        // Bachelor's Topics
-        const bachelorsTopicsContainer = document.getElementById('bachelors-topics-container');
-        if (bachelorsData.topics && bachelorsData.topics.length > 0) {
-          bachelorsTopicsContainer.innerHTML = bachelorsData.topics.map(topic => `
-            <div class="topic-card">
-              <div class="chip-group">
-                <span class="chip chip-bsc chip-sm">BSc</span>
-                <span class="chip chip-research chip-sm">Thesis</span>
-              </div>
-              <h3><span class="logic-symbol">→</span> ${topic.title}</h3>
-              <p>${topic.description}</p>
-              ${topic.references ? `<p class="text-muted mt-sm"><small>${topic.references}</small></p>` : ''}
-            </div>
-          `).join('');
-        }
-
-        // Bachelor's LaTeX Guidance
-        if (bachelorsData.latex_guidance) {
-          document.getElementById('bachelors-latex-container').innerHTML = `
-            <p><strong>${bachelorsData.latex_guidance.preference}</strong></p>
-            <p class="mt-md">${bachelorsData.latex_guidance.about_latex}</p>
-            <p class="mt-md">${bachelorsData.latex_guidance.support}</p>
-          `;
-        }
-
-        // Bachelor's Contact
-        if (bachelorsData.contact) {
-          document.getElementById('bachelors-contact-container').innerHTML = `
-            <p><strong>Email:</strong> <a href="mailto:${bachelorsData.contact.email}">${bachelorsData.contact.email}</a></p>
-            <p class="mt-md">${bachelorsData.contact.note}</p>
-          `;
-        }
+        renderThesisTrack('masters', data.masters_students || {}, 'MSc', 'chip-msc');
+        renderThesisTrack('bachelors', data.bachelors_students || {}, 'BSc', 'chip-bsc');
 
         // FAQs
         const faqsContainer = document.getElementById('faqs-container');

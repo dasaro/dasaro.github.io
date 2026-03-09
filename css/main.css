@@ -485,6 +485,19 @@ footer {
   color: var(--color-accent-2);
 }
 
+.footer-site-links {
+  margin-top: var(--space-xs);
+}
+
+.footer-site-links a {
+  color: var(--color-accent-2);
+  text-decoration: none;
+}
+
+.footer-site-links a:hover {
+  color: var(--color-accent-1);
+}
+
 .footer-links {
   display: flex;
   gap: var(--space-lg);
@@ -518,6 +531,7 @@ footer {
 .mb-xl { margin-bottom: var(--space-xl); }
 
 .hidden { display: none; }
+[hidden] { display: none !important; }
 .visible { display: block; }
 
 /* Logic Symbols Decorative */
@@ -1339,6 +1353,12 @@ footer {
   border-radius: 10px;
 }
 
+.chip-neutral {
+  background: rgba(30, 22, 17, 0.04);
+  border: 1px solid var(--surface-border);
+  color: var(--color-accent-2);
+}
+
 .chip-lg {
   padding: 6px 14px;
   font-size: var(--text-sm);
@@ -1638,6 +1658,10 @@ footer {
   font-family: 'Crimson Text', serif;
 }
 
+.contact-item--start {
+  align-items: flex-start;
+}
+
 .contact-icon {
   font-size: var(--text-xl);
   color: var(--color-link);
@@ -1651,6 +1675,42 @@ footer {
 
 .contact-link:hover {
   color: var(--color-link);
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--space-md);
+}
+
+.contact-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) 0;
+  border-top: 1px solid var(--surface-border);
+}
+
+.contact-list li:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.contact-label {
+  color: var(--color-accent-2);
+  font-family: 'Fira Code', monospace;
+  font-size: var(--text-xs);
+  min-width: 12rem;
+}
+
+.contact-primary-link {
+  font-size: var(--text-lg);
+}
+
+.contact-note {
+  color: var(--color-accent-2);
+  margin-top: var(--space-sm);
 }
 
 .copy-btn {
@@ -3030,6 +3090,28 @@ section {
 .intro-text,
 .animation-story {
   padding: var(--space-lg);
+}
+
+.section-index {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin: 0 0 var(--space-xl);
+}
+
+.section-index .chip {
+  text-decoration: none;
+}
+
+.section-index .chip:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-soft);
+  color: var(--color-link);
+}
+
+.section-index .chip:focus-visible {
+  outline: 2px solid var(--color-link);
+  outline-offset: 2px;
 }
 
 .animation-header {
