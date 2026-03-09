@@ -274,7 +274,7 @@ class PublicationsManager {
 
     // Close modal on Escape key
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && this.elements.modal.style.display !== 'none') {
+      if (e.key === 'Escape' && !this.elements.modal.hidden) {
         this.hideModal();
       }
     });
@@ -551,7 +551,8 @@ class PublicationsManager {
     this.elements.bibtexContent.textContent = bibtexContent;
 
     // Show modal
-    this.elements.modal.style.display = 'flex';
+    this.elements.modal.hidden = false;
+    this.elements.modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden'; // Prevent background scroll
 
     console.log('[PublicationsManager] Modal displayed');
@@ -561,7 +562,8 @@ class PublicationsManager {
    * Hide BibTeX modal
    */
   hideModal() {
-    this.elements.modal.style.display = 'none';
+    this.elements.modal.hidden = true;
+    this.elements.modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = ''; // Restore scroll
     console.log('[PublicationsManager] Modal hidden');
   }
@@ -576,11 +578,11 @@ class PublicationsManager {
       // Visual feedback - change button text temporarily
       const originalText = this.elements.copyBtn.innerHTML;
       this.elements.copyBtn.innerHTML = '<span class="btn-icon">✓</span> Copied!';
-      this.elements.copyBtn.style.background = 'var(--color-link)';
+      this.elements.copyBtn.classList.add('copied');
 
       setTimeout(() => {
         this.elements.copyBtn.innerHTML = originalText;
-        this.elements.copyBtn.style.background = '';
+        this.elements.copyBtn.classList.remove('copied');
       }, 2000);
 
       console.log('[PublicationsManager] BibTeX copied to clipboard');

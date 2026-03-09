@@ -14,102 +14,6 @@
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/responsive.css">
 
-  <style>
-    .error-hero {
-      min-height: 60vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: var(--space-2xl) var(--space-lg);
-    }
-
-    .error-code {
-      font-size: 120px;
-      font-family: 'Fira Code', monospace;
-      color: var(--color-link);
-      font-weight: bold;
-      line-height: 1;
-      margin-bottom: var(--space-md);
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .error-logic {
-      font-size: var(--text-2xl);
-      font-family: 'Fira Code', monospace;
-      color: var(--color-accent-1);
-      margin-bottom: var(--space-xl);
-      font-weight: normal;
-    }
-
-    .error-message {
-      font-size: var(--text-lg);
-      color: var(--color-accent-2);
-      max-width: 600px;
-      margin: 0 auto var(--space-xl);
-      line-height: 1.6;
-    }
-
-    .error-links {
-      display: flex;
-      gap: var(--space-md);
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .logic-jokes {
-      background: var(--color-accent-3);
-      padding: var(--space-xl);
-      border-radius: 4px;
-      margin: var(--space-2xl) 0;
-      border-left: 4px solid var(--color-link);
-    }
-
-    .logic-jokes h3 {
-      font-family: 'Fira Code', monospace;
-      color: var(--color-accent-1);
-      margin-bottom: var(--space-lg);
-      text-align: center;
-    }
-
-    .joke-item {
-      font-family: 'Fira Code', monospace;
-      padding: var(--space-md);
-      margin-bottom: var(--space-md);
-      background: white;
-      border-radius: 4px;
-      font-size: var(--text-sm);
-      text-align: center;
-      color: var(--color-accent-2);
-    }
-
-    .back-arrow {
-      display: inline-block;
-      animation: bounce 2s infinite;
-    }
-
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateX(0);
-      }
-      40% {
-        transform: translateX(-10px);
-      }
-      60% {
-        transform: translateX(-5px);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .error-code {
-        font-size: 80px;
-      }
-
-      .error-logic {
-        font-size: var(--text-lg);
-      }
-    }
-  </style>
 </head>
 <body data-page="404">
   <!-- Mathematical Background Canvas -->
@@ -145,30 +49,30 @@
 
     <section>
       <div class="container">
-        <div class="logic-jokes">
+        <div class="logic-jokes box box--subtle">
           <h3>⊢ While You're Here, Enjoy Some Logical Truths:</h3>
 
-          <div class="joke-item">
+          <div class="joke-item box">
             ∀x (Page(x) → (Exists(x) ∨ ¬Exists(x)))
             <br><small>Every page either exists or doesn't exist. This one chose the latter.</small>
           </div>
 
-          <div class="joke-item">
+          <div class="joke-item box">
             Found(page) → False
             <br><small>If the page is found, then false. Therefore, by modus tollens...</small>
           </div>
 
-          <div class="joke-item">
+          <div class="joke-item box">
             ∃ε > 0 · |YourExpectations - Reality| < ε
             <br><small>For any positive distance, your expectations were at least that far from reality.</small>
           </div>
 
-          <div class="joke-item">
+          <div class="joke-item box">
             P(Page Exists | You Arrived Here) = 0
             <br><small>Given that you've arrived at this page, the probability the page exists is zero.</small>
           </div>
 
-          <div class="joke-item">
+          <div class="joke-item box">
             404 ∈ ℕ ∧ 404 ∉ ValidPages
             <br><small>404 is a natural number, but not a member of the set of valid pages.</small>
           </div>

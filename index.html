@@ -87,7 +87,7 @@
           <!-- Research interests loaded from JSON -->
           <p class="loading-message">Loading research interests...</p>
         </div>
-        <p class="text-center mt-xl" style="font-size: var(--text-lg); color: var(--color-accent-2); line-height: 1.8; max-width: 900px; margin-left: auto; margin-right: auto;">
+        <p class="content-lead">
           My research sits at the <strong>intersection of formal logic and artificial intelligence</strong>, focusing on how to build AI systems that can reason about uncertainty, explain their decisions, and handle the complexities of real-world actions and change—all grounded in rigorous logical foundations.
         </p>
       </div>
@@ -220,10 +220,10 @@
 
               // Create publication links HTML
               const pubLinks = topPubs.length > 0 ? `
-                <div class="mt-sm" style="font-size: var(--text-xs); line-height: 1.5;">
+                <div class="mini-link-list">
                   ${topPubs.map(pub => `
-                    <div style="margin-bottom: var(--space-xs);">
-                      <a href="${pub.url || 'publications.html'}" target="_blank" style="color: var(--color-link); text-decoration: none;">
+                    <div class="mini-link-item">
+                      <a href="${pub.url || 'publications.html'}" target="_blank" rel="noopener" class="mini-link">
                         ▸ ${pub.title.substring(0, 60)}${pub.title.length > 60 ? '...' : ''} (${pub.year})
                       </a>
                     </div>
