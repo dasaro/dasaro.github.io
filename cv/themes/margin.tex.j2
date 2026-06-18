@@ -1,0 +1,187 @@
+%# ====================================================================
+%# themes/margin.tex.j2  —  distinctive but sober: section labels set in a
+%# left margin column (sans, accent), content in serif. Same data contract
+%# as classic.tex.j2 (built by build_cv.py).
+%# ====================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage[left=3.4cm,right=1.6cm,top=1.7cm,bottom=1.7cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[expansion=false]{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{accent}{HTML}{\VAR{accent}}
+\definecolor{muted}{HTML}{6A6A6A}
+\definecolor{hair}{HTML}{D6D6D6}
+\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
+
+%# --- section title in the left margin: sans, uppercase, accent ---
+\titleformat{\section}[leftmargin]
+  {\sffamily\bfseries\footnotesize\color{accent}\raggedright}
+  {}{0pt}{}
+\titlespacing*{\section}{2.6cm}{1.5ex plus .3ex}{0.9em}
+
+\setlist[itemize]{label={\color{accent}\small\textbullet}, leftmargin=1.1em,
+                  itemsep=0.12em, topsep=0.15em, parsep=0pt}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\newcommand{\cventry}[4]{%
+  \noindent\textbf{#2}\hfill{\small\color{muted}#1}\par
+  {\small\itshape\color{muted}#3}\par
+  \ifx\relax#4\relax\else\vspace{0.12em}{\small #4}\par\fi
+  \vspace{0.5em}%
+}
+
+\begin{document}
+
+%# ======================= HEADER (full width) =======================
+{\sffamily\Huge\bfseries \VAR{basics.name}}\par\vspace{0.25em}
+{\sffamily\large\color{accent}\VAR{basics.headline | tex}}\par\vspace{0.7em}
+{\small
+  \href{mailto:\VAR{basics.email}}{\VAR{basics.email}}
+  \BLOCK{if basics.phone}\;\textbar\;\VAR{basics.phone | tex}\BLOCK{endif}
+  \BLOCK{if basics.website}\;\textbar\;\href{\VAR{basics.website}}{website}\BLOCK{endif}
+  \BLOCK{if basics.scholar}\;\textbar\;\href{\VAR{basics.scholar}}{Scholar}\BLOCK{endif}
+  \BLOCK{if basics.github}\;\textbar\;\href{\VAR{basics.github}}{GitHub}\BLOCK{endif}
+}\par
+\vspace{0.7em}{\color{hair}\hrule height 0.7pt}\vspace{0.8em}
+
+\BLOCK{if basics.summary}
+{\small \VAR{basics.summary | tex}}\par
+\BLOCK{endif}
+
+%# ======================= SECTIONS =======================
+%% for sec in section_order
+
+%% if sec == "experience" and data.experience
+\section{EXPERIENCE}
+%% for e in data.experience
+\cventry{\VAR{e.period | tex}}{\VAR{e.role | tex}, \VAR{e.org | tex}}{\VAR{e.location | tex}}{\VAR{(e.notes | tex) if e.notes else ""}}
+%% endfor
+%% endif
+
+%% if sec == "education" and data.education
+\section{EDUCATION}
+%% for e in data.education
+\cventry{\VAR{e.period | tex}}{\VAR{e.degree | tex}}{\VAR{e.org | tex}}{\VAR{(e.notes | tex) if e.notes else ""}}
+%% endfor
+%% endif
+
+%% if sec == "publications" and publications
+\section{PUBLICATIONS}
+%% if metrics
+{\small\color{muted}\VAR{metrics.source | tex}: \VAR{metrics.citations} citations, \textit{h}-index \VAR{metrics.h_index}, i10-index \VAR{metrics.i10_index}.}\par\vspace{0.5em}
+%% endif
+%% for group in publications
+{\bfseries\color{accent}\VAR{group.year}}
+\begin{itemize}
+%% for item in group["items"]
+\item \VAR{item}
+%% endfor
+\end{itemize}
+%% endfor
+%% endif
+
+%% if sec == "teaching" and data.teaching
+\section{TEACHING}
+%% for t in data.teaching
+\cventry{\VAR{t.period | tex}}{\VAR{t.title | tex}}{}{}
+%% if t["items"]
+\vspace{-0.45em}\begin{itemize}
+%% for it in t["items"]
+\item \VAR{it | tex}
+%% endfor
+\end{itemize}\vspace{0.35em}
+%% endif
+%% endfor
+%% endif
+
+%% if sec == "invited_talks" and data.invited_talks
+\section{INVITED TALKS}
+\begin{itemize}
+%% for t in data.invited_talks
+\item \VAR{t | tex}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "projects" and data.projects
+\section{PROJECTS}
+%% for p in data.projects
+\cventry{\VAR{p.period | tex}}{\VAR{p.name | tex}}{}{\VAR{(p.notes | tex) if p.notes else ""}}
+%% endfor
+%% endif
+
+%% if sec == "supervision" and data.supervision
+\section{SUPERVISION AND MENTORING}
+\begin{itemize}
+%% for s in data.supervision
+\item \VAR{s | tex}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "service" and data.service
+\section{PROFESSIONAL SERVICE}
+\begin{itemize}
+%% for s in data.service
+\item \VAR{s | tex}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "reviewing" and data.reviewing
+\section{REVIEWING}
+\begin{itemize}
+%% for r in data.reviewing
+\item \VAR{r | tex}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "groups" and data.groups
+\section{RESEARCH GROUPS}
+\begin{itemize}
+%% for g in data.groups
+\item \VAR{g | tex}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "memberships" and data.memberships
+\section{MEMBERSHIPS}
+\begin{itemize}
+%% for m in data.memberships
+\item \VAR{m | tex}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "skills" and data.skills
+\section{SKILLS}
+\begin{itemize}
+%% for s in data.skills
+\item \textbf{\VAR{s.label | tex}:} \VAR{s.value | tex}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "languages" and data.languages
+\section{LANGUAGES}
+\VAR{data.languages | map("tex") | join("  \\textbullet\\  ")}
+%% endif
+
+%% if sec == "interests" and data.interests
+\section{INTERESTS}
+\VAR{data.interests | map("tex") | join("  \\textbullet\\  ")}
+%% endif
+
+%% endfor
+
+\end{document}

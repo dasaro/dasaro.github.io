@@ -1,0 +1,185 @@
+%# ====================================================================
+%# themes/classic.tex.j2  —  sober single-column academic CV
+%# Jinja2 delimiters:  \VAR{x} = value,  \BLOCK{...} / %% = control,  %# = comment
+%# Rendered text from cv.yml is escaped via the |tex filter in build_cv.py.
+%# `publications` items arrive already LaTeX-formatted (raw).
+%# ====================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage[margin=1.9cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[expansion=false]{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{accent}{HTML}{\VAR{accent}}
+\definecolor{muted}{HTML}{555555}
+\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
+
+%# --- sober section styling: small-caps bold + thin rule ---
+\titleformat{\section}
+  {\normalfont\large\bfseries\scshape}{}{0em}{}[{\color{accent}\titlerule[0.6pt]}]
+\titlespacing*{\section}{0pt}{1.4ex plus .4ex minus .2ex}{1.0ex}
+
+\setlist[itemize]{leftmargin=1.2em, itemsep=0.15em, topsep=0.2em, parsep=0pt}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+%# --- one timeline entry: title (bold) ... period (right); subtitle; notes ---
+\newcommand{\cventry}[4]{%
+  \noindent\textbf{#2}\hfill{\small\color{muted}#1}\par
+  {\small\itshape #3}\par
+  \ifx\relax#4\relax\else\vspace{0.15em}{\small #4}\par\fi
+  \vspace{0.55em}%
+}
+
+\begin{document}
+
+%# ======================= HEADER =======================
+\begin{center}
+  {\LARGE\bfseries \VAR{basics.name}}\\[0.35em]
+  {\color{muted}\VAR{basics.headline | tex}}\\[0.5em]
+  {\small
+    \href{mailto:\VAR{basics.email}}{\VAR{basics.email}}
+    \BLOCK{if basics.phone} \;\textbullet\; \VAR{basics.phone | tex}\BLOCK{endif}
+    \BLOCK{if basics.website} \;\textbullet\; \href{\VAR{basics.website}}{website}\BLOCK{endif}
+    \BLOCK{if basics.scholar} \;\textbullet\; \href{\VAR{basics.scholar}}{Scholar}\BLOCK{endif}
+    \BLOCK{if basics.github} \;\textbullet\; \href{\VAR{basics.github}}{GitHub}\BLOCK{endif}
+  }
+\end{center}
+\vspace{0.3em}
+
+\BLOCK{if basics.summary}
+{\small \VAR{basics.summary | tex}}\par\vspace{0.4em}
+\BLOCK{endif}
+
+%# ======================= SECTIONS =======================
+%% for sec in section_order
+
+%% if sec == "experience" and data.experience
+\section{Experience}
+%% for e in data.experience
+\cventry{\VAR{e.period | tex}}{\VAR{e.role | tex}, \VAR{e.org | tex}}{\VAR{e.location | tex}}{\VAR{(e.notes | tex) if e.notes else ""}}
+%% endfor
+%% endif
+
+%% if sec == "education" and data.education
+\section{Education}
+%% for e in data.education
+\cventry{\VAR{e.period | tex}}{\VAR{e.degree | tex}}{\VAR{e.org | tex}}{\VAR{(e.notes | tex) if e.notes else ""}}
+%% endfor
+%% endif
+
+%% if sec == "publications" and publications
+\section{Publications\BLOCK{if metrics} \normalfont\normalsize\color{muted}(Citations \VAR{metrics.citations}, \textit{h}-index \VAR{metrics.h_index}, i10 \VAR{metrics.i10_index})\BLOCK{endif}}
+%% for group in publications
+{\bfseries \VAR{group.year}}
+\begin{itemize}
+%% for item in group["items"]
+\item \VAR{item}
+%% endfor
+\end{itemize}
+%% endfor
+%% endif
+
+%% if sec == "teaching" and data.teaching
+\section{Teaching}
+%% for t in data.teaching
+\cventry{\VAR{t.period | tex}}{\VAR{t.title | tex}}{}{}
+%% if t["items"]
+\vspace{-0.45em}\begin{itemize}
+%% for it in t["items"]
+\item \VAR{it | tex}
+%% endfor
+\end{itemize}\vspace{0.35em}
+%% endif
+%% endfor
+%% endif
+
+%% if sec == "invited_talks" and data.invited_talks
+\section{Invited Talks}
+\begin{itemize}
+%% for t in data.invited_talks
+\item \VAR{t | tex}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "projects" and data.projects
+\section{Projects}
+%% for p in data.projects
+\cventry{\VAR{p.period | tex}}{\VAR{p.name | tex}}{}{\VAR{(p.notes | tex) if p.notes else ""}}
+%% endfor
+%% endif
+
+%% if sec == "supervision" and data.supervision
+\section{Supervision \& Mentoring}
+\begin{itemize}
+%% for s in data.supervision
+\item \VAR{s | tex}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "service" and data.service
+\section{Professional Service}
+\begin{itemize}
+%% for s in data.service
+\item \VAR{s | tex}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "reviewing" and data.reviewing
+\section{Reviewing}
+\begin{itemize}
+%% for r in data.reviewing
+\item \VAR{r | tex}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "groups" and data.groups
+\section{Research Groups}
+\begin{itemize}
+%% for g in data.groups
+\item \VAR{g | tex}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "memberships" and data.memberships
+\section{Memberships}
+\begin{itemize}
+%% for m in data.memberships
+\item \VAR{m | tex}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "skills" and data.skills
+\section{Skills}
+\begin{itemize}
+%% for s in data.skills
+\item \textbf{\VAR{s.label | tex}:} \VAR{s.value | tex}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "languages" and data.languages
+\section{Languages}
+\VAR{data.languages | map("tex") | join("  \\textbullet\\  ")}
+%% endif
+
+%% if sec == "interests" and data.interests
+\section{Interests}
+\VAR{data.interests | map("tex") | join("  \\textbullet\\  ")}
+%% endif
+
+%% endfor
+
+\end{document}
