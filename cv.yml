@@ -1,0 +1,265 @@
+# =====================================================================
+# cv.yml — single source of truth for the CV (PDF) and, later, al-folio.
+# Edit this file (or ask Claude Code to) and re-run `python build_cv.py`.
+# Publications live separately in references/papers.bib (BibTeX).
+# =====================================================================
+
+basics:
+  name: "Fabio Aurelio D'Asaro"
+  headline: "Assistant Professor in Logic (PHIL-02/A)"
+  email: "fabioaurelio.dasaro@univr.it"
+  emails:
+    - "fabioaurelio.dasaro@univr.it (institutional, main)"
+    - "fabioaurelio.dasaro@unisalento.it (institutional)"
+    - "fabio.dasaro.14@ucl.ac.uk (institutional)"
+    - "fdasaro@gmail.com (personal)"
+  phone: "+39 347 300 1762"
+  website: "https://sites.google.com/view/fdasaro"
+  scholar: "https://scholar.google.it/citations?user=qb2YFi4AAAAJ"
+  github: "https://github.com/dasaro"
+  birthplace: "Palermo, Italy"
+  summary: >-
+    Researcher in Logic (PHIL-02/A) working at the interface of formal
+    epistemology and AI: probabilistic and temporal reasoning, argumentation,
+    and logic programming (ASP/ILASP). Teaching and supervision span Logic and
+    Philosophy of Science, AI, theoretical and applied Computer Science,
+    Epistemology of Big Data, and Logic Programming.
+
+# Reverse-chronological. "latest position" + "work experience" merged.
+experience:
+  - period: "2026 – present"
+    role: "Assistant Professor"
+    org: "University of Verona"
+    location: "Verona, Italy"
+    notes: >-
+      Research and teaching on uncertain and epistemic reasoning, temporal and
+      probabilistic logics, logic programming, reasoning about actions and
+      change, bounded reasoning, and formal argumentation for (explainable) AI.
+  - period: "2020 – present"
+    role: "Honorary Lecturer"
+    org: "University College London (UCL)"
+    location: "London, UK"
+    notes: >-
+      Department of Information Studies, Faculty of Arts and Humanities.
+      Continuing collaboration on explainable AI and the Event Calculus (KIDS
+      group). Email: fabio.dasaro.14@ucl.ac.uk —
+      profiles.ucl.ac.uk/46877-fabio-d'asaro
+  - period: "2025 – 2026"
+    role: "Postdoctoral Researcher"
+    org: "University of Salento"
+    location: "Lecce, Italy"
+    notes: >-
+      Department of Human Studies (PHIL-02/A). Project FAIR — Future AI
+      Research (PE00000013), NRRP/MUR, NextGenerationEU, Spoke 6
+      ("Symbiotic AI"), PI: Paolo Baldi.
+  - period: "2022 – 2025"
+    role: "Assistant Professor"
+    org: "University of Verona"
+    location: "Verona, Italy"
+    notes: >-
+      Research and teaching on uncertain and epistemic reasoning, temporal and
+      probabilistic logics, logic programming, reasoning about actions and
+      change, bounded reasoning, and formal argumentation for (explainable) AI.
+      Partially funded by PON R&I 2014-2020, DM 1062/2021 (Action IV.4); UniVR
+      code 2021rtdaPON03; CUP B39J21025840001; 12-month secondment at REVO.
+  - period: "2020 – 2021"
+    role: "Postdoctoral Researcher"
+    org: "Logic Group, University of Milan"
+    location: "Milan, Italy"
+    notes: "Uncertain, depth-bounded and epistemic logics."
+  - period: "2019 – 2020"
+    role: "Postdoctoral Researcher"
+    org: "CRDC Tecnologie"
+    location: "Naples, Italy"
+    notes: >-
+      AVATEA Project (AI to support rehabilitation of children with
+      neuro-motor disorders); explainable AI for robotics and preference
+      learning.
+  - period: "2013 – 2014"
+    role: "Research Assistant"
+    org: "University of Palermo"
+    location: "Palermo, Italy"
+    notes: >-
+      NEVERLOST Project (PO-FESR 2007-2013): (sub)optimal antenna displacement
+      in arbitrary 2D spaces via soft-computing (fuzzy logic, genetic
+      algorithms); educational "serious game" for theoretical CS.
+  - period: "Jun – Sep 2011"
+    role: "Undergraduate Intern"
+    org: "ICAR-CNR Palermo"
+    location: "Palermo, Italy"
+    notes: "IMPULSO project: a path-visualization tool using the Google Maps APIs."
+
+education:
+  - period: "2014 – 2019"
+    degree: "PhD in Artificial Intelligence"
+    org: "University College London (UCL), UK"
+    notes: >-
+      Thesis: "Probabilistic Epistemic Reasoning About Actions" (supervisors:
+      Rob Miller, Antonis Bikakis, Luke Dickens). Modelling uncertainty and
+      knowledge-producing actions in the Event Calculus. Excerpts published in
+      Artificial Intelligence (AIJ) and LPNMR.
+  - period: "2013 – 2014"
+    degree: "MSc in Pure Mathematics and Mathematical Logic"
+    org: "University of Manchester, UK"
+    notes: >-
+      Distinction (≈ 110/110 cum laude). Dissertation: "Analogical Reasoning
+      in Unary Inductive Logic" (supervisor: Jeff B. Paris).
+  - period: "2006 – 2011"
+    degree: "BSc in Computer Science"
+    org: "University of Palermo, Italy"
+    notes: >-
+      110/110 cum laude. Dissertation on the Church-Turing thesis and new
+      models of computation (supervisor: Settimo Termini).
+
+# Publications are rendered from references/papers.bib (do NOT list them here).
+# Set `selected: true` below to print only the selected subset in the PDF.
+publications:
+  selected: false      # false = full list grouped by year; true = selected only
+  group_by_year: true
+
+teaching:
+  - period: "2022 – present"
+    title: "Lecturer, University of Verona"
+    items:
+      - "Logic and Philosophy of Science (M-FIL/02), BA in Philosophy"
+      - "Epistemology of Big Data (M-FIL/02), MSc in Data Analytics"
+      - "Computational Epistemology (M-FIL/02), MSc in Artificial Intelligence"
+      - "Logic and Philosophy of Science in Physiotherapy (M-FIL/02), BSc"
+      - "Lab of Computer Science and Multimedia Technologies (INF/01), BA in Philosophy"
+      - "Lab of Artificial Intelligence and Neuroscience, PhD in Human Sciences"
+  - period: "2025"
+    title: "Lecturer, 8th Winter School in Linguistics (Verona / Free Univ. of Bolzano)"
+    items: ["Introduction to Machine Learning (1.5h)"]
+  - period: "2023, 2025"
+    title: "Lecturer, 3rd & 4th Summer School on Bayesian Statistical Analysis (Verona)"
+    items: ["Introduction to Bayesian Probability (3h)"]
+  - period: "2023"
+    title: "Lecturer, IECS Doctoral School, University of Trento"
+    items: ["Logic Programming and Explainable AI (20h intensive, PhD)"]
+  - period: "2021"
+    title: "Guest Lecturer, University of Milan (Dept. of Philosophy)"
+    items:
+      - "Topics in Logic, Probability and Computation (PhD; with H. Hosni, P. Baldi)"
+      - "Trends in Machine Learning (MSc, in H. Hosni's Probability Logic)"
+  - period: "2015 – 2023"
+    title: "Teaching Assistant, University College London"
+    items:
+      - "INST0074 Machine Reasoning for AI (module lead on Formal Argumentation, 2022/23)"
+      - "INST0060 Foundations of Machine Learning and Data Science"
+      - "INST0019 Introduction to Programming and Scripting; INST0029; INST0004"
+  - period: "2013 – 2014"
+    title: "Teaching Assistant, University of Palermo"
+    items: ["Theoretical Computer Science (lab demonstrator)"]
+
+invited_talks:
+  - "Jun 2026 — Invited talk, PACMAN 2026 (Proof, Argumentation, Computation, Modalities and Negation), University of Verona"
+  - "May 2025 — Learning Argumentation Semantics, PACMAN 2025, Roma Tre University"
+  - "Mar 2024 — Logic programming for Explainable AI, PACMAN 2024, University of Verona"
+  - "Jun 2023 — Explainable AI applications of ILP, University of Salento"
+  - "Apr 2023 — Explainable AI applications of ILP, University of Lugano"
+  - "Mar 2022 — Probabilistic epistemic reasoning about actions, UCL, UK"
+  - "Dec 2021 — Explaining black-boxes using ILASP, University of Trieste"
+  - "Aug 2021 — \"Probabilistic Reasoning About Epistemic Action Narratives\", IJCAI 2021"
+  - "Apr 2021 — Invited demo, Lorentz Center Workshop on Explainable Medical AI"
+  - "Jun 2020 — Explaining black-boxes using ILASP, SPIKE Group, Imperial College London"
+
+projects:
+  - period: "2025 – present"
+    name: "FAIR (PNRR)"
+    notes: "Logic for ethical human-AI collaboration (eDefAI, \"Symbiotic AI\"). PE00000013, Spoke 6, CUP H97G22000210007."
+  - period: "2022 – 2024"
+    name: "REVO (PON)"
+    notes: "Researcher (Verona): handwriting recognition, entity matching, eligibility pre-screening; 12-month secondment at REVO."
+  - period: "2022 – 2025"
+    name: "BRIO (PRIN)"
+    notes: "Proponent / collaborator (Milan; then external, EThOS Verona). Formal frameworks for trust and bias. PRIN 2020, 2020SSKZ7R_001 (ERC SH4)."
+  - period: "2018 – 2019"
+    name: "AVATEA (POR)"
+    notes: "Runtime epistemic probabilistic Event Calculus for sensor fusion in rehabilitation serious games. POR Campania FESR 2014-2020, CUP B13D18000130007."
+
+service:
+  - "Co-organizer, eDefAI — 3rd Logic for the AI Spring Summer School, Lecce, 2025"
+  - "Workshop Chair, 1st-3rd BEWARE workshops (Bias, Ethical AI, Explainability, Logic), AIxIA, since 2022"
+  - "Program Committee, IJCAI 2020, 2024, 2025"
+  - "Program Committee, KR, since 2022"
+  - "Program Committee, ECAI, since 2023"
+  - "Co-organizer, EThOS seminar series, since 2022"
+  - "Co-editor, Special Issue on Explainable AI in Finance and Healthcare, Frontiers in AI"
+  - "Workshop Chair, 1st ME&E (Machine Ethics and Explainability), ICLP 2021"
+  - "Workshop Chair, 5th AI^3 (Advances in Argumentation in AI), AIxIA 2021"
+  - "Co-organizer, LUCI Lab seminars (Milan, Philosophy), 2020/2021"
+  - "Review Editor, editorial boards of Frontiers in AI, Frontiers in Big Data, Frontiers in AI in Neurology"
+
+reviewing:
+  - "Journals: IJAR (2025), Journal of Logic and Computation (NETREASON SI), AMAI (Commonsense SI), J. Hydrologic Engineering"
+  - "Conferences: KR (2022-2025), IJCAI (2016-2019, 2024, 2025), ECAI 2023, AAAI-18, ICLP-17, ICSR-2020, SMC-19, WOA-19"
+
+supervision:
+  - "Zlatina Mileva (Imperial College London) — Outstanding Project Award; preprint on learning argumentation semantics"
+  - "Daniele Fossemò & Marco D'Aviero (L'Aquila) — ILP for XAI; open dataset and BEWARE-22 paper"
+  - "Veronica Zenatelli (Verona) — BA thesis on LLMs and the Frame Problem; benchmark dataset"
+  - "Sara Sangiovanni (Napoli Federico II) — HRI pipeline for automated test administration; ICSR 2020"
+  - "Gennaro Daniele Acciaro (Napoli Federico II) — intent recognition with ProbLog/Event Calculus; WOA 2021"
+  - "Luca Raggioli (Napoli Federico II) — deep RL for human-aware approaching; IJSR 2023"
+  - "Francesco Pedrazzoli (Verona, PhD) — ethics of recommender systems; CEPE-23"
+
+groups:
+  - "EThOS — Ethics and Technologies Of the Self, University of Verona"
+  - "LUCI — Logic, Uncertainty, Computation and Information, University of Milan"
+  - "SPIKE — Imperial College London"
+  - "KIDS — Knowledge, Information and Data Science, UCL"
+
+memberships:
+  - "AILA — Associazione Italiana di Logica e sue Applicazioni"
+  - "SILFS — Società Italiana di Logica e Filosofia delle Scienze"
+  - "AIxIA — Associazione Italiana per l'Intelligenza Artificiale"
+  - "GULP — Gruppo ricercatori e Utenti di Programmazione Logica"
+
+skills:
+  - label: "Logic programming"
+    value: "ASP/clingo, Prolog/ProbLog, ILASP/FastLAS"
+  - label: "Programming"
+    value: "Python, Java, JavaScript/TypeScript, PHP, SQL, HTML/CSS; C, MATLAB; Lisp-family, Anglican"
+
+languages:
+  - "Italian — native"
+  - "English — full professional proficiency"
+
+interests:
+  - "Cinema · Guitar · Music · Chess"
+
+metrics:
+  source: "Google Scholar, 16 Sep 2025"
+  citations: 227
+  h_index: 10
+  i10_index: 10
+
+# News items shown on the site homepage (most recent first).
+news:
+  - date: "Jun 2026"
+    text: "Invited talk at PACMAN 2026 (Proof, Argumentation, Computation, Modalities and Negation), University of Verona."
+  - date: "Jun 2026"
+    text: "New JAIR article on reasoning about substitution in resource-transforming procedures."
+  - date: "May 2025"
+    text: "Invited talk at PACMAN 2025 (Roma Tre) on learning argumentation semantics."
+  - date: "May 2025"
+    text: "Co-organising the 3rd \"Logic for the AI Spring\" summer school (eDefAI), Lecce."
+  - date: "2025"
+    text: "Co-organising BEWARE at AIxIA; new paper on weighted assumption-based argumentation (CILC 2025)."
+
+# Order of sections in the rendered PDF (remove/reorder freely).
+section_order:
+  - experience
+  - education
+  - publications
+  - teaching
+  - invited_talks
+  - projects
+  - supervision
+  - service
+  - reviewing
+  - groups
+  - memberships
+  - skills
+  - languages
+  - interests

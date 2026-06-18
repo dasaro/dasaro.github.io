@@ -1,0 +1,6 @@
+# Social links shown in the sidebar / footer.
+cv_pdf: /assets/pdf/cv.pdf            # the LaTeX-generated CV (cv/build_cv.py)
+email: fabioaurelio.dasaro@univr.it
+scholar_userid: qb2YFi4AAAAJ&hl=it   # the user= value in your Google Scholar URL
+github_username: dasaro               # TODO: confirm your GitHub username
+rss_icon: true

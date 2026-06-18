@@ -1,0 +1,17 @@
+github_users:
+  - dasaro
+
+repo_description_lines_max: 2
+
+github_repos:
+  # Research tools
+  - dasaro/pec # Probabilistic Event Calculus
+  - dasaro/klingo # depth-bounded ASP (k-lingo)
+  - dasaro/waba-playground # Weighted Assumption-Based Argumentation
+  - dasaro/ArgLAS # learning argumentation semantics with ILASP
+  - dasaro/tptnd-lean # typed natural deduction / fairness certificates (Lean 4)
+  - dasaro/LogicBenchmarkQuestions # logic puzzles to benchmark LLMs
+  # Playful experiments
+  - dasaro/FretboardTrainer # chromatic tuner & ear-training game (macOS)
+  - dasaro/flatlander # Flatland-inspired deterministic browser simulator
+  - dasaro/deleuzian_paradox_generator

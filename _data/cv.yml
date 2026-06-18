@@ -1,0 +1,140 @@
+# Generated from ../cv.yml by tools/cv_to_alfolio.py — do not edit by hand.
+cv:
+  name: Fabio Aurelio D'Asaro
+  label: Assistant Professor in Logic (PHIL-02/A)
+  email: fabioaurelio.dasaro@univr.it
+  location: Verona, Italy
+  image: ''
+  summary: 'Researcher in Logic (PHIL-02/A) working at the interface of formal epistemology
+    and AI: probabilistic and temporal reasoning, argumentation, and logic programming
+    (ASP/ILASP). Teaching and supervision span Logic and Philosophy of Science, AI,
+    theoretical and applied Computer Science, Epistemology of Big Data, and Logic
+    Programming.'
+  social_networks:
+  - network: GitHub
+    username: dasaro
+  sections:
+    Education:
+    - institution: University College London (UCL), UK
+      area: PhD in Artificial Intelligence
+      studyType: PhD in Artificial Intelligence
+      start_date: '2014'
+      end_date: '2019'
+      highlights:
+      - 'Thesis: "Probabilistic Epistemic Reasoning About Actions" (supervisors: Rob
+        Miller, Antonis Bikakis, Luke Dickens). Modelling uncertainty and knowledge-producing
+        actions in the Event Calculus. Excerpts published in Artificial Intelligence
+        (AIJ) and LPNMR.'
+    - institution: University of Manchester, UK
+      area: MSc in Pure Mathematics and Mathematical Logic
+      studyType: MSc in Pure Mathematics and Mathematical Logic
+      start_date: '2013'
+      end_date: '2014'
+      highlights:
+      - 'Distinction (≈ 110/110 cum laude). Dissertation: "Analogical Reasoning in
+        Unary Inductive Logic" (supervisor: Jeff B. Paris).'
+    - institution: University of Palermo, Italy
+      area: BSc in Computer Science
+      studyType: BSc in Computer Science
+      start_date: '2006'
+      end_date: '2011'
+      highlights:
+      - '110/110 cum laude. Dissertation on the Church-Turing thesis and new models
+        of computation (supervisor: Settimo Termini).'
+    Experience:
+    - company: University of Verona
+      position: Assistant Professor
+      location: Verona, Italy
+      start_date: '2026'
+      end_date: present
+      summary: Research and teaching on uncertain and epistemic reasoning, temporal
+        and probabilistic logics, logic programming, reasoning about actions and change,
+        bounded reasoning, and formal argumentation for (explainable) AI.
+    - company: University College London (UCL)
+      position: Honorary Lecturer
+      location: London, UK
+      start_date: '2020'
+      end_date: present
+      summary: 'Department of Information Studies, Faculty of Arts and Humanities.
+        Continuing collaboration on explainable AI and the Event Calculus (KIDS group).
+        Email: fabio.dasaro.14@ucl.ac.uk — profiles.ucl.ac.uk/46877-fabio-d''asaro'
+    - company: University of Salento
+      position: Postdoctoral Researcher
+      location: Lecce, Italy
+      start_date: '2025'
+      end_date: '2026'
+      summary: 'Department of Human Studies (PHIL-02/A). Project FAIR — Future AI
+        Research (PE00000013), NRRP/MUR, NextGenerationEU, Spoke 6 ("Symbiotic AI"),
+        PI: Paolo Baldi.'
+    - company: University of Verona
+      position: Assistant Professor
+      location: Verona, Italy
+      start_date: '2022'
+      end_date: '2025'
+      summary: Research and teaching on uncertain and epistemic reasoning, temporal
+        and probabilistic logics, logic programming, reasoning about actions and change,
+        bounded reasoning, and formal argumentation for (explainable) AI. Partially
+        funded by PON R&I 2014-2020, DM 1062/2021 (Action IV.4); UniVR code 2021rtdaPON03;
+        CUP B39J21025840001; 12-month secondment at REVO.
+    - company: Logic Group, University of Milan
+      position: Postdoctoral Researcher
+      location: Milan, Italy
+      start_date: '2020'
+      end_date: '2021'
+      summary: Uncertain, depth-bounded and epistemic logics.
+    - company: CRDC Tecnologie
+      position: Postdoctoral Researcher
+      location: Naples, Italy
+      start_date: '2019'
+      end_date: '2020'
+      summary: AVATEA Project (AI to support rehabilitation of children with neuro-motor
+        disorders); explainable AI for robotics and preference learning.
+    - company: University of Palermo
+      position: Research Assistant
+      location: Palermo, Italy
+      start_date: '2013'
+      end_date: '2014'
+      summary: 'NEVERLOST Project (PO-FESR 2007-2013): (sub)optimal antenna displacement
+        in arbitrary 2D spaces via soft-computing (fuzzy logic, genetic algorithms);
+        educational "serious game" for theoretical CS.'
+    - company: ICAR-CNR Palermo
+      position: Undergraduate Intern
+      location: Palermo, Italy
+      start_date: '2011'
+      end_date: '2011'
+      summary: 'IMPULSO project: a path-visualization tool using the Google Maps APIs.'
+    Projects:
+    - name: FAIR (PNRR)
+      summary: Logic for ethical human-AI collaboration (eDefAI, "Symbiotic AI").
+        PE00000013, Spoke 6, CUP H97G22000210007.
+      start_date: '2025'
+      end_date: present
+    - name: REVO (PON)
+      summary: 'Researcher (Verona): handwriting recognition, entity matching, eligibility
+        pre-screening; 12-month secondment at REVO.'
+      start_date: '2022'
+      end_date: '2024'
+    - name: BRIO (PRIN)
+      summary: Proponent / collaborator (Milan; then external, EThOS Verona). Formal
+        frameworks for trust and bias. PRIN 2020, 2020SSKZ7R_001 (ERC SH4).
+      start_date: '2022'
+      end_date: '2025'
+    - name: AVATEA (POR)
+      summary: Runtime epistemic probabilistic Event Calculus for sensor fusion in
+        rehabilitation serious games. POR Campania FESR 2014-2020, CUP B13D18000130007.
+      start_date: '2018'
+      end_date: '2019'
+    Languages:
+    - name: Italian
+      summary: native
+    - name: English
+      summary: full professional proficiency
+    Skills:
+    - name: Logic programming
+      keywords: ASP/clingo, Prolog/ProbLog, ILASP/FastLAS
+    - name: Programming
+      keywords: Python, Java, JavaScript/TypeScript, PHP, SQL, HTML/CSS; C, MATLAB;
+        Lisp-family, Anglican
+    Interests:
+    - name: Interests
+      keywords: Cinema · Guitar · Music · Chess
