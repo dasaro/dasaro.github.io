@@ -1,0 +1,79 @@
+name: Update Scholar metrics
+
+# Refreshes citations / h-index / i10-index in cv.yml (the CV's single source of
+# truth) from Google Scholar, rebuilds the CV PDF, commits, and redeploys.
+# Runs on the 1st of each month and on demand.
+#
+# NOTE: Google Scholar throttles bots and usually blocks GitHub's datacenter IPs.
+# `bin/update_scholar_metrics.py` exits 0 and changes nothing if the fetch is
+# blocked, so a blocked run is a harmless no-op (not a failure). The reliable path
+# is to run `python bin/update_scholar_metrics.py` locally and commit. For
+# unattended CI, add a `SCRAPERAPI_KEY` repository secret (the script will route
+# Scholar requests through ScraperAPI).
+
+on:
+  schedule:
+    - cron: "0 6 1 * *" # 06:00 UTC, 1st of each month
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+      - name: Setup Ruby 💎
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.5"
+          bundler-cache: true
+      - name: Setup Python 🐍
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Setup Node 🧰
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - name: Install dependencies 📦
+        run: |
+          npm ci
+          pip install --upgrade scholarly pyyaml jinja2 bibtexparser
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends imagemagick \
+            texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
+      - name: Refresh Scholar metrics in cv.yml 📈
+        env:
+          SCRAPERAPI_KEY: ${{ secrets.SCRAPERAPI_KEY }}
+        run: python bin/update_scholar_metrics.py
+      - name: Rebuild CV data + PDF 📄
+        run: |
+          python tools/cv_to_alfolio.py
+          python cv/build_cv.py
+      - name: Commit source-of-truth changes 💾
+        run: |
+          if [[ -n "$(git status --porcelain cv.yml _data/cv.yml assets/pdf/cv.pdf)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add cv.yml _data/cv.yml assets/pdf/cv.pdf
+            git commit -m "chore: refresh Google Scholar metrics"
+            git push
+          else
+            echo "Metrics unchanged — nothing to commit."
+          fi
+      - name: Build site 🔧
+        run: |
+          export JEKYLL_ENV=production
+          bundle exec jekyll build
+      - name: Purge unused CSS 🧹
+        run: |
+          npm install -g purgecss
+          purgecss -c purgecss.config.js
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: _site
