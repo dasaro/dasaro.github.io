@@ -91,5 +91,24 @@ def main():
         yaml.safe_dump(out, f, allow_unicode=True, sort_keys=False, default_flow_style=False)
     print(f"[cv_to_alfolio] wrote {dst}")
 
+    # Expose the aggregate Google Scholar metrics to the al-folio pages
+    # (Jekyll reads _data/*.yml as site.data.*).
+    m = cv.get("metrics") or {}
+    if m:
+        src = str(m.get("source", ""))
+        updated = src.split(",", 1)[1].strip() if "," in src else src
+        scholar = {
+            "citations": m.get("citations"),
+            "h_index": m.get("h_index"),
+            "i10_index": m.get("i10_index"),
+            "updated": updated,
+        }
+        sdst = os.path.join(ROOT, "_data", "scholar.yml")
+        with open(sdst, "w", encoding="utf-8") as f:
+            f.write("# Generated from cv.yml metrics by tools/cv_to_alfolio.py — do not edit by hand.\n")
+            yaml.safe_dump(scholar, f, allow_unicode=True, sort_keys=False)
+        print(f"[cv_to_alfolio] wrote {sdst}")
+
+
 if __name__ == "__main__":
     main()
