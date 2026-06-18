@@ -32,6 +32,18 @@ I am an Assistant Professor at the University of Verona and an Honorary Lecturer
 
 You can browse my [publications](/publications/), my [CV](/cv/), or the courses I [teach](/teaching/).
 
+{% if site.data.scholar %}
+
+<p style="text-align: center; margin-top: 1.5rem; font-size: 0.95rem;">
+  <a href="https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid | split: '&' | first }}">Google&nbsp;Scholar</a>
+  &nbsp;·&nbsp; <strong>{{ site.data.scholar.citations }}</strong> citations
+  &nbsp;·&nbsp; h-index <strong>{{ site.data.scholar.h_index }}</strong>
+  &nbsp;·&nbsp; i10-index <strong>{{ site.data.scholar.i10_index }}</strong>
+  &nbsp;<span style="opacity: 0.55;">(updated {{ site.data.scholar.updated }})</span>
+</p>
+
+{% endif %}
+
 ## Research interests
 
 I am currently working on:

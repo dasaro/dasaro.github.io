@@ -56,10 +56,10 @@ jobs:
           python cv/build_cv.py
       - name: Commit source-of-truth changes 💾
         run: |
-          if [[ -n "$(git status --porcelain cv.yml _data/cv.yml assets/pdf/cv.pdf)" ]]; then
+          if [[ -n "$(git status --porcelain cv.yml _data/cv.yml _data/scholar.yml assets/pdf/cv.pdf)" ]]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add cv.yml _data/cv.yml assets/pdf/cv.pdf
+            git add cv.yml _data/cv.yml _data/scholar.yml assets/pdf/cv.pdf
             git commit -m "chore: refresh Google Scholar metrics"
             git push
           else
