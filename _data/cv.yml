@@ -15,7 +15,8 @@ cv:
     username: dasaro
   sections:
     Education:
-    - institution: University College London (UCL), UK
+    - institution: University College London (UCL)
+      location: London, UK
       area: PhD in Artificial Intelligence
       studyType: PhD in Artificial Intelligence
       start_date: '2014'
@@ -25,7 +26,8 @@ cv:
         Miller, Antonis Bikakis, Luke Dickens). Modelling uncertainty and knowledge-producing
         actions in the Event Calculus. Excerpts published in Artificial Intelligence
         (AIJ) and LPNMR.'
-    - institution: University of Manchester, UK
+    - institution: University of Manchester
+      location: Manchester, UK
       area: MSc in Pure Mathematics and Mathematical Logic
       studyType: MSc in Pure Mathematics and Mathematical Logic
       start_date: '2013'
@@ -33,7 +35,8 @@ cv:
       highlights:
       - 'Distinction (≈ 110/110 cum laude). Dissertation: "Analogical Reasoning in
         Unary Inductive Logic" (supervisor: Jeff B. Paris).'
-    - institution: University of Palermo, Italy
+    - institution: University of Palermo
+      location: Palermo, Italy
       area: BSc in Computer Science
       studyType: BSc in Computer Science
       start_date: '2006'

@@ -31,6 +31,7 @@ def main():
         s, en = years(e.get("period", ""))
         education.append({
             "institution": e.get("org", ""),
+            "location": e.get("location", ""),
             "area": e.get("degree", ""),
             "studyType": e.get("degree", ""),
             "start_date": s, "end_date": en,

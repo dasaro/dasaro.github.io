@@ -92,7 +92,8 @@ experience:
 education:
   - period: "2014 – 2019"
     degree: "PhD in Artificial Intelligence"
-    org: "University College London (UCL), UK"
+    org: "University College London (UCL)"
+    location: "London, UK"
     url: "https://www.ucl.ac.uk/"
     notes: >-
       Thesis: "Probabilistic Epistemic Reasoning About Actions" (supervisors:
@@ -101,14 +102,16 @@ education:
       Artificial Intelligence (AIJ) and LPNMR.
   - period: "2013 – 2014"
     degree: "MSc in Pure Mathematics and Mathematical Logic"
-    org: "University of Manchester, UK"
+    org: "University of Manchester"
+    location: "Manchester, UK"
     url: "https://www.manchester.ac.uk/"
     notes: >-
       Distinction (≈ 110/110 cum laude). Dissertation: "Analogical Reasoning
       in Unary Inductive Logic" (supervisor: Jeff B. Paris).
   - period: "2006 – 2011"
     degree: "BSc in Computer Science"
-    org: "University of Palermo, Italy"
+    org: "University of Palermo"
+    location: "Palermo, Italy"
     url: "https://www.unipa.it/"
     notes: >-
       110/110 cum laude. Dissertation on the Church-Turing thesis and new

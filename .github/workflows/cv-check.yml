@@ -1,0 +1,62 @@
+name: CV up to date
+
+# Fails if the committed CV artifacts are stale w.r.t. cv.yml / papers.bib —
+# i.e. if you edited a source and forgot to run ./cv/build.sh before committing.
+# It compares the regenerated _data files (deterministic) and the PDF's *text*
+# (robust across TeX installations — the macOS/local BasicTeX build and this
+# Ubuntu texlive build won't be byte-identical, but the content must match).
+
+on:
+  push:
+    paths:
+      - "cv.yml"
+      - "_bibliography/papers.bib"
+      - "cv/**"
+      - "tools/cv_to_alfolio.py"
+      - ".github/workflows/cv-check.yml"
+  pull_request:
+    paths:
+      - "cv.yml"
+      - "_bibliography/papers.bib"
+      - "cv/**"
+      - "tools/cv_to_alfolio.py"
+
+permissions:
+  contents: read
+
+jobs:
+  cv-drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install dependencies 📦
+        run: |
+          pip install --upgrade pyyaml jinja2 bibtexparser
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends poppler-utils \
+            texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
+      - name: Regenerate CV data + PDF 🔧
+        run: |
+          python tools/cv_to_alfolio.py
+          python cv/build_cv.py --out /tmp/cv-rebuilt.pdf
+      - name: Fail if the committed CV is out of date 🚦
+        run: |
+          status=0
+          if ! git diff --quiet -- _data/cv.yml _data/scholar.yml; then
+            echo "::error::_data/cv.yml or _data/scholar.yml is stale — run ./cv/build.sh and commit."
+            git --no-pager diff --stat -- _data/cv.yml _data/scholar.yml
+            status=1
+          fi
+          # Compare PDF *content* (normalised text), not bytes.
+          pdftotext -q assets/pdf/cv.pdf - | tr -s '[:space:]' ' ' > /tmp/committed.txt
+          pdftotext -q /tmp/cv-rebuilt.pdf - | tr -s '[:space:]' ' ' > /tmp/rebuilt.txt
+          if ! diff -q /tmp/committed.txt /tmp/rebuilt.txt >/dev/null; then
+            echo "::error::assets/pdf/cv.pdf does not reflect cv.yml/papers.bib — run ./cv/build.sh and commit."
+            diff <(fold -w1 -s /tmp/committed.txt) <(fold -w1 -s /tmp/rebuilt.txt) | head -40 || true
+            status=1
+          fi
+          [ "$status" = 0 ] && echo "CV artifacts are in sync. ✓"
+          exit $status

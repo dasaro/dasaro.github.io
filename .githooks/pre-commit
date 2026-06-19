@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#
+# Auto-regenerate the CV (PDF + _data) when its sources are part of the commit,
+# so the committed artifacts can never drift from cv.yml / papers.bib.
+#
+# Enable once with:  git config core.hooksPath .githooks
+# Needs the local CV toolchain (cv/.venv + pdflatex); set up by cv/build.sh.
+
+set -euo pipefail
+root="$(git rev-parse --show-toplevel)"
+
+if git diff --cached --name-only \
+   | grep -qE '^(cv\.yml|_bibliography/papers\.bib|cv/build_cv\.py|cv/themes/|tools/cv_to_alfolio\.py)'; then
+  echo "[pre-commit] CV source staged — regenerating cv.pdf + _data …"
+  if ! "$root/cv/build.sh" >/dev/null; then
+    echo "[pre-commit] cv/build.sh failed — commit aborted. Fix the build and retry." >&2
+    exit 1
+  fi
+  git add "$root/assets/pdf/cv.pdf" "$root/_data/cv.yml" "$root/_data/scholar.yml"
+  echo "[pre-commit] CV regenerated and staged."
+fi
