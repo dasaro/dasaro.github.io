@@ -24,6 +24,9 @@ TEAL = "#1f4e5f"
 REAL_COVERS = {
     "raggioli2023deep": "cover-ijsr.png",                 # Int. J. of Social Robotics (Springer)
     "dasaro2017computational": "cover-informatik-spektrum.png",  # Informatik-Spektrum (Springer)
+    "fanghella2026rational": "fanghella2026rational.png", # Cognition (cover provided by the author)
+    "fanghella2026early": "fanghella2026early.png",       # Quarterly J. of Experimental Psychology
+    "badino2024educare": "badino2024educare.png",         # Educare all'IA (Sanoma)
 }
 
 TYPE_LABEL = {
