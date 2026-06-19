@@ -7,7 +7,7 @@ subtitle: Assistant Professor, <a href='https://www.univr.it/'>University of Ver
 profile:
   align: right
   image: prof_pic.jpg
-  image_circular: false
+  image_circular: true
   more_info: >
     <p>EThOS · LUCI · SPIKE · KIDS</p>
     <p>Verona, Italy</p>
@@ -25,6 +25,12 @@ latest_posts:
   scrollable: true
   limit: 3
 ---
+
+<style>
+  /* keep the (low-resolution) profile photo modest and rounded */
+  .profile.float-right { max-width: 200px; }
+  .profile.float-right img { max-width: 100%; height: auto; }
+</style>
 
 I am a researcher in Logic working at the interface of formal epistemology and AI — probabilistic and temporal reasoning, argumentation, and logic programming (ASP/ILASP). My work spans bounded and non-monotonic reasoning, explainable AI, and the foundations of computation.
 
