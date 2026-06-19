@@ -1,6 +1,6 @@
 ---
 layout: page
-title: projects
+title: Projects
 permalink: /projects/
 description: Research projects I have taken part in. Cards link to the official project page where one exists.
 nav: true

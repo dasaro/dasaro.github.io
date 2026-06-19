@@ -1,7 +1,7 @@
 ---
 layout: page
 permalink: /theses/
-title: theses
+title: Theses
 description: Information for students interested in a BA or MSc thesis under my supervision at the University of Verona.
 nav: true
 nav_order: 7

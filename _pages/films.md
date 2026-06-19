@@ -1,7 +1,7 @@
 ---
 layout: page
 permalink: /films/
-title: films
+title: Films
 description: A few films I keep coming back to — a list in progress.
 nav: true
 nav_order: 8

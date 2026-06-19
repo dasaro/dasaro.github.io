@@ -1,7 +1,7 @@
 ---
 layout: page
 permalink: /repositories/
-title: repositories
+title: Repositories
 description: A selection of my open-source projects — research tools and a few playful experiments. More at github.com/dasaro
 nav: true
 nav_order: 4

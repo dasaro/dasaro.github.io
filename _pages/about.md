@@ -1,6 +1,6 @@
 ---
 layout: about
-title: about
+title: About
 permalink: /
 subtitle: Assistant Professor, <a href='https://www.univr.it/'>University of Verona</a> · Honorary Lecturer, <a href='https://www.ucl.ac.uk/'>UCL</a> · Formal epistemology &amp; AI
 
