@@ -47,6 +47,8 @@ def main():
         "location": text(e.get("location")),
         "period": text(e.get("period")),
         "url": text(e.get("url")),
+        "logo": text(e.get("logo")),
+        "badge": text(e.get("badge")),
         "notes": text(e.get("notes")),
         "coords": coords(e.get("location")),
     } for e in cv.get("experience", [])]
