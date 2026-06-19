@@ -18,7 +18,7 @@ import bibtexparser
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BIB = os.path.join(ROOT, "_bibliography", "papers.bib")
 PREV = os.path.join(ROOT, "assets", "img", "publication_preview")
-TEAL = "#b509ac"  # al-folio default theme colour (kept the var name for brevity)
+TEAL = "#333333"  # neutral accent — theme-independent, robust in light/dark/print
 
 # Entry key -> already-downloaded real cover file (publisher CDN).
 REAL_COVERS = {
