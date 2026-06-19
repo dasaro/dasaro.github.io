@@ -33,7 +33,7 @@ _Department of Philosophy._
 
 ## University College London — Teaching Assistant (2015–2023)
 
-- **INST0074 Machine Reasoning for AI** — module lead on Formal Argumentation (2022/23)
+- **[INST0074 Machine Reasoning for AI](https://www.ucl.ac.uk/module-catalogue/modules/machine-reasoning-for-artificial-intelligence-INST0074)** — module lead on Formal Argumentation (2022/23)
 - **INST0060 Foundations of Machine Learning and Data Science**
 - **INST0019 Introduction to Programming and Scripting**; INST0029; INST0004
 
