@@ -1,0 +1,39 @@
+# Favourite films shown on /films/. Add an entry and it appears in the grid.
+- title: Dolls
+  director: Takeshi Kitano
+  year: 2002
+  url: https://letterboxd.com/film/dolls-2002/
+- title: Stalker
+  director: Andrei Tarkovsky
+  year: 1979
+  url: https://letterboxd.com/film/stalker/
+- title: Crimes of the Future
+  director: David Cronenberg
+  year: 2022
+  url: https://letterboxd.com/film/crimes-of-the-future-2022/
+- title: Primo amore
+  director: Matteo Garrone
+  year: 2004
+  url: https://letterboxd.com/film/first-love-2004/
+- title: Mulholland Dr.
+  director: David Lynch
+  year: 2001
+  url: https://letterboxd.com/film/mulholland-drive/
+- title: Il grande capo
+  director: Lars von Trier
+  year: 2006
+  note: The Boss of It All
+  url: https://letterboxd.com/film/the-boss-of-it-all/
+- title: Idioterne
+  director: Lars von Trier
+  year: 1998
+  note: The Idiots
+  url: https://letterboxd.com/film/the-idiots/
+- title: Amour
+  director: Michael Haneke
+  year: 2012
+  url: https://letterboxd.com/film/amour/
+- title: Totò che visse due volte
+  director: Ciprì e Maresco
+  year: 1998
+  url: https://letterboxd.com/film/toto-che-visse-due-volte/

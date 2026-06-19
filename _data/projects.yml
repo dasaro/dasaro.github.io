@@ -1,0 +1,29 @@
+# Research projects shown on /projects/ (reverse-chronological). url is optional.
+- name: FAIR
+  funder: PNRR · Spoke 6 “Symbiotic AI”
+  period: 2025 – present
+  description: Logic for ethical human–AI collaboration (eDefAI).
+  url: https://fondazione-fair.it/en/spoke/spoke-6-symbiotic-ai/
+- name: BRIO
+  funder: PRIN 2020
+  period: 2022 – 2025
+  description: Formal frameworks for trust, bias and opacity in AI.
+  url: https://sites.unimi.it/brio/
+- name: REVO
+  funder: PON “Ricerca e Innovazione”
+  period: 2022 – 2024
+  description: Handwriting recognition, entity matching and eligibility pre-screening; industry secondment in Verona.
+- name: AVATEA
+  funder: POR Campania FESR
+  period: 2018 – 2019
+  description: Runtime epistemic probabilistic Event Calculus for sensor fusion in rehabilitation serious games.
+  url: https://www.prisca.unina.it/projects/avatea/
+- name: NEVERLOST
+  funder: PO-FESR 2007–2013
+  period: 2013 – 2014
+  description: (Sub)optimal antenna displacement in arbitrary 2D spaces via soft computing.
+- name: IMPULSO
+  funder: ICAR-CNR, Palermo
+  period: 2011
+  description: A path-visualization tool built on the Google Maps APIs (as a participant).
+  url: http://www.pa.icar.cnr.it/aose/Projects/impulso.html

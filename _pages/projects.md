@@ -2,64 +2,44 @@
 layout: page
 title: projects
 permalink: /projects/
-description: A growing collection of your cool projects.
+description: Research projects I have taken part in. Cards link to the official project page where one exists.
 nav: true
 nav_order: 3
-display_categories: [work, fun]
-horizontal: false
 ---
 
-<!-- pages/projects.md -->
-<div class="projects">
-{% if site.enable_project_categories and page.display_categories %}
-  <!-- Display categorized projects -->
-  {% for category in page.display_categories %}
-  <a id="{{ category }}" href=".#{{ category }}">
-    <h2 class="category">{{ category }}</h2>
-  </a>
-  {% assign categorized_projects = site.projects | where: "category", category %}
-  {% assign sorted_projects = categorized_projects | sort: "importance" %}
-  <!-- Generate cards for each project -->
-  {% if page.horizontal %}
-  <div class="container">
-    <div class="row row-cols-1 row-cols-md-2">
-    {% for project in sorted_projects %}
-      {% include projects_horizontal.liquid %}
-    {% endfor %}
-    </div>
-  </div>
-  {% else %}
-  <div class="row row-cols-1 row-cols-md-3">
-    {% for project in sorted_projects %}
-      {% include projects.liquid %}
-    {% endfor %}
-  </div>
-  {% endif %}
+<style>
+  .proj-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 1.6rem;
+  }
+  .proj-card {
+    display: block;
+    padding: 1.1rem 1.2rem;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 10px;
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  a.proj-card:hover {
+    border-color: var(--global-theme-color);
+    transform: translateY(-2px);
+    text-decoration: none;
+  }
+  .proj-card .pn { font-weight: 700; color: var(--global-theme-color); }
+  .proj-card .pn .arr { font-weight: 400; opacity: 0.6; font-size: 0.85em; }
+  .proj-card .pf { font-size: 0.82rem; opacity: 0.6; margin-top: 0.15rem; }
+  .proj-card .pd { font-size: 0.9rem; opacity: 0.85; margin-top: 0.55rem; }
+</style>
+
+<div class="proj-grid">
+  {% for p in site.data.projects %}
+  {% if p.url %}<a class="proj-card" href="{{ p.url }}" target="_blank" rel="noopener noreferrer">{% else %}<div class="proj-card">{% endif %}
+    <div class="pn">{{ p.name }}{% if p.url %} <span class="arr">↗</span>{% endif %}</div>
+    <div class="pf">{{ p.funder }} · {{ p.period }}</div>
+    <div class="pd">{{ p.description }}</div>
+  {% if p.url %}</a>{% else %}</div>{% endif %}
   {% endfor %}
-
-{% else %}
-
-<!-- Display projects without categories -->
-
-{% assign sorted_projects = site.projects | sort: "importance" %}
-
-  <!-- Generate cards for each project -->
-
-{% if page.horizontal %}
-
-  <div class="container">
-    <div class="row row-cols-1 row-cols-md-2">
-    {% for project in sorted_projects %}
-      {% include projects_horizontal.liquid %}
-    {% endfor %}
-    </div>
-  </div>
-  {% else %}
-  <div class="row row-cols-1 row-cols-md-3">
-    {% for project in sorted_projects %}
-      {% include projects.liquid %}
-    {% endfor %}
-  </div>
-  {% endif %}
-{% endif %}
 </div>
