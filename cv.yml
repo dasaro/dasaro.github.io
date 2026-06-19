@@ -95,7 +95,7 @@ education:
     org: "University College London (UCL)"
     location: "London, UK"
     url: "https://www.ucl.ac.uk/"
-    logo: ""          # drop /assets/img/logos/ucl.png here to use the real logo
+    logo: "/assets/img/logos/ucl.png"
     badge: "UCL"
     notes: >-
       Thesis: "Probabilistic Epistemic Reasoning About Actions" (supervisors:
@@ -107,7 +107,7 @@ education:
     org: "University of Manchester"
     location: "Manchester, UK"
     url: "https://www.manchester.ac.uk/"
-    logo: ""          # drop /assets/img/logos/manchester.png here to use the real logo
+    logo: "/assets/img/logos/manchester.png"
     badge: "UoM"
     notes: >-
       Distinction (≈ 110/110 cum laude). Dissertation: "Analogical Reasoning
@@ -117,7 +117,7 @@ education:
     org: "University of Palermo"
     location: "Palermo, Italy"
     url: "https://www.unipa.it/"
-    logo: ""          # drop /assets/img/logos/palermo.png here to use the real logo
+    logo: "/assets/img/logos/palermo.png"
     badge: "UniPA"
     notes: >-
       110/110 cum laude. Dissertation on the Church-Turing thesis and new

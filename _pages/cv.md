@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Curriculum Vitae
+title: CV
 permalink: /cv/
 nav: true
 nav_order: 5
@@ -11,6 +11,8 @@ description: Experience, education, projects and skills — generated from a sin
 {%- assign m = site.data.scholar -%}
 
 <style>
+  /* this page brings its own header (.cv-head), so hide the layout's title block */
+  .post-header { display: none; }
   .cv { max-width: 56rem; }
   .cv a { text-decoration: none; }
   /* ---- header ---- */
@@ -35,7 +37,8 @@ description: Experience, education, projects and skills — generated from a sin
   .cv-entry { display: flex; gap: .85rem; padding-bottom: 1.15rem; }
   .cv-entry + .cv-entry { border-top: 1px solid var(--global-divider-color); padding-top: 1.05rem; }
   .cv-badge { flex: 0 0 auto; width: 2.9rem; height: 2.9rem; border-radius: .65rem; background: var(--global-theme-color); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .72rem; text-align: center; padding: 2px; }
-  .cv-badge img { max-width: 100%; max-height: 100%; border-radius: .5rem; }
+  .cv-badge:has(img) { background: #fff; border: 1px solid var(--global-divider-color); padding: 4px; }
+  .cv-badge img { max-width: 100%; max-height: 100%; object-fit: contain; }
   .cv-body { flex: 1 1 auto; min-width: 0; }
   .cv-r1 { display: flex; justify-content: space-between; align-items: baseline; gap: .6rem; flex-wrap: wrap; }
   .cv-ttl { font-weight: 700; }
@@ -64,7 +67,7 @@ description: Experience, education, projects and skills — generated from a sin
 
   <div class="cv-head">
     <div>
-      <p class="who">{{ cv.name }}</p>
+      <h1 class="who">{{ cv.name }}</h1>
       <div class="role">{{ cv.label }}</div>
       <div class="cv-contact">
         {% if cv.email %}<a href="mailto:{{ cv.email }}">{{ cv.email }}</a>{% endif %}

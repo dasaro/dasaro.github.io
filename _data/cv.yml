@@ -105,7 +105,7 @@ cv:
     location: London, UK
     period: 2014 – 2019
     url: https://www.ucl.ac.uk/
-    logo: ''
+    logo: /assets/img/logos/ucl.png
     badge: UCL
     notes: 'Thesis: "Probabilistic Epistemic Reasoning About Actions" (supervisors:
       Rob Miller, Antonis Bikakis, Luke Dickens). Modelling uncertainty and knowledge-producing
@@ -119,7 +119,7 @@ cv:
     location: Manchester, UK
     period: 2013 – 2014
     url: https://www.manchester.ac.uk/
-    logo: ''
+    logo: /assets/img/logos/manchester.png
     badge: UoM
     notes: 'Distinction (≈ 110/110 cum laude). Dissertation: "Analogical Reasoning
       in Unary Inductive Logic" (supervisor: Jeff B. Paris).'
@@ -131,7 +131,7 @@ cv:
     location: Palermo, Italy
     period: 2006 – 2011
     url: https://www.unipa.it/
-    logo: ''
+    logo: /assets/img/logos/palermo.png
     badge: UniPA
     notes: '110/110 cum laude. Dissertation on the Church-Turing thesis and new models
       of computation (supervisor: Settimo Termini).'
