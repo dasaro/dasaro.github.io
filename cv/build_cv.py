@@ -183,6 +183,13 @@ def main():
     ap.add_argument("--keep-tex", action="store_true")
     args = ap.parse_args()
 
+    # Reproducible output: derive the PDF's embedded timestamp (/CreationDate, /ID)
+    # from the source files, so identical inputs always yield a byte-identical PDF
+    # (no spurious git diffs locally and no commit churn in the monthly CI rebuild).
+    _src = [p for p in (args.data, args.bib, args.theme) if os.path.exists(p)]
+    os.environ["SOURCE_DATE_EPOCH"] = str(int(max(os.path.getmtime(p) for p in _src)))
+    os.environ["FORCE_SOURCE_DATE"] = "1"
+
     with open(args.data, encoding="utf-8") as f:
         cv = yaml.safe_load(f)
 

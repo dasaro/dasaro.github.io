@@ -50,11 +50,22 @@ jobs:
         env:
           SCRAPERAPI_KEY: ${{ secrets.SCRAPERAPI_KEY }}
         run: python bin/update_scholar_metrics.py
+      - name: Stop if metrics are unchanged 🛑
+        id: gate
+        run: |
+          if git diff --quiet -- cv.yml; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No metrics change — skipping rebuild and deploy."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
       - name: Rebuild CV data + PDF 📄
+        if: steps.gate.outputs.changed == 'true'
         run: |
           python tools/cv_to_alfolio.py
           python cv/build_cv.py
       - name: Commit source-of-truth changes 💾
+        if: steps.gate.outputs.changed == 'true'
         run: |
           if [[ -n "$(git status --porcelain cv.yml _data/cv.yml _data/scholar.yml assets/pdf/cv.pdf)" ]]; then
             git config user.name "github-actions[bot]"
@@ -66,14 +77,17 @@ jobs:
             echo "Metrics unchanged — nothing to commit."
           fi
       - name: Build site 🔧
+        if: steps.gate.outputs.changed == 'true'
         run: |
           export JEKYLL_ENV=production
           bundle exec jekyll build
       - name: Purge unused CSS 🧹
+        if: steps.gate.outputs.changed == 'true'
         run: |
           npm install -g purgecss
           purgecss -c purgecss.config.js
       - name: Deploy 🚀
+        if: steps.gate.outputs.changed == 'true'
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: _site
