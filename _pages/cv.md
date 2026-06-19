@@ -46,9 +46,9 @@ description: Experience, education, projects and skills — generated from a sin
   .cv-notes { font-size: .87rem; color: var(--global-text-color-light); margin-top: .35rem; }
   /* ---- location chip + map ---- */
   details.cv-loc { display: inline-block; }
-  details.cv-loc > summary { display: inline-flex; align-items: center; gap: .25rem; cursor: pointer; list-style: none; font-size: .8rem; color: var(--global-text-color-light); border: 1px solid var(--global-divider-color); border-radius: 999px; padding: .04rem .55rem; }
+  details.cv-loc > summary { display: inline-flex; align-items: center; gap: .3rem; cursor: pointer; list-style: none; font-size: .8rem; color: var(--global-text-color-light); border: 1px solid var(--global-divider-color); border-radius: 999px; padding: .04rem .55rem; }
   details.cv-loc > summary::-webkit-details-marker { display: none; }
-  details.cv-loc > summary::before { content: "\f3c5"; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: .72rem; opacity: .8; }
+  details.cv-loc > summary::before { content: ""; width: .66rem; height: .66rem; flex: 0 0 auto; background-color: var(--global-theme-color); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z'/%3E%3C/svg%3E") no-repeat center / contain; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z'/%3E%3C/svg%3E") no-repeat center / contain; }
   details.cv-loc > summary:hover, details.cv-loc[open] > summary { color: var(--global-theme-color); border-color: var(--global-theme-color); }
   .cv-map { margin-top: .55rem; border-radius: .6rem; overflow: hidden; border: 1px solid var(--global-divider-color); max-width: 30rem; }
   .cv-map iframe { display: block; width: 100%; height: 11rem; border: 0; }

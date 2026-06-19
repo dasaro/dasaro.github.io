@@ -36,7 +36,7 @@ jobs:
         run: |
           pip install --upgrade pyyaml jinja2 bibtexparser
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends poppler-utils \
+          sudo apt-get install -y --no-install-recommends poppler-utils lmodern \
             texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
       - name: Regenerate CV data + PDF 🔧
         run: |
@@ -50,12 +50,14 @@ jobs:
             git --no-pager diff --stat -- _data/cv.yml _data/scholar.yml
             status=1
           fi
-          # Compare PDF *content* (normalised text), not bytes.
-          pdftotext -q assets/pdf/cv.pdf - | tr -s '[:space:]' ' ' > /tmp/committed.txt
-          pdftotext -q /tmp/cv-rebuilt.pdf - | tr -s '[:space:]' ' ' > /tmp/rebuilt.txt
+          # Compare PDF *content* as a de-hyphenated word bag — robust across TeX
+          # installs (line breaks/hyphenation differ; the set of words must not).
+          words() { pdftotext -q "$1" - | sed -E ':a;N;$!ba;s/-\n//g' | tr 'A-Z' 'a-z' | grep -oE '[a-z0-9]{2,}' | sort | uniq -c; }
+          words assets/pdf/cv.pdf > /tmp/committed.txt
+          words /tmp/cv-rebuilt.pdf > /tmp/rebuilt.txt
           if ! diff -q /tmp/committed.txt /tmp/rebuilt.txt >/dev/null; then
             echo "::error::assets/pdf/cv.pdf does not reflect cv.yml/papers.bib — run ./cv/build.sh and commit."
-            diff <(fold -w1 -s /tmp/committed.txt) <(fold -w1 -s /tmp/rebuilt.txt) | head -40 || true
+            diff /tmp/committed.txt /tmp/rebuilt.txt | head -40 || true
             status=1
           fi
           [ "$status" = 0 ] && echo "CV artifacts are in sync. ✓"
