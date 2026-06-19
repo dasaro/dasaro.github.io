@@ -13,6 +13,7 @@ Dependencies:  pyyaml, jinja2, bibtexparser  (see requirements.txt)
 Compiler:      latexmk + pdflatex  (or pass --engine xelatex)
 """
 import argparse
+import datetime
 import os
 import re
 import shutil
@@ -183,15 +184,22 @@ def main():
     ap.add_argument("--keep-tex", action="store_true")
     args = ap.parse_args()
 
-    # Reproducible output: derive the PDF's embedded timestamp (/CreationDate, /ID)
-    # from the source files, so identical inputs always yield a byte-identical PDF
-    # (no spurious git diffs locally and no commit churn in the monthly CI rebuild).
-    _src = [p for p in (args.data, args.bib, args.theme) if os.path.exists(p)]
-    os.environ["SOURCE_DATE_EPOCH"] = str(int(max(os.path.getmtime(p) for p in _src)))
-    os.environ["FORCE_SOURCE_DATE"] = "1"
-
     with open(args.data, encoding="utf-8") as f:
         cv = yaml.safe_load(f)
+
+    # Reproducible output: derive the PDF's embedded timestamp from the CV's
+    # `metrics` date — i.e. from CONTENT, not the wall clock or file mtimes — so the
+    # same inputs always yield a byte-identical PDF on any machine. This is what lets
+    # the CV drift-check compare the CI rebuild against the committed PDF, and keeps
+    # the monthly metrics rebuild from churning. Falls back to a fixed date.
+    _m = re.search(r"\d{1,2}\s+[A-Za-z]{3,}\s+\d{4}", str((cv.get("metrics") or {}).get("source", "")))
+    try:
+        _epoch = int(datetime.datetime.strptime(_m.group(0), "%d %b %Y")
+                     .replace(tzinfo=datetime.timezone.utc).timestamp()) if _m else 1735689600
+    except ValueError:
+        _epoch = 1735689600  # 2025-01-01 UTC
+    os.environ["SOURCE_DATE_EPOCH"] = str(_epoch)
+    os.environ["FORCE_SOURCE_DATE"] = "1"
 
     pubcfg = cv.get("publications", {})
     selected_only = args.selected or bool(pubcfg.get("selected"))

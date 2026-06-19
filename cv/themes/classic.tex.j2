@@ -72,7 +72,7 @@
 %% if sec == "education" and data.education
 \section{Education}
 %% for e in data.education
-\cventry{\VAR{e.period | tex}}{\VAR{e.degree | tex}}{\BLOCK{if e.url}\href{\VAR{e.url}}{\VAR{e.org | tex}}\BLOCK{else}\VAR{e.org | tex}\BLOCK{endif}}{\VAR{(e.notes | tex) if e.notes else ""}}
+\cventry{\VAR{e.period | tex}}{\VAR{e.degree | tex}}{\BLOCK{if e.url}\href{\VAR{e.url}}{\VAR{e.org | tex}}\BLOCK{else}\VAR{e.org | tex}\BLOCK{endif}\BLOCK{if e.location}, \VAR{e.location | tex}\BLOCK{endif}}{\VAR{(e.notes | tex) if e.notes else ""}}
 %% endfor
 %% endif
 
