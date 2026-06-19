@@ -174,9 +174,9 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", default=os.path.join(here, "..", "cv.yml"))
     ap.add_argument("--bib", default=os.path.join(here, "..", "_bibliography", "papers.bib"))
-    ap.add_argument("--theme", default=os.path.join(here, "themes", "classic.tex.j2"))
+    ap.add_argument("--theme", default=os.path.join(here, "themes", "margin.tex.j2"))
     ap.add_argument("--out", default=os.path.join(here, "..", "assets", "pdf", "cv.pdf"))
-    ap.add_argument("--accent", default="2C3E50", help="hex colour (no #)")
+    ap.add_argument("--accent", default="1F4E5F", help="hex colour (no #)")
     ap.add_argument("--engine", default="pdflatex", choices=["pdflatex", "xelatex"])
     ap.add_argument("--selected", action="store_true",
                     help="render only publications with selected=true")
