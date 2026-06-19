@@ -95,6 +95,8 @@ education:
     org: "University College London (UCL)"
     location: "London, UK"
     url: "https://www.ucl.ac.uk/"
+    logo: ""          # drop /assets/img/logos/ucl.png here to use the real logo
+    badge: "UCL"
     notes: >-
       Thesis: "Probabilistic Epistemic Reasoning About Actions" (supervisors:
       Rob Miller, Antonis Bikakis, Luke Dickens). Modelling uncertainty and
@@ -105,6 +107,8 @@ education:
     org: "University of Manchester"
     location: "Manchester, UK"
     url: "https://www.manchester.ac.uk/"
+    logo: ""          # drop /assets/img/logos/manchester.png here to use the real logo
+    badge: "UoM"
     notes: >-
       Distinction (≈ 110/110 cum laude). Dissertation: "Analogical Reasoning
       in Unary Inductive Logic" (supervisor: Jeff B. Paris).
@@ -113,6 +117,8 @@ education:
     org: "University of Palermo"
     location: "Palermo, Italy"
     url: "https://www.unipa.it/"
+    logo: ""          # drop /assets/img/logos/palermo.png here to use the real logo
+    badge: "UniPA"
     notes: >-
       110/110 cum laude. Dissertation on the Church-Turing thesis and new
       models of computation (supervisor: Settimo Termini).
