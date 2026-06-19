@@ -69,7 +69,7 @@
 %% if sec == "education" and data.education
 \section{EDUCATION}
 %% for e in data.education
-\cventry{\VAR{e.period | tex}}{\VAR{e.degree | tex}}{\VAR{e.org | tex}}{\VAR{(e.notes | tex) if e.notes else ""}}
+\cventry{\VAR{e.period | tex}}{\VAR{e.degree | tex}}{\BLOCK{if e.url}\href{\VAR{e.url}}{\VAR{e.org | tex}}\BLOCK{else}\VAR{e.org | tex}\BLOCK{endif}}{\VAR{(e.notes | tex) if e.notes else ""}}
 %% endfor
 %% endif
 
@@ -149,7 +149,7 @@
 \section{RESEARCH GROUPS}
 \begin{itemize}
 %% for g in data.groups
-\item \VAR{g | tex}
+\item \BLOCK{if g.url}\href{\VAR{g.url}}{\VAR{g.name | tex}}\BLOCK{else}\VAR{g.name | tex}\BLOCK{endif}
 %% endfor
 \end{itemize}
 %% endif
