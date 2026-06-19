@@ -93,6 +93,7 @@ education:
   - period: "2014 – 2019"
     degree: "PhD in Artificial Intelligence"
     org: "University College London (UCL), UK"
+    url: "https://www.ucl.ac.uk/"
     notes: >-
       Thesis: "Probabilistic Epistemic Reasoning About Actions" (supervisors:
       Rob Miller, Antonis Bikakis, Luke Dickens). Modelling uncertainty and
@@ -101,12 +102,14 @@ education:
   - period: "2013 – 2014"
     degree: "MSc in Pure Mathematics and Mathematical Logic"
     org: "University of Manchester, UK"
+    url: "https://www.manchester.ac.uk/"
     notes: >-
       Distinction (≈ 110/110 cum laude). Dissertation: "Analogical Reasoning
       in Unary Inductive Logic" (supervisor: Jeff B. Paris).
   - period: "2006 – 2011"
     degree: "BSc in Computer Science"
     org: "University of Palermo, Italy"
+    url: "https://www.unipa.it/"
     notes: >-
       110/110 cum laude. Dissertation on the Church-Turing thesis and new
       models of computation (supervisor: Settimo Termini).
@@ -164,7 +167,7 @@ invited_talks:
   - "Jun 2020 — Explaining black-boxes using ILASP, SPIKE Group, Imperial College London"
 
 projects:
-  - period: "2025 – Mar 2026"
+  - period: "Mar 2025 – Feb 2026"
     name: "FAIR (PNRR)"
     notes: "Logic for ethical human-AI collaboration (eDefAI, \"Symbiotic AI\"). PE00000013, Spoke 6, CUP H97G22000210007."
   - period: "2022 – 2024"
@@ -207,10 +210,14 @@ supervision:
   - "Francesco Pedrazzoli (Verona, PhD) — ethics of recommender systems; CEPE-23"
 
 groups:
-  - "EThOS — Ethics and Technologies Of the Self, University of Verona"
-  - "LUCI — Logic, Uncertainty, Computation and Information, University of Milan"
-  - "SPIKE — Imperial College London"
-  - "KIDS — Knowledge, Information and Data Science, UCL"
+  - name: "EThOS — Ethics and Technologies Of the Self, University of Verona"
+    url: "https://sites.dsu.univr.it/ethos/?lang=en"
+  - name: "LUCI — Logic, Uncertainty, Computation and Information, University of Milan"
+    url: "https://luci.unimi.it/"
+  - name: "SPIKE — Imperial College London"
+    url: "https://wp.doc.ic.ac.uk/spike/"
+  - name: "KIDS — Knowledge, Information and Data Science, UCL"
+    url: "https://blogs.ucl.ac.uk/dis-research/category/knowledge-information-and-data-science/"
 
 memberships:
   - "AILA — Associazione Italiana di Logica e sue Applicazioni"

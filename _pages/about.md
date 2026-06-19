@@ -26,7 +26,7 @@ latest_posts:
   limit: 3
 ---
 
-I am a researcher in Logic (PHIL-02/A) working at the interface of formal epistemology and AI — probabilistic and temporal reasoning, argumentation, and logic programming (ASP/ILASP). My work spans bounded and non-monotonic reasoning, explainable AI, and the foundations of computation.
+I am a researcher in Logic working at the interface of formal epistemology and AI — probabilistic and temporal reasoning, argumentation, and logic programming (ASP/ILASP). My work spans bounded and non-monotonic reasoning, explainable AI, and the foundations of computation.
 
 I am an Assistant Professor at the University of Verona and an Honorary Lecturer at [University College London](https://profiles.ucl.ac.uk/46877-fabio-d'asaro) (Department of Information Studies; <fabio.dasaro.14@ucl.ac.uk>). I am a member of the [EThOS](https://sites.dsu.univr.it/ethos/?lang=en), [LUCI](https://luci.unimi.it/), [SPIKE](https://wp.doc.ic.ac.uk/spike/) and [KIDS](https://blogs.ucl.ac.uk/dis-research/category/knowledge-information-and-data-science/) research groups, and previously held postdoctoral positions in Milan, Naples and Salento. I earned my [PhD](https://discovery.ucl.ac.uk/id/eprint/10067238/) from UCL.
 

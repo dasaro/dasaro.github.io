@@ -9,13 +9,13 @@ nav_order: 6
 
 ## University of Verona — Lecturer (2022–present)
 
-_Department of Human Sciences (PHIL-02/A)._
+_Department of Human Sciences._
 
-- **Logic and Philosophy of Science** (M-FIL/02) — BA in Philosophy
-- **Epistemology of Big Data** (M-FIL/02) — MSc in Data Analytics
-- **Computational Epistemology** (M-FIL/02) — MSc in Artificial Intelligence
-- **Logic and Philosophy of Science in Physiotherapy** (M-FIL/02) — BSc
-- **Lab of Computer Science and Multimedia Technologies** (INF/01) — BA in Philosophy
+- **Logic and Philosophy of Science** — BA in Philosophy
+- **Epistemology of Big Data** — MSc in Data Analytics
+- **Computational Epistemology** — MSc in Artificial Intelligence
+- **Logic and Philosophy of Science in Physiotherapy** — BSc
+- **Lab of Computer Science and Multimedia Technologies** — BA in Philosophy
 - **Lab of Artificial Intelligence and Neuroscience** — PhD in Human Sciences
 
 ## Summer / Winter / Doctoral schools
