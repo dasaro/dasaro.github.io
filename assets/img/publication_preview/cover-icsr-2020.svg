@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 424" role="img" aria-label="ICSR 2020">
+  <rect x="1.5" y="1.5" width="297" height="421" rx="6" fill="#ffffff" stroke="#1f4e5f" stroke-width="1.5"/>
+  <rect x="1.5" y="1.5" width="297" height="64" rx="6" fill="#1f4e5f"/>
+  <rect x="1.5" y="40" width="297" height="25" fill="#1f4e5f"/>
+  <text x="150" y="41" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-weight="700" font-size="15" letter-spacing="1.5" fill="#ffffff">CONFERENCE PAPER</text>
+  <text x="150" y="210" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="25" fill="#16323b">ICSR 2020</text>
+  <text x="150" y="360" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="34" fill="#1f4e5f">2020</text>
+  <circle cx="150" cy="392" r="13" fill="#8cb9c4"/>
+  <text x="150" y="393" text-anchor="middle" font-family="Georgia, serif" font-size="17" fill="#161616" dominant-baseline="central">&#966;</text>
+</svg>
