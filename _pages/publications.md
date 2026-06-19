@@ -39,9 +39,12 @@ nav_order: 2
     if (!BIB || !Object.keys(BIB).length) return;
     var ov = document.createElement('div');
     ov.className = 'bib-overlay';
-    ov.innerHTML = '<div class="bib-card"><div class="bib-head"><span class="ttl">BibTeX</span><span class="acts"><button class="bib-copy" type="button">Copy</button><button class="bib-x" type="button" aria-label="Close">&times;</button></span></div><pre class="bib-pre"></pre></div>';
+    ov.innerHTML = '<div class="bib-card"><div class="bib-head"><span class="ttl">BibTeX</span><span class="acts"><button class="bib-copy" type="button">Copy</button><button class="bib-x" type="button" aria-label="Close">&times;</button></span></div></div>';
     document.body.appendChild(ov);
-    var pre = ov.querySelector('.bib-pre'), copyBtn = ov.querySelector('.bib-copy');
+    var pre = document.createElement('div'); // built in JS (a literal <pre> here is stripped by kramdown)
+    pre.className = 'bib-pre';
+    ov.querySelector('.bib-card').appendChild(pre);
+    var copyBtn = ov.querySelector('.bib-copy');
     function close() { ov.classList.remove('open'); }
     function open(t) { pre.textContent = t; ov.classList.add('open'); copyBtn.textContent = 'Copy'; }
     ov.addEventListener('click', function (e) { if (e.target === ov) close(); });
