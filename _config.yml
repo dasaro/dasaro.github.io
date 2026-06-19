@@ -17,7 +17,7 @@ footer_text: >
   Built with <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> &amp; <a href="https://github.com/alshedivat/al-folio" target="_blank">al-folio</a>.
 keywords: jekyll, jekyll-theme, academic-website, portfolio-website # add your own keywords or leave empty
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
-icon: ⚛️ # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
+icon: phi.svg # favicon: the personal φ mark (assets/img/phi.svg); set to an emoji to use one instead
 
 url: https://dasaro.github.io
 baseurl: "" # root: repo must be named <username>.github.io

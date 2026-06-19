@@ -96,6 +96,7 @@ description: Experience, education, projects and skills — generated from a sin
     <h2>Experience</h2>
     {% for e in cv.experience %}
     <div class="cv-entry">
+      <div class="cv-badge">{% if e.logo != "" %}<img src="{{ e.logo | relative_url }}" alt="{{ e.org }}">{% elsif e.badge != "" %}{{ e.badge }}{% endif %}</div>
       <div class="cv-body">
         <div class="cv-r1">
           <span class="cv-ttl">{{ e.role }}</span>

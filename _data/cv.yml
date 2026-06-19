@@ -19,6 +19,8 @@ cv:
     location: Verona, Italy
     period: 2026 – present
     url: ''
+    logo: ''
+    badge: UNIVR
     notes: Research and teaching on uncertain and epistemic reasoning, temporal and
       probabilistic logics, logic programming, reasoning about actions and change,
       bounded reasoning, and formal argumentation for (explainable) AI.
@@ -30,6 +32,8 @@ cv:
     location: London, UK
     period: 2020 – present
     url: ''
+    logo: /assets/img/logos/ucl.png
+    badge: ''
     notes: 'Department of Information Studies, Faculty of Arts and Humanities. Continuing
       collaboration on explainable AI and the Event Calculus (KIDS group). Email:
       fabio.dasaro.14@ucl.ac.uk — profiles.ucl.ac.uk/46877-fabio-d''asaro'
@@ -41,6 +45,8 @@ cv:
     location: Lecce, Italy
     period: 2025 – 2026
     url: ''
+    logo: /assets/img/logos/salento.png
+    badge: ''
     notes: 'Department of Human Studies (PHIL-02/A). Project FAIR — Future AI Research
       (PE00000013), NRRP/MUR, NextGenerationEU, Spoke 6 ("Symbiotic AI"), PI: Paolo
       Baldi.'
@@ -52,6 +58,8 @@ cv:
     location: Verona, Italy
     period: 2022 – 2025
     url: ''
+    logo: ''
+    badge: UNIVR
     notes: Research and teaching on uncertain and epistemic reasoning, temporal and
       probabilistic logics, logic programming, reasoning about actions and change,
       bounded reasoning, and formal argumentation for (explainable) AI. Partially
@@ -65,6 +73,8 @@ cv:
     location: Milan, Italy
     period: 2020 – 2021
     url: ''
+    logo: /assets/img/logos/milan.png
+    badge: ''
     notes: Uncertain, depth-bounded and epistemic logics.
     coords:
       lat: 45.4642
@@ -74,6 +84,8 @@ cv:
     location: Naples, Italy
     period: 2019 – 2020
     url: ''
+    logo: ''
+    badge: CRDC
     notes: AVATEA Project (AI to support rehabilitation of children with neuro-motor
       disorders); explainable AI for robotics and preference learning.
     coords:
@@ -84,6 +96,8 @@ cv:
     location: Palermo, Italy
     period: 2013 – 2014
     url: ''
+    logo: /assets/img/logos/palermo.png
+    badge: ''
     notes: 'NEVERLOST Project (PO-FESR 2007-2013): (sub)optimal antenna displacement
       in arbitrary 2D spaces via soft-computing (fuzzy logic, genetic algorithms);
       educational "serious game" for theoretical CS.'
@@ -95,6 +109,8 @@ cv:
     location: Palermo, Italy
     period: Jun – Sep 2011
     url: ''
+    logo: ''
+    badge: ICAR
     notes: 'IMPULSO project: a path-visualization tool using the Google Maps APIs.'
     coords:
       lat: 38.1157

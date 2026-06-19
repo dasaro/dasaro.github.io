@@ -30,6 +30,7 @@ experience:
   - period: "2026 – present"
     role: "Assistant Professor"
     org: "University of Verona"
+    badge: "UNIVR"
     location: "Verona, Italy"
     notes: >-
       Research and teaching on uncertain and epistemic reasoning, temporal and
@@ -38,6 +39,7 @@ experience:
   - period: "2020 – present"
     role: "Honorary Lecturer"
     org: "University College London (UCL)"
+    logo: "/assets/img/logos/ucl.png"
     location: "London, UK"
     notes: >-
       Department of Information Studies, Faculty of Arts and Humanities.
@@ -47,6 +49,7 @@ experience:
   - period: "2025 – 2026"
     role: "Postdoctoral Researcher"
     org: "University of Salento"
+    logo: "/assets/img/logos/salento.png"
     location: "Lecce, Italy"
     notes: >-
       Department of Human Studies (PHIL-02/A). Project FAIR — Future AI
@@ -55,6 +58,7 @@ experience:
   - period: "2022 – 2025"
     role: "Assistant Professor"
     org: "University of Verona"
+    badge: "UNIVR"
     location: "Verona, Italy"
     notes: >-
       Research and teaching on uncertain and epistemic reasoning, temporal and
@@ -65,11 +69,13 @@ experience:
   - period: "2020 – 2021"
     role: "Postdoctoral Researcher"
     org: "Logic Group, University of Milan"
+    logo: "/assets/img/logos/milan.png"
     location: "Milan, Italy"
     notes: "Uncertain, depth-bounded and epistemic logics."
   - period: "2019 – 2020"
     role: "Postdoctoral Researcher"
     org: "CRDC Tecnologie"
+    badge: "CRDC"
     location: "Naples, Italy"
     notes: >-
       AVATEA Project (AI to support rehabilitation of children with
@@ -78,6 +84,7 @@ experience:
   - period: "2013 – 2014"
     role: "Research Assistant"
     org: "University of Palermo"
+    logo: "/assets/img/logos/palermo.png"
     location: "Palermo, Italy"
     notes: >-
       NEVERLOST Project (PO-FESR 2007-2013): (sub)optimal antenna displacement
@@ -86,6 +93,7 @@ experience:
   - period: "Jun – Sep 2011"
     role: "Undergraduate Intern"
     org: "ICAR-CNR Palermo"
+    badge: "ICAR"
     location: "Palermo, Italy"
     notes: "IMPULSO project: a path-visualization tool using the Google Maps APIs."
 
