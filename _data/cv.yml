@@ -154,6 +154,9 @@ cv:
     coords:
       lat: 38.1157
       lon: 13.3615
+  honors:
+  - MSc with Distinction (≈ 110/110 cum laude) — University of Manchester, 2014
+  - BSc summa cum laude (110/110 e lode) — University of Palermo, 2011
   projects:
   - name: FAIR (PNRR)
     period: Mar 2025 – Feb 2026
@@ -163,8 +166,10 @@ cv:
   - name: REVO (PON)
     period: 2022 – 2024
     url: ''
-    notes: 'Researcher (Verona): handwriting recognition, entity matching, eligibility
-      pre-screening; 12-month secondment at REVO.'
+    notes: 'Researcher (Verona side, partially funded): AI methods to support insurance-policy
+      sales — handwriting recognition, entity matching, and eligibility pre-screening.
+      Ministerial PON R&I funding (DM 1062/2021); 12-month industrial secondment at
+      the partner company, REVO Insurance.'
   - name: BRIO (PRIN)
     period: 2022 – 2025
     url: ''
@@ -175,6 +180,25 @@ cv:
     url: ''
     notes: Runtime epistemic probabilistic Event Calculus for sensor fusion in rehabilitation
       serious games. POR Campania FESR 2014-2020, CUP B13D18000130007.
+  software:
+  - name: PEC
+    description: Probabilistic Event Calculus — reference implementation.
+    url: https://github.com/dasaro/pec
+  - name: k-lingo
+    description: Depth-bounded (k-depth) version of the ASP solver clingo (KR 2021).
+    url: https://github.com/dasaro/klingo
+  - name: WABA Playground
+    description: In-browser Weighted Assumption-Based Argumentation (clingo-wasm).
+    url: https://github.com/dasaro/waba-playground
+  - name: ArgLAS
+    description: Learning ASP encodings of argumentation semantics with ILASP.
+    url: https://github.com/dasaro/ArgLAS
+  - name: tptnd-lean
+    description: Typed natural deduction in Lean 4 — machine-checked fairness certificates.
+    url: https://github.com/dasaro/tptnd-lean
+  - name: LogicBenchmarkQuestions
+    description: Dataset of logic puzzles to benchmark LLM reasoning.
+    url: https://github.com/dasaro/LogicBenchmarkQuestions
   skills:
   - label: Logic programming
     value: ASP/clingo, Prolog/ProbLog, ILASP/FastLAS

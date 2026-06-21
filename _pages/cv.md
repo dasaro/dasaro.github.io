@@ -156,6 +156,14 @@ description: Experience, education, projects and skills — generated from a sin
   </section>
   {% endif %}
 
+  {%- comment -%} ===================== HONOURS ===================== {%- endcomment -%}
+  {% if cv.honors.size > 0 %}
+  <section class="cv-sec">
+    <h2>Honours</h2>
+    {% for h in cv.honors %}<div class="cv-skill">{{ h }}</div>{% endfor %}
+  </section>
+  {% endif %}
+
   {%- comment -%} ===================== PROJECTS ===================== {%- endcomment -%}
   {% if cv.projects.size > 0 %}
   <section class="cv-sec">
@@ -172,6 +180,16 @@ description: Experience, education, projects and skills — generated from a sin
     </div>
     {% endfor %}
     <p style="margin-top:.4rem"><a href="{{ '/projects/' | relative_url }}">All projects →</a></p>
+  </section>
+  {% endif %}
+
+  {%- comment -%} ===================== SOFTWARE ===================== {%- endcomment -%}
+  {% if cv.software.size > 0 %}
+  <section class="cv-sec">
+    <h2>Research Software</h2>
+    {% for s in cv.software %}
+    <div class="cv-skill"><b>{% if s.url %}<a href="{{ s.url }}" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px dotted">{{ s.name }}</a>{% else %}{{ s.name }}{% endif %}</b>{% if s.description %} — {{ s.description }}{% endif %}</div>
+    {% endfor %}
   </section>
   {% endif %}
 

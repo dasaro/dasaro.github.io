@@ -40,6 +40,7 @@ nav_order: 6
         <li><strong>Logic and Philosophy of Science in Physiotherapy</strong> — BSc</li>
         <li><strong>Lab of Computer Science and Multimedia Technologies</strong> — BA in Philosophy</li>
         <li><strong>Lab of Artificial Intelligence and Neuroscience</strong> — PhD in Human Sciences</li>
+        <li><strong>Logic Learning</strong> (Logic-Based Learning) — PhD in Computer Science</li>
       </ul>
     </div>
   </div>
