@@ -5,7 +5,7 @@
   "yaml.schemas": {
     "./.vscode/schemas/projects.schema.json": "_data/projects.yml",
     "./.vscode/schemas/films.schema.json": "_data/films.yml",
-    "./.vscode/schemas/around_the_web.schema.json": "_data/around_the_web.yml"
+    "./.vscode/schemas/elsewhere.schema.json": "_data/elsewhere.yml"
   },
   "yaml.validate": true,
   "yaml.hover": true,

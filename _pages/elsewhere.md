@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Around the Web
-permalink: /around-the-web/
+title: Elsewhere
+permalink: /elsewhere/
 nav: true
 nav_order: 9
 description: Profiles, mentions and places that feature my work around the web.
@@ -12,7 +12,7 @@ description: Profiles, mentions and places that feature my work around the web.
   .atw a { text-decoration: none; }
   .atw-sec { margin-top: 1.8rem; }
   .atw-sec > h2 { font-size: .78rem; text-transform: uppercase; letter-spacing: .14em; font-weight: 700; color: var(--global-theme-color); border-bottom: 2px solid var(--global-divider-color); padding-bottom: .35rem; margin: 0 0 1.05rem; }
-  /* profiles: pill links */
+  /* profiles + proceedings: pill links */
   .atw-profiles { display: flex; flex-wrap: wrap; gap: .5rem; }
   .atw-profile { display: inline-flex; align-items: center; gap: .35rem; font-size: .85rem; color: var(--global-text-color-light); border: 1px solid var(--global-divider-color); border-radius: 999px; padding: .3rem .75rem; transition: border-color .15s ease, color .15s ease; }
   .atw-profile:hover { color: var(--global-theme-color); border-color: var(--global-theme-color); }
@@ -27,7 +27,7 @@ description: Profiles, mentions and places that feature my work around the web.
   .atw-card .n { font-size: .88rem; opacity: .85; margin-top: .55rem; }
 </style>
 
-{% assign d = site.data.around_the_web %}
+{% assign d = site.data.elsewhere %}
 
 <div class="atw">
 
@@ -51,6 +51,15 @@ description: Profiles, mentions and places that feature my work around the web.
         {% if f.note %}<div class="n">{{ f.note }}</div>{% endif %}
       </a>
       {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if d.proceedings.size > 0 %}
+  <section class="atw-sec">
+    <h2>Co-edited proceedings</h2>
+    <div class="atw-profiles">
+      {% for p in d.proceedings %}<a class="atw-profile" href="{{ p.url }}" target="_blank" rel="noopener">{{ p.title }} <span class="arr">↗</span></a>{% endfor %}
     </div>
   </section>
   {% endif %}

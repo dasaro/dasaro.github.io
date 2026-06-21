@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "_data/around_the_web.yml — links on /around-the-web/",
+  "title": "_data/elsewhere.yml — links on /elsewhere/",
   "description": "External profiles and pages that feature the site owner.",
   "type": "object",
   "additionalProperties": false,
@@ -30,6 +30,19 @@
           "source": { "type": "string", "description": "Who hosts the page, e.g. \"University of Urbino\"." },
           "url": { "type": "string" },
           "note": { "type": "string", "description": "One line on what it says." }
+        }
+      }
+    },
+    "proceedings": {
+      "type": "array",
+      "description": "Co-edited workshop proceedings (rendered as pill links).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "url"],
+        "properties": {
+          "title": { "type": "string" },
+          "url": { "type": "string" }
         }
       }
     }

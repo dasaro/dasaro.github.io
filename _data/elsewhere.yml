@@ -1,5 +1,5 @@
-# External profiles and pages that feature F. A. D'Asaro, shown on /around-the-web/.
-# Schema (autocomplete + validation in VS Code): .vscode/schemas/around_the_web.schema.json
+# External profiles and pages that feature F. A. D'Asaro, shown on /elsewhere/.
+# Schema (autocomplete + validation in VS Code): .vscode/schemas/elsewhere.schema.json
 
 profiles:
   - title: ORCID
@@ -14,6 +14,8 @@ profiles:
     url: https://loop.frontiersin.org/people/834826/bio
   - title: UCL Profiles
     url: https://profiles.ucl.ac.uk/46940
+  - title: LinkedIn
+    url: https://www.linkedin.com/in/fabio-aurelio-d-asaro-71ab5181/
   - title: University of Verona (Human Sciences)
     url: https://www.dsu.univr.it/?ent=persona&id=72945
   - title: University of Salento
@@ -44,3 +46,14 @@ featured:
     source: Milan University Press
     url: https://riviste.unimi.it/index.php/thereasoner/issue/view/2601
     note: "Carries 'Non-monotonic bounded reasoners' (with P. Baldi), 2025."
+
+# Co-edited workshop proceedings (CEUR-WS).
+proceedings:
+  - title: "BEWARE 2024 — CEUR Vol-3881"
+    url: https://ceur-ws.org/Vol-3881/
+  - title: "BEWARE 2023 — CEUR Vol-3615"
+    url: https://ceur-ws.org/Vol-3615/
+  - title: "BEWARE 2022 — CEUR Vol-3319"
+    url: https://ceur-ws.org/Vol-3319/
+  - title: "AI³ 2021 — CEUR Vol-3086"
+    url: https://ceur-ws.org/Vol-3086/
