@@ -1,0 +1,46 @@
+# External profiles and pages that feature F. A. D'Asaro, shown on /around-the-web/.
+# Schema (autocomplete + validation in VS Code): .vscode/schemas/around_the_web.schema.json
+
+profiles:
+  - title: ORCID
+    url: https://orcid.org/0000-0002-2958-3874
+  - title: DBLP
+    url: https://dblp.org/pid/135/7686.html
+  - title: Google Scholar
+    url: https://scholar.google.it/citations?user=qb2YFi4AAAAJ
+  - title: Semantic Scholar
+    url: https://www.semanticscholar.org/author/1401996486
+  - title: Frontiers Loop
+    url: https://loop.frontiersin.org/people/834826/bio
+  - title: UCL Profiles
+    url: https://profiles.ucl.ac.uk/46940
+  - title: University of Verona (Human Sciences)
+    url: https://www.dsu.univr.it/?ent=persona&id=72945
+  - title: University of Salento
+    url: https://www.unisalento.it/scheda-utente/-/people/fabioaurelio.dasaro
+
+featured:
+  - title: "Insegnare filosofia nell'era dell'IA — webinar"
+    source: University of Urbino
+    url: https://www.uniurb.it/novita-ed-eventi/6509
+    note: "Webinar with M. Badino in the 'Didattica digitale della Filosofia' series."
+  - title: "Logic Programming and Explainable AI — doctoral course"
+    source: IECS Doctoral School, University of Trento
+    url: https://iecs.unitn.it/node/1334
+    note: "Invited 20-hour PhD course (2023)."
+  - title: "Logic for the AI Spring 3 — eDefAI Summer School"
+    source: ILLC Logic List
+    url: https://resources.illc.uva.nl/LogicList/newsitem.php?id=12288
+    note: "Co-organiser, Lecce, 2025."
+  - title: "BRIO — Bias, Risk and Opacity in AI"
+    source: University of Milan (PRIN)
+    url: https://sites.unimi.it/brio/about/
+    note: "Listed among the project's external collaborators."
+  - title: "EThOS Research Centre — member profile"
+    source: University of Verona
+    url: https://sites.dsu.univr.it/ethos/membro_staff/fabio-aurelio-dasaro/?lang=en
+    note: "Research bio at the EThOS centre."
+  - title: "The Reasoner, Vol. 19(1)"
+    source: Milan University Press
+    url: https://riviste.unimi.it/index.php/thereasoner/issue/view/2601
+    note: "Carries 'Non-monotonic bounded reasoners' (with P. Baldi), 2025."
