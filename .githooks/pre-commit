@@ -10,12 +10,14 @@ set -euo pipefail
 root="$(git rev-parse --show-toplevel)"
 
 if git diff --cached --name-only \
-   | grep -qE '^(cv\.yml|_bibliography/papers\.bib|cv/build_cv\.py|cv/themes/|tools/cv_to_alfolio\.py)'; then
-  echo "[pre-commit] CV source staged — regenerating cv.pdf + _data …"
+   | grep -qE '^(cv\.yml|_bibliography/papers\.bib|cv/build_cv\.py|cv/themes/|tools/(cv_to_alfolio|gen_pub_covers|gen_bibtex_data)\.py)'; then
+  echo "[pre-commit] source-of-truth staged — regenerating CV, covers and BibTeX …"
   if ! "$root/cv/build.sh" >/dev/null; then
     echo "[pre-commit] cv/build.sh failed — commit aborted. Fix the build and retry." >&2
     exit 1
   fi
-  git add "$root/assets/pdf/cv.pdf" "$root/_data/cv.yml" "$root/_data/scholar.yml"
-  echo "[pre-commit] CV regenerated and staged."
+  git add "$root/assets/pdf/cv.pdf" "$root/_data/cv.yml" "$root/_data/scholar.yml" \
+          "$root/_data/bibtex.yml" "$root/_bibliography/papers.bib" \
+          "$root/assets/img/publication_preview/"
+  echo "[pre-commit] regenerated and staged."
 fi
