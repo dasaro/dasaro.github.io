@@ -2,7 +2,7 @@
 layout: page
 permalink: /teaching/
 title: Teaching
-description: Courses taught and teaching assistantships. (Full details on the <a href="/cv/">CV</a>.)
+description: Courses taught and teaching assistantships — full details on the CV page.
 nav: true
 nav_order: 6
 ---
