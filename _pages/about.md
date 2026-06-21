@@ -83,6 +83,7 @@ I am currently working on:
   (function () {
     var BIB = {{ site.data.bibtex | jsonify }};
     if (!BIB || !Object.keys(BIB).length) return;
+    function init() {
     var ov = document.createElement('div');
     ov.className = 'bib-overlay';
     ov.innerHTML = '<div class="bib-card"><div class="bib-head"><span class="ttl">BibTeX</span><span class="acts"><button class="bib-copy" type="button">Copy</button><button class="bib-x" type="button" aria-label="Close">&times;</button></span></div></div>';
@@ -114,5 +115,7 @@ I am currently working on:
       b.addEventListener('click', function () { open(BIB[key]); });
       links.appendChild(b);
     });
+    }
+    if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); } else { init(); }
   })();
 </script>
