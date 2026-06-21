@@ -75,6 +75,15 @@
 %% endfor
 %% endif
 
+%% if sec == "honors" and data.honors
+\section{HONOURS}
+\begin{itemize}
+%% for h in data.honors
+\item \VAR{h | tex}
+%% endfor
+\end{itemize}
+%% endif
+
 %% if sec == "publications" and publications
 \section{PUBLICATIONS}
 %% if metrics
@@ -88,6 +97,15 @@
 %% endfor
 \end{itemize}
 %% endfor
+%% endif
+
+%% if sec == "edited_volumes" and data.edited_volumes
+\section{EDITED VOLUMES}
+\begin{itemize}
+%% for v in data.edited_volumes
+\item \VAR{v | tex}
+%% endfor
+\end{itemize}
 %% endif
 
 %% if sec == "teaching" and data.teaching
@@ -118,6 +136,15 @@
 %% for p in data.projects
 \cventry{\VAR{p.period | tex}}{\VAR{p.name | tex}}{}{\VAR{(p.notes | tex) if p.notes else ""}}
 %% endfor
+%% endif
+
+%% if sec == "software" and data.software
+\section{SOFTWARE}
+\begin{itemize}
+%% for s in data.software
+\item \BLOCK{if s.url}\href{\VAR{s.url}}{\textbf{\VAR{s.name | tex}}}\BLOCK{else}\textbf{\VAR{s.name | tex}}\BLOCK{endif}\BLOCK{if s.description} — \VAR{s.description | tex}\BLOCK{endif}
+%% endfor
+\end{itemize}
 %% endif
 
 %% if sec == "supervision" and data.supervision

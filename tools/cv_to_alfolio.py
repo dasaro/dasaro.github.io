@@ -72,6 +72,12 @@ def main():
         "notes": text(p.get("notes")),
     } for p in cv.get("projects", [])]
 
+    software = [{
+        "name": text(s.get("name")),
+        "description": text(s.get("description")),
+        "url": text(s.get("url")),
+    } for s in cv.get("software", [])]
+
     out = {"cv": {
         "name": b["name"],
         "label": text(b.get("headline")),
@@ -84,7 +90,9 @@ def main():
         "github": text(b.get("github")),
         "experience": experience,
         "education": education,
+        "honors": cv.get("honors", []),         # list of strings
         "projects": projects,
+        "software": software,                   # list of {name, description, url}
         "skills": cv.get("skills", []),         # list of {label, value}
         "languages": cv.get("languages", []),   # list of strings
         "interests": cv.get("interests", []),   # list of strings
