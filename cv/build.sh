@@ -3,8 +3,10 @@
 # cv/build.sh — regenerate everything that depends on the single source of truth
 # (cv.yml + _bibliography/papers.bib) in one command:
 #
-#   • assets/pdf/cv.pdf  via cv/build_cv.py        (LaTeX — needs pdflatex on PATH)
-#   • _data/cv.yml       via tools/cv_to_alfolio.py (al-folio CV page data)
+#   • assets/pdf/cv.pdf              via cv/build_cv.py         (LaTeX — needs pdflatex)
+#   • _data/cv.yml, _data/scholar.yml via tools/cv_to_alfolio.py (CV page + metrics)
+#   • assets/img/publication_preview/ via tools/gen_pub_covers.py (missing thumbnails)
+#   • _data/bibtex.yml              via tools/gen_bibtex_data.py (BibTeX buttons)
 #
 # Works from any directory. On first run it creates the Python venv (cv/.venv).
 #
@@ -36,7 +38,11 @@ fi
 echo "[build.sh] → CV PDF       (assets/pdf/cv.pdf)"
 "$PY" "$SCRIPT_DIR/build_cv.py" "$@"
 
-echo "[build.sh] → CV page data (_data/cv.yml)"
+echo "[build.sh] → CV page data (_data/cv.yml, _data/scholar.yml)"
 "$PY" "$ROOT/tools/cv_to_alfolio.py"
 
-echo "[build.sh] done — assets/pdf/cv.pdf + _data/cv.yml regenerated."
+echo "[build.sh] → publication thumbnails + BibTeX data"
+"$PY" "$ROOT/tools/gen_pub_covers.py"
+"$PY" "$ROOT/tools/gen_bibtex_data.py"
+
+echo "[build.sh] done — PDF, CV data, covers and BibTeX all regenerated."
