@@ -1,0 +1,25 @@
+{
+  // Red Hat YAML extension — schema-driven autocomplete + validation.
+  // cv.yml binds its schema via a modeline comment on its first line
+  // (so the *generated* _data/cv.yml is never validated against it).
+  "yaml.schemas": {
+    "./.vscode/schemas/projects.schema.json": "_data/projects.yml",
+    "./.vscode/schemas/films.schema.json": "_data/films.yml"
+  },
+  "yaml.validate": true,
+  "yaml.hover": true,
+  "yaml.completion": true,
+  "yaml.format.enable": true,
+  "yaml.format.singleQuote": false,
+  "redhat.telemetry.enabled": false,
+  "[yaml]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    }
+  }
+}

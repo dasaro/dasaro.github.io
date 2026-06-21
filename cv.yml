@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=.vscode/schemas/cv.schema.json
 # =====================================================================
 # cv.yml — single source of truth for the CV (PDF) and, later, al-folio.
 # Edit this file (or ask Claude Code to) and re-run `python build_cv.py`.

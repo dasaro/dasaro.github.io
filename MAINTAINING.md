@@ -26,6 +26,23 @@ you can even skip `./cv/build.sh`: committing a source file rebuilds for you.
 
 ---
 
+## Editing comfortably (VS Code)
+
+Open the folder in **VS Code** and accept the prompt to install the recommended
+**YAML (Red Hat)** extension (configured in `.vscode/`). JSON schemas in `.vscode/schemas/`
+are wired to `cv.yml`, `_data/projects.yml` and `_data/films.yml`, so as you type you get:
+
+- field **autocomplete** and hover descriptions,
+- **red underlines** on the classic YAML mistakes — wrong indentation, a number where a
+  string belongs, a misspelled/unknown field,
+- consistent 2-space indentation.
+
+It's about as close to a "visual" editor as YAML gets, with nothing to run.
+(The generated `_data/cv.yml` is intentionally left unchecked — only the hand-edited
+`cv.yml` carries the schema, via the `# yaml-language-server:` comment on its first line.)
+
+---
+
 ## The one command
 
 After editing `cv.yml` and/or `papers.bib`, regenerate the derived files:

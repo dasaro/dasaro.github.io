@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "_data/projects.yml — cards on /projects/",
+  "description": "Research projects shown on the /projects/ page (reverse-chronological).",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["name"],
+    "properties": {
+      "name": { "type": "string" },
+      "funder": { "type": "string", "description": "Funding programme, e.g. \"PRIN 2020\" or \"PNRR · Spoke 6\"." },
+      "period": { "type": "string", "description": "e.g. \"2022 – 2025\"." },
+      "description": { "type": "string" },
+      "url": { "type": "string", "description": "Official project page. Omit to render a non-clickable card." }
+    }
+  }
+}

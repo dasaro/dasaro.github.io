@@ -1,0 +1,169 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "cv.yml — CV single source of truth",
+  "description": "Drives the CV PDF (cv/build_cv.py) and the /cv/ page (tools/cv_to_alfolio.py). Run ./cv/build.sh after editing. Publications live in _bibliography/papers.bib, not here.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["basics"],
+  "properties": {
+    "basics": {
+      "type": "object",
+      "description": "Identity and contact details for the CV header.",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "headline": { "type": "string", "description": "Title line under the name, e.g. \"Assistant Professor in Logic\"." },
+        "email": { "type": "string", "description": "Primary email." },
+        "emails": { "type": "array", "items": { "type": "string" }, "description": "All emails; annotate in parentheses, e.g. \"x@y (institutional, main)\"." },
+        "phone": { "type": "string" },
+        "website": { "type": "string", "description": "Personal site URL (also the CV \"Website\" link)." },
+        "scholar": { "type": "string" },
+        "github": { "type": "string" },
+        "birthplace": { "type": "string" },
+        "summary": { "type": "string", "description": "Short professional summary paragraph." }
+      }
+    },
+    "experience": {
+      "type": "array",
+      "description": "Positions held, reverse-chronological.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["period", "role", "org"],
+        "properties": {
+          "period": { "type": "string", "description": "e.g. \"2022 – 2025\" or \"2025 – present\"." },
+          "role": { "type": "string" },
+          "org": { "type": "string", "description": "Institution / employer." },
+          "location": { "type": "string", "description": "City, Country." },
+          "logo": { "type": "string", "description": "Logo path for the /cv/ badge, e.g. /assets/img/logos/univr.png." },
+          "badge": { "type": "string", "description": "Short monogram shown when there is no logo, e.g. \"ICAR\"." },
+          "url": { "type": "string" },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "education": {
+      "type": "array",
+      "description": "Degrees, reverse-chronological.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["period", "degree", "org"],
+        "properties": {
+          "period": { "type": "string" },
+          "degree": { "type": "string", "description": "e.g. \"PhD in Artificial Intelligence\"." },
+          "org": { "type": "string" },
+          "location": { "type": "string" },
+          "url": { "type": "string" },
+          "logo": { "type": "string", "description": "Logo path for the /cv/ badge." },
+          "badge": { "type": "string", "description": "Short monogram, e.g. \"UCL\"." },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "publications": {
+      "type": "object",
+      "description": "How publications (from _bibliography/papers.bib) print in the PDF.",
+      "additionalProperties": false,
+      "properties": {
+        "selected": { "type": "boolean", "description": "true = only selected={true} BibTeX entries; false = full list." },
+        "group_by_year": { "type": "boolean" }
+      }
+    },
+    "teaching": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["period", "title"],
+        "properties": {
+          "period": { "type": "string" },
+          "title": { "type": "string", "description": "Role + institution, e.g. \"Lecturer, University of Verona\"." },
+          "items": { "type": "array", "items": { "type": "string" }, "description": "Courses / modules taught." }
+        }
+      }
+    },
+    "invited_talks": { "type": "array", "items": { "type": "string" } },
+    "projects": {
+      "type": "array",
+      "description": "Funded projects for the CV (the /projects/ page uses _data/projects.yml instead).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name"],
+        "properties": {
+          "period": { "type": "string" },
+          "name": { "type": "string" },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "service": { "type": "array", "items": { "type": "string" } },
+    "reviewing": { "type": "array", "items": { "type": "string" } },
+    "supervision": { "type": "array", "items": { "type": "string" } },
+    "groups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string" },
+          "url": { "type": "string" }
+        }
+      }
+    },
+    "memberships": { "type": "array", "items": { "type": "string" } },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["label", "value"],
+        "properties": {
+          "label": { "type": "string", "description": "Skill group, e.g. \"Programming\"." },
+          "value": { "type": "string", "description": "Comma-separated list of skills." }
+        }
+      }
+    },
+    "languages": { "type": "array", "items": { "type": "string" } },
+    "interests": { "type": "array", "items": { "type": "string" } },
+    "metrics": {
+      "type": "object",
+      "description": "Google Scholar metrics (also auto-refreshed by update-metrics.yml).",
+      "additionalProperties": false,
+      "properties": {
+        "source": { "type": "string", "description": "e.g. \"Google Scholar, 19 Jun 2026\". The date here also seeds the reproducible PDF build (SOURCE_DATE_EPOCH)." },
+        "citations": { "type": "integer", "minimum": 0 },
+        "h_index": { "type": "integer", "minimum": 0 },
+        "i10_index": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "news": {
+      "type": "array",
+      "description": "Homepage news items, most recent first.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["date", "text"],
+        "properties": {
+          "date": { "type": "string", "description": "e.g. \"Jun 2026\"." },
+          "text": { "type": "string" }
+        }
+      }
+    },
+    "section_order": {
+      "type": "array",
+      "description": "Order of sections in the rendered PDF; remove or reorder freely.",
+      "items": {
+        "type": "string",
+        "enum": [
+          "experience", "education", "publications", "teaching", "invited_talks",
+          "projects", "supervision", "service", "reviewing", "groups",
+          "memberships", "skills", "languages", "interests"
+        ]
+      }
+    }
+  }
+}
