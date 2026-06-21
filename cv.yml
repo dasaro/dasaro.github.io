@@ -239,16 +239,18 @@ software:
 service:
   - "Co-organizer, eDefAI — 3rd Logic for the AI Spring Summer School, Lecce, 2025"
   - "Workshop Chair, 1st-3rd BEWARE workshops (Bias, Ethical AI, Explainability, Logic), AIxIA, since 2022"
-  - "Program Committee, IJCAI 2020 and 2024"
+  - "Workshop Proceedings Chair, WSDM 2026 (ACM)"
+  - "Program Committee, IJCAI 2020, 2024 and 2025"
   - "Program Committee, KR 2022, 2023, 2024 and 2025"
   - "Program Committee, ECAI 2023"
+  - "Program Committee, WEB&GRAPH 2026"
   - "Co-organizer, EThOS seminar series, since 2022"
   - "Workshop Chair, 1st ME&E (Machine Ethics and Explainability), ICLP 2021"
   - "Workshop Chair, 5th AI^3 (Advances in Argumentation in AI), AIxIA 2021"
   - "Co-organizer, LUCI Lab seminars (Milan, Philosophy), 2020/2021"
   - "Review Editor, editorial boards of Frontiers in AI, Frontiers in Big Data, Frontiers in AI in Neurology"
   - "Dissemination: regular columns on the BRIO project in The Reasoner, 2022-2024"
-  - "Public engagement: webinar \"Insegnare filosofia nell'era dell'IA\" (with M. Badino), \"Didattica digitale della Filosofia\" series, 2026"
+  - "Public engagement: webinar \"Insegnare filosofia nell'era dell'IA\" (with M. Badino), \"Didattica digitale della Filosofia\" series, 2025"
 
 reviewing:
   - "Journals: IJAR (2025), Journal of Logic and Computation (NETREASON SI), AMAI (Commonsense SI), J. Hydrologic Engineering"
@@ -279,7 +281,7 @@ memberships:
   - "AIxIA — Associazione Italiana per l'Intelligenza Artificiale"
   - "GULP — Gruppo ricercatori e Utenti di Programmazione Logica"
   - "AISC — Associazione Italiana di Scienze Cognitive"
-  - "SISSA"
+  - "SISS — Società Italiana di Storia della Scienza"
 
 skills:
   - label: "Logic programming"
