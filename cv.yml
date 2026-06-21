@@ -30,13 +30,13 @@ experience:
   - period: "2026 – present"
     role: "Assistant Professor"
     org: "University of Verona"
-    badge: "UNIVR"
+    logo: "/assets/img/logos/univr.png"
     location: "Verona, Italy"
     notes: >-
       Research and teaching on uncertain and epistemic reasoning, temporal and
       probabilistic logics, logic programming, reasoning about actions and
       change, bounded reasoning, and formal argumentation for (explainable) AI.
-  - period: "2020 – present"
+  - period: "2025 – present"
     role: "Honorary Lecturer"
     org: "University College London (UCL)"
     logo: "/assets/img/logos/ucl.png"
@@ -58,7 +58,7 @@ experience:
   - period: "2022 – 2025"
     role: "Assistant Professor"
     org: "University of Verona"
-    badge: "UNIVR"
+    logo: "/assets/img/logos/univr.png"
     location: "Verona, Italy"
     notes: >-
       Research and teaching on uncertain and epistemic reasoning, temporal and
@@ -74,8 +74,8 @@ experience:
     notes: "Uncertain, depth-bounded and epistemic logics."
   - period: "2019 – 2020"
     role: "Postdoctoral Researcher"
-    org: "CRDC Tecnologie"
-    badge: "CRDC"
+    org: "CRDC Tecnologie (University of Naples Federico II)"
+    logo: "/assets/img/logos/naples.png"
     location: "Naples, Italy"
     notes: >-
       AVATEA Project (AI to support rehabilitation of children with

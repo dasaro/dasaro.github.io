@@ -9,8 +9,8 @@ profile:
   image: prof_pic.jpg
   image_circular: true
   more_info: >
-    <p>EThOS · LUCI · SPIKE · KIDS</p>
-    <p>Verona, Italy</p>
+    <p>Department of Human Sciences,<br>University of Verona</p>
+    <p><a href="/theses/">Supervising BA &amp; MSc theses →</a></p>
 
 selected_papers: true
 social: true
@@ -30,6 +30,9 @@ latest_posts:
   /* keep the (low-resolution) profile photo modest and rounded */
   .profile.float-right { max-width: 200px; }
   .profile.float-right img { max-width: 100%; height: auto; }
+  /* set the subtitle apart from the bio (it was black & body-sized, so it blended in) */
+  .post .desc { font-size: 1.05rem; color: var(--global-text-color-light); margin: .25rem 0 1.4rem; }
+  .post .desc a { border-bottom: 1px dotted; }
 </style>
 
 I am a researcher in Logic working at the interface of formal epistemology and AI — probabilistic and temporal reasoning, argumentation, and logic programming (ASP/ILASP). My work spans bounded and non-monotonic reasoning, explainable AI, and the foundations of computation.
@@ -60,3 +63,56 @@ I am currently working on:
 - **Extensions and applications of the Event Calculus** (with R. Miller and L. Dickens)
 - **Depth-bounded extensions of the ASP system clingo** (with P. Baldi and M. D'Agostino)
 - **Applications of ILASP to explainable AI** (with A. Russo, M. Law, and A. Bikakis)
+
+<!-- BibTeX button + copyable overlay — KEEP IDENTICAL to the block in _pages/publications.md
+     so selected (home) and full (publications) lists never differ. -->
+<style>
+  .bibtex-trigger { cursor: pointer; }
+  .bib-overlay { position: fixed; inset: 0; z-index: 2000; display: none; align-items: center; justify-content: center; background: rgba(0, 0, 0, .55); padding: 1.2rem; }
+  .bib-overlay.open { display: flex; }
+  .bib-card { background: var(--global-card-bg-color, #fff); color: var(--global-text-color, #1c1c1c); border: 1px solid var(--global-divider-color, #e3e3e3); border-radius: .7rem; width: 100%; max-width: 720px; max-height: 82vh; display: flex; flex-direction: column; box-shadow: 0 12px 48px rgba(0, 0, 0, .45); overflow: hidden; }
+  .bib-head { display: flex; align-items: center; justify-content: space-between; gap: .6rem; padding: .6rem .9rem; border-bottom: 1px solid var(--global-divider-color, #e3e3e3); }
+  .bib-head .ttl { font-weight: 700; font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--global-theme-color); }
+  .bib-head .acts { display: flex; gap: .45rem; align-items: center; }
+  .bib-x { background: none; border: 0; font-size: 1.25rem; line-height: 1; cursor: pointer; color: var(--global-text-color-light, #888); padding: 0 .3rem; }
+  .bib-copy { background: var(--global-theme-color); color: #fff; border: 0; border-radius: .4rem; font-size: .78rem; font-weight: 600; padding: .28rem .75rem; cursor: pointer; }
+  .bib-pre { margin: 0; padding: 1rem 1.1rem; overflow: auto; white-space: pre; color: var(--global-text-color, #1c1c1c); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size: .8rem; line-height: 1.55; background: rgba(128, 128, 128, .08); }
+</style>
+
+<script>
+  (function () {
+    var BIB = {{ site.data.bibtex | jsonify }};
+    if (!BIB || !Object.keys(BIB).length) return;
+    var ov = document.createElement('div');
+    ov.className = 'bib-overlay';
+    ov.innerHTML = '<div class="bib-card"><div class="bib-head"><span class="ttl">BibTeX</span><span class="acts"><button class="bib-copy" type="button">Copy</button><button class="bib-x" type="button" aria-label="Close">&times;</button></span></div></div>';
+    document.body.appendChild(ov);
+    var pre = document.createElement('div'); // built in JS (a literal <pre> here is stripped by kramdown)
+    pre.className = 'bib-pre';
+    ov.querySelector('.bib-card').appendChild(pre);
+    var copyBtn = ov.querySelector('.bib-copy');
+    function close() { ov.classList.remove('open'); }
+    function open(t) { pre.textContent = t; ov.classList.add('open'); copyBtn.textContent = 'Copy'; }
+    ov.addEventListener('click', function (e) { if (e.target === ov) close(); });
+    ov.querySelector('.bib-x').addEventListener('click', close);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    copyBtn.addEventListener('click', function () {
+      var t = pre.textContent;
+      (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { copyBtn.textContent = 'Copied!'; }, function () {
+        var r = document.createRange(); r.selectNodeContents(pre); var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+        try { document.execCommand('copy'); copyBtn.textContent = 'Copied!'; } catch (e) {}
+      });
+      setTimeout(function () { copyBtn.textContent = 'Copy'; }, 1400);
+    });
+    Object.keys(BIB).forEach(function (key) {
+      var el = document.getElementById(key); if (!el) return;
+      var links = el.querySelector('.links');
+      if (!links) { links = document.createElement('div'); links.className = 'links'; el.appendChild(links); }
+      var b = document.createElement('a');
+      b.className = 'btn btn-sm z-depth-0 bibtex-trigger';
+      b.setAttribute('role', 'button'); b.textContent = 'BibTeX';
+      b.addEventListener('click', function () { open(BIB[key]); });
+      links.appendChild(b);
+    });
+  })();
+</script>

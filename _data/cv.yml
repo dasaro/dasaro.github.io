@@ -19,8 +19,8 @@ cv:
     location: Verona, Italy
     period: 2026 – present
     url: ''
-    logo: ''
-    badge: UNIVR
+    logo: /assets/img/logos/univr.png
+    badge: ''
     notes: Research and teaching on uncertain and epistemic reasoning, temporal and
       probabilistic logics, logic programming, reasoning about actions and change,
       bounded reasoning, and formal argumentation for (explainable) AI.
@@ -30,7 +30,7 @@ cv:
   - role: Honorary Lecturer
     org: University College London (UCL)
     location: London, UK
-    period: 2020 – present
+    period: 2025 – present
     url: ''
     logo: /assets/img/logos/ucl.png
     badge: ''
@@ -58,8 +58,8 @@ cv:
     location: Verona, Italy
     period: 2022 – 2025
     url: ''
-    logo: ''
-    badge: UNIVR
+    logo: /assets/img/logos/univr.png
+    badge: ''
     notes: Research and teaching on uncertain and epistemic reasoning, temporal and
       probabilistic logics, logic programming, reasoning about actions and change,
       bounded reasoning, and formal argumentation for (explainable) AI. Partially
@@ -80,12 +80,12 @@ cv:
       lat: 45.4642
       lon: 9.19
   - role: Postdoctoral Researcher
-    org: CRDC Tecnologie
+    org: CRDC Tecnologie (University of Naples Federico II)
     location: Naples, Italy
     period: 2019 – 2020
     url: ''
-    logo: ''
-    badge: CRDC
+    logo: /assets/img/logos/naples.png
+    badge: ''
     notes: AVATEA Project (AI to support rehabilitation of children with neuro-motor
       disorders); explainable AI for robotics and preference learning.
     coords:
