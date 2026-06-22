@@ -52,7 +52,7 @@ nav_order: 6
       <ul>
         <li><strong>8th Winter School in Linguistics</strong> (Verona / Free Univ. of Bolzano), 2025 — <em>Introduction to Machine Learning</em></li>
         <li><strong>3rd &amp; 4th Summer School on Bayesian Statistical Analysis</strong> (Verona), 2023 &amp; 2025 — <em>Introduction to Bayesian Probability</em></li>
-        <li><strong>IECS Doctoral School</strong>, University of Trento, 2023 — <em>Logic Programming and Explainable AI</em> (20h intensive, PhD)</li>
+        <li><strong><a href="https://iecs.unitn.it/node/1334" target="_blank" rel="noopener">IECS Doctoral School</a></strong>, University of Trento, 2023 — <em>Logic Programming and Explainable AI</em> (20h intensive, PhD)</li>
       </ul>
     </div>
   </div>

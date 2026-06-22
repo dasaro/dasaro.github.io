@@ -2,5 +2,9 @@
 cv_pdf: /assets/pdf/cv.pdf            # the LaTeX-generated CV (cv/build_cv.py)
 email: fabioaurelio.dasaro@univr.it
 scholar_userid: qb2YFi4AAAAJ&hl=it   # the user= value in your Google Scholar URL
+orcid_id: 0000-0002-2958-3874
+semanticscholar_id: 1401996486
+dblp_url: https://dblp.org/pid/135/7686.html
+linkedin_username: fabio-aurelio-d-asaro-71ab5181
 github_username: dasaro               # TODO: confirm your GitHub username
 rss_icon: true

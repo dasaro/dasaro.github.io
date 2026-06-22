@@ -16,7 +16,6 @@ you can even skip `./cv/build.sh`: committing a source file rebuilds for you.
 | **`_bibliography/papers.bib`** | publications — shown on `/publications/`, in the CV PDF, in the **BibTeX** buttons, and as thumbnails |
 | `_data/projects.yml` | the `/projects/` cards |
 | `_data/films.yml` | the `/films/` grid |
-| `_data/elsewhere.yml` | the `/elsewhere/` page (external profiles & mentions) |
 | `_data/repositories.yml` | the `/repositories/` page (your GitHub repos) |
 | `_pages/<name>.md` | that page's prose (about, teaching, theses, …) |
 | `_config.yml` | site-wide bits (footer text, nav, etc.) |
