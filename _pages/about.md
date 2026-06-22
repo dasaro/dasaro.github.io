@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: Assistant Professor, <a href='https://www.univr.it/'>University of Verona</a> · Honorary Lecturer, <a href='https://www.ucl.ac.uk/'>UCL</a> · Formal epistemology &amp; AI
+subtitle: Assistant Professor, <a href='https://www.univr.it/'>University of Verona</a> · Honorary Lecturer, <a href='https://www.ucl.ac.uk/'>UCL</a> · Logic &amp; AI
 
 profile:
   align: right
@@ -35,7 +35,7 @@ latest_posts:
   .post .desc a { border-bottom: 1px dotted; }
 </style>
 
-I am a researcher in Logic working at the interface of formal epistemology and AI — probabilistic and temporal reasoning, argumentation, and logic programming (ASP/ILASP). My work spans bounded and non-monotonic reasoning, explainable AI, and the foundations of computation.
+I am a researcher in Logic and AI — epistemic, probabilistic and temporal reasoning, argumentation, and logic programming (ASP/ILASP). My work spans bounded and non-monotonic reasoning, explainable AI, and the foundations of computation.
 
 I am an Assistant Professor at the University of Verona and an Honorary Lecturer at [University College London](https://profiles.ucl.ac.uk/46877-fabio-d'asaro) (Department of Information Studies; <fabio.dasaro.14@ucl.ac.uk>). I am a member of the [EThOS](https://sites.dsu.univr.it/ethos/?lang=en), [LUCI](https://luci.unimi.it/), [SPIKE](https://wp.doc.ic.ac.uk/spike/) and [KIDS](https://blogs.ucl.ac.uk/dis-research/category/knowledge-information-and-data-science/) research groups, and previously held postdoctoral positions in Milan, Naples and Salento. I earned my [PhD](https://discovery.ucl.ac.uk/id/eprint/10067238/) from UCL.
 
