@@ -33,11 +33,14 @@ latest_posts:
   /* set the subtitle apart from the bio (it was black & body-sized, so it blended in) */
   .post .desc { font-size: 1.05rem; color: var(--global-text-color-light); margin: .25rem 0 1.4rem; }
   .post .desc a { border-bottom: 1px dotted; }
+  /* "All news" link injected after the announcements panel */
+  .all-news-link { display: inline-block; margin-top: .5rem; font-size: .85rem; font-weight: 600; color: var(--global-theme-color); }
+  .all-news-link:hover { text-decoration: underline; }
 </style>
 
 I am a researcher in Logic and AI — epistemic, probabilistic and temporal reasoning, argumentation, and logic programming (ASP/ILASP). My work spans bounded and non-monotonic reasoning, explainable AI, and the foundations of computation.
 
-I am an Assistant Professor at the [University of Verona](https://www.dsu.univr.it/?ent=persona&id=72945) and an Honorary Lecturer at [University College London](https://profiles.ucl.ac.uk/46940) (Department of Information Studies; <fabio.dasaro.14@ucl.ac.uk>). I am a member of the [EThOS](https://sites.dsu.univr.it/ethos/?lang=en), [LUCI](https://luci.unimi.it/), [SPIKE](https://wp.doc.ic.ac.uk/spike/) and [KIDS](https://blogs.ucl.ac.uk/dis-research/category/knowledge-information-and-data-science/) research groups, and previously held postdoctoral positions in Milan, Naples and [Salento](https://www.unisalento.it/scheda-utente/-/people/fabioaurelio.dasaro). I earned my [PhD](https://discovery.ucl.ac.uk/id/eprint/10067238/) from UCL. I co-organise the [eDefAI summer school](https://resources.illc.uva.nl/LogicList/newsitem.php?id=12288) and take part in public engagement on logic and AI in education, such as the ["Insegnare filosofia nell'era dell'IA" webinar](https://www.uniurb.it/novita-ed-eventi/6509).
+I am an Assistant Professor at the [University of Verona](https://www.dsu.univr.it/?ent=persona&id=72945) and an Honorary Lecturer at [University College London](https://profiles.ucl.ac.uk/46940) (Department of Information Studies; <fabio.dasaro.14@ucl.ac.uk>). I am a member of the [EThOS](https://sites.dsu.univr.it/ethos/?lang=en), [LUCI](https://luci.unimi.it/), [SPIKE](https://wp.doc.ic.ac.uk/spike/) and [KIDS](https://blogs.ucl.ac.uk/dis-research/category/knowledge-information-and-data-science/) research groups, and previously held postdoctoral positions in Milan, Naples and [Salento](https://www.unisalento.it/scheda-utente/-/people/fabioaurelio.dasaro). I earned my [PhD](https://discovery.ucl.ac.uk/id/eprint/10067238/) from UCL.
 
 You can browse my [publications](/publications/), my [CV](/cv/), or the courses I [teach](/teaching/).
 
@@ -117,5 +120,21 @@ I am currently working on:
     });
     }
     if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); } else { init(); }
+  })();
+</script>
+
+<!-- "All news →" link appended after the announcements panel -->
+<script>
+  (function () {
+    function add() {
+      var n = document.querySelector('.news');
+      if (!n || n.querySelector('.all-news-link')) return;
+      var a = document.createElement('a');
+      a.href = '{{ "/news/" | relative_url }}';
+      a.className = 'all-news-link';
+      a.textContent = 'All news →';
+      n.appendChild(a);
+    }
+    if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', add); } else { add(); }
   })();
 </script>
