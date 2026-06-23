@@ -12,7 +12,7 @@ cv.yml (root) stays the single source of truth: it also feeds the LaTeX PDF
 
     python tools/cv_to_alfolio.py
 """
-import os, yaml
+import os, re, yaml
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -37,6 +37,24 @@ def text(v):
     return (v or "").strip()
 
 
+# Institution links for the /cv/ PAGE only. The LaTeX theme does not hyperlink
+# Experience orgs, so these never reach the PDF — they enrich the web CV only.
+ORG_URL = {
+    "University of Verona": "https://www.univr.it/",
+    "University College London (UCL)": "https://www.ucl.ac.uk/",
+    "University of Salento": "https://www.unisalento.it/",
+    "Logic Group, University of Milan": "https://luci.unimi.it/",
+    "CRDC Tecnologie (University of Naples Federico II)": "https://www.unina.it/",
+    "University of Palermo": "https://www.unipa.it/",
+    "ICAR-CNR Palermo": "https://www.icar.cnr.it/",
+}
+
+
+def strip_sector(s):
+    # Drop the academic-sector code, e.g. "(PHIL-02/A)", on the web CV only; the PDF keeps it.
+    return re.sub(r"\s*\(PHIL-[^)]*\)", "", s or "").strip()
+
+
 def main():
     cv = yaml.safe_load(open(os.path.join(ROOT, "cv.yml"), encoding="utf-8"))
     b = cv["basics"]
@@ -46,10 +64,10 @@ def main():
         "org": text(e.get("org")),
         "location": text(e.get("location")),
         "period": text(e.get("period")),
-        "url": text(e.get("url")),
+        "url": text(e.get("url")) or ORG_URL.get(text(e.get("org")), ""),
         "logo": text(e.get("logo")),
         "badge": text(e.get("badge")),
-        "notes": text(e.get("notes")),
+        "notes": strip_sector(text(e.get("notes"))),
         "coords": coords(e.get("location")),
     } for e in cv.get("experience", [])]
 
@@ -61,7 +79,7 @@ def main():
         "url": text(e.get("url")),
         "logo": text(e.get("logo")),     # /assets/img/logos/<x>.png — optional
         "badge": text(e.get("badge")),   # short monogram shown when no logo
-        "notes": text(e.get("notes")),
+        "notes": strip_sector(text(e.get("notes"))),
         "coords": coords(e.get("location")),
     } for e in cv.get("education", [])]
 
@@ -80,10 +98,10 @@ def main():
 
     out = {"cv": {
         "name": b["name"],
-        "label": text(b.get("headline")),
+        "label": strip_sector(text(b.get("headline"))),
         "email": text(b.get("email")),
         "location": "Verona, Italy",
-        "summary": text(b.get("summary")),
+        "summary": strip_sector(text(b.get("summary"))),
         "pdf": "/assets/pdf/cv.pdf",
         "website": text(b.get("website")),
         "scholar": text(b.get("scholar")),

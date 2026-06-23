@@ -1,10 +1,10 @@
 # Generated from ../cv.yml by tools/cv_to_alfolio.py — do not edit by hand.
 cv:
   name: Fabio Aurelio D'Asaro
-  label: Assistant Professor in Logic (PHIL-02/A)
+  label: Assistant Professor in Logic
   email: fabioaurelio.dasaro@univr.it
   location: Verona, Italy
-  summary: 'Researcher in Logic (PHIL-02/A) working in Logic and AI: epistemic, probabilistic
+  summary: 'Researcher in Logic working in Logic and AI: epistemic, probabilistic
     and temporal reasoning, argumentation, and logic programming (ASP/ILASP). Teaching
     and supervision span Logic and Philosophy of Science, AI, theoretical and applied
     Computer Science, Epistemology of Big Data, and Logic Programming.'
@@ -17,7 +17,7 @@ cv:
     org: University of Verona
     location: Verona, Italy
     period: 2026 – present
-    url: ''
+    url: https://www.univr.it/
     logo: /assets/img/logos/univr.png
     badge: ''
     notes: Research and teaching on uncertain and epistemic reasoning, temporal and
@@ -30,7 +30,7 @@ cv:
     org: University College London (UCL)
     location: London, UK
     period: 2025 – present
-    url: ''
+    url: https://www.ucl.ac.uk/
     logo: /assets/img/logos/ucl.png
     badge: ''
     notes: 'Department of Information Studies, Faculty of Arts and Humanities. Continuing
@@ -43,12 +43,11 @@ cv:
     org: University of Salento
     location: Lecce, Italy
     period: 2025 – 2026
-    url: ''
+    url: https://www.unisalento.it/
     logo: /assets/img/logos/salento.png
     badge: ''
-    notes: 'Department of Human Studies (PHIL-02/A). Project FAIR — Future AI Research
-      (PE00000013), NRRP/MUR, NextGenerationEU, Spoke 6 ("Symbiotic AI"), PI: Paolo
-      Baldi.'
+    notes: 'Department of Human Studies. Project FAIR — Future AI Research (PE00000013),
+      NRRP/MUR, NextGenerationEU, Spoke 6 ("Symbiotic AI"), PI: Paolo Baldi.'
     coords:
       lat: 40.3515
       lon: 18.175
@@ -56,7 +55,7 @@ cv:
     org: University of Verona
     location: Verona, Italy
     period: 2022 – 2025
-    url: ''
+    url: https://www.univr.it/
     logo: /assets/img/logos/univr.png
     badge: ''
     notes: Research and teaching on uncertain and epistemic reasoning, temporal and
@@ -71,7 +70,7 @@ cv:
     org: Logic Group, University of Milan
     location: Milan, Italy
     period: 2020 – 2021
-    url: ''
+    url: https://luci.unimi.it/
     logo: /assets/img/logos/milan.png
     badge: ''
     notes: Uncertain, depth-bounded and epistemic logics.
@@ -82,7 +81,7 @@ cv:
     org: CRDC Tecnologie (University of Naples Federico II)
     location: Naples, Italy
     period: 2019 – 2020
-    url: ''
+    url: https://www.unina.it/
     logo: /assets/img/logos/naples.png
     badge: ''
     notes: AVATEA Project (AI to support rehabilitation of children with neuro-motor
@@ -94,7 +93,7 @@ cv:
     org: University of Palermo
     location: Palermo, Italy
     period: 2013 – 2014
-    url: ''
+    url: https://www.unipa.it/
     logo: /assets/img/logos/palermo.png
     badge: ''
     notes: 'NEVERLOST Project (PO-FESR 2007-2013): (sub)optimal antenna displacement
@@ -107,7 +106,7 @@ cv:
     org: ICAR-CNR Palermo
     location: Palermo, Italy
     period: Jun – Sep 2011
-    url: ''
+    url: https://www.icar.cnr.it/
     logo: ''
     badge: ICAR
     notes: 'IMPULSO project: a path-visualization tool using the Google Maps APIs.'
