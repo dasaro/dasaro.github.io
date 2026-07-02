@@ -1,62 +1,82 @@
 %# ====================================================================
-%# themes/classicthesis.tex.j2 — a classicthesis-inspired CV (Palatino,
-%# spaced small-caps section labels, date-aligned entries, narrow margins).
-%# Built with STANDARD LaTeX only (no classicthesis/currvita), same data
-%# contract as margin.tex.j2 (driven by cv.yml + papers.bib via build_cv.py).
+%# themes/classicthesis.tex.j2 — faithful to the user's classicthesis/currvita
+%# cv_8.tex: flush-left spaced small-caps headings, a 2em body indent for
+%# entries/descriptions, sub-lists indented further, red only for the name +
+%# links, no greys or rules. Standard LaTeX (Palatino via TeX Gyre Pagella),
+%# driven by cv.yml + papers.bib via build_cv.py.
 %# ====================================================================
 \documentclass[10pt,a4paper]{article}
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \ifdefined\pdftrailerid\pdftrailerid{dasaro-cv}\fi % fixed PDF /ID -> byte-reproducible builds
-\usepackage{tgpagella}             % TeX Gyre Pagella: a Palatino clone with real small caps (vector Type 1)
-\linespread{1.05}
-\usepackage[left=1.4cm,right=1.4cm,top=1.5cm,bottom=1.4cm]{geometry}
-\usepackage{microtype}             % character protrusion + \textls letterspacing
+\usepackage{tgpagella}             % TeX Gyre Pagella: Palatino clone with real small caps (vector Type 1)
+\linespread{1.04}
+\usepackage[left=3.5cm,right=3.5cm,top=2.8cm,bottom=2.5cm]{geometry} % wide symmetric margins, matched to New_CV.pdf
+\usepackage{microtype}             % protrusion + \textls letterspacing
 \usepackage{enumitem}
 \usepackage{xcolor}
 \usepackage[hidelinks]{hyperref}
 
 \definecolor{accent}{HTML}{\VAR{accent}}
+\definecolor{datemuted}{gray}{0.45}   % muted grey for the date column
 \hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
 
-%# --- classicthesis-style spaced (low) small caps ---
+%# --- spaced (all/low) small caps, classicthesis style ---
 \newcommand{\spacedcaps}[1]{\textls[110]{\MakeUppercase{#1}}}
 \newcommand{\spacedsc}[1]{\textls[70]{\scshape\MakeLowercase{#1}}}
 
-\newlength{\bodyindent}\setlength{\bodyindent}{2em}
+\newlength{\bodyindent}\setlength{\bodyindent}{0.77cm} % date-column indent, matched to New_CV.pdf (~2em)
+\newlength{\dbox}\settowidth{\dbox}{2026 -- present}  % width of the date column
 
-%# --- section heading: black spaced small caps, flush-left (pulled out of the body indent), no rule ---
-\newcommand{\CVsec}[1]{\bigskip\par\noindent\hspace*{-\bodyindent}{\normalsize\spacedsc{#1}}\par\vspace{0.35em}}
+%# --- section heading: black spaced small caps, flush-left, no rule ---
+\newcommand{\CVsec}[1]{\bigskip\par\noindent{\normalsize\spacedsc{#1}}\par\vspace{0.35em}}
 
-%# --- date-aligned entry (sits at the body indent, under the flush-left heading) + description ---
-\newlength{\dbox}\settowidth{\dbox}{2026 -- present}
+%# --- entry: date column indented by \bodyindent, title to its right ---
+%# date sits in a fixed makebox on the first line; the title flows as normal text with a
+%# hanging indent so wrapped title lines align under the title AND multi-line titles keep
+%# correct spacing to the description below (a \parbox[t] would let line 2 overlap it).
 \newcommand{\NewEntry}[2]{\smallskip\par\noindent%
-  \parbox[t]{\dbox}{\raggedright\small\itshape #1}\hspace{1em}%
-  \parbox[t]{\dimexpr\linewidth-\dbox-1em-\bodyindent\relax}{#2}\par}
-\newcommand{\Desc}[1]{{\noindent\footnotesize #1\par}\vspace{0.3em}}
+  \hspace*{\bodyindent}\makebox[\dbox][l]{\small\itshape\color{datemuted}#1}\hspace{1em}%
+  \hangafter=1\hangindent=\dimexpr\bodyindent+\dbox+1em\relax
+  #2\par}
 
-\setlist[itemize]{label=\textbullet, leftmargin=1.5em, itemsep=0.12em, topsep=0.15em, parsep=0pt}
+%# --- description: text block indented to \bodyindent (text only -> \leftskip is safe) ---
+\newcommand{\Desc}[1]{{\leftskip\bodyindent\relax\noindent\footnotesize #1\par}\vspace{0.35em}}
+
+%# --- publications grouped by year: the year is a single left-margin heading (shown once),
+%#     and each paper below it is a clean "title / authors, venue, doi" block. ---
+\newlength{\pubindent}\setlength{\pubindent}{2em}
+\newcommand{\PubYear}[1]{\smallskip\par\noindent{\itshape\color{datemuted} #1}\par\nobreak\vspace{0.2em}}
+\newlist{pubitems}{itemize}{1}
+\setlist[pubitems]{label=\textbullet, leftmargin=\dimexpr\pubindent+0.9em\relax,
+                   itemsep=0.55em, topsep=0.15em, parsep=0pt}
+
+%# --- bullet list under an entry/heading: indented via enumitem leftmargin (composes cleanly) ---
+\setlist[itemize]{label=\textbullet, leftmargin=\dimexpr\bodyindent+1.4em\relax,
+                  itemsep=0.12em, topsep=0.2em, parsep=0pt}
+\newlist{cvitems}{itemize}{1}
+\setlist[cvitems]{label=\textbullet, leftmargin=\dimexpr\bodyindent+1.4em\relax,
+                  itemsep=0.12em, topsep=0.15em, parsep=0pt}
+
 \setlength{\parindent}{0pt}
 \pagestyle{empty}
 
 \begin{document}
 
 %# ======================= HEADER =======================
-{\Huge\color{accent}\spacedcaps{\VAR{basics.name}}}\par\vspace{0.35em}
-{\large\itshape \VAR{basics.headline | tex}}\par\vspace{0.6em}
+{\LARGE\color{accent}\spacedcaps{\VAR{basics.name}}}\par\vspace{0.4em}
+{\itshape \VAR{basics.headline | tex}}\par\vspace{0.5em}
 {\small
   \href{mailto:\VAR{basics.email}}{\VAR{basics.email}}%
   \BLOCK{if basics.phone}\ \textbar\ \VAR{basics.phone | tex}\BLOCK{endif}%
   \BLOCK{if basics.website}\ \textbar\ \href{\VAR{basics.website}}{website}\BLOCK{endif}%
   \BLOCK{if basics.scholar}\ \textbar\ \href{\VAR{basics.scholar}}{Scholar}\BLOCK{endif}%
   \BLOCK{if basics.github}\ \textbar\ \href{\VAR{basics.github}}{GitHub}\BLOCK{endif}%
-}\par
-\vspace{0.6em}
+}\par\vspace{0.6em}
 \BLOCK{if basics.summary}
 {\small \VAR{basics.summary | tex}}\par
 \BLOCK{endif}
-\setlength{\leftskip}{\bodyindent}
 
 %# ======================= SECTIONS =======================
 %% for sec in section_order
@@ -64,7 +84,7 @@
 %% if sec == "experience" and data.experience
 \CVsec{Experience}
 %% for e in data.experience
-\NewEntry{\VAR{e.period | tex}}{\textbf{\VAR{e.role | tex}}, \textsc{\VAR{e.org | tex}}\BLOCK{if e.location} {\small(\VAR{e.location | tex})}\BLOCK{endif}}
+\NewEntry{\VAR{e.period | tex}}{\VAR{e.role | tex}, \textsc{\VAR{e.org | tex}}\BLOCK{if e.location} (\VAR{e.location | tex})\BLOCK{endif}}
 %% if e.notes
 \Desc{\VAR{e.notes | tex}}
 %% endif
@@ -74,7 +94,7 @@
 %% if sec == "education" and data.education
 \CVsec{Education}
 %% for e in data.education
-\NewEntry{\VAR{e.period | tex}}{\textbf{\VAR{e.degree | tex}}, \BLOCK{if e.url}\href{\VAR{e.url}}{\textsc{\VAR{e.org | tex}}}\BLOCK{else}\textsc{\VAR{e.org | tex}}\BLOCK{endif}}
+\NewEntry{\VAR{e.period | tex}}{\VAR{e.degree | tex}, \BLOCK{if e.url}\href{\VAR{e.url}}{\textsc{\VAR{e.org | tex}}}\BLOCK{else}\textsc{\VAR{e.org | tex}}\BLOCK{endif}}
 %% if e.notes
 \Desc{\VAR{e.notes | tex}}
 %% endif
@@ -83,64 +103,62 @@
 
 %% if sec == "honors" and data.honors
 \CVsec{Honours}
-\begin{itemize}
+\begin{cvitems}
 %% for h in data.honors
 \item \VAR{h | tex}
 %% endfor
-\end{itemize}
+\end{cvitems}
 %% endif
 
 %% if sec == "publications" and publications
 \CVsec{Publications}
 %% if metrics
-{\small\itshape \VAR{metrics.source | tex}: \VAR{metrics.citations} citations, \textit{h}-index \VAR{metrics.h_index}, i10-index \VAR{metrics.i10_index}.}\par\vspace{0.4em}
+\Desc{\itshape \VAR{metrics.source | tex}: \VAR{metrics.citations} citations, \textit{h}-index \VAR{metrics.h_index}, i10-index \VAR{metrics.i10_index}.}
 %% endif
 %% for group in publications
-\NewEntry{\VAR{group.year}}{%
-\begin{itemize}[leftmargin=1.2em,topsep=0pt]
+\PubYear{\VAR{group.year}}
+\begin{pubitems}
 %% for item in group["items"]
-\item \VAR{item}
+\item \VAR{item["title"]}\\{\footnotesize \VAR{item["desc"]}}
 %% endfor
-\end{itemize}}
+\end{pubitems}
 %% endfor
 %% endif
 
 %% if sec == "edited_volumes" and data.edited_volumes
 \CVsec{Edited Volumes}
-\begin{itemize}
+\begin{cvitems}
 %% for v in data.edited_volumes
 \item \VAR{v | tex}
 %% endfor
-\end{itemize}
+\end{cvitems}
 %% endif
 
 %% if sec == "teaching" and data.teaching
 \CVsec{Teaching}
 %% for t in data.teaching
-\NewEntry{\VAR{t.period | tex}}{\textbf{\VAR{t.title | tex}}}
+\NewEntry{\VAR{t.period | tex}}{\VAR{t.title | tex}}
 %% if t["items"]
-\vspace{-0.2em}\Desc{\begin{itemize}[topsep=0pt,leftmargin=1.1em]
+\begin{cvitems}
 %% for it in t["items"]
 \item \VAR{it | tex}
 %% endfor
-\end{itemize}}
+\end{cvitems}
 %% endif
 %% endfor
 %% endif
 
 %% if sec == "invited_talks" and data.invited_talks
 \CVsec{Invited Talks}
-\begin{itemize}
 %% for t in data.invited_talks
-\item \VAR{t | tex}
+\NewEntry{\VAR{t.period | tex}}{\VAR{t.title | tex}}
 %% endfor
-\end{itemize}
 %% endif
 
 %% if sec == "projects" and data.projects
 \CVsec{Projects}
 %% for p in data.projects
-\NewEntry{\VAR{p.period | tex}}{\textbf{\VAR{p.name | tex}}}
+\NewEntry{\VAR{p.period | tex}}{\VAR{p.name | tex}}
 %% if p.notes
 \Desc{\VAR{p.notes | tex}}
 %% endif
@@ -149,75 +167,75 @@
 
 %% if sec == "software" and data.software
 \CVsec{Software}
-\begin{itemize}
+\begin{cvitems}
 %% for s in data.software
 \item \BLOCK{if s.url}\href{\VAR{s.url}}{\textbf{\VAR{s.name | tex}}}\BLOCK{else}\textbf{\VAR{s.name | tex}}\BLOCK{endif}\BLOCK{if s.description} — \VAR{s.description | tex}\BLOCK{endif}
 %% endfor
-\end{itemize}
+\end{cvitems}
 %% endif
 
 %% if sec == "supervision" and data.supervision
 \CVsec{Supervision and Mentoring}
-\begin{itemize}
+\begin{cvitems}
 %% for s in data.supervision
 \item \VAR{s | tex}
 %% endfor
-\end{itemize}
+\end{cvitems}
 %% endif
 
 %% if sec == "service" and data.service
 \CVsec{Professional Service}
-\begin{itemize}
+\begin{cvitems}
 %% for s in data.service
 \item \VAR{s | tex}
 %% endfor
-\end{itemize}
+\end{cvitems}
 %% endif
 
 %% if sec == "reviewing" and data.reviewing
 \CVsec{Reviewing}
-\begin{itemize}
+\begin{cvitems}
 %% for r in data.reviewing
 \item \VAR{r | tex}
 %% endfor
-\end{itemize}
+\end{cvitems}
 %% endif
 
 %% if sec == "groups" and data.groups
 \CVsec{Research Groups}
-\begin{itemize}
+\begin{cvitems}
 %% for g in data.groups
 \item \BLOCK{if g.url}\href{\VAR{g.url}}{\VAR{g.name | tex}}\BLOCK{else}\VAR{g.name | tex}\BLOCK{endif}
 %% endfor
-\end{itemize}
+\end{cvitems}
 %% endif
 
 %% if sec == "memberships" and data.memberships
 \CVsec{Memberships}
-\begin{itemize}
+\begin{cvitems}
 %% for m in data.memberships
 \item \VAR{m | tex}
 %% endfor
-\end{itemize}
+\end{cvitems}
 %% endif
 
 %% if sec == "skills" and data.skills
 \CVsec{Skills}
-\begin{itemize}
+\begin{cvitems}
 %% for s in data.skills
 \item \textbf{\VAR{s.label | tex}:} \VAR{s.value | tex}
 %% endfor
-\end{itemize}
+\end{cvitems}
 %% endif
 
 %% if sec == "languages" and data.languages
 \CVsec{Languages}
-\VAR{data.languages | map("tex") | join("  \\textbullet\\  ")}
+\Desc{\VAR{data.languages | map("tex") | join("  \\quad$\\cdot$\\quad  ")}}
 %% endif
 
 %% if sec == "interests" and data.interests
 \CVsec{Interests}
-\VAR{data.interests | map("tex") | join("  \\textbullet\\  ")}
+\Desc{\VAR{data.interests | map("tex") | join("  \\quad$\\cdot$\\quad  ")}}
 %% endif
 
 %% endfor
