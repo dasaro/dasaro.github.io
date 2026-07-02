@@ -1,0 +1,224 @@
+%# ====================================================================
+%# themes/classicthesis.tex.j2 — a classicthesis-inspired CV (Palatino,
+%# spaced small-caps section labels, date-aligned entries, narrow margins).
+%# Built with STANDARD LaTeX only (no classicthesis/currvita), same data
+%# contract as margin.tex.j2 (driven by cv.yml + papers.bib via build_cv.py).
+%# ====================================================================
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\ifdefined\pdftrailerid\pdftrailerid{dasaro-cv}\fi % fixed PDF /ID -> byte-reproducible builds
+\usepackage{lmodern}               % Latin Modern: the only full serif in BasicTeX (vector, has real small caps)
+\linespread{1.05}
+\usepackage[left=2cm,right=2cm,top=1.8cm,bottom=1.7cm]{geometry}
+\usepackage{microtype}             % character protrusion + \textls letterspacing
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{accent}{HTML}{\VAR{accent}}
+\definecolor{muted}{HTML}{6A6A6A}
+\definecolor{hair}{HTML}{C8C8C8}
+\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
+
+%# --- classicthesis-style spaced (low) small caps ---
+\newcommand{\spacedcaps}[1]{\textls[110]{\MakeUppercase{#1}}}
+\newcommand{\spacedsc}[1]{\textls[70]{\scshape\MakeLowercase{#1}}}
+
+%# --- section heading: classicthesis-style spaced small caps + a thin rule ---
+\newcommand{\CVsec}[1]{\bigskip\par\noindent{\normalsize\color{accent}\spacedsc{#1}}\par\vspace{0.15em}{\color{hair}\hrule height 0.5pt}\vspace{0.55em}}
+
+%# --- date-aligned entry (title) + hanging description, classicthesis "currvita" feel ---
+\newlength{\dbox}\settowidth{\dbox}{2026 -- present}
+\newcommand{\NewEntry}[2]{\smallskip\par\noindent%
+  \parbox[t]{\dbox}{\raggedright\small\itshape\color{muted}#1}\hspace{1em}%
+  \parbox[t]{\dimexpr\linewidth-\dbox-1em\relax}{#2}\par}
+\newcommand{\Desc}[1]{{\leftskip\dimexpr\dbox+1em\relax\noindent\footnotesize #1\par}\vspace{0.3em}}
+
+\setlist[itemize]{label={\color{accent}\small\textbullet}, leftmargin=1.4em, itemsep=0.12em, topsep=0.15em, parsep=0pt}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\begin{document}
+
+%# ======================= HEADER =======================
+{\Huge\color{accent}\spacedcaps{\VAR{basics.name}}}\par\vspace{0.35em}
+{\large\itshape\color{muted}\VAR{basics.headline | tex}}\par\vspace{0.6em}
+{\small
+  \href{mailto:\VAR{basics.email}}{\VAR{basics.email}}%
+  \BLOCK{if basics.phone}\ \textbar\ \VAR{basics.phone | tex}\BLOCK{endif}%
+  \BLOCK{if basics.website}\ \textbar\ \href{\VAR{basics.website}}{website}\BLOCK{endif}%
+  \BLOCK{if basics.scholar}\ \textbar\ \href{\VAR{basics.scholar}}{Scholar}\BLOCK{endif}%
+  \BLOCK{if basics.github}\ \textbar\ \href{\VAR{basics.github}}{GitHub}\BLOCK{endif}%
+}\par
+\vspace{0.7em}{\color{hair}\hrule height 0.7pt}\vspace{0.7em}
+\BLOCK{if basics.summary}
+{\small \VAR{basics.summary | tex}}\par
+\BLOCK{endif}
+
+%# ======================= SECTIONS =======================
+%% for sec in section_order
+
+%% if sec == "experience" and data.experience
+\CVsec{Experience}
+%% for e in data.experience
+\NewEntry{\VAR{e.period | tex}}{\textbf{\VAR{e.role | tex}}, \textsc{\VAR{e.org | tex}}\BLOCK{if e.location} \textcolor{muted}{\small(\VAR{e.location | tex})}\BLOCK{endif}}
+%% if e.notes
+\Desc{\VAR{e.notes | tex}}
+%% endif
+%% endfor
+%% endif
+
+%% if sec == "education" and data.education
+\CVsec{Education}
+%% for e in data.education
+\NewEntry{\VAR{e.period | tex}}{\textbf{\VAR{e.degree | tex}}, \BLOCK{if e.url}\href{\VAR{e.url}}{\textsc{\VAR{e.org | tex}}}\BLOCK{else}\textsc{\VAR{e.org | tex}}\BLOCK{endif}}
+%% if e.notes
+\Desc{\VAR{e.notes | tex}}
+%% endif
+%% endfor
+%% endif
+
+%% if sec == "honors" and data.honors
+\CVsec{Honours}
+\begin{itemize}
+%% for h in data.honors
+\item \VAR{h | tex}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "publications" and publications
+\CVsec{Publications}
+%% if metrics
+{\small\color{muted}\VAR{metrics.source | tex}: \VAR{metrics.citations} citations, \textit{h}-index \VAR{metrics.h_index}, i10-index \VAR{metrics.i10_index}.}\par\vspace{0.4em}
+%% endif
+%% for group in publications
+\NewEntry{\VAR{group.year}}{%
+\begin{itemize}[leftmargin=1.2em,topsep=0pt]
+%% for item in group["items"]
+\item \VAR{item}
+%% endfor
+\end{itemize}}
+%% endfor
+%% endif
+
+%% if sec == "edited_volumes" and data.edited_volumes
+\CVsec{Edited Volumes}
+\begin{itemize}
+%% for v in data.edited_volumes
+\item \VAR{v | tex}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "teaching" and data.teaching
+\CVsec{Teaching}
+%% for t in data.teaching
+\NewEntry{\VAR{t.period | tex}}{\textbf{\VAR{t.title | tex}}}
+%% if t["items"]
+\vspace{-0.2em}\Desc{\begin{itemize}[topsep=0pt,leftmargin=1.1em]
+%% for it in t["items"]
+\item \VAR{it | tex}
+%% endfor
+\end{itemize}}
+%% endif
+%% endfor
+%% endif
+
+%% if sec == "invited_talks" and data.invited_talks
+\CVsec{Invited Talks}
+\begin{itemize}
+%% for t in data.invited_talks
+\item \VAR{t | tex}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "projects" and data.projects
+\CVsec{Projects}
+%% for p in data.projects
+\NewEntry{\VAR{p.period | tex}}{\textbf{\VAR{p.name | tex}}}
+%% if p.notes
+\Desc{\VAR{p.notes | tex}}
+%% endif
+%% endfor
+%% endif
+
+%% if sec == "software" and data.software
+\CVsec{Software}
+\begin{itemize}
+%% for s in data.software
+\item \BLOCK{if s.url}\href{\VAR{s.url}}{\textbf{\VAR{s.name | tex}}}\BLOCK{else}\textbf{\VAR{s.name | tex}}\BLOCK{endif}\BLOCK{if s.description} — \VAR{s.description | tex}\BLOCK{endif}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "supervision" and data.supervision
+\CVsec{Supervision and Mentoring}
+\begin{itemize}
+%% for s in data.supervision
+\item \VAR{s | tex}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "service" and data.service
+\CVsec{Professional Service}
+\begin{itemize}
+%% for s in data.service
+\item \VAR{s | tex}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "reviewing" and data.reviewing
+\CVsec{Reviewing}
+\begin{itemize}
+%% for r in data.reviewing
+\item \VAR{r | tex}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "groups" and data.groups
+\CVsec{Research Groups}
+\begin{itemize}
+%% for g in data.groups
+\item \BLOCK{if g.url}\href{\VAR{g.url}}{\VAR{g.name | tex}}\BLOCK{else}\VAR{g.name | tex}\BLOCK{endif}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "memberships" and data.memberships
+\CVsec{Memberships}
+\begin{itemize}
+%% for m in data.memberships
+\item \VAR{m | tex}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "skills" and data.skills
+\CVsec{Skills}
+\begin{itemize}
+%% for s in data.skills
+\item \textbf{\VAR{s.label | tex}:} \VAR{s.value | tex}
+%% endfor
+\end{itemize}
+%% endif
+
+%% if sec == "languages" and data.languages
+\CVsec{Languages}
+\VAR{data.languages | map("tex") | join("  \\textbullet\\  ")}
+%% endif
+
+%% if sec == "interests" and data.interests
+\CVsec{Interests}
+\VAR{data.interests | map("tex") | join("  \\textbullet\\  ")}
+%% endif
+
+%% endfor
+
+\end{document}
