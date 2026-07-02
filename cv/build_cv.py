@@ -102,17 +102,20 @@ def format_entry(entry):
     authors = format_authors(entry.get("author", ""))
     # BibTeX uses {braces} to protect capitalisation; strip them before escaping.
     title = tex_escape(entry.get("title", "").replace("{", "").replace("}", "").strip())
-    parts = [f"{authors}. \\textit{{{title}}}."]
+    # New_CV / cv_8 layout: the title is the entry heading; authors + venue + doi
+    # form the description line below it ("authors, in: <venue>, doi.").
+    desc = authors
     v = venue(entry)
     if v:
-        parts.append(v + ".")
+        desc += f", in: \\textit{{{v}}}"
     if entry.get("doi"):
         doi = entry["doi"].strip()
         disp = tex_escape(doi).replace("/", "/\\allowbreak ").replace(".", ".\\allowbreak ")
-        parts.append(f"\\href{{https://doi.org/{doi}}}{{doi:{disp}}}")
+        desc += f", \\href{{https://doi.org/{doi}}}{{doi:{disp}}}"
     if entry.get("note"):
-        parts.append(f"({tex_escape(entry['note'])})")
-    return " ".join(parts)
+        desc += f" ({tex_escape(entry['note'])})"
+    desc += "."
+    return {"title": title, "desc": desc}
 
 def load_publications(bib_path, selected_only):
     with open(bib_path, encoding="utf-8") as f:
