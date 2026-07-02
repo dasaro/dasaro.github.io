@@ -100,5 +100,6 @@ No build step needed — just `commit` + `push`.
 ## Prerequisites for `./cv/build.sh`
 
 - **`pdflatex`** on your PATH (BasicTeX/MacTeX). First-time LaTeX packages, once:
-  `tlmgr --usermode install titlesec lmodern enumitem`.
+  `tlmgr --usermode install tex-gyre microtype enumitem titlesec`
+  (`tex-gyre` supplies the Palatino used by the CV theme).
 - The script auto-creates its Python venv (`cv/.venv`) on first run — nothing else to install.

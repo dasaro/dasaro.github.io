@@ -32,7 +32,7 @@ fi
 
 if ! command -v pdflatex >/dev/null 2>&1; then
   echo "[build.sh] WARNING: pdflatex not on PATH — the PDF step will fail." >&2
-  echo "           Install BasicTeX/MacTeX, then: tlmgr --usermode install titlesec" >&2
+  echo "           Install BasicTeX/MacTeX, then: tlmgr --usermode install tex-gyre microtype enumitem titlesec" >&2
 fi
 
 echo "[build.sh] → CV PDF       (assets/pdf/cv.pdf)"
