@@ -37,7 +37,8 @@ jobs:
           pip install --upgrade pyyaml jinja2 bibtexparser
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends poppler-utils lmodern \
-            texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
+            texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended \
+            texlive-fonts-extra
       - name: Regenerate CV data + PDF 🔧
         run: |
           python tools/cv_to_alfolio.py
