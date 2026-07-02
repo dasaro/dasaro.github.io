@@ -11,32 +11,32 @@
 \ifdefined\pdftrailerid\pdftrailerid{dasaro-cv}\fi % fixed PDF /ID -> byte-reproducible builds
 \usepackage{tgpagella}             % TeX Gyre Pagella: a Palatino clone with real small caps (vector Type 1)
 \linespread{1.05}
-\usepackage[left=2cm,right=2cm,top=1.8cm,bottom=1.7cm]{geometry}
+\usepackage[left=1.4cm,right=1.4cm,top=1.5cm,bottom=1.4cm]{geometry}
 \usepackage{microtype}             % character protrusion + \textls letterspacing
 \usepackage{enumitem}
 \usepackage{xcolor}
 \usepackage[hidelinks]{hyperref}
 
 \definecolor{accent}{HTML}{\VAR{accent}}
-\definecolor{muted}{HTML}{6A6A6A}
-\definecolor{hair}{HTML}{C8C8C8}
 \hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
 
 %# --- classicthesis-style spaced (low) small caps ---
 \newcommand{\spacedcaps}[1]{\textls[110]{\MakeUppercase{#1}}}
 \newcommand{\spacedsc}[1]{\textls[70]{\scshape\MakeLowercase{#1}}}
 
-%# --- section heading: classicthesis-style spaced small caps + a thin rule ---
-\newcommand{\CVsec}[1]{\bigskip\par\noindent{\normalsize\color{accent}\spacedsc{#1}}\par\vspace{0.15em}{\color{hair}\hrule height 0.5pt}\vspace{0.55em}}
+\newlength{\bodyindent}\setlength{\bodyindent}{2em}
 
-%# --- date-aligned entry (title) + hanging description, classicthesis "currvita" feel ---
+%# --- section heading: black spaced small caps, flush-left (pulled out of the body indent), no rule ---
+\newcommand{\CVsec}[1]{\bigskip\par\noindent\hspace*{-\bodyindent}{\normalsize\spacedsc{#1}}\par\vspace{0.35em}}
+
+%# --- date-aligned entry (sits at the body indent, under the flush-left heading) + description ---
 \newlength{\dbox}\settowidth{\dbox}{2026 -- present}
 \newcommand{\NewEntry}[2]{\smallskip\par\noindent%
-  \parbox[t]{\dbox}{\raggedright\small\itshape\color{muted}#1}\hspace{1em}%
-  \parbox[t]{\dimexpr\linewidth-\dbox-1em\relax}{#2}\par}
-\newcommand{\Desc}[1]{{\leftskip\dimexpr\dbox+1em\relax\noindent\footnotesize #1\par}\vspace{0.3em}}
+  \parbox[t]{\dbox}{\raggedright\small\itshape #1}\hspace{1em}%
+  \parbox[t]{\dimexpr\linewidth-\dbox-1em-\bodyindent\relax}{#2}\par}
+\newcommand{\Desc}[1]{{\noindent\footnotesize #1\par}\vspace{0.3em}}
 
-\setlist[itemize]{label={\color{accent}\small\textbullet}, leftmargin=1.4em, itemsep=0.12em, topsep=0.15em, parsep=0pt}
+\setlist[itemize]{label=\textbullet, leftmargin=1.5em, itemsep=0.12em, topsep=0.15em, parsep=0pt}
 \setlength{\parindent}{0pt}
 \pagestyle{empty}
 
@@ -44,7 +44,7 @@
 
 %# ======================= HEADER =======================
 {\Huge\color{accent}\spacedcaps{\VAR{basics.name}}}\par\vspace{0.35em}
-{\large\itshape\color{muted}\VAR{basics.headline | tex}}\par\vspace{0.6em}
+{\large\itshape \VAR{basics.headline | tex}}\par\vspace{0.6em}
 {\small
   \href{mailto:\VAR{basics.email}}{\VAR{basics.email}}%
   \BLOCK{if basics.phone}\ \textbar\ \VAR{basics.phone | tex}\BLOCK{endif}%
@@ -52,10 +52,11 @@
   \BLOCK{if basics.scholar}\ \textbar\ \href{\VAR{basics.scholar}}{Scholar}\BLOCK{endif}%
   \BLOCK{if basics.github}\ \textbar\ \href{\VAR{basics.github}}{GitHub}\BLOCK{endif}%
 }\par
-\vspace{0.7em}{\color{hair}\hrule height 0.7pt}\vspace{0.7em}
+\vspace{0.6em}
 \BLOCK{if basics.summary}
 {\small \VAR{basics.summary | tex}}\par
 \BLOCK{endif}
+\setlength{\leftskip}{\bodyindent}
 
 %# ======================= SECTIONS =======================
 %% for sec in section_order
@@ -63,7 +64,7 @@
 %% if sec == "experience" and data.experience
 \CVsec{Experience}
 %% for e in data.experience
-\NewEntry{\VAR{e.period | tex}}{\textbf{\VAR{e.role | tex}}, \textsc{\VAR{e.org | tex}}\BLOCK{if e.location} \textcolor{muted}{\small(\VAR{e.location | tex})}\BLOCK{endif}}
+\NewEntry{\VAR{e.period | tex}}{\textbf{\VAR{e.role | tex}}, \textsc{\VAR{e.org | tex}}\BLOCK{if e.location} {\small(\VAR{e.location | tex})}\BLOCK{endif}}
 %% if e.notes
 \Desc{\VAR{e.notes | tex}}
 %% endif
@@ -92,7 +93,7 @@
 %% if sec == "publications" and publications
 \CVsec{Publications}
 %% if metrics
-{\small\color{muted}\VAR{metrics.source | tex}: \VAR{metrics.citations} citations, \textit{h}-index \VAR{metrics.h_index}, i10-index \VAR{metrics.i10_index}.}\par\vspace{0.4em}
+{\small\itshape \VAR{metrics.source | tex}: \VAR{metrics.citations} citations, \textit{h}-index \VAR{metrics.h_index}, i10-index \VAR{metrics.i10_index}.}\par\vspace{0.4em}
 %% endif
 %% for group in publications
 \NewEntry{\VAR{group.year}}{%
