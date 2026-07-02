@@ -46,7 +46,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends imagemagick lmodern \
             texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended \
-            texlive-fonts-extra
+            tex-gyre
       - name: Refresh Scholar metrics in cv.yml 📈
         env:
           SCRAPERAPI_KEY: ${{ secrets.SCRAPERAPI_KEY }}
