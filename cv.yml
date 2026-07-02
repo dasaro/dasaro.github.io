@@ -94,7 +94,7 @@ experience:
   - period: "Jun – Sep 2011"
     role: "Undergraduate Intern"
     org: "ICAR-CNR Palermo"
-    badge: "ICAR"
+    logo: "/assets/img/logos/icar.png"
     location: "Palermo, Italy"
     notes: "IMPULSO project: a path-visualization tool using the Google Maps APIs."
 
