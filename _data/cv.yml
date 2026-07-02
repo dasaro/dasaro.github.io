@@ -107,8 +107,8 @@ cv:
     location: Palermo, Italy
     period: Jun – Sep 2011
     url: https://www.icar.cnr.it/
-    logo: ''
-    badge: ICAR
+    logo: /assets/img/logos/icar.png
+    badge: ''
     notes: 'IMPULSO project: a path-visualization tool using the Google Maps APIs.'
     coords:
       lat: 38.1157
