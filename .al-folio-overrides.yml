@@ -1,0 +1,16 @@
+# Tracks site-local overrides of plugin-owned (gem) runtime files.
+# See docs/BOUNDARIES.md ("Local site overrides are still valid ...").
+# Regenerate / verify with:  bundle exec al-folio upgrade overrides audit
+#
+# On a `bundle update` that bumps al_folio_core, the upstream SHA below will no
+# longer match the gem's file: re-sync this override from upstream and re-apply
+# the single local change, then refresh local_sha256.
+overrides:
+  - path: _layouts/default.liquid
+    owner: al_folio_core
+    version: 1.0.11
+    upstream_sha256: 4b713c35f7383692b99f4f1086123acbc3cb247e775a4cebe39985b5302fb9b2
+    local_sha256: a16e472803b00440c4b616a5c1d8317dd3508d40567c2e713512e733ebde90d3
+    reason: >
+      Adds one line — {% include math_bg.liquid %} — before {% include scripts.liquid %}
+      to inject the site-local subtle mathematical backgrounds (assets/js/math-bg.js).
