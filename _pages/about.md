@@ -11,6 +11,7 @@ profile:
   more_info: >
     <p>Department of Human Sciences,<br>University of Verona</p>
     <p><a href="/theses/">Supervising BA &amp; MSc theses →</a></p>
+    <div class="sig-mark" role="img" aria-label="Fabio D'Asaro signature"></div>
 
 selected_papers: true
 social: true
@@ -36,6 +37,11 @@ latest_posts:
   /* "All news" link injected after the announcements panel */
   .all-news-link { display: inline-block; margin-top: .5rem; font-size: .85rem; font-weight: 600; color: var(--global-theme-color); }
   .all-news-link:hover { text-decoration: underline; }
+  /* small theme-aware signature under the profile photo: CSS-masked so it takes the theme ink colour (adapts to light/dark) */
+  .sig-mark { width: 155px; height: 122px; margin: .9rem auto .1rem; opacity: .78;
+    background-color: var(--global-text-color-light);
+    -webkit-mask: url(/assets/img/signature.png) center / contain no-repeat;
+    mask: url(/assets/img/signature.png) center / contain no-repeat; }
 </style>
 
 I am a researcher in Logic and AI — epistemic, probabilistic and temporal reasoning, argumentation, and logic programming (ASP/ILASP). My work spans bounded and non-monotonic reasoning, explainable AI, and the foundations of computation.
