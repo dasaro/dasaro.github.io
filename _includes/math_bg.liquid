@@ -4,7 +4,7 @@
   override of _layouts/default.liquid. Keyboard: "b" cycles, 1–5 pick, "0" off.
 {%- endcomment -%}
 <canvas id="math-bg" aria-hidden="true"
-        style="position:fixed; inset:0; width:100vw; height:100vh; z-index:-1; pointer-events:none; opacity:0;"></canvas>
+        style="position:fixed; inset:0; width:100vw; height:100vh; z-index:-1; pointer-events:none; opacity:0; transform:translateZ(0); backface-visibility:hidden; will-change:opacity;"></canvas>
 <span id="math-bg-probe" aria-hidden="true"
       style="position:fixed; left:0; top:0; visibility:hidden; color:var(--global-text-color-light);">.</span>
 <script defer src="{{ '/assets/js/math-bg.js' | relative_url | bust_file_cache }}"></script>

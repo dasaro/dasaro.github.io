@@ -19,7 +19,7 @@
   "use strict";
 
   var MODES = ["spiral", "zeta", "rule30", "rule110", "life"];
-  var OPACITY = 0.13; // "very subtle"
+  var OPACITY = 0.18; // subtle but visible
   var FPS = 30;
   var LS_KEY = "mathbg-v1";
 
@@ -87,8 +87,8 @@
     if (S.phase === "hold") { if (--S.hold <= 0) { S.phase = "fade"; S.hold = 60; } return; }
     ctx.fillStyle = ink();
     var cx = W / 2, cy = H / 2;
-    for (var k = 0; k < 34; k++) {
-      if (S.n >= S.max) { S.phase = "hold"; S.hold = 260; return; }
+    for (var k = 0; k < 120; k++) {
+      if (S.n >= S.max) { S.phase = "hold"; S.hold = 200; return; }
       if (S.si[S.n]) {
         var px = cx + S.x * S.cell, py = cy + S.y * S.cell;
         if (px >= -2 && px <= W + 2 && py >= -2 && py <= H + 2) {
@@ -241,11 +241,27 @@
     else if (k >= "1" && k <= "5") { setMode(k.charCodeAt(0) - 49); e.preventDefault(); }
     else if (k === "0") { setMode(-1); e.preventDefault(); }
   });
-  document.addEventListener("visibilitychange", function () { hidden = document.hidden; });
+  document.addEventListener("visibilitychange", function () {
+    hidden = document.hidden;
+    if (!hidden) resize(); // recover + redraw when the tab becomes visible again
+  });
+  // Refresh the ink colour when the site theme (data-theme) is toggled.
+  if (window.MutationObserver) {
+    new MutationObserver(function () { inkAt = -999; }).observe(
+      document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  }
   var rt;
   window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(resize, 150); });
+  // Re-kick after full load / bfcache restore, in case the first layout wasn't ready.
+  window.addEventListener("pageshow", resize);
+  window.addEventListener("load", resize);
 
-  apply();
-  resize();
-  requestAnimationFrame(loop);
+  var started = false;
+  function start() {
+    apply();
+    resize();
+    if (!started) { started = true; requestAnimationFrame(loop); }
+  }
+  start();
+  setTimeout(start, 300); // safety kick once layout has settled
 })();
