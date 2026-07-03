@@ -19,6 +19,14 @@
   "use strict";
 
   var MODES = ["spiral", "zeta", "rule30", "rule110", "life"];
+  var DESC = {
+    spiral: "Ulam spiral — the whole numbers wound on a square spiral, with the primes marked; they line up along diagonals given by prime-rich quadratics.",
+    zeta: "Riemann zeta ζ(½+it) — the zeta function traced along the critical line as t grows; the curve sweeps through the origin at each non-trivial zero.",
+    rule30: "Wolfram rule 30 — an elementary 1-D cellular automaton whose simple local rule yields chaotic, aperiodic output (a classic pseudo-random source).",
+    rule110: "Wolfram rule 110 — an elementary 1-D cellular automaton proven Turing-complete: gliders drifting through a repeating background.",
+    life: "Conway's Game of Life — a 2-D cellular automaton (born on 3 neighbours, surviving on 2–3), itself Turing-complete."
+  };
+  var CONTROLS = "  ·  press “b” to change, 1–5 to pick, 0 to hide.";
   var OPACITY = 0.18; // subtle but visible
   var FPS = 30;
   var LS_KEY = "mathbg-v1";
@@ -27,6 +35,7 @@
   if (!canvas || !canvas.getContext) return;
   var ctx = canvas.getContext("2d");
   var probe = document.getElementById("math-bg-probe");
+  var note = document.getElementById("math-bg-note");
 
   var reduced =
     window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -209,8 +218,15 @@
     else if (m === "rule30" || m === "rule110") { if (frame % 2 === 0) stepRule(); }
     else { if (frame % 6 === 0) stepLife(); }
   }
+  function updateNote() {
+    if (!note) return;
+    if (state.mode < 0) { note.style.opacity = "0"; return; }
+    note.textContent = DESC[MODES[state.mode]] + CONTROLS;
+    note.style.opacity = "0.72";
+  }
   function apply() {
     canvas.style.opacity = state.mode < 0 ? "0" : String(OPACITY);
+    updateNote();
     saveState();
   }
   function setMode(m) {
