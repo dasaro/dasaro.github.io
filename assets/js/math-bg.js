@@ -46,14 +46,16 @@
   var W = 0, H = 0, DPR = 1, frame = 0, last = 0, S = {}, inkCache = "#808080", inkAt = -1;
 
   function loadState() {
+    var enabled = !reduced; // default on, unless the visitor prefers reduced motion
     try {
       var s = JSON.parse(localStorage.getItem(LS_KEY));
-      if (s && typeof s.mode === "number" && s.mode >= -1 && s.mode < MODES.length) return s;
+      if (s && typeof s.enabled === "boolean") enabled = s.enabled;
     } catch (e) {}
-    return { mode: reduced ? -1 : 0 }; // -1 = off; default to the prime spiral
+    // Fresh, random visualization on every load; persist only the on/off choice.
+    return { mode: enabled ? (Math.random() * MODES.length | 0) : -1 };
   }
   function saveState() {
-    try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch (e) {}
+    try { localStorage.setItem(LS_KEY, JSON.stringify({ enabled: state.mode >= 0 })); } catch (e) {}
   }
 
   function ink() {
@@ -220,11 +222,17 @@
     else if (m === "rule30" || m === "rule110") { if (frame % 2 === 0) stepRule(); }
     else { if (frame % 6 === 0) stepLife(); }
   }
+  function placeNote() { // sit the banner just above the fixed footer, so it is always visible
+    if (!note) return;
+    var f = document.querySelector("footer, .fixed-bottom, .footer");
+    note.style.bottom = ((f ? f.offsetHeight : 0) + 8) + "px";
+  }
   function updateNote() {
     if (!note) return;
     if (state.mode < 0) { note.style.opacity = "0"; return; }
     note.textContent = DESC[MODES[state.mode]] + CONTROLS;
-    note.style.opacity = "0.72";
+    placeNote();
+    note.style.opacity = "0.95";
   }
   function apply() {
     canvas.style.opacity = state.mode < 0 ? "0" : String(OPACITY[MODES[state.mode]]);
@@ -269,10 +277,10 @@
       document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
   }
   var rt;
-  window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(resize, 150); });
+  window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { resize(); placeNote(); }, 150); });
   // Re-kick after full load / bfcache restore, in case the first layout wasn't ready.
-  window.addEventListener("pageshow", resize);
-  window.addEventListener("load", resize);
+  window.addEventListener("pageshow", function () { resize(); placeNote(); });
+  window.addEventListener("load", function () { resize(); placeNote(); });
 
   var started = false;
   function start() {
