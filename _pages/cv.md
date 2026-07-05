@@ -4,7 +4,7 @@ title: CV
 permalink: /cv/
 nav: true
 nav_order: 5
-description: Experience, education, projects and skills — generated from a single source of truth. Download the full PDF.
+description: Experience, education, projects and skills: generated from a single source of truth. Download the full PDF.
 ---
 
 {%- assign cv = site.data.cv.cv -%}
@@ -79,7 +79,7 @@ description: Experience, education, projects and skills — generated from a sin
     <div class="cv-side">
       <a class="cv-pdf" href="{{ cv.pdf | relative_url }}" target="_blank" rel="noopener">Download PDF</a>
       {% if m %}
-      <div class="cv-metrics" title="Google Scholar{% if m.updated %} — {{ m.updated }}{% endif %}">
+      <div class="cv-metrics" title="Google Scholar{% if m.updated %} · {{ m.updated }}{% endif %}">
         <div class="cv-metric"><b>{{ m.citations }}</b><span>Citations</span></div>
         <div class="cv-metric"><b>{{ m.h_index }}</b><span>h-index</span></div>
         <div class="cv-metric"><b>{{ m.i10_index }}</b><span>i10</span></div>
@@ -188,7 +188,7 @@ description: Experience, education, projects and skills — generated from a sin
   <section class="cv-sec">
     <h2>Research Software</h2>
     {% for s in cv.software %}
-    <div class="cv-skill"><b>{% if s.url %}<a href="{{ s.url }}" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px dotted">{{ s.name }}</a>{% else %}{{ s.name }}{% endif %}</b>{% if s.description %} — {{ s.description }}{% endif %}</div>
+    <div class="cv-skill"><b>{% if s.url %}<a href="{{ s.url }}" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px dotted">{{ s.name }}</a>{% else %}{{ s.name }}{% endif %}</b>{% if s.description %} · {{ s.description }}{% endif %}</div>
     {% endfor %}
   </section>
   {% endif %}

@@ -2,7 +2,7 @@
 layout: page
 permalink: /teaching/
 title: Teaching
-description: Courses taught and teaching assistantships — full details on the CV page.
+description: Courses taught and teaching assistantships. Full details on the CV page.
 nav: true
 nav_order: 6
 ---
@@ -31,16 +31,16 @@ nav_order: 6
   <div class="tch-entry">
     <div class="tch-badge"><img src="{{ '/assets/img/logos/univr.png' | relative_url }}" alt="University of Verona"></div>
     <div class="tch-body">
-      <div class="tch-r1"><span><span class="tch-inst">University of Verona</span> <span class="tch-role">— Lecturer</span></span><span class="tch-period">2022 – present</span></div>
+      <div class="tch-r1"><span><span class="tch-inst">University of Verona</span> <span class="tch-role">· Lecturer</span></span><span class="tch-period">2022 – present</span></div>
       <div class="tch-dept">Department of Human Sciences</div>
       <ul>
-        <li><strong>Logic and Philosophy of Science</strong> — BA in Philosophy</li>
-        <li><strong>Epistemology of Big Data</strong> — MSc in Data Analytics</li>
-        <li><strong>Computational Epistemology</strong> — MSc in Artificial Intelligence</li>
-        <li><strong>Logic and Philosophy of Science in Physiotherapy</strong> — BSc</li>
-        <li><strong>Lab of Computer Science and Multimedia Technologies</strong> — BA in Philosophy</li>
-        <li><strong>Lab of Artificial Intelligence and Neuroscience</strong> — PhD in Human Sciences</li>
-        <li><strong>Logic Learning</strong> (Logic-Based Learning) — PhD in Computer Science</li>
+        <li><strong>Logic and Philosophy of Science</strong> · BA in Philosophy</li>
+        <li><strong>Epistemology of Big Data</strong> · MSc in Data Analytics</li>
+        <li><strong>Computational Epistemology</strong> · MSc in Artificial Intelligence</li>
+        <li><strong>Logic and Philosophy of Science in Physiotherapy</strong> · BSc</li>
+        <li><strong>Lab of Computer Science and Multimedia Technologies</strong> · BA in Philosophy</li>
+        <li><strong>Lab of Artificial Intelligence and Neuroscience</strong> · PhD in Human Sciences</li>
+        <li><strong>Logic Learning</strong> (Logic-Based Learning) · PhD in Computer Science</li>
       </ul>
     </div>
   </div>
@@ -50,9 +50,9 @@ nav_order: 6
     <div class="tch-body">
       <div class="tch-r1"><span class="tch-inst">Summer / Winter / Doctoral schools</span></div>
       <ul>
-        <li><strong>8th Winter School in Linguistics</strong> (Verona / Free Univ. of Bolzano), 2025 — <em>Introduction to Machine Learning</em></li>
-        <li><strong>3rd &amp; 4th Summer School on Bayesian Statistical Analysis</strong> (Verona), 2023 &amp; 2025 — <em>Introduction to Bayesian Probability</em></li>
-        <li><strong><a href="https://iecs.unitn.it/node/1334" target="_blank" rel="noopener">IECS Doctoral School</a></strong>, University of Trento, 2023 — <em>Logic Programming and Explainable AI</em> (20h intensive, PhD)</li>
+        <li><strong>8th Winter School in Linguistics</strong> (Verona / Free Univ. of Bolzano), 2025 · <em>Introduction to Machine Learning</em></li>
+        <li><strong>3rd &amp; 4th Summer School on Bayesian Statistical Analysis</strong> (Verona), 2023 &amp; 2025 · <em>Introduction to Bayesian Probability</em></li>
+        <li><strong><a href="https://iecs.unitn.it/node/1334" target="_blank" rel="noopener">IECS Doctoral School</a></strong>, University of Trento, 2023 · <em>Logic Programming and Explainable AI</em> (20h intensive, PhD)</li>
       </ul>
     </div>
   </div>
@@ -60,7 +60,7 @@ nav_order: 6
   <div class="tch-entry">
     <div class="tch-badge"><img src="{{ '/assets/img/logos/milan.png' | relative_url }}" alt="University of Milan"></div>
     <div class="tch-body">
-      <div class="tch-r1"><span><span class="tch-inst">University of Milan</span> <span class="tch-role">— Guest Lecturer</span></span><span class="tch-period">2021</span></div>
+      <div class="tch-r1"><span><span class="tch-inst">University of Milan</span> <span class="tch-role">· Guest Lecturer</span></span><span class="tch-period">2021</span></div>
       <div class="tch-dept">Department of Philosophy</div>
       <ul>
         <li><strong>Topics in Logic, Probability and Computation</strong> (PhD; with H. Hosni and P. Baldi)</li>
@@ -72,9 +72,9 @@ nav_order: 6
   <div class="tch-entry">
     <div class="tch-badge"><img src="{{ '/assets/img/logos/ucl.png' | relative_url }}" alt="University College London"></div>
     <div class="tch-body">
-      <div class="tch-r1"><span><span class="tch-inst">University College London</span> <span class="tch-role">— Teaching Assistant</span></span><span class="tch-period">2015 – 2023</span></div>
+      <div class="tch-r1"><span><span class="tch-inst">University College London</span> <span class="tch-role">· Teaching Assistant</span></span><span class="tch-period">2015 – 2023</span></div>
       <ul>
-        <li><strong><a href="https://www.ucl.ac.uk/module-catalogue/modules/machine-reasoning-for-artificial-intelligence-INST0074" target="_blank" rel="noopener">INST0074 Machine Reasoning for AI</a></strong> — module lead on Formal Argumentation (2022/23)</li>
+        <li><strong><a href="https://www.ucl.ac.uk/module-catalogue/modules/machine-reasoning-for-artificial-intelligence-INST0074" target="_blank" rel="noopener">INST0074 Machine Reasoning for AI</a></strong> · module lead on Formal Argumentation (2022/23)</li>
         <li><strong>INST0060 Foundations of Machine Learning and Data Science</strong></li>
         <li><strong>INST0019 Introduction to Programming and Scripting</strong>; INST0029; INST0004</li>
       </ul>
@@ -84,7 +84,7 @@ nav_order: 6
   <div class="tch-entry">
     <div class="tch-badge"><img src="{{ '/assets/img/logos/palermo.png' | relative_url }}" alt="University of Palermo"></div>
     <div class="tch-body">
-      <div class="tch-r1"><span><span class="tch-inst">University of Palermo</span> <span class="tch-role">— Teaching Assistant</span></span><span class="tch-period">2013 – 2014</span></div>
+      <div class="tch-r1"><span><span class="tch-inst">University of Palermo</span> <span class="tch-role">· Teaching Assistant</span></span><span class="tch-period">2013 – 2014</span></div>
       <ul>
         <li><strong>Theoretical Computer Science</strong> (lab demonstrator)</li>
       </ul>

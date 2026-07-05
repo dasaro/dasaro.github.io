@@ -27,7 +27,9 @@
     life: "Conway's Game of Life — a 2-D cellular automaton (born on 3 neighbours, surviving on 2–3), itself Turing-complete."
   };
   var CONTROLS = "  ·  press “b” to change, 1–5 to pick, 0 to hide.";
-  var OPACITY = 0.18; // subtle but visible
+  // per-mode opacity: the block-filling automata (rules, and especially life)
+  // are lightened so their solid cells don't hurt readability.
+  var OPACITY = { spiral: 0.18, zeta: 0.18, rule30: 0.10, rule110: 0.10, life: 0.07 };
   var FPS = 30;
   var LS_KEY = "mathbg-v1";
 
@@ -225,7 +227,7 @@
     note.style.opacity = "0.72";
   }
   function apply() {
-    canvas.style.opacity = state.mode < 0 ? "0" : String(OPACITY);
+    canvas.style.opacity = state.mode < 0 ? "0" : String(OPACITY[MODES[state.mode]]);
     updateNote();
     saveState();
   }
