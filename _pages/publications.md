@@ -31,6 +31,10 @@ nav_order: 2
   .bib-x { background: none; border: 0; font-size: 1.25rem; line-height: 1; cursor: pointer; color: var(--global-text-color-light, #888); padding: 0 .3rem; }
   .bib-copy { background: var(--global-theme-color); color: #fff; border: 0; border-radius: .4rem; font-size: .78rem; font-weight: 600; padding: .28rem .75rem; cursor: pointer; }
   .bib-pre { margin: 0; padding: 1rem 1.1rem; overflow: auto; white-space: pre; color: var(--global-text-color, #1c1c1c); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size: .8rem; line-height: 1.55; background: rgba(128, 128, 128, .08); }
+  /* mobile: keep publication preview thumbnails small (the abbr column becomes full-width) */
+  @media (max-width: 576px) {
+    .publications .preview { max-width: 140px; height: auto; display: block; margin: .2rem auto .6rem; }
+  }
 </style>
 
 <script>
