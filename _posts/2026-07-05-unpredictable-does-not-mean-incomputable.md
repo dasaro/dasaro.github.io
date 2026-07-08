@@ -95,4 +95,14 @@ Both add a premise that the mathematics simply does not contain.
 
 Perhaps living systems are computational in a deep constitutive sense. Perhaps they are not. I have no intention of settling that question here. The more modest point is that computability and chaos, by themselves, do not settle it either.
 
-Before inferring ontology from a theorem, it may be worth checking that it is at least the right theorem.
+## A final note on the word itself
+
+Part of the trouble is that "computationalism", and with it "anti-computationalism" is not one specific claim.
+
+(i) There is computation as a mathematical theory: calculability, the \(\lambda\), \(\mu\)-calculus (etc.), Post machines, the Church-Turing thesis in its mathematical form. (ii) There is computation as a universal ontology: the thesis that the world, the brain, the genome are, at bottom, discrete machines running code. And there is (iii) computation as simulability: the claim that a given physical process admits a faithful computable model, to arbitrary precision.
+
+These three come apart. One can treat calculability as one of the deepest achievements of the last century and still deny that the universe is a Turing machine. The second and third are different bets. The positions are not even close to interchangeable, no doubt about it.
+
+Once the word is split into (i), (ii) and (iii), the two temptations above become easy to name. The pancomputationalist takes success at the level of "simulability as an ontology": a computable model tracks the system; therefore, the system is computation. The anti-computationalist makes the mirror move: a rejection of the universal metaphor, which may be entirely justified, the world is not code, and the genome is not software, is spent as if it had shown that no faithful computable model could exist at all.
+
+Neither is licensed. Rejecting the metaphor is not the same as refuting simulability, and simulating a process is not the same as reading off its nature. So the discipline this post asks for is, first of all, a discipline about the word: before asking whether something is computational, it is worth asking which of the three claims is actually on the table.
