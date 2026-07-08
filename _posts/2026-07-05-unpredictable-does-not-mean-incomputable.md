@@ -99,7 +99,7 @@ Perhaps living systems are computational in a deep constitutive sense. Perhaps t
 
 Part of the trouble is that "computationalism", and with it "anti-computationalism" is not one specific claim.
 
-(i) There is computation as a mathematical theory: calculability, the \(\lambda\), \(\mu\)-calculus (etc.), Post machines, the Church-Turing thesis in its mathematical form. (ii) There is computation as a universal ontology: the thesis that the world, the brain, the genome are, at bottom, discrete machines running code. And there is (iii) computation as simulability: the claim that a given physical process admits a faithful computable model, to arbitrary precision.
+(i) There is computation as a mathematical theory: calculability, the λ, μ-calculus (etc.), Post machines, the Church-Turing thesis in its mathematical form. (ii) There is computation as a universal ontology: the thesis that the world, the brain, the genome are, at bottom, discrete machines running code. And there is (iii) computation as simulability: the claim that a given physical process admits a faithful computable model, to arbitrary precision.
 
 These three come apart. One can treat calculability as one of the deepest achievements of the last century and still deny that the universe is a Turing machine. The second and third are different bets. The positions are not even close to interchangeable, no doubt about it.
 
