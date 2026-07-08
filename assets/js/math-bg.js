@@ -227,12 +227,25 @@
     var f = document.querySelector("footer, .fixed-bottom, .footer");
     note.style.bottom = ((f ? f.offsetHeight : 0) + 8) + "px";
   }
+  function reserveSpace() { // bottom room so content can scroll clear of the fixed banner (esp. mobile)
+    var main = document.querySelector('[role="main"]') || document.body;
+    var spacer = document.getElementById("math-bg-spacer");
+    if (!spacer) {
+      spacer = document.createElement("div");
+      spacer.id = "math-bg-spacer";
+      spacer.setAttribute("aria-hidden", "true");
+      main.appendChild(spacer);
+    }
+    var bh = (note && state.mode >= 0) ? note.offsetHeight : 0;
+    spacer.style.height = bh ? (bh + 14) + "px" : "0px";
+  }
   function updateNote() {
     if (!note) return;
-    if (state.mode < 0) { note.style.opacity = "0"; return; }
+    if (state.mode < 0) { note.style.opacity = "0"; reserveSpace(); return; }
     note.textContent = DESC[MODES[state.mode]] + CONTROLS;
     placeNote();
     note.style.opacity = "0.95";
+    reserveSpace();
   }
   function apply() {
     canvas.style.opacity = state.mode < 0 ? "0" : String(OPACITY[MODES[state.mode]]);
@@ -277,10 +290,10 @@
       document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
   }
   var rt;
-  window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { resize(); placeNote(); }, 150); });
+  window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { resize(); placeNote(); reserveSpace(); }, 150); });
   // Re-kick after full load / bfcache restore, in case the first layout wasn't ready.
-  window.addEventListener("pageshow", function () { resize(); placeNote(); });
-  window.addEventListener("load", function () { resize(); placeNote(); });
+  window.addEventListener("pageshow", function () { resize(); placeNote(); reserveSpace(); });
+  window.addEventListener("load", function () { resize(); placeNote(); reserveSpace(); });
 
   var started = false;
   function start() {
