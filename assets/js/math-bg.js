@@ -20,13 +20,13 @@
 
   var MODES = ["spiral", "zeta", "rule30", "rule110", "life"];
   var DESC = {
-    spiral: "Ulam spiral — the whole numbers wound on a square spiral, with the primes marked; they line up along diagonals given by prime-rich quadratics.",
-    zeta: "Riemann zeta ζ(½+it) — the zeta function traced along the critical line as t grows; the curve sweeps through the origin at each non-trivial zero.",
-    rule30: "Wolfram rule 30 — an elementary 1-D cellular automaton whose simple local rule yields chaotic, aperiodic output (a classic pseudo-random source).",
-    rule110: "Wolfram rule 110 — an elementary 1-D cellular automaton proven Turing-complete: gliders drifting through a repeating background.",
-    life: "Conway's Game of Life — a 2-D cellular automaton (born on 3 neighbours, surviving on 2–3), itself Turing-complete."
+    spiral: "Ulam spiral: the whole numbers wound on a square spiral, with the primes marked; they line up along diagonals given by prime-rich quadratics.",
+    zeta: "Riemann zeta ζ(½+it): the zeta function traced along the critical line as t grows; the curve sweeps through the origin at each non-trivial zero.",
+    rule30: "Wolfram rule 30: an elementary 1-D cellular automaton whose simple local rule yields chaotic, aperiodic output (a classic pseudo-random source).",
+    rule110: "Wolfram rule 110: an elementary 1-D cellular automaton proven Turing-complete; gliders drift through a repeating background.",
+    life: "Conway's Game of Life: a 2-D cellular automaton (born on 3 neighbours, surviving on 2 or 3), itself Turing-complete."
   };
-  var CONTROLS = "  ·  press “b” to change, 1–5 to pick, 0 to hide.";
+  var CONTROLS = "  ·  tap or press b to change (1-5 to pick, 0 to hide).";
   // per-mode opacity: the block-filling automata (rules, and especially life)
   // are lightened so their solid cells don't hurt readability.
   var OPACITY = { spiral: 0.18, zeta: 0.18, rule30: 0.10, rule110: 0.10, life: 0.07 };
@@ -241,7 +241,11 @@
   }
   function updateNote() {
     if (!note) return;
-    if (state.mode < 0) { note.style.opacity = "0"; reserveSpace(); return; }
+    if (state.mode < 0) { // keep a small tappable pill so it can be turned back on (mobile)
+      note.textContent = "Backgrounds off. Tap to turn on.";
+      placeNote(); note.style.opacity = "0.7"; reserveSpace();
+      return;
+    }
     note.textContent = DESC[MODES[state.mode]] + CONTROLS;
     placeNote();
     note.style.opacity = "0.95";
@@ -280,6 +284,7 @@
     else if (k >= "1" && k <= "5") { setMode(k.charCodeAt(0) - 49); e.preventDefault(); }
     else if (k === "0") { setMode(-1); e.preventDefault(); }
   });
+  if (note) note.addEventListener("click", cycle); // tap the banner to cycle (works on touch)
   document.addEventListener("visibilitychange", function () {
     hidden = document.hidden;
     if (!hidden) resize(); // recover + redraw when the tab becomes visible again
