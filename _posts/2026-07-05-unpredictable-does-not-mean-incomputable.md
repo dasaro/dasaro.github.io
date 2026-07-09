@@ -5,6 +5,7 @@ date: 2026-07-05 10:30:00 +0200
 description: "Two confusions that keep resurfacing in debates about computation and life, neither of which is actually licensed by the mathematics."
 tags: [logic, computability, turing]
 categories: [philosophy-of-computation]
+related_posts: false
 ---
 Debates about whether living systems are "just computation", or somehow obviously exceed it, often make the same mistake in opposite directions. One side says: if we can describe the behaviour of a system computationally, then the system itself must be computational. The other says: if the system is chaotic, open-ended, and impossible to predict in practice, then computation cannot possibly capture it.
 
