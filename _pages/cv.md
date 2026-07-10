@@ -4,7 +4,7 @@ title: CV
 permalink: /cv/
 nav: true
 nav_order: 5
-description: Experience, education, projects and skills: generated from a single source of truth. Download the full PDF.
+description: "Experience, education, projects and skills: generated from a single source of truth. Download the full PDF."
 ---
 
 {%- assign cv = site.data.cv.cv -%}
