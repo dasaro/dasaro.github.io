@@ -4,7 +4,7 @@ permalink: /teaching/
 title: Teaching
 description: Courses taught and teaching assistantships. Full details on the CV page.
 nav: true
-nav_order: 6
+nav_order: 7
 ---
 
 <style>

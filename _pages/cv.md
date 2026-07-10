@@ -193,25 +193,7 @@ description: "Experience, education, projects and skills: generated from a singl
   </section>
   {% endif %}
 
-  {%- comment -%} ===================== INVITED TALKS ===================== {%- endcomment -%}
-  {% if cv.invited_talks.size > 0 %}
-  <section class="cv-sec">
-    <h2>Invited Talks</h2>
-    {% for t in cv.invited_talks %}
-    <div class="cv-entry"><div class="cv-body"><div class="cv-r1"><span style="font-size:.9rem">{{ t.title }}</span>{% if t.period %}<span class="cv-period">{{ t.period }}</span>{% endif %}</div></div></div>
-    {% endfor %}
-  </section>
-  {% endif %}
-
-  {%- comment -%} ===================== PRESENTATIONS ===================== {%- endcomment -%}
-  {% if cv.presentations.size > 0 %}
-  <section class="cv-sec">
-    <h2>Presentations</h2>
-    {% for t in cv.presentations %}
-    <div class="cv-entry"><div class="cv-body"><div class="cv-r1"><span style="font-size:.9rem">{{ t.title }}</span>{% if t.period %}<span class="cv-period">{{ t.period }}</span>{% endif %}</div></div></div>
-    {% endfor %}
-  </section>
-  {% endif %}
+  {%- comment -%} Invited Talks and Presentations live on their own page: /talks/ {%- endcomment -%}
 
   {%- comment -%} ===================== SKILLS / LANGUAGES / INTERESTS ===================== {%- endcomment -%}
   {% if cv.skills.size > 0 %}
