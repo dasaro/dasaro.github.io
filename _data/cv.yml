@@ -197,6 +197,38 @@ cv:
   - name: LogicBenchmarkQuestions
     description: Dataset of logic puzzles to benchmark LLM reasoning.
     url: https://github.com/dasaro/LogicBenchmarkQuestions
+  invited_talks:
+  - period: Jun 2026
+    title: Invited talk, PACMAN 2026 (Proof, Argumentation, Computation, Modalities
+      and Negation), University of Verona
+  - period: May 2025
+    title: Learning Argumentation Semantics, PACMAN 2025, Roma Tre University
+  - period: Mar 2024
+    title: Logic programming for Explainable AI, PACMAN 2024, University of Verona
+  - period: Jun 2023
+    title: Explainable AI applications of ILP, University of Salento
+  - period: Apr 2023
+    title: Explainable AI applications of ILP, University of Lugano
+  - period: Mar 2022
+    title: Probabilistic epistemic reasoning about actions, UCL, UK
+  - period: Dec 2021
+    title: Explaining black-boxes using ILASP, University of Trieste
+  - period: Aug 2021
+    title: '"Probabilistic Reasoning About Epistemic Action Narratives", IJCAI 2021'
+  - period: Apr 2021
+    title: Invited demo, Lorentz Center Workshop on Explainable Medical AI
+  - period: Jun 2020
+    title: Explaining black-boxes using ILASP, SPIKE Group, Imperial College London
+  presentations:
+  - period: Jun 2026
+    title: '"Weighted Assumption-Based Argumentation" (with P. Baldi), symposium "Uncertain
+      Reasoning and Computation", SILFS 2026 Triennial Conference, IUSS Pavia'
+  - period: Sep 2025
+    title: '"Non-monotonic Bounded Reasoners" (with P. Baldi), 4th International Conference
+      on Human and Artificial Rationality (HAR 2025), Paris'
+  - period: Sep 2023
+    title: '"Are Turing Machines Predictable Entities?", symposium on Turing''s Imitation
+      Game (with R. Gaudenzi, G. Longo, T. Numerico), SILFS 2023, University of Urbino'
   skills:
   - label: Logic programming
     value: ASP/clingo, Prolog/ProbLog, ILASP/FastLAS
