@@ -149,8 +149,15 @@
 %% endif
 
 %% if sec == "invited_talks" and data.invited_talks
-\CVsec{Talks and Presentations}
+\CVsec{Invited Talks}
 %% for t in data.invited_talks
+\NewEntry{\VAR{t.period | tex}}{\VAR{t.title | tex}}
+%% endfor
+%% endif
+
+%% if sec == "presentations" and data.presentations
+\CVsec{Presentations}
+%% for t in data.presentations
 \NewEntry{\VAR{t.period | tex}}{\VAR{t.title | tex}}
 %% endfor
 %% endif

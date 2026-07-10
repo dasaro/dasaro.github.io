@@ -111,6 +111,8 @@ def main():
         "honors": cv.get("honors", []),         # list of strings
         "projects": projects,
         "software": software,                   # list of {name, description, url}
+        "invited_talks": cv.get("invited_talks", []),  # list of {period, title}
+        "presentations": cv.get("presentations", []),  # list of {period, title}
         "skills": cv.get("skills", []),         # list of {label, value}
         "languages": cv.get("languages", []),   # list of strings
         "interests": cv.get("interests", []),   # list of strings
