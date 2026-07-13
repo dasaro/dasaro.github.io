@@ -1,17 +1,44 @@
+# The /repositories/ page used to pull card images from
+# github-readme-stats.vercel.app and github-profile-trophy.vercel.app, but those
+# public services are down (503 / 402), so the page now renders its own cards
+# from the list below. Edit this file to change what is shown; no external
+# service is involved.
+
 github_users:
   - dasaro
 
-repo_description_lines_max: 2
-
-github_repos:
-  # Research tools
-  - dasaro/pec # Probabilistic Event Calculus
-  - dasaro/klingo # depth-bounded ASP (k-lingo)
-  - dasaro/waba-playground # Weighted Assumption-Based Argumentation
-  - dasaro/ArgLAS # learning argumentation semantics with ILASP
-  - dasaro/tptnd-lean # typed natural deduction / fairness certificates (Lean 4)
-  - dasaro/LogicBenchmarkQuestions # logic puzzles to benchmark LLMs
-  # Playful experiments
-  - dasaro/FretboardTrainer # chromatic tuner & ear-training game (macOS)
-  - dasaro/flatlander # Flatland-inspired deterministic browser simulator
-  - dasaro/deleuzian_paradox_generator
+repo_groups:
+  - name: Research tools
+    repos:
+      - name: pec
+        full: dasaro/pec
+        language: C
+        description: Probabilistic Event Calculus
+      - name: klingo
+        full: dasaro/klingo
+        language: Python
+        description: Depth-bounded ASP (k-lingo)
+      - name: waba-playground
+        full: dasaro/waba-playground
+        language: JavaScript
+        description: Interactive web framework for Weighted Assumption-Based Argumentation
+      - name: ArgLAS
+        full: dasaro/ArgLAS
+        language: Lasso
+        description: Learning ASP encodings of argumentation frameworks with ILASP
+      - name: LogicBenchmarkQuestions
+        full: dasaro/LogicBenchmarkQuestions
+        description: Logic questions and puzzles to benchmark Large Language Models
+  - name: Playful experiments
+    repos:
+      - name: FretboardTrainer
+        full: dasaro/FretboardTrainer
+        description: Chromatic tuner and ear-training game for macOS
+      - name: flatlander
+        full: dasaro/flatlander
+        language: TypeScript
+        description: Flatland-inspired deterministic browser simulator
+      - name: deleuzian_paradox_generator
+        full: dasaro/deleuzian_paradox_generator
+        language: JavaScript
+        description: A playful generator of Deleuzian paradoxes
