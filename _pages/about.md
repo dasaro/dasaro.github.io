@@ -173,11 +173,11 @@ I am currently working on:
         '<img class="mirai-logo" src="{{ "/assets/img/logos/mirai.png" | relative_url }}" alt="MIRAI logo" ' +
           'onerror="this.remove()">' +
         '<div>' +
-          '<p>I wrote this one first, though it was the last to appear in print. ' +
+          '<p>We wrote this one first, though it was the last to appear in print. ' +
           'The <abbr title="Trustworthy Probabilistic Typed Natural Deduction">TPTND</abbr> work carried on in the PRIN project ' +
           '<a href="https://sites.unimi.it/brio/about/" target="_blank" rel="noopener">BRIO</a>, ' +
           'which is where <a href="https://mirai.systems/" target="_blank" rel="noopener">MIRAI</a> came from: ' +
-          'a University of Milan spin-off founded by my co-authors G. Primiero and F. Genco.</p>' +
+          'a University of Milan spin-off founded by my co-author G. Primiero, where F. Genco is a senior researcher.</p>' +
           '<details><summary>Related papers</summary><ul>' + items + '</ul></details>' +
         '</div>';
 
