@@ -86,12 +86,12 @@
   (function () {
     // The line of work this paper belongs to. Each entry is verified against a DOI or a stable CEUR URL.
     var LINE = [
-      { y: 2021, t: 'Probabilistic Typed Natural Deduction for Trustworthy Computations', u: 'https://ceur-ws.org/Vol-3022/paper3.pdf', note: 'first published account of TPTND' },
+      { y: 2021, t: 'Probabilistic Typed Natural Deduction for Trustworthy Computations', u: 'https://ceur-ws.org/Vol-3022/paper3.pdf' },
       { y: 2022, t: 'Proof-checking Bias in Labeling Methods', u: 'https://ceur-ws.org/Vol-3319/paper1.pdf' },
       { y: 2023, t: 'BRIOxAlkemy: A Bias Detecting Tool', u: 'https://ceur-ws.org/Vol-3615/paper4.pdf' },
-      { y: 2025, t: 'A Philosophical Framework for Data-Driven Miscomputations', u: 'https://doi.org/10.3390/philosophies10040088', note: 'builds on it' },
-      { y: 2025, t: 'Defining Formal Validity Criteria for Machine Learning Models', u: 'https://doi.org/10.1007/978-3-032-03083-2_14', note: 'builds on it' },
-      { y: 2026, t: 'Trustworthiness preservation by copies of machine learning systems', u: 'https://doi.org/10.1016/j.ijar.2026.109638', note: 'builds on it' }
+      { y: 2025, t: 'A Philosophical Framework for Data-Driven Miscomputations', u: 'https://doi.org/10.3390/philosophies10040088' },
+      { y: 2025, t: 'Defining Formal Validity Criteria for Machine Learning Models', u: 'https://doi.org/10.1007/978-3-032-03083-2_14' },
+      { y: 2026, t: 'Trustworthiness preservation by copies of machine learning systems', u: 'https://doi.org/10.1016/j.ijar.2026.109638' }
     ];
     function init() {
       var entry = document.getElementById('dasaro2025checking');
@@ -99,7 +99,7 @@
 
       var items = LINE.map(function (p) {
         return '<li><span class="y">' + p.y + '</span><a href="' + p.u + '" target="_blank" rel="noopener">' +
-          p.t + '</a>' + (p.note ? ' <em>— ' + p.note + '</em>' : '') + '</li>';
+          p.t + '</a></li>';
       }).join('');
 
       var box = document.createElement('div');
@@ -108,13 +108,12 @@
         '<img class="mirai-logo" src="/assets/img/logos/mirai.png" alt="MIRAI logo" ' +
           'onerror="this.remove()">' +
         '<div>' +
-          '<p>The first of the series &mdash; the earliest of these papers to be written, though the last to appear in print. ' +
-          'It opens the line of work on <abbr title="Trustworthy Probabilistic Typed Natural Deduction">TPTND</abbr> ' +
-          'continued in the PRIN project <a href="https://sites.unimi.it/brio/about/" target="_blank" rel="noopener">BRIO</a>, ' +
-          'out of which grew <a href="https://mirai.systems/" target="_blank" rel="noopener">MIRAI</a>, ' +
-          'the first spin-off of the Department of Philosophy at the University of Milan, ' +
-          'founded by my co-authors G. Primiero and F. Genco.</p>' +
-          '<details><summary>The line of work</summary><ul>' + items + '</ul></details>' +
+          '<p>I wrote this one first, though it was the last to appear in print. ' +
+          'The <abbr title="Trustworthy Probabilistic Typed Natural Deduction">TPTND</abbr> work carried on in the PRIN project ' +
+          '<a href="https://sites.unimi.it/brio/about/" target="_blank" rel="noopener">BRIO</a>, ' +
+          'which is where <a href="https://mirai.systems/" target="_blank" rel="noopener">MIRAI</a> came from: ' +
+          'a University of Milan spin-off founded by my co-authors G. Primiero and F. Genco.</p>' +
+          '<details><summary>Related papers</summary><ul>' + items + '</ul></details>' +
         '</div>';
 
       var links = entry.querySelector('.links');
