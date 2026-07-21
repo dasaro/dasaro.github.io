@@ -129,6 +129,66 @@ I am currently working on:
   })();
 </script>
 
+<!-- MIRAI provenance note, attached to the TPTND paper in the *selected* list (home page only).
+     Kept here rather than in papers.bib on purpose: papers.bib feeds the CV PDF and the BibTeX
+     export, and this is site-only editorial context, not part of the citation record. -->
+<style>
+  .mirai-note { display: flex; gap: .7rem; align-items: flex-start; margin: .55rem 0 .1rem;
+    padding: .6rem .75rem; border-left: 3px solid var(--global-theme-color);
+    background: rgba(128, 128, 128, .07); border-radius: 0 .4rem .4rem 0; font-size: .82rem; line-height: 1.5; }
+  /* the mark ships on an opaque white square, so give it a deliberate white chip in both themes */
+  .mirai-note .mirai-logo { width: 34px; height: 34px; flex: 0 0 34px; border-radius: .3rem; margin-top: .1rem;
+    background: #fff; padding: 3px; box-sizing: border-box; }
+  .mirai-note p { margin: 0; color: var(--global-text-color); }
+  .mirai-note details { margin-top: .4rem; }
+  .mirai-note summary { cursor: pointer; font-weight: 600; color: var(--global-theme-color); font-size: .78rem; }
+  .mirai-note details ul { margin: .45rem 0 0; padding-left: 1.1rem; }
+  .mirai-note details li { margin-bottom: .3rem; color: var(--global-text-color-light); }
+  .mirai-note details li .y { font-variant-numeric: tabular-nums; opacity: .7; margin-right: .3rem; }
+</style>
+
+<script>
+  (function () {
+    // The line of work this paper belongs to. Each entry is verified against a DOI or a stable CEUR URL.
+    var LINE = [
+      { y: 2021, t: 'Probabilistic Typed Natural Deduction for Trustworthy Computations', u: 'https://ceur-ws.org/Vol-3022/paper3.pdf', note: 'first published account of TPTND' },
+      { y: 2022, t: 'Proof-checking Bias in Labeling Methods', u: 'https://ceur-ws.org/Vol-3319/paper1.pdf' },
+      { y: 2023, t: 'BRIOxAlkemy: A Bias Detecting Tool', u: 'https://ceur-ws.org/Vol-3615/paper4.pdf' },
+      { y: 2025, t: 'A Philosophical Framework for Data-Driven Miscomputations', u: 'https://doi.org/10.3390/philosophies10040088', note: 'builds on it' },
+      { y: 2025, t: 'Defining Formal Validity Criteria for Machine Learning Models', u: 'https://doi.org/10.1007/978-3-032-03083-2_14', note: 'builds on it' },
+      { y: 2026, t: 'Trustworthiness preservation by copies of machine learning systems', u: 'https://doi.org/10.1016/j.ijar.2026.109638', note: 'builds on it' }
+    ];
+    function init() {
+      var entry = document.getElementById('dasaro2025checking');
+      if (!entry || entry.querySelector('.mirai-note')) return;
+
+      var items = LINE.map(function (p) {
+        return '<li><span class="y">' + p.y + '</span><a href="' + p.u + '" target="_blank" rel="noopener">' +
+          p.t + '</a>' + (p.note ? ' <em>— ' + p.note + '</em>' : '') + '</li>';
+      }).join('');
+
+      var box = document.createElement('div');
+      box.className = 'mirai-note';
+      box.innerHTML =
+        '<img class="mirai-logo" src="{{ "/assets/img/logos/mirai.png" | relative_url }}" alt="MIRAI logo" ' +
+          'onerror="this.remove()">' +
+        '<div>' +
+          '<p>The first of the series &mdash; the earliest of these papers to be written, though the last to appear in print. ' +
+          'It opens the line of work on <abbr title="Trustworthy Probabilistic Typed Natural Deduction">TPTND</abbr> ' +
+          'continued in the PRIN project <a href="https://sites.unimi.it/brio/about/" target="_blank" rel="noopener">BRIO</a>, ' +
+          'out of which grew <a href="https://mirai.systems/" target="_blank" rel="noopener">MIRAI</a>, ' +
+          'the first spin-off of the Department of Philosophy at the University of Milan, ' +
+          'founded by my co-authors G. Primiero and F. Genco.</p>' +
+          '<details><summary>The line of work</summary><ul>' + items + '</ul></details>' +
+        '</div>';
+
+      var links = entry.querySelector('.links');
+      if (links && links.parentNode) { links.parentNode.insertBefore(box, links); } else { entry.appendChild(box); }
+    }
+    if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); } else { init(); }
+  })();
+</script>
+
 <!-- "All news →" link appended after the announcements panel -->
 <script>
   (function () {
