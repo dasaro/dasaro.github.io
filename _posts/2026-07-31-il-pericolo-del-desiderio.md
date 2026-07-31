@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[🇮🇹 Italian] Il pericolo del desiderio"
-date: 2026-07-31 12:00:00 +0200
+date: 2026-07-31 03:51:00 +0200
 description: "Molta critica legge l'horror di Curry Barker come una metafora del patriarcato. A me sembra un film su qualcosa di più vecchio e più universale: il desiderio."
 tags: [film, horror, criticism]
 categories: [film]
