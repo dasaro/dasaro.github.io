@@ -41,7 +41,7 @@ For logic-oriented theses I recommend writing in **LaTeX**. [Overleaf](https://w
 A thesis can grow into real research output. Some of the students I have supervised:
 
 - **Francesco Pedrazzoli** (PhD, University of Verona, ongoing) — ethics of recommender systems; [paper at CEPE 2023]({{ '/publications/' | relative_url }}#pedrazzoli2023nudge).
-- **Veronica Zenatelli** (BA, University of Verona, 2024) — large language models and the frame problem, with a benchmark dataset for reproducible evaluation.
+- **Veronica Zenatelli** (BA, University of Verona, 2024) — large language models and the frame problem; [benchmark dataset](https://github.com/dasaro/LogicBenchmarkQuestions) for reproducible evaluation.
 - **Zlatina Mileva** (MSc, Imperial College London, 2023) — learning argumentation semantics; Outstanding Project Award; [arXiv preprint](https://arxiv.org/abs/2310.12309).
 - **Luca Raggioli** (MSc, University of Naples Federico II, 2023) — deep reinforcement learning for human-aware robot approaching behaviour; [article in the International Journal of Social Robotics](https://doi.org/10.1007/s12369-023-01044-7).
 - **Daniele Fossemò and Marco D'Aviero** (BSc, University of L'Aquila, 2022) — Inductive Logic Programming for explainable AI; [paper at BEWARE-22](https://ceur-ws.org/Vol-3319/paper7.pdf), later extended into a [journal article in Theory and Practice of Logic Programming](https://doi.org/10.1017/S1471068426100441).
