@@ -229,6 +229,14 @@ cv:
   - period: Sep 2023
     title: '"Are Turing Machines Predictable Entities?", symposium on Turing''s Imitation
       Game (with R. Gaudenzi, G. Longo, T. Numerico), SILFS 2023, University of Urbino'
+  memberships:
+  - ACM (Association for Computing Machinery)
+  - AILA (Associazione Italiana di Logica e sue Applicazioni)
+  - SILFS (Società Italiana di Logica e Filosofia delle Scienze)
+  - AIxIA (Associazione Italiana per l'Intelligenza Artificiale)
+  - GULP (Gruppo ricercatori e Utenti di Programmazione Logica)
+  - AISC (Associazione Italiana di Scienze Cognitive)
+  - SISS (Società Italiana di Storia della Scienza)
   skills:
   - label: Logic programming
     value: ASP/clingo, Prolog/ProbLog, ILASP/FastLAS

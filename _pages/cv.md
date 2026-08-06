@@ -195,6 +195,14 @@ description: "Experience, education, projects and skills: generated from a singl
 
   {%- comment -%} Invited Talks and Presentations live on their own page: /talks/ {%- endcomment -%}
 
+  {%- comment -%} ===================== MEMBERSHIPS ===================== {%- endcomment -%}
+  {% if cv.memberships.size > 0 %}
+  <section class="cv-sec">
+    <h2>Memberships</h2>
+    {% for m in cv.memberships %}<div class="cv-skill">{{ m }}</div>{% endfor %}
+  </section>
+  {% endif %}
+
   {%- comment -%} ===================== SKILLS / LANGUAGES / INTERESTS ===================== {%- endcomment -%}
   {% if cv.skills.size > 0 %}
   <section class="cv-sec">
