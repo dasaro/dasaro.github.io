@@ -294,12 +294,13 @@ groups:
     url: "https://blogs.ucl.ac.uk/dis-research/category/knowledge-information-and-data-science/"
 
 memberships:
-  - "AILA — Associazione Italiana di Logica e sue Applicazioni"
-  - "SILFS — Società Italiana di Logica e Filosofia delle Scienze"
-  - "AIxIA — Associazione Italiana per l'Intelligenza Artificiale"
-  - "GULP — Gruppo ricercatori e Utenti di Programmazione Logica"
-  - "AISC — Associazione Italiana di Scienze Cognitive"
-  - "SISS — Società Italiana di Storia della Scienza"
+  - "ACM (Association for Computing Machinery)"
+  - "AILA (Associazione Italiana di Logica e sue Applicazioni)"
+  - "SILFS (Società Italiana di Logica e Filosofia delle Scienze)"
+  - "AIxIA (Associazione Italiana per l'Intelligenza Artificiale)"
+  - "GULP (Gruppo ricercatori e Utenti di Programmazione Logica)"
+  - "AISC (Associazione Italiana di Scienze Cognitive)"
+  - "SISS (Società Italiana di Storia della Scienza)"
 
 skills:
   - label: "Logic programming"
