@@ -113,6 +113,7 @@ def main():
         "software": software,                   # list of {name, description, url}
         "invited_talks": cv.get("invited_talks", []),  # list of {period, title}
         "presentations": cv.get("presentations", []),  # list of {period, title}
+        "service": cv.get("service", []),       # list of strings
         "memberships": cv.get("memberships", []),  # list of strings
         "skills": cv.get("skills", []),         # list of {label, value}
         "languages": cv.get("languages", []),   # list of strings
