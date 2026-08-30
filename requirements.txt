@@ -1,6 +1,0 @@
-nbconvert
-pyyaml
-jinja2
-bibtexparser
-rendercv[full]
-scholarly
