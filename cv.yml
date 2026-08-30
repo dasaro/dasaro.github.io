@@ -151,7 +151,7 @@ edited_volumes:
   - "M. D'Agostino, F. A. D'Asaro, C. Larese (eds.). Proceedings of the 5th Workshop on Advances in Argumentation in Artificial Intelligence (AI^3 2021). CEUR-WS, Vol. 3086, 2021."
   - "F. A. D'Asaro, M. D'Agostino, C. Larese (eds.). Special Issue \"Advances in Argumentation in Artificial Intelligence\". Journal of Applied Logics (IfCoLog), 10(3), 2023."
   - "B. S. Caffo, F. A. D'Asaro, A. d'Avila Garcez, E. Raffinetti (eds.). Research Topic \"Explainable AI Models and Methods in Finance and Healthcare\". Frontiers in Artificial Intelligence, 2022."
-  - "J. Arias, R. Calegari, L. Dickens, F. A. D'Asaro et al. (eds.). Proceedings of the ICLP 2022 Workshops. CEUR-WS, 2022."
+  - "J. Arias, F. A. D'Asaro, A. Dyoub, G. Gupta, M. Hecher, E. LeBlanc, R. Peñaloza, E. Salazar, A. Saptawijaya, F. Weitkämper, J. Zangari (eds.). Proceedings of the ICLP 2021 Workshops. CEUR-WS, Vol. 2970, 2021."
   - "A. D'Angelo, F. A. D'Asaro, F. Gullo, M. P. Kato, D. Mandaglio, E. Serra, F. Spezzano, G. Stilo (eds.). Preface to the WSDM 2026 Workshops Companion. ACM, 2026."
 
 teaching:
@@ -212,6 +212,8 @@ invited_talks:
     title: "Explaining black-boxes using ILASP, SPIKE Group, Imperial College London"
 
 presentations:
+  - period: "Jul 2026"
+    title: "\"Fairness Certificates via a Lean-Backed Trustworthy Probabilistic Typed Natural Deduction\" (with G. Primiero), OVERLAY 2026, FLoC"
   - period: "Jun 2026"
     title: "\"Weighted Assumption-Based Argumentation\" (with P. Baldi), symposium \"Uncertain Reasoning and Computation\", SILFS 2026 Triennial Conference, IUSS Pavia"
   - period: "Sep 2025"
@@ -322,18 +324,6 @@ metrics:
   h_index: 10
   i10_index: 13
 
-# News items shown on the site homepage (most recent first).
-news:
-  - date: "Jun 2026"
-    text: "Invited talk at PACMAN 2026 (Proof, Argumentation, Computation, Modalities and Negation), University of Verona."
-  - date: "Jun 2026"
-    text: "New JAIR article on reasoning about substitution in resource-transforming procedures."
-  - date: "May 2025"
-    text: "Invited talk at PACMAN 2025 (Roma Tre) on learning argumentation semantics."
-  - date: "May 2025"
-    text: "Co-organising the 3rd \"Logic for the AI Spring\" summer school (eDefAI), Lecce."
-  - date: "2025"
-    text: "Co-organising BEWARE at AIxIA; new paper on weighted assumption-based argumentation (CILC 2025)."
 
 # Order of sections in the rendered PDF (remove/reorder freely).
 section_order:

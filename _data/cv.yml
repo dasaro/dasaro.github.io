@@ -220,6 +220,9 @@ cv:
   - period: Jun 2020
     title: Explaining black-boxes using ILASP, SPIKE Group, Imperial College London
   presentations:
+  - period: Jul 2026
+    title: '"Fairness Certificates via a Lean-Backed Trustworthy Probabilistic Typed
+      Natural Deduction" (with G. Primiero), OVERLAY 2026, FLoC'
   - period: Jun 2026
     title: '"Weighted Assumption-Based Argumentation" (with P. Baldi), symposium "Uncertain
       Reasoning and Computation", SILFS 2026 Triennial Conference, IUSS Pavia'

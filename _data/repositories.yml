@@ -25,7 +25,11 @@ repo_groups:
       - name: ArgLAS
         full: dasaro/ArgLAS
         language: Lasso
-        description: Learning ASP encodings of argumentation frameworks with ILASP
+        description: Learning ASP encodings of argumentation semantics with ILASP
+      - name: tptnd-lean
+        full: dasaro/tptnd-lean
+        language: Lean
+        description: Lean 4 checker for the TPTND trustworthiness calculus, with a machine-checked faithfulness theorem
       - name: LogicBenchmarkQuestions
         full: dasaro/LogicBenchmarkQuestions
         description: Logic questions and puzzles to benchmark Large Language Models
