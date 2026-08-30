@@ -108,6 +108,10 @@ def format_entry(entry):
     v = venue(entry)
     if v:
         desc += f", in: \\textit{{{v}}}"
+    # CORE conference rank, stored in the bib `abbr` field (also the web badge).
+    core = str(entry.get("abbr", "")).strip()
+    if core.upper().startswith("CORE"):
+        desc += f" ({tex_escape(core)})"
     if entry.get("doi"):
         doi = entry["doi"].strip()
         disp = tex_escape(doi).replace("/", "/\\allowbreak ").replace(".", ".\\allowbreak ")
