@@ -4,9 +4,10 @@ cv:
   label: Assistant Professor in Logic
   email: fabioaurelio.dasaro@univr.it
   location: Verona, Italy
-  summary: 'Researcher in Logic working in Logic and AI: epistemic, probabilistic
-    and temporal reasoning, argumentation, and logic programming (ASP/ILASP). Teaching
-    and supervision span Logic and Philosophy of Science, AI, theoretical and applied
+  summary: 'Researcher in Logic working in Logic and AI: bounded and non-monotonic
+    reasoning, epistemic, probabilistic and temporal reasoning, argumentation, trustworthiness
+    of probabilistic computation, and logic programming (ASP/ILASP). Teaching and
+    supervision span Logic and Philosophy of Science, AI, theoretical and applied
     Computer Science, Epistemology of Big Data, and Logic Programming.'
   pdf: /assets/pdf/cv.pdf
   website: https://sites.google.com/view/fdasaro

@@ -20,9 +20,10 @@ basics:
   github: "https://github.com/dasaro"
   birthplace: "Palermo, Italy"
   summary: >-
-    Researcher in Logic (PHIL-02/A) working in Logic and AI: epistemic,
-    probabilistic and temporal reasoning, argumentation,
-    and logic programming (ASP/ILASP). Teaching and supervision span Logic and
+    Researcher in Logic (PHIL-02/A) working in Logic and AI: bounded and
+    non-monotonic reasoning, epistemic, probabilistic and temporal reasoning,
+    argumentation, trustworthiness of probabilistic computation, and logic
+    programming (ASP/ILASP). Teaching and supervision span Logic and
     Philosophy of Science, AI, theoretical and applied Computer Science,
     Epistemology of Big Data, and Logic Programming.
 

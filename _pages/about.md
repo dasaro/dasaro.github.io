@@ -64,14 +64,31 @@ You can browse my [publications](/publications/), my [CV](/cv/), or the courses 
 
 ## Research interests
 
-I am currently working on:
+I work on logic and AI, and most of what I do comes down to making reasoning explicit enough
+that it can be checked, by a machine or by someone who did not write it.
 
-- **Trustworthy and ethical AI** (with P. Baldi and G. Primiero)
-- **Probabilistic extensions of typed natural deduction systems** (with G. Primiero)
-- **Game Theory and Cognitive Science** (with C. Sinigaglia, M. Fanghella, and the CIALab)
-- **Extensions and applications of the Event Calculus** (with R. Miller and L. Dickens)
-- **Depth-bounded extensions of the ASP system clingo** (with P. Baldi and M. D'Agostino)
-- **Applications of ILASP to explainable AI** (with A. Russo, M. Law, and A. Bikakis)
+A good part of this is about bounded and non-monotonic reasoning, with Paolo Baldi and
+Marcello D'Agostino. Real agents do not close their beliefs under logical consequence, so the
+question is what a logic looks like once you take that limitation seriously and still expect
+defeasible, commonsense conclusions out of it. [klingo](https://github.com/dasaro/klingo), a
+depth-bounded version of clingo, comes out of this line.
+
+With Giuseppe Primiero and Francesco Genco I work on the trustworthiness of probabilistic
+computation: typed natural deduction systems in which one can derive that a program behaves as
+intended, with a stated probability. I have been formalising part of this
+[in Lean 4](https://github.com/dasaro/tptnd-lean), so that the certificates are machine-checked
+rather than taken on trust.
+
+I also keep working on the Event Calculus with Rob Miller, Luke Dickens and Antonis Bikakis at
+UCL, on its probabilistic and epistemic extensions and on translating it into other formalisms,
+and on formal argumentation: weighted assumption-based argumentation for ethical and normative
+reasoning, with Paolo Baldi, Abeer Dyoub and Francesca Alessandra Lisi, and learning
+argumentation semantics from examples with ILASP, with Alessandra Russo and Mark Law. The same
+inductive machinery is useful to explain, after the fact, what a neural model has learned.
+
+Not everything I do is formal. With Martina Fanghella, Corrado Sinigaglia and the CIALab I work
+on how people anticipate the intentions of others from movement, and with Antonio Aquino and
+Michele Scandola on what happens to replicability once AI enters the experimental loop.
 
 <!-- BibTeX button + copyable overlay — KEEP IDENTICAL to the block in _pages/publications.md
      so selected (home) and full (publications) lists never differ. -->
