@@ -212,6 +212,8 @@ invited_talks:
     title: "Explaining black-boxes using ILASP, SPIKE Group, Imperial College London"
 
 presentations:
+  - period: "Sep 2026"
+    title: "\"Bounded Non-Monotonicity as a Framework for Commonsense Reasoning\" (with P. Baldi), AISC 2026, 22nd Conference of the Italian Association for Cognitive Science, Turin"
   - period: "Jul 2026"
     title: "\"Fairness Certificates via a Lean-Backed Trustworthy Probabilistic Typed Natural Deduction\" (with G. Primiero), OVERLAY 2026, FLoC"
   - period: "Jun 2026"
