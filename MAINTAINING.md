@@ -12,7 +12,7 @@ you can even skip `./cv/build.sh`: committing a source file rebuilds for you.
 
 | Edit this file | Changes |
 | --- | --- |
-| **`cv.yml`** (repo root) | the CV PDF **and** the `/cv/` page **and** the Scholar-metrics line — i.e. `basics`, `experience`, `education`, `teaching`, `projects`, `skills`, `languages`, `metrics` |
+| **`cv.yml`** (repo root) | the CV PDF **and** the `/cv/` page **and** the `/talks/` page **and** the Scholar-metrics line (see the surface map below for which section lands where) |
 | **`_bibliography/papers.bib`** | publications — shown on `/publications/`, in the CV PDF, in the **BibTeX** buttons, and as thumbnails |
 | `_data/projects.yml` | the `/projects/` cards |
 | `_data/films.yml` | the `/films/` grid |
@@ -23,6 +23,46 @@ you can even skip `./cv/build.sh`: committing a source file rebuilds for you.
 `cv.yml` and `papers.bib` are the **single sources of truth**: everything in the CV is
 *derived* from them — never edit the generated files (`_data/cv.yml`, `_data/scholar.yml`,
 `_data/bibtex.yml`, `assets/pdf/cv.pdf`, `assets/img/publication_preview/cover-*.svg`) by hand.
+
+---
+
+## Keep the site and the CV in step
+
+**The rule: if an update to the website states a fact about you, it must also land in the CV.**
+The website and the CV PDF are two renderings of the same facts, so a fact that reaches only one
+of them is a bug, not a shortcut. This applies to papers, talks, roles, positions, memberships,
+awards, supervision and software. It does not apply to purely editorial changes: rewording a page,
+a blog post, styling, or a background.
+
+In practice, whenever you edit a `_pages/*.md`, a `_news/*.md` or a `_data/*.yml` and the edit
+announces something new:
+
+1. record the same fact in **`cv.yml`** (or in **`papers.bib`** if it is a publication),
+2. run `./cv/build.sh` (or just commit, the hook does it),
+3. check it actually surfaced: some `cv.yml` sections do not reach the website at all.
+
+The reverse direction matters too. Adding to `cv.yml` does **not** guarantee the fact appears on
+the site, so check the map below before assuming it did.
+
+### Which `cv.yml` section reaches which surface
+
+| Section | CV PDF | Website |
+| --- | --- | --- |
+| `basics`, `metrics` | header | `/cv/` header |
+| `experience`, `education`, `honors`, `projects`, `software`, `service`, `memberships`, `skills`, `languages`, `interests` | yes | `/cv/` |
+| `invited_talks`, `presentations` | yes | `/talks/` |
+| `teaching` | yes | **no**: `/teaching/` is hand-written prose, update it separately |
+| `supervision` | yes | **no**: the "Students I have supervised" list in `/theses/` is hand-written, update it separately |
+| `edited_volumes`, `reviewing`, `groups` | yes | **no web surface at all** (PDF only) |
+| publications (`papers.bib`) | yes | `/publications/` |
+
+Two known traps, both of which have bitten before:
+
+- `teaching` and `supervision` have hand-written twins on `/teaching/` and `/theses/`. Change one,
+  change the other, or the two will disagree.
+- `cv.yml` is a **source file and is never published** (it is in `_config.yml`'s `exclude:`, along
+  with `cv/`, `tools/`, `test/`). It holds the personal email, phone number and birthplace, so keep
+  it that way.
 
 ---
 
