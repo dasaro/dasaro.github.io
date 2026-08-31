@@ -64,8 +64,9 @@ You can browse my [publications](/publications/), my [CV](/cv/), or the courses 
 
 ## Research interests
 
-I work on logic and AI, and most of what I do comes down to making reasoning explicit enough
-that it can be checked, by a machine or by someone who did not write it.
+I work on logic and AI. What holds most of it together is an interest in forms of reasoning:
+how they work, where they break, and what changes when the agent doing the reasoning has
+limited resources, incomplete information, or is not human at all.
 
 A good part of this is about bounded and non-monotonic reasoning, with Paolo Baldi and
 Marcello D'Agostino. Real agents do not close their beliefs under logical consequence, so the
@@ -86,9 +87,11 @@ reasoning, with Paolo Baldi, Abeer Dyoub and Francesca Alessandra Lisi, and lear
 argumentation semantics from examples with ILASP, with Alessandra Russo and Mark Law. The same
 inductive machinery is useful to explain, after the fact, what a neural model has learned.
 
-Not everything I do is formal. With Martina Fanghella, Corrado Sinigaglia and the CIALab I work
-on how people anticipate the intentions of others from movement, and with Antonio Aquino and
-Michele Scandola on what happens to replicability once AI enters the experimental loop.
+Some of this work is experimental rather than formal. With Martina Fanghella, Corrado
+Sinigaglia and the CIALab I study how people reason under incomplete information, typically in
+game-theoretic settings, and how their choices compare with those of artificial agents. With
+Antonio Aquino and Michele Scandola I work on what happens to replicability once AI enters the
+experimental loop.
 
 <!-- BibTeX button + copyable overlay — KEEP IDENTICAL to the block in _pages/publications.md
      so selected (home) and full (publications) lists never differ. -->
