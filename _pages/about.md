@@ -62,37 +62,6 @@ You can browse my [publications](/publications/), my [CV](/cv/), or the courses 
 
 {% endif %}
 
-## Research interests
-
-I work on logic and AI. What holds most of it together is an interest in forms of reasoning:
-how they work, where they break, and what changes when the agent doing the reasoning has
-limited resources, incomplete information, or is not human at all.
-
-A good part of this is about bounded and non-monotonic reasoning, with Paolo Baldi and
-Marcello D'Agostino. Real agents do not close their beliefs under logical consequence, so the
-question is what a logic looks like once you take that limitation seriously and still expect
-defeasible, commonsense conclusions out of it. [klingo](https://github.com/dasaro/klingo), a
-depth-bounded version of clingo, comes out of this line.
-
-With Giuseppe Primiero and Francesco Genco I work on the trustworthiness of probabilistic
-computation: typed natural deduction systems in which one can derive that a program behaves as
-intended, with a stated probability. I have been formalising part of this
-[in Lean 4](https://github.com/dasaro/tptnd-lean), so that the certificates are machine-checked
-rather than taken on trust.
-
-I also keep working on the Event Calculus with Rob Miller, Luke Dickens and Antonis Bikakis at
-UCL, on its probabilistic and epistemic extensions and on translating it into other formalisms,
-and on formal argumentation: weighted assumption-based argumentation for ethical and normative
-reasoning, with Paolo Baldi, Abeer Dyoub and Francesca Alessandra Lisi, and learning
-argumentation semantics from examples with ILASP, with Alessandra Russo and Mark Law. The same
-inductive machinery is useful to explain, after the fact, what a neural model has learned.
-
-Some of this work is experimental rather than formal. With Martina Fanghella, Corrado
-Sinigaglia and the CIALab I study how people reason under incomplete information, typically in
-game-theoretic settings, and how their choices compare with those of artificial agents. With
-Antonio Aquino and Michele Scandola I work on what happens to replicability once AI enters the
-experimental loop.
-
 <!-- BibTeX button + copyable overlay — KEEP IDENTICAL to the block in _pages/publications.md
      so selected (home) and full (publications) lists never differ. -->
 <style>

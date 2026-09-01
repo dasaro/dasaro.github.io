@@ -11,7 +11,7 @@ I supervise **BA and MSc theses** at the University of Verona. This page explain
 
 ## How to apply
 
-1. Browse my [publications]({{ '/publications/' | relative_url }}) and [research interests]({{ '/' | relative_url }}) to see the kind of problems I work on.
+1. Browse my [publications]({{ '/publications/' | relative_url }}) to see the kind of problems I work on.
 2. Email me at [fabioaurelio.dasaro@univr.it](mailto:fabioaurelio.dasaro@univr.it) with a rough idea of what you would like to work on.
 3. We meet and shape a concrete topic together.
 
