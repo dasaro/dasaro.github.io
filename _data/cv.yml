@@ -6,11 +6,9 @@ cv:
   location: Verona, Italy
   summary: 'Researcher in Logic working in Logic and AI: bounded and non-monotonic
     reasoning, epistemic, probabilistic and temporal reasoning, argumentation, trustworthiness
-    of probabilistic computation, and logic programming (ASP/ILASP), alongside experimental
-    work on how people reason under incomplete information in game-theoretic settings,
-    occasionally compared with artificial agents. Teaching and supervision span Logic
-    and Philosophy of Science, AI, theoretical and applied Computer Science, Epistemology
-    of Big Data, and Logic Programming.'
+    of probabilistic computation, and logic programming (ASP/ILASP). Teaching and
+    supervision span Logic and Philosophy of Science, AI, theoretical and applied
+    Computer Science, Epistemology of Big Data, and Logic Programming.'
   pdf: /assets/pdf/cv.pdf
   website: https://sites.google.com/view/fdasaro
   scholar: https://scholar.google.it/citations?user=qb2YFi4AAAAJ
