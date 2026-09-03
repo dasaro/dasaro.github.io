@@ -195,6 +195,14 @@ description: "Experience, education, projects and skills: generated from a singl
 
   {%- comment -%} Invited Talks and Presentations live on their own page: /talks/ {%- endcomment -%}
 
+  {%- comment -%} ===================== EDITED VOLUMES ===================== {%- endcomment -%}
+  {% if cv.edited_volumes.size > 0 %}
+  <section class="cv-sec">
+    <h2>Edited Volumes</h2>
+    {% for v in cv.edited_volumes %}<div class="cv-skill">{{ v }}</div>{% endfor %}
+  </section>
+  {% endif %}
+
   {%- comment -%} ===================== PROFESSIONAL SERVICE ===================== {%- endcomment -%}
   {% if cv.service.size > 0 %}
   <section class="cv-sec">

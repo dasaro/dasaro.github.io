@@ -237,6 +237,28 @@ cv:
   - period: Sep 2023
     title: '"Are Turing Machines Predictable Entities?", symposium on Turing''s Imitation
       Game (with R. Gaudenzi, G. Longo, T. Numerico), SILFS 2023, University of Urbino'
+  edited_volumes:
+  - G. Coraglia, F. A. D'Asaro, A. Dyoub, F. A. Lisi, G. Primiero (eds.). Proceedings
+    of the 3rd Workshop on Bias, Ethical AI, Explainability and the role of Logic
+    and Logic Programming (BEWARE 2024). CEUR-WS, Vol. 3881, 2024.
+  - G. Boella, F. A. D'Asaro, A. Dyoub, L. Gorrieri, F. A. Lisi, C. Manganini, G.
+    Primiero (eds.). Proceedings of the 2nd BEWARE Workshop (BEWARE 2023). CEUR-WS,
+    Vol. 3615, 2024.
+  - G. Boella, F. A. D'Asaro, A. Dyoub, G. Primiero (eds.). Proceedings of the 1st
+    BEWARE Workshop (BEWARE 2022). CEUR-WS, Vol. 3319, 2022.
+  - M. D'Agostino, F. A. D'Asaro, C. Larese (eds.). Proceedings of the 5th Workshop
+    on Advances in Argumentation in Artificial Intelligence (AI^3 2021). CEUR-WS,
+    Vol. 3086, 2021.
+  - F. A. D'Asaro, M. D'Agostino, C. Larese (eds.). Special Issue "Advances in Argumentation
+    in Artificial Intelligence". Journal of Applied Logics (IfCoLog), 10(3), 2023.
+  - B. S. Caffo, F. A. D'Asaro, A. d'Avila Garcez, E. Raffinetti (eds.). Research
+    Topic "Explainable AI Models and Methods in Finance and Healthcare". Frontiers
+    in Artificial Intelligence, 2022.
+  - J. Arias, F. A. D'Asaro, A. Dyoub, G. Gupta, M. Hecher, E. LeBlanc, R. Peñaloza,
+    E. Salazar, A. Saptawijaya, F. Weitkämper, J. Zangari (eds.). Proceedings of the
+    ICLP 2021 Workshops. CEUR-WS, Vol. 2970, 2021.
+  - A. D'Angelo, F. A. D'Asaro, F. Gullo, M. P. Kato, D. Mandaglio, E. Serra, F. Spezzano,
+    G. Stilo (eds.). Preface to the WSDM 2026 Workshops Companion. ACM, 2026.
   service:
   - Co-organizer, eDefAI — 3rd Logic for the AI Spring Summer School, Lecce, 2025
   - Workshop Chair / co-organiser, BEWARE workshops (Bias, Ethical AI, Explainability,
