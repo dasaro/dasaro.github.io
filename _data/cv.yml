@@ -286,6 +286,7 @@ cv:
   - GULP (Gruppo ricercatori e Utenti di Programmazione Logica)
   - AISC (Associazione Italiana di Scienze Cognitive)
   - SISS (Società Italiana di Storia della Scienza)
+  - ITRN (Italian Reproducibility Network)
   skills:
   - label: Logic programming
     value: ASP/clingo, Prolog/ProbLog, ILASP/FastLAS
