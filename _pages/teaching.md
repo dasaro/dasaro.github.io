@@ -24,6 +24,7 @@ nav_order: 7
   .tch-dept { font-size: .88rem; color: var(--global-text-color-light); font-style: italic; margin: .15rem 0 .45rem; }
   .tch ul { margin: 0; padding-left: 1.15rem; }
   .tch li { font-size: .9rem; margin-bottom: .28rem; }
+  .tch-materials p { font-size: .9rem; margin: 0 0 .5rem; }
 </style>
 
 <div class="tch">
@@ -88,6 +89,15 @@ nav_order: 7
       <ul>
         <li><strong>Theoretical Computer Science</strong> (lab demonstrator)</li>
       </ul>
+    </div>
+  </div>
+
+  <div class="tch-entry tch-materials">
+    <div class="tch-badge gen" title="Teaching materials"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18v12H3V4zm2 2v8h14V6H5zm6 12h2v2h4v2H7v-2h4v-2z"/></svg></div>
+    <div class="tch-body">
+      <div class="tch-r1"><span class="tch-inst">Teaching materials</span></div>
+      <p><strong>Beavr</strong> 🦫 is an unofficial Beamer theme for University of Verona slides, for lecturers and students. The bundle contains the theme, a short example deck and a README: <a href="{{ '/assets/files/beavr_v0.2.1.zip' | relative_url }}">download beavr_v0.2.1.zip</a>.</p>
+      <p><strong>A warning about the logo.</strong> The bundle includes the UniVR logo, whose use is governed by the university's visual identity guidelines. Public use may require approval from the central offices, so please check the <a href="https://www.univr.it/it/organizzazione/sistema-bibliotecario-di-ateneo/comunicazione-visiva-univr" target="_blank" rel="noopener">official documentation</a> first.</p>
     </div>
   </div>
 
