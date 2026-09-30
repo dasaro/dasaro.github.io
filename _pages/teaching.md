@@ -92,7 +92,7 @@ nav_order: 7
     </div>
   </div>
 
-  <div class="tch-entry tch-materials">
+  <div class="tch-entry tch-materials" id="beavr">
     <div class="tch-badge gen" title="Teaching materials"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18v12H3V4zm2 2v8h14V6H5zm6 12h2v2h4v2H7v-2h4v-2z"/></svg></div>
     <div class="tch-body">
       <div class="tch-r1"><span class="tch-inst">Teaching materials</span></div>

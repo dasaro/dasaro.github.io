@@ -36,10 +36,13 @@ My methods draw on formal logic and computer science, but a good BA thesis can b
 
 For logic-oriented theses I recommend writing in **LaTeX**. [Overleaf](https://www.overleaf.com/) makes this easy and lets us work on the draft together.
 
+For the slides of your defence you can use [Beavr]({{ '/teaching/' | relative_url }}#beavr) 🦫, my unofficial Beamer theme for University of Verona presentations. It includes the UniVR logo, and public use of the logo may require approval from the central offices, so check the [official documentation](https://www.univr.it/it/organizzazione/sistema-bibliotecario-di-ateneo/comunicazione-visiva-univr) first.
+
 ## Students I have supervised
 
 A thesis can grow into real research output. Some of the students I have supervised:
 
+- **Giovanni Pezzali** (University of Verona) — *Dai giudizi alle inferenze*, a formal reconstruction of Euclid's proofs in the [KE calculus](https://doi.org/10.1093/logcom/4.3.285), together with a study of Kant's problem of geometrical knowledge. It connects to two of my research interests: [depth-bounded Boolean logics](https://doi.org/10.1016/j.tcs.2013.02.014), a line of work closely related to KE, and [geometrography](https://en.wikipedia.org/wiki/Geometrography), Lemoine's study of the simplicity of geometric constructions.
 - **Francesco Pedrazzoli** (PhD, University of Verona, ongoing) — ethics of recommender systems; [paper at CEPE 2023]({{ '/publications/' | relative_url }}#pedrazzoli2023nudge).
 - **Veronica Zenatelli** (BA, University of Verona, 2024) — large language models and the frame problem; [benchmark dataset](https://github.com/dasaro/LogicBenchmarkQuestions) for reproducible evaluation.
 - **Zlatina Mileva** (MSc, Imperial College London, 2023) — learning argumentation semantics; Outstanding Project Award; [arXiv preprint](https://arxiv.org/abs/2310.12309).
