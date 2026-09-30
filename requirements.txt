@@ -1,6 +1,6 @@
 nbconvert
 pyyaml
 jinja2
-bibtexparser
+bibtexparser<2  # the build scripts use the v1 API (load, bwriter, bibdatabase)
 rendercv[full]
 scholarly

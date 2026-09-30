@@ -42,7 +42,7 @@ jobs:
       - name: Install dependencies 📦
         run: |
           npm ci
-          pip install --upgrade scholarly pyyaml jinja2 bibtexparser
+          pip install --upgrade scholarly pyyaml jinja2 'bibtexparser<2'
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends imagemagick lmodern \
             texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended \

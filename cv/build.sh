@@ -27,7 +27,7 @@ if [[ ! -x "$PY" ]]; then
   echo "[build.sh] creating Python venv at cv/.venv ..."
   python3 -m venv "$VENV"
   "$VENV/bin/pip" --quiet install --upgrade pip
-  "$VENV/bin/pip" --quiet install pyyaml jinja2 bibtexparser
+  "$VENV/bin/pip" --quiet install pyyaml jinja2 'bibtexparser<2'
 fi
 
 if ! command -v pdflatex >/dev/null 2>&1; then
