@@ -288,7 +288,7 @@ supervision:
   - "Gennaro Daniele Acciaro (Napoli Federico II) — intent recognition with ProbLog/Event Calculus; WOA 2021"
   - "Luca Raggioli (Napoli Federico II) — deep RL for human-aware approaching; IJSR 2023"
   - "Francesco Pedrazzoli (Verona, PhD) — ethics of recommender systems; CEPE-23"
-  - "Giovanni Pezzali (Verona) — Dai giudizi alle inferenze: Euclid's proofs in the KE calculus and Kant's problem of geometrical knowledge"
+  - "Giovanni Pezzali (Verona, MSc, ongoing) — Dai giudizi alle inferenze: Euclid's proofs in the KE calculus and Kant's problem of geometrical knowledge"
 
 groups:
   - name: "EThOS — Ethics and Technologies Of the Self, University of Verona"
