@@ -62,7 +62,7 @@ You can browse my [publications](/publications/), my [CV](/cv/), or the courses 
 
 {% endif %}
 
-<!-- BibTeX button + copyable overlay — KEEP IDENTICAL to the block in _pages/publications.md
+<!-- BibTeX button + copyable overlay, KEEP IDENTICAL to the block in _pages/publications.md
      so selected (home) and full (publications) lists never differ. -->
 <style>
   .bibtex-trigger { cursor: pointer; }

@@ -1,5 +1,5 @@
 /*!
- * math-bg.js — subtle animated mathematical backgrounds (site-local customization).
+ * math-bg.js: subtle animated mathematical backgrounds (site-local customization).
  *
  * Injected site-wide via _includes/math_bg.liquid (added by the local override of
  * _layouts/default.liquid). Self-contained, no dependencies.
@@ -11,7 +11,7 @@
  *   so it adapts to light/dark automatically.
  * - Very low opacity, fixed behind content (z-index:-1, pointer-events:none).
  * - State (which visualization / off) persists in localStorage.
- * - Keyboard: "b" cycles (… → life → off → spiral → …); digits 1–5 pick one;
+ * - Keyboard: "b" cycles (… → life → off → spiral → …); digits 1-5 pick one;
  *   "0" turns it off. Ignored while typing in a field.
  * - Honours prefers-reduced-motion (starts off) and pauses on hidden tabs.
  */

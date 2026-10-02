@@ -32,7 +32,7 @@ nav_order: 7
   <div class="tch-entry">
     <div class="tch-badge"><img src="{{ '/assets/img/logos/univr.png' | relative_url }}" alt="University of Verona"></div>
     <div class="tch-body">
-      <div class="tch-r1"><span><span class="tch-inst">University of Verona</span> <span class="tch-role">· Lecturer</span></span><span class="tch-period">2022 – present</span></div>
+      <div class="tch-r1"><span><span class="tch-inst">University of Verona</span> <span class="tch-role">· Lecturer</span></span><span class="tch-period">2022-present</span></div>
       <div class="tch-dept">Department of Human Sciences</div>
       <ul>
         <li><strong>Logic and Philosophy of Science</strong> · BA in Philosophy</li>
@@ -73,7 +73,7 @@ nav_order: 7
   <div class="tch-entry">
     <div class="tch-badge"><img src="{{ '/assets/img/logos/ucl.png' | relative_url }}" alt="University College London"></div>
     <div class="tch-body">
-      <div class="tch-r1"><span><span class="tch-inst">University College London</span> <span class="tch-role">· Teaching Assistant</span></span><span class="tch-period">2015 – 2023</span></div>
+      <div class="tch-r1"><span><span class="tch-inst">University College London</span> <span class="tch-role">· Teaching Assistant</span></span><span class="tch-period">2015-2023</span></div>
       <ul>
         <li><strong><a href="https://www.ucl.ac.uk/module-catalogue/modules/machine-reasoning-for-artificial-intelligence-INST0074" target="_blank" rel="noopener">INST0074 Machine Reasoning for AI</a></strong> · module lead on Formal Argumentation (2022/23)</li>
         <li><strong>INST0060 Foundations of Machine Learning and Data Science</strong></li>
@@ -85,7 +85,7 @@ nav_order: 7
   <div class="tch-entry">
     <div class="tch-badge"><img src="{{ '/assets/img/logos/palermo.png' | relative_url }}" alt="University of Palermo"></div>
     <div class="tch-body">
-      <div class="tch-r1"><span><span class="tch-inst">University of Palermo</span> <span class="tch-role">· Teaching Assistant</span></span><span class="tch-period">2013 – 2014</span></div>
+      <div class="tch-r1"><span><span class="tch-inst">University of Palermo</span> <span class="tch-role">· Teaching Assistant</span></span><span class="tch-period">2013-2014</span></div>
       <ul>
         <li><strong>Theoretical Computer Science</strong> (lab demonstrator)</li>
       </ul>
@@ -96,7 +96,7 @@ nav_order: 7
     <div class="tch-badge gen" title="Teaching materials"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18v12H3V4zm2 2v8h14V6H5zm6 12h2v2h4v2H7v-2h4v-2z"/></svg></div>
     <div class="tch-body">
       <div class="tch-r1"><span class="tch-inst">Teaching materials</span></div>
-      <p><strong>Beavr</strong> 🦫 is an unofficial Beamer theme for University of Verona slides, for lecturers and students. The bundle contains the theme, a short example deck and a README: <a href="{{ '/assets/files/beavr_v0.2.1.zip' | relative_url }}">download beavr_v0.2.1.zip</a>.</p>
+      <p><strong>Beavr</strong> 🦫 is an unofficial Beamer theme for University of Verona slides, for lecturers and students. The bundle contains the theme, a short example deck and a README: <a href="{{ '/assets/files/beavr_v0.2.1.zip' | relative_url }}">download beavr_v0.2.1.zip</a>. You can also <a href="https://www.overleaf.com/read/cyktsbkvwtwq#01f106" target="_blank" rel="noopener">view it on Overleaf</a> (read only).</p>
       <p><strong>A warning about the logo.</strong> The bundle includes the UniVR logo, whose use is governed by the university's visual identity guidelines. Public use may require approval from the central offices, so please check the <a href="https://www.univr.it/it/organizzazione/sistema-bibliotecario-di-ateneo/comunicazione-visiva-univr" target="_blank" rel="noopener">official documentation</a> first.</p>
     </div>
   </div>

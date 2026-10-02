@@ -1,5 +1,5 @@
 %# ====================================================================
-%# themes/classicthesis.tex.j2 — faithful to the user's classicthesis/currvita
+%# themes/classicthesis.tex.j2: faithful to the user's classicthesis/currvita
 %# cv_8.tex: flush-left spaced small-caps headings, a 2em body indent for
 %# entries/descriptions, sub-lists indented further, red only for the name +
 %# links, no greys or rules. Standard LaTeX (Palatino via TeX Gyre Pagella),
@@ -176,7 +176,7 @@
 \CVsec{Software}
 \begin{cvitems}
 %% for s in data.software
-\item \BLOCK{if s.url}\href{\VAR{s.url}}{\textbf{\VAR{s.name | tex}}}\BLOCK{else}\textbf{\VAR{s.name | tex}}\BLOCK{endif}\BLOCK{if s.description} — \VAR{s.description | tex}\BLOCK{endif}
+\item \BLOCK{if s.url}\href{\VAR{s.url}}{\textbf{\VAR{s.name | tex}}}\BLOCK{else}\textbf{\VAR{s.name | tex}}\BLOCK{endif}\BLOCK{if s.description}: \VAR{s.description | tex}\BLOCK{endif}
 %% endfor
 \end{cvitems}
 %% endif

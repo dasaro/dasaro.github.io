@@ -44,7 +44,7 @@ def main():
 
     dst = os.path.join(ROOT, "_data", "bibtex.yml")
     with open(dst, "w", encoding="utf-8") as f:
-        f.write("# Generated from ../_bibliography/papers.bib by tools/gen_bibtex_data.py — do not edit.\n")
+        f.write("# Generated from ../_bibliography/papers.bib by tools/gen_bibtex_data.py: do not edit.\n")
         yaml.safe_dump(out, f, allow_unicode=True, sort_keys=True, default_flow_style=False, width=10000)
     print(f"[gen_bibtex_data] wrote {dst}  ({len(out)} entries)")
 

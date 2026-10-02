@@ -36,17 +36,17 @@ My methods draw on formal logic and computer science, but a good BA thesis can b
 
 For logic-oriented theses I recommend writing in **LaTeX**. [Overleaf](https://www.overleaf.com/) makes this easy and lets us work on the draft together.
 
-For the slides of your defence you can use [Beavr]({{ '/teaching/' | relative_url }}#beavr) 🦫, my unofficial Beamer theme for University of Verona presentations. It includes the UniVR logo, and public use of the logo may require approval from the central offices, so check the [official documentation](https://www.univr.it/it/organizzazione/sistema-bibliotecario-di-ateneo/comunicazione-visiva-univr) first.
+For the slides of your defence you can use [Beavr]({{ '/teaching/' | relative_url }}#beavr) 🦫, my unofficial Beamer theme for University of Verona presentations ([view it on Overleaf](https://www.overleaf.com/read/cyktsbkvwtwq#01f106)). It includes the UniVR logo, and public use of the logo may require approval from the central offices, so check the [official documentation](https://www.univr.it/it/organizzazione/sistema-bibliotecario-di-ateneo/comunicazione-visiva-univr) first.
 
 ## Students I have supervised
 
 A thesis can grow into real research output. Some of the students I have supervised:
 
-- **Giovanni Pezzali** (MSc, University of Verona, ongoing) — *Dai giudizi alle inferenze*, a formal reconstruction of Euclid's proofs in the [KE calculus](https://doi.org/10.1093/logcom/4.3.285), together with a study of Kant's problem of geometrical knowledge. It connects to two of my research interests: [depth-bounded Boolean logics](https://doi.org/10.1016/j.tcs.2013.02.014), a line of work closely related to KE, and [geometrography](https://en.wikipedia.org/wiki/Geometrography), Lemoine's study of the simplicity of geometric constructions.
-- **Francesco Pedrazzoli** (PhD, University of Verona, ongoing) — ethics of recommender systems; [paper at CEPE 2023]({{ '/publications/' | relative_url }}#pedrazzoli2023nudge).
-- **Veronica Zenatelli** (BA, University of Verona, 2024) — large language models and the frame problem; [benchmark dataset](https://github.com/dasaro/LogicBenchmarkQuestions) for reproducible evaluation.
-- **Zlatina Mileva** (MSc, Imperial College London, 2023) — learning argumentation semantics; Outstanding Project Award; [arXiv preprint](https://arxiv.org/abs/2310.12309).
-- **Luca Raggioli** (MSc, University of Naples Federico II, 2023) — deep reinforcement learning for human-aware robot approaching behaviour; [article in the International Journal of Social Robotics](https://doi.org/10.1007/s12369-023-01044-7).
-- **Daniele Fossemò and Marco D'Aviero** (BSc, University of L'Aquila, 2022) — Inductive Logic Programming for explainable AI; [paper at BEWARE-22](https://ceur-ws.org/Vol-3319/paper7.pdf), later extended into a [journal article in Theory and Practice of Logic Programming](https://doi.org/10.1017/S1471068426100441).
-- **Gennaro Daniele Acciaro** (MSc, University of Naples Federico II, 2021) — real-time intent recognition with ProbLog; [paper at WOA 2021](https://ceur-ws.org/Vol-2963/paper5.pdf).
-- **Sara Sangiovanni** (MSc, University of Naples Federico II, 2020) — administering cognitive tests through human-robot interaction; [paper at ICSR 2020](https://doi.org/10.1007/978-3-030-62056-1_31).
+- **Giovanni Pezzali** (MSc, University of Verona, ongoing): *Dai giudizi alle inferenze*, Euclid's proofs in the [KE calculus](https://doi.org/10.1093/logcom/4.3.285) and Kant's problem of geometrical knowledge.
+- **Francesco Pedrazzoli** (PhD, University of Verona, ongoing): ethics of recommender systems; [paper at CEPE 2023]({{ '/publications/' | relative_url }}#pedrazzoli2023nudge).
+- **Veronica Zenatelli** (BA, University of Verona, 2024): large language models and the frame problem; [benchmark dataset](https://github.com/dasaro/LogicBenchmarkQuestions) for reproducible evaluation.
+- **Zlatina Mileva** (MSc, Imperial College London, 2023): learning argumentation semantics; Outstanding Project Award; [arXiv preprint](https://arxiv.org/abs/2310.12309).
+- **Luca Raggioli** (MSc, University of Naples Federico II, 2023): deep reinforcement learning for human-aware robot approaching behaviour; [article in the International Journal of Social Robotics](https://doi.org/10.1007/s12369-023-01044-7).
+- **Daniele Fossemò and Marco D'Aviero** (BSc, University of L'Aquila, 2022): Inductive Logic Programming for explainable AI; [paper at BEWARE-22](https://ceur-ws.org/Vol-3319/paper7.pdf), later extended into a [journal article in Theory and Practice of Logic Programming](https://doi.org/10.1017/S1471068426100441).
+- **Gennaro Daniele Acciaro** (MSc, University of Naples Federico II, 2021): real-time intent recognition with ProbLog; [paper at WOA 2021](https://ceur-ws.org/Vol-2963/paper5.pdf).
+- **Sara Sangiovanni** (MSc, University of Naples Federico II, 2020): administering cognitive tests through human-robot interaction; [paper at ICSR 2020](https://doi.org/10.1007/978-3-030-62056-1_31).

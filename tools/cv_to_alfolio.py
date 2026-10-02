@@ -123,7 +123,7 @@ def main():
 
     dst = os.path.join(ROOT, "_data", "cv.yml")
     with open(dst, "w", encoding="utf-8") as f:
-        f.write("# Generated from ../cv.yml by tools/cv_to_alfolio.py — do not edit by hand.\n")
+        f.write("# Generated from ../cv.yml by tools/cv_to_alfolio.py: do not edit by hand.\n")
         yaml.safe_dump(out, f, allow_unicode=True, sort_keys=False, default_flow_style=False)
     print(f"[cv_to_alfolio] wrote {dst}")
 
@@ -140,7 +140,7 @@ def main():
         }
         sdst = os.path.join(ROOT, "_data", "scholar.yml")
         with open(sdst, "w", encoding="utf-8") as f:
-            f.write("# Generated from cv.yml metrics by tools/cv_to_alfolio.py — do not edit by hand.\n")
+            f.write("# Generated from cv.yml metrics by tools/cv_to_alfolio.py: do not edit by hand.\n")
             yaml.safe_dump(scholar, f, allow_unicode=True, sort_keys=False)
         print(f"[cv_to_alfolio] wrote {sdst}")
 
