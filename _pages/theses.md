@@ -2,12 +2,12 @@
 layout: page
 permalink: /theses/
 title: Theses
-description: Information for students interested in a BA or MSc thesis under my supervision at the University of Verona.
+description: Information for students interested in a BA, MA or MSc thesis under my supervision at the University of Verona.
 nav: true
 nav_order: 8
 ---
 
-I supervise **BA and MSc theses** at the University of Verona. This page explains how to get started and the kind of topics I offer.
+At the University of Verona I supervise **BA** theses in Philosophy, **MA** theses in Philosophical Sciences, and **MSc** theses in Artificial Intelligence and in Big Data. This page explains how to get started and the kind of topics I offer.
 
 ## How to apply
 
@@ -17,7 +17,7 @@ I supervise **BA and MSc theses** at the University of Verona. This page explain
 
 ## Prerequisites
 
-My methods draw on formal logic and computer science, but a good BA thesis can be written without prior background in these areas: what matters most is curiosity and a willingness to pick up the tools along the way. MSc theses are more demanding, and the prerequisites depend on the specific topic.
+My methods draw on formal logic and computer science, but a good BA thesis can be written without prior background in these areas: what matters most is curiosity and a willingness to pick up the tools along the way. MA and MSc theses are more demanding, and the prerequisites depend on the specific topic.
 
 ## Proposed topics
 
