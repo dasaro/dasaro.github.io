@@ -42,8 +42,8 @@ For the slides of your defence you can use [Beavr]({{ '/teaching/' | relative_ur
 
 A thesis can grow into real research output. Some of the students I have supervised:
 
-- **Giovanni Pezzali** (MSc, University of Verona, ongoing): *Dai giudizi alle inferenze*, Euclid's proofs in the [KE calculus](https://doi.org/10.1093/logcom/4.3.285) and Kant's problem of geometrical knowledge.
-- **Francesco Pedrazzoli** (PhD, University of Verona, ongoing): ethics of recommender systems; [paper at CEPE 2023]({{ '/publications/' | relative_url }}#pedrazzoli2023nudge).
+- **Giovanni Pezzali** (MA, University of Verona, ongoing): *Dai giudizi alle inferenze*, Euclid's proofs in the [KE calculus](https://doi.org/10.1093/logcom/4.3.285) and Kant's problem of geometrical knowledge.
+- **Francesco Pedrazzoli** (PhD, University of Verona, 2025): ethics of recommender systems; [paper at CEPE 2023]({{ '/publications/' | relative_url }}#pedrazzoli2023nudge).
 - **Veronica Zenatelli** (BA, University of Verona, 2024): large language models and the frame problem; [benchmark dataset](https://github.com/dasaro/LogicBenchmarkQuestions) for reproducible evaluation.
 - **Zlatina Mileva** (MSc, Imperial College London, 2023): learning argumentation semantics; Outstanding Project Award; [arXiv preprint](https://arxiv.org/abs/2310.12309).
 - **Luca Raggioli** (MSc, University of Naples Federico II, 2023): deep reinforcement learning for human-aware robot approaching behaviour; [article in the International Journal of Social Robotics](https://doi.org/10.1007/s12369-023-01044-7).
