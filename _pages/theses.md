@@ -3,7 +3,7 @@ layout: page
 permalink: /theses/
 title: Theses
 description: Information for students interested in a BA, MA or MSc thesis under my supervision at the University of Verona.
-nav: true
+nav: false
 nav_order: 8
 ---
 
@@ -36,7 +36,7 @@ My methods draw on formal logic and computer science, but a good BA thesis can b
 
 For logic-oriented theses I recommend writing in **LaTeX**. [Overleaf](https://www.overleaf.com/) makes this easy and lets us work on the draft together.
 
-For the slides of your defence you can use [Beavr]({{ '/teaching/' | relative_url }}#beavr) 🦫, my unofficial Beamer theme for University of Verona presentations ([view it on Overleaf](https://www.overleaf.com/read/cyktsbkvwtwq#01f106)). It includes the UniVR logo, and public use of the logo may require approval from the central offices, so check the [official documentation](https://www.univr.it/it/organizzazione/sistema-bibliotecario-di-ateneo/comunicazione-visiva-univr) first.
+For the slides of your defence you can use [Beavr]({{ '/beavr/' | relative_url }}) 🦫, my unofficial Beamer theme for University of Verona presentations ([view it on Overleaf](https://www.overleaf.com/read/cyktsbkvwtwq#01f106)). It includes the UniVR logo, and public use of the logo may require approval from the central offices, so check the [official documentation](https://www.univr.it/it/organizzazione/sistema-bibliotecario-di-ateneo/comunicazione-visiva-univr) first.
 
 ## Students I have supervised
 

@@ -17,8 +17,20 @@ you can even skip `./cv/build.sh`: committing a source file rebuilds for you.
 | `_data/projects.yml` | the `/projects/` cards |
 | `_data/films.yml` | the `/films/` grid |
 | `_data/repositories.yml` | the `/repositories/` page (your GitHub repos) |
-| `_pages/<name>.md` | that page's prose (about, teaching, theses, …) |
+| `_pages/<name>.md` | that page's prose (about, teaching, theses, beavr, …) |
 | `_config.yml` | site-wide bits (footer text, nav, etc.) |
+
+### The menu bar
+
+The top bar shows only the pages with `nav: true` in their front matter, sorted by `nav_order`:
+About, Research, Teaching, CV, Blog, Films. **Research** and **Teaching** are dropdown menus:
+their entries are the `children:` list in `_pages/research.md` and `_pages/teaching.md`.
+
+- To add a page to a menu, add a `title` / `permalink` pair to the right `children:` list and
+  give the page itself `nav: false`, so it does not also appear at the top level.
+- To add a page at the top level, give it `nav: true` and a `nav_order`.
+- Use the page's own `title` for the child entry: the menu highlights the current page by
+  comparing titles.
 
 `cv.yml` and `papers.bib` are the **single sources of truth**: everything in the CV is
 *derived* from them — never edit the generated files (`_data/cv.yml`, `_data/scholar.yml`,

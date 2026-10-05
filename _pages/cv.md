@@ -3,7 +3,7 @@ layout: page
 title: CV
 permalink: /cv/
 nav: true
-nav_order: 5
+nav_order: 3
 description: "Experience, education, projects and skills: generated from a single source of truth. Download the full PDF."
 ---
 

@@ -4,7 +4,15 @@ permalink: /teaching/
 title: Teaching
 description: Courses taught and teaching assistantships. Full details on the CV page.
 nav: true
-nav_order: 7
+nav_order: 2
+dropdown: true
+children:
+  - title: Courses
+    permalink: /teaching/
+  - title: Theses
+    permalink: /theses/
+  - title: Beavr
+    permalink: /beavr/
 ---
 
 <style>
@@ -96,8 +104,7 @@ nav_order: 7
     <div class="tch-badge gen" title="Teaching materials"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18v12H3V4zm2 2v8h14V6H5zm6 12h2v2h4v2H7v-2h4v-2z"/></svg></div>
     <div class="tch-body">
       <div class="tch-r1"><span class="tch-inst">Teaching materials</span></div>
-      <p><strong>Beavr</strong> 🦫 is an unofficial Beamer theme for University of Verona slides, for lecturers and students. The bundle contains the theme, a short example deck and a README: <a href="{{ '/assets/files/beavr_v0.2.1.zip' | relative_url }}">download beavr_v0.2.1.zip</a>. You can also <a href="https://www.overleaf.com/read/cyktsbkvwtwq#01f106" target="_blank" rel="noopener">view it on Overleaf</a> (read only).</p>
-      <p><strong>A warning about the logo.</strong> The bundle includes the UniVR logo, whose use is governed by the university's visual identity guidelines. Public use may require approval from the central offices, so please check the <a href="https://www.univr.it/it/organizzazione/sistema-bibliotecario-di-ateneo/comunicazione-visiva-univr" target="_blank" rel="noopener">official documentation</a> first.</p>
+      <p><strong>Beavr</strong> 🦫 is an unofficial Beamer theme for University of Verona slides, for lecturers and students. It has <a href="{{ '/beavr/' | relative_url }}">its own page</a>, with the palettes, how to use it and a note on the university logo.</p>
     </div>
   </div>
 

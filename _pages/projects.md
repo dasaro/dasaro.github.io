@@ -3,7 +3,7 @@ layout: page
 title: Projects
 permalink: /projects/
 description: Research projects I have taken part in. Cards link to the official project page where one exists.
-nav: true
+nav: false
 nav_order: 3
 ---
 

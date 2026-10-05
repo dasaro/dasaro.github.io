@@ -4,7 +4,7 @@ permalink: /blog/
 title: Blog
 description: Occasional notes on logic, AI, and teaching.
 nav: true
-nav_order: 1
+nav_order: 4
 pagination:
   enabled: true
   collection: posts
