@@ -1,0 +1,23 @@
+{%- comment -%}
+  Site-local CSS, loaded on every page from the local override of
+  _layouts/default.liquid. Keep this small: it is for fixes the theme does not
+  offer a setting for, not for restyling.
+{%- endcomment -%}
+<style>
+  /* Collapsed navbar (below the theme's sm breakpoint). al_folio_core leaves
+     dropdown menus absolutely positioned and right-anchored to their nav item,
+     which is narrow on a phone, so the menu ends up off the left edge of the
+     screen. Lay it out in the flow of the list instead, indented under its
+     parent. */
+  @media (max-width: 575.98px) {
+    #navbar .navbar-collapse .dropdown-menu {
+      position: static;
+      min-width: 0;
+      margin: 0 0 0.25rem 0.9rem;
+      padding: 0;
+      border: 0;
+      box-shadow: none;
+      background: transparent;
+    }
+  }
+</style>

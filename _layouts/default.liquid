@@ -1,8 +1,10 @@
 {%- comment -%}
   SITE-LOCAL OVERRIDE of al_folio_core 1.0.11 `_layouts/default.liquid`.
-  Only change vs. upstream: the single `{% include math_bg.liquid %}` line near
-  the end of <body> (adds the subtle mathematical backgrounds, assets/js/math-bg.js).
-  On `bundle update`, re-sync from upstream and re-add that one line
+  Two changes vs. upstream, one line each:
+    1. `{% include site_styles.liquid %}` at the end of <head> (site-local CSS fixes);
+    2. `{% include math_bg.liquid %}` near the end of <body> (the subtle
+       mathematical backgrounds, assets/js/math-bg.js).
+  On `bundle update`, re-sync from upstream and re-add those two lines
   (`bundle exec al-folio upgrade overrides diff _layouts/default.liquid`).
 {%- endcomment -%}
 <!doctype html>
@@ -20,6 +22,7 @@
       <meta http-equiv="refresh" content="3; url={{ redirect }}">
     {% endif %}
     {% include head.liquid %}
+    {% include site_styles.liquid %}
   </head>
 
   <!-- Body -->
