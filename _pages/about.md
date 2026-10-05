@@ -10,7 +10,6 @@ profile:
   image_circular: true
   more_info: >
     <p>Department of Human Sciences,<br>University of Verona</p>
-    <p><a href="/theses/">Supervising BA, MA &amp; MSc theses →</a></p>
 
 selected_papers: true
 social: true

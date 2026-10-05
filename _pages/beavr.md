@@ -10,6 +10,14 @@ nav: false
   .beavr-card { display: block; margin: 1.4rem 0 .4rem; border: 1px solid var(--global-divider-color); border-radius: .6rem; overflow: hidden; background: #fff; }
   .beavr-card img { display: block; width: 100%; height: auto; cursor: zoom-in; }
   .beavr-sw { display: inline-block; width: 1.05rem; height: 1.05rem; border-radius: .2rem; border: 1px solid var(--global-divider-color); vertical-align: -0.18rem; margin-right: .2rem; }
+  /* Easter egg on the ochre swatch: hover, focus or tap reveals the line. */
+  .beavr-egg { position: relative; cursor: help; outline: none; }
+  .beavr-egg:hover::after, .beavr-egg:focus::after {
+    content: attr(data-egg); position: absolute; right: 0; top: 150%; z-index: 2;
+    white-space: nowrap; font-size: .8rem; font-style: italic; line-height: 1.2;
+    padding: .25rem .5rem; border-radius: .35rem;
+    color: var(--global-text-color); background: var(--global-bg-color); border: 1px solid var(--global-divider-color);
+  }
 </style>
 
 Beavr 🦫 is a Beamer theme for University of Verona presentations, for lecturers and students who write their slides in LaTeX. It comes with four colour palettes, a cover with the university logo, and a discreet footer with author, short title and slide number. It is not an official University of Verona product.
@@ -50,7 +58,7 @@ A few settings can be changed before `\usetheme{beavr}`:
 | :-: | --- | --- |
 | `0` | orange / red | <span class="beavr-sw" style="background:#F7BD78"></span><span class="beavr-sw" style="background:#990F14"></span> |
 | `1` | gray / blue | <span class="beavr-sw" style="background:#E6E6E6"></span><span class="beavr-sw" style="background:#000080"></span> |
-| `2` | light blue / ochre | <span class="beavr-sw" style="background:#A3DEED"></span><span class="beavr-sw" style="background:#8A4B11"></span> |
+| `2` | light blue / ochre | <span class="beavr-sw" style="background:#A3DEED"></span><span class="beavr-sw beavr-egg" style="background:#8A4B11" tabindex="0" role="note" aria-label="Se non c'è giallo, ocra" data-egg="Se non c'è giallo, ocra"></span> |
 | `3` | neutral gray | <span class="beavr-sw" style="background:#E6E6E6"></span><span class="beavr-sw" style="background:#1A1A1A"></span> |
 
 ## The UniVR logo
