@@ -8,15 +8,15 @@ nav: false
 
 <style>
   .beavr-card { display: block; margin: 1.4rem 0 .4rem; border: 1px solid var(--global-divider-color); border-radius: .6rem; overflow: hidden; background: #fff; }
-  .beavr-card img { display: block; width: 100%; height: auto; }
+  .beavr-card img { display: block; width: 100%; height: auto; cursor: zoom-in; }
   .beavr-sw { display: inline-block; width: 1.05rem; height: 1.05rem; border-radius: .2rem; border: 1px solid var(--global-divider-color); vertical-align: -0.18rem; margin-right: .2rem; }
 </style>
 
 Beavr 🦫 is a Beamer theme for University of Verona presentations, for lecturers and students who write their slides in LaTeX. It comes with four colour palettes, a cover with the university logo, and a discreet footer with author, short title and slide number. It is not an official University of Verona product.
 
-<a class="beavr-card" href="{{ '/assets/img/beavr/beavr-2.0-card.webp' | relative_url }}" target="_blank" rel="noopener">
-  <img src="{{ '/assets/img/beavr/beavr-2.0-card.webp' | relative_url }}" alt="Beavr 2.0: cover and content slides in the four palettes (orange and red, gray and blue, light blue and ochre, neutral gray)" loading="lazy" width="2000" height="1133">
-</a>
+<div class="beavr-card">
+  <img src="{{ '/assets/img/beavr/beavr-2.0-card.webp' | relative_url }}" alt="Beavr 2.0: cover and content slides in the four palettes (orange and red, gray and blue, light blue and ochre, neutral gray)" width="2000" height="1133" data-zoomable>
+</div>
 
 ## Get it
 
