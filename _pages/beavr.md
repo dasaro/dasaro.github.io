@@ -20,9 +20,7 @@ Beavr 🦫 is a Beamer theme for University of Verona presentations, for lecture
 
 ## Get it
 
-The current version is 2.0. You can [open it on Overleaf](https://www.overleaf.com/read/cyktsbkvwtwq#01f106) (read only) and copy the project into your own account: it contains the theme files and a short example deck to start from.
-
-An earlier release is also available as a zip: [beavr_v0.2.1.zip]({{ '/assets/files/beavr_v0.2.1.zip' | relative_url }}).
+The current version is 2.0. You can [open it on Overleaf](https://www.overleaf.com/read/cyktsbkvwtwq#01f106) (read only) and copy the project into your own account, or download the same files as a zip: [beavr_v2.0.zip]({{ '/assets/files/beavr_v2.0.zip' | relative_url }}). Either way you get the theme and a short example deck to start from.
 
 ## Usage
 
@@ -61,4 +59,4 @@ The theme ships with the university logo, but the logo is not mine to license. I
 
 ## Licence
 
-The `.sty` and `.tex` files are released under the [Creative Commons CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) licence. University logos and marks are excluded. Beavr is built on LaTeX Beamer and PGF/TikZ.
+The Beavr theme files and the example deck are released under the [Creative Commons CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) licence. University logos and marks are excluded. The bundle also includes `truncate.sty` by Donald Arseneau, which is in the public domain. Beavr is built on LaTeX Beamer and PGF/TikZ.
