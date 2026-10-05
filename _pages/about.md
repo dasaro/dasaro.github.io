@@ -10,7 +10,7 @@ profile:
   image_circular: true
   more_info: >
     <p>Department of Human Sciences,<br>University of Verona</p>
-    <p><a href="/theses/">Supervising BA &amp; MSc theses →</a></p>
+    <p><a href="/theses/">Supervising BA, MA &amp; MSc theses →</a></p>
     <div class="sig-mark" role="img" aria-label="Fabio D'Asaro signature"></div>
 
 selected_papers: true
