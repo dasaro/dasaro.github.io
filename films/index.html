@@ -11,6 +11,12 @@
      screen. Lay it out in the flow of the list instead, indented under its
      parent. */
   @media (max-width: 575.98px) {
+    /* The theme gives the bar opacity .95, which suits a thin strip. Below the
+       sm breakpoint the bar expands into the whole menu, and the page text
+       showing through it makes the entries hard to read. */
+    #navbar {
+      opacity: 1;
+    }
     #navbar .navbar-collapse .dropdown-menu {
       position: static;
       min-width: 0;
