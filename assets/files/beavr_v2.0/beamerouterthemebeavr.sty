@@ -1,0 +1,102 @@
+% Author: Fabio Aurelio D'Asaro <fabioaurelio.dasaro at univr.it>
+% License: CC BY-NC 4.0 (https://creativecommons.org/licenses/by-nc/4.0/).
+% University logos and marks are excluded; no rights over them are granted.
+% Built on LaTeX Beamer and PGF/TikZ.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerouterthemebeavr}[2026/10/05 v2.0 Beavr outer theme]
+
+\RequirePackage{iftex}
+\RequirePackage[fit,breakall]{truncate}
+
+\mode<presentation>
+% Set either logo path to {} to omit that placement.
+\providecommand{\beavrfooterlogo}{logo_univr.png}
+\providecommand{\beavrlogowidthfooter}{.13\paperwidth}
+\setbeamersize{text margin left=.065\paperwidth,text margin right=.065\paperwidth}
+\setbeamerfont{frametitle}{size=\LARGE,series=\mdseries}
+\setbeamerfont{framesubtitle}{size=\small}
+\setbeamerfont{footline}{size=\footnotesize}
+
+% Frame titles wrap within the page margins.
+\defbeamertemplate*{frametitle}{beavr}{%
+  \nointerlineskip
+  \begin{beamercolorbox}[wd=\paperwidth,sep=0pt]{frametitle}
+    \hbox{\color{bgcolor}\rule{.08\paperwidth}{.1cm}%
+          \color{fgcolor}\rule{.92\paperwidth}{.1cm}}%
+  \end{beamercolorbox}%
+  \vskip.18cm
+  \begin{beamercolorbox}[wd=\paperwidth,leftskip=.055\paperwidth,
+      rightskip=.055\paperwidth,sep=0pt]{frametitle}
+    \usebeamerfont{frametitle}\strut\insertframetitle\strut\par
+    \ifx\insertframesubtitle\empty\else
+      {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}%
+       \strut\insertframesubtitle\strut\par}
+    \fi
+  \end{beamercolorbox}%
+  \vskip.06cm
+}
+
+\makeatletter
+\newsavebox{\beavr@footerbox}
+\newcount\beavr@savedhyphenchar
+\newdimen\beavr@footerheight
+\newdimen\beavr@footerdepth
+\beavr@footerheight=.48cm
+\beavr@footerdepth=.22cm
+
+% Align text and images to the centre of the same footer row.
+\newcommand{\beavr@centerfooter}[1]{%
+  \sbox{\beavr@footerbox}{#1}%
+  \raisebox{\dimexpr .5\beavr@footerheight-.5\beavr@footerdepth-.5\ht\beavr@footerbox
+    +.5\dp\beavr@footerbox\relax}{\usebox{\beavr@footerbox}}%
+}
+% Beamer normally boxes short metadata; truncation needs the unboxed text.
+\newcommand{\beavr@fitfooter}[2]{%
+  \begingroup
+    \def\inst##1{}\def\and{\unskip, }\let\thanks\@gobble
+    \def\\{\space}% Cover line breaks become spaces in a one-line footer.
+    % Silence only truncate's discarded width tests, which may exceed the page.
+    \vsize=\maxdimen
+    \ifLuaTeX
+      \language=0
+      \beavr@savedhyphenchar=\the\prehyphenchar
+      \prehyphenchar=0 % LuaTeX uses this instead of the font's hyphenchar.
+    \fi
+    \truncate{#1}{#2}%
+    \ifLuaTeX\prehyphenchar=\beavr@savedhyphenchar\fi
+  \endgroup
+}
+\newcommand{\beavr@footercolumn}[3][]{%
+  \begin{beamercolorbox}[wd=#2,ht=\beavr@footerheight,dp=\beavr@footerdepth,#1]{beavr footer}%
+    \usebeamerfont{footline}#3%
+  \end{beamercolorbox}%
+}
+
+\newcommand{\beavr@footerlogo}{%
+  \ifx\beavrfooterlogo\empty\else
+    \hspace{.25cm}%
+    \beavr@centerfooter{%
+      \includegraphics[width=\beavrlogowidthfooter,
+        height=\dimexpr.8\beavr@footerheight+.8\beavr@footerdepth\relax,
+        keepaspectratio]{\beavrfooterlogo}}%
+  \fi
+}
+
+\defbeamertemplate*{footline}{beavr}{%
+  \leavevmode
+  \vbox{%
+    \hbox{\color{beavrfooter}\rule{\paperwidth}{.2pt}}%
+    \hbox{%
+      \beavr@footercolumn[leftskip=.035\paperwidth]{.28\paperwidth}{%
+        \beavr@centerfooter{\beavr@fitfooter{.24\paperwidth}{\beamer@shortauthor}}}%
+      \beavr@footercolumn[center]{.44\paperwidth}{%
+        \beavr@centerfooter{%
+          \hyperlinkpresentationstart{\beavr@fitfooter{.42\paperwidth}{\beamer@shorttitle}}}}%
+      \beavr@footercolumn[rightskip=.035\paperwidth plus 1fil]{.28\paperwidth}{%
+        \hfill\beavr@centerfooter{slide~$\frac{\insertframenumber}{\inserttotalframenumber}$}%
+        \beavr@footerlogo}%
+    }%
+  }%
+}
+\makeatother
+\mode<all>

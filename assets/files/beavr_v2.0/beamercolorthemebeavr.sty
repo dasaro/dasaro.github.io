@@ -1,0 +1,45 @@
+% Author: Fabio Aurelio D'Asaro <fabioaurelio.dasaro at univr.it>
+% License: CC BY-NC 4.0 (https://creativecommons.org/licenses/by-nc/4.0/).
+% University logos and marks are excluded; no rights over them are granted.
+% Built on LaTeX Beamer and PGF/TikZ.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamercolorthemebeavr}[2026/10/05 v2.0 Beavr color theme]
+
+\mode<presentation>
+\providecommand{\beavrcolor}{0}
+\ifcase\beavrcolor\relax
+  % Orange / red.
+  \definecolor{bgcolor}{rgb}{.97,.74,.47}
+  \definecolor{fgcolor}{rgb}{.60,.06,.08}
+\or
+  % Gray / blue.
+  \definecolor{bgcolor}{gray}{.9}
+  \definecolor{fgcolor}{rgb}{0,0,.5}
+\or
+  % Light blue / dark ochre.
+  \definecolor{bgcolor}{rgb}{.64,.87,.93}
+  \definecolor{fgcolor}{RGB}{138,75,17}
+\else
+  % Neutral gray, also used for other integer values.
+  \definecolor{bgcolor}{gray}{.9}
+  \definecolor{fgcolor}{gray}{.1}
+\fi
+
+\definecolor{beavrfooter}{gray}{.35}
+\setbeamercolor{structure}{fg=fgcolor}
+\setbeamercolor*{item}{parent=structure}
+\setbeamercolor{title}{parent=structure}
+\setbeamercolor{subtitle}{parent=structure}
+\setbeamercolor{frametitle}{parent=structure}
+\setbeamercolor{framesubtitle}{parent=structure}
+\setbeamercolor{alerted text}{parent=structure}
+\setbeamercolor{beavr email}{parent=structure}
+\setbeamercolor{beavr footer}{fg=beavrfooter,bg=white}
+
+\setbeamercolor{block title}{bg=fgcolor,fg=white}
+\setbeamercolor{block body}{bg=fgcolor!5!white,fg=black}
+\setbeamercolor{block title example}{bg=bgcolor,fg=black}
+\setbeamercolor{block body example}{bg=bgcolor!12!white,fg=black}
+\setbeamercolor{block title alerted}{parent=block title}
+\setbeamercolor{block body alerted}{parent=block body}
+\mode<all>
