@@ -261,6 +261,9 @@ software:
   - name: "LogicBenchmarkQuestions"
     description: "Dataset of logic puzzles to benchmark LLM reasoning."
     url: "https://github.com/dasaro/LogicBenchmarkQuestions"
+  - name: "GRANITA"
+    description: "Dataset of Italian recipes and nutritional preferences for interpretable preference learning (Zenodo). DOI: 10.5281/zenodo.7135196."
+    url: "https://doi.org/10.5281/zenodo.7135196"
 
 service:
   - "Co-organizer, eDefAI (3rd Logic for the AI Spring Summer School), Lecce, 2025"
