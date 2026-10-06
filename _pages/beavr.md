@@ -28,7 +28,7 @@ Beavr 🦫 is a Beamer theme for University of Verona presentations, for lecture
 
 ## Get it
 
-The current version is 2.0.1. You can [open it on Overleaf](https://www.overleaf.com/read/cyktsbkvwtwq#01f106) (read only) and copy the project into your own account, or download the same files as a zip: [beavr_v2.0.1.zip]({{ '/assets/files/beavr_v2.0.1.zip' | relative_url }}). Either way you get the theme and a short example deck to start from.
+The current version is 2.0.2. You can [open it on Overleaf](https://www.overleaf.com/read/cyktsbkvwtwq#01f106) (read only) and copy the project into your own account, or download the same files as a zip: [beavr_v2.0.2.zip]({{ '/assets/files/beavr_v2.0.2.zip' | relative_url }}). Either way you get the theme and a short example deck to start from.
 
 ## Usage
 
@@ -44,7 +44,7 @@ Keep the `.sty` files and the logo next to your `.tex` file, then:
 \beavremail{john.doe@univr.it}
 ```
 
-The short forms of the title and of the author are the ones shown in the footer. The cover is an ordinary `\titlepage` frame; give it the options `[plain,noframenumbering]` to keep it out of the slide count.
+The short forms of the title and of the author are the ones shown in the footer. The cover is an ordinary `\titlepage` frame. It has no footer and is not counted, so the frame after it is slide 1.
 
 A few settings can be changed before `\usetheme{beavr}`:
 
