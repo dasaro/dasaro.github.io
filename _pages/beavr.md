@@ -28,7 +28,7 @@ Beavr 🦫 is a Beamer theme for University of Verona presentations, for lecture
 
 ## Get it
 
-The current version is 2.0.2. You can [open it on Overleaf](https://www.overleaf.com/read/cyktsbkvwtwq#01f106) (read only) and copy the project into your own account, or download the same files as a zip: [beavr_v2.0.2.zip]({{ '/assets/files/beavr_v2.0.2.zip' | relative_url }}). Either way you get the theme and a short example deck to start from.
+The current version is 2.0.3. You can [open it on Overleaf](https://www.overleaf.com/read/cyktsbkvwtwq#01f106) (read only) and copy the project into your own account, or download the same files as a zip: [beavr_v2.0.3.zip]({{ '/assets/files/beavr_v2.0.3.zip' | relative_url }}). Either way you get the theme and a short example deck to start from.
 
 ## Usage
 
