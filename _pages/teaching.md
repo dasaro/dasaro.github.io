@@ -50,6 +50,7 @@ children:
         <li><strong>Lab of Computer Science and Multimedia Technologies</strong> · BA in Philosophy</li>
         <li><strong>Lab of Artificial Intelligence and Neuroscience</strong> · PhD in Human Sciences</li>
         <li><strong>Logic Learning</strong> (Logic-Based Learning) · PhD in Computer Science</li>
+        <li><strong>Storia della scienza (i)</strong> · BA, yearly guest lecture on AI in L. Ciancio's course, 2024-2026</li>
       </ul>
     </div>
   </div>
